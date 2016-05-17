@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{label_SIHV.EditTelefoneTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{label_SIHV.EditTelefoneLabel_PKtelefone}" for="PKtelefone" />
+                    <h:inputText id="PKtelefone" value="#{telefoneController.selected.PKtelefone}" title="#{label_SIHV.EditTelefoneTitle_PKtelefone}" required="true" requiredMessage="#{label_SIHV.EditTelefoneRequiredMessage_PKtelefone}"/>
+                    <h:outputLabel value="#{label_SIHV.EditTelefoneLabel_numero}" for="numero" />
+                    <h:inputText id="numero" value="#{telefoneController.selected.numero}" title="#{label_SIHV.EditTelefoneTitle_numero}" required="true" requiredMessage="#{label_SIHV.EditTelefoneRequiredMessage_numero}"/>
+                    <h:outputLabel value="#{label_SIHV.EditTelefoneLabel_pessoaCPF}" for="pessoaCPF" />
+                    <h:selectOneMenu id="pessoaCPF" value="#{telefoneController.selected.pessoaCPF}" title="#{label_SIHV.EditTelefoneTitle_pessoaCPF}" required="true" requiredMessage="#{label_SIHV.EditTelefoneRequiredMessage_pessoaCPF}">
+                        <f:selectItems value="#{pessoaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{telefoneController.update}" value="#{label_SIHV.EditTelefoneSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{label_SIHV.EditTelefoneViewLink}"/>
+                <br />
+                <h:commandLink action="#{telefoneController.prepareList}" value="#{label_SIHV.EditTelefoneShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{label_SIHV.EditTelefoneIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

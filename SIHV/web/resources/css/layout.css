@@ -1,0 +1,32 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 16/05/2016, 15:27:23
+    Author     : heitor
+*/
+
+.LADES-topbar{
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: 65px;
+    background-color: #2d3e50;
+    
+}
+
+.LADES-logo-SIHV > img{
+    width: 135px;
+    margin-top: 6px;
+    margin-left: 7px;
+    
+}
+
+.LADES-content {
+	padding: 0 15px;
+	margin-top: 70px;
+	transition: margin-left 0.5s;
+}

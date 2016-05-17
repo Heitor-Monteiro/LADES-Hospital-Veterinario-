@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}" for="cpf" />
+                    <h:inputText id="cpf" value="#{pessoaController.selected.cpf}" title="#{label_SIHV.CreatePessoaTitle_cpf}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}" for="rg" />
+                    <h:inputText id="rg" value="#{pessoaController.selected.rg}" title="#{label_SIHV.CreatePessoaTitle_rg}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}" for="nome" />
+                    <h:inputText id="nome" value="#{pessoaController.selected.nome}" title="#{label_SIHV.CreatePessoaTitle_nome}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_nome}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}" for="sexo" />
+                    <h:inputText id="sexo" value="#{pessoaController.selected.sexo}" title="#{label_SIHV.CreatePessoaTitle_sexo}" />
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}" for="logra" />
+                    <h:inputText id="logra" value="#{pessoaController.selected.logra}" title="#{label_SIHV.CreatePessoaTitle_logra}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_logra}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}" for="bairro" />
+                    <h:inputText id="bairro" value="#{pessoaController.selected.bairro}" title="#{label_SIHV.CreatePessoaTitle_bairro}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_bairro}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}" for="cidade" />
+                    <h:inputText id="cidade" value="#{pessoaController.selected.cidade}" title="#{label_SIHV.CreatePessoaTitle_cidade}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cidade}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_cep}" for="cep" />
+                    <h:inputText id="cep" value="#{pessoaController.selected.cep}" title="#{label_SIHV.CreatePessoaTitle_cep}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}" for="uf" />
+                    <h:inputText id="uf" value="#{pessoaController.selected.uf}" title="#{label_SIHV.CreatePessoaTitle_uf}" required="true" requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_uf}"/>
+                    <h:outputLabel value="#{label_SIHV.CreatePessoaLabel_exclusaoLogica}" for="exclusaoLogica" />
+                    <h:inputText id="exclusaoLogica" value="#{pessoaController.selected.exclusaoLogica}" title="#{label_SIHV.CreatePessoaTitle_exclusaoLogica}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{pessoaController.create}" value="#{label_SIHV.CreatePessoaSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{pessoaController.prepareList}" value="#{label_SIHV.CreatePessoaShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{label_SIHV.CreatePessoaIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
