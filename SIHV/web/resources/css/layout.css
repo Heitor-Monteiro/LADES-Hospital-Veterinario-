@@ -30,3 +30,70 @@ and open the template in the editor.
 	margin-top: 70px;
 	transition: margin-left 0.5s;
 }
+
+body {
+    font-family: "Helvetica Neue", Helvetica, sans-serif, Arial;
+    
+    /*Cor da fonte que está no body*/
+    color: #3a4f54;
+    
+    background-color: #f0f0f0;
+    font-size: small;
+}
+
+/*Estilização de login*/
+.LADES-bodyLogin{
+    background-color: #2d3e50;
+}
+
+.LADES-topBarLogin{
+    background-color: #f0f0f0;
+    height: 195px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    min-height: 50px;
+    z-index: 9999;
+}
+
+.LADES-topBarLogin > img {
+    height: 150px;	
+    position: absolute;
+    top:38%;
+    left:38%;
+    margin-top:-50px;
+    margin-left:-50px;
+}
+
+.LADES-inputLogin{
+    text-align: center;
+    margin-top: 225px;
+    font-size: 20px;
+}
+
+.icones{
+    background: #1abc9c;
+    padding-top: 0.7%;
+    padding-bottom: 0.7%;
+    padding-left: 0.8%;
+    padding-right: 0.8%;
+}
+
+.iconesAjuda{
+    background: #1abc9c;
+    font-size: 12px;
+    text-align: center;
+}
+
+.textoAjuda{
+    color: #ffffff;
+    font-size: 12px;
+    margin-left: 5px;
+}
+
+.LADES-logosInferior{
+    height: 40px;
+    margin-top: 170px;
+    margin-left: 30px;
+}
