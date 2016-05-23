@@ -7,44 +7,54 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html" 
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui">
     
     <h:head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>
+            <h:outputText value="#{label_SIHV.TituloSIHV}"></h:outputText>
+        </title> 
+        
+        <meta charset="utf-8" />
         <h:outputStylesheet  library="css" name="layout.css" />
     </h:head>
     
     <h:body class="LADES-bodyLogin">
-        <header class="LADES-topBarLogin">
+        <div class="LADES-topBarLogin">
             <h:graphicImage class="LADES-logoLogin"
                             library="imagens" 
                             name="veterinaria_flat _II_nome.svg" />
             
-        </header>
+        </div>
         
         <div class="LADES-inputLogin" >
             <h:form>
+                <p:growl id="messageLogin" autoUpdate="true" sticky="true" /> 
+                
                 <p:outputLabel class="fa fa-user icones" style="color: #ffffff;" />
                 <p:inputText id="login" placeholder="Login"
+                             required="true"
+                             requiredMessage="Digite seu login!"
                              style="margin-bottom: 20px;
-                                    padding-bottom: 0.3%;
+                                    padding-bottom: 0.2em;
                                     border-radius: 0px;
                                     width: 320px;" />
                 <br/>
                 <p:outputLabel class="fa fa-lock icones" style=" color: #ffffff;" />
                 <p:password id="senha" placeholder="Senha" size="28"
+                            required="true"
+                            requiredMessage="Digite sua senha!"
                             style="margin-bottom: 20px;
-                                   padding-bottom: 0.3%;
-                                   padding-top: 0.4%;
+                                   padding-bottom: 0.2em;
                                    border-radius: 0px;
                                    width: 323px;" />
                 <br/>
-                <p:button value="Entrar" style="border-radius: 0px;
+                <p:commandButton value="Entrar" style="border-radius: 0px;
                                                color: #ffffff;
-                                               width: 368px;
+                                               width: 373px;
                                                background: #1abc9c" 
-                          outcome="/index"/>
+                                               action="#"
+                                               />
+               
             </h:form>
             
             
