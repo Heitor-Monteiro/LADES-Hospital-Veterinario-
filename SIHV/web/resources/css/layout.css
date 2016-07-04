@@ -11,7 +11,7 @@ and open the template in the editor.
 /* Inicio da resposividade */
 
 .LADES-topbar{
-    position: fixed;
+    
     top: 0;
     right: 0;
     left: 0;
@@ -32,6 +32,8 @@ and open the template in the editor.
     /*Responsividade imagem */
     
     
+    
+    position: absolute;
     margin-top: 6px;
     margin-left: 7px;
     
@@ -40,7 +42,7 @@ and open the template in the editor.
 /*nome antigo= aw-sidebar*/
 .LADES-sidebar {
     position: fixed;
-    top: 65px;
+    top: 0;
     bottom: 0;
     left: 0;
     width: 210px;

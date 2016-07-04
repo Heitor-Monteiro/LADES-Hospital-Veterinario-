@@ -22,177 +22,17 @@
             <div class="LADES-content js-content">
             
             
-            <h:form >
-                <p:growl id="growl" sticky="true" showDetail="true" />
-                <p:wizard style="margin-top: 20px;" >
+            <h:form>
+                
+                <div style="position: absolute;">
+                    <p:growl id="growl" sticky="true"  />
+                </div>
+                
+                <p:wizard>
                     
                     <p:tab id="DadosUsuario" title="Dados do usuário" >
                         <p:panel header="Dados do usuário" >
-                            <div class="ui-fluid">
-                            <p:panelGrid columns="3" layout="grid"
-                                         styleClass="panelgrid-noborder"
-                                         columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3" > 
-                                
-
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}" 
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="nome" />
-                                <p:inputText id="nome" value="#{pessoaController.selected.nome}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_nome}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_nome}"/>
-                                <p:message for="nome" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="cpf" />                                
-                                <p:inputMask mask="99999999999"
-                                             id="cpf" value="#{pessoaController.selected.cpf}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_cpf}" 
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
-                                <p:message for="cpf" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="rg" />                              
-                                <p:inputMask mask="9999999"
-                                             id="rg" value="#{pessoaController.selected.rg}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_rg}" 
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
-                                <p:message for="rg" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="sexo" />
-                                <p:selectOneButton id="sexo" 
-                                                   value="#{pessoaController.selected.sexo}"
-                                                   required="true"
-                                                   requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
-                                    <f:selectItem itemLabel="M" itemValue="M" />
-                                    <f:selectItem itemLabel="F" itemValue="F" />
-                                </p:selectOneButton>
-                                <p:message for="sexo" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="logra" />
-                                <p:inputText id="logra" value="#{pessoaController.selected.logra}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_logra}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_logra}"/>
-                                <p:message for="logra" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_numeroCasa}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="numeroCasa" />
-                                <p:inputText id="numeroCasa" value="#"
-                                             title="#{label_SIHV.CreatePessoaTitle_numeroCasa}"
-                                             maxlength="6"
-                                             required="true"
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_numeroCasa}" />
-                                <p:message for="numeroCasa" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="bairro" />
-                                <p:inputText id="bairro" value="#{pessoaController.selected.bairro}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_bairro}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_bairro}"/>
-                                <p:message for="bairro" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="cidade" />
-                                <p:inputText id="cidade" value="#{pessoaController.selected.cidade}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_cidade}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cidade}"/>
-                                <p:message for="cidade" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cep}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="cep" />
-                                <p:inputMask mask="99999999"
-                                             id="cep" value="#{pessoaController.selected.cep}" 
-                                             title="#{label_SIHV.CreatePessoaTitle_cep}" 
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}" />
-                                <p:message for="cep" />
-                                
-                                
-                                <p:outputLabel value="Complemento"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:inputText id="complemento" value="#"
-                                             maxlength="100"
-                                             required="false"
-                                             title="Endereço complementar"/>
-                                <p:message for="complemento" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="uf" />                             
-                                <p:selectOneMenu id="uf" value="#{pessoaController.selected.uf}"
-                                                 required="true"
-                                                 requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_uf}">
-                                    <f:selectItem itemLabel="Selecione o estado" itemValue="" />
-                                    <f:selectItem itemLabel="AC" itemValue="AC" />
-                                    <f:selectItem itemLabel="AL" itemValue="AL" />
-                                    <f:selectItem itemLabel="AP" itemValue="AP" />
-                                    <f:selectItem itemLabel="AM" itemValue="AM" />
-                                    <f:selectItem itemLabel="BA" itemValue="BA" />
-                                    <f:selectItem itemLabel="CE" itemValue="CE" />
-                                    <f:selectItem itemLabel="DF" itemValue="DF" />
-                                    <f:selectItem itemLabel="ES" itemValue="ES" />
-                                    <f:selectItem itemLabel="GO" itemValue="GO" />
-                                    <f:selectItem itemLabel="MA" itemValue="MA" />
-                                    <f:selectItem itemLabel="MT" itemValue="MT" />
-                                    <f:selectItem itemLabel="MS" itemValue="MS" />
-                                    <f:selectItem itemLabel="MG" itemValue="MG" />
-                                    <f:selectItem itemLabel="PA" itemValue="PA" />
-                                    <f:selectItem itemLabel="PB" itemValue="PB" />
-                                    <f:selectItem itemLabel="PR" itemValue="PR" />
-                                    <f:selectItem itemLabel="PE" itemValue="PE" />
-                                    <f:selectItem itemLabel="PI" itemValue="PI" />
-                                    <f:selectItem itemLabel="RJ" itemValue="RJ" />
-                                    <f:selectItem itemLabel="RN" itemValue="RN" />
-                                    <f:selectItem itemLabel="RS" itemValue="RS" />
-                                    <f:selectItem itemLabel="RO" itemValue="RO" />
-                                    <f:selectItem itemLabel="RR" itemValue="RR" />
-                                    <f:selectItem itemLabel="SC" itemValue="SC" />
-                                    <f:selectItem itemLabel="SP" itemValue="SP" />
-                                    <f:selectItem itemLabel="SE" itemValue="SE" />
-                                    <f:selectItem itemLabel="TO" itemValue="TO" />
-                                </p:selectOneMenu>
-                                <p:message for="uf" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="numero" />
-                                <p:inputMask mask="99999999999" id="numero"
-                                             value="#{telefoneController.selected.numero}"
-                                             title="#{label_SIHV.CreateTelefoneTitle_numero}"
-                                             required="true"
-                                             requiredMessage="#{label_SIHV.CreateTelefoneRequiredMessage_numero}"/>
-                                <p:message for="numero" />
-                            </p:panelGrid>
-                            </div>
+                            <ui:include src="/SIHV_Telas_Genericas/campo_pessoa.xhtml" />
                            <p:commandButton action="#{pessoaController.create}" 
                                             value="#{label_SIHV.CreatePessoaSaveLink}"
                                             update="growl" disabled="true" />
@@ -349,12 +189,7 @@
                     
                     
                 </p:wizard>
-            <br />
-            <br />
-            <h:commandLink action="#{pessoaController.prepareList}"
-                           value="#{label_SIHV.CreatePessoaShowAllLink}" immediate="true"/>
             
-            <p:button outcome="/pessoa/List" value="teste" />
             </h:form>
             
             
