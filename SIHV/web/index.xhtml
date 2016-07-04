@@ -14,6 +14,15 @@
         
         <ui:define name="body">
             
+            
+            <aside class="LADES-sidebar  js-sidebar">
+                <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+            </aside>
+            
+            
+            
+            <div class="LADES-content js-content">
+            
             <h:panelGrid cellpadding="30" columns="4" columnClasses="ui-grid-col-6" >
                 
                 
@@ -39,21 +48,24 @@
                 
                 
                 
-                <h:link outcome="/index" id="addMED" >
+                <h:link outcome="/telas_SIHV/cad_adm" id="addMED" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-addMED.svg" />
                     <p:tooltip id="menubotao3" for="addMED" value="Cadastrar novo usuário do sistema"
                     showEffect="clip" hideEffect="explode" />
-                    <p class="LADES-textoBotao" >Nova administrador</p>
+                    <p class="LADES-textoBotao" >Novo administrador</p>
                 </h:link>
                 
                 
                 
-                <h:link outcome="/index" id="teste" >
+                <h:link outcome="/telas_SIHV/cad_pet" id="addPet" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
-                        name="botao-Ficha-icon.svg" />
+                        name="botao-addPET.svg" />
+                    <p:tooltip id="menubotao4" for="addPet" value="Cadastrar novos pets para o cliente"
+                    showEffect="clip" hideEffect="explode" />
+                    <p class="LADES-textoBotao" >Cadastrar novo pet</p>
                 </h:link>
                 
                 
@@ -74,7 +86,11 @@
             <br />
             <h:link outcome="/usuario/List" value="Show All Usuario Items"/>
             <br />
-            <h:link outcome="/telas_SIHV/login" value="Login"/>
+            <h:link outcome="/login2" value="Login"/>
+            
+            
+            </div>
+            
         </ui:define>
         
     </ui:composition>

@@ -1,0 +1,35 @@
+/* BASE */
+body {
+    margin: 0;
+    font-family: "Helvetica Neue", Helvetica, sans-serif, Arial;
+    
+    /*Cor da fonte que está no body*/
+    color: #3a4f54;
+    
+    background-color: #f0f0f0;
+    font-size: small;
+}
+
+/* TABVIEW */
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
+	color: #555;
+}
+
+@media (max-width: 640px) {
+	.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+		width: 100%;
+	}
+}
+
+/* PANELGRID */
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+	border: none;
+        background: none;
+}
+
+
+@media (max-width: 640px) {
+	.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
+		border: none;
+	}
+}

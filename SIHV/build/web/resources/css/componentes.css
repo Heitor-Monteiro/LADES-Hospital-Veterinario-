@@ -8,3 +8,10 @@ and open the template in the editor.
     Author     : heitor
 */
 
+.LADES-toggle {
+	float: right;
+	line-height: 50px;
+	margin-right: 15px;
+	
+	color: #fff;
+}
