@@ -5,9 +5,9 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
     <div class="ui-fluid">
-        <p:panelGrid columns="2" layout="grid"
+        <p:panelGrid columns="3" layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-8" > 
+                     columnClasses="ui-grid-col-2, ui-grid-col-7, ui-grid-col-3" > 
 
             <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
                            style="color: #1abc9c; font-weight: bold ;"
@@ -26,9 +26,9 @@
 
         </p:panelGrid>
 
-        <p:panelGrid columns="2" layout="grid"
+        <p:panelGrid columns="3" layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-8, ui-grid-col-3"
+                     columnClasses="ui-grid-col-6, ui-grid-col-3, ui-grid-col-3"
                      style="margin-bottom: 20px;" >
 
             <p:inputText id="ValorPesquisa" value="#" 
@@ -36,28 +36,40 @@
                      maxlength="100"
                      required="true" 
                      requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_ValorTipoPesquisa}"/>
+            
 
             <p:commandButton action="#{pessoaController.create}" 
-                    value="#{label_SIHV.CreatePessoaSaveLink}"
+                    value="Pesquisar"
                     update="growl" disabled="true" />
+            
+            <p:message for="ValorPesquisa" />
 
         </p:panelGrid>
-
+    </div>
         <!-- http://www.primefaces.org/showcase/ui/data/datatable/selection.xhtml 
         endereço para ajudar com a tabela abaixo -->
-
+        
+        <!--
         <p:dataTable id="radioDT"
                      var="car"
                      value="#"
                      selection="#"
                      rowKey="#"
                      reflow="true" rows="10" paginator="true"
-                     rendered="false" >
+                     rendered="true" >
+        -->
+
+        <p:dataTable id="radioDT"
+                     var="car"
+                     value="#"
+                     rowKey="#"
+                     reflow="true" rows="10" paginator="true"
+                     rendered="true" >
 
             <f:facet name="header">
-                Clientes
+                Clientes encontrados
             </f:facet>
-            <p:column selectionMode="single" style="width:16px;text-align:center"/>
+            <p:column selectionMode="single" style="width:30px;text-align:center"/>
 
             <p:column headerText="Id" style="width:70px;" >
                 <h:outputText value="#" />
@@ -72,11 +84,17 @@
                 <h:outputText value="#" />
             </p:column>
             <f:facet name="footer">
-                <p:commandButton process="radioDT" icon="ui-icon-search" value="View" />
+                <p:commandButton process="radioDT"
+                                 icon="fa fa-check-square-o"
+                                 value="Selecionar cliente" />
             </f:facet>
         </p:dataTable>
 
-
-    </div>
-	
+    <!--
+    <p:commandButton process="radioDT"
+                     update=":form:carDetail"
+                     icon="ui-icon-search"
+                     value="View"
+                     oncomplete="PF('carDialog').show()" />
+    -->
 </ui:component>
