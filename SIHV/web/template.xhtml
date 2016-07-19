@@ -9,8 +9,8 @@
     <h:head>
         
         <f:facet name="first">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1" />
 	</f:facet>
         
         
@@ -24,19 +24,16 @@
          <h:outputStylesheet library="css" name="custom.css" />
         
         <h:outputScript target="body" library="javascripts" name="app.js" />
+        
+    </h:head>
+    
+    <h:head>
+        <div class="LADES-topbar" >
+            <ui:insert name="menu" />
+        </div>
     </h:head>
 
     <h:body>
-        <header class="LADES-topbar" >
-            <h:link outcome="/index" class="LADES-logo-SIHV LADES-content js-content" >
-                <h:graphicImage 
-                                library="imagens" 
-                                name="veterinaria_flat _II_nome.svg" />
-            </h:link>
-            
-            <a href="#" class="LADES-toggle  js-toggle"><i class="fa  fa-bars"></i></a>
-            
-        </header>
         
         
         <h1>

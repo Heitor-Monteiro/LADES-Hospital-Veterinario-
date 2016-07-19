@@ -2,19 +2,64 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
         xmlns:p="http://primefaces.org/ui" 
         xmlns:h="http://xmlns.jcp.org/jsf/html" >
-	
-    <p:panelMenu >
-        
-        <p:submenu label="Outras telas">
-            <p:menuitem class="menuitem" value="Login" outcome="/login2"  icon="fa fa-sign-in"/>
-        </p:submenu>
-        
-        <p:submenu label="Cadastros">
-            <p:menuitem class="menuitem" value="Cadastrar Administrador" outcome="/SIHV_Telas_Adm/ADM_cad_adm" icon="fa fa-user-md" />
-            <p:menuitem class="menuitem" value="Cadastrar Cliente" outcome="/SIHV_Telas_Adm/ADM_cad_cliente" icon="fa fa-user-plus" />
-            <p:menuitem class="menuitem" value="Cadastrar Animal" outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal" icon="fa fa-paw" />
-        </p:submenu>
-        
-    </p:panelMenu>
-	
+
+    <h:outputStylesheet library="css" name="Menu_css.css" />
+    <h:outputScript target="body"  library="javascripts" name="Menu_JS.js" />
+    
+    <nav>
+	<div class="navbar clear">
+            
+            <h:link outcome="/index" class="LADES-logo-SIHV logo" >
+                <h:graphicImage id="NomeSistema"
+                                library="imagens" 
+                                name="veterinaria_flat _II_nome.svg" />
+            </h:link>
+            <p:tooltip id="Logo" for="NomeSistema" 
+                       value="Sistema Integrado do Hospital Veterinário"
+                       showEffect="clip" hideEffect="explode" />
+            
+            <div class="menu-toggle" onclick="myFunction(this)">
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </div>
+            
+            <div class="menu">
+                <ul>
+                    
+                    <li><h:link value="Tela Inicial" outcome="/index.xhtml" /></li>
+                    
+                    <li>
+                        <span class="open-submenu">Cadastro<span class="arrow down"></span></span>
+                        <ul>
+                            <li><h:link value="Cadastrar Administrador" outcome="/SIHV_Telas_Adm/ADM_cad_adm" /></li>
+                            <li><h:link value="Cadastrar Cliente" outcome="/SIHV_Telas_Adm/ADM_cad_cliente" /></li>
+                            <li><h:link value="Cadastrar Animal" outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal" /></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <span class="open-submenu">Editar cadastro<span class="arrow down"></span></span>
+                        <ul>
+                            <li><h:link value="SubMenu1" /></li>
+                            <li><h:link value="SubMenu2eeeeeeeeeeee" /></li>
+                            <li><h:link value="SubMenu3" /></li>
+                        </ul>
+                    </li>
+                    
+                    <li>
+                        <span class="open-submenu">Outras Telas<span class="arrow down"></span></span>
+                        <ul>
+                            <li><h:link value="Login" outcome="/login2" /></li>
+                            <li><h:link value="SubMenu2eeeeeeeeeeee" /></li>
+                            <li><h:link value="SubMenu3" /></li>
+                        </ul>
+                    </li>
+                    
+                    <li><h:link value="MenuNovo2" /></li>
+                    
+                </ul>
+            </div>
+	</div>
+    </nav>	
 </ui:component>

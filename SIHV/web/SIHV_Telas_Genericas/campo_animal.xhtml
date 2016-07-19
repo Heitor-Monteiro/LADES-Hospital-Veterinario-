@@ -23,14 +23,21 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_especie}" 
                            for="especie"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputText id="especie" value="#{animaisController.selected.especie}" 
-                         title="#{label_SIHV.CreateAnimaisTitle_especie}"
-                         maxlength="500"
-                         required="true" 
-                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_especie}"/>
+            
+            <p:selectOneMenu id="especie" value="#{animaisController.selected.especie}"
+                             title="#{label_SIHV.CreateAnimaisTitle_especie}"
+                             required="true"
+                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_especie}">
+                <f:selectItem itemLabel="Selecione a especie" itemValue="" />
+                <f:selectItem itemLabel="Canino" itemValue="Canino" />
+                <f:selectItem itemLabel="Felino" itemValue="Felino" />
+                <f:selectItem itemLabel="Ave" itemValue="Ave" />
+                <f:selectItem itemLabel="Reptil" itemValue="Reptil" />
+                
+            </p:selectOneMenu>
             <p:message for="especie" />
-
-
+            
+            
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_raça}" 
                            for="raça" 
                            style="color: #1abc9c; font-weight: bold ;" />
@@ -40,8 +47,28 @@
                          required="true" 
                          requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_raça}"/>
             <p:message for="raça" />
-
-
+            
+            
+            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
+                           for="pelagem"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:fileUpload id="pelagem"
+                          value="#"
+                          mode="advanced"
+                          skinSimple="true"
+                          auto="false"
+                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
+                          dragDropSupport="true"
+                          fileLimit="1"
+                          label="Escolher foto"
+                          sizeLimit="3000000"
+                          invalidSizeMessage="tamanho de arquivo exedido!"
+                          invalidFileMessage="Tipo de arquivo não aceito, use: jpg,png ou gif"
+                          required="true"
+                          requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_pelagem}" />
+            <p:message for="pelagem" />
+            
+            
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_sexo}" 
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
@@ -56,63 +83,50 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_idade}"
+                           style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
-            <p:inputText id="idade" value="#{animaisController.selected.idade}" 
+            <p:inputMask id="idade" value="#{animaisController.selected.idade}"
+                         mask="999"
                          title="#{label_SIHV.CreateAnimaisTitle_idade}"
                          maxlength="3"
-                         required="false" 
+                         required="true" 
                          requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_idade}"/>
             <p:message for="idade" />
-
-
+            
+            
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_peso}"
-                           for="peso" />
-            <p:inputText id="peso" value="#{animaisController.selected.peso}" 
-                         title="#{label_SIHV.CreateAnimaisTitle_peso}"
-                         maxlength="6"
-                         required="false" 
-                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_peso}"/>
-            <p:message for="peso" />
-
-
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_clientepessoaCPF}"
-                           for="clientepessoaCPF" />
-            <p:selectOneMenu id="clientepessoaCPF" disabled="true"
-                             value="#{telefoneController.selected.pessoaCPF}" 
-                             title="#{label_SIHV.CreateAnimaisTitle_clientepessoaCPF}" 
-                             required="false" 
-                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_clientepessoaCPF}">
-                <f:selectItems value="#{pessoaController.itemsAvailableSelectOne}"/>
-            </p:selectOneMenu>
-            <p:message for="clientepessoaCPF" />
-
-
-
-
-
-
-
-
-
-
-
-
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"
-                           for="dataNascAnimal"
+                           for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:calendar id="dataNascAnimal" maxlength="10" disabled="true"
-                        title="#{label_SIHV.CreateAnimaisTitle_DataNasc}"
-                        required="true" 
-                        requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_DataNasc}"
-                        locale="de" navigator="true" 
-                        pattern="yyyy-mm-dd" />
-            <p:message for="dataNascAnimal" />
+            <p:inputNumber id="pesoAnimal"
+                           value="#{animaisController.selected.peso}"
+                           title="#{label_SIHV.CreateAnimaisTitle_peso}"
+                           decimalSeparator=","
+                           thousandSeparator="."
+                           symbol=" Kg"
+                           symbolPosition="s"
+                           maxlength="6"
+                           maxValue="999999"
+                           required="true"
+                           requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_peso}" />
+            <p:message for="pesoAnimal" />
+            
+            
+            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"
+                           for="pesoAnimal"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:calendar id="dataNascAnimal" maxlength="10" disabled="false" 
+                        title="#{label_SIHV.CreateAnimaisTitle_DataNasc}" 
+                        required="true"  
+                        requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_DataNasc}" 
+                        locale="de" navigator="true"  
+                        pattern="yyyy-mm-dd" /> 
+            <p:message for="dataNascAnimal" /> 
 
 
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_hora}"
                            for="hora"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:calendar id="hora" pattern="HH:mm" timeOnly="true" disabled="true"
+            <p:calendar id="hora" pattern="HH:mm" timeOnly="true" disabled="false"
                         title="#{label_SIHV.CreateAnimaisTitle_hora}" 
                         required="true" 
                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_hora}"
@@ -141,24 +155,7 @@
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3">
 
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
-                           for="pelagem"
-                           style="color: #1abc9c; font-weight: bold ;" />
-            <p:fileUpload id="pelagem"
-                          value="#"
-                          mode="advanced"
-                          skinSimple="true"
-                          auto="false"
-                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                          dragDropSupport="true"
-                          fileLimit="1"
-                          label="Escolher foto"
-                          sizeLimit="3000000"
-                          invalidSizeMessage="tamanho de arquivo exedido!"
-                          invalidFileMessage="Tipo de arquivo não aceito, use: jpg,png ou gif"
-                          required="true"
-                          requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_pelagem}" />
-            <p:message for="pelagem" />
+            
 
         </p:panelGrid>
 

@@ -6,22 +6,17 @@
       xmlns:p="http://primefaces.org/ui">
     
     <ui:composition template="/template.xhtml">
-        <h:head>
-            <title>
-                <h:outputText value="#{label_SIHV.TituloSIHV}"></h:outputText>
-            </title>
-        </h:head>
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+        </ui:define>
+        
+        <ui:define name="title">
+            <h:outputText value="Inicio" />
+        </ui:define>
         
         <ui:define name="body">
             
-            
-            <aside class="LADES-sidebar  js-sidebar">
-                <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-            </aside>
-            
-            
-            
-            <div class="LADES-content js-content">
             
             <h:panelGrid cellpadding="30" columns="4" columnClasses="ui-grid-col-6" >
                 
@@ -37,7 +32,7 @@
                 
                 
                 
-                <h:link outcome="/telas_SIHV/cad_cliente" id="addUser" >
+                <h:link outcome="/SIHV_Telas_Adm/ADM_cad_cliente" id="addUser" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-addUser.svg" />
@@ -48,7 +43,7 @@
                 
                 
                 
-                <h:link outcome="/telas_SIHV/cad_adm" id="addMED" >
+                <h:link outcome="/index" id="addMED" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-addMED.svg" />
@@ -59,7 +54,7 @@
                 
                 
                 
-                <h:link outcome="/telas_SIHV/cad_pet" id="addPet" >
+                <h:link outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal" id="addPet" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-addPET.svg" />
@@ -74,22 +69,76 @@
             </h:panelGrid>
             
             
-            Hello from Facelets
-            <br />
-            <h:link outcome="/animais/List" value="Show All Animais Items"/>
-            <br />
-            <h:link outcome="/cliente/List" value="Show All Cliente Items"/>
-            <br />
-            <h:link outcome="/pessoa/List" value="Show All Pessoa Items"/>
-            <br />
-            <h:link outcome="/telefone/List" value="Show All Telefone Items"/>
-            <br />
-            <h:link outcome="/usuario/List" value="Show All Usuario Items"/>
-            <br />
-            <h:link outcome="/login2" value="Login"/>
+           
+            <br></br>
+                        <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+
             
             
-            </div>
+            
             
         </ui:define>
         
