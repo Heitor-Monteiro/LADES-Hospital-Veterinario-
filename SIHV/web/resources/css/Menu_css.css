@@ -139,7 +139,7 @@ nav .menu ul ul a:hover {
     transition: background-color .3s
 }
 
-@media(max-width:600px) {
+@media(max-width:640px) {
     nav .logo { padding-top: 8px }
 
     nav .menu-toggle { display: inline-block }

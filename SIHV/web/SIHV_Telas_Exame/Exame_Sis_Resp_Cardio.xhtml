@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+        </ui:define>
+        
+        <ui:define name="title"  >
+            <h:outputText class="" value="Sistema respiratório e cardiovascular"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            <h:form>
+                <p:growl id="growl" sticky="true"  />
+                
+                <p:panel header="Sistema respiratório e cardiovascular" >
+                    <div class="ui-fluid">
+                        <p:panelGrid columns="3" layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Tosse:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Tosse" />
+                            <p:selectOneRadio id="Tosse"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta tosse!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Tosse" />
+                            
+                            
+                            
+                            <p:outputLabel value="Tosse é produtiva?"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="TosseProdu" />
+                            <p:selectOneRadio id="TosseProdu"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="false"
+                                              requiredMessage=""
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Produtiva" itemValue="produtiva" />
+                                <f:selectItem itemLabel="Não produtiva" itemValue="nao_produtiva" />
+                            </p:selectOneRadio>
+                            <p:message for="TosseProdu" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Tosse (Frequência/Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="TosseEvo" />
+                            <p:inputTextarea id="TosseEvo" 
+                                             value="#"
+                                             required="false"
+                                             requiredMessage=""
+                                             style="margin-bottom: 20px;" />
+                            <p:message for="TosseEvo" />
+                            
+                               
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Espirro:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Espirro" />
+                            <p:selectOneRadio id="Espirro"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta espirro"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Espirro" />
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Espirro (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="EspirroEvo" />
+                            <p:inputTextarea id="EspirroEvo" 
+                                             value="#"
+                                             required="false"
+                                             requiredMessage=""
+                                             style="margin-bottom: 20px;" />
+                            <p:message for="EspirroEvo" />
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção nasal:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="SecreNas" />
+                            <p:selectOneRadio id="SecreNas"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta secresão nasal!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="SecreNas" />
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção nasal (uni ou bilateral):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="SecreNas2" />
+                            <p:selectOneRadio id="SecreNas2"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="false"
+                                              requiredMessage=""
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Unilateral" itemValue="UNILATERAL" />
+                                <f:selectItem itemLabel="Bilateral" itemValue="BILATERAL" />
+                            </p:selectOneRadio>
+                            <p:message for="SecreNas2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção nasal (Tipo):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="SecreNas3" />
+                            <p:inputText id="SecreNas3" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="SecreNas3" />
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção nasal (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="SecreNas4" />
+                            <p:inputTextarea id="SecreNas4" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="SecreNas4" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Dispneia/Taquipnéia:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="DispTaq" />
+                            <p:selectOneRadio id="DispTaq"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta dispneia/taquipnéia!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="DispTaq" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Dispneia/Taquipnéia (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="DispTaq1" />
+                            <p:inputTextarea id="DispTaq1" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="DispTaq1" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Cianose:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Cianose" />
+                            <p:selectOneRadio id="Cianose"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta cianose!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Cianose" />
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Quando apresentou cianose:"
+                                           for="Cianose2"
+                                           style="color: #1abc9c; font-weight: bold ;" />
+                            <p:calendar id="Cianose2" 
+                                        maxlength="10" 
+                                        disabled="false" 
+                                        title="" 
+                                        required="false"  
+                                        requiredMessage="" 
+                                        locale="de" navigator="true"  
+                                        pattern="yyyy-mm-dd" 
+                                        style="margin-bottom: 20px;" /> 
+                            <p:message for="Cianose2" /> 
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Cianose (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Cianose3" />
+                            <p:inputTextarea id="Cianose3" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Cianose3" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Cansaço fácil:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Cansaco" />
+                            <p:selectOneRadio id="Cansaco"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta cansaço fácil!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Cansaco" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Cansaço fácil (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Cansaco2" />
+                            <p:inputTextarea id="Cansaco2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Cansaco2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Síncope:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Sincope" />
+                            <p:selectOneRadio id="Sincope"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta síncope!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Sincope" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Síncope (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Sincope2" />
+                            <p:inputTextarea id="Sincope2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Sincope2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Emagrecimento:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Emagrec" />
+                            <p:selectOneRadio id="Emagrec"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta emagrecimento!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Emagrec" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Emagrecimento (Evolução):"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Emagrec2" />
+                            <p:inputTextarea id="Emagrec2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Emagrec2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
+                                <p:panelGrid id="display" columns="2" columnClasses="label,value">
+                                    <h:outputText value="German:" />
+                                    <h:outputText >
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputText>
+                                </p:panelGrid>
+                            </p:dialog>
+                            
+                        </p:panelGrid>    
+                    </div>
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

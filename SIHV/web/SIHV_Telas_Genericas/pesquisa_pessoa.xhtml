@@ -6,31 +6,32 @@
 	
     <div class="ui-fluid">
         <p:panelGrid columns="3" layout="grid"
+                     style="margin: 10px 0px 15px;"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-2, ui-grid-col-7, ui-grid-col-3" > 
+                     columnClasses="ui-grid-col-2, ui-grid-col-5, ui-grid-col-3" > 
 
             <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
                            style="color: #1abc9c; font-weight: bold ;"
                            for="TipoPesquisa" />
-            <p:selectOneButton id="TipoPesquisa" 
-                               value="#"
-                               required="true"
-                               requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_TipoPesquisa}">
+            <p:selectOneRadio id="TipoPesquisa"
+                              layout="responsive"
+                              columns="3"
+                              value="#"
+                              required="true"
+                              requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_TipoPesquisa}">
                 <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
                 <f:selectItem itemLabel="RG" itemValue="rg" />
                 <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
-            </p:selectOneButton>
+            </p:selectOneRadio>
             <p:message for="TipoPesquisa" />
-
-
-
         </p:panelGrid>
 
         <p:panelGrid columns="3" layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-6, ui-grid-col-3, ui-grid-col-3"
+                     columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-3"
                      style="margin-bottom: 20px;" >
 
+            
             <p:inputText id="ValorPesquisa" value="#" 
                      title="#{label_SIHV.PesquisaPessoaTitle_ValorTipoPesquisa}"
                      maxlength="100"
@@ -40,12 +41,17 @@
 
             <p:commandButton action="#{pessoaController.create}" 
                     value="Pesquisar"
-                    update="growl" disabled="true" />
-            
+                    update="growl" disabled="false"
+                    icon="fa fa-search"/>
             <p:message for="ValorPesquisa" />
 
+            
+            
         </p:panelGrid>
-    </div>
+    
+    
+     
+    
         <!-- http://www.primefaces.org/showcase/ui/data/datatable/selection.xhtml 
         endereço para ajudar com a tabela abaixo -->
         
@@ -58,17 +64,32 @@
                      reflow="true" rows="10" paginator="true"
                      rendered="true" >
         -->
-
-        <p:dataTable id="radioDT"
+        
+       <p:panelGrid columns="1" layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-5" >
+           
+           <p:outputLabel value="Clientes encontrados:" 
+                       style="color: #1abc9c; 
+                              font-weight: bold;
+                              padding-top: 20px;"/>
+                         
+       </p:panelGrid>
+        
+        
+       <p:panelGrid columns="1" layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
+        
+            <p:dataTable id="radioDT"
                      var="car"
                      value="#"
                      rowKey="#"
                      reflow="true" rows="10" paginator="true"
                      rendered="true" >
 
-            <f:facet name="header">
-                Clientes encontrados
-            </f:facet>
             <p:column selectionMode="single" style="width:30px;text-align:center"/>
 
             <p:column headerText="Id" style="width:70px;" >
@@ -80,15 +101,20 @@
             <p:column headerText="CPF/CNPJ">
                 <h:outputText value="#" />
             </p:column>
-            <p:column headerText="Color">
+            <p:column headerText="RG">
                 <h:outputText value="#" />
             </p:column>
-            <f:facet name="footer">
+            
+            <p:column headerText="Escolher" style="width:90px;" >
                 <p:commandButton process="radioDT"
-                                 icon="fa fa-check-square-o"
-                                 value="Selecionar cliente" />
-            </f:facet>
+                                 icon="fa fa-check" />
+            </p:column>
+            
         </p:dataTable>
+    
+        </p:panelGrid>
+    </div>
+
 
     <!--
     <p:commandButton process="radioDT"

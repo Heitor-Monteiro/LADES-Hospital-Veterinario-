@@ -7,37 +7,32 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText class="LADES-content js-content" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
         </ui:define>
+        
+        <ui:define name="title">
+            <h:outputText class="" value="#{label_SIHV.CreateAnimaisTitle}"></h:outputText>
+        </ui:define>
+        
         <ui:define name="body">
             
-            <h:outputScript target="body" library="javascripts" name="tamanhoArquivo.js" />
-            
-            <aside class="LADES-sidebar  js-sidebar">
-                <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-            </aside>
-            
-            
-            
-            <div class="LADES-content js-content">
-            
-            
             <h:form >
-                
                 <p:growl id="growl" sticky="true" />
                 
                 <p:wizard style="margin-top: 20px;" >
                     
-                    <!--
+                    
                     <p:tab id="DadosCliente" title="Pesquisar por cliente" >
                         <p:panel header="Pesquisar por cliente" >
                             <ui:include src="/SIHV_Telas_Genericas/pesquisa_pessoa.xhtml" />
                         </p:panel>
                     </p:tab>
-                    -->
                     
-                    <p:tab id="DadosPet" title="Dados do pet" >
+                    
+                    <p:tab id="DadosPet" title="Dados do animal" >
                         <p:panel header="Dados do pet">
                             <ui:include src="/SIHV_Telas_Genericas/campo_animal.xhtml" />
                         </p:panel>
@@ -174,7 +169,7 @@
             </h:form>
             
             
-            </div>
+            
             
         </ui:define>
     </ui:composition>

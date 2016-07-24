@@ -16,66 +16,77 @@ and open the template in the editor.
         
         <meta charset="utf-8" />
         <h:outputStylesheet  library="css" name="layout.css" />
+        <h:outputStylesheet  library="css" name="custom.css" />
     </h:head>
     
     <h:body class="LADES-bodyLogin">
-        <div class="LADES-topBarLogin">
-            <h:graphicImage class="LADES-logoLogin"
-                            library="imagens" 
-                            name="veterinaria_flat _II_nome.svg" />
-            
-        </div>
+        <header class="LADES-topBarLogin">
+                <h:graphicImage library="imagens" 
+                                name="veterinaria_flat _II_nome.svg" />   
+        </header>
         
-        <div class="LADES-inputLogin" >
+        <div class="ui-fluid">
             <h:form>
-                <p:growl id="messageLogin" autoUpdate="true" sticky="true" /> 
+                <p:growl id="messageLogin" autoUpdate="true" sticky="true" />
                 
-                <p:outputLabel class="fa fa-user icones" style="color: #ffffff;" />
-                <p:inputText id="login" placeholder="Login"
-                             required="true"
-                             requiredMessage="Digite seu login!"
-                             style="margin-bottom: 20px;
-                                    padding-bottom: 0.2em;
-                                    border-radius: 0px;
-                                    width: 320px;" />
-                <br/>
-                <p:outputLabel class="fa fa-lock icones" style=" color: #ffffff;" />
-                <p:password id="senha" placeholder="Senha" size="28"
-                            required="true"
-                            requiredMessage="Digite sua senha!"
-                            style="margin-bottom: 20px;
-                                   padding-bottom: 0.2em;
-                                   border-radius: 0px;
-                                   width: 323px;" />
-                <br/>
-                <p:commandButton value="Entrar" style="border-radius: 0px;
-                                               color: #ffffff;
-                                               width: 373px;
-                                               background: #1abc9c" 
-                                               action="#"
-                                               />
+                    <p:panelGrid columns="1" layout="grid"
+                             styleClass="panelgrid-noborder"
+                             columnClasses="ui-grid-col-12"
+                             style="margin-top: 30px;
+                                    font-size: 20px;" >
+                        
+                        <p:inputText id="login" placeholder="Login"
+                                     maxlength="100"
+                                     required="true"
+                                     requiredMessage="Digite seu login!"
+                                     style="margin-bottom: 20px;
+                                            border-radius: 0px;
+                                            max-width: 400px; " />
+
+                        <p:password id="senha" placeholder="Senha" 
+                                    maxlength="16"
+                                    required="true"
+                                    requiredMessage="Digite sua senha!"
+                                    style="margin-bottom: 20px;
+                                           border-radius: 0px;
+                                           max-width: 400px;" />
+
+                        <p:commandButton value="Entrar" 
+                                         action="#"
+                                         style="border-radius: 0px;
+                                                max-width: 400px;
+                                                color: #ffffff;
+                                                background: #1abc9c"/>
+                        
+                        <p:link value="Esqueseu sua senha?"
+                                style="color: #ffffff; font-size: 13px;"/>
+                        
+                </p:panelGrid>
+                    
                
+                
             </h:form>
             
             
-            <div>
-                <p:outputLabel class="iconesAjuda" value="." />
-                <p:link class="textoAjuda" value="Esqueseu sua senha?" />
-            </div>
             
             
-            <div>
+            
+            <div class="LADES-contentLogosInferior">
                 <h:graphicImage class="LADES-logosInferior"
                                 library="imagens" 
                                 name="Logo-fabrica-de-software.svg" />
 
+                <a href="http://www.campuscastanhal.ufpa.br/">
                 <h:graphicImage class="LADES-logosInferior"
                                 library="imagens" 
                                 name="ufpa-nome.svg" />
+                </a>
 
-                <h:graphicImage class="LADES-logosInferior"
-                                library="imagens" 
-                                name="Logo-Lades3.svg" />
+                <a  href="http://facompcastanhal.ufpa.br/lades/">
+                    <h:graphicImage class="LADES-logosInferior"
+                                    library="imagens" 
+                                    name="Logo-Lades3.svg" />
+                </a>
             </div>
             
         </div>

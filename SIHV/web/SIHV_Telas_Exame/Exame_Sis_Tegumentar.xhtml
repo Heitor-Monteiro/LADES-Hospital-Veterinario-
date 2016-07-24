@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+        </ui:define>
+        
+        <ui:define name="title"  >
+            <h:outputText class="" value="Sistema tegumentar"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            <h:form>
+                <p:growl id="growl" sticky="true"  />
+                
+                <p:panel header="Sistema tegumentar" >
+                    <div class="ui-fluid">
+                        <p:panelGrid columns="3" layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Início/evolução da lesão:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="lesao" />
+                            <p:inputTextarea id="lesao" 
+                                             value="#"
+                                             required="true"
+                                             requiredMessage="Informe o campo:(Início/evolução da lesão)"
+                                             style="margin-bottom: 20px;" />
+                            <p:message for="lesao" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Localização e características das lesões:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="LocaLesao" />
+                            <p:inputTextarea id="LocaLesao" 
+                                             value="#"
+                                             required="true"
+                                             requiredMessage="Informe a localização e características das lesões!"
+                                             style="margin-bottom: 20px;" />
+                            <p:message for="LocaLesao" />
+                            
+                               
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Prurido:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Prurido" />
+                            <p:selectOneRadio id="Prurido"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe o campo Prurido!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Prurido" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Prurido (Evolução):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Prurido2" />
+                            <p:inputText id="Prurido2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Prurido2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção otológica:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="SecreOto" />
+                            <p:selectOneRadio id="SecreOto"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe o campo secreção otológica!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="SecreOto" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Secreção otológica (Evolução):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="SecreOto2" />
+                            <p:inputText id="SecreOto2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="SecreOto2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Frequência de banhos:"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="FreqBanho" />
+                            <p:inputText id="FreqBanho" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="FreqBanho" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Produto utilizado no banho:"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="FreqBanho2" />
+                            <p:inputText id="FreqBanho2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="FreqBanho2" />
+                            
+                            
+                            
+                            
+                        </p:panelGrid>    
+                    </div>
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

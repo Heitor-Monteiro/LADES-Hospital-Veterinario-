@@ -72,13 +72,15 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_sexo}" 
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
-            <p:selectOneButton id="sexoAnimal" 
+            <p:selectOneRadio id="sexoAnimal" 
                                value="#{animaisController.selected.sexo}"
+                               layout="responsive"
+                               columns="2"
                                required="true"
                                requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
                 <f:selectItem itemLabel="M" itemValue="M" />
                 <f:selectItem itemLabel="F" itemValue="F" />
-            </p:selectOneButton>
+            </p:selectOneRadio>
             <p:message for="sexoAnimal" />
 
 
@@ -97,18 +99,14 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_peso}"
                            for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputNumber id="pesoAnimal"
-                           value="#{animaisController.selected.peso}"
-                           title="#{label_SIHV.CreateAnimaisTitle_peso}"
-                           decimalSeparator=","
-                           thousandSeparator="."
-                           symbol=" Kg"
-                           symbolPosition="s"
-                           maxlength="6"
-                           maxValue="999999"
-                           required="true"
-                           requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_peso}" />
+            <p:spinner id="pesoAnimal" 
+                       value="#" 
+                       prefix="Kg " 
+                       min="0"
+                       max="15000"
+                       stepFactor="0.1" />
             <p:message for="pesoAnimal" />
+            
             
             
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"

@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+        </ui:define>
+        
+        <ui:define name="title"  >
+            <h:outputText class="" value="Sistema neurológico"></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            <h:form>
+                <p:growl id="growl" sticky="true"  />
+                
+                <p:panel header="Sistema neurológico" >
+                    <div class="ui-fluid">
+                        <p:panelGrid columns="3" layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Consciência:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Consci" />
+                            <p:selectOneMenu id="Consci"
+                                              value="#"
+                                              required="true"
+                                              requiredMessage="Informe o estado de consciência!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Alerta" itemValue="ALERTA" />
+                                <f:selectItem itemLabel="Depressão" itemValue="DEPRESSAO" />
+                                <f:selectItem itemLabel="Esturpor" itemValue="ESTURPOR" />
+                                <f:selectItem itemLabel="Coma" itemValue="COMA" />
+                            </p:selectOneMenu>
+                            <p:message for="Consci" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Comportamento:"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Comport" />
+                            <p:selectOneMenu id="Comport"
+                                             value="#"
+                                             required="true"
+                                             requiredMessage="Informe o comportamento!"
+                                             style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                                <f:selectItem itemLabel="Demência" itemValue="DEMENCIA" />
+                                <f:selectItem itemLabel="Agressividade" itemValue="AGRESSIVIDADE" />
+                            </p:selectOneMenu>
+                            <p:message for="Comport" />
+                            
+                               
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Ataxia:"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Ataxia" />
+                            <p:selectOneRadio id="Ataxia"
+                                             value="#"
+                                             layout="responsive"
+                                             columns="2"
+                                             required="true"
+                                             requiredMessage="Informe o campo Ataxia!"
+                                             style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Ataxia" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Ataxia (Tipo):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Ataxia2" />
+                            <p:inputText id="Ataxia2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Ataxia2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Ataxia (Evolução):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Ataxia3" />
+                            <p:inputTextarea id="Ataxia3" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Ataxia3" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                       
+                            <p:outputLabel value="Paresia/Paralisia:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Parali" />
+                            <p:selectOneRadio id="Parali"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta Paresia/Paralisia!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Parali" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Paresia/Paralisia:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Parali2" />
+                            <p:selectOneRadio id="Parali2"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="false"
+                                              requiredMessage=""
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Espástica" itemValue="ESPASTICA" />
+                                <f:selectItem itemLabel="Flácida" itemValue="FLACIDA" />
+                            </p:selectOneRadio>
+                            <p:message for="Parali2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Paresia/Paralisia (Tipo):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Parali3" />
+                            <p:inputText id="Parali3" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Parali3" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Paresia/Paralisia (Evolução):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Parali4" />
+                            <p:inputTextarea id="Parali4" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Parali4" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Convulsão:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Convulsao" />
+                            <p:selectOneRadio id="Convulsao"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta convulsão!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                <f:selectItem itemLabel="Não" itemValue="NAO" />
+                            </p:selectOneRadio>
+                            <p:message for="Convulsao" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Convulsão (Tipo):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Convulsao2" />
+                            <p:inputText id="Convulsao2" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Convulsao2" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Convulsão (Evolução):"
+                                           style="color: #1abc9c; font-weight: bold ;"
+                                           for="Convulsao3" />
+                            <p:inputTextarea id="Convulsao3" 
+                                         value="#"
+                                         required="false"
+                                         requiredMessage=""
+                                         style="margin-bottom: 20px;" />
+                            <p:message for="Convulsao3" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Audição:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Audicao" />
+                            <p:selectOneRadio id="Audicao"
+                                              value="#"
+                                              layout="responsive"
+                                              columns="2"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta perda auditiva!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                                <f:selectItem itemLabel="Perda auditiva" itemValue="PERDA" />
+                            </p:selectOneRadio>
+                            <p:message for="Audicao" />
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <p:outputLabel value="Visão:"
+                                       style="color: #1abc9c; font-weight: bold ;"
+                                       for="Visao" />
+                            <p:selectOneMenu id="Visao"
+                                              value="#"
+                                              required="true"
+                                              requiredMessage="Informe se o animal apresenta perda de visão!"
+                                              style="margin-bottom: 20px;" >
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                                <f:selectItem itemLabel="Midríase" itemValue="MIDRIASE" />
+                                <f:selectItem itemLabel="Miose" itemValue="MIOSE" />
+                                <f:selectItem itemLabel="Anisocoria" itemValue="ANISOCORIA" />
+                                <f:selectItem itemLabel="Amaurose" itemValue="AMAUROSE" />
+                            </p:selectOneMenu>
+                            <p:message for="Visao" />
+                            
+                            
+                            
+                        </p:panelGrid>    
+                    </div>
+                </p:panel>
+            </h:form>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

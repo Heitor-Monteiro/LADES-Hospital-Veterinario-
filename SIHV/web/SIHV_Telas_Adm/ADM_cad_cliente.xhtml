@@ -7,22 +7,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText class="LADES-content js-content" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
         </ui:define>
+        
+        <ui:define name="title">
+            <h:outputText class="" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        </ui:define>
+        
         <ui:define name="body">
-            
-            
-            <aside class="LADES-sidebar  js-sidebar">
-                <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-            </aside>
-            
-            
-            
-            <div class="LADES-content js-content">
             
             <h:form >
                 <p:growl id="growl" sticky="true" showDetail="true" />
+                
                 <p:wizard style="margin-top: 20px;" >
                     
                     <p:tab id="DadosCliente" title="Dados do cliente" >
@@ -31,162 +29,6 @@
                            <p:commandButton action="#{pessoaController.create}" 
                                             value="#{label_SIHV.CreatePessoaSaveLink}"
                                             update="growl" disabled="false" />
-                        </p:panel>
-                    </p:tab>
-                    
-                    
-                    <p:tab id="DadosPet" title="Dados do pet" >
-                        <p:panel header="Dados do pet">
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="3" layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3">
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_nome}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="nomeAnimal" />
-                                <p:inputText id="nomeAnimal" value="#{animaisController.selected.nome}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_nome}"
-                                             maxlength="50"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_nome}"/>
-                                <p:message for="nomeAnimal" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_especie}" 
-                                               for="especie"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:inputText id="especie" value="#{animaisController.selected.especie}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_especie}"
-                                             maxlength="500"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_especie}"/>
-                                <p:message for="especie" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_raça}" 
-                                               for="raça" 
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:inputText id="raça" value="#{animaisController.selected.raça}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_raça}"
-                                             maxlength="200"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_raça}"/>
-                                <p:message for="raça" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_sexo}" 
-                                               for="sexoAnimal"
-                                               style="color: #1abc9c; font-weight: bold ;" />                                
-                                <p:selectOneButton id="sexoAnimal" 
-                                                   value="#{animaisController.selected.sexo}"
-                                                   required="true"
-                                                   requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
-                                    <f:selectItem itemLabel="M" itemValue="M" />
-                                    <f:selectItem itemLabel="F" itemValue="F" />
-                                </p:selectOneButton>
-                                <p:message for="sexoAnimal" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
-                                               for="pelagem"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:inputText id="pelagem" value="#{animaisController.selected.pelagem}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_pelagem}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_pelagem}"/>
-                                <p:message for="pelagem" />
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_idade}"
-                                               for="idade" />
-                                <p:inputText id="idade" value="#{animaisController.selected.idade}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_idade}"
-                                             maxlength="3"
-                                             required="false" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_idade}"/>
-                                <p:message for="idade" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_peso}"
-                                               for="peso" />
-                                <p:inputText id="peso" value="#{animaisController.selected.peso}" 
-                                             title="#{label_SIHV.CreateAnimaisTitle_peso}"
-                                             maxlength="6"
-                                             required="false" 
-                                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_peso}"/>
-                                <p:message for="peso" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_clientepessoaCPF}"
-                                               for="clientepessoaCPF" />
-                                <p:selectOneMenu id="clientepessoaCPF" disabled="true"
-                                                 value="#{telefoneController.selected.pessoaCPF}" 
-                                                 title="#{label_SIHV.CreateAnimaisTitle_clientepessoaCPF}" 
-                                                 required="false" 
-                                                 requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_clientepessoaCPF}">
-                                    <f:selectItems value="#{pessoaController.itemsAvailableSelectOne}"/>
-                                </p:selectOneMenu>
-                                <p:message for="clientepessoaCPF" />
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"
-                                               for="dataNascAnimal"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:calendar id="dataNascAnimal" maxlength="10" disabled="true"
-                                            title="#{label_SIHV.CreateAnimaisTitle_DataNasc}"
-                                            required="true" 
-                                            requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_DataNasc}"
-                                            locale="de" navigator="true" 
-                                            pattern="yyyy-mm-dd" />
-                                <p:message for="dataNascAnimal" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_hora}"
-                                               for="hora"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:calendar id="hora" pattern="HH:mm" timeOnly="true" disabled="true"
-                                            title="#{label_SIHV.CreateAnimaisTitle_hora}" 
-                                            required="true" 
-                                            requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_hora}"
-                                            value="#{animaisController.selected.hora}" />
-                                <p:message for="hora" />
-                                
-                                
-                                <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                                    <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                                        <h:outputText value="German:" />
-                                        <h:outputText >
-                                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                                        </h:outputText>
-                                        
-                                        
-                                        <h:outputText value="Time:" />
-                                        <h:outputText value="#{calendarView.date11}">
-                                            <f:convertDateTime pattern="HH:mm" />
-                                        </h:outputText>
-                                        
-                                    </p:panelGrid>
-                                </p:dialog>
-                            </p:panelGrid>
-                            </div>
                         </p:panel>
                     </p:tab>
                     
@@ -259,45 +101,7 @@
                                 
                             </p:panelGrid>
                                 
-                            <p:panelGrid columns="4" layout="grid"
-                                         style="margin-top: 20px;"
-                                         styleClass="panelgrid-noborder"
-                                columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
                                 
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_nome}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.nome}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_especie}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.especie}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_raça}" 
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.raça}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_sexo}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.sexo}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.pelagem}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"
-                                               style="color: #1abc9c; font-weight: bold ;" styleClass="outputLabel" />
-                                <p:outputLabel value="#" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_hora}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{animaisController.selected.hora}" styleClass="outputLabel" />
-                            </p:panelGrid>
                             </div>
                             
                             
@@ -318,15 +122,7 @@
                     
                     
                 </p:wizard>
-            <br />
-            <br />
-            <h:commandLink action="#{pessoaController.prepareList}" value="#{label_SIHV.CreatePessoaShowAllLink}" immediate="true"/>
             </h:form>
-            
-            
-            </div>
-                
-            
         </ui:define>
     </ui:composition>
 

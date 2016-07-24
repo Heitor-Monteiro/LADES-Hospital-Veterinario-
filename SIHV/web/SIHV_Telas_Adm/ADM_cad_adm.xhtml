@@ -7,26 +7,20 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        <ui:define name="title"  >
-            <h:outputText class="LADES-content js-content" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
         </ui:define>
+        
+        <ui:define name="title"  >
+            <h:outputText class="" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+        </ui:define>
+        
         <ui:define name="body">
             
-            
-            <aside class="LADES-sidebar  js-sidebar">
-                <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-            </aside>
-            
-            
-            
-            <div class="LADES-content js-content">
-            
-            
             <h:form>
-                
-                <div style="position: absolute;">
-                    <p:growl id="growl" sticky="true"  />
-                </div>
+                <p:growl id="growl" sticky="true"  />
                 
                 <p:wizard>
                     
@@ -191,9 +185,6 @@
                 </p:wizard>
             
             </h:form>
-            
-            
-            </div>
             
         </ui:define>
     </ui:composition>

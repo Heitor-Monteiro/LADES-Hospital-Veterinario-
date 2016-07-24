@@ -18,8 +18,10 @@
         <ui:define name="body">
             
             
-            <h:panelGrid cellpadding="30" columns="4" columnClasses="ui-grid-col-6" >
-                
+            <p:panelGrid columns="2" layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-2, ui-grid-col-2" >
+                             
                 
                 <h:link outcome="/index">
                     <h:graphicImage id="ficha" class="LADES-indexBotao"
@@ -29,6 +31,20 @@
                     showEffect="clip" hideEffect="explode" />
                     <p class="LADES-textoBotao" >Nova ficha</p>
                 </h:link>
+                
+                <h:link outcome="/index">
+                    <h:graphicImage id="ficha" class="LADES-indexBotao"
+                        library="imagens" 
+                        name="botao-Ficha-icon.svg" />
+                    <p:tooltip id="menubotao1" for="ficha" value="Nova ficha"
+                    showEffect="clip" hideEffect="explode" />
+                    <p class="LADES-textoBotao" >Nova ficha</p>
+                </h:link>
+                
+            </p:panelGrid>
+                
+                
+                
                 
                 
                 
@@ -66,7 +82,7 @@
                 
                 
                         
-            </h:panelGrid>
+            
             
             
            
