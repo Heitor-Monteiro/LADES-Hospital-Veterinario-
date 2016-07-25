@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.ExameImg" table="exame_img" catalog="bd_sihv" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="entrada" class="classes.Entrada" fetch="select">
+            <column name="entrada_ID" not-null="true" />
+        </many-to-one>
+        <property name="regiao" type="string">
+            <column name="REGIAO" length="1000" not-null="true" />
+        </property>
+        <property name="idRadiograf" type="int">
+            <column name="ID_RADIOGRAF" not-null="true" />
+        </property>
+        <property name="quant" type="int">
+            <column name="QUANT" not-null="true" />
+        </property>
+        <property name="laudo" type="string">
+            <column name="LAUDO" length="10000" not-null="true" />
+        </property>
+        <property name="rghv" type="int">
+            <column name="RGHV" not-null="true" />
+        </property>
+        <property name="idOpera" type="int">
+            <column name="ID_OPERA" not-null="true" />
+        </property>
+        <property name="data" type="timestamp">
+            <column name="DATA" length="19" />
+        </property>
+        <set name="sistemasImgs" table="sistemas_img" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="exame_img_ID" not-null="true" />
+            </key>
+            <one-to-many class="classes.SistemasImg" />
+        </set>
+    </class>
+</hibernate-mapping>

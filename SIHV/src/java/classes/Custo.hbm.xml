@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="classes.Custo" table="custo" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="classes.CustoId">
+            <key-property name="produtoId" type="int">
+                <column name="produto_ID" />
+            </key-property>
+            <key-property name="id" type="int">
+                <column name="ID" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="entrada" class="classes.Entrada" fetch="select">
+            <column name="entrada_ID" not-null="true" />
+        </many-to-one>
+        <many-to-one name="produto" class="classes.Produto" update="false" insert="false" fetch="select">
+            <column name="produto_ID" not-null="true" />
+        </many-to-one>
+        <property name="data" type="timestamp">
+            <column name="DATA" length="19" />
+        </property>
+        <property name="quant" type="java.lang.Integer">
+            <column name="Quant" />
+        </property>
+    </class>
+</hibernate-mapping>
