@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.ExameFis" optimistic-lock="version" table="exame_fis">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Model.Entrada" fetch="select" name="entrada">
+      <column name="entrada_ID" not-null="true"/>
+    </many-to-one>
+    <property name="fc" type="int">
+      <column name="FC" not-null="true"/>
+    </property>
+    <property name="fr" type="int">
+      <column name="FR" not-null="true"/>
+    </property>
+    <property name="TC" type="int">
+      <column name="T_C" not-null="true"/>
+    </property>
+    <property name="tpc" type="int">
+      <column name="TPC" not-null="true"/>
+    </property>
+    <property name="inspecGeral" type="string">
+      <column length="1000" name="INSPEC_GERAL" not-null="true"/>
+    </property>
+    <property name="estadoNutri" type="string">
+      <column length="1000" name="ESTADO_NUTRI" not-null="true"/>
+    </property>
+    <property name="mucosas" type="string">
+      <column length="1000" name="MUCOSAS" not-null="true"/>
+    </property>
+    <property name="pulso" type="string">
+      <column length="1000" name="PULSO" not-null="true"/>
+    </property>
+    <property name="hidrata" type="string">
+      <column length="1000" name="HIDRATA" not-null="true"/>
+    </property>
+    <property name="palpaAbd" type="string">
+      <column length="2000" name="PALPA_ABD" not-null="true"/>
+    </property>
+    <property name="aulsCardpul" type="string">
+      <column length="2000" name="AULS_CARDPUL" not-null="true"/>
+    </property>
+    <property name="linfonodos" type="string">
+      <column length="1000" name="LINFONODOS" not-null="true"/>
+    </property>
+    <property name="pele" type="string">
+      <column length="1000" name="PELE" not-null="true"/>
+    </property>
+    <property name="obs" type="string">
+      <column length="2000" name="OBS" not-null="true"/>
+    </property>
+    <property name="idOpera" type="int">
+      <column name="ID_OPERA" not-null="true"/>
+    </property>
+    <property name="data" type="timestamp">
+      <column length="19" name="DATA"/>
+    </property>
+  </class>
+</hibernate-mapping>

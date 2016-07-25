@@ -29,7 +29,7 @@
                             <ui:include src="/SIHV_Telas_Genericas/campo_pessoa.xhtml" />
                            <p:commandButton action="#{pessoaController.create}" 
                                             value="#{label_SIHV.CreatePessoaSaveLink}"
-                                            update="growl" disabled="true" />
+                                            update="growl" disabled="true" />   
                         </p:panel>
                     </p:tab>
                     
@@ -43,7 +43,7 @@
                                                style="color: #1abc9c; font-weight: bold ;"
                                                for="admLogin" />
                                     <p:inputText id="admLogin" 
-                                                 value="#{usuarioController.selected.admLogin}" 
+                                                 value="#{produtoController.produto.}" 
                                                  title="#{label_SIHV.CreateUsuarioTitle_admLogin}"
                                                  maxlength="100"
                                                  required="true" 
@@ -87,7 +87,7 @@
                                 
                                 <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}"
                                                style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{}" styleClass="outputLabel" />
+                                <p:outputLabel value="#{Produto.Nome}" styleClass="outputLabel" />
                                 
                                 
                                 <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"

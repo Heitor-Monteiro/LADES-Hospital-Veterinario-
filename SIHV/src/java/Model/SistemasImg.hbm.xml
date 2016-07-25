@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.SistemasImg" optimistic-lock="version" table="sistemas_img">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Model.ExameImg" fetch="select" name="exameImg">
+      <column name="exame_img_ID" not-null="true"/>
+    </many-to-one>
+    <property name="nome" type="string">
+      <column length="200" name="NOME" not-null="true"/>
+    </property>
+    <property name="descricao" type="string">
+      <column length="3000" name="DESCRICAO" not-null="true"/>
+    </property>
+  </class>
+</hibernate-mapping>

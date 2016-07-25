@@ -5,7 +5,6 @@ package persistence;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.SessionFactory;
 
@@ -15,23 +14,35 @@ import org.hibernate.SessionFactory;
  *
  * @author waves
  */
+import Model.Produto;
 public class HibernateUtil {
 
-    private static final SessionFactory sessionFactory;
-    
-    static {
-        try {
-            // Create the SessionFactory from standard (hibernate.cfg.xml) 
-            // config file.
-            sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-        } catch (Throwable ex) {
-            // Log the exception. 
-            System.err.println("Initial SessionFactory creation failed." + ex);
-            throw new ExceptionInInitializerError(ex);
-        }
+    private static SessionFactory sessionFactory;
+
+    private HibernateUtil() {
     }
-    
+
     public static SessionFactory getSessionFactory() {
-        return sessionFactory;
+        if (sessionFactory == null) {
+            try
+            {
+                // Create the SessionFactory from standard (hibernate.cfg.xml)
+                // config file.
+                AnnotationConfiguration ac = new AnnotationConfiguration();
+                ac.addAnnotatedClass(Produto.class);
+                sessionFactory = ac.configure().buildSessionFactory();
+            }
+            catch (Throwable ex)
+            {
+                // Log the exception.
+                System.err.println("Initial SessionFactory creation failed." + ex);
+                throw new ExceptionInInitializerError(ex);
+            }
+            return sessionFactory;
+        }
+        else
+        {
+            return sessionFactory;
+        }
     }
 }

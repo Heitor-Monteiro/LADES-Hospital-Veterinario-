@@ -7,13 +7,13 @@
     <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_sihv</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
-    <mapping resource="classes/SistemasImg.hbm.xml"/>
-    <mapping resource="classes/Entrada.hbm.xml"/>
-    <mapping resource="classes/ExameFis.hbm.xml"/>
-    <mapping resource="classes/Usuario.hbm.xml"/>
-    <mapping resource="classes/Produto.hbm.xml"/>
-    <mapping resource="classes/Animal.hbm.xml"/>
-    <mapping resource="classes/ExameImg.hbm.xml"/>
-    <mapping resource="classes/Custo.hbm.xml"/>
+    <mapping resource="Model/SistemasImg.hbm.xml"/>
+    <mapping resource="Model/Entrada.hbm.xml"/>
+    <mapping resource="Model/ExameFis.hbm.xml"/>
+    <mapping resource="Model/Usuario.hbm.xml"/>
+    <mapping resource="Model/Produto.hbm.xml"/>
+    <mapping resource="Model/Animal.hbm.xml"/>
+    <mapping resource="Model/ExameImg.hbm.xml"/>
+    <mapping resource="Model/Custo.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

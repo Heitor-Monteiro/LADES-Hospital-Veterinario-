@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.ExameImg" optimistic-lock="version" table="exame_img">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Model.Entrada" fetch="select" name="entrada">
+      <column name="entrada_ID" not-null="true"/>
+    </many-to-one>
+    <property name="regiao" type="string">
+      <column length="1000" name="REGIAO" not-null="true"/>
+    </property>
+    <property name="idRadiograf" type="int">
+      <column name="ID_RADIOGRAF" not-null="true"/>
+    </property>
+    <property name="quant" type="int">
+      <column name="QUANT" not-null="true"/>
+    </property>
+    <property name="laudo" type="string">
+      <column length="10000" name="LAUDO" not-null="true"/>
+    </property>
+    <property name="rghv" type="int">
+      <column name="RGHV" not-null="true"/>
+    </property>
+    <property name="idOpera" type="int">
+      <column name="ID_OPERA" not-null="true"/>
+    </property>
+    <property name="data" type="timestamp">
+      <column length="19" name="DATA"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="sistemasImgs" table="sistemas_img">
+      <key>
+        <column name="exame_img_ID" not-null="true"/>
+      </key>
+      <one-to-many class="Model.SistemasImg"/>
+    </set>
+  </class>
+</hibernate-mapping>

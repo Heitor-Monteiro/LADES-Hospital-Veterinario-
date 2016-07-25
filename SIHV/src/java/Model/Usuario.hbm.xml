@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.Usuario" optimistic-lock="version" table="usuario">
+    <composite-id class="Model.UsuarioId" name="id">
+      <key-property name="id" type="int">
+        <column name="ID"/>
+      </key-property>
+      <key-property name="username" type="string">
+        <column length="100" name="USERNAME"/>
+      </key-property>
+    </composite-id>
+    <property name="password" type="string">
+      <column length="16" name="PASSWORD" not-null="true"/>
+    </property>
+    <property name="usertype" type="java.lang.Integer">
+      <column name="USERTYPE"/>
+    </property>
+    <property name="lastlogin" type="timestamp">
+      <column length="19" name="LASTLOGIN"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="animals" table="animal">
+      <key>
+        <column name="usuario_ID" not-null="true"/>
+        <column length="100" name="usuario_USERNAME" not-null="true"/>
+      </key>
+      <one-to-many class="Model.Animal"/>
+    </set>
+  </class>
+</hibernate-mapping>

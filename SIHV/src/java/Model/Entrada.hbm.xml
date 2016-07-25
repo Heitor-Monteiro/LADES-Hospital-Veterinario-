@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.Entrada" optimistic-lock="version" table="entrada">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="Model.Animal" fetch="select" name="animal">
+      <column name="animal_RGHV" not-null="true"/>
+    </many-to-one>
+    <property name="queixa" type="string">
+      <column length="1000" name="QUEIXA" not-null="true"/>
+    </property>
+    <property name="diagnostico" type="string">
+      <column length="500" name="DIAGNOSTICO" not-null="true"/>
+    </property>
+    <property name="procedimento" type="string">
+      <column length="500" name="PROCEDIMENTO" not-null="true"/>
+    </property>
+    <property name="sistema" type="string">
+      <column length="500" name="SISTEMA" not-null="true"/>
+    </property>
+    <property name="anamnese" type="string">
+      <column length="3000" name="ANAMNESE" not-null="true"/>
+    </property>
+    <property name="peso" type="double">
+      <column name="PESO" not-null="true" precision="22" scale="0"/>
+    </property>
+    <property name="internar" type="java.lang.Boolean">
+      <column name="Internar"/>
+    </property>
+    <property name="data" type="timestamp">
+      <column length="19" name="DATA"/>
+    </property>
+    <property name="dataOut" type="timestamp">
+      <column length="19" name="DATA_out"/>
+    </property>
+    <property name="porte" type="java.lang.Integer">
+      <column name="PORTE"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="exameImgs" table="exame_img">
+      <key>
+        <column name="entrada_ID" not-null="true"/>
+      </key>
+      <one-to-many class="Model.ExameImg"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="custos" table="custo">
+      <key>
+        <column name="entrada_ID" not-null="true"/>
+      </key>
+      <one-to-many class="Model.Custo"/>
+    </set>
+    <set fetch="select" inverse="true" lazy="true" name="exameFises" table="exame_fis">
+      <key>
+        <column name="entrada_ID" not-null="true"/>
+      </key>
+      <one-to-many class="Model.ExameFis"/>
+    </set>
+  </class>
+</hibernate-mapping>

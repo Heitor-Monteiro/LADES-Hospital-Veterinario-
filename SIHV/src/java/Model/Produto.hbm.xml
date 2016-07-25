@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/07/2016 11:36:45 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="bd_sihv" name="Model.Produto" optimistic-lock="version" table="produto">
+    <id name="id" type="java.lang.Integer">
+      <column name="ID"/>
+      <generator class="identity"/>
+    </id>
+    <property name="nome" type="string">
+      <column length="100" name="nome"/>
+    </property>
+    <property name="preco" type="java.lang.Float">
+      <column name="preco" precision="12" scale="0"/>
+    </property>
+    <property name="quant" type="java.lang.Integer">
+      <column name="quant"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="true" name="custos" table="custo">
+      <key>
+        <column name="produto_ID" not-null="true"/>
+      </key>
+      <one-to-many class="Model.Custo"/>
+    </set>
+  </class>
+</hibernate-mapping>

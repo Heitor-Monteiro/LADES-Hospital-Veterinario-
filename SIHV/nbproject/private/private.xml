@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/hibernate.reveng.xml</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/persistence/HibernateUtil.java</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/Model/Produto.java</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/Dao/ProdutoDaoImp.java</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/Controller/ProdutoController.java</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/web/SIHV_Telas_Adm/ADM_cad_adm.xhtml</file>
+            <file>file:/C:/Users/waves/Documents/projetoGit/LADES-Hospital-Veterinario-/SIHV/src/java/Dao/ProdutoDao.java</file>
+        </group>
     </open-files>
 </project-private>

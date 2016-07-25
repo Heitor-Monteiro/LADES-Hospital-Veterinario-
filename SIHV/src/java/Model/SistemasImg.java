@@ -1,4 +1,4 @@
-package classes;
+package Model;
 // Generated 25/07/2016 11:36:44 by Hibernate Tools 4.3.1
 
 
