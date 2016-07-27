@@ -14,7 +14,7 @@
         </ui:define>
         
         <ui:define name="title"  >
-            <h:outputText class="" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+            <h:outputText class="" value="Novo administrador"></h:outputText>
         </ui:define>
         
         <ui:define name="body">
@@ -25,11 +25,8 @@
                 <p:wizard>
                     
                     <p:tab id="DadosUsuario" title="Dados do usuário" >
-                        <p:panel header="Dados do usuário" >
+                        <p:panel>
                             <ui:include src="/SIHV_Telas_Genericas/campo_pessoa.xhtml" />
-                           <p:commandButton action="#{pessoaController.create}" 
-                                            value="#{label_SIHV.CreatePessoaSaveLink}"
-                                            update="growl" disabled="true" />   
                         </p:panel>
                     </p:tab>
                     
@@ -43,7 +40,7 @@
                                                style="color: #1abc9c; font-weight: bold ;"
                                                for="admLogin" />
                                     <p:inputText id="admLogin" 
-                                                 value="#{produtoController.produto.}" 
+                                                 value="#" 
                                                  title="#{label_SIHV.CreateUsuarioTitle_admLogin}"
                                                  maxlength="100"
                                                  required="true" 
@@ -56,7 +53,7 @@
                                                    style="color: #1abc9c; font-weight: bold ;"
                                                    for="senha1" />
                                     <p:password id="senha1" feedback="true" inline="true" match="senha2"
-                                                value="#{usuarioController.selected.admSenha}"
+                                                value="#"
                                                 title="#{label_SIHV.CreateUsuarioTitle_admSenha}"
                                                 maxlength="100"
                                                 required="true" 
@@ -87,7 +84,7 @@
                                 
                                 <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}"
                                                style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{Produto.Nome}" styleClass="outputLabel" />
+                                <p:outputLabel value="#" styleClass="outputLabel" />
                                 
                                 
                                 <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"

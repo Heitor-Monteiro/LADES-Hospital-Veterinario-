@@ -12,11 +12,12 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_nome}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
-            <p:inputText id="nomeAnimal" value="#{animaisController.selected.nome}" 
-                         title="#{label_SIHV.CreateAnimaisTitle_nome}"
-                         maxlength="50"
+            <p:inputText id="nomeAnimal" 
+                         value="#" 
+                         title="Informe o nome do animal"
+                         maxlength="70"
                          required="true" 
-                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_nome}"/>
+                         requiredMessage="Informe o nome do animal!"/>
             <p:message for="nomeAnimal" />
 
 
@@ -24,10 +25,11 @@
                            for="especie"
                            style="color: #1abc9c; font-weight: bold ;" />
             
-            <p:selectOneMenu id="especie" value="#{animaisController.selected.especie}"
-                             title="#{label_SIHV.CreateAnimaisTitle_especie}"
+            <p:selectOneMenu id="especie" 
+                             value="#"
+                             title="Informe a espécie do animal"
                              required="true"
-                             requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_especie}">
+                             requiredMessage="Informe a espécie do animal!">
                 <f:selectItem itemLabel="Selecione a especie" itemValue="" />
                 <f:selectItem itemLabel="Canino" itemValue="Canino" />
                 <f:selectItem itemLabel="Felino" itemValue="Felino" />
@@ -41,31 +43,24 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_raça}" 
                            for="raça" 
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputText id="raça" value="#{animaisController.selected.raça}" 
-                         title="#{label_SIHV.CreateAnimaisTitle_raça}"
-                         maxlength="200"
+            <p:inputText id="raça" 
+                         value="#" 
+                         title="Informe a raça do animal"
+                         maxlength="100"
                          required="true" 
-                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_raça}"/>
+                         requiredMessage="Informe a raça do animal!"/>
             <p:message for="raça" />
             
             
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
                            for="pelagem"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:fileUpload id="pelagem"
+            <p:inputText id="pelagem"
                           value="#"
-                          mode="advanced"
-                          skinSimple="true"
-                          auto="false"
-                          allowTypes="/(\.|\/)(gif|jpe?g|png)$/"
-                          dragDropSupport="true"
-                          fileLimit="1"
-                          label="Escolher foto"
-                          sizeLimit="3000000"
-                          invalidSizeMessage="tamanho de arquivo exedido!"
-                          invalidFileMessage="Tipo de arquivo não aceito, use: jpg,png ou gif"
+                          title="Informe a pelagem do animal"
+                          maxlength="100"
                           required="true"
-                          requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_pelagem}" />
+                          requiredMessage="Informe a pelagem do animal!" />
             <p:message for="pelagem" />
             
             
@@ -73,11 +68,11 @@
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                               value="#{animaisController.selected.sexo}"
+                               value="#"
                                layout="responsive"
                                columns="2"
                                required="true"
-                               requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
+                               requiredMessage="Informe o sexo do animal!">
                 <f:selectItem itemLabel="M" itemValue="M" />
                 <f:selectItem itemLabel="F" itemValue="F" />
             </p:selectOneRadio>
@@ -87,12 +82,14 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_idade}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
-            <p:inputMask id="idade" value="#{animaisController.selected.idade}"
-                         mask="999"
-                         title="#{label_SIHV.CreateAnimaisTitle_idade}"
+            <p:inputNumber id="idade" 
+                         value=""
+                         title="Informe a idade atual do animal"
                          maxlength="3"
+                         maxValue="999"
+                         minValue="1"
                          required="true" 
-                         requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_idade}"/>
+                         requiredMessage="Informe a idade atual do animal!"/>
             <p:message for="idade" />
             
             
@@ -102,51 +99,14 @@
             <p:spinner id="pesoAnimal" 
                        value="#" 
                        prefix="Kg " 
-                       min="0"
+                       min=""
                        max="15000"
-                       stepFactor="0.1" />
+                       stepFactor="0.1"
+                       title="Informe o peso atual do animal"
+                       required="true"
+                       requiredMessage="Informe o peso atual do animal!" />
             <p:message for="pesoAnimal" />
             
-            
-            
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_DataNasc}"
-                           for="pesoAnimal"
-                           style="color: #1abc9c; font-weight: bold ;" />
-            <p:calendar id="dataNascAnimal" maxlength="10" disabled="false" 
-                        title="#{label_SIHV.CreateAnimaisTitle_DataNasc}" 
-                        required="true"  
-                        requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_DataNasc}" 
-                        locale="de" navigator="true"  
-                        pattern="yyyy-mm-dd" /> 
-            <p:message for="dataNascAnimal" /> 
-
-
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_hora}"
-                           for="hora"
-                           style="color: #1abc9c; font-weight: bold ;" />
-            <p:calendar id="hora" pattern="HH:mm" timeOnly="true" disabled="false"
-                        title="#{label_SIHV.CreateAnimaisTitle_hora}" 
-                        required="true" 
-                        requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_hora}"
-                        value="#{animaisController.selected.hora}" />
-            <p:message for="hora" />
-
-
-            <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                    <h:outputText value="German:" />
-                    <h:outputText >
-                        <f:convertDateTime pattern="MM/dd/yyyy" />
-                    </h:outputText>
-
-
-                    <h:outputText value="Time:" />
-                    <h:outputText value="#{calendarView.date11}">
-                        <f:convertDateTime pattern="HH:mm" />
-                    </h:outputText>
-
-                </p:panelGrid>
-            </p:dialog>
         </p:panelGrid>
 
         <p:panelGrid columns="3" layout="grid"

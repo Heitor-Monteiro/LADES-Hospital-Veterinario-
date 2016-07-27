@@ -13,7 +13,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}" 
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nome" />
-            <p:inputText id="nome" value="#{pessoaController.selected.nome}" 
+            <p:inputText id="nome" 
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_nome}"
                          maxlength="100"
                          required="true" 
@@ -25,7 +26,8 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="cpf" />                                
             <p:inputMask mask="99999999999"
-                         id="cpf" value="#{pessoaController.selected.cpf}" 
+                         id="cpf" 
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_cpf}" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
@@ -36,7 +38,8 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="rg" />                              
             <p:inputMask mask="9999999"
-                         id="rg" value="#{pessoaController.selected.rg}" 
+                         id="rg"
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_rg}" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
@@ -49,7 +52,7 @@
             <p:selectOneRadio id="sexo"
                               columns="2"
                               layout="responsive"
-                              value="#{pessoaController.selected.sexo}"
+                              value="#"
                               required="true"
                               requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
                 <f:selectItem itemLabel="M" itemValue="M" />
@@ -61,7 +64,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="logra" />
-            <p:inputText id="logra" value="#{pessoaController.selected.logra}" 
+            <p:inputText id="logra"
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_logra}"
                          maxlength="100"
                          required="true" 
@@ -72,7 +76,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_numeroCasa}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="numeroCasa" />
-            <p:inputText id="numeroCasa" value="#"
+            <p:inputText id="numeroCasa"
+                         value="#"
                          title="#{label_SIHV.CreatePessoaTitle_numeroCasa}"
                          maxlength="6"
                          required="true"
@@ -83,7 +88,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="bairro" />
-            <p:inputText id="bairro" value="#{pessoaController.selected.bairro}" 
+            <p:inputText id="bairro"
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_bairro}"
                          maxlength="100"
                          required="true" 
@@ -94,7 +100,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="cidade" />
-            <p:inputText id="cidade" value="#{pessoaController.selected.cidade}" 
+            <p:inputText id="cidade"
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_cidade}"
                          maxlength="100"
                          required="true" 
@@ -106,7 +113,8 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="cep" />
             <p:inputMask mask="99999999"
-                         id="cep" value="#{pessoaController.selected.cep}" 
+                         id="cep"
+                         value="#" 
                          title="#{label_SIHV.CreatePessoaTitle_cep}" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}" />
@@ -125,7 +133,8 @@
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="uf" />                             
-            <p:selectOneMenu id="uf" value="#{pessoaController.selected.uf}"
+            <p:selectOneMenu id="uf"
+                             value="#"
                              required="true"
                              requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_uf}">
                 <f:selectItem itemLabel="Selecione o estado" itemValue="" />
@@ -162,13 +171,14 @@
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
                            style="color: #1abc9c; font-weight: bold ;"
-                           for="numero" />
-            <p:inputMask mask="99999999999" id="numero"
-                         value="#{telefoneController.selected.numero}"
+                           for="telefone" />
+            <p:inputMask mask="99999999999" 
+                         id="telefone"
+                         value="#"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="true"
                          requiredMessage="#{label_SIHV.CreateTelefoneRequiredMessage_numero}"/>
-            <p:message for="numero" />
+            <p:message for="telefone" />
         </p:panelGrid>
     </div>
 	
