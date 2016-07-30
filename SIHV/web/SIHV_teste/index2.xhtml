@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    
+    
+    
+    <h:head>
+        <title>Gerenciador de Livros</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </h:head>
+    
+    <h:body>
+        <h1>Gerenciador de Livros</h1>
+        <p:dataTable var="livro" 
+                     value="#{PessoaControle.listarPessoas}"
+                     paginator="true"
+                     rows="10"
+                     reflow="true" >
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="ID pessoa"/>
+                </f:facet>
+                <h:outputText value="#{Pessoa.pkPessoa}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Nome"/>
+                </f:facet>
+                <h:outputText value="#{Pessoa.nome}" />
+            </p:column>
+            
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Alterar"/>
+                </f:facet>
+                <h:form>
+                    <p:commandButton action="#{PessoaControle.prepararAlterarPessoa()}" value="Alterar"/>
+                    </h:form>
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="Excluir"/>
+                </f:facet>
+                <h:form>
+                    <p:commandButton action="#{PessoaControle.excluirPessoa()}" 
+                                     value="Excluir"/>
+                    </h:form>
+            </p:column>
+        </p:dataTable>
+        <br/>
+        <h:form>
+            <h:commandLink value="Novo Livro" action="#{PessoaControle.prepararAdicionarPessoa()}"/>
+        </h:form>
+    </h:body>
+        
+    
+</html>
