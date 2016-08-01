@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 31/07/2016 22:50:28 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="MODELO.Adm" table="adm" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="MODELO.AdmId">
+            <key-property name="pkAdm" type="int">
+                <column name="PK_adm" />
+            </key-property>
+            <key-property name="fkPessoa" type="int">
+                <column name="FK_pessoa" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pessoa" class="MODELO.Pessoa" update="false" insert="false" fetch="select">
+            <column name="FK_pessoa" not-null="true" />
+        </many-to-one>
+        <property name="admSenha" type="string">
+            <column name="adm_senha" length="100" not-null="true" />
+        </property>
+        <property name="admLogin" type="string">
+            <column name="adm_login" length="100" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

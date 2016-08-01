@@ -5,8 +5,6 @@
  */
 package DAO;
 
-import MODELO.Pessoa;
-import MODELO.Telefone;
 import MODELO.Adm;
 import java.util.List;
 
@@ -14,15 +12,12 @@ import java.util.List;
  *
  * @author thiberius
  */
-public interface PessoaDao {
+public interface AdmDao {
     
-    public void save(Pessoa pessoa);
-    public Pessoa getPessoa(Integer id);
-    public List<Pessoa> list();
-    public void remove(Pessoa pessoa);
-    public void update(Pessoa pessoa);
-    
-    public void save(Telefone telefone);
     public void save(Adm adm);
+    public Adm getAdm(Integer id);
+    public List<Adm> list();
+    public void remove(Adm adm);
+    public void update(Adm adm);
     
 }

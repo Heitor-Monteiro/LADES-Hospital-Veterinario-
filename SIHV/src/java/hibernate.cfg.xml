@@ -10,7 +10,9 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
-    <mapping resource="MODELO/Telefone.hbm.xml"/>
     <mapping resource="MODELO/Pessoa.hbm.xml"/>
+    <mapping resource="MODELO/Adm.hbm.xml"/>
+    <mapping resource="MODELO/Cliente.hbm.xml"/>
+    <mapping resource="MODELO/Telefone.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

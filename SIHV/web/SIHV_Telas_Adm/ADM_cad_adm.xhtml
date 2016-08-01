@@ -19,6 +19,10 @@
         
         <ui:define name="body">
             
+            <f:metadata>
+                <f:viewAction action="#{PessoaControle.prepararAdicionarADM()}" />  
+            </f:metadata>
+            
             <h:form>
                 <p:growl id="growl" sticky="true"  />
                 
@@ -27,11 +31,17 @@
                     <p:tab id="DadosUsuario" title="Dados do usuário" >
                         <p:panel>
                             <ui:include src="/SIHV_Telas_Genericas/campo_pessoa.xhtml" />
+                            
+                            <p:commandButton type="reset" 
+                                            id="LimparCampos" 
+                                            icon="fa fa-eraser" 
+                                            value="Limpar cadastro" 
+                                            action="#" />
                         </p:panel>
                     </p:tab>
                     
                     <p:tab id="LoginSenha" title="Login e senha" >
-                        <p:panel header="Login e senha" >
+                        <p:panel>
                             <div class="ui-fluid">
                                 <p:panelGrid columns="3" layout="grid"
                                          styleClass="panelgrid-noborder"
@@ -40,7 +50,7 @@
                                                style="color: #1abc9c; font-weight: bold ;"
                                                for="admLogin" />
                                     <p:inputText id="admLogin" 
-                                                 value="#" 
+                                                 value="#{PessoaControle.ADM.admLogin}" 
                                                  title="#{label_SIHV.CreateUsuarioTitle_admLogin}"
                                                  maxlength="100"
                                                  required="true" 
@@ -53,7 +63,7 @@
                                                    style="color: #1abc9c; font-weight: bold ;"
                                                    for="senha1" />
                                     <p:password id="senha1" feedback="true" inline="true" match="senha2"
-                                                value="#"
+                                                value="#{PessoaControle.ADM.admSenha}"
                                                 title="#{label_SIHV.CreateUsuarioTitle_admSenha}"
                                                 maxlength="100"
                                                 required="true" 
@@ -77,103 +87,49 @@
                     
                     <p:tab id="Confirmacao" title="Confirmação">
                         <p:panel header="Confirmação">
-                            <div class="ui-fluid">
-                            <p:panelGrid columns="4" layout="grid"
-                                         styleClass="panelgrid-noborder"
-                                columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.cpf}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.rg}" styleClass="outputLabel" />
-                                
+                            
+                            <ui:include src="/SIHV_Telas_Genericas/campo_pessoa_resposta.xhtml" />
+                            
+                            <div class="ui-fluid">  
+                                <p:panelGrid columns="4" layout="grid"
+                                             style="margin-top: 20px;"
+                                             styleClass="panelgrid-noborder"
+                                    columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
 
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.sexo}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.logra}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_numeroCasa}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#" styleClass="outputLabel" />
-                                
-
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.bairro}" styleClass="outputLabel" />
-                                
-
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.cidade}" styleClass="outputLabel" />
-                                
-
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cep}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.cep}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="Complemento"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#" styleClass="outputLabel" />
-                                
-
-                                <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{pessoaController.selected.uf}" styleClass="outputLabel" />
-                                
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{telefoneController.selected.numero}" styleClass="outputLabel" />
-                            </p:panelGrid>
-                                
-                            <p:panelGrid columns="4" layout="grid"
-                                         style="margin-top: 20px;"
-                                         styleClass="panelgrid-noborder"
-                                columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
-                                
-                                <p:outputLabel value="#{label_SIHV.CreateUsuarioLabel_admLogin}"
-                                               style="color: #1abc9c; font-weight: bold ;" />
-                                <p:outputLabel value="#{usuarioController.selected.admLogin}"
-                                               styleClass="outputLabel" />
+                                    <p:outputLabel value="#{label_SIHV.CreateUsuarioLabel_admLogin}"
+                                                   style="color: #1abc9c; font-weight: bold ;" />
+                                    <p:outputLabel value="#{PessoaControle.ADM.admLogin}"
+                                                   styleClass="outputLabel" />
 
 
-                                <p:outputLabel value="#{label_SIHV.CreateUsuarioLabel_admSenha}"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="senha1" />
-                                <p:outputLabel value="#{usuarioController.selected.admSenha}"
-                                               styleClass="outputLabel" />
-                                
-                            </p:panelGrid>
+                                    <p:outputLabel value="#{label_SIHV.CreateUsuarioLabel_admSenha}"
+                                                   style="color: #1abc9c; font-weight: bold ;"
+                                                   for="senha1" />
+                                    <p:outputLabel value="#{PessoaControle.ADM.admSenha}"
+                                                   styleClass="outputLabel" />
+                                </p:panelGrid>
                             </div>
                             
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:button value="Sair" outcome="/index"
+                                <p:commandButton action="#{PessoaControle.adicionarADM()}" 
+                                            value="#{label_SIHV.CreatePessoaSaveLink}"
+                                            style="width: 170px;"
+                                            icon="fa fa-save"
+                                            update="growl" 
+                                            disabled="false" />
+                                
+                                <p:button value="Novo cadastro" 
+                                          outcome="/SIHV_Telas_Adm/ADM_cad_adm"
+                                          icon="fa fa-user-plus" 
+                                          style="width: 170px;" />
+                                
+                                <p:button value="Sair" 
+                                          outcome="/index"
                                           icon="fa fa-home" 
                                           style="width: 170px;" />
                                 
-                                <p:commandButton id="SalvarCliente"
-                                             value="#{label_SIHV.CreatePessoaSaveLink}"
-                                             style="width: 170px;"
-                                             update="growl"
-                                             icon="fa fa-save" />
                             </div>
                         </p:panel>
                     </p:tab>

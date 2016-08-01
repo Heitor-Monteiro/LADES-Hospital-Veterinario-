@@ -5,8 +5,6 @@
  */
 package DAO;
 
-import MODELO.Pessoa;
-import MODELO.Telefone;
 import MODELO.Adm;
 import java.util.List;
 import org.hibernate.Session;
@@ -15,62 +13,44 @@ import org.hibernate.Transaction;
  *
  * @author thiberius
  */
-public class PessoaDaoImp implements PessoaDao {
+public class AdmDaoImp implements AdmDao {
 
-    @Override
-    public void save(Pessoa pessoa) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(pessoa);
-        t.commit();
-    }
-
-    @Override
-    public Pessoa getPessoa(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Pessoa) session.load(Pessoa.class, id);
-    }
-
-    @Override
-    public List<Pessoa> list() {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        List lista = session.createQuery("from Pessoa").list();
-        t.commit();
-        return lista;
-    }
-
-    @Override
-    public void remove(Pessoa pessoa) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.delete(pessoa);
-        t.commit();
-    }
-
-    @Override
-    public void update(Pessoa pessoa) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.update(pessoa);
-        t.commit();
-    }    
-
-    
-    
-    @Override
-    public void save(Telefone telefone) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(telefone);
-        t.commit();
-    }
-    
     @Override
     public void save(Adm adm) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
         session.save(adm);
+        t.commit();
+    }
+
+    @Override
+    public Adm getAdm(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Adm) session.load(Adm.class, id);
+    }
+
+    @Override
+    public List<Adm> list() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        List lista = session.createQuery("from Adm").list();
+        t.commit();
+        return lista;
+    }
+
+    @Override
+    public void remove(Adm adm) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        session.delete(adm);
+        t.commit();
+    }
+
+    @Override
+    public void update(Adm adm) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction t = session.beginTransaction();
+        session.update(adm);
         t.commit();
     }
     

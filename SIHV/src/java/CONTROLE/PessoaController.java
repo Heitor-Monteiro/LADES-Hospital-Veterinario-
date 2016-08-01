@@ -9,9 +9,14 @@ import DAO.PessoaDao;
 import DAO.PessoaDaoImp;
 import DAO.TelefoneDao;
 import DAO.TelefoneDaoImp;
+import DAO.AdmDao;
+import DAO.AdmDaoImp;
+import MODELO.Adm;
+import MODELO.AdmId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
 import java.util.List;
+import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -30,6 +35,8 @@ public class PessoaController {
     private DataModel listarPessoas;
     
     private Telefone telefone;
+    private Adm adm;
+    private AdmId admId;
     
     public DataModel getListarPessoas(){
         List<Pessoa> lista = new PessoaDaoImp().list();
@@ -50,6 +57,13 @@ public class PessoaController {
         telefone = new Telefone();
     }
     
+    public void prepararAdicionarADM(){
+        pessoa = new Pessoa();
+        telefone = new Telefone();
+        adm = new Adm();
+        admId = new AdmId();
+    }
+    
     public String prepararAlterarPessoa(){
         pessoa = (Pessoa)(listarPessoas.getRowData());
         return "gerenciarLivro";
@@ -62,11 +76,11 @@ public class PessoaController {
         return "index";
     }
     
-    public String adicionarPessoa(){
-        PessoaDao dao = new PessoaDaoImp();
-        dao.save(pessoa);
-        return "index";
-    }
+//    public String adicionarPessoa(){
+//        PessoaDao dao = new PessoaDaoImp();
+//        dao.save(pessoa);
+//        return "index";
+//    }
     
     public void adicionarPessoa2(){
         PessoaDao dao = new PessoaDaoImp();
@@ -81,6 +95,23 @@ public class PessoaController {
         context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
     }
     
+    public void adicionarADM(){
+        PessoaDao dao = new PessoaDaoImp();
+        dao.save(pessoa);
+        
+        telefone.setPessoa(pessoa);
+        TelefoneDao dao2 = new TelefoneDaoImp();
+        dao2.save(telefone);
+        
+        adm.setPessoa(pessoa);
+        admId.setFkPessoa(pessoa.getPkPessoa());
+        AdmDao dao3 = new AdmDaoImp();
+        dao3.save(adm);
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
+    }
+    
     public String alterarPessoa(){
         PessoaDao dao = new PessoaDaoImp();
         dao.update(pessoa);
@@ -89,6 +120,10 @@ public class PessoaController {
     
     public Telefone getTelefone(){
         return telefone;
+    }
+    
+    public Adm getADM(){
+        return adm;
     }
     
 }

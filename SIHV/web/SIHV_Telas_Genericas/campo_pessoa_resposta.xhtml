@@ -1,0 +1,75 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+    <div class="ui-fluid">
+        <p:panelGrid columns="4" layout="grid"
+                     styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.nome}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.cpf}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.rg}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.sexo}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.logra}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_numeroCasa}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.casaNumero}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.bairro}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.cidade}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cep}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.cep}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="Complemento"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.complemento}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.uf}" styleClass="outputLabel" />
+
+
+            <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.telefone.numero}" styleClass="outputLabel" />
+
+        </p:panelGrid>
+
+    </div>    
+    
+</ui:component>

@@ -4,4 +4,6 @@
   <schema-selection match-catalog="BD_SIHV"/>
   <table-filter match-name="telefone"/>
   <table-filter match-name="pessoa"/>
+  <table-filter match-name="adm"/>
+  <table-filter match-name="cliente"/>
 </hibernate-reverse-engineering>

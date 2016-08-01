@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 29/07/2016 15:17:42 by Hibernate Tools 4.3.1 -->
+<!-- Generated 31/07/2016 22:50:28 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="MODELO.Pessoa" table="pessoa" catalog="BD_SIHV" optimistic-lock="version">
         <id name="pkPessoa" type="java.lang.Integer">
@@ -47,11 +47,23 @@
         <property name="cadDataHora" type="timestamp">
             <column name="CAD_DATA_HORA" length="19" not-null="true" />
         </property>
+        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="MODELO.Cliente" />
+        </set>
         <set name="telefones" table="telefone" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="pessoa_PK_pessoa" not-null="true" />
             </key>
             <one-to-many class="MODELO.Telefone" />
+        </set>
+        <set name="adms" table="adm" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="MODELO.Adm" />
         </set>
     </class>
 </hibernate-mapping>
