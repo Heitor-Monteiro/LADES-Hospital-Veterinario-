@@ -11,12 +11,16 @@ import DAO.TelefoneDao;
 import DAO.TelefoneDaoImp;
 import DAO.AdmDao;
 import DAO.AdmDaoImp;
+import DAO.ClienteDao;
+import DAO.ClienteDaoImp;
 import MODELO.Adm;
 import MODELO.AdmId;
+import MODELO.Cliente;
+import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
+import java.util.Date;
 import java.util.List;
-import java.util.Set;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -37,6 +41,9 @@ public class PessoaController {
     private Telefone telefone;
     private Adm adm;
     private AdmId admId;
+    private Cliente cliente;
+    private ClienteId clienteId;
+    private Date data;
     
     public DataModel getListarPessoas(){
         List<Pessoa> lista = new PessoaDaoImp().list();
@@ -52,16 +59,25 @@ public class PessoaController {
         this.pessoa = pessoa;
     }
     
-    public void prepararAdicionarPessoa(){
-        pessoa = new Pessoa();
-        telefone = new Telefone();
-    }
+//    public void prepararAdicionarPessoa(){
+//        pessoa = new Pessoa();
+//        telefone = new Telefone();
+//    }
     
     public void prepararAdicionarADM(){
         pessoa = new Pessoa();
         telefone = new Telefone();
         adm = new Adm();
         admId = new AdmId();
+        data = new Date();
+    }
+    
+    public void prepararAdicionarCliente(){
+        pessoa = new Pessoa();
+        telefone = new Telefone();
+        cliente = new Cliente();
+        clienteId = new ClienteId();
+        data = new Date();
     }
     
     public String prepararAlterarPessoa(){
@@ -82,23 +98,22 @@ public class PessoaController {
 //        return "index";
 //    }
     
-    public void adicionarPessoa2(){
-        PessoaDao dao = new PessoaDaoImp();
-        dao.save(pessoa);
-        
-        telefone.setPessoa(pessoa);
-        
-        TelefoneDao dao2 = new TelefoneDaoImp();
-        dao2.save(telefone);
-        
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
-    }
+//    public void adicionarPessoa2(){
+//        PessoaDao dao = new PessoaDaoImp();
+//        dao.save(pessoa);
+//        
+//        telefone.setPessoa(pessoa);
+//        
+//        TelefoneDao dao2 = new TelefoneDaoImp();
+//        dao2.save(telefone);
+//        
+//        FacesContext context = FacesContext.getCurrentInstance();
+//        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
+//    }
     
     public void adicionarADM(){
-        java.util.Date date = new java.util.Date();
         PessoaDao dao = new PessoaDaoImp();
-        pessoa.setCadDataHora(date);
+        pessoa.setCadDataHora(data);
         dao.save(pessoa);
         
         telefone.setPessoa(pessoa);
@@ -109,6 +124,24 @@ public class PessoaController {
         adm.setId(admId);
         AdmDao dao3 = new AdmDaoImp();
         dao3.save(adm);
+        
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
+    }
+    
+    public void adicionarCLIENTE(){
+        PessoaDao dao = new PessoaDaoImp();
+        pessoa.setCadDataHora(data);
+        dao.save(pessoa);
+        
+        telefone.setPessoa(pessoa);
+        TelefoneDao dao2 = new TelefoneDaoImp();
+        dao2.save(telefone);
+        
+        clienteId.setFkPessoa(pessoa.getPkPessoa());
+        cliente.setId(clienteId);
+        ClienteDao dao3 = new ClienteDaoImp();
+        dao3.save(cliente);
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
