@@ -96,15 +96,17 @@ public class PessoaController {
     }
     
     public void adicionarADM(){
+        java.util.Date date = new java.util.Date();
         PessoaDao dao = new PessoaDaoImp();
+        pessoa.setCadDataHora(date);
         dao.save(pessoa);
         
         telefone.setPessoa(pessoa);
         TelefoneDao dao2 = new TelefoneDaoImp();
         dao2.save(telefone);
         
-        adm.setPessoa(pessoa);
         admId.setFkPessoa(pessoa.getPkPessoa());
+        adm.setId(admId);
         AdmDao dao3 = new AdmDaoImp();
         dao3.save(adm);
         
