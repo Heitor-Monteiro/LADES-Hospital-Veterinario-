@@ -14,708 +14,116 @@
         </ui:define>
         
         <ui:define name="title"  >
-            <h:outputText class="" value="#{label_SIHV.CreatePessoaTitle}"></h:outputText>
+            <h:outputText style="margin-left: 25px;" value="Nova consulta"></h:outputText>
         </ui:define>
         
         <ui:define name="body">
             
+            <f:metadata>
+                <f:viewAction action="#{RenderedControle.prepararRenderedArray()}" />
+            </f:metadata>
+            
             <h:form>
                 <p:growl id="growl" sticky="true"  />
                 
-                <p:wizard>
+                <p:wizard style="margin: 10px 25px 0px 25px;">
                     
                     <p:tab id="etapa1" title="Dados do cliente" >
                         <p:panel >
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="3" layout="grid"
-                                             style="margin: 10px 0px 15px;"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-5, ui-grid-col-3" > 
-
-                                    <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="TipoPesquisa" />
-                                    <p:selectOneRadio id="TipoPesquisa"
-                                                      layout="responsive"
-                                                      columns="3"
-                                                      value="#"
-                                                      required="true"
-                                                      requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_TipoPesquisa}">
-                                        <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
-                                        <f:selectItem itemLabel="RG" itemValue="rg" />
-                                        <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
-                                    </p:selectOneRadio>
-                                    <p:message for="TipoPesquisa" />
-                                </p:panelGrid>
-
-                                <p:panelGrid columns="3" layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-3"
-                                             style="margin-bottom: 20px;" >
-
-
-                                    <p:inputText id="ValorPesquisa" value="#" 
-                                             title="#{label_SIHV.PesquisaPessoaTitle_ValorTipoPesquisa}"
-                                             maxlength="100"
-                                             required="true" 
-                                             requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_ValorTipoPesquisa}"/>
-
-
-                                    <p:commandButton action="#{pessoaController.create}" 
-                                            value="Pesquisar"
-                                            update="growl" disabled="false"
-                                            icon="fa fa-search"/>
-                                    <p:message for="ValorPesquisa" />
-
-
-
-                                </p:panelGrid>
-
-
-                               <p:panelGrid columns="1" layout="grid"
-                                             style="margin: 10px 0px 15px;"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-5" 
-                                             rendered="true" >
-
-                                   <p:outputLabel value="Clientes encontrados:" 
-                                               style="color: #1abc9c; 
-                                                      font-weight: bold;
-                                                      padding-top: 20px;"/>
-
-                               </p:panelGrid>
-
-
-                               <p:panelGrid columns="1" layout="grid"
-                                             style="margin: 10px 0px 15px;"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-12" 
-                                             rendered="true" >
-
-                                    <p:dataTable id="radioDT"
-                                             var="car"
-                                             value="#"
-                                             rowKey="#"
-                                             reflow="true" rows="10" paginator="true"
-                                             rendered="true" >
-
-                                    <p:column selectionMode="single" style="width:30px;text-align:center"/>
-
-                                    <p:column headerText="Cod" style="width:70px;" >
-                                        <h:outputText value="#" />
-                                    </p:column>
-                                    <p:column headerText="Nome animal">
-                                        <h:outputText value="#" />
-                                    </p:column>
-                                    <p:column headerText="Especie">
-                                        <h:outputText value="#" />
-                                    </p:column>
-                                </p:dataTable>
-
-                                </p:panelGrid>
-                            </div>
-                            
-                            
-                            
-                            
-                        </p:panel>
-                    </p:tab>
-                    
-                    <p:tab id="etapa2" title="Diagnóstico" >
-                        <p:panel>
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="3" layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-4" >
-
-
-
-
-
-
-
-                                    <p:outputLabel value="Diagnóstico/procedimento:"
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="Diag" />
-                                    <p:inputText id="Diag" 
-                                                 value="#"
-                                                 title=""
-                                                 required="true"
-                                                 requiredMessage="Informe o campo diagnóstico!"
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="Diag" />
-
-
-
-
-
-
-
-
-
-                                    <p:outputLabel value="Queixa principal/evolução:"
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="Queixa" />
-                                    <p:inputTextarea id="Queixa" 
-                                                 value="#"
-                                                 required="true"
-                                                 requiredMessage="Informe o campo queixa principal/evolução"
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="Queixa" />
-
-
-
-
-
-
-
-
-
-                                    <p:outputLabel value="Já foi tratado:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="tratado" />
-                                    <p:selectOneRadio id="tratado"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      value="#"
-                                                      required="true"
-                                                      requiredMessage="Informe o tipo de alimentação!"
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="tratado" />
-
-
-
-
-
-
-
-
-
-                                    <p:outputLabel value="Medicação/dose:"
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="Medicacao"
-                                                   rendered="true" />
-                                    <p:inputTextarea id="Medicacao" 
-                                                 value="#"
-                                                 required="false"
-                                                 requiredMessage=""
-                                                 rendered="true"
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="Medicacao" />
-
-
-
-
-                                </p:panelGrid>    
-                            </div>
+                            <!--
+                            <ui:include src="/SIHV_Telas_Genericas/pesquisa_pessoa.xhtml" />
+                            -->
                         </p:panel>
                     </p:tab>
                     
                     
-                    <p:tab id="etapa3" title="Anamnese" >
+                    <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="3" layout="grid"
+                            <!--
+                            <ui:include src="/SIHV_Telas_Genericas/generico_Anamnese.xhtml" />
+                            -->
+                        </p:panel>
+                    </p:tab>
+                    
+                    
+                    <p:tab id="etapa3" title="Exame físico" >
+                        <p:panel>
+                            <!--
+                            <ui:include src="/SIHV_Telas_Genericas/generico_Fisico.xhtml" />
+                            -->
+                        </p:panel>
+                    </p:tab>
+                    
+                    
+                    
+                    <p:tab id="etapa4" title="Exames complementares" >
+                        <p:panel>
+                            
+                            <p:panelGrid columns="2"
+                                         layout="grid"
                                          styleClass="panelgrid-noborder"
-                                    columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-
-                                    <p:outputLabel value="Antecedentes móbidos:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="AntMor" />
-                                    <p:inputTextarea id="AntMor" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe antecedentes móbidos!"
-                                                     style="margin-bottom: 20px;" />
-                                    <p:message for="AntMor" />
-
-
-
-                                    <p:outputLabel value="Histórico familiar:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="HistFam" />
-                                    <p:inputTextarea id="HistFam" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o histórico familiar!" 
-                                                     style="margin-bottom: 20px;" />
-                                    <p:message for="HistFam" />
-
-
-
-                                    <p:outputLabel value="Alimentação:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Alime" />
-                                    <p:selectOneRadio id="Alime"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      value="#"
-                                                      required="false"
-                                                      requiredMessage="Informe o tipo de alimentação!"
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Dieta caseira" itemValue="dieta_caseira" />
-                                        <f:selectItem itemLabel="Ração" itemValue="racao" />
-                                    </p:selectOneRadio>
-                                    <p:message for="Alime" />
-
-
-
-                                    <p:outputLabel value="Vacinação anti-rábica:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Vacina" />
-                                    <p:selectOneRadio id="Vacina"
-                                                      value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage="Informe o tipo de vacina!"
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="V8" itemValue="V8" />
-                                        <f:selectItem itemLabel="Outras" itemValue="Outras" />
-                                    </p:selectOneRadio>
-                                    <p:message for="Vacina" />
-
-
-
-                                    <p:outputLabel value="Vermifugação:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Vermif" />
-                                    <p:selectOneRadio id="Vermif"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      value="#"
-                                                      required="false"
-                                                      requiredMessage="Informe a vermifugação!"
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="Vermif" />
-
-
-
-                                    <p:outputLabel value="Qual/Dose vermifugação:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Vermif2"
-                                               rendered="true" />
-                                    <p:inputText id="Vermif2" 
-                                                 value="#"
-                                                 required="false"
-                                                 requiredMessage=""
-                                                 rendered="true"
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="Vermif2" />
-
-
-
-                                    <p:outputLabel value="Data: aplicação de vermifugação"
-                                                   for="Vermif3"
-                                                   style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:calendar id="Vermif3" maxlength="10" disabled="false" 
-                                                title="" 
-                                                required="false"  
-                                                requiredMessage="" 
-                                                locale="de" navigator="true"  
-                                                pattern="yyyy-mm-dd" 
-                                                style="margin-bottom: 20px;" /> 
-                                    <p:message for="Vermif3" /> 
-
-
-
-                                    <p:outputLabel value="Ectoparasitas:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Ectop" />
-                                    <p:selectOneRadio id="Ectop" value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage=""
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="Ectop" />
-
-
-
-                                    <p:outputLabel value="Qual ectoparasitas:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="QualEctop" />
-                                    <p:inputText id="QualEctop" 
-                                                 value="#"
-                                                 required="false"
-                                                 requiredMessage=""
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="QualEctop" />
-
-
-
-                                    <p:outputLabel value="Controle de ectoparasitas:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="ControEctop" />
-                                    <p:selectOneRadio id="ControEctop" value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage=""
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="ControEctop" />
-
-
-
-                                    <p:outputLabel value="Qual produto utilizado:"
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="ControEctopDescri" />
-                                    <p:inputText id="ControEctopDescri" 
-                                                 value="#"
-                                                 title="Produto utilizado no controle de ectoparasitas"
-                                                 required="false"
-                                                 requiredMessage=""
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="ControEctopDescri" />
-
-
-
-                                    <p:outputLabel value="Acesso à rua:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="AcessRua" />
-                                    <p:selectOneMenu id="AcessRua" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o acesso a rua!"
-                                                     style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                        <f:selectItem itemLabel="Sozinho" itemValue="SOZINHO" />
-                                        <f:selectItem itemLabel="Acompanhado" itemValue="ACOMPANHADO" />
-                                    </p:selectOneMenu>
-                                    <p:message for="AcessRua" />
-
-
-
-                                    <p:outputLabel value="Descrição do habitat:"
-                                                   style="color: #1abc9c; font-weight: bold ;"
-                                                   for="habitat" />
-                                    <p:inputTextarea id="habitat" 
-                                                 value="#"
-                                                 title="Descreva o habitat que o animal vive"
-                                                 required="false"
-                                                 requiredMessage=""
-                                                 style="margin-bottom: 20px;" />
-                                    <p:message for="habitat" />
-
-
-
-                                    <p:outputLabel value="Contactantes:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Contac" />
-                                    <p:selectOneRadio id="Contac" value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage="" 
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="Contac" />
-
-
-
-                                    <p:outputLabel value="Mesmo problema em contactantes?"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="ContacProb" />
-                                    <p:selectOneRadio id="ContacProb" value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage=""
-                                                      style="margin-bottom: 20px;" >
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="ContacProb" />
-
-
-
-                                    <p:outputLabel value="Contato com roedores"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="roedores" />
-                                    <p:selectOneRadio id="roedores" value="#"
-                                                      layout="responsive"
-                                                      columns="2"
-                                                      required="false"
-                                                      requiredMessage="">
-                                        <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                        <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    </p:selectOneRadio>
-                                    <p:message for="roedores" />
-
-
-
-                                    <p:dialog modal="true" resizable="false" header="Values" widgetVar="dlg" showEffect="fold">
-                                        <p:panelGrid id="display" columns="2" columnClasses="label,value">
-                                            <h:outputText value="German:" />
-                                            <h:outputText >
-                                                <f:convertDateTime pattern="MM/dd/yyyy" />
-                                            </h:outputText>
-                                        </p:panelGrid>
-                                    </p:dialog>
-
-                                </p:panelGrid>    
-                            </div>
+                                         columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-3" >
+                         
+                                <p:outputLabel value="Radiografia:"
+                                               style="color: #1abc9c; font-weight: bold ;" />
+                                
+                                <p:selectOneRadio id="value2"
+                                                  value="#{RenderedControle.getRenderedArray(0).campoTEMP}"
+                                                       layout="responsive"
+                                                       columns="2"
+                                                       style="margin-bottom: 20px;" >
+                                    <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                                    <f:selectItem itemLabel="Não" itemValue="NAO" />
+                                    
+                                    <p:ajax update="TESTE333" listener="#{RenderedControle.renderedCampo(0,RenderedControle.getRenderedArray(0).campoTEMP,'SIM')}" />
+                                    
+                                </p:selectOneRadio>
+                            </p:panelGrid>
+                            
+                            
+                            
+                            <ui:include src="/SIHV_Telas_Genericas/generico_RaioX.xhtml" />
+                            
+                            
+                            <!--
+                            <p:panel id="TESTE333" >
+                                <p:outputLabel value="teste" rendered="#{RenderedControle.getRenderedESTADO(0)}" />
+                            </p:panel>
+                            -->
+                            
+                            
+                            <p:panelGrid columns="2" 
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-3" >
+                         
+                                <p:outputLabel value="Ultrassonografia:"
+                                               style="color: #1abc9c; font-weight: bold ;" />
+                                
+                                <p:selectBooleanButton id="value3"
+                                                       value="#"
+                                                       onLabel="Sim"
+                                                       offLabel="Não"
+                                                       onIcon="fa fa-check"
+                                                       offIcon="fa fa-close">
+                                    
+                                </p:selectBooleanButton>
+                            </p:panelGrid>
+                            <!--
+                            <ui:include src="/SIHV_Telas_Genericas/generico_RaioX.xhtml" />
+                            -->
                         </p:panel>
                     </p:tab>
                     
-                    <p:tab id="etapa4" title="Exame físico" >
-                        <p:panel>
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="3" layout="grid"
-                                         styleClass="panelgrid-noborder"
-                                    columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
-
-                                    <p:outputLabel value="bpm:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="bpm" />
-                                    <p:inputNumber id="bpm" 
-                                                   value="11"
-                                                   title="Frequência cardíaca"
-                                                   decimalSeparator=","
-                                                   thousandSeparator="."
-                                                   maxlength="3"
-                                                   maxValue="999"
-                                                   required="true" 
-                                                   requiredMessage="Informe a frequência cardíaca!"/>
-                                    <p:message for="bpm" />
-
-
-                                    <p:outputLabel value="mpm:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="mpm" />
-                                    <p:inputNumber id="mpm" 
-                                                   value="12"
-                                                   title="Frequência respiratória"
-                                                   decimalSeparator=","
-                                                   thousandSeparator="."
-                                                   maxlength="3"
-                                                   maxValue="999"
-                                                   required="false" 
-                                                   requiredMessage="Informe a frequência respiratória!"/>
-                                    <p:message for="mpm" />
-
-
-                                    <p:outputLabel value="TPC:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="TPC" />
-                                    <p:inputNumber id="TPC" 
-                                                   value="13"
-                                                   title="Tempo de preenchimento capilar"
-                                                   decimalSeparator=","
-                                                   thousandSeparator="."
-                                                   maxlength="3"
-                                                   maxValue="100"
-                                                   required="false" 
-                                                   requiredMessage="Informe o tempo de preenchimento capilar!"/>
-                                    <p:message for="TPC" />
-
-
-                                    <p:outputLabel value="Estado nutricional:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="EstNutr" />
-                                    <p:selectOneMenu id="EstNutr" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado nutricional!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Bom" itemValue="BOM" />
-                                        <f:selectItem itemLabel="Caquético" itemValue="CAQUETICO" />
-                                        <f:selectItem itemLabel="Magro" itemValue="MAGRO" />
-                                        <f:selectItem itemLabel="Gordo" itemValue="GORDO" />
-                                        <f:selectItem itemLabel="Obeso" itemValue="OBESO" />
-                                    </p:selectOneMenu>
-                                    <p:message for="EstNutr" />
-
-
-                                    <p:outputLabel value="Mucosa Oral:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="MucosaOral" />
-                                    <p:selectOneMenu id="MucosaOral" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado da mucosa oral!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Róseas" itemValue="ROSEAS" />
-                                        <f:selectItem itemLabel="Pálidas" itemValue="PALIDAS" />
-                                        <f:selectItem itemLabel="Perláceas" itemValue="PERLACEAS" />
-                                        <f:selectItem itemLabel="Cianóticas" itemValue="CIANOTICAS" />
-                                        <f:selectItem itemLabel="Congestas" itemValue="CONGESTAS" />
-                                        <f:selectItem itemLabel="Ictéricas" itemValue="ICTERICAS" />
-                                    </p:selectOneMenu>
-                                    <p:message for="MucosaOral" />
-
-
-                                    <p:outputLabel value="Mucosa vaginal/peniana:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="MucosaVP" />
-                                    <p:selectOneMenu id="MucosaVP" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado da mucosa Vaginal/Peniana!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Róseas" itemValue="ROSEAS" />
-                                        <f:selectItem itemLabel="Pálidas" itemValue="PALIDAS" />
-                                        <f:selectItem itemLabel="Perláceas" itemValue="PERLACEAS" />
-                                        <f:selectItem itemLabel="Cianóticas" itemValue="CIANOTICAS" />
-                                        <f:selectItem itemLabel="Congestas" itemValue="CONGESTAS" />
-                                        <f:selectItem itemLabel="Ictéricas" itemValue="ICTERICAS" />
-                                    </p:selectOneMenu>
-                                    <p:message for="MucosaVP" />
-
-
-                                    <p:outputLabel value="Mucosa ocular:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="MucosaOc" />
-                                    <p:selectOneMenu id="MucosaOc" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado da mucosa ocular!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Róseas" itemValue="ROSEAS" />
-                                        <f:selectItem itemLabel="Pálidas" itemValue="PALIDAS" />
-                                        <f:selectItem itemLabel="Perláceas" itemValue="PERLACEAS" />
-                                        <f:selectItem itemLabel="Cianóticas" itemValue="CIANOTICAS" />
-                                        <f:selectItem itemLabel="Congestas" itemValue="CONGESTAS" />
-                                        <f:selectItem itemLabel="Ictéricas" itemValue="ICTERICAS" />
-                                    </p:selectOneMenu>
-                                    <p:message for="MucosaOc" />
-
-
-                                    <p:outputLabel value="Pulso:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Pulso" />
-                                    <p:selectOneMenu id="Pulso" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado do pulso!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Fraco" itemValue="FRACO" />
-                                        <f:selectItem itemLabel="Forte" itemValue="FORTE" />
-                                        <f:selectItem itemLabel="Ausente" itemValue="AUSENTE" />
-                                        <f:selectItem itemLabel="Regular" itemValue="REGULAR" />
-                                        <f:selectItem itemLabel="Irregular" itemValue="IRREGULAR" />
-                                        <f:selectItem itemLabel="Ictéricas" itemValue="ICTERICAS" />
-                                    </p:selectOneMenu>
-                                    <p:message for="Pulso" />
-
-
-                                    <p:outputLabel value="Hidratação:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Hidratacao" />
-                                    <p:selectOneMenu id="Hidratacao" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado da hidratação!">
-                                        <f:selectItem itemLabel="Selecione" itemValue="" />
-                                        <f:selectItem itemLabel="Hidratado" itemValue="Hidratado" />
-                                        <f:selectItem itemLabel="4-6% de desidratação" itemValue="4-6% de desidratação" />
-                                        <f:selectItem itemLabel="6-8% de desidratação" itemValue="6-8% de desidratação" />
-                                        <f:selectItem itemLabel="8-10% de desidratação" itemValue="8-10% de desidratação" />
-                                        <f:selectItem itemLabel="10-12% de desidratação" itemValue="10-12% de desidratação" />
-                                    </p:selectOneMenu>
-                                    <p:message for="Hidratacao" />
-
-
-                                    <p:outputLabel value="Palpação abdominal:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="PaAb" />
-                                    <p:inputTextarea id="PaAb" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe a palpação abdominal!" />
-                                    <p:message for="PaAb" />
-
-
-                                    <p:outputLabel value="Auscultação cardíaca:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="AusCar" />
-                                    <p:inputTextarea id="AusCar" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe a auscultação cardíaca!" />
-                                    <p:message for="AusCar" />
-
-
-                                    <p:outputLabel value="Linfonodos:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Linf" />
-                                    <p:inputTextarea id="Linf" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o linfonodos!" />
-                                    <p:message for="Linf" />
-
-
-                                    <p:outputLabel value="Pele/pelos:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                               for="Pele" />
-                                    <p:inputTextarea id="Pele" value="#"
-                                                     required="false"
-                                                     requiredMessage="Informe o estado de pele/pelos!" />
-                                    <p:message for="Pele" />
-
-
-
-                                </p:panelGrid>
-
-                                <p:panelGrid columns="3" layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-1, ui-grid-col-1, ui-grid-col-3" >
-
-                                    <p:outputLabel value="Diagnósticos diferenciais:"
-                                               style="color: #1abc9c; font-weight: bold ;"
-                                                />
-
-                                    <p:row>
-                                        <p:inputMask mask="999" maxlength="3" placeholder="1-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="2-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="3-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="4-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="5-" />
-                                    </p:row>
-
-                                    <p:row>
-                                        <p:inputMask mask="999" maxlength="3" placeholder="6-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="7-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="8-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="9-" />
-
-                                        <p:inputMask mask="999" maxlength="3" placeholder="10-" />
-                                    </p:row>
-
-                                    <p:commandButton id="SalvarCliente"
-                                                     value="#{label_SIHV.CreatePessoaSaveLink}"
-                                                     style="width: 170px;"
-                                                     update="growl"
-                                                     icon="fa fa-save" />
-                                </p:panelGrid>
-
-                            </div>
-                        </p:panel>
-                    </p:tab>
                     
                     
                     
                     <p:tab id="etapa5" title="Finalizar" >
                         <p:panel>
                             <div class="ui-fluid">
-                                <p:panelGrid columns="2" layout="grid"
+                                <p:panelGrid columns="2" layout="grid" id="CODconsulta"
                                              styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-3" >
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3" >
 
 
                                     
@@ -766,43 +174,50 @@
                                                    style="color: #1abc9c; font-weight: bold ;" />
                                     <p:outputLabel value="1234567"
                                                    style="color: #555;" />
-                                </p:panelGrid>
                                     
-                                
-                                <p:panelGrid columns="3" layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-1, ui-grid-col-1" >
-                                
-                                
-                                
+                                    
+                                    
+                                    
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    
-                                    <p:outputLabel value="00/00/0000"
+                                    <p:outputLabel value="00/00/0000 00h 00min"
                                                    style="color: #555;" />
-                                    
-                                    <p:outputLabel value="00h 00min"
-                                                   style="color: #555;" />
-                                    
-                                </p:panelGrid>   
+                                </p:panelGrid>
 
 
 
+                            
+                                <p:panelGrid columns="5"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             style="margin-top: 30px;"
+                                             columnClasses="ui-grid-col-4, ui-grid-col-2, ui-grid-col-2, ui-grid-col-2, ui-grid-col-2" >
 
+                                    <p:outputLabel />
 
+                                    <p:commandButton value="Imprimir"
+                                                     type="button"
+                                                     icon="fa fa-print">
+                                        <p:printer target="CODconsulta" />
+                                    </p:commandButton>
 
+                                    <p:commandButton  
+                                                value="Salvar consulta"
+                                                icon="fa fa-save"
+                                                update="growl" 
+                                                disabled="false" />
 
-                                    
+                                    <p:button value="Nova consulta" 
+                                              outcome="/SIHV_Telas_Adm/ADM_cad_cliente"
+                                              icon="fa fa-user-plus" />
 
-
-
-                                    
+                                    <p:button value="Sair" 
+                                              outcome="/index"
+                                              icon="fa fa-home" />
+                                </p:panelGrid>
                             </div>
                         </p:panel>
                     </p:tab>
-                    
-                    
-                    
                     
                 </p:wizard>
             

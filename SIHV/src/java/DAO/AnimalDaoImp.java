@@ -5,9 +5,7 @@
  */
 package DAO;
 
-import MODELO.Pessoa;
-import MODELO.Telefone;
-import MODELO.Adm;
+import MODELO.Animais;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,63 +13,44 @@ import org.hibernate.Transaction;
  *
  * @author thiberius
  */
-public class PessoaDaoImp implements PessoaDao {
+public class AnimalDaoImp implements AnimalDao {
 
     @Override
-    public void save(Pessoa pessoa) {
+    public void save(Animais animal) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.save(pessoa);
+        session.save(animal);
         t.commit();
     }
 
     @Override
-    public Pessoa getPessoa(Integer id) {
+    public Animais getAnimal(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Pessoa) session.load(Pessoa.class, id);
+        return (Animais) session.load(Animais.class, id);
     }
 
     @Override
-    public List<Pessoa> list() {
+    public List<Animais> list() {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        org.hibernate.Query query = session.createQuery("from Pessoa");
-        List<Pessoa> lista = query.list();
+        List lista = session.createQuery("from Animais").list();
         t.commit();
         return lista;
     }
 
     @Override
-    public void remove(Pessoa pessoa) {
+    public void remove(Animais animal) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.delete(pessoa);
+        session.delete(animal);
         t.commit();
     }
 
     @Override
-    public void update(Pessoa pessoa) {
+    public void update(Animais animal) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction t = session.beginTransaction();
-        session.update(pessoa);
-        t.commit();
-    }    
-
-    
-    
-    @Override
-    public void save(Telefone telefone) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(telefone);
-        t.commit();
-    }
-    
-    @Override
-    public void save(Adm adm) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction t = session.beginTransaction();
-        session.save(adm);
+        session.update(animal);
         t.commit();
     }
     

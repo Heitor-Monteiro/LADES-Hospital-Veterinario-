@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 31/07/2016 22:50:28 by Hibernate Tools 4.3.1 -->
+<!-- Generated 02/08/2016 14:16:16 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="MODELO.Cliente" table="cliente" catalog="BD_SIHV" optimistic-lock="version">
         <composite-id name="id" class="MODELO.ClienteId">
@@ -15,5 +15,12 @@
         <many-to-one name="pessoa" class="MODELO.Pessoa" update="false" insert="false" fetch="select">
             <column name="FK_pessoa" not-null="true" />
         </many-to-one>
+        <set name="animaises" table="animais" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="cliente_FK_cliente" not-null="true" />
+                <column name="cliente_FK_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="MODELO.Animais" />
+        </set>
     </class>
 </hibernate-mapping>

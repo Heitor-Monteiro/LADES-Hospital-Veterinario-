@@ -19,6 +19,8 @@ import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
+import CONTROLE.RenderedController;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -45,10 +47,24 @@ public class PessoaController {
     private ClienteId clienteId;
     private Date data;
     
+    private List<Pessoa> pessoasBuscadas;
+
+    public PessoaController() {
+    }
+    
     public DataModel getListarPessoas(){
         List<Pessoa> lista = new PessoaDaoImp().list();
         listarPessoas = new ListDataModel(lista);
         return listarPessoas;
+    }
+    
+    
+    public List<Pessoa> getPessoasBuscadas(){
+        return pessoasBuscadas;
+    }
+    
+    public void prepararPesquisarPessoa(){
+        pessoasBuscadas = new ArrayList();
     }
     
     public Pessoa getPessoa(){

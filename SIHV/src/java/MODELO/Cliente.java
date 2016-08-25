@@ -1,7 +1,9 @@
 package MODELO;
-// Generated 31/07/2016 22:50:27 by Hibernate Tools 4.3.1
+// Generated 02/08/2016 14:16:16 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -24,13 +27,20 @@ public class Cliente  implements java.io.Serializable {
 
      private ClienteId id;
      private Pessoa pessoa;
+     private Set<Animais> animaises = new HashSet<Animais>(0);
 
     public Cliente() {
     }
 
+	
     public Cliente(ClienteId id, Pessoa pessoa) {
+        this.id = id;
+        this.pessoa = pessoa;
+    }
+    public Cliente(ClienteId id, Pessoa pessoa, Set<Animais> animaises) {
        this.id = id;
        this.pessoa = pessoa;
+       this.animaises = animaises;
     }
    
      @EmbeddedId
@@ -55,6 +65,15 @@ public class Cliente  implements java.io.Serializable {
     
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
+    public Set<Animais> getAnimaises() {
+        return this.animaises;
+    }
+    
+    public void setAnimaises(Set<Animais> animaises) {
+        this.animaises = animaises;
     }
 
 
