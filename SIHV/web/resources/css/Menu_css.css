@@ -42,7 +42,7 @@ nav {
 
 nav .navbar {
     width: 95%;
-    margin:0 auto
+    margin:0 auto;
 }
 
 /*Altera cor do nome Logo*/
@@ -52,7 +52,8 @@ nav .logo {
     float: left;
     display: inline-block;
     font-size: 30px;
-    font-weight: bold
+    font-weight: bold;
+    margin-top: 1px;
 }
 
 nav .menu-toggle {
@@ -93,7 +94,10 @@ nav .icon-bar + .icon-bar {margin-top: 4px;}
 }
 /*Menu-toggle: Fim ------------------------------------*/
 
-nav .menu ul { float: right }
+nav .menu ul { 
+    float: right;
+    padding: 10px 0 10px 0;
+}
 
 nav .menu li {
     float: left;
@@ -109,8 +113,9 @@ nav .open-submenu {
     cursor: pointer;
     position: relative;
     display: block;
-    padding: 12px 20px;
-    transition: background-color .3s
+    padding: 12px 10px;
+    transition: background-color .3s;
+    font-size: 16px;
 }
 
 nav .menu li a:hover,
@@ -140,7 +145,7 @@ nav .menu ul ul a:hover {
 }
 
 @media(max-width:640px) {
-    nav .logo { padding-top: 8px }
+    nav .logo { padding-top: 0 }
 
     nav .menu-toggle { display: inline-block }
 

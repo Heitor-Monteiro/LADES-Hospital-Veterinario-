@@ -11,20 +11,21 @@
             <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
         </ui:define>
         
+        
         <ui:define name="title">
-            <h:outputText value="Inicio2" />
+            <h:outputText value="" />
         </ui:define>
         
         <ui:define name="body">
             
             
-            <p:panelGrid columns="4" 
+            <p:panelGrid columns="5" 
                          layout="grid"
                          styleClass="panelgrid-noborder"
-                         style="margin-top: 4%;"
+                         style="margin: 5% 0 0 12%;"
                          columnClasses="ui-grid-col-2, 
                          ui-grid-col-2, ui-grid-col-2, 
-                         ui-grid-col-2" >
+                         ui-grid-col-2, ui-grid-col-2" >
                              
                 <h:link outcome="/index">
                     <h:graphicImage id="ficha" class="LADES-indexBotao"
@@ -58,6 +59,16 @@
                         library="imagens" 
                         name="botao-addPET.svg" />
                     <p:tooltip id="menubotao4" for="addPet" value="Cadastrar novos pets para o cliente"
+                    showEffect="clip" hideEffect="explode" />
+                    <p class="LADES-textoBotao" >Cadastrar novo animal</p>
+                </h:link>
+                
+                
+                <h:link outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal" id="addPet2" >
+                    <h:graphicImage class="LADES-indexBotao"
+                        library="imagens" 
+                        name="botao-addPET.svg" />
+                    <p:tooltip id="menubotao5" for="addPet" value="Cadastrar novos pets para o cliente"
                     showEffect="clip" hideEffect="explode" />
                     <p class="LADES-textoBotao" >Cadastrar novo animal</p>
                 </h:link>

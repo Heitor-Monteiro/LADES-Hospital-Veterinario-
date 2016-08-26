@@ -7,8 +7,7 @@
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
-                     id="RaioX"
-                     rendered="true"
+                     rendered="#{RenderedControle.getRenderedESTADO(0)}"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
@@ -56,29 +55,14 @@
 
             
             <p:outputLabel value="Quantodade de chapas:"
-                           for="Qtd"
+                           for="RaioX4"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:spinner id="Qtd" 
+            <p:spinner id="RaioX4" 
                        value="#" 
                        prefix="" 
                        min="1"
                        stepFactor="1" />
-            <p:message for="Qtd" />
-
-
-            
-            <p:outputLabel value="Data e hora do RX:"
-                           style="color: #1abc9c; font-weight: bold ;"
-                           rendered="false"
-                           for="DataRX" />
-            <p:inputText id="DataRX" 
-                         value="Este campo deve ser preenchido atravez do back-end."
-                         disabled="true"
-                         rendered="false"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;" />
-            <p:message for="DataRX" />
+            <p:message for="RaioX4" />
 
         </p:panelGrid>    
     </div>
