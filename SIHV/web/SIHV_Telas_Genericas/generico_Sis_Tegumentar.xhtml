@@ -1,0 +1,204 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+
+
+
+
+            <p:outputLabel value="Início/evolução da lesão:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar1" />
+            <p:inputTextarea id="Tegumentar1" 
+                             value="#"
+                             required="true"
+                             requiredMessage="Informe o campo:(Início/evolução da lesão)"
+                             style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar1" />
+
+
+
+
+
+
+
+            <p:outputLabel value="Localização e características das lesões:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar2" />
+            <p:inputTextarea id="Tegumentar2" 
+                             value="#"
+                             required="true"
+                             requiredMessage="Informe a localização e características das lesões!"
+                             style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar2" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Prurido cutâneo:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar3" />
+            <p:selectOneRadio id="Tegumentar3"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo prurido cutâneo!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Tegumentar3" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Prurido cutâneo (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar4" />
+            <p:inputText id="Tegumentar4" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar4" />
+
+
+            
+            
+            
+            
+            
+            
+            
+            <p:outputLabel value="Prurido otológico:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar5" />
+            <p:selectOneRadio id="Tegumentar5"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo prurido otológico!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Tegumentar5" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Prurido otológico (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar6" />
+            <p:inputText id="Tegumentar6" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar6" />
+            
+
+
+
+
+
+            <p:outputLabel value="Secreção otológica:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar7" />
+            <p:selectOneRadio id="Tegumentar7"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo secreção otológica!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Tegumentar7" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Secreção otológica (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar8" />
+            <p:inputText id="Tegumentar8" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar8" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Frequência de banhos:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar9" />
+            <p:inputText id="Tegumentar9" 
+                         value="#"
+                         required="true"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar9" />
+
+
+
+
+
+
+
+            <p:outputLabel value="Produto utilizado no banho:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Tegumentar10" />
+            <p:inputText id="Tegumentar10" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Tegumentar10" />
+
+
+
+
+        </p:panelGrid>    
+    </div>
+    
+</ui:component>

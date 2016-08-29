@@ -1,0 +1,267 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+
+
+
+
+            <p:outputLabel value="Ingestão hídrica:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu1" />
+            <p:selectOneRadio id="UrianGlandu1"
+                              value="#"
+                              layout="responsive"
+                              columns="3"
+                              required="true"
+                              requiredMessage="Informe ingestão hídrica!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                <f:selectItem itemLabel="Hipodipsia" itemValue="HIPODIPSIA" />
+                <f:selectItem itemLabel="Polidipsia" itemValue="POLIDIPSIA" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu1" />
+
+
+
+
+
+
+            <p:outputLabel value="Ingestão hídrica (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu2" />
+            <p:inputTextarea id="UrianGlandu2" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="UrianGlandu2" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Estado da urina:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu3" />
+            <p:selectOneRadio id="UrianGlandu3"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o estado da urina!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                <f:selectItem itemLabel="Alterado" itemValue="ALTERADO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu3" />
+
+
+            
+            
+            
+            
+            <p:outputLabel value="Urina:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu4" />
+            <p:selectOneMenu id="UrianGlandu4"
+                              value="#"
+                              required="true"
+                              requiredMessage="Informe o estado da urina!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
+                <f:selectItem itemLabel="Anúria" itemValue="ANURIA" />
+                <f:selectItem itemLabel="Oligúria" itemValue="OLIGURIA" />
+                <f:selectItem itemLabel="Poliúria" itemValue="POLIURIA" />
+                <f:selectItem itemLabel="Incontinência" itemValue="INCONTINENCIA" />
+                <f:selectItem itemLabel="Iscúria" itemValue="ISCURIA" />
+            </p:selectOneMenu>
+            <p:message for="UrianGlandu4" />
+            
+            
+            
+            
+            
+
+
+            <p:outputLabel value="Urina (aspecto/cor/odor):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu5" />
+            <p:inputTextarea id="UrianGlandu5" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="UrianGlandu5" />
+
+
+
+
+
+
+            <p:outputLabel value="Urina (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu6" />
+            <p:inputTextarea id="UrianGlandu6" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="UrianGlandu6" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Último cio:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu7" />
+            <p:calendar id="UrianGlandu7" 
+                        maxlength="10" 
+                        disabled="false" 
+                        title="" 
+                        required="true"  
+                        requiredMessage="Informe o último cio!" 
+                        locale="de"
+                        navigator="true"  
+                        pattern="yyyy-mm-dd" /> 
+            <p:message for="UrianGlandu7" />
+            <p:outputLabel /><p:outputLabel /><p:outputLabel />
+            
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Último parto:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu8" />
+            <p:calendar id="UrianGlandu8" 
+                        maxlength="10" 
+                        disabled="false" 
+                        title="" 
+                        required="true"  
+                        requiredMessage="Informe o último parto!" 
+                        locale="de"
+                        navigator="true"  
+                        pattern="yyyy-mm-dd" />
+            <p:message for="UrianGlandu8" />
+            <p:outputLabel /><p:outputLabel /><p:outputLabel />
+
+
+            
+            
+
+
+            
+            <p:outputLabel value="Secreção vaginal/peniana:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu9" />
+            <p:selectOneRadio id="UrianGlandu9"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta secresão vaginal/peniana!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu9" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Secreção vaginal/peniana (Tipo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu10" />
+            <p:inputText id="UrianGlandu10" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="UrianGlandu10" />
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Secreção vaginal/peniana (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu11" />
+            <p:inputTextarea id="UrianGlandu11" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="UrianGlandu11" />
+
+
+
+
+
+
+            <p:outputLabel value="Castrado:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu12" />
+            <p:selectOneRadio id="UrianGlandu12"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal é castrado!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu12" />
+
+
+
+
+
+
+            <p:outputLabel value="Prenhe:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu13" />
+            <p:selectOneRadio id="UrianGlandu13"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal está prenhe!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu13" />
+
+        </p:panelGrid>    
+    </div>
+    
+</ui:component>

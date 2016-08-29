@@ -57,7 +57,22 @@
                                 </p:tab>
                                 <p:tab id="anamnese3" title="Sistema 3" >
                                     <p:panel header="Sistema respiratório e cardiovascular" >
+                                        <!--
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Resp_Cardio.xhtml" />
+                                        -->
+                                    </p:panel>
+                                </p:tab>
+                                <p:tab id="anamnese4" title="Sistema 4" >
+                                    <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
+                                        <!--
+                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Urinario_Mamaria.xhtml" />
+                                        -->
+                                    </p:panel>
+                                </p:tab>
+                                
+                                <p:tab id="anamnese5" title="Sistema 5" >
+                                    <p:panel header="Sistema tegumentar" >
+                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Tegumentar.xhtml" />
                                     </p:panel>
                                 </p:tab>
                             </p:wizard>
@@ -240,6 +255,23 @@
                     
                 </p:wizard>
             
+                
+                
+                
+                <p:dialog modal="true"
+                          resizable="false"
+                          header="Values"
+                          widgetVar="dlg"
+                          showEffect="fold">
+                    <p:panelGrid id="display"
+                                 columns="2"
+                                 columnClasses="label,value">
+                        <h:outputText value="German:" />
+                        <h:outputText >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:dialog>
             </h:form>
             
         </ui:define>
