@@ -1,0 +1,197 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+
+
+            
+            
+            <p:outputLabel value="Olhos:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico1" />
+            <p:selectOneMenu id="oftalmico1"
+                             value="#"
+                             required="true"
+                             requiredMessage="Informe se o animal apresenta perda de visão!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
+                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                <f:selectItem itemLabel="Midríase" itemValue="MIDRIASE" />
+                <f:selectItem itemLabel="Miose" itemValue="MIOSE" />
+                <f:selectItem itemLabel="Anisocoria" itemValue="ANISOCORIA" />
+                <f:selectItem itemLabel="Amaurose" itemValue="AMAUROSE" />
+            </p:selectOneMenu>
+            <p:message for="oftalmico1" />
+            
+            
+            
+            
+            
+            
+            
+            <p:outputLabel value="Secreção ocular:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico2" />
+            <p:selectOneRadio id="oftalmico2"
+                             value="#"
+                             layout="responsive"
+                             columns="2"
+                             required="true"
+                             requiredMessage="Informe se o animal apresenta secreção ocular!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="oftalmico2" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Secreção ocular:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico3" />
+            <p:selectOneRadio id="oftalmico3"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="false"
+                              requiredMessage=""
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Unilateral" itemValue="UNILATERAL" />
+                <f:selectItem itemLabel="Bilateral" itemValue="BILATERAL" />
+            </p:selectOneRadio>
+            <p:message for="oftalmico3" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Secreção ocular (Tipo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico4" />
+            <p:inputText id="oftalmico4" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="oftalmico4" />
+
+
+
+
+
+
+            <p:outputLabel value="Secreção ocular (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico5" />
+            <p:inputTextarea id="oftalmico5" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="oftalmico5" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Blefaroespasmo:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico6" />
+            <p:selectOneRadio id="oftalmico6"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo Blefaroespasmo!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="oftalmico6" />
+
+
+
+
+
+
+            
+            
+            
+            
+            <p:outputLabel value="Comentário(Blefaroespasmo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico7" />
+            <p:inputText id="oftalmico7" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="oftalmico7" />
+            
+
+
+
+
+
+
+
+            <p:outputLabel value="Exoftalmia:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico8" />
+            <p:selectOneRadio id="oftalmico8"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo exoftalmia!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="oftalmico8" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <p:outputLabel value="Comentário(Exoftalmia):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="oftalmico9" />
+            <p:inputText id="oftalmico9" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="oftalmico9" />
+
+        </p:panelGrid>    
+    </div>
+    
+</ui:component>

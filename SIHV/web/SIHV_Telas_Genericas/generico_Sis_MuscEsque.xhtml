@@ -1,0 +1,152 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+
+
+
+            <p:outputLabel value="Claudicação:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque1" />
+            <p:selectOneRadio id="MuscEsque1"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta claudicação!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="MuscEsque1" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Claudicação (membro afetado/ evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque2" />
+            <p:inputText id="MuscEsque2" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="MuscEsque2" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Fraturas:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque3" />
+            <p:selectOneRadio id="MuscEsque3"
+                             value="#"
+                             layout="responsive"
+                             columns="2"
+                             required="true"
+                             requiredMessage="Informe se o animal apresenta fraturas!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="MuscEsque3" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Fraturas (membro afetado/ evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque4" />
+            <p:inputText id="MuscEsque4" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="MuscEsque4" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Atrofia muscular:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque5" />
+            <p:selectOneRadio id="MuscEsque5"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta atrofia muscular!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="MuscEsque5" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Atrofia muscular (membro afetado/ evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="MuscEsque6" />
+            <p:inputText id="MuscEsque6" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="MuscEsque6" />
+
+
+
+
+
+
+        </p:panelGrid>    
+    </div>
+    
+</ui:component>

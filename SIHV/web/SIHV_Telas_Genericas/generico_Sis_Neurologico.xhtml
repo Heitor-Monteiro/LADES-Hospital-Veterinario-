@@ -1,0 +1,284 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-3" >
+
+
+
+
+            <p:outputLabel value="Consciência:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro1" />
+            <p:selectOneMenu id="Neuro1"
+                             value="#"
+                             required="true"
+                             requiredMessage="Informe o estado de consciência!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
+                <f:selectItem itemLabel="Alerta" itemValue="ALERTA" />
+                <f:selectItem itemLabel="Depressão" itemValue="DEPRESSAO" />
+                <f:selectItem itemLabel="Esturpor" itemValue="ESTURPOR" />
+                <f:selectItem itemLabel="Coma" itemValue="COMA" />
+            </p:selectOneMenu>
+            <p:message for="Neuro1" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Comportamento:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro2" />
+            <p:selectOneMenu id="Neuro2"
+                             value="#"
+                             required="true"
+                             requiredMessage="Informe o comportamento!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
+                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                <f:selectItem itemLabel="Demência" itemValue="DEMENCIA" />
+                <f:selectItem itemLabel="Agressividade" itemValue="AGRESSIVIDADE" />
+            </p:selectOneMenu>
+            <p:message for="Neuro2" />
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Ataxia:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro3" />
+            <p:selectOneRadio id="Neuro3"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o campo Ataxia!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Neuro3" />
+
+
+
+
+
+
+            <p:outputLabel value="Ataxia (Tipo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro4" />
+            <p:inputText id="Neuro4" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Neuro4" />
+
+
+
+
+
+
+            <p:outputLabel value="Ataxia (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro5" />
+            <p:inputTextarea id="Neuro5" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Neuro5" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Paresia/Paralisia:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro6" />
+            <p:selectOneRadio id="Neuro6"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta Paresia/Paralisia!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Neuro6" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Paresia/Paralisia:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro7" />
+            <p:selectOneRadio id="Neuro7"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="false"
+                              requiredMessage=""
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Espástica" itemValue="ESPASTICA" />
+                <f:selectItem itemLabel="Flácida" itemValue="FLACIDA" />
+            </p:selectOneRadio>
+            <p:message for="Neuro7" />
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Paresia/Paralisia (Tipo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro8" />
+            <p:inputText id="Neuro8" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Neuro8" />
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Paresia/Paralisia (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro9" />
+            <p:inputTextarea id="Neuro9" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="Neuro9" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Convulsão:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro10" />
+            <p:selectOneRadio id="Neuro10"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta convulsão!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NAO" />
+            </p:selectOneRadio>
+            <p:message for="Neuro10" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Convulsão (Tipo):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro11" />
+            <p:inputText id="Neuro11" 
+                         value="#"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;" />
+            <p:message for="Neuro11" />
+
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Convulsão (Evolução):"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro12" />
+            <p:inputTextarea id="Neuro12" 
+                             value="#"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;" />
+            <p:message for="Neuro12" />
+
+
+
+
+
+
+
+
+            <p:outputLabel value="Audição:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro13" />
+            <p:selectOneRadio id="Neuro13"
+                              value="#"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta perda auditiva!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
+                <f:selectItem itemLabel="Perda auditiva" itemValue="PERDA" />
+            </p:selectOneRadio>
+            <p:message for="Neuro13" />
+
+        </p:panelGrid>    
+    </div>
+    
+</ui:component>
