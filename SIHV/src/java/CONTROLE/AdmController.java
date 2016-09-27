@@ -5,8 +5,8 @@
  */
 package CONTROLE;
 
-import DAO.AdmDao;
-import DAO.AdmDaoImp;
+import DAO.GenericoDAO;
+import DAO.GenericoDAOImpl;
 import MODELO.Adm;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -23,12 +23,13 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class AdmController {
     
+    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private Adm adm;
     private DataModel listarAdm;
     
     
     public DataModel getListarAdm(){
-        List<Adm> lista = new AdmDaoImp().list();
+        List<Adm> lista = daoGenerico.list("sqlHQL");
         listarAdm = new ListDataModel(lista);
         return listarAdm;
     }
@@ -52,27 +53,23 @@ public class AdmController {
     
     public String excluirAdm(){
         Adm admTemp = (Adm)(listarAdm.getRowData());
-        AdmDao dao = new AdmDaoImp();
-        dao.remove(admTemp);
+        daoGenerico.remove(admTemp);
         return "index";
     }
     
     public void adicionarAdm(){
-        AdmDao dao = new AdmDaoImp();
-        dao.save(adm);
+        daoGenerico.save(adm);
     }
     
     public void adicionarAdm2(){
-        AdmDao dao = new AdmDaoImp();
-        dao.save(adm);
+        daoGenerico.save(adm);
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Telefone cadastrado com sucesso."));
     }
     
     public String alterarAdm(){
-        AdmDao dao = new AdmDaoImp();
-        dao.update(adm);
+        daoGenerico.update(adm);
         return "index";
     }
     

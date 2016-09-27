@@ -5,8 +5,8 @@
  */
 package CONTROLE;
 
-import DAO.AnimalDao;
-import DAO.AnimalDaoImp;
+import DAO.GenericoDAO;
+import DAO.GenericoDAOImpl;
 import MODELO.Animais;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -23,12 +23,13 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class AnimalController {
     
+    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private Animais animal;
     private DataModel listarAnimal;
     
     
     public DataModel getListarAnimal(){
-        List<Animais> lista = new AnimalDaoImp().list();
+        List<Animais> lista = daoGenerico.list("sqlHQL");
         listarAnimal = new ListDataModel(lista);
         return listarAnimal;
     }
@@ -52,22 +53,19 @@ public class AnimalController {
     
     public String excluirAnimal(){
         Animais animalTemp = (Animais)(listarAnimal.getRowData());
-        AnimalDao dao = new AnimalDaoImp();
-        dao.remove(animalTemp);
+        daoGenerico.remove(animalTemp);
         return "index";
     }
     
     public void adicionarANIMAL(){
-        AnimalDao dao = new AnimalDaoImp();
-        dao.save(animal);
+        daoGenerico.save(animal);
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Telefone cadastrado com sucesso."));
     }
     
     public String alterarAnimal(){
-        AnimalDao dao = new AnimalDaoImp();
-        dao.update(animal);
+        daoGenerico.update(animal);
         return "index";
     }
     

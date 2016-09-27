@@ -5,21 +5,17 @@
  */
 package CONTROLE;
 
-import DAO.PessoaDao;
-import DAO.PessoaDaoImp;
-import DAO.TelefoneDao;
-import DAO.TelefoneDaoImp;
-import DAO.AdmDao;
-import DAO.AdmDaoImp;
-import DAO.ClienteDao;
-import DAO.ClienteDaoImp;
+import DAO.GenericoDAO;
+import DAO.GenericoDAOImpl;
+//import DAO.ClienteDao;
+//import DAO.ClienteDaoImp;
 import MODELO.Adm;
 import MODELO.AdmId;
 import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
-import CONTROLE.RenderedController;
+//import CONTROLE.RenderedController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -37,9 +33,10 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class PessoaController {
     
+    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
+    private List<Pessoa> pessoasBuscadas = new ArrayList<>();
+    private CamposController objControCampos;
     private Pessoa pessoa;
-    private DataModel listarPessoas;
-    
     private Telefone telefone;
     private Adm adm;
     private AdmId admId;
@@ -47,24 +44,31 @@ public class PessoaController {
     private ClienteId clienteId;
     private Date data;
     
-    private List<Pessoa> pessoasBuscadas;
-
-    public PessoaController() {
+    
+    
+    public List<Pessoa> getListarPessoas(String sqlHQL){
+        pessoasBuscadas = new GenericoDAOImpl().list(sqlHQL);
+        return pessoasBuscadas;
     }
     
-    public DataModel getListarPessoas(){
-        List<Pessoa> lista = new PessoaDaoImp().list();
-        listarPessoas = new ListDataModel(lista);
+    
+    
+    public DataModel getListaPessoaDataModel(){
+        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
         return listarPessoas;
     }
     
     
-    public List<Pessoa> getPessoasBuscadas(){
-        return pessoasBuscadas;
-    }
-    
-    public void prepararPesquisarPessoa(){
-        pessoasBuscadas = new ArrayList();
+    public void PesquisarOcorrencia(){
+        if(null != objControCampos.getItenPesquisa() ) 
+           switch (objControCampos.getItenPesquisa()) {
+            case "cpf":
+                getListarPessoas("sqlHQL");
+                break;
+            default:
+                NotificacaoTela("Item não encontrado");
+                break;
+        }
     }
     
     public Pessoa getPessoa(){
@@ -75,10 +79,6 @@ public class PessoaController {
         this.pessoa = pessoa;
     }
     
-//    public void prepararAdicionarPessoa(){
-//        pessoa = new Pessoa();
-//        telefone = new Telefone();
-//    }
     
     public void prepararAdicionarADM(){
         pessoa = new Pessoa();
@@ -96,76 +96,63 @@ public class PessoaController {
         data = new Date();
     }
     
+    public CamposController getObjControCampos(){
+        return objControCampos;
+    }
+    
+    public void prepararPesquisaPessoa(){
+        objControCampos = new CamposController();
+    }
+    
     public String prepararAlterarPessoa(){
-        pessoa = (Pessoa)(listarPessoas.getRowData());
+        pessoa = (Pessoa)(getListaPessoaDataModel().getRowData());
         return "gerenciarLivro";
     }
     
     public String excluirPessoa(){
-        Pessoa pessoaTemp = (Pessoa)(listarPessoas.getRowData());
-        PessoaDao dao = new PessoaDaoImp();
-        dao.remove(pessoaTemp);
+        Pessoa pessoaTemp = (Pessoa)(getListaPessoaDataModel().getRowData());
+        daoGenerico.remove(pessoaTemp);
         return "index";
     }
     
-//    public String adicionarPessoa(){
-//        PessoaDao dao = new PessoaDaoImp();
-//        dao.save(pessoa);
-//        return "index";
-//    }
-    
-//    public void adicionarPessoa2(){
-//        PessoaDao dao = new PessoaDaoImp();
-//        dao.save(pessoa);
-//        
-//        telefone.setPessoa(pessoa);
-//        
-//        TelefoneDao dao2 = new TelefoneDaoImp();
-//        dao2.save(telefone);
-//        
-//        FacesContext context = FacesContext.getCurrentInstance();
-//        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
-//    }
     
     public void adicionarADM(){
-        PessoaDao dao = new PessoaDaoImp();
         pessoa.setCadDataHora(data);
-        dao.save(pessoa);
+        daoGenerico.save(pessoa);
         
         telefone.setPessoa(pessoa);
-        TelefoneDao dao2 = new TelefoneDaoImp();
-        dao2.save(telefone);
+        daoGenerico.save(telefone);
         
         admId.setFkPessoa(pessoa.getPkPessoa());
         adm.setId(admId);
-        AdmDao dao3 = new AdmDaoImp();
-        dao3.save(adm);
+        daoGenerico.save(adm);
         
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
-    }
+        NotificacaoTela("Cadastro realizado com sucesso.");
+    }    
     
     public void adicionarCLIENTE(){
-        PessoaDao dao = new PessoaDaoImp();
         pessoa.setCadDataHora(data);
-        dao.save(pessoa);
+        daoGenerico.save(pessoa);
         
         telefone.setPessoa(pessoa);
-        TelefoneDao dao2 = new TelefoneDaoImp();
-        dao2.save(telefone);
+        daoGenerico.save(telefone);
         
         clienteId.setFkPessoa(pessoa.getPkPessoa());
         cliente.setId(clienteId);
-        ClienteDao dao3 = new ClienteDaoImp();
-        dao3.save(cliente);
+        daoGenerico.save(cliente);
         
+        NotificacaoTela("Cadastro realizado com sucesso.");
+    }
+    
+    
+    //Método para exibir notificações em tela
+    private void NotificacaoTela(String texto){
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Cadastro realizado com sucesso."));
+        context.addMessage(null, new FacesMessage(texto));
     }
     
     public String alterarPessoa(){
-        PessoaDao dao = new PessoaDaoImp();
-        dao.update(pessoa);
+        daoGenerico.update(pessoa);
         return "index";
     }
     

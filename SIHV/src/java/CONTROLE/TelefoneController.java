@@ -5,8 +5,8 @@
  */
 package CONTROLE;
 
-import DAO.TelefoneDao;
-import DAO.TelefoneDaoImp;
+import DAO.GenericoDAO;
+import DAO.GenericoDAOImpl;
 import MODELO.Telefone;
 import java.util.List;
 import javax.faces.application.FacesMessage;
@@ -23,12 +23,13 @@ import javax.faces.model.ListDataModel;
 @SessionScoped
 public class TelefoneController {
     
+    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private Telefone telefone;
     private DataModel listarTelefone;
     
     
     public DataModel getListarTelefone(){
-        List<Telefone> lista = new TelefoneDaoImp().list();
+        List<Telefone> lista = daoGenerico.list("hql");
         listarTelefone = new ListDataModel(lista);
         return listarTelefone;
     }
@@ -52,27 +53,20 @@ public class TelefoneController {
     
     public String excluirTelefone(){
         Telefone telefoneTemp = (Telefone)(listarTelefone.getRowData());
-        TelefoneDao dao = new TelefoneDaoImp();
-        dao.remove(telefoneTemp);
+        daoGenerico.remove(telefoneTemp);
         return "index";
     }
     
-    public void adicionarTelefone(){
-        TelefoneDao dao = new TelefoneDaoImp();
-        dao.save(telefone);
-    }
     
     public void adicionarTelefone2(){
-        TelefoneDao dao = new TelefoneDaoImp();
-        dao.save(telefone);
+        daoGenerico.save(telefone);
         
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Telefone cadastrado com sucesso."));
     }
     
     public String alterarTelefone(){
-        TelefoneDao dao = new TelefoneDaoImp();
-        dao.update(telefone);
+        daoGenerico.update(telefone);
         return "index";
     }
     
