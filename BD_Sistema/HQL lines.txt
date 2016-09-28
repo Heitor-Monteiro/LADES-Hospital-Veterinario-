@@ -1,0 +1,1 @@
+SELECT p, c.id.fkPessoa from Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa /*Retorna array do tipo object[], onde cada posição possui dois elementos: um objeto Pessoa, e um valor inteiro.*/
