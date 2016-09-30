@@ -7,15 +7,12 @@ package CONTROLE;
 
 import DAO.GenericoDAO;
 import DAO.GenericoDAOImpl;
-//import DAO.ClienteDao;
-//import DAO.ClienteDaoImp;
 import MODELO.Adm;
 import MODELO.AdmId;
 import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
-//import CONTROLE.RenderedController;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -35,7 +32,12 @@ public class PessoaController {
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private List<Pessoa> pessoasBuscadas = new ArrayList<>();
-    private CamposController objControCampos;
+    
+    
+    private String itenPesquisa,textoPesquisa;
+    
+    private boolean x;
+    
     private Pessoa pessoa;
     private Telefone telefone;
     private Adm adm;
@@ -43,6 +45,19 @@ public class PessoaController {
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
+
+    
+    
+    public String getItenPesquisa(){return itenPesquisa;}
+
+    public void setItenPesquisa(String itenPesquisa){this.itenPesquisa = itenPesquisa;}
+
+    public String getTextoPesquisa(){return textoPesquisa;}
+
+    public void setTextoPesquisa(String textoPesquisa){this.textoPesquisa = textoPesquisa;}
+
+    
+    
     
     
     
@@ -59,17 +74,29 @@ public class PessoaController {
     }
     
     
-    public void PesquisarOcorrencia(){
-        if(null != objControCampos.getItenPesquisa() ) 
-           switch (objControCampos.getItenPesquisa()) {
+    public List<Pessoa> PesquisarOcorrencia(String item){
+        String sqlHQL1;
+        sqlHQL1 = "from Pessoa";
+        
+        pessoasBuscadas.clear();
+        
+        
+        if(!"".equals(item)) 
+           switch (item) {
             case "cpf":
-                getListarPessoas("sqlHQL");
+                pessoasBuscadas = new GenericoDAOImpl().list(sqlHQL1);
                 break;
             default:
-                NotificacaoTela("Item não encontrado");
+                //NotificacaoTela("Item não encontrado");
                 break;
         }
+        
+        
+        
+        return pessoasBuscadas;
     }
+    
+    
     
     public Pessoa getPessoa(){
         return pessoa;
@@ -96,13 +123,6 @@ public class PessoaController {
         data = new Date();
     }
     
-    public CamposController getObjControCampos(){
-        return objControCampos;
-    }
-    
-    public void prepararPesquisaPessoa(){
-        objControCampos = new CamposController();
-    }
     
     public String prepararAlterarPessoa(){
         pessoa = (Pessoa)(getListaPessoaDataModel().getRowData());
@@ -163,5 +183,11 @@ public class PessoaController {
     public Adm getADM(){
         return adm;
     }
+    
+    //----------------------------------------------------------------
+    
+    
+    
+    
     
 }
