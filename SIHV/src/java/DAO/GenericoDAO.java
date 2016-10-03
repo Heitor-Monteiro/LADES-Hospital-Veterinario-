@@ -1,14 +1,22 @@
 package DAO;
 
 import java.util.List;
+import MODELO.*;
 
 
 
 public interface GenericoDAO<Ent> {
     
     public void save(Ent entidade);
-    public Object getPessoa(Integer id);
+
+    public Adm getAdm(Integer id);
+    public Animais getAnimais(Integer id);
+    public Cliente getCliente(Integer id);
+    public Pelagem getPelagem(Integer id);
+    public Pessoa getPessoa(Integer id);
+    public Telefone getTelefone(Integer id);
     public List<Ent> list(String sqlHQL);
+    public List<Pessoa> listIdName();
     public void remove(Object entidade);
     public void update(Object entidade);
     

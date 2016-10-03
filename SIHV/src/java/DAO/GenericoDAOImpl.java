@@ -3,6 +3,7 @@ package DAO;
 
 //import java.util.Arrays;
 //import java.util.HashMap;
+import MODELO.*;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.Session;
@@ -38,12 +39,36 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
     
     @Override
-    public Object getPessoa(Integer id) {
+    public Adm getAdm(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Object) session.load(Object.class, id);
+        return (Adm)session.load(Adm.class, id);
     }
-    
-    
+    @Override
+    public Animais getAnimais(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Animais)session.load(Animais.class, id);
+    }
+    @Override
+    public Cliente getCliente(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Cliente)session.load(Cliente.class, id);
+    }
+    @Override
+    public Pelagem getPelagem(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Pelagem)session.load(Pelagem.class, id);
+    }
+    @Override
+    public Pessoa getPessoa(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Pessoa)session.load(Pessoa.class, id);
+    }
+    @Override
+    public Telefone getTelefone(Integer id) {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        return (Telefone)session.load(Telefone.class, id);
+    }
+
     //Método genérico para listar todos os valores de uma entidade
     @Override
     public List<Ent> list(String sqlHQL) {
@@ -54,6 +79,19 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         t.commit();
         return lista;
     }
+    
+    @Override
+    public List<Pessoa> listIdName() {
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome from Pessoa p, where p.cpf = 12356897452");
+        List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
+        for(Object[] obj : (List<Object[]>)listaPessoa){
+            Pessoa newPessoa = new Pessoa();
+            newPessoa.setPkPessoa((int)obj[0]);
+            newPessoa.setNome((String)obj[1]);
+            retornaPessoa.add(newPessoa);
+        }
+        return retornaPessoa;
+    }
 	
     
     @Override
@@ -63,8 +101,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.delete(entidade);
         t.commit();
     }
-    
-    
+        
     @Override
     public void update(Object entidade) {
         Session session = HibernateUtil.getSessionFactory().openSession();
