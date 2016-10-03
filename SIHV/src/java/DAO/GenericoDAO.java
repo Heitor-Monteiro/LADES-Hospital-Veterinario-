@@ -16,7 +16,7 @@ public interface GenericoDAO<Ent> {
     public Pessoa getPessoa(Integer id);
     public Telefone getTelefone(Integer id);
     public List<Ent> list(String sqlHQL);
-    public List<Pessoa> listIdName();
+    public List<Pessoa> listIdName(int searchMode, String search);
     public void remove(Object entidade);
     public void update(Object entidade);
     

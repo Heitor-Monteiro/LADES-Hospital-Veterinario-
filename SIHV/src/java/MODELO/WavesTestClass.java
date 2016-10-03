@@ -19,7 +19,7 @@ import org.hibernate.transform.*;
 public class WavesTestClass {
     public static void main(String[] args){
         GenericoDAOImpl genericDao = new GenericoDAOImpl();
-        List<Pessoa> listaPessoa = genericDao.listIdName();
+        List<Pessoa> listaPessoa = genericDao.listIdName(1,"37685942145");
         Pessoa obj = listaPessoa.get(0);
         System.out.println("ID = "+obj.getPkPessoa()+"  ||  NOME = "+obj.getNome());
     }
