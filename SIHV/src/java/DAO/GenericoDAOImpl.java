@@ -81,20 +81,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
     
     @Override
-    public List<Pessoa> listIdName(int searchMode, String search) {
-        String hql = "";
-        switch(searchMode){
-            case 1:
-            hql = "SELECT p.pkPessoa, p.nome from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p.cpf ="+search;
-            break;
-            case 2:
-            hql = "SELECT p.pkPessoa, p.nome from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p.rg ="+search;
-            break;
-            case 3:
-            hql = "SELECT p.pkPessoa, p.nome from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p.cnpj ="+search;
-            break;
-        }      
-        List<Ent> listaPessoa = this.list(hql);
+    public List<Pessoa> listIdName(String searchMode, String search) {  
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
         List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Pessoa newPessoa = new Pessoa();
