@@ -28,10 +28,10 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean(name = "PessoaControle")
 @SessionScoped
+
 public class PessoaController {
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    private List<Pessoa> pessoasBuscadas = new ArrayList<>();
     
     private String itenPesquisa,textoPesquisa;
     
@@ -45,6 +45,24 @@ public class PessoaController {
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
+    private List<Pessoa> pessoasBuscadas;
+
+    public List<Pessoa> getPessoasBuscadas() {
+        return pessoasBuscadas;
+    }
+
+    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
+        this.pessoasBuscadas = pessoasBuscadas;
+    }
+    private boolean showDataTable;
+
+    public boolean isShowDataTable() {
+        return showDataTable;
+    }
+
+    public void setShowDataTable(boolean showDataTable) {
+        this.showDataTable = showDataTable;
+    }
 
     
     
@@ -63,6 +81,7 @@ public class PessoaController {
     
     public List<Pessoa> getListarPessoas(String sqlHQL){
         pessoasBuscadas = new GenericoDAOImpl().list(sqlHQL);
+        this.setShowDataTable(true);
         return pessoasBuscadas;
     }
     

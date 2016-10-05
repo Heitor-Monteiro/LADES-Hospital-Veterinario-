@@ -50,17 +50,17 @@
 
 
                 <p:commandButton 
+                                action="#{PessoaControle.getListarPessoas('from Pessoa')}"
                                  value="Pesquisar" 
                                  disabled="false"
-                                 icon="fa fa-search"/>
+                                 icon="fa fa-search"
+                                 update="@([id$=:GridBusca])"
+                                 />
                 <p:message for="ValorPesquisa" />
             </p:panelGrid>
     
         </h:form>
      
-        
-        
-        
        <p:panelGrid columns="1" layout="grid"
                      style="margin: 10px 0px 15px;"
                      styleClass="panelgrid-noborder"
@@ -74,13 +74,16 @@
        </p:panelGrid>
         
        
-       <p:panelGrid columns="1" layout="grid"
+       <p:panelGrid 
+           id="GridBusca"
+           columns="1" layout="grid"
                      style="margin: 10px 0px 15px;"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-12" >
         
-            <p:dataTable var="pessoa" 
-                         value="#{PessoaControle.listarPessoas}"
+            <p:dataTable var="pessoa"
+                         rendered="#{PessoaControle.showDataTable}"
+                         value="#{PessoaControle.pessoasBuscadas}"
                          paginator="true"
                          rows="10"
                          reflow="true" >
@@ -106,6 +109,5 @@
         </p:dataTable>
     
         </p:panelGrid>
-        
     </div>
 </ui:component>
