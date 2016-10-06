@@ -50,11 +50,11 @@
 
 
                 <p:commandButton 
-                                action="#{PessoaControle.getListarPessoas('from Pessoa')}"
+                                actionListener="#{PessoaControle.getListarPessoas('from Pessoa')}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
-                                 update="@([id$=:GridBusca])"
+                                 update="@([id=:GridBusca])"
                                  />
                 <p:message for="ValorPesquisa" />
             </p:panelGrid>
