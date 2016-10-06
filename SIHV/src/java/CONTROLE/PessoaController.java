@@ -7,19 +7,18 @@ package CONTROLE;
 
 import DAO.GenericoDAO;
 import DAO.GenericoDAOImpl;
+import DAO.FacesMessages;
 import MODELO.Adm;
 import MODELO.AdmId;
 import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 /**
@@ -29,15 +28,12 @@ import javax.faces.model.ListDataModel;
 @ManagedBean(name = "PessoaControle")
 @SessionScoped
 
-public class PessoaController {
+public class PessoaController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    
+    private static final FacesMessages message = new FacesMessages();
     private String itenPesquisa,textoPesquisa;
-    
-    private boolean x;
-    
-    
+    private boolean showDataTable;
     private Pessoa pessoa;
     private Telefone telefone;
     private Adm adm;
@@ -51,15 +47,17 @@ public class PessoaController {
         return pessoasBuscadas;
     }
 
+    
     public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
         this.pessoasBuscadas = pessoasBuscadas;
     }
-    private boolean showDataTable;
+    
 
     public boolean isShowDataTable() {
         return showDataTable;
     }
 
+    
     public void setShowDataTable(boolean showDataTable) {
         this.showDataTable = showDataTable;
     }
@@ -80,8 +78,13 @@ public class PessoaController {
     
     
     public List<Pessoa> getListarPessoas(String sqlHQL){
-        pessoasBuscadas = new GenericoDAOImpl().list(sqlHQL);
-        this.setShowDataTable(true);
+        this.showDataTable=false;
+        pessoasBuscadas = new GenericoDAOImpl().listIdName(itenPesquisa, textoPesquisa);
+        if(pessoasBuscadas.isEmpty()){
+            message.warn("Item não encontrado");
+        }else{
+            this.setShowDataTable(true);
+        }
         return pessoasBuscadas;
     }
     
@@ -91,30 +94,6 @@ public class PessoaController {
         DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
         return listarPessoas;
     }
-    
-    
-    public List<Pessoa> PesquisarOcorrencia(String item){
-        String sqlHQL1;
-        sqlHQL1 = "from Pessoa";
-        
-        pessoasBuscadas.clear();
-        
-        
-        if(!"".equals(item)) 
-           switch (item) {
-            case "cpf":
-                pessoasBuscadas = new GenericoDAOImpl().list(sqlHQL1);
-                break;
-            default:
-                //NotificacaoTela("Item não encontrado");
-                break;
-        }
-        
-        
-        
-        return pessoasBuscadas;
-    }
-    
     
     
     public Pessoa getPessoa(){
@@ -166,29 +145,23 @@ public class PessoaController {
         adm.setId(admId);
         daoGenerico.save(adm);
         
-        NotificacaoTela("Cadastro realizado com sucesso.");
+        message.info("Administrador cadastrado com sucesso.");
     }    
     
     public void adicionarCLIENTE(){
         pessoa.setCadDataHora(data);
         daoGenerico.save(pessoa);
-        
+
         telefone.setPessoa(pessoa);
         daoGenerico.save(telefone);
-        
+
         clienteId.setFkPessoa(pessoa.getPkPessoa());
         cliente.setId(clienteId);
         daoGenerico.save(cliente);
-        
-        NotificacaoTela("Cadastro realizado com sucesso.");
+
+        message.info("Cliente cadastrado com sucesso.");
     }
     
-    
-    //Método para exibir notificações em tela
-    private void NotificacaoTela(String texto){
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage(texto));
-    }
     
     public String alterarPessoa(){
         daoGenerico.update(pessoa);

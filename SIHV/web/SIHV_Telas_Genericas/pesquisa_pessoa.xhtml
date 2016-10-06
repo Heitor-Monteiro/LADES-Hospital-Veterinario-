@@ -6,18 +6,12 @@
 	
     <div class="ui-fluid">
         
-        <f:metadata>
-            <!--
-            <f:viewAction action="#" />
-            -->
-        </f:metadata>
-        
         <h:form>
         
             <p:panelGrid columns="3" layout="grid"
                          style="margin: 10px 0px 15px;"
                          styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-2, ui-grid-col-5, ui-grid-col-3" > 
+                         columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3" > 
 
                 <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
                                style="color: #1abc9c; font-weight: bold ;"
@@ -25,7 +19,7 @@
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
                                   columns="3"
-                                  value="#"
+                                  value="#{PessoaControle.itenPesquisa}"
                                   required="true"
                                   requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_TipoPesquisa}">
                     <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
@@ -42,20 +36,18 @@
 
 
                 <p:inputText id="ValorPesquisa" 
-                             value="#" 
+                             value="#{PessoaControle.textoPesquisa}" 
                              title="#{label_SIHV.PesquisaPessoaTitle_ValorTipoPesquisa}"
                              maxlength="100"
                              required="true" 
                              requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_ValorTipoPesquisa}"/>
 
 
-                <p:commandButton 
-                                actionListener="#{PessoaControle.getListarPessoas('from Pessoa')}"
+                <p:commandButton actionListener="#{PessoaControle.getListarPessoas('from Pessoa')}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
-                                 update="@([id=:GridBusca])"
-                                 />
+                                 update="@([id$=:GridBusca])" />
                 <p:message for="ValorPesquisa" />
             </p:panelGrid>
     
@@ -74,38 +66,37 @@
        </p:panelGrid>
         
        
-       <p:panelGrid 
-           id="GridBusca"
-           columns="1" layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-12" >
+       <p:panelGrid id="GridBusca"
+                    columns="1"
+                    layout="grid"
+                    style="margin: 10px 0px 15px;"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-12" >
         
-            <p:dataTable var="pessoa"
+            <p:dataTable id="PessoasBuscada"
+                         var="pessoa"
                          rendered="#{PessoaControle.showDataTable}"
                          value="#{PessoaControle.pessoasBuscadas}"
                          paginator="true"
                          rows="10"
-                         reflow="true" >
+                         reflow="true"
+                         selection="#{PessoaControle.pessoa}"
+                         rowKey="#{pessoa.pkPessoa}" >
             
-            <p:column width="80">
-                <f:facet name="header">
-                    <h:outputText value="ID"/>
-                </f:facet>
-                <h:outputText value="#{pessoa.pkPessoa}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="nome"/>
-                </f:facet>
-                <h:outputText value="#{pessoa.nome}" />
-            </p:column>
-            <p:column>
-                <f:facet name="header">
-                    <h:outputText value="cpf"/>
-                </f:facet>
-                <h:outputText value="#{pessoa.cpf}"/>
-            </p:column>
+                <p:column selectionMode="single" style="width:16px;text-align:center;"/>
+                
+                <p:column headerText="Código" width="80">
+                    <h:outputText value="#{pessoa.pkPessoa}" />
+                </p:column>
+                
+                <p:column headerText="Nome">
+                    <h:outputText value="#{pessoa.nome}" />
+                </p:column>
+                
+                <p:column headerText="CPF">
+                    <h:outputText value="#{pessoa.cpf}"/>
+                </p:column>
+                
         </p:dataTable>
     
         </p:panelGrid>
