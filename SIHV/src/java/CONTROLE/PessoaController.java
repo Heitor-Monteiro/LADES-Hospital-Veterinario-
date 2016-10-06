@@ -77,7 +77,7 @@ public class PessoaController implements Serializable{
     
     
     
-    public List<Pessoa> getListarPessoas(String sqlHQL){
+    public List<Pessoa> getListarPessoas(){
         this.showDataTable=false;
         pessoasBuscadas = new GenericoDAOImpl().listIdName(itenPesquisa, textoPesquisa);
         if(pessoasBuscadas.isEmpty()){
