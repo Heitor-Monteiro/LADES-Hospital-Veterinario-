@@ -1,4 +1,4 @@
-package DAO;
+    package DAO;
 
 
 //import java.util.Arrays;
@@ -27,8 +27,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
      *
      * @param entidade
      */
-    
-    
+
     //Método genérico para persistir Classes que representam entidades
     @Override
     public void save(Ent entidade) {
@@ -57,6 +56,14 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public Pelagem getPelagem(Integer id) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         return (Pelagem)session.load(Pelagem.class, id);
+    }
+    @Override
+    public List<String> getPelagemNames(){
+        List<String> listaPelagens=new java.util.ArrayList<String>();
+        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl")){
+            listaPelagens.add((String)obj);
+        }
+        return listaPelagens;
     }
     @Override
     public Pessoa getPessoa(Integer id) {

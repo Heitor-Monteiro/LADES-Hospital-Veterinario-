@@ -15,8 +15,12 @@ public interface GenericoDAO<Ent> {
     public Pelagem getPelagem(Integer id);
     public Pessoa getPessoa(Integer id);
     public Telefone getTelefone(Integer id);
+   
     public List<Ent> list(String sqlHQL);
+    
     public List<Pessoa> listIdName(String searchMode, String search);
+    public List<String> getPelagemNames();
+    
     public void remove(Object entidade);
     public void update(Object entidade);
     

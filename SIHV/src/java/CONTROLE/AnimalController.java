@@ -27,6 +27,20 @@ public class AnimalController {
     private Animais animal;
     private DataModel listarAnimal;
     
+    /*Pelagem*/
+    
+    private List<String> listaPelagem = daoGenerico.getPelagemNames();
+
+    public List<String> getListaPelagem() {
+        return listaPelagem;
+    }
+
+    public void setListaPelagem(List<String> listaPelagem) {
+        this.listaPelagem = listaPelagem;
+    }
+
+    
+    /*Pelagem*/
     
     public DataModel getListarAnimal(){
         List<Animais> lista = daoGenerico.list("sqlHQL");
