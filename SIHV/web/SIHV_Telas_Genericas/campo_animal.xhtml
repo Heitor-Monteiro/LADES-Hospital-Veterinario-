@@ -9,6 +9,15 @@
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3">
 
+            <p:outputLabel value="Nome do cliente:"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:inputText id="nomeCliente" 
+                         value="#{PessoaControle.pessoa.nome}" 
+                         title="Informe o nome do animal"
+                         disabled="true" />
+            <p:outputLabel value="" />
+                
+                
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_nome}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
@@ -55,12 +64,13 @@
             <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
                            for="pelagem"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputText id="pelagem"
-                          value="#"
-                          title="Informe a pelagem do animal"
-                          maxlength="100"
-                          required="true"
-                          requiredMessage="Informe a pelagem do animal!" />
+            <p:selectOneMenu id="pelagem"
+                             value="#"
+                             title="Informe a pelagem do animal"
+                             required="true"
+                             requiredMessage="Informe a pelagem do animal!">
+                <f:selectItem itemLabel="Selecione a pelagem" itemValue="" />
+            </p:selectOneMenu>
             <p:message for="pelagem" />
             
             
