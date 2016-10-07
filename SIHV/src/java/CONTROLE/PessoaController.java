@@ -177,14 +177,14 @@ public class PessoaController implements Serializable{
     public void adicionarANIMAL(){
         String pessoaPK,text;
         pessoaPK = ""+pessoa.getPkPessoa();
-        List lista;
+        List<Object[]> lista;
         
         
         System.out.println(pessoa.getPkPessoa());
         
         //pessoasBuscadas.clear();
         lista = daoGenerico.list("select c.id.pkCliente, p.nome from Cliente c, Pessoa p where c.id.fkPessoa="+pessoaPK+" and p.pkPessoa="+pessoaPK);
-        text = ""+lista.get(0);
+        text = ""+lista.get(0)[0];
         
         
         System.out.println(pessoasBuscadas.get(0));
