@@ -127,9 +127,22 @@ public class PessoaController implements Serializable{
     
     
     public void prepararAdicionarAnimal(){
+        itenPesquisa = "";
+        textoPesquisa = "";
         animal = new Animais();
+        animal.setEspecie("");
+        animal.setIdadeAtual(0);
+        animal.setNome("");
+        animal.setPelagem("");
+        animal.setPeso(0);
+        animal.setRaca("");
+        animal.setSexo("");
         animalID = new AnimaisId();
         data = new Date();
+        if(pessoasBuscadas != null){
+            pessoasBuscadas.clear();
+            setShowDataTable(false);
+        }
     }
     
     
@@ -175,30 +188,19 @@ public class PessoaController implements Serializable{
     
     
     public void adicionarANIMAL(){
-        String pessoaPK,text;
-        pessoaPK = ""+pessoa.getPkPessoa();
-        List<Object[]> lista;
+        String clientePK;
+        List<Object> lista;
         
+        lista = daoGenerico.list("select c.id.pkCliente from Cliente c, Pessoa p where c.id.fkPessoa="+pessoa.getPkPessoa()+" and p.pkPessoa="+pessoa.getPkPessoa());
+        clientePK = ""+lista.get(0);
         
-        System.out.println(pessoa.getPkPessoa());
-        
-        //pessoasBuscadas.clear();
-        lista = daoGenerico.list("select c.id.pkCliente, p.nome from Cliente c, Pessoa p where c.id.fkPessoa="+pessoaPK+" and p.pkPessoa="+pessoaPK);
-        text = ""+lista.get(0)[0];
-        
-        
-        System.out.println(pessoasBuscadas.get(0));
-        
-//        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
-//        
-//        text = ""+pessoasBuscadas.get(0);
-//        animalID.setClienteFkCliente(Integer.parseInt(text));
-//        
-//        animal.setId(animalID);
-//        animal.setCadDataHora(data);
-//        daoGenerico.save(animal);
+        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
+        animalID.setClienteFkCliente(Integer.parseInt(clientePK));
+        animal.setId(animalID);
+        animal.setCadDataHora(data);
+        daoGenerico.save(animal);
 
-        message.info("Animal cadastrado com sucesso."+pessoa.getPkPessoa()+"---"+text);
+        message.info("Animal cadastrado com sucesso.");
     }
     
     
