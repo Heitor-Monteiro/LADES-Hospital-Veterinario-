@@ -5,37 +5,46 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <div class="ui-fluid">
-            <p:panelGrid columns="3" layout="grid"
-                         styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3">
-
+        
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     style="margin-top: 20px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-4">
+            
+                
             <p:outputLabel value="Nome do cliente:"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputText id="nomeCliente" 
-                         value="#{PessoaControle.pessoa.nome}" 
-                         title="Informe o nome do animal"
-                         disabled="true" />
-            <p:outputLabel value="" />
+            <p:outputLabel value="#{PessoaControle.pessoa.nome}" />
+            <p:outputLabel />
+            
+            
+            <p:outputLabel value="CPF do cliente:"
+                           style="color: #1abc9c; font-weight: bold ;" />
+            <p:outputLabel value="#{PessoaControle.pessoa.cpf}" />
+            <p:outputLabel />
+            
                 
                 
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_nome}"
+            <p:outputLabel value="Nome do animal:"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
             <p:inputText id="nomeAnimal" 
-                         value="#" 
+                         value="#{PessoaControle.animal.nome}" 
                          title="Informe o nome do animal"
                          maxlength="70"
                          required="true" 
                          requiredMessage="Informe o nome do animal!"/>
             <p:message for="nomeAnimal" />
+            
+            
+            
 
-
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_especie}" 
+            <p:outputLabel value="Especie:" 
                            for="especie"
                            style="color: #1abc9c; font-weight: bold ;" />
-            
             <p:selectOneMenu id="especie" 
-                             value="#"
+                             value="#{PessoaControle.animal.especie}"
                              title="Informe a espécie do animal"
                              required="true"
                              requiredMessage="Informe a espécie do animal!">
@@ -49,23 +58,23 @@
             <p:message for="especie" />
             
             
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_raça}" 
-                           for="raça" 
+            <p:outputLabel value="Raça do animal:" 
+                           for="raca" 
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:inputText id="raça" 
-                         value="#" 
+            <p:inputText id="raca" 
+                         value="#{PessoaControle.animal.raca}" 
                          title="Informe a raça do animal"
                          maxlength="100"
                          required="true" 
                          requiredMessage="Informe a raça do animal!"/>
-            <p:message for="raça" />
+            <p:message for="raca" />
             
             
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_pelagem}"
+            <p:outputLabel value="Pelagem:"
                            for="pelagem"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:selectOneMenu id="pelagem"
-                             value="#"
+                             value="#{PessoaControle.animal.pelagem}"
                              title="Informe a pelagem do animal"
                              required="true"
                              requiredMessage="Informe a pelagem do animal!">
@@ -75,42 +84,42 @@
             <p:message for="pelagem" />
             
             
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_sexo}" 
+            <p:outputLabel value="Sexo:" 
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                               value="#"
-                               layout="responsive"
-                               columns="2"
-                               required="true"
-                               requiredMessage="Informe o sexo do animal!">
+                              value="#{PessoaControle.animal.sexo}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o sexo do animal!">
                 <f:selectItem itemLabel="M" itemValue="M" />
                 <f:selectItem itemLabel="F" itemValue="F" />
             </p:selectOneRadio>
             <p:message for="sexoAnimal" />
 
 
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_idade}"
+            <p:outputLabel value="Idade atual do animal:"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
             <p:inputNumber id="idade" 
-                         value=""
-                         title="Informe a idade atual do animal"
-                         maxlength="3"
-                         maxValue="999"
-                         minValue="1"
-                         required="true" 
-                         requiredMessage="Informe a idade atual do animal!"/>
+                           value="#{PessoaControle.animal.idadeAtual}"
+                           title="Informe a idade atual do animal"
+                           maxlength="3"
+                           maxValue="999"
+                           minValue="1"
+                           required="true" 
+                           requiredMessage="Informe a idade atual do animal!"/>
             <p:message for="idade" />
             
             
-            <p:outputLabel value="#{label_SIHV.CreateAnimaisLabel_peso}"
+            <p:outputLabel value="Peso atual do animal:"
                            for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:spinner id="pesoAnimal" 
-                       value="#" 
+                       value="#{PessoaControle.animal.peso}" 
                        prefix="Kg " 
-                       min=""
+                       min="0"
                        max="15000"
                        stepFactor="0.1"
                        title="Informe o peso atual do animal"
@@ -119,16 +128,6 @@
             <p:message for="pesoAnimal" />
             
         </p:panelGrid>
-
-        <p:panelGrid columns="3" layout="grid"
-                         styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3">
-
-            
-
-        </p:panelGrid>
-
-
     </div>
     
 </ui:component>
