@@ -41,7 +41,8 @@ and open the template in the editor.
                                      requiredMessage="Digite seu login!"
                                      style="margin-bottom: 20px;
                                             border-radius: 0px;
-                                            max-width: 400px; " />
+                                            max-width: 400px; "
+                                            value="#{login.user}"/>
 
                         <p:password id="senha" placeholder="Senha" 
                                     maxlength="16"
@@ -49,14 +50,16 @@ and open the template in the editor.
                                     requiredMessage="Digite sua senha!"
                                     style="margin-bottom: 20px;
                                            border-radius: 0px;
-                                           max-width: 400px;" />
+                                           max-width: 400px;"
+                                           value="#{login.pwd}"/>
 
                         <p:commandButton value="Entrar" 
-                                         action="#"
                                          style="border-radius: 0px;
                                                 max-width: 400px;
                                                 color: #ffffff;
-                                                background: #1abc9c"/>
+                                                background: #1abc9c"
+                                                action="#{login.validateUsernamePassword()}"
+                                                />
                         
                         <p:link value="Esqueseu sua senha?"
                                 style="color: #ffffff; font-size: 13px;"/>

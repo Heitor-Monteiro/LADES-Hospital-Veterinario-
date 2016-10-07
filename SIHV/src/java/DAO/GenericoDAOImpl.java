@@ -88,7 +88,9 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
     
     @Override
-    public List<Pessoa> listIdName(String searchMode, String search) {  
+    public List<Pessoa> listIdName(String searchMode, String search) {
+        if(searchMode.equals("nome")){
+            search="'"+search+"'";}     
         List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
         List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
@@ -123,5 +125,17 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         Transaction t = session.beginTransaction();
         session.update(entidade);
         t.commit();
+    }
+    
+    @Override
+    public boolean validate(String username, String password){
+        List<Adm>checkLogin = (List<Adm>)this.list("select adm.id.pkAdm from Adm adm where adm.admLogin='"+username+"' and adm.admSenha='"+password+"'");
+        try{
+            System.out.print(checkLogin.get(0));
+        }
+        catch(Exception ex){
+            return false;
+        }
+        return true;
     }
 }
