@@ -14,6 +14,8 @@ import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
+import MODELO.Animais;
+import MODELO.AnimaisId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +42,8 @@ public class PessoaController implements Serializable{
     private AdmId admId;
     private Cliente cliente;
     private ClienteId clienteId;
+    private Animais animal;
+    private AnimaisId animalID;
     private Date data;
     private List<Pessoa> pessoasBuscadas;
 
@@ -122,6 +126,13 @@ public class PessoaController implements Serializable{
     }
     
     
+    public void prepararAdicionarAnimal(){
+        animal = new Animais();
+        animalID = new AnimaisId();
+        data = new Date();
+    }
+    
+    
     public String prepararAlterarPessoa(){
         pessoa = (Pessoa)(getListaPessoaDataModel().getRowData());
         return "gerenciarLivro";
@@ -163,6 +174,34 @@ public class PessoaController implements Serializable{
     }
     
     
+    public void adicionarANIMAL(){
+        String pessoaPK,text;
+        pessoaPK = ""+pessoa.getPkPessoa();
+        List lista;
+        
+        
+        System.out.println(pessoa.getPkPessoa());
+        
+        //pessoasBuscadas.clear();
+        lista = daoGenerico.list("select c.id.pkCliente, p.nome from Cliente c, Pessoa p where c.id.fkPessoa="+pessoaPK+" and p.pkPessoa="+pessoaPK);
+        text = ""+lista.get(0);
+        
+        
+        System.out.println(pessoasBuscadas.get(0));
+        
+//        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
+//        
+//        text = ""+pessoasBuscadas.get(0);
+//        animalID.setClienteFkCliente(Integer.parseInt(text));
+//        
+//        animal.setId(animalID);
+//        animal.setCadDataHora(data);
+//        daoGenerico.save(animal);
+
+        message.info("Animal cadastrado com sucesso."+pessoa.getPkPessoa()+"---"+text);
+    }
+    
+    
     public String alterarPessoa(){
         daoGenerico.update(pessoa);
         return "index";
@@ -177,6 +216,14 @@ public class PessoaController implements Serializable{
     }
     
     //----------------------------------------------------------------
+
+    public Animais getAnimal() {
+        return animal;
+    }
+
+    public void setAnimal(Animais animal) {
+        this.animal = animal;
+    }
     
     
     
