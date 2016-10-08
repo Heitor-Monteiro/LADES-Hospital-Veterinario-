@@ -91,20 +91,14 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public List<Pessoa> listIdName(String searchMode, String search) {
         if(searchMode.equals("nome")){
             search="'"+search+"'";}     
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
         List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Pessoa newPessoa = new Pessoa();
             newPessoa.setPkPessoa((int)obj[0]);
             newPessoa.setNome((String)obj[1]);
-            switch (searchMode){
-                case "cpf":
-                    newPessoa.setCpf((long)obj[2]);
-                case "rg":
-                    //newPessoa.setRg((int)obj[2]);
-                case "cnpj":
-                    //newPessoa.setCnpj((long)obj[2]);
-            }
+            newPessoa.setCpf((long)obj[2]);
+            newPessoa.setRg((int)obj[3]);
             retornaPessoa.add(newPessoa);
         }
         return retornaPessoa;
