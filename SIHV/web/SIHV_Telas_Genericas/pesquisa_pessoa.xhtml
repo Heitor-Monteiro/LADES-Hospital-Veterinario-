@@ -19,9 +19,9 @@
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
                                   columns="3"
-                                  value="#{PessoaControle.itenPesquisa}"
+                                  value="#{PesquisaController.itemPesquisa}"
                                   required="true"
-                                  requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_TipoPesquisa}">
+                                  requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
                     <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
@@ -31,19 +31,19 @@
 
             <p:panelGrid columns="3" layout="grid"
                          styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-3"
+                         columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                          style="margin-bottom: 20px;" >
 
 
                 <p:inputText id="ValorPesquisa" 
-                             value="#{PessoaControle.textoPesquisa}" 
-                             title="#{label_SIHV.PesquisaPessoaTitle_ValorTipoPesquisa}"
+                             value="#{PesquisaController.textoPesquisa}" 
+                             title="Ex.: 33344455511"
                              maxlength="100"
                              required="true" 
-                             requiredMessage="#{label_SIHV.PesquisaPessoaRequiredMessage_ValorTipoPesquisa}"/>
+                             requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{PessoaControle.getListarPessoas()}"
+                <p:commandButton actionListener="#{PesquisaController.ListagemObjetos(PessoaControle.pessoa,PessoaControle.pessoasBuscadas)}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -54,12 +54,13 @@
         </h:form>
      
        <p:panelGrid columns="1" layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-5" >
+                    style="margin: 10px 0px 15px;"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-5" >
            
-           <p:outputLabel value="Clientes encontrados:" 
-                       style="color: #1abc9c; 
+           <p:outputLabel value="Clientes encontrados:"
+                          rendered="#{PesquisaController.showDataTable}"
+                          style="color: #1abc9c; 
                               font-weight: bold;
                               padding-top: 20px;"/>
                          
@@ -75,26 +76,33 @@
         
             <p:dataTable id="PessoasBuscada"
                          var="pessoa"
-                         rendered="#{PessoaControle.showDataTable}"
-                         value="#{PessoaControle.pessoasBuscadas}"
+                         rendered="#{PesquisaController.showDataTable}"
+                         value="#{PesquisaController.objBuscados}"
                          paginator="true"
                          rows="10"
                          reflow="true"
                          selection="#{PessoaControle.pessoa}"
                          rowKey="#{pessoa.pkPessoa}" >
             
-                <p:column selectionMode="single" style="width:16px;text-align:center;"/>
+                <p:column selectionMode="single" style="width:30px;text-align:center;"/>
                 
-                <p:column headerText="Código" width="80">
+                <p:column headerText="Código"
+                          width="80">
                     <h:outputText value="#{pessoa.pkPessoa}" />
                 </p:column>
                 
-                <p:column headerText="Nome">
+                <p:column headerText="Nome" >
                     <h:outputText value="#{pessoa.nome}" />
                 </p:column>
                 
-                <p:column headerText="CPF">
+                <p:column headerText="CPF"
+                          width="115" >
                     <h:outputText value="#{pessoa.cpf}"/>
+                </p:column>
+                
+                <p:column headerText="RG"
+                          width="110" >
+                    <h:outputText value="#{pessoa.rg}"/>
                 </p:column>
                 
         </p:dataTable>
