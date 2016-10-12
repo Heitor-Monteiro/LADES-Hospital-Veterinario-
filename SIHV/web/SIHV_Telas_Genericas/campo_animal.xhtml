@@ -15,22 +15,21 @@
                 
             <p:outputLabel value="Nome do cliente:"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:outputLabel value="#{PessoaControle.pessoa.nome}" />
+            <p:outputLabel value="#{AnimalControle.pessoa.nome}"/>
             <p:outputLabel />
             
             
             <p:outputLabel value="CPF do cliente:"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:outputLabel value="#{PessoaControle.pessoa.cpf}" />
+            <p:outputLabel value="#{AnimalControle.pessoa.cpf}" />
             <p:outputLabel />
             
-                
-                
+            
             <p:outputLabel value="Nome do animal:"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
             <p:inputText id="nomeAnimal" 
-                         value="#{PessoaControle.animal.nome}" 
+                         value="#{AnimalControle.animal.nome}" 
                          title="Informe o nome do animal"
                          maxlength="70"
                          required="true" 
@@ -43,18 +42,11 @@
             <p:outputLabel value="Especie:" 
                            for="especie"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:selectOneMenu id="especie" 
-                             value="#{PessoaControle.animal.especie}"
+            <p:inputText id="especie" 
+                             value="#{AnimalControle.animal.especie}"
                              title="Informe a espécie do animal"
                              required="true"
-                             requiredMessage="Informe a espécie do animal!">
-                <f:selectItem itemLabel="Selecione a especie" itemValue="" />
-                <f:selectItem itemLabel="Canino" itemValue="Canino" />
-                <f:selectItem itemLabel="Felino" itemValue="Felino" />
-                <f:selectItem itemLabel="Ave" itemValue="Ave" />
-                <f:selectItem itemLabel="Reptil" itemValue="Reptil" />
-                
-            </p:selectOneMenu>
+                             requiredMessage="Informe a espécie do animal!" />
             <p:message for="especie" />
             
             
@@ -62,7 +54,7 @@
                            for="raca" 
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:inputText id="raca" 
-                         value="#{PessoaControle.animal.raca}" 
+                         value="#{AnimalControle.animal.raca}" 
                          title="Informe a raça do animal"
                          maxlength="100"
                          required="true" 
@@ -74,21 +66,21 @@
                            for="pelagem"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:selectOneMenu id="pelagem"
-                             value="#{PessoaControle.animal.pelagem}"
+                             value="#{AnimalControle.animal.pelagem}"
                              title="Informe a pelagem do animal"
                              required="true"
                              requiredMessage="Informe a pelagem do animal!">
                 <f:selectItem itemLabel="Selecione a pelagem" itemValue=""/>
-                <f:selectItems value="#{AnimalControle.listaPelagem}"/>
+                <f:selectItems value="#{AnimalControle.listaPelagem}" />
             </p:selectOneMenu>
             <p:message for="pelagem" />
             
-            
+        
             <p:outputLabel value="Sexo:" 
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                              value="#{PessoaControle.animal.sexo}"
+                              value="#{AnimalControle.animal.sexo}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -103,7 +95,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
             <p:inputNumber id="idade" 
-                           value="#{PessoaControle.animal.idadeAtual}"
+                           value="#{AnimalControle.animal.idadeAtual}"
                            title="Informe a idade atual do animal"
                            maxlength="3"
                            maxValue="999"
@@ -117,7 +109,7 @@
                            for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:spinner id="pesoAnimal" 
-                       value="#{PessoaControle.animal.peso}" 
+                       value="#{AnimalControle.animal.peso}" 
                        prefix="Kg " 
                        min="0"
                        max="15000"

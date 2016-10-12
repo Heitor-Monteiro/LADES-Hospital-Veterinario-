@@ -8,13 +8,12 @@ package CONTROLE;
 import DAO.GenericoDAO;
 import DAO.GenericoDAOImpl;
 import MODELO.Animais;
+import MODELO.AnimaisId;
+import MODELO.Pessoa;
+import java.util.Date;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 /**
  *
  * @author thiberius
@@ -24,11 +23,17 @@ import javax.faces.model.ListDataModel;
 public class AnimalController {
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
+    private static final FacesMessages message = new FacesMessages();
     private Animais animal;
-    private DataModel listarAnimal;
+    private AnimaisId animalID;
+    private Date data;
+    private Pessoa pessoa;
+    private List<Pessoa> pessoasBuscadas;
+    
+    
+    
     
     /*Pelagem*/
-    
     private List<String> listaPelagem = daoGenerico.getPelagemNames();
 
     public List<String> getListaPelagem() {
@@ -38,49 +43,72 @@ public class AnimalController {
     public void setListaPelagem(List<String> listaPelagem) {
         this.listaPelagem = listaPelagem;
     }
-
-    
     /*Pelagem*/
     
-    public DataModel getListarAnimal(){
-        List<Animais> lista = daoGenerico.list("sqlHQL");
-        listarAnimal = new ListDataModel(lista);
-        return listarAnimal;
+    
+    
+    
+    /*Este método prepara o cadastro de um novo animal,
+    ele é invocado quando o formulários para cadastrar
+    um novo animal for chamado, ele também realiza
+    a limpeza dos campos para cadastrar um animal
+    quando o formulário é aberto.*/
+    public void prepararAdicionarAnimal(){
+        animal = new Animais();
+        animal.setEspecie("");
+        animal.setIdadeAtual(0);
+        animal.setNome("");
+        animal.setPelagem("");
+        animal.setPeso(0);
+        animal.setRaca("");
+        animal.setSexo("");
+        animalID = new AnimaisId();
+        data = new Date();
     }
     
+    
+    
+    
+    
+    //Método para persistir um novo animal
+    public void adicionarANIMAL(){
+        String clientePK;
+        List<Object> lista;
+        
+        lista = daoGenerico.list("select c.id.pkCliente from Cliente c, Pessoa p where c.id.fkPessoa="+pessoa.getPkPessoa()+" and p.pkPessoa="+pessoa.getPkPessoa());
+        clientePK = ""+lista.get(0);
+        
+        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
+        animalID.setClienteFkCliente(Integer.parseInt(clientePK));
+        animal.setId(animalID);
+        animal.setCadDataHora(data);
+        daoGenerico.save(animal);
+
+        message.info("Animal cadastrado com sucesso.");
+    }
+    
+    
+    
+    
+//------GETs & SETs---------------------------------------
     public Animais getAnimal(){
         return animal;
     }
-    
     public void setAnimal(Animais animal){
         this.animal = animal;
     }
-    
-    public void prepararAdicionarAnimal(){
-        animal = new Animais();
+//----------------------------------------------------------
+    public Pessoa getPessoa() {
+        return pessoa;
     }
-    
-    public String prepararAlterarAnimal(){
-        animal = (Animais)(listarAnimal.getRowData());
-        return "gerenciarLivro";
+    public void setPessoa(Pessoa pessoa) {
+        this.pessoa = pessoa;
     }
-    
-    public String excluirAnimal(){
-        Animais animalTemp = (Animais)(listarAnimal.getRowData());
-        daoGenerico.remove(animalTemp);
-        return "index";
+//----------------------------------------------------------
+    public List<Pessoa> getPessoasBuscadas() {
+        return pessoasBuscadas;
     }
-    
-    public void adicionarANIMAL(){
-        daoGenerico.save(animal);
-        
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Telefone cadastrado com sucesso."));
+    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
+        this.pessoasBuscadas = pessoasBuscadas;
     }
-    
-    public String alterarAnimal(){
-        daoGenerico.update(animal);
-        return "index";
-    }
-    
 }

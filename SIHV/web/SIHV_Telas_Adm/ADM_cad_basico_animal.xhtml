@@ -21,7 +21,8 @@
         <ui:define name="body">
             
             <f:metadata>
-                <f:viewAction action="#{PessoaControle.prepararAdicionarAnimal()}" />
+                <f:viewAction action="#{PesquisaController.limparCampos()}" />
+                <f:viewAction action="#{AnimalControle.prepararAdicionarAnimal()}" />
             </f:metadata>
             
             <h:form >
@@ -56,67 +57,67 @@
 
                                     <p:outputLabel value="Nome do cliente:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.pessoa.nome}"
+                                    <p:outputLabel value="#{AnimalControle.pessoa.nome}"
                                                styleClass="outputLabel" />
 
                                     <p:outputLabel value="CPF do cliente:"
                                                style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.pessoa.cpf}"
+                                    <p:outputLabel value="#{AnimalControle.pessoa.cpf}"
                                                styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.nome}"
+                                    <p:outputLabel value="#{AnimalControle.animal.nome}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Especie:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.especie}"
+                                    <p:outputLabel value="#{AnimalControle.animal.especie}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Raça do animal:" 
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.raca}"
+                                    <p:outputLabel value="#{AnimalControle.animal.raca}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Pelagem:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.pelagem}"
+                                    <p:outputLabel value="#{AnimalControle.animal.pelagem}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Sexo:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.sexo}"
+                                    <p:outputLabel value="#{AnimalControle.animal.sexo}"
                                                    styleClass="outputLabel" />
 
 
 
                                     <p:outputLabel value="Idade atual do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.animal.idadeAtual}"
+                                    <p:outputLabel value="#{AnimalControle.animal.idadeAtual}"
                                                    styleClass="outputLabel"/>
 
 
                                     <p:outputLabel value="Peso atual do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="Kg #{PessoaControle.animal.peso}"
+                                    <p:outputLabel value="Kg #{AnimalControle.animal.peso}"
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:commandButton action="#{PessoaControle.adicionarANIMAL()}" 
-                                            value="Salvar"
-                                            style="width: 170px;"
-                                            icon="fa fa-save"
-                                            update="growl" 
-                                            disabled="false" />
+                                <p:commandButton action="#{AnimalControle.adicionarANIMAL()}" 
+                                                 value="Salvar"
+                                                 style="width: 170px;"
+                                                 icon="fa fa-save"
+                                                 update="growl" 
+                                                 disabled="false" />
                                 
                                 <p:button value="Novo cadastro" 
                                           outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"

@@ -43,7 +43,7 @@
                              requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{PesquisaController.ListagemObjetos(PessoaControle.pessoa,PessoaControle.pessoasBuscadas)}"
+                <p:commandButton actionListener="#{PesquisaController.ListagemObjetos(AnimalControle.pessoa,AnimalControle.pessoasBuscadas)}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -81,7 +81,7 @@
                          paginator="true"
                          rows="10"
                          reflow="true"
-                         selection="#{PessoaControle.pessoa}"
+                         selection="#{AnimalControle.pessoa}"
                          rowKey="#{pessoa.pkPessoa}" >
             
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>
