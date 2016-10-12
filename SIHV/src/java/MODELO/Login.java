@@ -58,19 +58,15 @@ public class Login implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() {
-		boolean valid = true;//new GenericoDAOImpl().validate(user, pwd);
-		if (valid) {
-			HttpSession session = SessionUtils.getSession();
-			session.setAttribute("username", user);
-			return "index";
-		} else {
-			FacesContext.getCurrentInstance().addMessage(
-					null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN,
-							"Incorrect Username and Passowrd",
-							"Please enter correct username and Password"));
-			return "login";
-		}
+            boolean valid = new GenericoDAOImpl().validate(user, pwd);
+            if (valid) {
+                HttpSession session = SessionUtils.getSession();
+		session.setAttribute("username", user);
+                return "index";
+            } else {
+                FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Incorrect Username and Passowrd","Please enter correct username and Password"));
+		return "login";
+            }
 	}
 
 	//logout event, invalidate session

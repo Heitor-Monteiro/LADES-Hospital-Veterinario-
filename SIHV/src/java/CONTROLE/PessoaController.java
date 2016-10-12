@@ -7,7 +7,6 @@ package CONTROLE;
 
 import DAO.GenericoDAO;
 import DAO.GenericoDAOImpl;
-import DAO.FacesMessages;
 import MODELO.Adm;
 import MODELO.AdmId;
 import MODELO.Cliente;
@@ -81,7 +80,7 @@ public class PessoaController implements Serializable{
     
     
     
-    public List<Pessoa> getListarPessoas(){
+    public List<Pessoa> getListarPessoas(){   
         this.showDataTable=false;
         pessoasBuscadas = new GenericoDAOImpl().listIdName(itenPesquisa, textoPesquisa);
         if(pessoasBuscadas.isEmpty()){

@@ -36,27 +36,17 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.save(entidade);
         t.commit();
     }
-    
+    //Método genérico para recuperação de objetos do banco de dados
     @Override
-    public Adm getAdm(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Adm)session.load(Adm.class, id);
+    public Ent getById(String model, Integer id){
+        List<Ent>getObject=new java.util.ArrayList<Ent>();
+        String idType="pk";
+        if(model.equals("Adm")||model.equals("Animais")||model.equals("Cliente"))
+            idType="id.pk";
+        getObject = this.list("SELECT o from "+model+" o where o."+idType+model+"="+id);
+        return (Ent)getObject.get(0);
     }
-    @Override
-    public Animais getAnimais(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Animais)session.load(Animais.class, id);
-    }
-    @Override
-    public Cliente getCliente(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Cliente)session.load(Cliente.class, id);
-    }
-    @Override
-    public Pelagem getPelagem(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Pelagem)session.load(Pelagem.class, id);
-    }
+    //Método para listar os nomes de pelagens inseridas no banco de dados
     @Override
     public List<String> getPelagemNames(){
         List<String> listaPelagens=new java.util.ArrayList<String>();
@@ -65,18 +55,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         }
         return listaPelagens;
     }
-    @Override
-    public Pessoa getPessoa(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Pessoa)session.load(Pessoa.class, id);
-    }
-    @Override
-    public Telefone getTelefone(Integer id) {
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        return (Telefone)session.load(Telefone.class, id);
-    }
-
-    //Método genérico para listar todos os valores de uma entidade
+    
+    //Método genérico para listar objetos baseado em uma Query HQL
     @Override
     public List<Ent> list(String sqlHQL) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -87,10 +67,11 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         return lista;
     }
     
+    //Método para listar Pessoas baseado em cpf, cnpj, ou nome
     @Override
     public List<Pessoa> listIdName(String searchMode, String search) {
         if(searchMode.equals("nome")){
-            search="'"+search+"'";}     
+            search="'%"+search+"%'";}     
         List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
         List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
@@ -104,7 +85,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         return retornaPessoa;
     }
 	
-    
+    //Método genérico para remoção de uma tupla de uma entidade
     @Override
     public void remove(Object entidade) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -112,7 +93,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.delete(entidade);
         t.commit();
     }
-        
+    
+    //Método genérico para atualizar uma tupla em uma entidade
     @Override
     public void update(Object entidade) {
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -121,6 +103,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         t.commit();
     }
     
+    //Método para validação de credenciais de login
     @Override
     public boolean validate(String username, String password){
         List<Adm>checkLogin = (List<Adm>)this.list("select adm.id.pkAdm from Adm adm where adm.admLogin='"+username+"' and adm.admSenha='"+password+"'");

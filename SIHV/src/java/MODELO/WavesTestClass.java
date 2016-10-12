@@ -16,15 +16,12 @@ import org.hibernate.Session;
 import org.hibernate.Query;
 import org.hibernate.Transaction;
 import org.hibernate.transform.*;
+
 public class WavesTestClass {
     public static void main(String[] args){
         GenericoDAOImpl genericDao = new GenericoDAOImpl();
-        /*List<Object[]> resultado = genericDao.list("SELECT c.id.fkPessoa, c.id.pkCliente from Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa");
-        for(Object[] obj : resultado){
-            System.out.println(obj[1]);
-        }*/
-     
-        List<Adm>checkLogin = (List<Adm>)genericDao.list("select adm.id.pkAdm from Adm adm where adm.admLogin='Derp' and adm.admSenha='7894567'");
-        System.out.println(checkLogin.get(0));
+        Cliente testeCliente = (Cliente)genericDao.getById("Cliente", 2);
+        Pessoa testePessoa = (Pessoa)genericDao.getById("Pessoa", testeCliente.getId().getFkPessoa());
+        System.out.println(testePessoa.getNome());
     }
 }
