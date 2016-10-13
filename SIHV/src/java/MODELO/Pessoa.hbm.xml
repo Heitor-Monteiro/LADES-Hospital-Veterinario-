@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02/08/2016 14:16:16 by Hibernate Tools 4.3.1 -->
+<!-- Generated 13/10/2016 15:20:14 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="MODELO.Pessoa" table="pessoa" catalog="BD_SIHV" optimistic-lock="version">
         <id name="pkPessoa" type="java.lang.Integer">
@@ -9,7 +9,7 @@
             <generator class="identity" />
         </id>
         <property name="cpf" type="long">
-            <column name="CPF" not-null="true" />
+            <column name="CPF" not-null="true" unique="true" />
         </property>
         <property name="rg" type="int">
             <column name="RG" not-null="true" />
@@ -41,11 +41,11 @@
         <property name="uf" type="string">
             <column name="UF" length="80" not-null="true" />
         </property>
-        <property name="exclusaoLogica" type="java.lang.Boolean">
-            <column name="exclusaoLogica" />
-        </property>
         <property name="cadDataHora" type="timestamp">
             <column name="CAD_DATA_HORA" length="19" not-null="true" />
+        </property>
+        <property name="exclusaoLogica" type="java.lang.Boolean">
+            <column name="exclusaoLogica" />
         </property>
         <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
             <key>

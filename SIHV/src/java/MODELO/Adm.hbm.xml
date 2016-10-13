@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02/08/2016 14:16:16 by Hibernate Tools 4.3.1 -->
+<!-- Generated 13/10/2016 15:20:14 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="MODELO.Adm" table="adm" catalog="BD_SIHV" optimistic-lock="version">
         <composite-id name="id" class="MODELO.AdmId">
@@ -20,6 +20,12 @@
         </property>
         <property name="admLogin" type="string">
             <column name="adm_login" length="100" not-null="true" />
+        </property>
+        <property name="tipoUser" type="string">
+            <column name="TIPO_USER" length="20" not-null="true" />
+        </property>
+        <property name="crmvMatricula" type="string">
+            <column name="CRMV_MATRICULA" length="50" not-null="true" unique="true" />
         </property>
     </class>
 </hibernate-mapping>
