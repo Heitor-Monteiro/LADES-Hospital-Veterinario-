@@ -3,12 +3,8 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/web/SIHV_Telas_Adm/ADM_cad_adm.xhtml</file>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/src/java/MODELO/Adm.java</file>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/src/java/MODELO/AdmId.java</file>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/src/java/MODELO/Pessoa.java</file>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/src/java/DAO/AdmDao.java</file>
-            <file>file:/home/thiberius/Git-Projetos/LADES-Hospital-Veterinario-/SIHV/src/java/CONTROLE/PessoaController.java</file>
+            <file>file:/C:/Users/waves/GitPROJETOS/LADES-Hospital-Veterinario-/SIHV/src/java/hibernate.cfg.xml</file>
+            <file>file:/C:/Users/waves/GitPROJETOS/LADES-Hospital-Veterinario-/SIHV/src/java/hibernate.reveng.xml</file>
         </group>
     </open-files>
 </project-private>

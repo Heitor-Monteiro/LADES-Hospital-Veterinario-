@@ -50,7 +50,7 @@ public class PesquisaController implements Serializable{
         showDataTable=false;
         objBuscados = new GenericoDAOImpl().listIdName(itemPesquisa, textoPesquisa);
         if(objBuscados.isEmpty()){
-            mensagem.warn("Item não encontrado");
+            mensagem.warn("Erro ao listar!","Item não encontrado.");
         }else{
             this.showDataTable=true;
         }

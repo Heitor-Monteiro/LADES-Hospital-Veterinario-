@@ -10,6 +10,7 @@ package MODELO;
  * @author waves
  */
 
+import CONTROLE.FacesMessages;
 import java.io.Serializable;
 
 import javax.faces.application.FacesMessage;
@@ -66,7 +67,8 @@ public class Login implements Serializable {
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
                 return "index";
             } else {
-                FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Nome de usuário ou Senha incorretos!","Por favor, insira os dados corretamente!"));
+                FacesMessages mensagem = new FacesMessages();
+                mensagem.warn("Nome de usuário ou Senha incorretos!","Por favor, insira os dados corretamente!");
                 //FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");	
                 return "login";
             }

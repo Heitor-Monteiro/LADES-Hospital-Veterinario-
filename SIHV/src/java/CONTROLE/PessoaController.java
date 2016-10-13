@@ -18,8 +18,10 @@ import MODELO.AnimaisId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 /**
@@ -84,7 +86,7 @@ public class PessoaController implements Serializable{
         this.showDataTable=false;
         pessoasBuscadas = new GenericoDAOImpl().listIdName(itenPesquisa, textoPesquisa);
         if(pessoasBuscadas.isEmpty()){
-            message.warn("Item não encontrado");
+            message.warn("Erro ao listar!","Item não encontrado.");
         }else{
             this.setShowDataTable(true);
         }
@@ -158,7 +160,10 @@ public class PessoaController implements Serializable{
     
     
     public void adicionarADM(){
-        pessoa.setCadDataHora(data);
+       
+        try{
+            pessoa.setCadDataHora(data);
+        
         daoGenerico.save(pessoa);
         
         telefone.setPessoa(pessoa);
@@ -168,25 +173,36 @@ public class PessoaController implements Serializable{
         adm.setId(admId);
         daoGenerico.save(adm);
         
-        message.info("Administrador cadastrado com sucesso.");
+        message.info("Cadastro efetuado!","Administrador cadastrado com sucesso.");
+        }
+        catch(Exception e){
+            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+        }
     }    
     
     public void adicionarCLIENTE(){
-        pessoa.setCadDataHora(data);
-        daoGenerico.save(pessoa);
+        try{
+            pessoa.setCadDataHora(data);
+            daoGenerico.save(pessoa);
 
-        telefone.setPessoa(pessoa);
-        daoGenerico.save(telefone);
+            telefone.setPessoa(pessoa);
+            daoGenerico.save(telefone);
 
-        clienteId.setFkPessoa(pessoa.getPkPessoa());
-        cliente.setId(clienteId);
-        daoGenerico.save(cliente);
+            clienteId.setFkPessoa(pessoa.getPkPessoa());
+            cliente.setId(clienteId);
+            daoGenerico.save(cliente);
 
-        message.info("Cliente cadastrado com sucesso.");
+            message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+        }
+        catch (Exception e)
+        {
+            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+        }
     }
     
     
     public void adicionarANIMAL(){
+        try{
         String clientePK;
         List<Object> lista;
         
@@ -199,7 +215,11 @@ public class PessoaController implements Serializable{
         animal.setCadDataHora(data);
         daoGenerico.save(animal);
 
-        message.info("Animal cadastrado com sucesso.");
+        message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
+        }
+        catch(Exception e){
+            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+        }
     }
     
     

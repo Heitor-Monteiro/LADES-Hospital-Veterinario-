@@ -72,6 +72,7 @@ public class AnimalController {
     
     //Método para persistir um novo animal
     public void adicionarANIMAL(){
+        try{
         String clientePK;
         List<Object> lista;
         
@@ -84,7 +85,11 @@ public class AnimalController {
         animal.setCadDataHora(data);
         daoGenerico.save(animal);
 
-        message.info("Animal cadastrado com sucesso.");
+        message.info("Cadastro efetuado!","Administrador cadastrado com sucesso.");
+        }
+        catch(Exception e){
+            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+        }
     }
     
     
