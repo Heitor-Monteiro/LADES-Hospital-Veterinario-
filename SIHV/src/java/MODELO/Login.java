@@ -21,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import DAO.GenericoDAO;
 import DAO.GenericoDAOImpl;
 import DAO.SessionUtils;
+import java.io.IOException;
 
 @ManagedBean
 @SessionScoped
@@ -57,15 +58,17 @@ public class Login implements Serializable {
 	}
 
 	//validate login
-	public String validateUsernamePassword() {
+	public String validateUsernamePassword() throws IOException {
             boolean valid = new GenericoDAOImpl().validate(user, pwd);
             if (valid) {
                 HttpSession session = SessionUtils.getSession();
 		session.setAttribute("username", user);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
                 return "index";
             } else {
-                FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Incorrect Username and Passowrd","Please enter correct username and Password"));
-		return "login";
+                FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_WARN,"Nome de usuário ou Senha incorretos!","Por favor, insira os dados corretamente!"));
+                //FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");	
+                return "login";
             }
 	}
 
