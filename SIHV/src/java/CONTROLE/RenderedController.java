@@ -5,6 +5,7 @@
  */
 package CONTROLE;
 
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 /**
@@ -13,79 +14,47 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "RenderedControle")
 @SessionScoped
-public class RenderedController {
+public class RenderedController implements Serializable{
     
-    private String campoTEMP;
-    private boolean varRenderedCAMPO = false;
-    private static RenderedController[] objetos;
+    
+    private RenderedCampos[] objetos;
 
     
     
     
-    
-    public void renderedCampo(int num,Object objeto, String texto){
-        RenderedController.objetos[num].varRenderedCAMPO = false;
-        if(objeto.equals(texto)){
-            RenderedController.objetos[num].varRenderedCAMPO = true;
+    /*Este método altera o estado de visualização
+    de um elemento no formulário*/
+    public void renderedCampo(int index, String texto){
+        if(objetos[index].getCampoTEMP().equals(texto)){
+            objetos[index].setVarRenderedCAMPO(true);
+        }else{
+            objetos[index].setVarRenderedCAMPO(false);
         }
     }
     
     
     
     
-    
-    
-    private RenderedController criarObjetoRendered(){
-        RenderedController renderedObjeto = new RenderedController();
-        return renderedObjeto;
-    }
-    
-    
-    
-    
-    
-    
-    public void prepararRenderedArray(){
-        if(RenderedController.objetos == null){
-            RenderedController.objetos = new RenderedController[2];
-            RenderedController.objetos[0] = criarObjetoRendered();
-            RenderedController.objetos[1] = criarObjetoRendered();
-        }
-    }
-    
-    
-    
-    
-    
-    
-    public boolean getRenderedESTADO(int num){
-        return RenderedController.objetos[num].varRenderedCAMPO;
-    }
-    
-    
-    
-    
-    public RenderedController getRenderedArray(int num){
-        return RenderedController.objetos[num];
-    }
-    
+    /*Este método cria uma quantidade n de objetos do
+    tipo RenderedCampos de acordo com o parâmetro
+    passado, cada objeto vai gerenciar um item
+    na tela que precise sumir ou aparecer*/ 
+    public void prepararRenderedArray(int qtd){
+        
+        objetos = new RenderedCampos[qtd];
 
-    
-    
-    
-    public String getCampoTEMP() {
-        return this.campoTEMP;
+        for (int i = 0; i <objetos.length; i++) {
+            objetos[i] = new RenderedCampos("", false);
+        }
+        
     }
     
     
     
     
-    
-    public void setCampoTEMP(String campoTEMP){
-        this.campoTEMP = campoTEMP;
+    //Este método permite acessar os campos da classe RenderedCampos
+    public RenderedCampos getRenderedCampos(int index){
+        return objetos[index];
     }
-    
-    
-    
     
 }

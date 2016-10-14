@@ -14,7 +14,7 @@
     <mapping resource="MODELO/Pelagem.hbm.xml"/>
     <mapping resource="MODELO/Telefone.hbm.xml"/>
     <mapping resource="MODELO/Animais.hbm.xml"/>
-
+    <mapping resource="MODELO/Pessoa.hbm.xml"/>
     <mapping resource="MODELO/Cliente.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

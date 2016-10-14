@@ -21,7 +21,7 @@
         <ui:define name="body">
             
             <f:metadata>
-                <f:viewAction action="#{RenderedControle.prepararRenderedArray()}" />
+                <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
             </f:metadata>
             
             <h:form>
@@ -131,12 +131,12 @@
                                                style="color: #1abc9c; font-weight: bold ;" />
                                 
                                 <p:selectOneButton id="value2"
-                                                   value="#{RenderedControle.getRenderedArray(0).campoTEMP}"
+                                                   value="#{RenderedControle.getRenderedCampos(0).campoTEMP}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="SIM" />
                                     <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    <p:ajax update="RaioX0" listener="#{RenderedControle.renderedCampo(0,RenderedControle.getRenderedArray(0).campoTEMP,'SIM')}" />
+                                    <p:ajax update="RaioX0" listener="#{RenderedControle.renderedCampo(0, 'SIM')}" />
                                 </p:selectOneButton>
                             </p:panelGrid>
                             
@@ -157,12 +157,12 @@
                                                style="color: #1abc9c; font-weight: bold;" />
                                 
                                 <p:selectOneButton id="value3"
-                                                  value="#{RenderedControle.getRenderedArray(1).campoTEMP}"
+                                                  value="#{RenderedControle.getRenderedCampos(1).campoTEMP}"
                                                   required="false"
                                                   style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="SIM" />
                                     <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    <p:ajax update="Ultra0" listener="#{RenderedControle.renderedCampo(1,RenderedControle.getRenderedArray(1).campoTEMP,'SIM')}" />
+                                    <p:ajax update="Ultra0" listener="#{RenderedControle.renderedCampo(1, 'SIM')}" />
                                 </p:selectOneButton>
                             </p:panelGrid>
                             
