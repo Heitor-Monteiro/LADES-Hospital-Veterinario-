@@ -1,0 +1,57 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+        xmlns:p="http://primefaces.org/ui" 
+        xmlns:h="http://xmlns.jcp.org/jsf/html" 
+        xmlns:f="http://xmlns.jcp.org/jsf/core">
+	
+    <div class="ui-fluid">
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
+            
+            <p:outputLabel value="Login de usuário:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="LoginUser" />
+            <p:inputText id="LoginUser" 
+                         value="#{PessoaControle.ADM.admLogin}" 
+                         title="Ex.: usuario@email.com"
+                         maxlength="100"
+                         required="true" 
+                         requiredMessage="Informe um login para o usuário!">
+                <p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+            </p:inputText>
+            <p:message for="LoginUser" />
+
+
+
+            <p:outputLabel value="Senha de usuário:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="senha1" />
+            <p:password id="senha1"
+                        feedback="true"
+                        inline="true"
+                        match="senha2"
+                        value="#{PessoaControle.ADM.admSenha}"
+                        title="A senha pode conter números, letras e caracteres especiais."
+                        maxlength="100"
+                        required="true" 
+                        requiredMessage="Informe uma senha para o usuário!" />
+            <p:message for="senha1" />
+
+
+
+            <p:outputLabel value="Digite novamente a senha:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="senha2" />
+            <p:password id="senha2"
+                        feedback="true"
+                        inline="true"
+                        maxlength="100"
+                        required="true"
+                        requiredMessage="Digite novamente sua senha!" />
+            <p:message for="senha2" />
+        </p:panelGrid>
+    </div>
+	
+</ui:component>

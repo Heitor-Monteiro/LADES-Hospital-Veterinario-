@@ -13,15 +13,11 @@ import MODELO.Cliente;
 import MODELO.ClienteId;
 import MODELO.Pessoa;
 import MODELO.Telefone;
-import MODELO.Animais;
-import MODELO.AnimaisId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 /**
@@ -35,89 +31,45 @@ public class PessoaController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private static final FacesMessages message = new FacesMessages();
-    private String itenPesquisa,textoPesquisa;
-    private boolean showDataTable;
     private Pessoa pessoa;
     private Telefone telefone;
     private Adm adm;
     private AdmId admId;
     private Cliente cliente;
     private ClienteId clienteId;
-    private Animais animal;
-    private AnimaisId animalID;
     private Date data;
     private List<Pessoa> pessoasBuscadas;
-
-    public List<Pessoa> getPessoasBuscadas() {
-        return pessoasBuscadas;
-    }
-
-    
-    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
-        this.pessoasBuscadas = pessoasBuscadas;
-    }
-    
-
-    public boolean isShowDataTable() {
-        return showDataTable;
-    }
-
-    
-    public void setShowDataTable(boolean showDataTable) {
-        this.showDataTable = showDataTable;
-    }
-
     
     
-    public String getItenPesquisa(){return itenPesquisa;}
-
-    public void setItenPesquisa(String itenPesquisa){this.itenPesquisa = itenPesquisa;}
-
-    public String getTextoPesquisa(){return textoPesquisa;}
-
-    public void setTextoPesquisa(String textoPesquisa){this.textoPesquisa = textoPesquisa;}
-
+    
+    /*Os dois atributos serão utilizado para
+    a concatenação do CRMV do medico
+    veterinário*/
+    private String numCRMV1,numCRMV2;
     
     
     
     
-    
-    public List<Pessoa> getListarPessoas(){   
-        this.showDataTable=false;
-        pessoasBuscadas = new GenericoDAOImpl().listIdName(itenPesquisa, textoPesquisa);
-        if(pessoasBuscadas.isEmpty()){
-            message.warn("Erro ao listar!","Item não encontrado.");
-        }else{
-            this.setShowDataTable(true);
-        }
-        return pessoasBuscadas;
-    }
-    
-    
-    
-    public DataModel getListaPessoaDataModel(){
-        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
-        return listarPessoas;
-    }
-    
-    
-    public Pessoa getPessoa(){
-        return pessoa;
-    }
-    
-    public void setPessoa(Pessoa pessoa){
-        this.pessoa = pessoa;
-    }
-    
-    
-    public void prepararAdicionarADM(){
+    /*O método prepara o cadastro de um
+    usuário do sistema, ele deve ser
+    chamado quando a pagina de cadastro
+    for aberta.*/
+    public void prepararAdicionarUSER(){
         pessoa = new Pessoa();
         telefone = new Telefone();
         adm = new Adm();
         admId = new AdmId();
         data = new Date();
+        numCRMV1 = "";
+        numCRMV2 = "";
     }
     
+    
+    
+    
+    /*O método prepara o cadastro de um
+    cliente, ele deve ser chamado quando
+    a pagina de cadastro for aberta.*/
     public void prepararAdicionarCliente(){
         pessoa = new Pessoa();
         telefone = new Telefone();
@@ -127,59 +79,43 @@ public class PessoaController implements Serializable{
     }
     
     
-    public void prepararAdicionarAnimal(){
-        itenPesquisa = "";
-        textoPesquisa = "";
-        animal = new Animais();
-        animal.setEspecie("");
-        animal.setIdadeAtual(0);
-        animal.setNome("");
-        animal.setPelagem("");
-        animal.setPeso(0);
-        animal.setRaca("");
-        animal.setSexo("");
-        animalID = new AnimaisId();
-        data = new Date();
-        if(pessoasBuscadas != null){
-            pessoasBuscadas.clear();
-            setShowDataTable(false);
-        }
-    }
     
     
-    public String prepararAlterarPessoa(){
-        pessoa = (Pessoa)(getListaPessoaDataModel().getRowData());
-        return "gerenciarLivro";
-    }
-    
-    public String excluirPessoa(){
-        Pessoa pessoaTemp = (Pessoa)(getListaPessoaDataModel().getRowData());
-        daoGenerico.remove(pessoaTemp);
-        return "index";
-    }
-    
-    
-    public void adicionarADM(){
-       
-        try{
+    /*O método realiza a persistência de usuários do sistema, 
+    ele pode cadastrar medico veterinário, aluno bolsista e 
+    funcionário comum, informando o tipo(Medico,Aluno,Tecnico) 
+    no primeiro parâmetro, e no segundo parâmetro será 
+    informado o tipo, mas, em um contexto diferente. 
+    Exemplo: Medico veterinário; Aluno bolsista; 
+    Funcionário/Técnico. Esses nomes complementaram a 
+    frase de cadastro realizado com sucesso.*/
+    public void adicionarUSER(String tipoUSER, String mensageTIPO){
+        try {
             pessoa.setCadDataHora(data);
-        
-        daoGenerico.save(pessoa);
-        
-        telefone.setPessoa(pessoa);
-        daoGenerico.save(telefone);
-        
-        admId.setFkPessoa(pessoa.getPkPessoa());
-        adm.setId(admId);
-        daoGenerico.save(adm);
-        
-        message.info("Cadastro efetuado!","Administrador cadastrado com sucesso.");
-        }
-        catch(Exception e){
+            daoGenerico.save(pessoa);
+            
+            telefone.setPessoa(pessoa);
+            daoGenerico.save(telefone);
+            
+            admId.setFkPessoa(pessoa.getPkPessoa());
+            adm.setId(admId);
+            if (!"".equals(numCRMV1) && !"".equals(numCRMV2)) {
+                adm.setCrmvMatricula(numCRMV1+" "+numCRMV2);
+            }
+            adm.setTipoUser(tipoUSER);
+            daoGenerico.save(adm);
+            
+            message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
+        } catch (Exception e) {
             message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
         }
-    }    
+    } 
     
+    
+    
+    
+    
+    /*O método realiza a persistência de um novo cliente*/
     public void adicionarCLIENTE(){
         try{
             pessoa.setCadDataHora(data);
@@ -201,31 +137,25 @@ public class PessoaController implements Serializable{
     }
     
     
-    public void adicionarANIMAL(){
-        try{
-        String clientePK;
-        List<Object> lista;
-        
-        lista = daoGenerico.list("select c.id.pkCliente from Cliente c, Pessoa p where c.id.fkPessoa="+pessoa.getPkPessoa()+" and p.pkPessoa="+pessoa.getPkPessoa());
-        clientePK = ""+lista.get(0);
-        
-        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
-        animalID.setClienteFkCliente(Integer.parseInt(clientePK));
-        animal.setId(animalID);
-        animal.setCadDataHora(data);
-        daoGenerico.save(animal);
-
-        message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
-        }
-        catch(Exception e){
-            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
-        }
+    
+    
+    
+    /*O métodos GETs e SETs utilizados para 
+    persistir usuários do sistema e clientes*/
+    public Pessoa getPessoa(){
+        return pessoa;
     }
     
+    public void setPessoa(Pessoa pessoa){
+        this.pessoa = pessoa;
+    }
     
-    public String alterarPessoa(){
-        daoGenerico.update(pessoa);
-        return "index";
+    public List<Pessoa> getPessoasBuscadas() {
+        return pessoasBuscadas;
+    }
+
+    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
+        this.pessoasBuscadas = pessoasBuscadas;
     }
     
     public Telefone getTelefone(){
@@ -235,19 +165,63 @@ public class PessoaController implements Serializable{
     public Adm getADM(){
         return adm;
     }
+    //--------------------------------------------------------------------
     
-    //----------------------------------------------------------------
-
-    public Animais getAnimal() {
-        return animal;
+    
+    
+    
+    
+    
+    
+    /*GETS & SETs para o campo temporário
+    de CRMV do medico veterinário*/
+    public String getNumCRMV1() {
+        return numCRMV1;
     }
 
-    public void setAnimal(Animais animal) {
-        this.animal = animal;
+    public void setNumCRMV1(String numCRMV1) {
+        this.numCRMV1 = numCRMV1;
+    }
+
+    public String getNumCRMV2() {
+        return numCRMV2;
+    }
+
+    public void setNumCRMV2(String numCRMV2) {
+        this.numCRMV2 = numCRMV2;
+    }
+
+    public String getCRMVcompleto() {
+        return numCRMV1+" "+numCRMV2;
+    }
+    //-----------------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    //métodos que não estão sendo utilizado ainda
+    public String alterarPessoa(){
+        daoGenerico.update(pessoa);
+        return "index";
     }
     
+    public DataModel getListaPessoaDataModel(){
+        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
+        return listarPessoas;
+    }
     
+    public String prepararAlterarPessoa(){
+        pessoa = (Pessoa)(getListaPessoaDataModel().getRowData());
+        return "gerenciarLivro";
+    }
     
-    
+    public String excluirPessoa(){
+        Pessoa pessoaTemp = (Pessoa)(getListaPessoaDataModel().getRowData());
+        daoGenerico.remove(pessoaTemp);
+        return "index";
+    }
+    //---------------------------------------------------------------
     
 }
