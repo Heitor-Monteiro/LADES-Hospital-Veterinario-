@@ -2,10 +2,11 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="BD_SIHV"/>
-  <table-filter match-name="pelagem"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="pessoa"/>
   <table-filter match-name="adm"/>
-  <table-filter match-name="telefone"/>
+  <table-filter match-name="consulta"/>
   <table-filter match-name="animais"/>
+  <table-filter match-name="pelagem"/>
+  <table-filter match-name="telefone"/>
+  <table-filter match-name="pessoa"/>
+  <table-filter match-name="cliente"/>
 </hibernate-reverse-engineering>

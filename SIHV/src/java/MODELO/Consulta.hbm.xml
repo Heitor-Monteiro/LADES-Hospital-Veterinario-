@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 17/10/2016 13:02:12 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="MODELO.Consulta" table="consulta" catalog="BD_SIHV" optimistic-lock="version">
+        <id name="pkConsulta" type="int">
+            <column name="PK_consulta" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="adm" class="MODELO.Adm" fetch="select">
+            <column name="adm_PK_adm" not-null="true" />
+            <column name="adm_FK_pessoa" not-null="true" />
+        </many-to-one>
+        <many-to-one name="animais" class="MODELO.Animais" fetch="select">
+            <column name="animais_PK_animal" not-null="true" />
+            <column name="animais_cliente_FK_cliente" not-null="true" />
+            <column name="animais_cliente_FK_pessoa" not-null="true" />
+        </many-to-one>
+        <property name="dataConsulta" type="timestamp">
+            <column name="DataConsulta" length="19" not-null="true" />
+        </property>
+        <property name="sistemasAfetados" type="string">
+            <column name="SistemasAfetados" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

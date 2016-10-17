@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 13/10/2016 15:20:14 by Hibernate Tools 4.3.1 -->
+<!-- Generated 17/10/2016 13:02:12 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="MODELO.Adm" table="adm" catalog="BD_SIHV" optimistic-lock="version">
         <composite-id name="id" class="MODELO.AdmId">
@@ -27,5 +27,12 @@
         <property name="crmvMatricula" type="string">
             <column name="CRMV_MATRICULA" length="50" not-null="true" unique="true" />
         </property>
+        <set name="consultas" table="consulta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="adm_PK_adm" not-null="true" />
+                <column name="adm_FK_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="MODELO.Consulta" />
+        </set>
     </class>
 </hibernate-mapping>

@@ -1,7 +1,9 @@
 package MODELO;
-// Generated 13/10/2016 15:20:13 by Hibernate Tools 4.3.1
+// Generated 17/10/2016 13:02:11 by Hibernate Tools 4.3.1
 
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -10,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -30,17 +33,28 @@ public class Adm  implements java.io.Serializable {
      private String admLogin;
      private String tipoUser;
      private String crmvMatricula;
+     private Set<Consulta> consultas = new HashSet<Consulta>(0);
 
     public Adm() {
     }
 
+	
     public Adm(AdmId id, Pessoa pessoa, String admSenha, String admLogin, String tipoUser, String crmvMatricula) {
+        this.id = id;
+        this.pessoa = pessoa;
+        this.admSenha = admSenha;
+        this.admLogin = admLogin;
+        this.tipoUser = tipoUser;
+        this.crmvMatricula = crmvMatricula;
+    }
+    public Adm(AdmId id, Pessoa pessoa, String admSenha, String admLogin, String tipoUser, String crmvMatricula, Set<Consulta> consultas) {
        this.id = id;
        this.pessoa = pessoa;
        this.admSenha = admSenha;
        this.admLogin = admLogin;
        this.tipoUser = tipoUser;
        this.crmvMatricula = crmvMatricula;
+       this.consultas = consultas;
     }
    
      @EmbeddedId
@@ -105,6 +119,15 @@ public class Adm  implements java.io.Serializable {
     
     public void setCrmvMatricula(String crmvMatricula) {
         this.crmvMatricula = crmvMatricula;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="adm")
+    public Set<Consulta> getConsultas() {
+        return this.consultas;
+    }
+    
+    public void setConsultas(Set<Consulta> consultas) {
+        this.consultas = consultas;
     }
 
 
