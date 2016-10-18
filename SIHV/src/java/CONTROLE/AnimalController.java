@@ -85,7 +85,7 @@ public class AnimalController {
         animal.setCadDataHora(data);
         daoGenerico.save(animal);
 
-        message.info("Cadastro efetuado!","Administrador cadastrado com sucesso.");
+        message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
         }
         catch(Exception e){
             message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
