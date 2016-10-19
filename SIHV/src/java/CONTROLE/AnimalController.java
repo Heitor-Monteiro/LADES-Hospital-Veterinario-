@@ -10,6 +10,7 @@ import DAO.GenericoDAOImpl;
 import MODELO.Animais;
 import MODELO.AnimaisId;
 import MODELO.Pessoa;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -20,7 +21,7 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "AnimalControle")
 @SessionScoped
-public class AnimalController {
+public class AnimalController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private static final FacesMessages message = new FacesMessages();
