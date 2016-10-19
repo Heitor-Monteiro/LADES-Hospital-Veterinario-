@@ -19,9 +19,11 @@ import org.hibernate.transform.*;
 
 public class WavesTestClass {
     public static void main(String[] args){
-        GenericoDAOImpl genericDao = new GenericoDAOImpl();
-        Cliente testeCliente = (Cliente)genericDao.getById("Cliente", 2);
-        Pessoa testePessoa = (Pessoa)genericDao.getById("Pessoa", testeCliente.getId().getFkPessoa());
-        System.out.println(testePessoa.getNome());
+        CONTROLE.PesquisaController pesquisa = new CONTROLE.PesquisaController();
+        pesquisa.setItemPesquisa("cpf");
+        pesquisa.setTextoPesquisa("37685942145");
+        pesquisa.ListagemObjetos("Animais",new java.util.ArrayList<Animais>());
+        List<Animais> teste = (List<Animais>)pesquisa.getObjBuscados();
+        System.out.println(teste.get(0).getNome());
     }
 }
