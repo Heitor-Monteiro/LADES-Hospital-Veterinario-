@@ -71,7 +71,7 @@ public class NovaConsultaController implements Serializable{
     
     
     public void pesquisarAnimalCliente(){
-        objPesquisa.ListagemObjetos2(animais, animaisBuscados, "select a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPesso and p.cpf=11111111111");
+        //objPesquisa.ListagemObjetos(animais, animaisBuscados, "select a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPesso and p.cpf=11111111111");
     }
     
     

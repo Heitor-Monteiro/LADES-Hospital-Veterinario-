@@ -46,16 +46,6 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         getObject = this.list("SELECT o from "+model+" o where o."+idType+model+"="+id);
         return (Ent)getObject.get(0);
     }
-    //Método para listar os nomes de pelagens inseridas no banco de dados
-    @Override
-    public List<String> getPelagemNames(){
-        List<String> listaPelagens=new java.util.ArrayList<String>();
-        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl")){
-            listaPelagens.add((String)obj);
-        }
-        return listaPelagens;
-    }
-    
     //Método genérico para listar objetos baseado em uma Query HQL
     @Override
     public List<Ent> list(String sqlHQL) {
@@ -67,42 +57,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         return lista;
     }
     
-    //Método para listar Pessoas baseado em cpf, cnpj, ou nome
-    @Override
-    public List<Pessoa> listIdName(String searchMode, String search) {
-        if(searchMode.equals("nome")){
-            search="'%"+search+"%'";}     
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
-        List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
-        for(Object[] obj : (List<Object[]>)listaPessoa){
-            Pessoa newPessoa = new Pessoa();
-            newPessoa.setPkPessoa((int)obj[0]);
-            newPessoa.setNome((String)obj[1]);
-            newPessoa.setCpf((long)obj[2]);
-            newPessoa.setRg((int)obj[3]);
-            retornaPessoa.add(newPessoa);
-        }
-        return retornaPessoa;
-    }
-    
-        @Override
-        public List<Animais> listAnimaisByCliente(String searchMode, String search) {           
-            if(searchMode.equals("nome")){
-                search="'%"+search+"%'";}     
-            List<Object> listaPessoa = (List<Object>)this.list("SELECT p.cpf from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
-            List<Ent> listaAnimais = this.list("select a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p.cpf="+(long)listaPessoa.get(0));
-            List<Animais> retornaAnimais = new java.util.ArrayList<Animais>();
-            for(Object[] obj : (List<Object[]>)listaAnimais){
-                Animais newAnimais = new Animais();
-                newAnimais.setNome((String)obj[0]);
-                newAnimais.setEspecie((String)obj[1]);
-                newAnimais.setSexo((String)obj[2]);                
-                retornaAnimais.add(newAnimais);
-            }
-            return retornaAnimais;
-        }
-    
-	
+    	
     //Método genérico para remoção de uma tupla de uma entidade
     @Override
     public void remove(Object entidade) {
@@ -132,5 +87,51 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             return false;
         }
         return true;
+    }
+    
+    //Método para listar os nomes de pelagens inseridas no banco de dados
+    @Override
+    public List<String> getPelagemNames(){
+        List<String> listaPelagens=new java.util.ArrayList<String>();
+        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl")){
+            listaPelagens.add((String)obj);
+        }
+        return listaPelagens;
+    }    
+    
+    //Método para listar Pessoas baseado em cpf, cnpj, ou nome
+    @Override
+    public List<Pessoa> listIdName(String searchMode, String search) {
+        if(searchMode.equals("nome")){
+            search="'%"+search+"%'";}     
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
+        List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
+        for(Object[] obj : (List<Object[]>)listaPessoa){
+            Pessoa newPessoa = new Pessoa();
+            newPessoa.setPkPessoa((int)obj[0]);
+            newPessoa.setNome((String)obj[1]);
+            newPessoa.setCpf((long)obj[2]);
+            newPessoa.setRg((int)obj[3]);
+            retornaPessoa.add(newPessoa);
+        }
+        return retornaPessoa;
+    }
+    
+    @Override
+    public List<Animais> listAnimaisByCliente(String searchMode, String search) {           
+        if(searchMode.equals("nome"))
+        {
+            search="'%"+search+"%'";
+        }     
+        List<Ent> listaAnimais = this.list("select a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+"="+search);
+        List<Animais> retornaAnimais = new java.util.ArrayList<Animais>();
+        for(Object[] obj : (List<Object[]>)listaAnimais){
+            Animais newAnimais = new Animais();
+            newAnimais.setNome((String)obj[0]);
+            newAnimais.setEspecie((String)obj[1]);
+            newAnimais.setSexo((String)obj[2]);                
+            retornaAnimais.add(newAnimais);
+        }
+        return retornaAnimais;
     }
 }
