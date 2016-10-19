@@ -56,6 +56,20 @@ public class PesquisaController implements Serializable{
         }
     }
     
+    
+    
+    public void ListagemObjetos2(Object obj,List<?> objList){
+        objGenerico = obj;
+        objBuscados = objList;
+        showDataTable=false;
+        objBuscados = new GenericoDAOImpl().listAnimalCliente(itemPesquisa, textoPesquisa);
+        if(objBuscados.isEmpty()){
+            mensagem.warn("Erro ao listar!","Item não encontrado.");
+        }else{
+            this.showDataTable=true;
+        }
+    }
+    
         
 //MÉTODOS GET & SET    
 //-----------------------------------------------------------------------------

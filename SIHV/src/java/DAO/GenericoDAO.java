@@ -12,7 +12,7 @@ public interface GenericoDAO<Ent> {
 
     public List<Ent> list(String sqlHQL);    
     public List<Pessoa> listIdName(String searchMode, String search);
-    public List<Animais> listAnimaisByCliente(String searchMode, String search); 
+    public List<Animais> listAnimalCliente(String searchMode, String search);
     public List<String> getPelagemNames();    
     public void remove(Object entidade);
     public void update(Object entidade);

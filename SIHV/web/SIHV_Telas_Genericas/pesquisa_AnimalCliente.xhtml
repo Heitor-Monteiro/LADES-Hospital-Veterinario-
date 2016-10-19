@@ -24,7 +24,6 @@
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
-                    <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
@@ -43,7 +42,7 @@
                              requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{NovaConsultaControle.pesquisarAnimalCliente()}"
+                <p:commandButton actionListener="#{PesquisaController.ListagemObjetos2(NovaConsultaControle.animais, NovaConsultaControle.animaisBuscados)}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -82,13 +81,13 @@
                          rows="10"
                          reflow="true"
                          selection="#{NovaConsultaControle.animais}"
-                         rowKey="#{animais.pkAnimal}" >
+                         rowKey="#{animais.id.pkAnimal}" >
             
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>
                 
                 <p:column headerText="Código"
                           width="80">
-                    <h:outputText value="#{animais.pkAnimal}" />
+                    <h:outputText value="#{animais.id.pkAnimal}" />
                 </p:column>
                 
                 <p:column headerText="Nome do animal" >
@@ -96,12 +95,12 @@
                 </p:column>
                 
                 <p:column headerText="Especie"
-                          width="115" >
+                          width="380" >
                     <h:outputText value="#{animais.especie}"/>
                 </p:column>
                 
                 <p:column headerText="Sexo"
-                          width="110" >
+                          width="60" >
                     <h:outputText value="#{animais.sexo}"/>
                 </p:column>
                 
