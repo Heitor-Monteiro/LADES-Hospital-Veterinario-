@@ -84,6 +84,24 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         }
         return retornaPessoa;
     }
+    
+        @Override
+        public List<Animais> listAnimaisByCliente(String searchMode, String search) {           
+            if(searchMode.equals("nome")){
+                search="'%"+search+"%'";}     
+            List<Object> listaPessoa = (List<Object>)this.list("SELECT p.cpf from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
+            List<Ent> listaAnimais = this.list("select a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p.cpf="+(long)listaPessoa.get(0));
+            List<Animais> retornaAnimais = new java.util.ArrayList<Animais>();
+            for(Object[] obj : (List<Object[]>)listaAnimais){
+                Animais newAnimais = new Animais();
+                newAnimais.setNome((String)obj[0]);
+                newAnimais.setEspecie((String)obj[1]);
+                newAnimais.setSexo((String)obj[2]);                
+                retornaAnimais.add(newAnimais);
+            }
+            return retornaAnimais;
+        }
+    
 	
     //Método genérico para remoção de uma tupla de uma entidade
     @Override
