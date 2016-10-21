@@ -44,13 +44,23 @@ public class PesquisaController implements Serializable{
     Atribui um tipo de objeto especifico para objGenerico;
     Atribui um tipo de List especifico para objBuscados;
     Realiza a busca por objetos através de itemPesquisa e textoPesquisa.*/
-    public void ListagemObjetos(String obj,List<?> objList){
+
+    public void ListagemObjetos(MODELO.Pessoa obj,List<?> objList){
         objBuscados = objList;
+        objGenerico = obj; 
         showDataTable=false;
-        if(obj.equals("Pessoa"))
-            objBuscados = new GenericoDAOImpl().listPessoaBySearch(itemPesquisa, textoPesquisa);
-        if(obj.equals("Animais"))
-            objBuscados = new GenericoDAOImpl().listAnimaisBySearchPessoa(itemPesquisa, textoPesquisa);
+        objBuscados = new GenericoDAOImpl().listBySearch(obj,itemPesquisa, textoPesquisa);
+        if(objBuscados.isEmpty()){
+            mensagem.warn("Erro ao listar!","Item não encontrado.");
+        }else{
+            this.showDataTable=true;
+        }
+    }
+    public void ListagemObjetos(MODELO.Animais obj,List<?> objList){
+        objBuscados = objList;
+        objGenerico = obj; 
+        showDataTable=false;
+        objBuscados = new GenericoDAOImpl().listBySearch(obj,itemPesquisa, textoPesquisa);
         if(objBuscados.isEmpty()){
             mensagem.warn("Erro ao listar!","Item não encontrado.");
         }else{
