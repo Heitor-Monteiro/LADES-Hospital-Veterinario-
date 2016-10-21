@@ -22,6 +22,7 @@
             
             <f:metadata>
                 <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
+                <f:viewAction action="#{NovaConsultaControle.prepararNovaConsulta()}" />
             </f:metadata>
             
             <h:form>
@@ -37,7 +38,7 @@
                         </p:panel>
                     </p:tab>
                     
-                    
+                    <!--
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
                             <p:wizard style="margin: 2% 3.7% 2% 3.7%;">
@@ -106,8 +107,8 @@
                             
                         </p:panel>
                     </p:tab>
-                    
-                    
+                    -->
+                    <!--
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel>
                             
@@ -115,9 +116,9 @@
                             
                         </p:panel>
                     </p:tab>
+                    -->
                     
-                    
-                    
+                    <!--
                     <p:tab id="etapa4" title="Exames complementares" >
                         <p:panel>
                             
@@ -174,14 +175,16 @@
                             
                         </p:panel>
                     </p:tab>
-                    
+                    -->
                     
                     
                     
                     <p:tab id="etapa5" title="Finalizar" >
                         <p:panel>
                             <div class="ui-fluid">
-                                <p:panelGrid columns="2" layout="grid" id="CODconsulta"
+                                <p:panelGrid id="CODconsulta"
+                                             columns="2"
+                                             layout="grid"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3" >
 
@@ -218,21 +221,21 @@
                                     
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="mmmmmmmmmmmmmmmmm"
+                                    <p:outputLabel value="#{NovaConsultaControle.animais.nome}"
                                                    style="color: #555;" />
                                     
                                     
                                     
-                                    <p:outputLabel value="Espácie:"
+                                    <p:outputLabel value="Espécie:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="eeeeeeeeeeeeeeee"
+                                    <p:outputLabel value="#{NovaConsultaControle.animais.especie}"
                                                    style="color: #555;" />
                                     
                                     
                                     
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="1234567"
+                                    <p:outputLabel value="#{NovaConsultaControle.animais.id.pkAnimal}"
                                                    style="color: #555;" />
                                     
                                     
@@ -240,12 +243,50 @@
                                     
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="00/00/0000 00h 00min"
+                                    <p:outputLabel value="#{NovaConsultaControle.data}"
                                                    style="color: #555;" />
                                 </p:panelGrid>
 
 
-
+                                <p:panelGrid columns="2"
+                                             layout="grid"
+                                             style="margin-top: 30px"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
+                                    
+                                    
+                                    
+                                    <p:outputLabel value="Confirmação do medico veterinário:"
+                                                   style="color: #1abc9c; font-weight: bold ; font-size: 17px " />
+                                    <p:outputLabel value="" />
+                                    
+                                    
+                                    
+                                    <p:outputLabel value="Informe o CRMV:"
+                                                   style="color: #1abc9c; font-weight: bold ;" />
+                                    <p:inputText id="ConfimMED1" 
+                                                 value="#{NovaConsultaControle.confirmeCRMV}"
+                                                 title="Ex.: CRMV-PA 00000"
+                                                 required="true"
+                                                 requiredMessage="Informe o CRMV para concretiza a consulta!"
+                                                 maxlength="50"/>
+                                    
+                                    
+                                    
+                                    <p:outputLabel value="Senha de acesso ao sistema:"
+                                                   style="color: #1abc9c; font-weight: bold ;" />
+                                    <p:password id="ConfimMED2"
+                                                feedback="true"
+                                                inline="true"
+                                                value="#{NovaConsultaControle.confirmeSENHA}"
+                                                title="Residente: digite a senha que você utiliza para acessar o sistema."
+                                                maxlength="100"
+                                                required="true" 
+                                                requiredMessage="Informe a senha de residente!" />
+                                    
+                                    
+                         
+                                </p:panelGrid>
                             
                                 <p:panelGrid columns="5"
                                              layout="grid"
@@ -261,14 +302,14 @@
                                         <p:printer target="CODconsulta" />
                                     </p:commandButton>
 
-                                    <p:commandButton  
+                                    <p:commandButton  action="#{NovaConsultaControle.adicionarNovaConsulta()}"
                                                 value="Salvar consulta"
                                                 icon="fa fa-save"
                                                 update="growl" 
                                                 disabled="false" />
 
                                     <p:button value="Nova consulta" 
-                                              outcome="/SIHV_Telas_Adm/ADM_cad_cliente"
+                                              outcome="/SIHV_Telas_Exame/Nova_Consulta"
                                               icon="fa fa-user-plus" />
 
                                     <p:button value="Sair" 
