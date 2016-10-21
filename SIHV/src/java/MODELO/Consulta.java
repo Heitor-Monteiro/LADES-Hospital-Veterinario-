@@ -1,11 +1,13 @@
 package MODELO;
-// Generated 17/10/2016 13:02:11 by Hibernate Tools 4.3.1
+// Generated 21/10/2016 11:16:12 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -24,7 +26,7 @@ import javax.persistence.TemporalType;
 public class Consulta  implements java.io.Serializable {
 
 
-     private int pkConsulta;
+     private Integer pkConsulta;
      private Adm adm;
      private Animais animais;
      private Date dataConsulta;
@@ -34,29 +36,27 @@ public class Consulta  implements java.io.Serializable {
     }
 
 	
-    public Consulta(int pkConsulta, Adm adm, Animais animais, Date dataConsulta) {
-        this.pkConsulta = pkConsulta;
+    public Consulta(Adm adm, Animais animais, Date dataConsulta) {
         this.adm = adm;
         this.animais = animais;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(int pkConsulta, Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados) {
-       this.pkConsulta = pkConsulta;
+    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados) {
        this.adm = adm;
        this.animais = animais;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
     }
    
-     @Id 
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
     @Column(name="PK_consulta", unique=true, nullable=false)
-    public int getPkConsulta() {
+    public Integer getPkConsulta() {
         return this.pkConsulta;
     }
     
-    public void setPkConsulta(int pkConsulta) {
+    public void setPkConsulta(Integer pkConsulta) {
         this.pkConsulta = pkConsulta;
     }
 
