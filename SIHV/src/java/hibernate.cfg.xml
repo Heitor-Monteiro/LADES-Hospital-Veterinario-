@@ -10,12 +10,16 @@
     <property name="hibernate.show_sql">true</property>
     <property name="hibernate.current_session_context_class">thread</property>
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
+    <mapping resource="MODELO/Animais.hbm.xml"/>
+    <mapping resource="MODELO/Telefone.hbm.xml"/>
+    <mapping resource="MODELO/Pessoa.hbm.xml"/>
+    <mapping resource="MODELO/SisDigestorio.hbm.xml"/>
+    <mapping resource="MODELO/Anamnese.hbm.xml"/>
+    <mapping resource="MODELO/Examefisico.hbm.xml"/>
+    <mapping resource="MODELO/Exameimage.hbm.xml"/>
     <mapping resource="MODELO/Pelagem.hbm.xml"/>
     <mapping resource="MODELO/Adm.hbm.xml"/>
-    <mapping resource="MODELO/Cliente.hbm.xml"/>
-    <mapping resource="MODELO/Pessoa.hbm.xml"/>
     <mapping resource="MODELO/Consulta.hbm.xml"/>
-    <mapping resource="MODELO/Telefone.hbm.xml"/>
-    <mapping resource="MODELO/Animais.hbm.xml"/>
+    <mapping resource="MODELO/Cliente.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

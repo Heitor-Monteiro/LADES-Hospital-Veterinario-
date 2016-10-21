@@ -1,17 +1,18 @@
 package MODELO;
-// Generated 21/10/2016 11:16:12 by Hibernate Tools 4.3.1
+// Generated 21/10/2016 12:33:23 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,42 +22,52 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="consulta"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Consulta  implements java.io.Serializable {
 
 
-     private Integer pkConsulta;
+     private int pkConsulta;
      private Adm adm;
      private Animais animais;
      private Date dataConsulta;
      private String sistemasAfetados;
+     private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
+     private Set<Examefisico> examefisicos = new HashSet<Examefisico>(0);
+     private Set<Exameimage> exameimages = new HashSet<Exameimage>(0);
+     private Set<Anamnese> anamneses = new HashSet<Anamnese>(0);
 
     public Consulta() {
     }
 
 	
-    public Consulta(Adm adm, Animais animais, Date dataConsulta) {
+    public Consulta(int pkConsulta, Adm adm, Animais animais, Date dataConsulta) {
+        this.pkConsulta = pkConsulta;
         this.adm = adm;
         this.animais = animais;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados) {
+    public Consulta(int pkConsulta, Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisDigestorio> sisDigestorios, Set<Examefisico> examefisicos, Set<Exameimage> exameimages, Set<Anamnese> anamneses) {
+       this.pkConsulta = pkConsulta;
        this.adm = adm;
        this.animais = animais;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
+       this.sisDigestorios = sisDigestorios;
+       this.examefisicos = examefisicos;
+       this.exameimages = exameimages;
+       this.anamneses = anamneses;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @Id 
 
     
     @Column(name="PK_consulta", unique=true, nullable=false)
-    public Integer getPkConsulta() {
+    public int getPkConsulta() {
         return this.pkConsulta;
     }
     
-    public void setPkConsulta(Integer pkConsulta) {
+    public void setPkConsulta(int pkConsulta) {
         this.pkConsulta = pkConsulta;
     }
 
@@ -103,6 +114,42 @@ public class Consulta  implements java.io.Serializable {
     
     public void setSistemasAfetados(String sistemasAfetados) {
         this.sistemasAfetados = sistemasAfetados;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<SisDigestorio> getSisDigestorios() {
+        return this.sisDigestorios;
+    }
+    
+    public void setSisDigestorios(Set<SisDigestorio> sisDigestorios) {
+        this.sisDigestorios = sisDigestorios;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<Examefisico> getExamefisicos() {
+        return this.examefisicos;
+    }
+    
+    public void setExamefisicos(Set<Examefisico> examefisicos) {
+        this.examefisicos = examefisicos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<Exameimage> getExameimages() {
+        return this.exameimages;
+    }
+    
+    public void setExameimages(Set<Exameimage> exameimages) {
+        this.exameimages = exameimages;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<Anamnese> getAnamneses() {
+        return this.anamneses;
+    }
+    
+    public void setAnamneses(Set<Anamnese> anamneses) {
+        this.anamneses = anamneses;
     }
 
 
