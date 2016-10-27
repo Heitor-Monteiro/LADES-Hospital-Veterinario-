@@ -17,7 +17,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese1" />
             <p:inputTextarea id="Anamnese1"
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.queixaPrincipal}"
                              required="true"
                              requiredMessage="Informe a queixa principal!"
                              style="margin-bottom: 20px;"
@@ -29,17 +29,20 @@
             
             
             <p:outputLabel value="Já foi tratado:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese2" />
+                           rendered="true"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese2" />
             <p:selectOneRadio id="Anamnese2"
+                              rendered="true"
                               layout="responsive"
                               columns="2"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.jaFoiTratado}"
                               required="true"
                               requiredMessage="Informe se o animal já foi tratado!"
                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="SIM" />
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
+                
             </p:selectOneRadio>
             <p:message for="Anamnese2" />
             
@@ -51,7 +54,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese3" />
             <p:inputTextarea id="Anamnese3"
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.medicacaoDose}"
                              required="false"
                              requiredMessage="Informe o campo medicação/dose!"
                              style="margin-bottom: 20px;"
@@ -67,7 +70,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese4" />
             <p:inputTextarea id="Anamnese4"
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.antecMorbido}"
                              required="true"
                              requiredMessage="Informe antecedentes móbidos!"
                              style="margin-bottom: 20px;"
@@ -80,7 +83,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese5" />
             <p:inputTextarea id="Anamnese5" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.histoFamiliar}"
                              required="true"
                              requiredMessage="Informe o histórico familiar!" 
                              style="margin-bottom: 20px;"
@@ -90,14 +93,15 @@
 
             
             <p:outputLabel value="Alimentação (Dieta caseira):"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese6" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese6" />
             <p:selectOneRadio id="Anamnese6"
-                                  layout="responsive"
-                                  columns="2"
-                                  required="true"
-                                  requiredMessage="Informe o tipo de alimentação!"
-                                  style="margin-bottom: 20px;" >
+                              value="#{NovaConsultaControle.anamnese.alimentacaoCaseira}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o tipo de alimentação!"
+                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="SIM" />
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
@@ -110,7 +114,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese7" />
             <p:inputTextarea id="Anamnese7" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.descriCaseira}"
                              required="false"
                              requiredMessage="Descreva a dieta caseira!" 
                              style="margin-bottom: 20px;"
@@ -121,14 +125,15 @@
             
             
             <p:outputLabel value="Alimentação (Ração):"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese8" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese8" />
             <p:selectOneRadio id="Anamnese8"
-                                  layout="responsive"
-                                  columns="2"
-                                  required="true"
-                                  requiredMessage="Informe o tipo de alimentação!"
-                                  style="margin-bottom: 20px;" >
+                              value="#{NovaConsultaControle.anamnese.alimentacaoRacao}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe o tipo de alimentação!"
+                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="SIM" />
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
@@ -141,7 +146,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese9" />
             <p:inputTextarea id="Anamnese9" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.descriRacao}"
                              required="false"
                              requiredMessage="Descreva a dieta por ração!" 
                              style="margin-bottom: 20px;"
@@ -152,14 +157,15 @@
 
 
             <p:outputLabel value="Vacinação:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese10" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese10" />
             <p:selectManyCheckbox id="Anamnese10"
-                              layout="responsive"
-                              columns="3"
-                              required="true"
-                              requiredMessage="Informe o tipo de vacina!"
-                              style="margin-bottom: 20px;" >
+                                  value="#{NovaConsultaControle.vacinacao}"
+                                  layout="responsive"
+                                  columns="3"
+                                  required="true"
+                                  requiredMessage="Informe o tipo de vacina!"
+                                  style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Anti-rábica" itemValue="Anti-rábica" />
                 <f:selectItem itemLabel="V8" itemValue="V8" />
                 <f:selectItem itemLabel="Outras" itemValue="Outras" />
@@ -172,7 +178,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese11" />
             <p:inputTextarea id="Anamnese11" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.sobreVacina}"
                              required="false"
                              requiredMessage="Descreva a vacina!" 
                              style="margin-bottom: 20px;"
@@ -186,12 +192,12 @@
                        style="color: #1abc9c; font-weight: bold ;"
                        for="Anamnese12" />
             <p:selectOneRadio id="Anamnese12"
-                             value="#"
-                             layout="responsive"
-                             columns="2"
-                             required="false"
-                             requiredMessage="Informe a origem da vacina!"
-                             style="margin-bottom: 20px;" >
+                              value="#{NovaConsultaControle.anamnese.origemVacina}"
+                              layout="responsive"
+                              columns="2"
+                              required="false"
+                              requiredMessage="Informe a origem da vacina!"
+                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Nacional" itemValue="Nacional" />
                 <f:selectItem itemLabel="Importada" itemValue="Importada" />
             </p:selectOneRadio>
@@ -202,12 +208,12 @@
 
 
             <p:outputLabel value="Vermifugação:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese13" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese13" />
             <p:selectOneRadio id="Anamnese13"
                               layout="responsive"
                               columns="2"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.vermifugacao}"
                               required="true"
                               requiredMessage="Informe a vermifugação!"
                               style="margin-bottom: 20px;" >
@@ -219,10 +225,10 @@
 
 
             <p:outputLabel value="Qual/Dose vermifugação:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese14" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese14" />
             <p:inputText id="Anamnese14" 
-                         value="#"
+                         value="#{NovaConsultaControle.anamnese.doseVermifugacao}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -234,7 +240,8 @@
             <p:outputLabel value="Data: aplicação de vermifugação"
                            for="Anamnese15"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:calendar id="Anamnese15" 
+            <p:calendar id="Anamnese15"
+                        value="#{NovaConsultaControle.anamnese.dataVermifugacao}"
                         maxlength="10" 
                         disabled="false" 
                         title="" 
@@ -248,10 +255,10 @@
 
 
             <p:outputLabel value="Ectoparasitas:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese16" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese16" />
             <p:selectOneRadio id="Anamnese16"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.ectoparasitas}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -267,14 +274,15 @@
             
             
             <p:outputLabel value="Qual ectoparasitas:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese17" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese17" />
             <p:selectManyCheckbox id="Anamnese17"
-                              layout="responsive"
-                              columns="3"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+                                  value="#{NovaConsultaControle.qualEctoparasitas}"
+                                  layout="responsive"
+                                  columns="3"
+                                  required="false"
+                                  requiredMessage=""
+                                  style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Ixodidiose" itemValue="ixodidiose" />
                 <f:selectItem itemLabel="Puliciose" itemValue="puliciose" />
                 <f:selectItem itemLabel="Phthiraptera" itemValue="phthiraptera" />
@@ -291,7 +299,7 @@
                        style="color: #1abc9c; font-weight: bold ;"
                        for="Anamnese18" />
             <p:selectOneRadio id="Anamnese18"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.controEctoparasitas}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -308,7 +316,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese19" />
             <p:inputText id="Anamnese19" 
-                         value="#"
+                         value="#{NovaConsultaControle.anamnese.qualProdutoUtiliza}"
                          title="Produto utilizado no controle de ectoparasitas"
                          required="false"
                          requiredMessage=""
@@ -319,9 +327,10 @@
 
 
             <p:outputLabel value="Acesso à rua:"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese20" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese20" />
             <p:selectManyCheckbox id="Anamnese20"
+                                  value="#{NovaConsultaControle.acessoArua}"
                                   layout="responsive"
                                   columns="3"
                                   required="true"
@@ -339,7 +348,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese21" />
             <p:inputTextarea id="Anamnese21" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.descriHabitat}"
                              title="Descreva o habitat que o animal vive"
                              required="false"
                              requiredMessage=""
@@ -353,7 +362,7 @@
                        style="color: #1abc9c; font-weight: bold ;"
                        for="Anamnese22" />
             <p:selectOneRadio id="Anamnese22"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.contactantes}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -371,7 +380,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Anamnese23" />
             <p:inputTextarea id="Anamnese23" 
-                             value="#"
+                             value="#{NovaConsultaControle.anamnese.descriContactantes}"
                              title="informado se o animal convive com outros bichos, exemplo, o animal convive com um gato e 5 cachorros"
                              required="false"
                              requiredMessage=""
@@ -384,10 +393,10 @@
 
 
             <p:outputLabel value="Mesmo problema em contactantes?"
-                       style="color: #1abc9c; font-weight: bold ;"
-                       for="Anamnese24" />
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Anamnese24" />
             <p:selectOneRadio id="Anamnese24"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.mesmoProbleContacta}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -404,7 +413,7 @@
                        style="color: #1abc9c; font-weight: bold ;"
                        for="Anamnese25" />
             <p:selectOneRadio id="Anamnese25"
-                              value="#"
+                              value="#{NovaConsultaControle.anamnese.contatoRoedor}"
                               layout="responsive"
                               columns="2"
                               required="false"

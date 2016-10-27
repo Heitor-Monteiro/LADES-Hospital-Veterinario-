@@ -23,6 +23,7 @@
             <f:metadata>
                 <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
                 <f:viewAction action="#{NovaConsultaControle.prepararNovaConsulta()}" />
+                <f:viewAction action="#{PesquisaController.limparCampos()}" />
             </f:metadata>
             
             <h:form>
@@ -38,7 +39,7 @@
                         </p:panel>
                     </p:tab>
                     
-                    <!--
+                    
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
                             <p:wizard style="margin: 2% 3.7% 2% 3.7%;">
@@ -49,6 +50,7 @@
                                         
                                     </p:panel>
                                 </p:tab>
+                                
                                 <p:tab id="anamnese2" title="etapa 2" >
                                     <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
                                         
@@ -56,6 +58,7 @@
                                         
                                     </p:panel>
                                 </p:tab>
+                                
                                 <p:tab id="anamnese3" title="etapa 3" >
                                     <p:panel header="Sistema respiratório e cardiovascular" >
                                         
@@ -63,6 +66,7 @@
                                         
                                     </p:panel>
                                 </p:tab>
+                                <!--
                                 <p:tab id="anamnese4" title="etapa 4" >
                                     <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
                                         
@@ -102,12 +106,13 @@
                                         
                                     </p:panel>
                                 </p:tab>
+                                -->
                             </p:wizard>
                             
                             
                         </p:panel>
                     </p:tab>
-                    -->
+                    
                     <!--
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel>

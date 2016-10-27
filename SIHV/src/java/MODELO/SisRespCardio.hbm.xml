@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 27/10/2016 10:35:02 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="MODELO.SisRespCardio" table="Sis_Resp_Cardio" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="MODELO.SisRespCardioId">
+            <key-property name="pkSisRespCardio" type="int">
+                <column name="PK_Sis_Resp_Cardio" />
+            </key-property>
+            <key-property name="consultaPkConsulta" type="int">
+                <column name="consulta_PK_consulta" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="consulta" class="MODELO.Consulta" update="false" insert="false" fetch="select">
+            <column name="consulta_PK_consulta" not-null="true" />
+        </many-to-one>
+        <property name="tosse" type="string">
+            <column name="Tosse" length="3" not-null="true" />
+        </property>
+        <property name="tosseProdutiva" type="string">
+            <column name="TosseProdutiva" length="23" />
+        </property>
+        <property name="tosseEvolu" type="string">
+            <column name="TosseEvolu" length="200" />
+        </property>
+        <property name="espirro" type="string">
+            <column name="Espirro" length="3" not-null="true" />
+        </property>
+        <property name="espirroEvolu" type="string">
+            <column name="EspirroEvolu" length="200" />
+        </property>
+        <property name="secrecaoNasal" type="string">
+            <column name="SecrecaoNasal" length="3" not-null="true" />
+        </property>
+        <property name="secreNasalUniBilateral" type="string">
+            <column name="SecreNasalUniBilateral" length="20" />
+        </property>
+        <property name="secreNasalTipo" type="string">
+            <column name="SecreNasalTipo" length="50" />
+        </property>
+        <property name="secreNasalEvolu" type="string">
+            <column name="SecreNasalEvolu" length="200" />
+        </property>
+        <property name="dispneiaTaquipneia" type="string">
+            <column name="DispneiaTaquipneia" length="3" not-null="true" />
+        </property>
+        <property name="dispnTaquipEvolu" type="string">
+            <column name="DispnTaquipEvolu" length="200" />
+        </property>
+        <property name="cianose" type="string">
+            <column name="Cianose" length="3" not-null="true" />
+        </property>
+        <property name="quandApreseCianose" type="date">
+            <column name="QuandApreseCianose" length="10" />
+        </property>
+        <property name="cianoseEvolu" type="string">
+            <column name="CianoseEvolu" length="200" />
+        </property>
+        <property name="cansacoFacil" type="string">
+            <column name="CansacoFacil" length="3" not-null="true" />
+        </property>
+        <property name="cansaFacilEvolu" type="string">
+            <column name="CansaFacilEvolu" length="200" />
+        </property>
+        <property name="sincope" type="string">
+            <column name="Sincope" length="3" not-null="true" />
+        </property>
+        <property name="sincopeEvolu" type="string">
+            <column name="SincopeEvolu" length="200" />
+        </property>
+        <property name="emagrecimento" type="string">
+            <column name="Emagrecimento" length="3" not-null="true" />
+        </property>
+        <property name="emagrecEvolu" type="string">
+            <column name="EmagrecEvolu" length="200" />
+        </property>
+        <property name="sistemaAfetado" type="string">
+            <column name="SistemaAfetado" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

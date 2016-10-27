@@ -10,6 +10,12 @@ import DAO.GenericoDAOImpl;
 import MODELO.Consulta;
 import MODELO.Animais;
 import MODELO.Adm;
+import MODELO.Anamnese;
+import MODELO.AnamneseId;
+import MODELO.SisDigestorio;
+import MODELO.SisDigestorioId;
+import MODELO.SisRespCardio;
+import MODELO.SisRespCardioId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -39,7 +45,17 @@ public class NovaConsultaController implements Serializable{
     private String confirmeSENHA;
     private boolean medicoCOFIRMADO=false;
     
+    private Anamnese anamnese;
+    private AnamneseId anamneseId;
+    private String vacinacao[];
+    private String qualEctoparasitas[];
+    private String acessoArua[];
     
+    private SisDigestorio sisDigestorio;
+    private SisDigestorioId sisDigestorioId;
+    
+    private SisRespCardio sisRespCardio;
+    private SisRespCardioId sisRespCardioId;
     
     
     
@@ -51,6 +67,16 @@ public class NovaConsultaController implements Serializable{
     public void prepararNovaConsulta(){
         novaConsulta = new Consulta();
         data = new Date();
+        
+        anamnese = new Anamnese();
+        anamneseId =  new AnamneseId();
+        
+        sisDigestorio = new SisDigestorio();
+        sisDigestorioId = new SisDigestorioId();
+        
+        sisRespCardio =  new SisRespCardio();
+        sisRespCardioId =  new SisRespCardioId();
+        
         confirmeCRMV="";
         confirmeSENHA="";
         medicoCOFIRMADO=false;
@@ -79,6 +105,24 @@ public class NovaConsultaController implements Serializable{
             if (medicoCOFIRMADO == true) {
                 novaConsulta.setAdm(medicoVET);
                 daoGenerico.save(novaConsulta);
+                
+                anamneseId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                anamnese.setId(anamneseId); 
+                anamnese.setVacinacao(concatenaSTRING(vacinacao));
+                anamnese.setQualEctoparasitas(concatenaSTRING(qualEctoparasitas));
+                anamnese.setAcessoRua(concatenaSTRING(acessoArua));
+                
+                sisDigestorioId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisDigestorio.setId(sisDigestorioId);
+                
+                sisRespCardioId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisRespCardio.setId(sisRespCardioId);
+                
+                
+                daoGenerico.save(anamnese);
+                daoGenerico.save(sisDigestorio);
+                daoGenerico.save(sisRespCardio);
+                
                 message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
             }
         } catch (Exception e) {
@@ -108,6 +152,15 @@ public class NovaConsultaController implements Serializable{
     
     
     
+    /*O método é utilizado para concatenar valores
+    pertencentes ao inputs do tipo checkBox.*/
+    private String concatenaSTRING(String vetor[]){
+        String textoTEMP="";
+        for (String vetor1 : vetor) {
+            textoTEMP += " "+vetor1;
+        }
+        return textoTEMP;
+    }
     
     
     
@@ -149,4 +202,77 @@ public class NovaConsultaController implements Serializable{
     public void setConfirmeSENHA(String confirmeSENHA) {
         this.confirmeSENHA = confirmeSENHA;
     }
+
+    
+    
+    
+    
+    //GETs & SET ANAMNESE
+    public Anamnese getAnamnese() {
+        return anamnese;
+    }
+
+    public void setAnamnese(Anamnese anamnese) {
+        this.anamnese = anamnese;
+    }
+    
+    public String[] getVacinacao() {
+        return vacinacao;
+    }
+
+    public void setVacinacao(String[] vacinacao) {
+        this.vacinacao = vacinacao;
+    }
+
+    public String[] getQualEctoparasitas() {
+        return qualEctoparasitas;
+    }
+
+    public void setQualEctoparasitas(String[] qualEctoparasitas) {
+        this.qualEctoparasitas = qualEctoparasitas;
+    }
+
+    public String[] getAcessoArua() {
+        return acessoArua;
+    }
+
+    public void setAcessoArua(String[] acessoArua) {
+        this.acessoArua = acessoArua;
+    }
+    //-----------------------------------------------------------------
+    
+    
+    
+    
+    
+    //------GETs & SETs de generico_Sis_Digestorio---------------------
+    public SisDigestorio getSisDigestorio() {
+        return sisDigestorio;
+    }
+    public void setSisDigestorio(SisDigestorio sisDigestorio) {
+        this.sisDigestorio = sisDigestorio;
+    }
+    //-----------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    //------GETs & SETs de generico_Sis_Resp_Cardio---------------------
+
+    public SisRespCardio getSisRespCardio() {
+        return sisRespCardio;
+    }
+
+    public void setSisRespCardio(SisRespCardio sisRespCardio) {
+        this.sisRespCardio = sisRespCardio;
+    }
+    
+    
+    
+    
+    
+    
+    
 }

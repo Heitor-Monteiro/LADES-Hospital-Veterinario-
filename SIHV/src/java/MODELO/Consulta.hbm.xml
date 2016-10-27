@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/10/2016 12:33:24 by Hibernate Tools 4.3.1 -->
+<!-- Generated 27/10/2016 10:35:02 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="MODELO.Consulta" table="consulta" catalog="bd_sihv" optimistic-lock="version">
-        <id name="pkConsulta" type="int">
+    <class name="MODELO.Consulta" table="consulta" catalog="BD_SIHV" optimistic-lock="version">
+        <id name="pkConsulta" type="java.lang.Integer">
             <column name="PK_consulta" />
-            <generator class="assigned" />
+            <generator class="identity" />
         </id>
         <many-to-one name="adm" class="MODELO.Adm" fetch="select">
             <column name="adm_PK_adm" not-null="true" />
@@ -23,23 +23,17 @@
         <property name="sistemasAfetados" type="string">
             <column name="SistemasAfetados" length="500" />
         </property>
+        <set name="sisRespCardios" table="Sis_Resp_Cardio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="consulta_PK_consulta" not-null="true" />
+            </key>
+            <one-to-many class="MODELO.SisRespCardio" />
+        </set>
         <set name="sisDigestorios" table="sis_digestorio" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="consulta_PK_consulta" not-null="true" />
             </key>
             <one-to-many class="MODELO.SisDigestorio" />
-        </set>
-        <set name="examefisicos" table="examefisico" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="consulta_PK_consulta" not-null="true" />
-            </key>
-            <one-to-many class="MODELO.Examefisico" />
-        </set>
-        <set name="exameimages" table="exameimage" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="consulta_PK_consulta" not-null="true" />
-            </key>
-            <one-to-many class="MODELO.Exameimage" />
         </set>
         <set name="anamneses" table="anamnese" inverse="true" lazy="true" fetch="select">
             <key>

@@ -1,5 +1,5 @@
 package MODELO;
-// Generated 21/10/2016 12:33:23 by Hibernate Tools 4.3.1
+// Generated 27/10/2016 10:35:02 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="sis_digestorio"
-    ,catalog="bd_sihv"
+    ,catalog="BD_SIHV"
 )
 public class SisDigestorio  implements java.io.Serializable {
 
