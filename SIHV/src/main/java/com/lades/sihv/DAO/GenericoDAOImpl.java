@@ -62,10 +62,11 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     
     //Método para listar Pessoas baseado em cpf, cnpj, ou nome
     @Override
-    public List<Pessoa> listBySearch(com.lades.sihv.model.Pessoa person, String searchMode, String search) {
+    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
+        
         if(searchMode.equals("nome"))
             search="'%"+search+"%'";     
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+"="+search);
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
         List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Pessoa newPessoa = new Pessoa();
@@ -81,10 +82,10 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     
     
     @Override
-    public List<Animais> listBySearch(com.lades.sihv.model.Animais animals, String searchMode, String search) {
+    public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
         if(searchMode.equals("nome"))
             search="'%"+search+"%'";     
-        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+"="+search);
+        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
         List<Animais> retornaAnimais = new java.util.ArrayList<Animais>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Animais newAnimal = new Animais();

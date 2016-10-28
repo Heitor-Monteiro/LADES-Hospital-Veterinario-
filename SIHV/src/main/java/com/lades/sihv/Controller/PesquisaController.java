@@ -49,7 +49,7 @@ public class PesquisaController implements Serializable{
         objBuscados = objList;
         objGenerico = new com.lades.sihv.model.Pessoa(); 
         showDataTable=false;
-        objBuscados = new GenericoDAOImpl().listBySearch((com.lades.sihv.model.Pessoa)objGenerico,itemPesquisa, textoPesquisa);
+        objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
         if(objBuscados.isEmpty()){
             mensagem.warn("Erro ao listar!","Item não encontrado.");
         }else{
@@ -60,7 +60,7 @@ public class PesquisaController implements Serializable{
         objBuscados = objList;
         objGenerico = new com.lades.sihv.model.Animais(); 
         showDataTable=false;
-        objBuscados = new GenericoDAOImpl().listBySearch((com.lades.sihv.model.Animais)objGenerico,itemPesquisa, textoPesquisa);
+        objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
         if(objBuscados.isEmpty()){
             mensagem.warn("Erro ao listar!","Item não encontrado.");
         }else{
