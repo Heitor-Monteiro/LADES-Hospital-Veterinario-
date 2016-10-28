@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.SisNeurologico" table="Sis_Neurologico" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.SisNeurologicoId">
+            <key-property name="pkSisNeurologico" type="int">
+                <column name="PK_Sis_Neurologico" />
+            </key-property>
+            <key-property name="consultaPkConsulta" type="int">
+                <column name="consulta_PK_consulta" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
+            <column name="consulta_PK_consulta" not-null="true" />
+        </many-to-one>
+        <property name="consciencia" type="string">
+            <column name="Consciencia" length="9" not-null="true" />
+        </property>
+        <property name="comportamento" type="string">
+            <column name="Comportamento" length="13" not-null="true" />
+        </property>
+        <property name="ataxia" type="string">
+            <column name="Ataxia" length="3" not-null="true" />
+        </property>
+        <property name="ataxiaTipo" type="string">
+            <column name="AtaxiaTipo" length="50" />
+        </property>
+        <property name="ataxiaEvolu" type="string">
+            <column name="AtaxiaEvolu" length="200" />
+        </property>
+        <property name="paralisia" type="string">
+            <column name="Paralisia" length="3" not-null="true" />
+        </property>
+        <property name="paralisiaEspFla" type="string">
+            <column name="ParalisiaEspFla" length="9" />
+        </property>
+        <property name="paralisiaTipo" type="string">
+            <column name="ParalisiaTipo" length="50" />
+        </property>
+        <property name="paralisiaEvolu" type="string">
+            <column name="ParalisiaEvolu" length="200" />
+        </property>
+        <property name="convulsao" type="string">
+            <column name="Convulsao" length="3" not-null="true" />
+        </property>
+        <property name="convulsaoTipo" type="string">
+            <column name="ConvulsaoTipo" length="50" />
+        </property>
+        <property name="convulsaoEvolu" type="string">
+            <column name="ConvulsaoEvolu" length="200" />
+        </property>
+        <property name="audicao" type="string">
+            <column name="Audicao" length="6" not-null="true" />
+        </property>
+        <property name="sistemaAfetado" type="string">
+            <column name="SistemaAfetado" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

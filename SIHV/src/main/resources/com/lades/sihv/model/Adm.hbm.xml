@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Adm" table="adm" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.AdmId">
+            <key-property name="pkAdm" type="int">
+                <column name="PK_adm" />
+            </key-property>
+            <key-property name="fkPessoa" type="int">
+                <column name="FK_pessoa" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="pessoa" class="com.lades.sihv.model.Pessoa" update="false" insert="false" fetch="select">
+            <column name="FK_pessoa" not-null="true" />
+        </many-to-one>
+        <property name="admSenha" type="string">
+            <column name="adm_senha" length="100" not-null="true" />
+        </property>
+        <property name="admLogin" type="string">
+            <column name="adm_login" length="100" not-null="true" />
+        </property>
+        <property name="tipoUser" type="string">
+            <column name="TIPO_USER" length="20" not-null="true" />
+        </property>
+        <property name="crmvMatricula" type="string">
+            <column name="CRMV_MATRICULA" length="50" not-null="true" unique="true" />
+        </property>
+        <set name="consultas" table="consulta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="adm_PK_adm" not-null="true" />
+                <column name="adm_FK_pessoa" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Consulta" />
+        </set>
+    </class>
+</hibernate-mapping>
