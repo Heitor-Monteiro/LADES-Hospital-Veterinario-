@@ -7,6 +7,7 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html" 
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     
     <h:head>
@@ -61,9 +62,21 @@ and open the template in the editor.
                                                 actionListener="#{login.validateUsernamePassword()}"
                                                 />
                         
-                        <p:link value="Esqueseu sua senha?"
+                        <p:link value="Esqueceu sua senha?"
                                 style="color: #ffffff; font-size: 13px;"/>
-                        
+                        <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                            <f:facet name="default">
+                                
+                            </f:facet>
+
+                            <f:facet name="start">
+                                <p:graphicImage library="imagens" name="loading.gif" />
+                            </f:facet>
+
+                            <f:facet name="complete">
+                                
+                            </f:facet>
+                        </p:ajaxStatus>    
                 </p:panelGrid>
                     
                

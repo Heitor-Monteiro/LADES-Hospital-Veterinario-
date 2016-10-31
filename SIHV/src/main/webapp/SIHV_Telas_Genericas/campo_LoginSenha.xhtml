@@ -18,8 +18,12 @@
                          title="Ex.: usuario@email.com"
                          maxlength="100"
                          required="true" 
-                         requiredMessage="Informe um login para o usuário!">
-                <p:keyFilter regEx="/[a-z0-9_\.\-@]/i" />
+                         requiredMessage="Por favor, informe seu e-mail!"
+		validatorMessage="Formato de e-mail incorreto!"
+		>
+
+	  <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </p:inputText>
             <p:message for="LoginUser" />
 
