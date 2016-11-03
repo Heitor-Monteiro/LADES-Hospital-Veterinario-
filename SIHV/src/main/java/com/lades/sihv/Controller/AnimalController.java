@@ -13,14 +13,10 @@ import com.lades.sihv.model.Pessoa;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 /**
  *
  * @author thiberius
  */
-@ManagedBean(name = "AnimalControle")
-@SessionScoped
 public class AnimalController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
@@ -28,8 +24,7 @@ public class AnimalController implements Serializable{
     private Animais animal;
     private AnimaisId animalID;
     private Date data;
-    private Pessoa pessoa;
-    private List<Pessoa> pessoasBuscadas;
+    
     
     
     
@@ -56,13 +51,6 @@ public class AnimalController implements Serializable{
     quando o formulário é aberto.*/
     public void prepararAdicionarAnimal(){
         animal = new Animais();
-        animal.setEspecie("");
-        animal.setIdadeAtual(0);
-        animal.setNome("");
-        animal.setPelagem("");
-        animal.setPeso(0);
-        animal.setRaca("");
-        animal.setSexo("");
         animalID = new AnimaisId();
         data = new Date();
     }
@@ -72,7 +60,7 @@ public class AnimalController implements Serializable{
     
     
     //Método para persistir um novo animal
-    public void adicionarANIMAL(){
+    public void adicionarANIMAL(Pessoa pessoa){
         try{
         String clientePK;
         List<Object> lista;
@@ -102,19 +90,5 @@ public class AnimalController implements Serializable{
     }
     public void setAnimal(Animais animal){
         this.animal = animal;
-    }
-//----------------------------------------------------------
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-//----------------------------------------------------------
-    public List<Pessoa> getPessoasBuscadas() {
-        return pessoasBuscadas;
-    }
-    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
-        this.pessoasBuscadas = pessoasBuscadas;
     }
 }

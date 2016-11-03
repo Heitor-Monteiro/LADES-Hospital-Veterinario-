@@ -19,7 +19,7 @@
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
                                   columns="3"
-                                  value="#{PesquisaController.itemPesquisa}"
+                                  value="#{MasterControle.pesquisaControle.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
@@ -35,14 +35,14 @@
 
 
                 <p:inputText id="ValorPesquisa" 
-                             value="#{PesquisaController.textoPesquisa}" 
+                             value="#{MasterControle.pesquisaControle.textoPesquisa}" 
                              title="Ex.: 33344455511"
                              maxlength="100"
                              required="true" 
                              requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{PesquisaController.ListagemAnimais(NovaConsultaControle.animaisBuscados)}"
+                <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Animal')}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -58,7 +58,7 @@
                     columnClasses="ui-grid-col-5" >
            
            <p:outputLabel value="Clientes encontrados:"
-                          rendered="#{PesquisaController.showDataTable}"
+                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
                           style="color: #1abc9c; 
                               font-weight: bold;
                               padding-top: 20px;"/>
@@ -75,12 +75,12 @@
         
             <p:dataTable id="AnimaisBuscada"
                          var="animais"
-                         rendered="#{PesquisaController.showDataTable}"
-                         value="#{PesquisaController.objBuscados}"
+                         rendered="#{MasterControle.pesquisaControle.showDataTable}"
+                         value="#{MasterControle.pesquisaControle.objBuscados}"
                          paginator="true"
                          rows="10"
                          reflow="true"
-                         selection="#{NovaConsultaControle.animais}"
+                         selection="#{MasterControle.animal}"
                          rowKey="#{animais.id.pkAnimal}" >
             
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>

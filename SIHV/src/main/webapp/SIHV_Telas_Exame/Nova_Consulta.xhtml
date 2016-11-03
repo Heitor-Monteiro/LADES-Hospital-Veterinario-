@@ -22,14 +22,15 @@
             
             <f:metadata>
                 <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
-                <f:viewAction action="#{NovaConsultaControle.prepararNovaConsulta()}" />
-                <f:viewAction action="#{PesquisaController.limparCampos()}" />
+                <f:viewAction action="#{MasterControle.prepararNovaConsulta()}" />
             </f:metadata>
             
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
                 
-                <p:wizard style="margin: 1% 2.7% 0 2.7%;">
+                <p:wizard style="margin: 1% 2.7% 0 2.7%;"
+                          nextLabel="próximo"
+                          backLabel="voltar" >
                     
                     <p:tab id="etapa1" title="Dados do cliente" >
                         <p:panel >
@@ -42,7 +43,10 @@
                     
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
-                            <p:wizard style="margin: 2% 3.7% 2% 3.7%;">
+                            <p:wizard style="margin: 2% 3.7% 2% 3.7%;"
+                                      nextLabel="próximo"
+                                      backLabel="voltar">
+                                
                                 <p:tab id="anamnese1" title="etapa 1" >
                                     <p:panel>
                                         
@@ -64,7 +68,7 @@
                                         
                                     </p:panel>
                                 </p:tab>
-                                
+                                <!--
                                 <p:tab id="anamnese4" title="etapa 4" >
                                     <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
                                         
@@ -88,7 +92,7 @@
                                         
                                     </p:panel>
                                 </p:tab>
-                                <!--
+                                
                                 <p:tab id="anamnese7" title="etapa 7" >
                                     <p:panel header="Sistema oftálmico" >
                                         
@@ -224,21 +228,21 @@
                                     
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{NovaConsultaControle.animais.nome}"
+                                    <p:outputLabel value="#{MasterControle.animal.nome}"
                                                    style="color: #555;" />
                                     
                                     
                                     
                                     <p:outputLabel value="Espécie:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{NovaConsultaControle.animais.especie}"
+                                    <p:outputLabel value="#{MasterControle.animal.especie}"
                                                    style="color: #555;" />
                                     
                                     
                                     
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{NovaConsultaControle.animais.id.pkAnimal}"
+                                    <p:outputLabel value="#{MasterControle.animal.id.pkAnimal}"
                                                    style="color: #555;" />
                                     
                                     
@@ -246,7 +250,7 @@
                                     
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{NovaConsultaControle.data}"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.data}"
                                                    style="color: #555;" />
                                 </p:panelGrid>
 
@@ -268,7 +272,7 @@
                                     <p:outputLabel value="Informe o CRMV:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
                                     <p:inputText id="ConfimMED1" 
-                                                 value="#{NovaConsultaControle.confirmeCRMV}"
+                                                 value="#{MasterControle.consultaControle.confirmeCRMV}"
                                                  title="Ex.: CRMV-PA 00000"
                                                  required="true"
                                                  requiredMessage="Informe o CRMV para concretiza a consulta!"
@@ -279,9 +283,9 @@
                                     <p:outputLabel value="Senha de acesso ao sistema:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
                                     <p:password id="ConfimMED2"
-                                                feedback="true"
+                                                feedback="false"
                                                 inline="true"
-                                                value="#{NovaConsultaControle.confirmeSENHA}"
+                                                value="#{MasterControle.consultaControle.confirmeSENHA}"
                                                 title="Residente: digite a senha que você utiliza para acessar o sistema."
                                                 maxlength="100"
                                                 required="true" 
@@ -305,7 +309,7 @@
                                         <p:printer target="CODconsulta" />
                                     </p:commandButton>
 
-                                    <p:commandButton  action="#{NovaConsultaControle.adicionarNovaConsulta()}"
+                                    <p:commandButton  action="#{MasterControle.adicionarNovaConsulta()}"
                                                 value="Salvar consulta"
                                                 icon="fa fa-save"
                                                 update="growl" 

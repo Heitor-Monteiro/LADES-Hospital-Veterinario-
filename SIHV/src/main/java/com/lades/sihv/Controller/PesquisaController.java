@@ -8,21 +8,17 @@ package com.lades.sihv.Controller;
 import java.io.Serializable;
 import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.Animais;
 
 /**
  *
  * @author thiberius
  */
-@ManagedBean(name = "PesquisaController")
-@SessionScoped
-
 public class PesquisaController implements Serializable{
     
     private String itemPesquisa,textoPesquisa;
     private boolean showDataTable;
-    private Object objGenerico;
     private List<?> objBuscados;
     private static final FacesMessages mensagem = new FacesMessages();
     
@@ -44,23 +40,23 @@ public class PesquisaController implements Serializable{
     Atribui um tipo de objeto especifico para objGenerico;
     Atribui um tipo de List especifico para objBuscados;
     Realiza a busca por objetos através de itemPesquisa e textoPesquisa.*/
-
-    public void ListagemPessoa(List<?> objList){
-        objBuscados = objList;
-        objGenerico = new com.lades.sihv.model.Pessoa(); 
-        showDataTable=false;
-        objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
-        if(objBuscados.isEmpty()){
-            mensagem.warn("Erro ao listar!","Item não encontrado.");
-        }else{
-            this.showDataTable=true;
+    public void ListagemITENS(String item){
+        
+        switch (item){
+            case "Pessoa":
+                List<Pessoa> objList = null;
+                objBuscados = objList;
+                objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
+                break;
+            case "Animal":
+                List<Animais> objList2 = null;
+                objBuscados = objList2;
+                objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
+                break;
+            default:
+                break;
         }
-    }
-    public void ListagemAnimais(List<?> objList){
-        objBuscados = objList;
-        objGenerico = new com.lades.sihv.model.Animais(); 
-        showDataTable=false;
-        objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
+        
         if(objBuscados.isEmpty()){
             mensagem.warn("Erro ao listar!","Item não encontrado.");
         }else{
@@ -103,11 +99,6 @@ public class PesquisaController implements Serializable{
         this.objBuscados = objBuscados;
     }
 //-----------------------------------------------------------------------------
-    public Object getObjGenerico() {
-        return objGenerico;
-    }
-
-    public void setObjGenerico(Object objGenerico) {
-        this.objGenerico = objGenerico;
-    } 
+    
+    
 }

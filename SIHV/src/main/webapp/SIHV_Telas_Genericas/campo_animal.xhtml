@@ -15,13 +15,13 @@
                 
             <p:outputLabel value="Nome do cliente:"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:outputLabel value="#{AnimalControle.pessoa.nome}"/>
+            <p:outputLabel value="#{MasterControle.pessoa.nome}"/>
             <p:outputLabel />
             
             
             <p:outputLabel value="CPF do cliente:"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:outputLabel value="#{AnimalControle.pessoa.cpf}" />
+            <p:outputLabel value="#{MasterControle.pessoa.cpf}" />
             <p:outputLabel />
             
             
@@ -29,7 +29,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
             <p:inputText id="nomeAnimal" 
-                         value="#{AnimalControle.animal.nome}" 
+                         value="#{MasterControle.animalControle.animal.nome}" 
                          title="Informe o nome do animal"
                          maxlength="70"
                          required="true" 
@@ -43,7 +43,7 @@
                            for="especie"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:inputText id="especie" 
-                             value="#{AnimalControle.animal.especie}"
+                             value="#{MasterControle.animalControle.animal.especie}"
                              title="Informe a espécie do animal"
                              required="true"
                              requiredMessage="Informe a espécie do animal!" />
@@ -54,7 +54,7 @@
                            for="raca" 
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:inputText id="raca" 
-                         value="#{AnimalControle.animal.raca}" 
+                         value="#{MasterControle.animalControle.animal.raca}" 
                          title="Informe a raça do animal"
                          maxlength="100"
                          required="true" 
@@ -66,12 +66,12 @@
                            for="pelagem"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:selectOneMenu id="pelagem"
-                             value="#{AnimalControle.animal.pelagem}"
+                             value="#{MasterControle.animalControle.animal.pelagem}"
                              title="Informe a pelagem do animal"
                              required="true"
                              requiredMessage="Informe a pelagem do animal!">
                 <f:selectItem itemLabel="Selecione a pelagem" itemValue=""/>
-                <f:selectItems value="#{AnimalControle.listaPelagem}" />
+                <f:selectItems value="#{MasterControle.animalControle.listaPelagem}" />
             </p:selectOneMenu>
             <p:message for="pelagem" />
             
@@ -80,7 +80,7 @@
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                              value="#{AnimalControle.animal.sexo}"
+                              value="#{MasterControle.animalControle.animal.sexo}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -95,7 +95,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
             <p:inputNumber id="idade" 
-                           value="#{AnimalControle.animal.idadeAtual}"
+                           value="#{MasterControle.animalControle.animal.idadeAtual}"
                            title="Informe a idade atual do animal"
                            maxlength="3"
                            maxValue="999"
@@ -109,7 +109,7 @@
                            for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:spinner id="pesoAnimal" 
-                       value="#{AnimalControle.animal.peso}" 
+                       value="#{MasterControle.animalControle.animal.peso}" 
                        prefix="Kg " 
                        min="0"
                        max="15000"
