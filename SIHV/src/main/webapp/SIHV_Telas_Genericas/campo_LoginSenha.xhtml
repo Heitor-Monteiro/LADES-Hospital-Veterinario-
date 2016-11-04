@@ -15,18 +15,11 @@
                            for="LoginUser" />
             <p:inputText id="LoginUser" 
                          value="#{PessoaControle.ADM.admLogin}" 
-                         title="Ex.: usuario@email.com"
                          maxlength="100"
                          required="true" 
-                         requiredMessage="Por favor, informe seu e-mail!"
-		validatorMessage="Formato de e-mail incorreto!"
-		>
-
-	  <f:validateRegex
-		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-            </p:inputText>
+                         requiredMessage="Por favor, informe um nome de Login!"
+                         />
             <p:message for="LoginUser" />
-
 
 
             <p:outputLabel value="Senha de usuário:"

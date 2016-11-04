@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 04/11/2016 17:25:59 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -22,7 +22,7 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name="pessoa"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
     , uniqueConstraints = @UniqueConstraint(columnNames="CPF") 
 )
 public class Pessoa  implements java.io.Serializable {
@@ -42,6 +42,7 @@ public class Pessoa  implements java.io.Serializable {
      private String uf;
      private Date cadDataHora;
      private Boolean exclusaoLogica;
+     private String email;
      private Set<Cliente> clientes = new HashSet<Cliente>(0);
      private Set<Telefone> telefones = new HashSet<Telefone>(0);
      private Set<Adm> adms = new HashSet<Adm>(0);
@@ -63,7 +64,7 @@ public class Pessoa  implements java.io.Serializable {
         this.uf = uf;
         this.cadDataHora = cadDataHora;
     }
-    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, Set<Cliente> clientes, Set<Telefone> telefones, Set<Adm> adms) {
+    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Cliente> clientes, Set<Telefone> telefones, Set<Adm> adms) {
        this.cpf = cpf;
        this.rg = rg;
        this.nome = nome;
@@ -77,6 +78,7 @@ public class Pessoa  implements java.io.Serializable {
        this.uf = uf;
        this.cadDataHora = cadDataHora;
        this.exclusaoLogica = exclusaoLogica;
+       this.email = email;
        this.clientes = clientes;
        this.telefones = telefones;
        this.adms = adms;
@@ -222,6 +224,16 @@ public class Pessoa  implements java.io.Serializable {
     
     public void setExclusaoLogica(Boolean exclusaoLogica) {
         this.exclusaoLogica = exclusaoLogica;
+    }
+
+    
+    @Column(name="email", length=50)
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public void setEmail(String email) {
+        this.email = email;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")

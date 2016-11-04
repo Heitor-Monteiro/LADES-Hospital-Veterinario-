@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/11/2016 17:26:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.lades.sihv.model.Pessoa" table="pessoa" catalog="BD_SIHV" optimistic-lock="version">
+    <class name="com.lades.sihv.model.Pessoa" table="pessoa" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkPessoa" type="java.lang.Integer">
             <column name="PK_pessoa" />
             <generator class="identity" />
@@ -46,6 +46,9 @@
         </property>
         <property name="exclusaoLogica" type="java.lang.Boolean">
             <column name="exclusaoLogica" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="50" />
         </property>
         <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
             <key>

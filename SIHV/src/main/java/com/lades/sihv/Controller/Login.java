@@ -61,6 +61,7 @@ public class Login implements Serializable {
 	//validate login
 	public String validateUsernamePassword() throws IOException {
             pwd=com.lades.sihv.Security.getMD5(pwd);
+            user=com.lades.sihv.BeautyText.Do(user);
             boolean valid = new GenericoDAOImpl().validate(user, pwd);
             if (valid) {
                 HttpSession session = SessionUtils.getSession();

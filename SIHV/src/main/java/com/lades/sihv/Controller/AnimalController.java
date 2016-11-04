@@ -72,6 +72,16 @@ public class AnimalController implements Serializable{
         animalID.setClienteFkCliente(Integer.parseInt(clientePK));
         animal.setId(animalID);
         animal.setCadDataHora(data);
+        boolean newPelagem=true;
+        for(String check : listaPelagem){
+            if(check.equals(animal.getPelagem()))
+                newPelagem=false;
+        }
+        if(newPelagem){
+            com.lades.sihv.model.Pelagem nova = new com.lades.sihv.model.Pelagem();
+            nova.setNomePelagem(animal.getPelagem());
+            daoGenerico.save(nova);
+        }
         daoGenerico.save(animal);
 
         message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");

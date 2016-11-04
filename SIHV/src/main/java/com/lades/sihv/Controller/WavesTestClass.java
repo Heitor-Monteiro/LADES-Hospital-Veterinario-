@@ -22,7 +22,7 @@ public class WavesTestClass {
         com.lades.sihv.Controller.PesquisaController pesquisa = new com.lades.sihv.Controller.PesquisaController();
         pesquisa.setItemPesquisa("cpf");
         pesquisa.setTextoPesquisa("37685942145");
-        pesquisa.ListagemAnimais(new java.util.ArrayList<Animais>());
+        //pesquisa.ListagemAnimais(new java.util.ArrayList<Animais>());
         List<Animais> teste = (List<Animais>)pesquisa.getObjBuscados();
         System.out.println(teste.get(0).getNome());
     }

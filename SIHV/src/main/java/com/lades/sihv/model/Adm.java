@@ -98,7 +98,7 @@ public class Adm  implements java.io.Serializable {
     }
     
     public void setAdmLogin(String admLogin) {
-        this.admLogin = admLogin;
+        this.admLogin = com.lades.sihv.BeautyText.Do(admLogin);
     }
 
     

@@ -69,10 +69,15 @@
                              value="#{MasterControle.animalControle.animal.pelagem}"
                              title="Informe a pelagem do animal"
                              required="true"
-                             requiredMessage="Informe a pelagem do animal!">
-                <f:selectItem itemLabel="Selecione a pelagem" itemValue=""/>
-                <f:selectItems value="#{MasterControle.animalControle.listaPelagem}" />
+                             editable="true"
+                             requiredMessage="Informe a pelagem do animal!"
+                             >
+                <f:selectItem itemLabel="Selecione a pelagem" itemDisabled="true" itemValue=""/>
+                <f:selectItems value="#{MasterControle.animalControle.listaPelagem}" />           
+
             </p:selectOneMenu>
+            
+            
             <p:message for="pelagem" />
             
         
