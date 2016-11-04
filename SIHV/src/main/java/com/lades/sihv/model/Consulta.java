@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 04/11/2016 12:18:16 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -39,7 +39,6 @@ public class Consulta  implements java.io.Serializable {
      private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
      private Set<SisTegumentar> sisTegumentars = new HashSet<SisTegumentar>(0);
      private Set<Anamnese> anamneses = new HashSet<Anamnese>(0);
-     private Set<SisNeurologico> sisNeurologicos = new HashSet<SisNeurologico>(0);
 
     public Consulta() {
     }
@@ -50,7 +49,7 @@ public class Consulta  implements java.io.Serializable {
         this.animais = animais;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisRespCardio> sisRespCardios, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisNeurologico> sisNeurologicos) {
+    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisRespCardio> sisRespCardios, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses) {
        this.adm = adm;
        this.animais = animais;
        this.dataConsulta = dataConsulta;
@@ -60,7 +59,6 @@ public class Consulta  implements java.io.Serializable {
        this.sisUrinarioMamarias = sisUrinarioMamarias;
        this.sisTegumentars = sisTegumentars;
        this.anamneses = anamneses;
-       this.sisNeurologicos = sisNeurologicos;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -163,15 +161,6 @@ public class Consulta  implements java.io.Serializable {
     
     public void setAnamneses(Set<Anamnese> anamneses) {
         this.anamneses = anamneses;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisNeurologico> getSisNeurologicos() {
-        return this.sisNeurologicos;
-    }
-    
-    public void setSisNeurologicos(Set<SisNeurologico> sisNeurologicos) {
-        this.sisNeurologicos = sisNeurologicos;
     }
 
 

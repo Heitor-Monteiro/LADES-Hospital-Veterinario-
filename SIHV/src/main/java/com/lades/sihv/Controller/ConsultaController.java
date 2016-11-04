@@ -19,8 +19,8 @@ import com.lades.sihv.model.SisRespCardio;
 import com.lades.sihv.model.SisRespCardioId;
 import com.lades.sihv.model.SisUrinarioMamaria;
 import com.lades.sihv.model.SisUrinarioMamariaId;
-//import com.lades.sihv.model.SisTegumentar;
-//import com.lades.sihv.model.SisTegumentarId;
+import com.lades.sihv.model.SisTegumentar;
+import com.lades.sihv.model.SisTegumentarId;
 //import com.lades.sihv.model.SisNeurologico;
 //import com.lades.sihv.model.SisNeurologicoId;
 import java.io.Serializable;
@@ -60,6 +60,9 @@ public class ConsultaController implements Serializable{
     private SisUrinarioMamaria sisUrinarioMamaria;
     private SisUrinarioMamariaId sisUrinarioMamariaId;
     
+    private SisTegumentar sisTegumentar;
+    private SisTegumentarId sisTegumentarId;
+    
     
     
     
@@ -85,8 +88,11 @@ public class ConsultaController implements Serializable{
         sisRespCardio =  new SisRespCardio();
         sisRespCardioId =  new SisRespCardioId();
         
-//        sisUrinarioMamaria =  new SisUrinarioMamaria();
-//        sisUrinarioMamariaId = new SisUrinarioMamariaId();
+        sisUrinarioMamaria =  new SisUrinarioMamaria();
+        sisUrinarioMamariaId = new SisUrinarioMamariaId();
+        
+        sisTegumentar =  new SisTegumentar();
+        sisTegumentarId =  new SisTegumentarId();
     }
     
     
@@ -99,8 +105,6 @@ public class ConsultaController implements Serializable{
     confirmaMEDICO()*/
     public void adicionarNovaConsulta(Animais animais){
         try {
-            
-            
             novaConsulta.setDataConsulta(data);
             novaConsulta.setSistemasAfetados("Teste de sistemas afetados");
             novaConsulta.setAnimais(animais);
@@ -121,10 +125,17 @@ public class ConsultaController implements Serializable{
                 sisRespCardioId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
                 sisRespCardio.setId(sisRespCardioId);
                 
+                sisUrinarioMamariaId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisUrinarioMamaria.setId(sisUrinarioMamariaId);
+                
+                sisTegumentarId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisTegumentar.setId(sisTegumentarId);
                 
                 daoGenerico.save(anamnese);
                 daoGenerico.save(sisDigestorio);
                 daoGenerico.save(sisRespCardio);
+                daoGenerico.save(sisUrinarioMamaria);
+                daoGenerico.save(sisTegumentar);
                 
                 message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
             }
@@ -254,7 +265,7 @@ public class ConsultaController implements Serializable{
     //------------------------------------------------------------------
     
     
-    //------GETs & SETs SisUrinarioMamaria
+    //------GETs & SETs SisUrinarioMamaria------------------------------
     public SisUrinarioMamaria getSisUrinarioMamaria() {
         return sisUrinarioMamaria;
     }
@@ -263,4 +274,13 @@ public class ConsultaController implements Serializable{
         this.sisUrinarioMamaria = sisUrinarioMamaria;
     }
     //-----------------------------------------------------------------
+
+    //------GETs & SETs SisTegumentar----------------------------------
+    public SisTegumentar getSisTegumentar() {
+        return sisTegumentar;
+    }
+
+    public void setSisTegumentar(SisTegumentar sisTegumentar) {
+        this.sisTegumentar = sisTegumentar;
+    }
 }

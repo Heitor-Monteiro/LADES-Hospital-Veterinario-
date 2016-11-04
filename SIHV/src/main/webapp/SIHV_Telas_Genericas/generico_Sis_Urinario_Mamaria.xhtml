@@ -18,7 +18,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu1" />
             <p:selectOneRadio id="UrianGlandu1"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.ingestHidrica}"
                               layout="responsive"
                               columns="3"
                               required="true"
@@ -39,7 +39,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu2" />
             <p:inputTextarea id="UrianGlandu2" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisUrinarioMamaria.ingestHidricaEvolu}"
                              required="false"
                              requiredMessage=""
                              maxlength="200"
@@ -57,7 +57,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu3" />
             <p:selectOneRadio id="UrianGlandu3"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.estadoUrina}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -77,10 +77,10 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu4" />
             <p:selectOneMenu id="UrianGlandu4"
-                              value="#"
-                              required="true"
-                              requiredMessage="Informe o estado da urina!"
-                              style="margin-bottom: 20px;" >
+                             value="#{MasterControle.consultaControle.sisUrinarioMamaria.urina}"
+                             required="true"
+                             requiredMessage="Informe o estado da urina!"
+                             style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Selecione" itemValue="" />
                 <f:selectItem itemLabel="Anúria" itemValue="ANURIA" />
                 <f:selectItem itemLabel="Oligúria" itemValue="OLIGURIA" />
@@ -100,7 +100,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu5" />
             <p:inputTextarea id="UrianGlandu5" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisUrinarioMamaria.urinaAspecto}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -116,7 +116,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu6" />
             <p:inputTextarea id="UrianGlandu6" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisUrinarioMamaria.urinaEvolu}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -134,6 +134,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu7" />
             <p:calendar id="UrianGlandu7" 
+                        value="#{MasterControle.consultaControle.sisUrinarioMamaria.ultimoCio}"
                         maxlength="10" 
                         disabled="false" 
                         title="" 
@@ -156,7 +157,8 @@
             <p:outputLabel value="Último parto:"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu8" />
-            <p:calendar id="UrianGlandu8" 
+            <p:calendar id="UrianGlandu8"
+                        value="#{MasterControle.consultaControle.sisUrinarioMamaria.ultimoParto}"
                         maxlength="10" 
                         disabled="false" 
                         title="" 
@@ -178,7 +180,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu9" />
             <p:selectOneRadio id="UrianGlandu9"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.secreVagiPeni}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -200,7 +202,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu10" />
             <p:inputText id="UrianGlandu10" 
-                         value="#"
+                         value="#{MasterControle.consultaControle.sisUrinarioMamaria.secreVagiPeniTipo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -219,7 +221,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu11" />
             <p:inputTextarea id="UrianGlandu11" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisUrinarioMamaria.secreVagiPeniEvolu}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -235,7 +237,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu12" />
             <p:selectOneRadio id="UrianGlandu12"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.castrado}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -255,7 +257,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="UrianGlandu13" />
             <p:selectOneRadio id="UrianGlandu13"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.prenhe}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -265,6 +267,27 @@
                 <f:selectItem itemLabel="Não" itemValue="NÃO" />
             </p:selectOneRadio>
             <p:message for="UrianGlandu13" />
+            
+            
+            
+            
+            
+            
+            
+            <p:outputLabel value="O sistema foi afetado?"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="UrianGlandu14" />
+            <p:selectOneRadio id="UrianGlandu14"
+                              layout="responsive"
+                              columns="2"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.sistemaAfetado}"
+                              required="true"
+                              requiredMessage="Informe se o sistema foi afetado!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu14" />
 
         </p:panelGrid>    
     </div>
