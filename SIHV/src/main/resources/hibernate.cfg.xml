@@ -12,14 +12,17 @@
     <property name="hibernate.query.factory_class">org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory</property>
     <mapping resource="com/lades/sihv/model/Animais.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisRespCardio.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/SisOftalmico.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Anamnese.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisTegumentar.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/SisMuscEsque.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Cliente.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pessoa.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Adm.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisUrinarioMamaria.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Telefone.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Consulta.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/SisNeurologico.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pelagem.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisDigestorio.hbm.xml"/>
   </session-factory>

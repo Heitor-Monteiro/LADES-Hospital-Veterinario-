@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/11/2016 14:35:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.SisMuscEsque" table="Sis_MuscEsque" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.SisMuscEsqueId">
+            <key-property name="pkSisMuscEsque" type="int">
+                <column name="PK_Sis_MuscEsque" />
+            </key-property>
+            <key-property name="consultaPkConsulta" type="int">
+                <column name="consulta_PK_consulta" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
+            <column name="consulta_PK_consulta" not-null="true" />
+        </many-to-one>
+        <property name="claudicacao" type="string">
+            <column name="Claudicacao" length="3" not-null="true" />
+        </property>
+        <property name="claudicacaoEvolu" type="string">
+            <column name="ClaudicacaoEvolu" length="50" />
+        </property>
+        <property name="fraturas" type="string">
+            <column name="Fraturas" length="3" not-null="true" />
+        </property>
+        <property name="fraturasEvolu" type="string">
+            <column name="FraturasEvolu" length="50" />
+        </property>
+        <property name="atrofMusc" type="string">
+            <column name="AtrofMusc" length="3" not-null="true" />
+        </property>
+        <property name="atrofMuscEvolu" type="string">
+            <column name="AtrofMuscEvolu" length="50" />
+        </property>
+        <property name="sistemaAfetado" type="string">
+            <column name="SistemaAfetado" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

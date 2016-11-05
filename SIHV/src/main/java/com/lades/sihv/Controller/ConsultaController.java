@@ -21,8 +21,12 @@ import com.lades.sihv.model.SisUrinarioMamaria;
 import com.lades.sihv.model.SisUrinarioMamariaId;
 import com.lades.sihv.model.SisTegumentar;
 import com.lades.sihv.model.SisTegumentarId;
-//import com.lades.sihv.model.SisNeurologico;
-//import com.lades.sihv.model.SisNeurologicoId;
+import com.lades.sihv.model.SisNeurologico;
+import com.lades.sihv.model.SisNeurologicoId;
+import com.lades.sihv.model.SisOftalmico;
+import com.lades.sihv.model.SisOftalmicoId;
+import com.lades.sihv.model.SisMuscEsque;
+import com.lades.sihv.model.SisMuscEsqueId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -63,8 +67,14 @@ public class ConsultaController implements Serializable{
     private SisTegumentar sisTegumentar;
     private SisTegumentarId sisTegumentarId;
     
+    private SisNeurologico sisNeurologico;
+    private SisNeurologicoId sisNeurologicoId;
     
+    private SisOftalmico sisOftalmico;
+    private SisOftalmicoId sisOftalmicoId;
     
+    private SisMuscEsque sisMuscEsque;
+    private SisMuscEsqueId sisMuscEsqueId;
     
     
     
@@ -93,6 +103,15 @@ public class ConsultaController implements Serializable{
         
         sisTegumentar =  new SisTegumentar();
         sisTegumentarId =  new SisTegumentarId();
+        
+        sisNeurologico = new SisNeurologico();
+        sisNeurologicoId = new SisNeurologicoId();
+    
+        sisOftalmico = new SisOftalmico();
+        sisOftalmicoId =  new SisOftalmicoId();
+    
+        sisMuscEsque = new SisMuscEsque();
+        sisMuscEsqueId = new SisMuscEsqueId();
     }
     
     
@@ -131,11 +150,23 @@ public class ConsultaController implements Serializable{
                 sisTegumentarId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
                 sisTegumentar.setId(sisTegumentarId);
                 
+                sisNeurologicoId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisNeurologico.setId(sisNeurologicoId);
+                
+                sisOftalmicoId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisOftalmico.setId(sisOftalmicoId);
+                
+                sisMuscEsqueId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisMuscEsque.setId(sisMuscEsqueId);
+                
                 daoGenerico.save(anamnese);
                 daoGenerico.save(sisDigestorio);
                 daoGenerico.save(sisRespCardio);
                 daoGenerico.save(sisUrinarioMamaria);
                 daoGenerico.save(sisTegumentar);
+                daoGenerico.save(sisNeurologico);
+                daoGenerico.save(sisOftalmico);
+                daoGenerico.save(sisMuscEsque);
                 
                 message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
             }
@@ -283,4 +314,38 @@ public class ConsultaController implements Serializable{
     public void setSisTegumentar(SisTegumentar sisTegumentar) {
         this.sisTegumentar = sisTegumentar;
     }
+    //-----------------------------------------------------------------
+    
+    //------GETs & SETs SisNeurologico----------------------------------
+    public SisNeurologico getSisNeurologico() {
+        return sisNeurologico;
+    }
+
+    public void setSisNeurologico(SisNeurologico sisNeurologico) {
+        this.sisNeurologico = sisNeurologico;
+    }
+    //-----------------------------------------------------------------
+
+    //------GETs & SETs SisOftalmico----------------------------------
+    public SisOftalmico getSisOftalmico() {
+        return sisOftalmico;
+    }
+
+    public void setSisOftalmico(SisOftalmico sisOftalmico) {
+        this.sisOftalmico = sisOftalmico;
+    }
+    //-----------------------------------------------------------------
+
+    //------GETs & SETs SisMuscEsque----------------------------------
+    public SisMuscEsque getSisMuscEsque() {
+        return sisMuscEsque;
+    }
+
+    public void setSisMuscEsque(SisMuscEsque sisMuscEsque) {
+        this.sisMuscEsque = sisMuscEsque;
+    }
+    //-----------------------------------------------------------------
+    
+    
+    
 }

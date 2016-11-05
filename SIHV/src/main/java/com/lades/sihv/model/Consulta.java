@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 04/11/2016 12:18:16 by Hibernate Tools 4.3.1
+// Generated 04/11/2016 14:35:29 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,11 +34,14 @@ public class Consulta  implements java.io.Serializable {
      private Animais animais;
      private Date dataConsulta;
      private String sistemasAfetados;
+     private Set<SisOftalmico> sisOftalmicos = new HashSet<SisOftalmico>(0);
      private Set<SisRespCardio> sisRespCardios = new HashSet<SisRespCardio>(0);
      private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
      private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
      private Set<SisTegumentar> sisTegumentars = new HashSet<SisTegumentar>(0);
+     private Set<SisMuscEsque> sisMuscEsques = new HashSet<SisMuscEsque>(0);
      private Set<Anamnese> anamneses = new HashSet<Anamnese>(0);
+     private Set<SisNeurologico> sisNeurologicos = new HashSet<SisNeurologico>(0);
 
     public Consulta() {
     }
@@ -49,16 +52,19 @@ public class Consulta  implements java.io.Serializable {
         this.animais = animais;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisRespCardio> sisRespCardios, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses) {
+    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisOftalmico> sisOftalmicos, Set<SisRespCardio> sisRespCardios, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<SisTegumentar> sisTegumentars, Set<SisMuscEsque> sisMuscEsques, Set<Anamnese> anamneses, Set<SisNeurologico> sisNeurologicos) {
        this.adm = adm;
        this.animais = animais;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
+       this.sisOftalmicos = sisOftalmicos;
        this.sisRespCardios = sisRespCardios;
        this.sisDigestorios = sisDigestorios;
        this.sisUrinarioMamarias = sisUrinarioMamarias;
        this.sisTegumentars = sisTegumentars;
+       this.sisMuscEsques = sisMuscEsques;
        this.anamneses = anamneses;
+       this.sisNeurologicos = sisNeurologicos;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -119,6 +125,15 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<SisOftalmico> getSisOftalmicos() {
+        return this.sisOftalmicos;
+    }
+    
+    public void setSisOftalmicos(Set<SisOftalmico> sisOftalmicos) {
+        this.sisOftalmicos = sisOftalmicos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
     public Set<SisRespCardio> getSisRespCardios() {
         return this.sisRespCardios;
     }
@@ -155,12 +170,30 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<SisMuscEsque> getSisMuscEsques() {
+        return this.sisMuscEsques;
+    }
+    
+    public void setSisMuscEsques(Set<SisMuscEsque> sisMuscEsques) {
+        this.sisMuscEsques = sisMuscEsques;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
     public Set<Anamnese> getAnamneses() {
         return this.anamneses;
     }
     
     public void setAnamneses(Set<Anamnese> anamneses) {
         this.anamneses = anamneses;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<SisNeurologico> getSisNeurologicos() {
+        return this.sisNeurologicos;
+    }
+    
+    public void setSisNeurologicos(Set<SisNeurologico> sisNeurologicos) {
+        this.sisNeurologicos = sisNeurologicos;
     }
 
 

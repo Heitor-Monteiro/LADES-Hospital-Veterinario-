@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/11/2016 14:35:30 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.SisOftalmico" table="Sis_Oftalmico" catalog="BD_SIHV" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.SisOftalmicoId">
+            <key-property name="pkSisOftalmico" type="int">
+                <column name="PK_Sis_Oftalmico" />
+            </key-property>
+            <key-property name="consultaPkConsulta" type="int">
+                <column name="consulta_PK_consulta" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
+            <column name="consulta_PK_consulta" not-null="true" />
+        </many-to-one>
+        <property name="olhos" type="string">
+            <column name="Olhos" length="10" not-null="true" />
+        </property>
+        <property name="secreOcular" type="string">
+            <column name="SecreOcular" length="3" not-null="true" />
+        </property>
+        <property name="secreOcularUniBi" type="string">
+            <column name="SecreOcularUniBi" length="10" />
+        </property>
+        <property name="secreOculaTipo" type="string">
+            <column name="SecreOculaTipo" length="50" />
+        </property>
+        <property name="secreOculaEvolu" type="string">
+            <column name="SecreOculaEvolu" length="200" />
+        </property>
+        <property name="blefaroespasmo" type="string">
+            <column name="Blefaroespasmo" length="3" not-null="true" />
+        </property>
+        <property name="blefaroComenta" type="string">
+            <column name="BlefaroComenta" length="50" />
+        </property>
+        <property name="exoftalmia" type="string">
+            <column name="Exoftalmia" length="3" not-null="true" />
+        </property>
+        <property name="exoftalComenra" type="string">
+            <column name="ExoftalComenra" length="50" />
+        </property>
+        <property name="sisOftalmicocol" type="string">
+            <column name="Sis_Oftalmicocol" length="45" />
+        </property>
+        <property name="sisOftalmicocol1" type="string">
+            <column name="Sis_Oftalmicocol1" length="45" />
+        </property>
+        <property name="sistemaAfetado" type="string">
+            <column name="SistemaAfetado" length="7" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

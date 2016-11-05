@@ -18,7 +18,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro1" />
             <p:selectOneMenu id="Neuro1"
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisNeurologico.consciencia}"
                              required="true"
                              requiredMessage="Informe o estado de consciência!"
                              style="margin-bottom: 20px;" >
@@ -41,7 +41,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro2" />
             <p:selectOneMenu id="Neuro2"
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisNeurologico.comportamento}"
                              required="true"
                              requiredMessage="Informe o comportamento!"
                              style="margin-bottom: 20px;" >
@@ -64,7 +64,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro3" />
             <p:selectOneRadio id="Neuro3"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisNeurologico.ataxia}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -84,7 +84,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro4" />
             <p:inputText id="Neuro4" 
-                         value="#"
+                         value="#{MasterControle.consultaControle.sisNeurologico.ataxiaTipo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -100,11 +100,11 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro5" />
             <p:inputTextarea id="Neuro5" 
-                         value="#"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;"
-                         maxlength="200" />
+                             value="#{MasterControle.consultaControle.sisNeurologico.ataxiaEvolu}"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;"
+                             maxlength="200" />
             <p:message for="Neuro5" />
 
 
@@ -120,7 +120,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro6" />
             <p:selectOneRadio id="Neuro6"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisNeurologico.paralisia}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -148,7 +148,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro7" />
             <p:selectOneRadio id="Neuro7"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisNeurologico.paralisiaEspFla}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -172,7 +172,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro8" />
             <p:inputText id="Neuro8" 
-                         value="#"
+                         value="#{MasterControle.consultaControle.sisNeurologico.paralisiaTipo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -191,7 +191,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro9" />
             <p:inputTextarea id="Neuro9" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisNeurologico.paralisiaEvolu}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -214,7 +214,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro10" />
             <p:selectOneRadio id="Neuro10"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisNeurologico.convulsao}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -236,7 +236,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro11" />
             <p:inputText id="Neuro11" 
-                         value="#"
+                         value="#{MasterControle.consultaControle.sisNeurologico.convulsaoTipo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -255,7 +255,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro12" />
             <p:inputTextarea id="Neuro12" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.sisNeurologico.convulsaoEvolu}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -273,7 +273,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Neuro13" />
             <p:selectOneRadio id="Neuro13"
-                              value="#"
+                              value="#{MasterControle.consultaControle.sisNeurologico.audicao}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -283,6 +283,31 @@
                 <f:selectItem itemLabel="Perda auditiva" itemValue="PERDA" />
             </p:selectOneRadio>
             <p:message for="Neuro13" />
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <p:outputLabel value="O sistema foi afetado?"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="Neuro14" />
+            <p:selectOneRadio id="Neuro14"
+                              layout="responsive"
+                              columns="2"
+                              value="#{MasterControle.consultaControle.sisNeurologico.sistemaAfetado}"
+                              required="true"
+                              requiredMessage="Informe se o sistema foi afetado!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+            </p:selectOneRadio>
+            <p:message for="Neuro14" />
 
         </p:panelGrid>    
     </div>

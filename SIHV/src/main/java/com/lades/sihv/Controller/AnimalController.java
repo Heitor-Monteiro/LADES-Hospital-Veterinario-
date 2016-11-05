@@ -10,6 +10,7 @@ import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.Pelagem;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -78,9 +79,9 @@ public class AnimalController implements Serializable{
                 newPelagem=false;
         }
         if(newPelagem){
-            com.lades.sihv.model.Pelagem nova = new com.lades.sihv.model.Pelagem();
-            nova.setNomePelagem(animal.getPelagem());
-            daoGenerico.save(nova);
+            Pelagem novaPelagem = new Pelagem();
+            novaPelagem.setNomePelagem(animal.getPelagem());
+            daoGenerico.save(novaPelagem);
         }
         daoGenerico.save(animal);
 
