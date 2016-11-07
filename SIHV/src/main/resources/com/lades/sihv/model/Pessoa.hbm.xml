@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 04/11/2016 17:26:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Pessoa" table="pessoa" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkPessoa" type="java.lang.Integer">
@@ -9,46 +9,46 @@
             <generator class="identity" />
         </id>
         <property name="cpf" type="long">
-            <column name="CPF" not-null="true" unique="true" />
+            <column name="cpf" not-null="true" unique="true" />
         </property>
         <property name="rg" type="int">
-            <column name="RG" not-null="true" />
+            <column name="rg" not-null="true" />
         </property>
         <property name="nome" type="string">
-            <column name="NOME" length="100" not-null="true" />
+            <column name="nome" length="100" not-null="true" />
         </property>
         <property name="sexo" type="string">
-            <column name="SEXO" length="3" not-null="true" />
+            <column name="sexo" length="3" not-null="true" />
         </property>
         <property name="logra" type="string">
-            <column name="LOGRA" length="100" not-null="true" />
+            <column name="logra" length="100" not-null="true" />
         </property>
         <property name="casaNumero" type="string">
-            <column name="CASA_NUMERO" length="7" not-null="true" />
+            <column name="casaNumero" length="7" not-null="true" />
         </property>
         <property name="bairro" type="string">
-            <column name="BAIRRO" length="100" not-null="true" />
+            <column name="bairro" length="100" not-null="true" />
         </property>
         <property name="cidade" type="string">
-            <column name="CIDADE" length="100" not-null="true" />
+            <column name="cidade" length="100" not-null="true" />
         </property>
         <property name="cep" type="int">
-            <column name="CEP" not-null="true" />
+            <column name="cep" not-null="true" />
         </property>
         <property name="complemento" type="string">
-            <column name="COMPLEMENTO" length="100" />
+            <column name="complemento" length="100" />
         </property>
         <property name="uf" type="string">
-            <column name="UF" length="80" not-null="true" />
+            <column name="uf" length="80" not-null="true" />
         </property>
         <property name="cadDataHora" type="timestamp">
-            <column name="CAD_DATA_HORA" length="19" not-null="true" />
+            <column name="cadDataHora" length="19" not-null="true" />
         </property>
         <property name="exclusaoLogica" type="java.lang.Boolean">
             <column name="exclusaoLogica" />
         </property>
         <property name="email" type="string">
-            <column name="email" length="50" />
+            <column name="email" length="100" not-null="true" />
         </property>
         <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
             <key>
@@ -58,15 +58,15 @@
         </set>
         <set name="telefones" table="telefone" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="pessoa_PK_pessoa" not-null="true" />
+                <column name="FK_pessoa" not-null="true" />
             </key>
             <one-to-many class="com.lades.sihv.model.Telefone" />
         </set>
-        <set name="adms" table="adm" inverse="true" lazy="true" fetch="select">
+        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="FK_pessoa" not-null="true" />
             </key>
-            <one-to-many class="com.lades.sihv.model.Adm" />
+            <one-to-many class="com.lades.sihv.model.User" />
         </set>
     </class>
 </hibernate-mapping>

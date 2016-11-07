@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 04/11/2016 14:35:29 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,21 +24,23 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="consulta"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Consulta  implements java.io.Serializable {
 
 
      private Integer pkConsulta;
-     private Adm adm;
      private Animais animais;
+     private User user;
      private Date dataConsulta;
      private String sistemasAfetados;
+     private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
      private Set<SisOftalmico> sisOftalmicos = new HashSet<SisOftalmico>(0);
      private Set<SisRespCardio> sisRespCardios = new HashSet<SisRespCardio>(0);
-     private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
      private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
+     private Set<ExameFisico> exameFisicos = new HashSet<ExameFisico>(0);
      private Set<SisTegumentar> sisTegumentars = new HashSet<SisTegumentar>(0);
+     private Set<ExameImage> exameImages = new HashSet<ExameImage>(0);
      private Set<SisMuscEsque> sisMuscEsques = new HashSet<SisMuscEsque>(0);
      private Set<Anamnese> anamneses = new HashSet<Anamnese>(0);
      private Set<SisNeurologico> sisNeurologicos = new HashSet<SisNeurologico>(0);
@@ -47,21 +49,23 @@ public class Consulta  implements java.io.Serializable {
     }
 
 	
-    public Consulta(Adm adm, Animais animais, Date dataConsulta) {
-        this.adm = adm;
+    public Consulta(Animais animais, User user, Date dataConsulta) {
         this.animais = animais;
+        this.user = user;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Adm adm, Animais animais, Date dataConsulta, String sistemasAfetados, Set<SisOftalmico> sisOftalmicos, Set<SisRespCardio> sisRespCardios, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<SisTegumentar> sisTegumentars, Set<SisMuscEsque> sisMuscEsques, Set<Anamnese> anamneses, Set<SisNeurologico> sisNeurologicos) {
-       this.adm = adm;
+    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, Set<SisDigestorio> sisDigestorios, Set<SisOftalmico> sisOftalmicos, Set<SisRespCardio> sisRespCardios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameFisico> exameFisicos, Set<SisTegumentar> sisTegumentars, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<Anamnese> anamneses, Set<SisNeurologico> sisNeurologicos) {
        this.animais = animais;
+       this.user = user;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
+       this.sisDigestorios = sisDigestorios;
        this.sisOftalmicos = sisOftalmicos;
        this.sisRespCardios = sisRespCardios;
-       this.sisDigestorios = sisDigestorios;
        this.sisUrinarioMamarias = sisUrinarioMamarias;
+       this.exameFisicos = exameFisicos;
        this.sisTegumentars = sisTegumentars;
+       this.exameImages = exameImages;
        this.sisMuscEsques = sisMuscEsques;
        this.anamneses = anamneses;
        this.sisNeurologicos = sisNeurologicos;
@@ -81,19 +85,7 @@ public class Consulta  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="adm_PK_adm", referencedColumnName="PK_adm", nullable=false), 
-        @JoinColumn(name="adm_FK_pessoa", referencedColumnName="FK_pessoa", nullable=false) } )
-    public Adm getAdm() {
-        return this.adm;
-    }
-    
-    public void setAdm(Adm adm) {
-        this.adm = adm;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( { 
-        @JoinColumn(name="animais_PK_animal", referencedColumnName="PK_animal", nullable=false), 
+        @JoinColumn(name="animais_FK_animal", referencedColumnName="PK_animal", nullable=false), 
         @JoinColumn(name="animais_cliente_FK_cliente", referencedColumnName="cliente_FK_cliente", nullable=false), 
         @JoinColumn(name="animais_cliente_FK_pessoa", referencedColumnName="cliente_FK_pessoa", nullable=false) } )
     public Animais getAnimais() {
@@ -104,8 +96,20 @@ public class Consulta  implements java.io.Serializable {
         this.animais = animais;
     }
 
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumns( { 
+        @JoinColumn(name="user_FK_user", referencedColumnName="PK_user", nullable=false), 
+        @JoinColumn(name="user_FK_pessoa", referencedColumnName="FK_pessoa", nullable=false) } )
+    public User getUser() {
+        return this.user;
+    }
+    
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="DataConsulta", nullable=false, length=19)
+    @Column(name="dataConsulta", nullable=false, length=19)
     public Date getDataConsulta() {
         return this.dataConsulta;
     }
@@ -115,13 +119,22 @@ public class Consulta  implements java.io.Serializable {
     }
 
     
-    @Column(name="SistemasAfetados", length=500)
+    @Column(name="sistemasAfetados", length=500)
     public String getSistemasAfetados() {
         return this.sistemasAfetados;
     }
     
     public void setSistemasAfetados(String sistemasAfetados) {
         this.sistemasAfetados = sistemasAfetados;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<SisDigestorio> getSisDigestorios() {
+        return this.sisDigestorios;
+    }
+    
+    public void setSisDigestorios(Set<SisDigestorio> sisDigestorios) {
+        this.sisDigestorios = sisDigestorios;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
@@ -143,15 +156,6 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisDigestorio> getSisDigestorios() {
-        return this.sisDigestorios;
-    }
-    
-    public void setSisDigestorios(Set<SisDigestorio> sisDigestorios) {
-        this.sisDigestorios = sisDigestorios;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
     public Set<SisUrinarioMamaria> getSisUrinarioMamarias() {
         return this.sisUrinarioMamarias;
     }
@@ -161,12 +165,30 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<ExameFisico> getExameFisicos() {
+        return this.exameFisicos;
+    }
+    
+    public void setExameFisicos(Set<ExameFisico> exameFisicos) {
+        this.exameFisicos = exameFisicos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
     public Set<SisTegumentar> getSisTegumentars() {
         return this.sisTegumentars;
     }
     
     public void setSisTegumentars(Set<SisTegumentar> sisTegumentars) {
         this.sisTegumentars = sisTegumentars;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
+    public Set<ExameImage> getExameImages() {
+        return this.exameImages;
+    }
+    
+    public void setExameImages(Set<ExameImage> exameImages) {
+        this.exameImages = exameImages;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")

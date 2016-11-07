@@ -1,58 +1,58 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.lades.sihv.model.SisDigestorio" table="sis_digestorio" catalog="BD_SIHV" optimistic-lock="version">
+    <class name="com.lades.sihv.model.SisDigestorio" table="sisDigestorio" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisDigestorioId">
             <key-property name="pkSisDigestorio" type="int">
-                <column name="PK_sis_digestorio" />
+                <column name="PK_sisDigestorio" />
             </key-property>
-            <key-property name="consultaPkConsulta" type="int">
-                <column name="consulta_PK_consulta" />
+            <key-property name="consultaFkConsulta" type="int">
+                <column name="consulta_FK_consulta" />
             </key-property>
         </composite-id>
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
-            <column name="consulta_PK_consulta" not-null="true" />
+            <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="estaSeAlimentando" type="string">
-            <column name="EstaSeAlimentando" length="3" not-null="true" />
+            <column name="estaSeAlimentando" length="3" not-null="true" />
         </property>
         <property name="descriNaoSeAlimeta" type="string">
-            <column name="DescriNaoSeAlimeta" length="200" />
+            <column name="descriNaoSeAlimeta" length="200" />
         </property>
         <property name="vomito" type="string">
-            <column name="Vomito" length="3" not-null="true" />
+            <column name="vomito" length="3" not-null="true" />
         </property>
         <property name="aspectoVomito" type="string">
-            <column name="AspectoVomito" length="100" />
+            <column name="aspectoVomito" length="100" />
         </property>
         <property name="evoluVomito" type="string">
-            <column name="EvoluVomito" length="200" />
+            <column name="evoluVomito" length="200" />
         </property>
         <property name="regurgitacao" type="string">
-            <column name="Regurgitacao" length="3" not-null="true" />
+            <column name="regurgitacao" length="3" not-null="true" />
         </property>
         <property name="evoluRegurgitacao" type="string">
-            <column name="EvoluRegurgitacao" length="200" />
+            <column name="evoluRegurgitacao" length="200" />
         </property>
         <property name="diarreia" type="string">
-            <column name="Diarreia" length="3" not-null="true" />
+            <column name="diarreia" length="3" not-null="true" />
         </property>
         <property name="aspectDiarreia" type="string">
-            <column name="AspectDiarreia" length="100" />
+            <column name="aspectDiarreia" length="100" />
         </property>
         <property name="evoluDiarreia" type="string">
-            <column name="EvoluDiarreia" length="100" />
+            <column name="evoluDiarreia" length="100" />
         </property>
         <property name="disquesiaTenesmo" type="string">
-            <column name="DisquesiaTenesmo" length="3" not-null="true" />
+            <column name="disquesiaTenesmo" length="3" not-null="true" />
         </property>
         <property name="evoluDisquesiaTenesmo" type="string">
-            <column name="EvoluDisquesiaTenesmo" length="100" />
+            <column name="evoluDisquesiaTenesmo" length="100" />
         </property>
         <property name="sistemaAfetado" type="string">
-            <column name="SistemaAfetado" length="7" not-null="true" />
+            <column name="sistemaAfetado" length="7" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

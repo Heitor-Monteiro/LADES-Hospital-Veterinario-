@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -17,7 +17,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="telefone"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Telefone  implements java.io.Serializable {
 
@@ -47,7 +47,7 @@ public class Telefone  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="pessoa_PK_pessoa", nullable=false)
+    @JoinColumn(name="FK_pessoa", nullable=false)
     public Pessoa getPessoa() {
         return this.pessoa;
     }

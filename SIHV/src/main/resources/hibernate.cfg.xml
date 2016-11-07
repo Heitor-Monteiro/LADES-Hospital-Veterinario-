@@ -4,7 +4,7 @@
   <session-factory>
     <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
     <property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
-    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/BD_SIHV</property>
+    <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/bd_sihv</property>
     <property name="hibernate.connection.username">root</property>
     <property name="hibernate.connection.password">ssxq9d9rssx</property>
     <property name="hibernate.show_sql">true</property>
@@ -13,17 +13,19 @@
     <mapping resource="com/lades/sihv/model/Animais.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisRespCardio.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisOftalmico.hbm.xml"/>
-    <mapping resource="com/lades/sihv/model/Anamnese.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/ExameImage.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisTegumentar.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/Anamnese.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisMuscEsque.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Cliente.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pessoa.hbm.xml"/>
-    <mapping resource="com/lades/sihv/model/Adm.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisUrinarioMamaria.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Telefone.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/User.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Consulta.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisNeurologico.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pelagem.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/ExameFisico.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisDigestorio.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

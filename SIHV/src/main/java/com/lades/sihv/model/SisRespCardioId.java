@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,19 +13,19 @@ public class SisRespCardioId  implements java.io.Serializable {
 
 
      private int pkSisRespCardio;
-     private int consultaPkConsulta;
+     private int consultaFkConsulta;
 
     public SisRespCardioId() {
     }
 
-    public SisRespCardioId(int pkSisRespCardio, int consultaPkConsulta) {
+    public SisRespCardioId(int pkSisRespCardio, int consultaFkConsulta) {
        this.pkSisRespCardio = pkSisRespCardio;
-       this.consultaPkConsulta = consultaPkConsulta;
+       this.consultaFkConsulta = consultaFkConsulta;
     }
    
 
 
-    @Column(name="PK_Sis_Resp_Cardio", nullable=false)
+    @Column(name="PK_sisRespCardio", nullable=false)
     public int getPkSisRespCardio() {
         return this.pkSisRespCardio;
     }
@@ -35,13 +35,13 @@ public class SisRespCardioId  implements java.io.Serializable {
     }
 
 
-    @Column(name="consulta_PK_consulta", nullable=false)
-    public int getConsultaPkConsulta() {
-        return this.consultaPkConsulta;
+    @Column(name="consulta_FK_consulta", nullable=false)
+    public int getConsultaFkConsulta() {
+        return this.consultaFkConsulta;
     }
     
-    public void setConsultaPkConsulta(int consultaPkConsulta) {
-        this.consultaPkConsulta = consultaPkConsulta;
+    public void setConsultaFkConsulta(int consultaFkConsulta) {
+        this.consultaFkConsulta = consultaFkConsulta;
     }
 
 
@@ -52,14 +52,14 @@ public class SisRespCardioId  implements java.io.Serializable {
 		 SisRespCardioId castOther = ( SisRespCardioId ) other; 
          
 		 return (this.getPkSisRespCardio()==castOther.getPkSisRespCardio())
- && (this.getConsultaPkConsulta()==castOther.getConsultaPkConsulta());
+ && (this.getConsultaFkConsulta()==castOther.getConsultaFkConsulta());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkSisRespCardio();
-         result = 37 * result + this.getConsultaPkConsulta();
+         result = 37 * result + this.getConsultaFkConsulta();
          return result;
    }   
 

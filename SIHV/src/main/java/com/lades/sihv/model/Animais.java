@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="animais"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Animais  implements java.io.Serializable {
 
@@ -32,10 +32,10 @@ public class Animais  implements java.io.Serializable {
      private AnimaisId id;
      private Cliente cliente;
      private String especie;
-     private String nome;
+     private String nomeAnimal;
      private String raca;
      private String pelagem;
-     private String sexo;
+     private String sexoAnimal;
      private int idadeAtual;
      private double peso;
      private Date cadDataHora;
@@ -45,26 +45,26 @@ public class Animais  implements java.io.Serializable {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nome, String raca, String pelagem, String sexo, int idadeAtual, double peso, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, int idadeAtual, double peso, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
-        this.nome = nome;
+        this.nomeAnimal = nomeAnimal;
         this.raca = raca;
         this.pelagem = pelagem;
-        this.sexo = sexo;
+        this.sexoAnimal = sexoAnimal;
         this.idadeAtual = idadeAtual;
         this.peso = peso;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nome, String raca, String pelagem, String sexo, int idadeAtual, double peso, Date cadDataHora, Set<Consulta> consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, int idadeAtual, double peso, Date cadDataHora, Set<Consulta> consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
-       this.nome = nome;
+       this.nomeAnimal = nomeAnimal;
        this.raca = raca;
        this.pelagem = pelagem;
-       this.sexo = sexo;
+       this.sexoAnimal = sexoAnimal;
        this.idadeAtual = idadeAtual;
        this.peso = peso;
        this.cadDataHora = cadDataHora;
@@ -99,7 +99,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="ESPECIE", nullable=false, length=100)
+    @Column(name="especie", nullable=false, length=100)
     public String getEspecie() {
         return this.especie;
     }
@@ -109,17 +109,17 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="NOME", nullable=false, length=70)
-    public String getNome() {
-        return this.nome;
+    @Column(name="nomeAnimal", nullable=false, length=70)
+    public String getNomeAnimal() {
+        return this.nomeAnimal;
     }
     
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNomeAnimal(String nomeAnimal) {
+        this.nomeAnimal = nomeAnimal;
     }
 
     
-    @Column(name="RACA", nullable=false, length=100)
+    @Column(name="raca", nullable=false, length=100)
     public String getRaca() {
         return this.raca;
     }
@@ -129,7 +129,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="PELAGEM", nullable=false, length=100)
+    @Column(name="pelagem", nullable=false, length=100)
     public String getPelagem() {
         return this.pelagem;
     }
@@ -139,17 +139,17 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="SEXO", nullable=false, length=3)
-    public String getSexo() {
-        return this.sexo;
+    @Column(name="sexoAnimal", nullable=false, length=3)
+    public String getSexoAnimal() {
+        return this.sexoAnimal;
     }
     
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSexoAnimal(String sexoAnimal) {
+        this.sexoAnimal = sexoAnimal;
     }
 
     
-    @Column(name="IDADE_ATUAL", nullable=false)
+    @Column(name="idadeAtual", nullable=false)
     public int getIdadeAtual() {
         return this.idadeAtual;
     }
@@ -159,7 +159,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="PESO", nullable=false, precision=22, scale=0)
+    @Column(name="peso", nullable=false, precision=22, scale=0)
     public double getPeso() {
         return this.peso;
     }
@@ -169,7 +169,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="CAD_DATA_HORA", nullable=false, length=19)
+    @Column(name="cadDataHora", nullable=false, length=19)
     public Date getCadDataHora() {
         return this.cadDataHora;
     }

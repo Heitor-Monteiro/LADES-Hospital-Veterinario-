@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,19 +13,19 @@ public class SisNeurologicoId  implements java.io.Serializable {
 
 
      private int pkSisNeurologico;
-     private int consultaPkConsulta;
+     private int consultaFkConsulta;
 
     public SisNeurologicoId() {
     }
 
-    public SisNeurologicoId(int pkSisNeurologico, int consultaPkConsulta) {
+    public SisNeurologicoId(int pkSisNeurologico, int consultaFkConsulta) {
        this.pkSisNeurologico = pkSisNeurologico;
-       this.consultaPkConsulta = consultaPkConsulta;
+       this.consultaFkConsulta = consultaFkConsulta;
     }
    
 
 
-    @Column(name="PK_Sis_Neurologico", nullable=false)
+    @Column(name="PK_sisNeurologico", nullable=false)
     public int getPkSisNeurologico() {
         return this.pkSisNeurologico;
     }
@@ -35,13 +35,13 @@ public class SisNeurologicoId  implements java.io.Serializable {
     }
 
 
-    @Column(name="consulta_PK_consulta", nullable=false)
-    public int getConsultaPkConsulta() {
-        return this.consultaPkConsulta;
+    @Column(name="consulta_FK_consulta", nullable=false)
+    public int getConsultaFkConsulta() {
+        return this.consultaFkConsulta;
     }
     
-    public void setConsultaPkConsulta(int consultaPkConsulta) {
-        this.consultaPkConsulta = consultaPkConsulta;
+    public void setConsultaFkConsulta(int consultaFkConsulta) {
+        this.consultaFkConsulta = consultaFkConsulta;
     }
 
 
@@ -52,14 +52,14 @@ public class SisNeurologicoId  implements java.io.Serializable {
 		 SisNeurologicoId castOther = ( SisNeurologicoId ) other; 
          
 		 return (this.getPkSisNeurologico()==castOther.getPkSisNeurologico())
- && (this.getConsultaPkConsulta()==castOther.getConsultaPkConsulta());
+ && (this.getConsultaFkConsulta()==castOther.getConsultaFkConsulta());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkSisNeurologico();
-         result = 37 * result + this.getConsultaPkConsulta();
+         result = 37 * result + this.getConsultaFkConsulta();
          return result;
    }   
 

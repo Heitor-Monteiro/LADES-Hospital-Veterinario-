@@ -10,7 +10,7 @@ import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.Security;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Adm;
+import com.lades.sihv.model.User;
 import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.AnamneseId;
 import com.lades.sihv.model.SisDigestorio;
@@ -43,7 +43,7 @@ public class ConsultaController implements Serializable{
     private Consulta novaConsulta;
     private Date data;
     
-    private Adm medicoVET;
+    private User medicoVET;
     
     private String confirmeCRMV;
     private String confirmeSENHA;
@@ -129,34 +129,34 @@ public class ConsultaController implements Serializable{
             novaConsulta.setAnimais(animais);
             confirmaMEDICO();
             if (medicoCOFIRMADO == true) {
-                novaConsulta.setAdm(medicoVET);
+                novaConsulta.setUser(medicoVET);
                 daoGenerico.save(novaConsulta);
                 
-                anamneseId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                anamneseId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 anamnese.setId(anamneseId); 
                 anamnese.setVacinacao(concatenaSTRING(vacinacao));
                 anamnese.setQualEctoparasitas(concatenaSTRING(qualEctoparasitas));
                 anamnese.setAcessoRua(concatenaSTRING(acessoArua));
                 
-                sisDigestorioId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisDigestorioId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisDigestorio.setId(sisDigestorioId);
                 
-                sisRespCardioId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisRespCardioId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisRespCardio.setId(sisRespCardioId);
                 
-                sisUrinarioMamariaId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisUrinarioMamariaId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisUrinarioMamaria.setId(sisUrinarioMamariaId);
                 
-                sisTegumentarId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisTegumentarId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisTegumentar.setId(sisTegumentarId);
                 
-                sisNeurologicoId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisNeurologicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisNeurologico.setId(sisNeurologicoId);
                 
-                sisOftalmicoId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisOftalmicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisOftalmico.setId(sisOftalmicoId);
                 
-                sisMuscEsqueId.setConsultaPkConsulta(novaConsulta.getPkConsulta());
+                sisMuscEsqueId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisMuscEsque.setId(sisMuscEsqueId);
                 
                 daoGenerico.save(anamnese);
@@ -183,12 +183,12 @@ public class ConsultaController implements Serializable{
     uma nova consulta só será concretizada 
     se houver o aval do mesmo*/
     private void confirmaMEDICO(){
-        String pwd = Security.getMD5(confirmeSENHA);
-        List<Adm> admLista;
-        admLista =  daoGenerico.list("select a from Adm a where a.admSenha='"+pwd+"' and a.crmvMatricula='"+confirmeCRMV+"'");
+        confirmeSENHA = Security.getMD5(confirmeSENHA);
+        List<User> userLista;
+        userLista =  daoGenerico.list("select u from User u where u.userSenha='"+confirmeSENHA+"' and u.crmvMatricula='"+confirmeCRMV+"'");
         
-        if (admLista.size() > 0) {
-            medicoVET = admLista.get(0);
+        if (userLista.size() > 0) {
+            medicoVET = userLista.get(0);
             medicoCOFIRMADO = true;
         }else{
             medicoCOFIRMADO = false;

@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
+            <key-property name="pkExameFisico" type="int">
+                <column name="PK_exameFisico" />
+            </key-property>
+            <key-property name="consultaFkConsulta" type="int">
+                <column name="consulta_FK_consulta" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
+            <column name="consulta_FK_consulta" not-null="true" />
+        </many-to-one>
+        <property name="fcBpm" type="double">
+            <column name="fcBpm" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="frMpm" type="double">
+            <column name="frMpm" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="termpeReta" type="double">
+            <column name="termpeReta" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="tpc" type="double">
+            <column name="tpc" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="estadoNutric" type="string">
+            <column name="estadoNutric" length="9" not-null="true" />
+        </property>
+        <property name="mucosaOral" type="string">
+            <column name="mucosaOral" length="10" not-null="true" />
+        </property>
+        <property name="mucosVagPeni" type="string">
+            <column name="mucosVagPeni" length="10" not-null="true" />
+        </property>
+        <property name="mucosaOcular" type="string">
+            <column name="mucosaOcular" length="10" not-null="true" />
+        </property>
+        <property name="pulso" type="string">
+            <column name="pulso" length="7" not-null="true" />
+        </property>
+        <property name="estadoPulso" type="string">
+            <column name="estadoPulso" length="9" not-null="true" />
+        </property>
+        <property name="hidratacao" type="string">
+            <column name="hidratacao" length="22" not-null="true" />
+        </property>
+        <property name="palpaAbdom" type="string">
+            <column name="palpaAbdom" length="200" not-null="true" />
+        </property>
+        <property name="auscuCardiaca" type="string">
+            <column name="auscuCardiaca" length="200" not-null="true" />
+        </property>
+        <property name="auscuPulmona" type="string">
+            <column name="auscuPulmona" length="200" not-null="true" />
+        </property>
+        <property name="linfonodos" type="string">
+            <column name="linfonodos" length="200" not-null="true" />
+        </property>
+        <property name="pelePelos" type="string">
+            <column name="pelePelos" length="200" not-null="true" />
+        </property>
+        <property name="diagDiferenciais" type="int">
+            <column name="diagDiferenciais" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

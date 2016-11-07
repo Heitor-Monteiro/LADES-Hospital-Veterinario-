@@ -10,7 +10,7 @@
                      layout="grid"
                      style="margin-top: 20px;"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-2, ui-grid-col-4">
+                     columnClasses="ui-grid-col-3, ui-grid-col-4">
             
                 
             <p:outputLabel value="Nome do cliente:"
@@ -29,7 +29,7 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="nomeAnimal" />
             <p:inputText id="nomeAnimal" 
-                         value="#{MasterControle.animalControle.animal.nome}" 
+                         value="#{MasterControle.animalControle.animal.nomeAnimal}" 
                          title="Informe o nome do animal"
                          maxlength="70"
                          required="true" 
@@ -72,7 +72,6 @@
                              editable="true"
                              requiredMessage="Informe a pelagem do animal!"
                              >
-                <f:selectItem itemLabel="Selecione a pelagem" itemDisabled="true" itemValue=""/>
                 <f:selectItems value="#{MasterControle.animalControle.listaPelagem}" />           
 
             </p:selectOneMenu>
@@ -85,7 +84,7 @@
                            for="sexoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                              value="#{MasterControle.animalControle.animal.sexo}"
+                              value="#{MasterControle.animalControle.animal.sexoAnimal}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -99,29 +98,30 @@
             <p:outputLabel value="Idade atual do animal:"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="idade" />
-            <p:inputNumber id="idade" 
-                           value="#{MasterControle.animalControle.animal.idadeAtual}"
-                           title="Informe a idade atual do animal"
-                           maxlength="3"
-                           maxValue="999"
-                           minValue="1"
-                           required="true" 
-                           requiredMessage="Informe a idade atual do animal!"/>
+            <p:inputText id="idade"
+                         value="#{MasterControle.animalControle.animal.idadeAtual}"
+                         title="Informe a idade atual do animal"
+                         maxlength="3"
+                         required="true"
+                         requiredMessage="Informe a idade atual do animal!"
+                         validatorMessage="Formato incorreto para idade!">
+                <f:validateDoubleRange minimum="1" maximum="999" />
+            </p:inputText>
             <p:message for="idade" />
             
             
-            <p:outputLabel value="Peso atual do animal:"
+            <p:outputLabel value="Peso atual do animal(Kg):"
                            for="pesoAnimal"
                            style="color: #1abc9c; font-weight: bold ;" />
-            <p:spinner id="pesoAnimal" 
-                       value="#{MasterControle.animalControle.animal.peso}" 
-                       prefix="Kg " 
-                       min="0"
-                       max="15000"
-                       stepFactor="0.1"
-                       title="Informe o peso atual do animal"
-                       required="true"
-                       requiredMessage="Informe o peso atual do animal!" />
+            <p:inputText id="pesoAnimal"
+                         value="#{MasterControle.animalControle.animal.peso}"
+                         title="Informe o peso atual do animal"
+                         maxlength="5"
+                         required="true"
+                         requiredMessage="Informe o peso atual do animal!"
+                         validatorMessage="Formato incorreto para peso!">
+                <f:validateDoubleRange minimum="0.001" maximum="15000" />
+            </p:inputText>
             <p:message for="pesoAnimal" />
             
         </p:panelGrid>

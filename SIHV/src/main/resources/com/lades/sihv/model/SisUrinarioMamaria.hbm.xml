@@ -1,61 +1,61 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.lades.sihv.model.SisUrinarioMamaria" table="Sis_Urinario_Mamaria" catalog="BD_SIHV" optimistic-lock="version">
+    <class name="com.lades.sihv.model.SisUrinarioMamaria" table="sisUrinarioMamaria" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisUrinarioMamariaId">
             <key-property name="pkSisUrinarioMamaria" type="int">
-                <column name="PK_Sis_Urinario_Mamaria" />
+                <column name="PK_sisUrinarioMamaria" />
             </key-property>
-            <key-property name="consultaPkConsulta" type="int">
-                <column name="consulta_PK_consulta" />
+            <key-property name="consultaFkConsulta" type="int">
+                <column name="consulta_FK_consulta" />
             </key-property>
         </composite-id>
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
-            <column name="consulta_PK_consulta" not-null="true" />
+            <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="ingestHidrica" type="string">
-            <column name="IngestHidrica" length="10" not-null="true" />
+            <column name="ingestHidrica" length="10" not-null="true" />
         </property>
         <property name="ingestHidricaEvolu" type="string">
-            <column name="IngestHidricaEvolu" length="200" />
+            <column name="ingestHidricaEvolu" length="200" />
         </property>
         <property name="estadoUrina" type="string">
-            <column name="EstadoUrina" length="8" not-null="true" />
+            <column name="estadoUrina" length="8" not-null="true" />
         </property>
         <property name="urina" type="string">
-            <column name="Urina" length="13" not-null="true" />
+            <column name="urina" length="13" not-null="true" />
         </property>
         <property name="urinaAspecto" type="string">
-            <column name="UrinaAspecto" length="200" />
+            <column name="urinaAspecto" length="200" />
         </property>
         <property name="urinaEvolu" type="string">
-            <column name="UrinaEvolu" length="200" />
+            <column name="urinaEvolu" length="200" />
         </property>
         <property name="ultimoCio" type="date">
-            <column name="UltimoCio" length="10" not-null="true" />
+            <column name="ultimoCio" length="10" not-null="true" />
         </property>
         <property name="ultimoParto" type="date">
-            <column name="UltimoParto" length="10" not-null="true" />
+            <column name="ultimoParto" length="10" not-null="true" />
         </property>
         <property name="secreVagiPeni" type="string">
-            <column name="SecreVagiPeni" length="3" not-null="true" />
+            <column name="secreVagiPeni" length="3" not-null="true" />
         </property>
         <property name="secreVagiPeniTipo" type="string">
-            <column name="SecreVagiPeniTipo" length="50" />
+            <column name="secreVagiPeniTipo" length="50" />
         </property>
         <property name="secreVagiPeniEvolu" type="string">
-            <column name="SecreVagiPeniEvolu" length="200" />
+            <column name="secreVagiPeniEvolu" length="200" />
         </property>
         <property name="castrado" type="string">
-            <column name="Castrado" length="3" not-null="true" />
+            <column name="castrado" length="3" not-null="true" />
         </property>
         <property name="prenhe" type="string">
-            <column name="Prenhe" length="3" not-null="true" />
+            <column name="prenhe" length="3" not-null="true" />
         </property>
         <property name="sistemaAfetado" type="string">
-            <column name="SistemaAfetado" length="7" not-null="true" />
+            <column name="sistemaAfetado" length="7" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

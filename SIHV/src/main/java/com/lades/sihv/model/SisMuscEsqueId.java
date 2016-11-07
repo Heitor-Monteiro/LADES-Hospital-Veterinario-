@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 04/11/2016 14:35:29 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,19 +13,19 @@ public class SisMuscEsqueId  implements java.io.Serializable {
 
 
      private int pkSisMuscEsque;
-     private int consultaPkConsulta;
+     private int consultaFkConsulta;
 
     public SisMuscEsqueId() {
     }
 
-    public SisMuscEsqueId(int pkSisMuscEsque, int consultaPkConsulta) {
+    public SisMuscEsqueId(int pkSisMuscEsque, int consultaFkConsulta) {
        this.pkSisMuscEsque = pkSisMuscEsque;
-       this.consultaPkConsulta = consultaPkConsulta;
+       this.consultaFkConsulta = consultaFkConsulta;
     }
    
 
 
-    @Column(name="PK_Sis_MuscEsque", nullable=false)
+    @Column(name="PK_sisMuscEsque", nullable=false)
     public int getPkSisMuscEsque() {
         return this.pkSisMuscEsque;
     }
@@ -35,13 +35,13 @@ public class SisMuscEsqueId  implements java.io.Serializable {
     }
 
 
-    @Column(name="consulta_PK_consulta", nullable=false)
-    public int getConsultaPkConsulta() {
-        return this.consultaPkConsulta;
+    @Column(name="consulta_FK_consulta", nullable=false)
+    public int getConsultaFkConsulta() {
+        return this.consultaFkConsulta;
     }
     
-    public void setConsultaPkConsulta(int consultaPkConsulta) {
-        this.consultaPkConsulta = consultaPkConsulta;
+    public void setConsultaFkConsulta(int consultaFkConsulta) {
+        this.consultaFkConsulta = consultaFkConsulta;
     }
 
 
@@ -52,14 +52,14 @@ public class SisMuscEsqueId  implements java.io.Serializable {
 		 SisMuscEsqueId castOther = ( SisMuscEsqueId ) other; 
          
 		 return (this.getPkSisMuscEsque()==castOther.getPkSisMuscEsque())
- && (this.getConsultaPkConsulta()==castOther.getConsultaPkConsulta());
+ && (this.getConsultaFkConsulta()==castOther.getConsultaFkConsulta());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkSisMuscEsque();
-         result = 37 * result + this.getConsultaPkConsulta();
+         result = 37 * result + this.getConsultaFkConsulta();
          return result;
    }   
 

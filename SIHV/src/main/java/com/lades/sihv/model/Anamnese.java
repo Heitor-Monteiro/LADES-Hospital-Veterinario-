@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name="anamnese"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Anamnese  implements java.io.Serializable {
 
@@ -105,8 +105,8 @@ public class Anamnese  implements java.io.Serializable {
 
     
     @AttributeOverrides( {
-        @AttributeOverride(name="pkAnamnese", column=@Column(name="PK_ANAMNESE", nullable=false) ), 
-        @AttributeOverride(name="consultaPkConsulta", column=@Column(name="consulta_PK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="pkAnamnese", column=@Column(name="PK_anamnese", nullable=false) ), 
+        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
     public AnamneseId getId() {
         return this.id;
     }
@@ -116,7 +116,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_PK_consulta", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
     public Consulta getConsulta() {
         return this.consulta;
     }
@@ -126,7 +126,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="QueixaPrincipal", nullable=false, length=300)
+    @Column(name="queixaPrincipal", nullable=false, length=300)
     public String getQueixaPrincipal() {
         return this.queixaPrincipal;
     }
@@ -136,7 +136,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="JaFoiTratado", nullable=false, length=3)
+    @Column(name="jaFoiTratado", nullable=false, length=3)
     public String getJaFoiTratado() {
         return this.jaFoiTratado;
     }
@@ -146,7 +146,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="MedicacaoDose", length=200)
+    @Column(name="medicacaoDose", length=200)
     public String getMedicacaoDose() {
         return this.medicacaoDose;
     }
@@ -156,7 +156,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="AntecMorbido", nullable=false, length=200)
+    @Column(name="antecMorbido", nullable=false, length=200)
     public String getAntecMorbido() {
         return this.antecMorbido;
     }
@@ -166,7 +166,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="HistoFamiliar", nullable=false, length=200)
+    @Column(name="histoFamiliar", nullable=false, length=200)
     public String getHistoFamiliar() {
         return this.histoFamiliar;
     }
@@ -176,7 +176,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="AlimentacaoCaseira", nullable=false, length=3)
+    @Column(name="alimentacaoCaseira", nullable=false, length=3)
     public String getAlimentacaoCaseira() {
         return this.alimentacaoCaseira;
     }
@@ -186,7 +186,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="DescriCaseira", length=200)
+    @Column(name="descriCaseira", length=200)
     public String getDescriCaseira() {
         return this.descriCaseira;
     }
@@ -196,7 +196,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="AlimentacaoRacao", nullable=false, length=3)
+    @Column(name="alimentacaoRacao", nullable=false, length=3)
     public String getAlimentacaoRacao() {
         return this.alimentacaoRacao;
     }
@@ -206,7 +206,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="DescriRacao", length=200)
+    @Column(name="descriRacao", length=200)
     public String getDescriRacao() {
         return this.descriRacao;
     }
@@ -216,7 +216,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="Vacinacao", nullable=false, length=22)
+    @Column(name="vacinacao", nullable=false, length=22)
     public String getVacinacao() {
         return this.vacinacao;
     }
@@ -226,7 +226,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="SobreVacina", length=100)
+    @Column(name="sobreVacina", length=100)
     public String getSobreVacina() {
         return this.sobreVacina;
     }
@@ -236,7 +236,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="OrigemVacina", length=18)
+    @Column(name="origemVacina", length=18)
     public String getOrigemVacina() {
         return this.origemVacina;
     }
@@ -246,7 +246,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="Vermifugacao", nullable=false, length=3)
+    @Column(name="vermifugacao", nullable=false, length=3)
     public String getVermifugacao() {
         return this.vermifugacao;
     }
@@ -256,7 +256,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="DoseVermifugacao", length=50)
+    @Column(name="doseVermifugacao", length=50)
     public String getDoseVermifugacao() {
         return this.doseVermifugacao;
     }
@@ -266,7 +266,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.DATE)
-    @Column(name="DataVermifugacao", length=10)
+    @Column(name="dataVermifugacao", length=10)
     public Date getDataVermifugacao() {
         return this.dataVermifugacao;
     }
@@ -276,7 +276,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="Ectoparasitas", nullable=false, length=3)
+    @Column(name="ectoparasitas", nullable=false, length=3)
     public String getEctoparasitas() {
         return this.ectoparasitas;
     }
@@ -286,7 +286,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="QualEctoparasitas", length=34)
+    @Column(name="qualEctoparasitas", length=34)
     public String getQualEctoparasitas() {
         return this.qualEctoparasitas;
     }
@@ -296,7 +296,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="ControEctoparasitas", length=3)
+    @Column(name="controEctoparasitas", length=3)
     public String getControEctoparasitas() {
         return this.controEctoparasitas;
     }
@@ -306,7 +306,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="QualProdutoUtiliza", length=50)
+    @Column(name="qualProdutoUtiliza", length=50)
     public String getQualProdutoUtiliza() {
         return this.qualProdutoUtiliza;
     }
@@ -316,7 +316,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="AcessoRua", nullable=false, length=24)
+    @Column(name="acessoRua", nullable=false, length=24)
     public String getAcessoRua() {
         return this.acessoRua;
     }
@@ -326,7 +326,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="DescriHabitat", length=200)
+    @Column(name="descriHabitat", length=200)
     public String getDescriHabitat() {
         return this.descriHabitat;
     }
@@ -336,7 +336,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="Contactantes", length=3)
+    @Column(name="contactantes", length=3)
     public String getContactantes() {
         return this.contactantes;
     }
@@ -346,7 +346,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="DescriContactantes", length=200)
+    @Column(name="descriContactantes", length=200)
     public String getDescriContactantes() {
         return this.descriContactantes;
     }
@@ -356,7 +356,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="MesmoProbleContacta", length=3)
+    @Column(name="mesmoProbleContacta", length=3)
     public String getMesmoProbleContacta() {
         return this.mesmoProbleContacta;
     }
@@ -366,7 +366,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="ContatoRoedor", length=3)
+    @Column(name="contatoRoedor", length=3)
     public String getContatoRoedor() {
         return this.contatoRoedor;
     }

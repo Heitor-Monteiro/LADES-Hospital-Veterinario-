@@ -11,10 +11,9 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
             
             <p:outputLabel value="Login de usuário:"
-                           style="color: #1abc9c; font-weight: bold ;"
-                           for="LoginUser" />
+                           style="color: #1abc9c; font-weight: bold ;" />
             <p:inputText id="LoginUser" 
-                         value="#{PessoaControle.ADM.admLogin}" 
+                         value="#{PessoaControle.user.userNick}" 
                          maxlength="100"
                          required="true" 
                          requiredMessage="Por favor, informe um nome de Login!"
@@ -29,7 +28,7 @@
                         feedback="true"
                         inline="true"
                         match="senha2"
-                        value="#{PessoaControle.ADM.admSenha}"
+                        value="#{PessoaControle.user.userSenha}"
                         title="A senha pode conter números, letras e caracteres especiais."
                         promptLabel="Digite uma senha"
                         weakLabel="Fraco"

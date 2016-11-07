@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 28/10/2016 09:58:07 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -14,7 +14,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="pelagem"
-    ,catalog="BD_SIHV"
+    ,catalog="bd_sihv"
 )
 public class Pelagem  implements java.io.Serializable {
 

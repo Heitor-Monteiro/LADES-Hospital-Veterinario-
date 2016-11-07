@@ -5,14 +5,16 @@
  */
 package com.lades.sihv.Controller;
 
+import com.lades.sihv.BeautyText;
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import com.lades.sihv.model.Adm;
-import com.lades.sihv.model.AdmId;
+import com.lades.sihv.model.User;
+import com.lades.sihv.model.UserId;
 import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.ClienteId;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Telefone;
+import com.lades.sihv.Security;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -26,15 +28,14 @@ import javax.faces.model.ListDataModel;
  */
 @ManagedBean(name = "PessoaControle")
 @SessionScoped
-
 public class PessoaController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private static final FacesMessages message = new FacesMessages();
     private Pessoa pessoa;
     private Telefone telefone;
-    private Adm adm;
-    private AdmId admId;
+    private User user;
+    private UserId userId;
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
@@ -57,8 +58,8 @@ public class PessoaController implements Serializable{
     public void prepararAdicionarUSER(){
         pessoa = new Pessoa();
         telefone = new Telefone();
-        adm = new Adm();
-        admId = new AdmId();
+        user = new User();
+        userId =  new UserId();
         data = new Date();
         numCRMV1 = "";
         numCRMV2 = "";
@@ -89,37 +90,40 @@ public class PessoaController implements Serializable{
     Exemplo: Medico veterinário; Aluno bolsista; 
     Funcionário/Técnico. Esses nomes complementaram a 
     frase de cadastro realizado com sucesso.*/
-    
+    public void adicionarUSER(String tipoUSER, String mensageTIPO){
+        addUser(tipoUSER,mensageTIPO);
+    }
     private boolean addUser(String tipoUSER, String mensageTIPO){
         boolean checkLogin=this.checkExistingLogin();
         boolean checkCPF=this.checkCPF(Long.toString(pessoa.getCpf()));
         if(!checkLogin){
             message.warn("Erro ao efetuar cadastro!", "O nome de Login já existe!");
-            adm.setAdmLogin("");
+            pessoa.setEmail("");
         }
         
         if(!checkCPF){
             message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
-            adm.setAdmLogin("");
+            pessoa.setCpf(0);
         }
         
         if(!checkCPF || !checkLogin)
             return false;
         try {
                 pessoa.setCadDataHora(data);
+                pessoa.setEmail(BeautyText.Do(pessoa.getEmail()));
                 daoGenerico.save(pessoa);
 
                 telefone.setPessoa(pessoa);
                 daoGenerico.save(telefone);
 
-                admId.setFkPessoa(pessoa.getPkPessoa());
-                adm.setId(admId);
+                userId.setFkPessoa(pessoa.getPkPessoa());
+                user.setId(userId);
                 if (!"".equals(numCRMV1) && !"".equals(numCRMV2)) {
-                    adm.setCrmvMatricula(numCRMV1+" "+numCRMV2);
+                    user.setCrmvMatricula(numCRMV1+" "+numCRMV2);
                 }
-                adm.setTipoUser(tipoUSER);
-                adm.setAdmSenha(com.lades.sihv.Security.getMD5(adm.getAdmSenha()));
-                daoGenerico.save(adm);
+                user.setUserTipo(tipoUSER);
+                user.setUserSenha(Security.getMD5(user.getUserSenha()));
+                daoGenerico.save(user);
 
                 message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
             } catch (Exception e) {
@@ -128,13 +132,8 @@ public class PessoaController implements Serializable{
         return true;
     }
     
-    
-    public void adicionarUSER(String tipoUSER, String mensageTIPO){
-        addUser(tipoUSER,mensageTIPO);
-    }
 
-    public boolean checkCPF (String strCpf )
-   {
+    public boolean checkCPF (String strCpf ){
       int     d1, d2;
       int     digito1, digito2, resto;
       int     digitoCPF;
@@ -143,8 +142,7 @@ public class PessoaController implements Serializable{
       d1 = d2 = 0;
       digito1 = digito2 = resto = 0;
 
-      for (int nCount = 1; nCount < strCpf.length() -1; nCount++)
-      {
+      for (int nCount = 1; nCount < strCpf.length() -1; nCount++){
          digitoCPF = Integer.valueOf (strCpf.substring(nCount -1, nCount)).intValue();
 
          //multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por diante.
@@ -185,9 +183,9 @@ public class PessoaController implements Serializable{
    }   
     
     public boolean checkExistingLogin(){
-        List<Adm>checkLogin = (List<Adm>)daoGenerico.list("select adm from Adm adm where adm.admLogin='"+adm.getAdmLogin()+"'");
+        List<Pessoa>checkLogin = (List<Pessoa>)daoGenerico.list("select p from Pessoa p where p.email = '"+pessoa.getEmail()+"'");
         try{
-            System.out.print(checkLogin.get(0).getAdmLogin());
+            System.out.print(checkLogin.get(0).getEmail());
         }
         catch(Exception ex){
             return true;
@@ -199,23 +197,35 @@ public class PessoaController implements Serializable{
     
     /*O método realiza a persistência de um novo cliente*/
     public void adicionarCLIENTE(){
+        addCLIENTE();
+    }
+    private boolean addCLIENTE(){
+        boolean resposta;
         try{
-            pessoa.setCadDataHora(data);
-            daoGenerico.save(pessoa);
+            resposta = checkCPF(Long.toString(pessoa.getCpf()));
+            if (resposta) {
+                pessoa.setCadDataHora(data);
+                daoGenerico.save(pessoa);
 
-            telefone.setPessoa(pessoa);
-            daoGenerico.save(telefone);
+                telefone.setPessoa(pessoa);
+                daoGenerico.save(telefone);
 
-            clienteId.setFkPessoa(pessoa.getPkPessoa());
-            cliente.setId(clienteId);
-            daoGenerico.save(cliente);
+                clienteId.setFkPessoa(pessoa.getPkPessoa());
+                cliente.setId(clienteId);
+                daoGenerico.save(cliente);
 
-            message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+                message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+            }else{
+                pessoa.setCpf(0);
+                message.warn("Erro ao efetuar cadastro!", "CPF invalido!");
+            }
         }
-        catch (Exception e)
-        {
-            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+        catch (Exception e){
+            pessoa.setCpf(0);
+            message.warn("Erro ao efetuar cadastro!", "CPF já cadastrado!");
+            resposta =  false;
         }
+        return resposta;
     }
     
     
@@ -244,8 +254,8 @@ public class PessoaController implements Serializable{
         return telefone;
     }
     
-    public Adm getADM(){
-        return adm;
+    public User getUser() {
+        return user;
     }
     //--------------------------------------------------------------------
     
@@ -305,5 +315,4 @@ public class PessoaController implements Serializable{
         return "index";
     }
     //---------------------------------------------------------------
-    
 }

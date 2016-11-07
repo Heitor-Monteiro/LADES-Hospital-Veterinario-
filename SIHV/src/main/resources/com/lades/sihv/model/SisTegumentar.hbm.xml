@@ -1,52 +1,52 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 28/10/2016 09:58:08 by Hibernate Tools 4.3.1 -->
+<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.lades.sihv.model.SisTegumentar" table="Sis_Tegumentar" catalog="BD_SIHV" optimistic-lock="version">
+    <class name="com.lades.sihv.model.SisTegumentar" table="sisTegumentar" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisTegumentarId">
             <key-property name="pkSisTegumentar" type="int">
-                <column name="PK_Sis_Tegumentar" />
+                <column name="PK_sisTegumentar" />
             </key-property>
-            <key-property name="consultaPkConsulta" type="int">
-                <column name="consulta_PK_consulta" />
+            <key-property name="consultaFkConsulta" type="int">
+                <column name="consulta_FK_consulta" />
             </key-property>
         </composite-id>
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
-            <column name="consulta_PK_consulta" not-null="true" />
+            <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="evoluLesao" type="string">
-            <column name="EvoluLesao" length="200" not-null="true" />
+            <column name="evoluLesao" length="200" not-null="true" />
         </property>
         <property name="localiLesao" type="string">
-            <column name="LocaliLesao" length="200" not-null="true" />
+            <column name="localiLesao" length="200" not-null="true" />
         </property>
         <property name="pruridoCutaneo" type="string">
-            <column name="PruridoCutaneo" length="3" not-null="true" />
+            <column name="pruridoCutaneo" length="3" not-null="true" />
         </property>
         <property name="pruridoCutaneoEvolu" type="string">
-            <column name="PruridoCutaneoEvolu" length="50" />
+            <column name="pruridoCutaneoEvolu" length="50" />
         </property>
         <property name="pruridoOtolog" type="string">
-            <column name="PruridoOtolog" length="3" not-null="true" />
+            <column name="pruridoOtolog" length="3" not-null="true" />
         </property>
         <property name="pruridoOtologEvolu" type="string">
-            <column name="PruridoOtologEvolu" length="50" />
+            <column name="pruridoOtologEvolu" length="50" />
         </property>
         <property name="secreOtolog" type="string">
-            <column name="SecreOtolog" length="3" not-null="true" />
+            <column name="secreOtolog" length="3" not-null="true" />
         </property>
         <property name="secreOtologEvolu" type="string">
-            <column name="SecreOtologEvolu" length="50" />
+            <column name="secreOtologEvolu" length="50" />
         </property>
         <property name="frequeBanhos" type="string">
-            <column name="FrequeBanhos" length="50" not-null="true" />
+            <column name="frequeBanhos" length="50" not-null="true" />
         </property>
         <property name="produUtilBanho" type="string">
-            <column name="ProduUtilBanho" length="50" />
+            <column name="produUtilBanho" length="50" />
         </property>
         <property name="sistemaAfetado" type="string">
-            <column name="SistemaAfetado" length="7" not-null="true" />
+            <column name="sistemaAfetado" length="7" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

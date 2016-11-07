@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 04/11/2016 17:25:59 by Hibernate Tools 4.3.1
+// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,7 +23,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="pessoa"
     ,catalog="bd_sihv"
-    , uniqueConstraints = @UniqueConstraint(columnNames="CPF") 
+    , uniqueConstraints = @UniqueConstraint(columnNames="cpf") 
 )
 public class Pessoa  implements java.io.Serializable {
 
@@ -45,13 +45,13 @@ public class Pessoa  implements java.io.Serializable {
      private String email;
      private Set<Cliente> clientes = new HashSet<Cliente>(0);
      private Set<Telefone> telefones = new HashSet<Telefone>(0);
-     private Set<Adm> adms = new HashSet<Adm>(0);
+     private Set<User> users = new HashSet<User>(0);
 
     public Pessoa() {
     }
 
 	
-    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String uf, Date cadDataHora) {
+    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String uf, Date cadDataHora, String email) {
         this.cpf = cpf;
         this.rg = rg;
         this.nome = nome;
@@ -63,8 +63,9 @@ public class Pessoa  implements java.io.Serializable {
         this.cep = cep;
         this.uf = uf;
         this.cadDataHora = cadDataHora;
+        this.email = email;
     }
-    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Cliente> clientes, Set<Telefone> telefones, Set<Adm> adms) {
+    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Cliente> clientes, Set<Telefone> telefones, Set<User> users) {
        this.cpf = cpf;
        this.rg = rg;
        this.nome = nome;
@@ -81,7 +82,7 @@ public class Pessoa  implements java.io.Serializable {
        this.email = email;
        this.clientes = clientes;
        this.telefones = telefones;
-       this.adms = adms;
+       this.users = users;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -97,7 +98,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="CPF", unique=true, nullable=false)
+    @Column(name="cpf", unique=true, nullable=false)
     public long getCpf() {
         return this.cpf;
     }
@@ -107,7 +108,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="RG", nullable=false)
+    @Column(name="rg", nullable=false)
     public int getRg() {
         return this.rg;
     }
@@ -117,7 +118,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="NOME", nullable=false, length=100)
+    @Column(name="nome", nullable=false, length=100)
     public String getNome() {
         return this.nome;
     }
@@ -127,7 +128,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="SEXO", nullable=false, length=3)
+    @Column(name="sexo", nullable=false, length=3)
     public String getSexo() {
         return this.sexo;
     }
@@ -137,7 +138,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="LOGRA", nullable=false, length=100)
+    @Column(name="logra", nullable=false, length=100)
     public String getLogra() {
         return this.logra;
     }
@@ -147,7 +148,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="CASA_NUMERO", nullable=false, length=7)
+    @Column(name="casaNumero", nullable=false, length=7)
     public String getCasaNumero() {
         return this.casaNumero;
     }
@@ -157,7 +158,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="BAIRRO", nullable=false, length=100)
+    @Column(name="bairro", nullable=false, length=100)
     public String getBairro() {
         return this.bairro;
     }
@@ -167,7 +168,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="CIDADE", nullable=false, length=100)
+    @Column(name="cidade", nullable=false, length=100)
     public String getCidade() {
         return this.cidade;
     }
@@ -177,7 +178,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="CEP", nullable=false)
+    @Column(name="cep", nullable=false)
     public int getCep() {
         return this.cep;
     }
@@ -187,7 +188,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="COMPLEMENTO", length=100)
+    @Column(name="complemento", length=100)
     public String getComplemento() {
         return this.complemento;
     }
@@ -197,7 +198,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="UF", nullable=false, length=80)
+    @Column(name="uf", nullable=false, length=80)
     public String getUf() {
         return this.uf;
     }
@@ -207,7 +208,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="CAD_DATA_HORA", nullable=false, length=19)
+    @Column(name="cadDataHora", nullable=false, length=19)
     public Date getCadDataHora() {
         return this.cadDataHora;
     }
@@ -227,7 +228,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="email", length=50)
+    @Column(name="email", nullable=false, length=100)
     public String getEmail() {
         return this.email;
     }
@@ -255,12 +256,12 @@ public class Pessoa  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Adm> getAdms() {
-        return this.adms;
+    public Set<User> getUsers() {
+        return this.users;
     }
     
-    public void setAdms(Set<Adm> adms) {
-        this.adms = adms;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 

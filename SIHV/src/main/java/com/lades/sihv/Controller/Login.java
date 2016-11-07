@@ -10,16 +10,14 @@ package com.lades.sihv.Controller;
  * @author waves
  */
 
-import com.lades.sihv.Controller.FacesMessages;
-import java.io.Serializable;
 
-import javax.faces.application.FacesMessage;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-
-import com.lades.sihv.DAO.GenericoDAO;
+import com.lades.sihv.BeautyText;
+import com.lades.sihv.Security;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.DAO.SessionUtils;
 import java.io.IOException;
@@ -60,8 +58,8 @@ public class Login implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() throws IOException {
-            pwd=com.lades.sihv.Security.getMD5(pwd);
-            user=com.lades.sihv.BeautyText.Do(user);
+            pwd = Security.getMD5(pwd);
+            user = BeautyText.Do(user);
             boolean valid = new GenericoDAOImpl().validate(user, pwd);
             if (valid) {
                 HttpSession session = SessionUtils.getSession();

@@ -1,12 +1,11 @@
-    package com.lades.sihv.DAO;
+package com.lades.sihv.DAO;
 
 
-//import java.util.Arrays;
-//import java.util.HashMap;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.AnimaisId;
-import com.lades.sihv.model.Adm;
+import com.lades.sihv.model.User;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.Session;
@@ -44,7 +43,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public Ent getById(String model, Integer id){
         List<Ent>getObject=new java.util.ArrayList<Ent>();
         String idType="pk";
-        if(model.equals("Adm")||model.equals("Animais")||model.equals("Cliente"))
+        if(model.equals("User")||model.equals("Animais")||model.equals("Cliente"))
             idType="id.pk";
         getObject = this.list("SELECT o from "+model+" o where o."+idType+model+"="+id);
         return (Ent)getObject.get(0);
@@ -67,7 +66,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         if(searchMode.equals("nome"))
             search="'%"+search+"%'";     
         List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
-        List<Pessoa> retornaPessoa = new java.util.ArrayList<Pessoa>();
+        List<Pessoa> retornaPessoa = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Pessoa newPessoa = new Pessoa();
             newPessoa.setPkPessoa((int)obj[0]);
@@ -86,7 +85,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         if(searchMode.equals("nome"))
             search="'%"+search+"%'";     
         List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
-        List<Animais> retornaAnimais = new java.util.ArrayList<Animais>();
+        List<Animais> retornaAnimais = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Animais newAnimal = new Animais();
             AnimaisId idAnimal = new AnimaisId();
@@ -96,9 +95,9 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             idAnimal.setClienteFkPessoa((int)obj[2]);
             
             newAnimal.setId(idAnimal);
-            newAnimal.setNome((String)obj[3]);
+            newAnimal.setNomeAnimal((String)obj[3]);
             newAnimal.setEspecie((String)obj[4]);
-            newAnimal.setSexo((String)obj[5]);
+            newAnimal.setSexoAnimal((String)obj[5]);
             retornaAnimais.add(newAnimal);
         }
         return retornaAnimais;
@@ -127,20 +126,22 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     //Método para validação de credenciais de login
     @Override
     public boolean validate(String username, String password){
-        List<Adm>checkLogin = (List<Adm>)this.list("select adm.id.pkAdm from Adm adm where adm.admLogin='"+username+"' and adm.admSenha='"+password+"'");
+        boolean resposta;
+        List<User>checkLogin = (List<User>)this.list("select u.id.pkUser from  Pessoa p, User u where p.email='"+username+"' and u.userSenha='"+password+"' and p.pkPessoa = u.id.fkPessoa");
         try{
+            resposta = true;
             System.out.print(checkLogin.get(0));
         }
         catch(Exception ex){
-            return false;
+            resposta = false;
         }
-        return true;
+        return resposta;
     }
     
     //Método para listar os nomes de pelagens inseridas no banco de dados
     @Override
     public List<String> getPelagemNames(){
-        List<String> listaPelagens=new java.util.ArrayList<String>();
+        List<String> listaPelagens = new ArrayList<>();
         for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl")){
             listaPelagens.add((String)obj);
         }
