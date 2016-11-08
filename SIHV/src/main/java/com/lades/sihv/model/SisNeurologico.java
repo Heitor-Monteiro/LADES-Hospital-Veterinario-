@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
+// Generated 08/11/2016 12:03:42 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;

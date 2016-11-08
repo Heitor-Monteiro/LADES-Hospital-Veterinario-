@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 07/11/2016 13:25:46 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/11/2016 12:03:43 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -63,8 +63,35 @@
         <property name="pelePelos" type="string">
             <column name="pelePelos" length="200" not-null="true" />
         </property>
-        <property name="diagDiferenciais" type="int">
-            <column name="diagDiferenciais" not-null="true" />
+        <property name="diagDifer1" type="int">
+            <column name="diagDifer1" not-null="true" />
+        </property>
+        <property name="diagDifer2" type="int">
+            <column name="diagDifer2" not-null="true" />
+        </property>
+        <property name="diagDifer3" type="int">
+            <column name="diagDifer3" not-null="true" />
+        </property>
+        <property name="diagDifer4" type="int">
+            <column name="diagDifer4" not-null="true" />
+        </property>
+        <property name="diagDifer5" type="int">
+            <column name="diagDifer5" not-null="true" />
+        </property>
+        <property name="diagDifer6" type="int">
+            <column name="diagDifer6" not-null="true" />
+        </property>
+        <property name="diagDifer7" type="int">
+            <column name="diagDifer7" not-null="true" />
+        </property>
+        <property name="diagDifer8" type="int">
+            <column name="diagDifer8" not-null="true" />
+        </property>
+        <property name="diagDifer9" type="int">
+            <column name="diagDifer9" not-null="true" />
+        </property>
+        <property name="diagDifer10" type="int">
+            <column name="diagDifer10" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

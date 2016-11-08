@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 07/11/2016 13:25:44 by Hibernate Tools 4.3.1
+// Generated 08/11/2016 12:03:42 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -40,12 +40,21 @@ public class ExameFisico  implements java.io.Serializable {
      private String auscuPulmona;
      private String linfonodos;
      private String pelePelos;
-     private int diagDiferenciais;
+     private int diagDifer1;
+     private int diagDifer2;
+     private int diagDifer3;
+     private int diagDifer4;
+     private int diagDifer5;
+     private int diagDifer6;
+     private int diagDifer7;
+     private int diagDifer8;
+     private int diagDifer9;
+     private int diagDifer10;
 
     public ExameFisico() {
     }
 
-    public ExameFisico(ExameFisicoId id, Consulta consulta, double fcBpm, double frMpm, double termpeReta, double tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, int diagDiferenciais) {
+    public ExameFisico(ExameFisicoId id, Consulta consulta, double fcBpm, double frMpm, double termpeReta, double tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, int diagDifer1, int diagDifer2, int diagDifer3, int diagDifer4, int diagDifer5, int diagDifer6, int diagDifer7, int diagDifer8, int diagDifer9, int diagDifer10) {
        this.id = id;
        this.consulta = consulta;
        this.fcBpm = fcBpm;
@@ -64,7 +73,16 @@ public class ExameFisico  implements java.io.Serializable {
        this.auscuPulmona = auscuPulmona;
        this.linfonodos = linfonodos;
        this.pelePelos = pelePelos;
-       this.diagDiferenciais = diagDiferenciais;
+       this.diagDifer1 = diagDifer1;
+       this.diagDifer2 = diagDifer2;
+       this.diagDifer3 = diagDifer3;
+       this.diagDifer4 = diagDifer4;
+       this.diagDifer5 = diagDifer5;
+       this.diagDifer6 = diagDifer6;
+       this.diagDifer7 = diagDifer7;
+       this.diagDifer8 = diagDifer8;
+       this.diagDifer9 = diagDifer9;
+       this.diagDifer10 = diagDifer10;
     }
    
      @EmbeddedId
@@ -252,13 +270,103 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="diagDiferenciais", nullable=false)
-    public int getDiagDiferenciais() {
-        return this.diagDiferenciais;
+    @Column(name="diagDifer1", nullable=false)
+    public int getDiagDifer1() {
+        return this.diagDifer1;
     }
     
-    public void setDiagDiferenciais(int diagDiferenciais) {
-        this.diagDiferenciais = diagDiferenciais;
+    public void setDiagDifer1(int diagDifer1) {
+        this.diagDifer1 = diagDifer1;
+    }
+
+    
+    @Column(name="diagDifer2", nullable=false)
+    public int getDiagDifer2() {
+        return this.diagDifer2;
+    }
+    
+    public void setDiagDifer2(int diagDifer2) {
+        this.diagDifer2 = diagDifer2;
+    }
+
+    
+    @Column(name="diagDifer3", nullable=false)
+    public int getDiagDifer3() {
+        return this.diagDifer3;
+    }
+    
+    public void setDiagDifer3(int diagDifer3) {
+        this.diagDifer3 = diagDifer3;
+    }
+
+    
+    @Column(name="diagDifer4", nullable=false)
+    public int getDiagDifer4() {
+        return this.diagDifer4;
+    }
+    
+    public void setDiagDifer4(int diagDifer4) {
+        this.diagDifer4 = diagDifer4;
+    }
+
+    
+    @Column(name="diagDifer5", nullable=false)
+    public int getDiagDifer5() {
+        return this.diagDifer5;
+    }
+    
+    public void setDiagDifer5(int diagDifer5) {
+        this.diagDifer5 = diagDifer5;
+    }
+
+    
+    @Column(name="diagDifer6", nullable=false)
+    public int getDiagDifer6() {
+        return this.diagDifer6;
+    }
+    
+    public void setDiagDifer6(int diagDifer6) {
+        this.diagDifer6 = diagDifer6;
+    }
+
+    
+    @Column(name="diagDifer7", nullable=false)
+    public int getDiagDifer7() {
+        return this.diagDifer7;
+    }
+    
+    public void setDiagDifer7(int diagDifer7) {
+        this.diagDifer7 = diagDifer7;
+    }
+
+    
+    @Column(name="diagDifer8", nullable=false)
+    public int getDiagDifer8() {
+        return this.diagDifer8;
+    }
+    
+    public void setDiagDifer8(int diagDifer8) {
+        this.diagDifer8 = diagDifer8;
+    }
+
+    
+    @Column(name="diagDifer9", nullable=false)
+    public int getDiagDifer9() {
+        return this.diagDifer9;
+    }
+    
+    public void setDiagDifer9(int diagDifer9) {
+        this.diagDifer9 = diagDifer9;
+    }
+
+    
+    @Column(name="diagDifer10", nullable=false)
+    public int getDiagDifer10() {
+        return this.diagDifer10;
+    }
+    
+    public void setDiagDifer10(int diagDifer10) {
+        this.diagDifer10 = diagDifer10;
     }
 
 

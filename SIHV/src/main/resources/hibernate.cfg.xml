@@ -20,8 +20,8 @@
     <mapping resource="com/lades/sihv/model/Cliente.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pessoa.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisUrinarioMamaria.hbm.xml"/>
-    <mapping resource="com/lades/sihv/model/Telefone.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/User.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/Telefone.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Consulta.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisNeurologico.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Pelagem.hbm.xml"/>

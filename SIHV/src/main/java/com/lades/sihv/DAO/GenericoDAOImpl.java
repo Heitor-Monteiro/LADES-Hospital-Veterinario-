@@ -84,7 +84,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
         if(searchMode.equals("nome"))
             search="'%"+search+"%'";     
-        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nome, a.especie, a.sexo from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
+        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
         List<Animais> retornaAnimais = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
             Animais newAnimal = new Animais();

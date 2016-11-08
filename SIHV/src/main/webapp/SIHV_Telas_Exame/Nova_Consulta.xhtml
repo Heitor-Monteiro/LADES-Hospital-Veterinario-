@@ -115,7 +115,7 @@
                         </p:panel>
                     </p:tab>
                     
-                    <!--
+                    
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel>
                             
@@ -123,14 +123,14 @@
                             
                         </p:panel>
                     </p:tab>
-                    -->
                     
-                    <!--
+                    
+                    
                     <p:tab id="etapa4" title="Exames complementares" >
                         <p:panel>
                             
                             
-                            <p:panelGrid columns="2"
+                            <p:panelGrid columns="3"
                                          layout="grid"
                                          styleClass="panelgrid-noborder"
                                          columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-3" >
@@ -139,17 +139,22 @@
                                                style="color: #1abc9c; font-weight: bold ;" />
                                 
                                 <p:selectOneButton id="value2"
-                                                   value="#{RenderedControle.getRenderedCampos(0).campoTEMP}"
+                                                   disabled="#{MasterControle.consultaControle.confirmeUltrasson}"
+                                                   value="#{MasterControle.consultaControle.confirmeRAIOX}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
-                                    <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                    <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    <p:ajax update="RaioX0" listener="#{RenderedControle.renderedCampo(0, 'SIM')}" />
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem itemLabel="Não" itemValue="false" />
+                                    <p:ajax update="RaioX0" />
                                 </p:selectOneButton>
+                                
+                                <p:outputLabel value="Bloqueado!"
+                                               rendered="#{MasterControle.consultaControle.confirmeUltrasson}"
+                                               style="color: #1abc9c; font-weight: bold ;" />
                             </p:panelGrid>
                             
                             
-                            <p:panel id="RaioX0" >
+                            <p:panel id="RaioX0">
                                 <ui:include src="/SIHV_Telas_Genericas/generico_RaioX.xhtml" />
                             </p:panel>
                             
@@ -165,12 +170,13 @@
                                                style="color: #1abc9c; font-weight: bold;" />
                                 
                                 <p:selectOneButton id="value3"
-                                                  value="#{RenderedControle.getRenderedCampos(1).campoTEMP}"
-                                                  required="false"
-                                                  style="margin-bottom: 10px;" >
-                                    <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                                    <f:selectItem itemLabel="Não" itemValue="NAO" />
-                                    <p:ajax update="Ultra0" listener="#{RenderedControle.renderedCampo(1, 'SIM')}" />
+                                                   disabled="#{MasterControle.consultaControle.confirmeRAIOX}"
+                                                   value="#{MasterControle.consultaControle.confirmeUltrasson}"
+                                                   required="false"
+                                                   style="margin-bottom: 10px;" >
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <f:selectItem itemLabel="Não" itemValue="false" />
+                                    <p:ajax update="Ultra0" />
                                 </p:selectOneButton>
                             </p:panelGrid>
                             
@@ -182,7 +188,7 @@
                             
                         </p:panel>
                     </p:tab>
-                    -->
+                    
                     
                     
                     
@@ -228,7 +234,7 @@
                                     
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animal.nome}"
+                                    <p:outputLabel value="#{MasterControle.animal.nomeAnimal}"
                                                    style="color: #555;" />
                                     
                                     

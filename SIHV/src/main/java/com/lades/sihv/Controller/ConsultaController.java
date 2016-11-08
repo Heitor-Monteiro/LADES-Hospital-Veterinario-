@@ -27,6 +27,10 @@ import com.lades.sihv.model.SisOftalmico;
 import com.lades.sihv.model.SisOftalmicoId;
 import com.lades.sihv.model.SisMuscEsque;
 import com.lades.sihv.model.SisMuscEsqueId;
+import com.lades.sihv.model.ExameFisico;
+import com.lades.sihv.model.ExameFisicoId;
+import com.lades.sihv.model.ExameImage;
+import com.lades.sihv.model.ExameImageId;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -76,7 +80,14 @@ public class ConsultaController implements Serializable{
     private SisMuscEsque sisMuscEsque;
     private SisMuscEsqueId sisMuscEsqueId;
     
+    private ExameFisico exameFisico;
+    private ExameFisicoId exameFisicoId;
     
+    private ExameImage exameImage;
+    private ExameImageId exameImageId;
+    
+    private boolean confirmeRAIOX = false;
+    private boolean confirmeUltrasson = false;
     
     
     
@@ -112,6 +123,12 @@ public class ConsultaController implements Serializable{
     
         sisMuscEsque = new SisMuscEsque();
         sisMuscEsqueId = new SisMuscEsqueId();
+        
+        exameFisico =  new ExameFisico();
+        exameFisicoId = new ExameFisicoId();
+        
+        exameImage = new ExameImage();
+        exameImageId = new ExameImageId();
     }
     
     
@@ -123,42 +140,47 @@ public class ConsultaController implements Serializable{
     do medico veterinário usando o método 
     confirmaMEDICO()*/
     public void adicionarNovaConsulta(Animais animais){
-        try {
-            novaConsulta.setDataConsulta(data);
-            novaConsulta.setSistemasAfetados("Teste de sistemas afetados");
-            novaConsulta.setAnimais(animais);
-            confirmaMEDICO();
-            if (medicoCOFIRMADO == true) {
+        confirmaMEDICO();
+        if (medicoCOFIRMADO == true) {
+            try {
+                novaConsulta.setDataConsulta(data);
+                novaConsulta.setSistemasAfetados("Teste de sistemas afetados");
+                novaConsulta.setAnimais(animais);
+
                 novaConsulta.setUser(medicoVET);
                 daoGenerico.save(novaConsulta);
-                
+
                 anamneseId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 anamnese.setId(anamneseId); 
                 anamnese.setVacinacao(concatenaSTRING(vacinacao));
                 anamnese.setQualEctoparasitas(concatenaSTRING(qualEctoparasitas));
                 anamnese.setAcessoRua(concatenaSTRING(acessoArua));
-                
+
                 sisDigestorioId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisDigestorio.setId(sisDigestorioId);
-                
+
                 sisRespCardioId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisRespCardio.setId(sisRespCardioId);
-                
+
                 sisUrinarioMamariaId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisUrinarioMamaria.setId(sisUrinarioMamariaId);
-                
+
                 sisTegumentarId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisTegumentar.setId(sisTegumentarId);
-                
+
                 sisNeurologicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisNeurologico.setId(sisNeurologicoId);
-                
+
                 sisOftalmicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisOftalmico.setId(sisOftalmicoId);
-                
+
                 sisMuscEsqueId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisMuscEsque.setId(sisMuscEsqueId);
+
+                exameFisicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
+                exameFisico.setId(exameFisicoId);
                 
+
                 daoGenerico.save(anamnese);
                 daoGenerico.save(sisDigestorio);
                 daoGenerico.save(sisRespCardio);
@@ -167,11 +189,20 @@ public class ConsultaController implements Serializable{
                 daoGenerico.save(sisNeurologico);
                 daoGenerico.save(sisOftalmico);
                 daoGenerico.save(sisMuscEsque);
+                daoGenerico.save(exameFisico);
                 
+                if (confirmeRAIOX == true || confirmeUltrasson == true) {
+                    exameImageId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
+                    exameImage.setId(exameImageId);
+                    exameImage.setDataExaImage(data);
+                    exameImage.setTipo((confirmeRAIOX == true)?"RAIOX":"ULTRASSOM");
+                    daoGenerico.save(exameImage);
+                }
+
                 message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
+            } catch (Exception e) {
+                message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
             }
-        } catch (Exception e) {
-            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
         }
     } 
     
@@ -208,6 +239,8 @@ public class ConsultaController implements Serializable{
         }
         return textoTEMP;
     }
+    
+    
     
     
     
@@ -345,6 +378,46 @@ public class ConsultaController implements Serializable{
         this.sisMuscEsque = sisMuscEsque;
     }
     //-----------------------------------------------------------------
+
+    //------GETs & SETs Exame Fisico----------------------------------
+    public ExameFisico getExameFisico() {
+        return exameFisico;
+    }
+
+    public void setExameFisico(ExameFisico exameFisico) {
+        this.exameFisico = exameFisico;
+    }
+    //-----------------------------------------------------------------
+
+    //------GETs & SETs Exame por Imagem----------------------------------
+    public ExameImage getExameImage() {
+        return exameImage;
+    }
+
+    public void setExameImage(ExameImage exameImage) {
+        this.exameImage = exameImage;
+    }
+
+    //------------------------------------------------------------------
+
+    public boolean isConfirmeRAIOX() {
+        return confirmeRAIOX;
+    }
+
+    public void setConfirmeRAIOX(boolean confirmeRAIOX) {
+        this.confirmeRAIOX = confirmeRAIOX;
+    }
+
+    public boolean isConfirmeUltrasson() {
+        return confirmeUltrasson;
+    }
+
+    public void setConfirmeUltrasson(boolean confirmeUltrasson) {
+        this.confirmeUltrasson = confirmeUltrasson;
+    }
+
+    
+    
     
     
     

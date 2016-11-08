@@ -24,6 +24,6 @@ public class WavesTestClass {
         pesquisa.setTextoPesquisa("37685942145");
         //pesquisa.ListagemAnimais(new java.util.ArrayList<Animais>());
         List<Animais> teste = (List<Animais>)pesquisa.getObjBuscados();
-        System.out.println(teste.get(0).getNome());
+        System.out.println(teste.get(0).getNomeAnimal());
     }
 }

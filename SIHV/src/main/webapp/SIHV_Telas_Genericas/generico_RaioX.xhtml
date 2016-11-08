@@ -7,7 +7,7 @@
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
-                     rendered="#{RenderedControle.getRenderedCampos(0).varRenderedCAMPO}"
+                     rendered="#{MasterControle.consultaControle.confirmeRAIOX}"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
@@ -33,7 +33,8 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="RaioX2" />
             <p:inputTextarea id="RaioX2" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.exameImage.regiExami}"
+                             maxlength="200"
                              required="true"
                              requiredMessage="Informe a região examinada"
                              style="margin-bottom: 20px;" />
@@ -46,8 +47,9 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="RaioX3" />
             <p:inputText id="RaioX3" 
-                         value="#"
+                         value="#{MasterControle.consultaControle.exameImage.posicao}"
                          required="true"
+                         maxlength="50"
                          requiredMessage="Informe a posição examinada"
                          style="margin-bottom: 20px;" />
             <p:message for="RaioX3" />
@@ -58,7 +60,7 @@
                            for="RaioX4"
                            style="color: #1abc9c; font-weight: bold ;" />
             <p:spinner id="RaioX4" 
-                       value="#" 
+                       value="#{MasterControle.consultaControle.exameImage.qtdChapas}" 
                        prefix="" 
                        min="1"
                        stepFactor="1" />

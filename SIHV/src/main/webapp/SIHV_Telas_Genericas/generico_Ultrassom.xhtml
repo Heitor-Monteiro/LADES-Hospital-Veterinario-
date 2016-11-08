@@ -7,7 +7,7 @@
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
-                     rendered="#{RenderedControle.getRenderedCampos(1).varRenderedCAMPO}"
+                     rendered="#{MasterControle.consultaControle.confirmeUltrasson}"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
@@ -33,7 +33,8 @@
                            style="color: #1abc9c; font-weight: bold ;"
                            for="Ultrassom1" />
             <p:inputTextarea id="Ultrassom1" 
-                             value="#"
+                             value="#{MasterControle.consultaControle.exameImage.regiExami}"
+                             maxlength="200"
                              required="true"
                              requiredMessage="Informe a região examinada!"
                              style="margin-bottom: 20px;" />
