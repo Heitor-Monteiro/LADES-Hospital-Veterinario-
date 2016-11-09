@@ -40,6 +40,7 @@ public class PessoaController implements Serializable{
     private ClienteId clienteId;
     private Date data;
     private List<Pessoa> pessoasBuscadas;
+    private boolean mudancaCpfCnpj = true;
     
     
     
@@ -237,8 +238,13 @@ public class PessoaController implements Serializable{
     }
     //-----------------------------------------------------------------------
     
-    
-    
+    public boolean isMudancaCpfCnpj() {
+        return mudancaCpfCnpj;
+    }
+
+    public void setMudancaCpfCnpj(boolean mudancaCpfCnpj) {
+        this.mudancaCpfCnpj = mudancaCpfCnpj;
+    }
     
     
     

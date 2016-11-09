@@ -5,7 +5,9 @@
         xmlns:f="http://xmlns.jcp.org/jsf/core">
 	
     <div class="ui-fluid">
-        <p:panelGrid columns="3" layout="grid"
+        <p:panelGrid id="PessoaForm"
+                     columns="3"
+                     layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-4" > 
 
@@ -21,19 +23,56 @@
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_nome}"/>
             <p:message for="nome" />
 
+            
+            <p:outputLabel value="Pessoa física/jurídica:"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="TipoPessoa" />
+            <p:selectOneRadio id="TipoPessoa"
+                              columns="2"
+                              layout="responsive"
+                              value="#{PessoaControle.mudancaCpfCnpj}"
+                              required="true"
+                              requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
+                <f:selectItem itemLabel="CPF" itemValue="true" />
+                <f:selectItem itemLabel="CNPF" itemValue="false" />
+                <p:ajax update="PessoaForm" />
+            </p:selectOneRadio>
+            <p:message for="TipoPessoa" />
+            
 
-            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"
+            <p:outputLabel value="CPF:"
+                           rendered="#{PessoaControle.mudancaCpfCnpj}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="cpf" />                                
             <p:inputMask mask="999.999.999-99"
-                         id="cpf" 
+                         id="cpf"
+                         rendered="#{PessoaControle.mudancaCpfCnpj}"
                          value="#{PessoaControle.pessoa.cpf}" 
                          title="#{label_SIHV.CreatePessoaTitle_cpf}" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
-            <p:message for="cpf" />
-
-
+            <p:message for="cpf"
+                       rendered="#{PessoaControle.mudancaCpfCnpj}" />
+            
+            
+            
+            <p:outputLabel value="CNPJ:"
+                           rendered="#{!PessoaControle.mudancaCpfCnpj}"
+                           style="color: #1abc9c; font-weight: bold ;"
+                           for="cnpj" />                                
+            <p:inputMask mask="99.999.999/9999-99"
+                         id="cnpj"
+                         rendered="#{!PessoaControle.mudancaCpfCnpj}"
+                         value="#{PessoaControle.pessoa.cpf}" 
+                         title="#{label_SIHV.CreatePessoaTitle_cpf}" 
+                         required="true" 
+                         requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
+            <p:message for="cnpj"
+                       rendered="#{!PessoaControle.mudancaCpfCnpj}" />
+            
+            
+            
+            
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
                            style="color: #1abc9c; font-weight: bold ;"
                            for="rg" />                              
