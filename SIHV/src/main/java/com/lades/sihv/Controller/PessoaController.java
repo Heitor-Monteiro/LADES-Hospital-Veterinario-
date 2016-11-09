@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.Controller;
+package com.lades.sihv.controller;
 
 import com.lades.sihv.BeautyText;
 import com.lades.sihv.DAO.GenericoDAO;
@@ -95,7 +95,7 @@ public class PessoaController implements Serializable{
     }
     private boolean addUser(String tipoUSER, String mensageTIPO){
         boolean checkLogin=this.checkExistingLogin();
-        boolean checkCPF=this.checkCPF(Long.toString(pessoa.getCpf()));
+        boolean checkCPF=com.lades.sihv.Security.checkCPF(pessoa.getCpf());
         if(!checkLogin){
             message.warn("Erro ao efetuar cadastro!", "O nome de Login já existe!");
             pessoa.setEmail("");
@@ -103,14 +103,13 @@ public class PessoaController implements Serializable{
         
         if(!checkCPF){
             message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
-            pessoa.setCpf(0);
+            pessoa.setCpf("");
         }
         
         if(!checkCPF || !checkLogin)
             return false;
         try {
                 pessoa.setCadDataHora(data);
-                pessoa.setEmail(BeautyText.Do(pessoa.getEmail()));
                 daoGenerico.save(pessoa);
 
                 telefone.setPessoa(pessoa);
@@ -131,57 +130,7 @@ public class PessoaController implements Serializable{
             }
         return true;
     }
-    
-
-    public boolean checkCPF (String strCpf ){
-      int     d1, d2;
-      int     digito1, digito2, resto;
-      int     digitoCPF;
-      String  nDigResult;
-
-      d1 = d2 = 0;
-      digito1 = digito2 = resto = 0;
-
-      for (int nCount = 1; nCount < strCpf.length() -1; nCount++){
-         digitoCPF = Integer.valueOf (strCpf.substring(nCount -1, nCount)).intValue();
-
-         //multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por diante.
-         d1 = d1 + ( 11 - nCount ) * digitoCPF;
-
-         //para o segundo digito repita o procedimento incluindo o primeiro digito calculado no passo anterior.
-         d2 = d2 + ( 12 - nCount ) * digitoCPF;
-      };
-
-      //Primeiro resto da divisão por 11.
-      resto = (d1 % 11);
-
-      //Se o resultado for 0 ou 1 o digito é 0 caso contrário o digito é 11 menos o resultado anterior.
-      if (resto < 2)
-         digito1 = 0;
-      else
-         digito1 = 11 - resto;
-
-      d2 += 2 * digito1;
-
-      //Segundo resto da divisão por 11.
-      resto = (d2 % 11);
-
-      //Se o resultado for 0 ou 1 o digito é 0 caso contrário o digito é 11 menos o resultado anterior.
-      if (resto < 2)
-         digito2 = 0;
-      else
-         digito2 = 11 - resto;
-
-      //Digito verificador do CPF que está sendo validado.
-      String nDigVerific = strCpf.substring (strCpf.length()-2, strCpf.length());
-
-      //Concatenando o primeiro resto com o segundo.
-      nDigResult = String.valueOf(digito1) + String.valueOf(digito2);
-
-      //comparar o digito verificador do cpf com o primeiro resto + o segundo resto.
-      return nDigVerific.equals(nDigResult);
-   }   
-    
+        
     public boolean checkExistingLogin(){
         List<Pessoa>checkLogin = (List<Pessoa>)daoGenerico.list("select p from Pessoa p where p.email = '"+pessoa.getEmail()+"'");
         try{
@@ -202,7 +151,7 @@ public class PessoaController implements Serializable{
     private boolean addCLIENTE(){
         boolean resposta;
         try{
-            resposta = checkCPF(Long.toString(pessoa.getCpf()));
+            resposta = com.lades.sihv.Security.checkCPF(pessoa.getCpf());
             if (resposta) {
                 pessoa.setCadDataHora(data);
                 daoGenerico.save(pessoa);
@@ -216,12 +165,12 @@ public class PessoaController implements Serializable{
 
                 message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
             }else{
-                pessoa.setCpf(0);
+                pessoa.setCpf("");
                 message.warn("Erro ao efetuar cadastro!", "CPF invalido!");
             }
         }
         catch (Exception e){
-            pessoa.setCpf(0);
+            pessoa.setCpf("");
             message.warn("Erro ao efetuar cadastro!", "CPF já cadastrado!");
             resposta =  false;
         }

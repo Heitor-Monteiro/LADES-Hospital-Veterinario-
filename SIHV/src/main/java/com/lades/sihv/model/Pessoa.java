@@ -1,17 +1,13 @@
 package com.lades.sihv.model;
-// Generated 08/11/2016 12:03:42 by Hibernate Tools 4.3.1
+// Generated 09/11/2016 09:45:03 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,7 +25,7 @@ public class Pessoa  implements java.io.Serializable {
 
 
      private Integer pkPessoa;
-     private long cpf;
+     private String cpf;
      private int rg;
      private String nome;
      private String sexo;
@@ -43,15 +39,12 @@ public class Pessoa  implements java.io.Serializable {
      private Date cadDataHora;
      private Boolean exclusaoLogica;
      private String email;
-     private Set<Telefone> telefones = new HashSet<Telefone>(0);
-     private Set<Cliente> clientes = new HashSet<Cliente>(0);
-     private Set<User> users = new HashSet<User>(0);
 
     public Pessoa() {
     }
 
 	
-    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String uf, Date cadDataHora, String email) {
+    public Pessoa(String cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String uf, Date cadDataHora, String email) {
         this.cpf = cpf;
         this.rg = rg;
         this.nome = nome;
@@ -65,7 +58,7 @@ public class Pessoa  implements java.io.Serializable {
         this.cadDataHora = cadDataHora;
         this.email = email;
     }
-    public Pessoa(long cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Telefone> telefones, Set<Cliente> clientes, Set<User> users) {
+    public Pessoa(String cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, int cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email) {
        this.cpf = cpf;
        this.rg = rg;
        this.nome = nome;
@@ -80,9 +73,6 @@ public class Pessoa  implements java.io.Serializable {
        this.cadDataHora = cadDataHora;
        this.exclusaoLogica = exclusaoLogica;
        this.email = email;
-       this.telefones = telefones;
-       this.clientes = clientes;
-       this.users = users;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -98,12 +88,12 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="cpf", unique=true, nullable=false)
-    public long getCpf() {
+    @Column(name="cpf", unique=true, nullable=false, length=18)
+    public String getCpf() {
         return this.cpf;
     }
     
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -235,33 +225,6 @@ public class Pessoa  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Telefone> getTelefones() {
-        return this.telefones;
-    }
-    
-    public void setTelefones(Set<Telefone> telefones) {
-        this.telefones = telefones;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Cliente> getClientes() {
-        return this.clientes;
-    }
-    
-    public void setClientes(Set<Cliente> clientes) {
-        this.clientes = clientes;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<User> getUsers() {
-        return this.users;
-    }
-    
-    public void setUsers(Set<User> users) {
-        this.users = users;
     }
 
 

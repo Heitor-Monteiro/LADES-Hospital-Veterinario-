@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.Controller;
+package com.lades.sihv.controller;
 
 /**
  *
@@ -59,12 +59,13 @@ public class Login implements Serializable {
 	//validate login
 	public String validateUsernamePassword() throws IOException {
             pwd = Security.getMD5(pwd);
-            user = BeautyText.Do(user);
-            boolean valid = new GenericoDAOImpl().validate(user, pwd);
-            if (valid) {
+            GenericoDAOImpl work = new GenericoDAOImpl();
+            int valid = work.validate(user, pwd);
+            if (valid!=-1) {
                 HttpSession session = SessionUtils.getSession();
-		session.setAttribute("username", user);
+		session.setAttribute("username", com.lades.sihv.BeautyText.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
+                System.out.println(com.lades.sihv.BeautyText.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
                 return "index";
             } else {
                 FacesMessages mensagem = new FacesMessages();

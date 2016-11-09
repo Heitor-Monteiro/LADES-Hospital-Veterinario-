@@ -18,7 +18,7 @@ public interface GenericoDAO<Ent> {
     public void remove(Object entidade);
     public void update(Object entidade);
     
-    public boolean validate(String username, String password);
+    public int validate(String username, String password);
     
 //        void inserir(T entidade);
 //    

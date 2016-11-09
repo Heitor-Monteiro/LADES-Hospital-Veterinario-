@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/11/2016 12:03:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/11/2016 09:45:03 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Pessoa" table="pessoa" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkPessoa" type="java.lang.Integer">
             <column name="PK_pessoa" />
             <generator class="identity" />
         </id>
-        <property name="cpf" type="long">
-            <column name="cpf" not-null="true" unique="true" />
+        <property name="cpf" type="string">
+            <column name="cpf" length="18" not-null="true" unique="true" />
         </property>
         <property name="rg" type="int">
             <column name="rg" not-null="true" />
@@ -50,23 +50,5 @@
         <property name="email" type="string">
             <column name="email" length="100" not-null="true" />
         </property>
-        <set name="telefones" table="telefone" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="FK_pessoa" not-null="true" />
-            </key>
-            <one-to-many class="com.lades.sihv.model.Telefone" />
-        </set>
-        <set name="clientes" table="cliente" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="FK_pessoa" not-null="true" />
-            </key>
-            <one-to-many class="com.lades.sihv.model.Cliente" />
-        </set>
-        <set name="users" table="user" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="FK_pessoa" not-null="true" />
-            </key>
-            <one-to-many class="com.lades.sihv.model.User" />
-        </set>
     </class>
 </hibernate-mapping>

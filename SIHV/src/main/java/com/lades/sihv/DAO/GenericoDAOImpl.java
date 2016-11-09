@@ -71,7 +71,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             Pessoa newPessoa = new Pessoa();
             newPessoa.setPkPessoa((int)obj[0]);
             newPessoa.setNome((String)obj[1]);
-            newPessoa.setCpf((long)obj[2]);
+            newPessoa.setCpf((String)obj[2]);
             newPessoa.setRg((int)obj[3]);
             retornaPessoa.add(newPessoa);
         }
@@ -95,9 +95,9 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             idAnimal.setClienteFkPessoa((int)obj[2]);
             
             newAnimal.setId(idAnimal);
-            newAnimal.setNomeAnimal((String)obj[3]);
+            newAnimal.setNome((String)obj[3]);
             newAnimal.setEspecie((String)obj[4]);
-            newAnimal.setSexoAnimal((String)obj[5]);
+            newAnimal.setSexo((String)obj[5]);
             retornaAnimais.add(newAnimal);
         }
         return retornaAnimais;
@@ -125,16 +125,18 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     
     //Método para validação de credenciais de login
     @Override
-    public boolean validate(String username, String password){
-        boolean resposta;
-        List<User>checkLogin = (List<User>)this.list("select u.id.pkUser from  Pessoa p, User u where p.email='"+username+"' and u.userSenha='"+password+"' and p.pkPessoa = u.id.fkPessoa");
+    public int validate(String username, String password){
+        int resposta=-1;
+        username = username.toLowerCase();
+        System.out.print(username);
+        List<Object>checkLogin = (List<Object>)this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='"+password+"' and (p.email='"+username+"' or u.userNick='"+username+"')");
         try{
-            resposta = true;
-            System.out.print(checkLogin.get(0));
+            resposta=(int)checkLogin.get(0);
         }
         catch(Exception ex){
-            resposta = false;
+            resposta = -1;
         }
+        System.out.print("==================: "+resposta);
         return resposta;
     }
     
