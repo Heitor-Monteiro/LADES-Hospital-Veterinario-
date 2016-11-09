@@ -58,7 +58,7 @@ public class Login implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() throws IOException {
-            pwd = Security.getMD5(pwd);
+            pwd = Security.encrypter(pwd);
             GenericoDAOImpl work = new GenericoDAOImpl();
             int valid = work.validate(user, pwd);
             if (valid!=-1) {

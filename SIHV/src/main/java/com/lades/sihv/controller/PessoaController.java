@@ -4,8 +4,6 @@
  * and open the template in the editor.
  */
 package com.lades.sihv.controller;
-
-import com.lades.sihv.BeautyText;
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.User;
@@ -22,6 +20,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
+import com.lades.sihv.BeautyText;
 /**
  *
  * @author thiberius
@@ -95,52 +94,71 @@ public class PessoaController implements Serializable{
         addUser(tipoUSER,mensageTIPO);
     }
     private boolean addUser(String tipoUSER, String mensageTIPO){
+        
+        user.setUserNick(user.getUserNick().toLowerCase());
         boolean checkLogin=this.checkExistingLogin();
-        boolean checkCPF=com.lades.sihv.Security.checkCPF(pessoa.getCpf());
         if(!checkLogin){
-            message.warn("Erro ao efetuar cadastro!", "O nome de Login já existe!");
+            message.warn("Erro ao efetuar cadastro!", "O nome de Login ou e-mail já existe!");
             pessoa.setEmail("");
         }
-        
-        if(!checkCPF){
-            message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
-            pessoa.setCpf("");
-        }
-        
-        if(!checkCPF || !checkLogin)
+               
+        if(!checkLogin || !this.prepararSalvarPessoa())
             return false;
         try {
-                pessoa.setCadDataHora(data);
                 daoGenerico.save(pessoa);
-
                 telefone.setPessoa(pessoa);
                 daoGenerico.save(telefone);
 
                 userId.setFkPessoa(pessoa.getPkPessoa());
                 user.setId(userId);
+                user.setUserSenha(com.lades.sihv.Security.encrypter(user.getUserSenha()));
+                
                 if (!"".equals(numCRMV1) && !"".equals(numCRMV2)) {
                     user.setCrmvMatricula(numCRMV1+" "+numCRMV2);
                 }
                 user.setUserTipo(tipoUSER);
-                user.setUserSenha(Security.getMD5(user.getUserSenha()));
                 daoGenerico.save(user);
 
                 message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
             } catch (Exception e) {
-                message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+                message.warn("Erro ao efetuar cadastro!", e.getMessage()+"\nVerifique os dados e tente novamente!");
             }
         return true;
     }
-        
-    public boolean checkExistingLogin(){
-        List<Pessoa>checkLogin = (List<Pessoa>)daoGenerico.list("select p from Pessoa p where p.email = '"+pessoa.getEmail()+"'");
+      
+    public boolean prepararSalvarPessoa(){
+        boolean checkCPF=com.lades.sihv.Security.checkCPF(pessoa.getCpf());
+        boolean checkExCPF=this.checkExistingCPF(pessoa.getCpf());
+        if(!checkCPF){
+            message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
+            pessoa.setCpf("");
+        }        
+                
+        if(!checkExCPF){
+            message.warn("Erro ao efetuar cadastro!", "O CPF informado já existe!");
+            pessoa.setCpf("");
+        }
+        if(!checkExCPF || !checkCPF)
+            return false;
         try{
-            System.out.print(checkLogin.get(0).getEmail());
-        }
-        catch(Exception ex){
-            return true;
-        }
-        return false;
+        pessoa.setNome(BeautyText.Captalizador(pessoa.getNome()));
+        pessoa.setEmail(pessoa.getEmail().toLowerCase());
+        pessoa.setCidade(BeautyText.Captalizador(pessoa.getCidade()));
+        pessoa.setBairro(BeautyText.Captalizador(pessoa.getBairro()));
+        pessoa.setComplemento(BeautyText.firstCapital(pessoa.getComplemento()));
+        pessoa.setLogra(BeautyText.firstCapital(pessoa.getLogra()));
+        pessoa.setCadDataHora(data);return true;}catch(Exception ex){return false;}
+    }
+    
+    public boolean checkExistingCPF(String cpf){
+        try{
+            List<Pessoa>checkLogin = (List<Pessoa>)daoGenerico.list("select p from Pessoa p where p.cpf='"+cpf+"'");
+            return checkLogin.isEmpty();}catch(Exception ex){return true;}
+    }
+    
+    public boolean checkExistingLogin(){
+        try{List<Pessoa>checkLogin = (List<Pessoa>)daoGenerico.list("select p from Pessoa p, user u where p.email = '"+pessoa.getEmail()+"' or u.userNick='"+user.getUserNick()+"'");
+        return checkLogin.isEmpty();}catch(Exception ex){return true;}
     }
     
     
@@ -150,11 +168,8 @@ public class PessoaController implements Serializable{
         addCLIENTE();
     }
     private boolean addCLIENTE(){
-        boolean resposta;
         try{
-            resposta = com.lades.sihv.Security.checkCPF(pessoa.getCpf());
-            if (resposta) {
-                pessoa.setCadDataHora(data);
+            if (this.prepararSalvarPessoa()) {
                 daoGenerico.save(pessoa);
 
                 telefone.setPessoa(pessoa);
@@ -165,17 +180,15 @@ public class PessoaController implements Serializable{
                 daoGenerico.save(cliente);
 
                 message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
-            }else{
-                pessoa.setCpf("");
-                message.warn("Erro ao efetuar cadastro!", "CPF invalido!");
-            }
+                return true;
+            }else
+                throw new Exception();
         }
         catch (Exception e){
             pessoa.setCpf("");
-            message.warn("Erro ao efetuar cadastro!", "CPF já cadastrado!");
-            resposta =  false;
+            message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+            return false;
         }
-        return resposta;
     }
     
     

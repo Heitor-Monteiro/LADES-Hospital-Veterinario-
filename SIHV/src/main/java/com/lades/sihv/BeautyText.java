@@ -15,6 +15,19 @@ public class BeautyText {
         return value.substring(value.length() - length);
     }
 
+    public static String firstCapital(String text){
+        String backUp = text;
+        try {
+            text = text.toLowerCase();
+            char[] charText = text.toCharArray();
+            char letra = Character.toUpperCase(charText[0]);
+            charText[0]=letra;
+            return new String(charText);
+        } catch (Exception ex) {
+            return backUp;
+        }
+    }
+    
     public static String Captalizador(String text) {
         String backUp = text;
         try {

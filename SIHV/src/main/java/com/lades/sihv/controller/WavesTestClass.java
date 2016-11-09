@@ -19,11 +19,7 @@ import org.hibernate.transform.*;
 
 public class WavesTestClass {
     public static void main(String[] args){
-        com.lades.sihv.controller.PesquisaController pesquisa = new com.lades.sihv.controller.PesquisaController();
-        pesquisa.setItemPesquisa("cpf");
-        pesquisa.setTextoPesquisa("37685942145");
-        //pesquisa.ListagemAnimais(new java.util.ArrayList<Animais>());
-        List<Animais> teste = (List<Animais>)pesquisa.getObjBuscados();
-        //System.out.println(teste.get(0).getNome());
+        String cpf = "029.499.942-61";
+        System.out.println("============|cpf checker | =========== "+com.lades.sihv.Security.checkCPF(cpf));
     }
 }

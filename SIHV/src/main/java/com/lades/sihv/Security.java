@@ -15,6 +15,18 @@ import java.util.InputMismatchException;
  */
 public class Security {
 
+    public static String getSHA1(String senha) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA");
+            md.update(senha.getBytes());
+            BigInteger hash = new BigInteger(1, md.digest());
+            return hash.toString(16);
+        } catch (Exception ex) {
+            System.out.println("FUDEU");
+            return "Numvaidanao";
+        }
+    }
+
     public static String getMD5(String plainText) {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
@@ -33,8 +45,16 @@ public class Security {
             return "Numvaidanao";
         }
     }
+    
+    public static String encrypter(String plainText){
+        return getMD5(getSHA1(plainText));
+    }
 
-    public static boolean isCNPJ(String CNPJ) {
+    public static boolean checkCNPJ(String CNPJ) {
+        CNPJ=CNPJ.replace(".", "");
+        CNPJ=CNPJ.replace("-", "");
+        CNPJ=CNPJ.replace("/", "");
+        
 // considera-se erro CNPJ's formados por uma sequencia de numeros iguais
         if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111")
                 || CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333")
@@ -103,6 +123,8 @@ public class Security {
     }
 
     public static boolean checkCPF(String strCpf) {
+        strCpf = strCpf.replace(".", "");
+        strCpf = strCpf.replace("-", "");
         int d1, d2;
         int digito1, digito2, resto;
         int digitoCPF;
