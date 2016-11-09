@@ -15,7 +15,6 @@ import com.lades.sihv.model.ClienteId;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Telefone;
 import com.lades.sihv.Security;
-import com.lades.sihv.controller.FacesMessages;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;

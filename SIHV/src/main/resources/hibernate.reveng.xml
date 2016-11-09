@@ -2,21 +2,21 @@
 <!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd">
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="bd_sihv"/>
-  <table-filter match-name="sisNeurologico"/>
-  <table-filter match-name="pelagem"/>
-  <table-filter match-name="sisDigestorio"/>
   <table-filter match-name="sisUrinarioMamaria"/>
-  <table-filter match-name="sisTegumentar"/>
-  <table-filter match-name="sisOftalmico"/>
   <table-filter match-name="telefone"/>
-  <table-filter match-name="sisRespCardio"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="sisTegumentar"/>
+  <table-filter match-name="sisDigestorio"/>
+  <table-filter match-name="sisOftalmico"/>
+  <table-filter match-name="anamnese"/>
+  <table-filter match-name="animais"/>
+  <table-filter match-name="pessoa"/>
   <table-filter match-name="exameImage"/>
+  <table-filter match-name="user"/>
   <table-filter match-name="exameFisico"/>
   <table-filter match-name="consulta"/>
   <table-filter match-name="sisMuscEsque"/>
-  <table-filter match-name="anamnese"/>
-  <table-filter match-name="pessoa"/>
-  <table-filter match-name="cliente"/>
-  <table-filter match-name="animais"/>
-  <table-filter match-name="user"/>
+  <table-filter match-name="pelagem"/>
+  <table-filter match-name="sisRespCardio"/>
+  <table-filter match-name="sisNeurologico"/>
 </hibernate-reverse-engineering>

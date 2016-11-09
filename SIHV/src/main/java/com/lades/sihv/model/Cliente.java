@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/11/2016 12:03:42 by Hibernate Tools 4.3.1
+// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;

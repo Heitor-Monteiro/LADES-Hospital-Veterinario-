@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/11/2016 12:03:42 by Hibernate Tools 4.3.1
+// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -24,12 +24,12 @@ public class Telefone  implements java.io.Serializable {
 
      private Integer pkTelefone;
      private Pessoa pessoa;
-     private long numero;
+     private String numero;
 
     public Telefone() {
     }
 
-    public Telefone(Pessoa pessoa, long numero) {
+    public Telefone(Pessoa pessoa, String numero) {
        this.pessoa = pessoa;
        this.numero = numero;
     }
@@ -57,12 +57,12 @@ public class Telefone  implements java.io.Serializable {
     }
 
     
-    @Column(name="numero", nullable=false)
-    public long getNumero() {
+    @Column(name="numero", nullable=false, length=15)
+    public String getNumero() {
         return this.numero;
     }
     
-    public void setNumero(long numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 
