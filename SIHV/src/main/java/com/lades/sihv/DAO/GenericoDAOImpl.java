@@ -95,9 +95,9 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             idAnimal.setClienteFkPessoa((int)obj[2]);
             
             newAnimal.setId(idAnimal);
-            newAnimal.setNome((String)obj[3]);
+            newAnimal.setNomeAnimal((String)obj[3]);
             newAnimal.setEspecie((String)obj[4]);
-            newAnimal.setSexo((String)obj[5]);
+            newAnimal.setSexoAnimal((String)obj[5]);
             retornaAnimais.add(newAnimal);
         }
         return retornaAnimais;

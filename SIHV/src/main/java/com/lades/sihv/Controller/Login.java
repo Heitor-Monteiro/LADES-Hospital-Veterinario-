@@ -20,6 +20,7 @@ import com.lades.sihv.BeautyText;
 import com.lades.sihv.Security;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.DAO.SessionUtils;
+import com.lades.sihv.controller.FacesMessages;
 import java.io.IOException;
 
 @ManagedBean
