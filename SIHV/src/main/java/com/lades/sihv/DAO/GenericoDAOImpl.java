@@ -36,6 +36,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         Transaction t = session.beginTransaction();
         session.save(entidade);
         t.commit();
+        session.close();
+        System.out.println("\nBACK-END WARNING: OBJECT SAVED! [ public void save(Ent entidade) ]");
     }
     //Método genérico para recuperação de objetos do banco de dados
     @Override
@@ -45,6 +47,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         if(model.equals("User")||model.equals("Animais")||model.equals("Cliente"))
             idType="id.pk";
         getObject = this.list("SELECT o from "+model+" o where o."+idType+model+"="+id);
+        System.out.println("\nBACK-END WARNING: LIST RETURNED! [ public Ent getById(String model, Integer id) ]");
         return (Ent)getObject.get(0);
     }
     //Método genérico para listar objetos baseado em uma Query HQL
@@ -55,6 +58,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         org.hibernate.Query query = session.createQuery(sqlHQL);
         List<Ent> lista = query.list();
         t.commit();
+        session.close();
+        System.out.println("\nBACK-END WARNING: LIST RETURNED! [ public List<Ent> list(String sqlHQL) ]");
         return lista;
     }
     
@@ -74,6 +79,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             newPessoa.setRg((String)obj[3]);
             retornaPessoa.add(newPessoa);
         }
+        System.out.println("\nBACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
         return retornaPessoa;
     }
     
@@ -100,6 +106,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             newAnimal.setSexoAnimal((String)obj[5]);
             retornaAnimais.add(newAnimal);
         }
+        System.out.println("\nBACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
         return retornaAnimais;
     }
     
@@ -112,6 +119,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         Transaction t = session.beginTransaction();
         session.delete(entidade);
         t.commit();
+        session.close();
+        System.out.println("\nBACK-END WARNING: OBJECT REMOVED! [ public void remove(Object entidade) ]");
     }
     
     //Método genérico para atualizar uma tupla em uma entidade
@@ -121,6 +130,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         Transaction t = session.beginTransaction();
         session.update(entidade);
         t.commit();
+        session.close();
+        System.out.println("\nBACK-END WARNING: OBJECT UPDATED! [ public void update(Object entidade) ]");
     }
     
     //Método para validação de credenciais de login
@@ -131,12 +142,12 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         System.out.print(username);
         List<Object>checkLogin = (List<Object>)this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='"+password+"' and (p.email='"+username+"' or u.userNick='"+username+"')");
         try{
-            resposta=(int)checkLogin.get(0);
+            System.out.println("\nBACK-END WARNING: USER VALIDATED! p.pkPessoa="+checkLogin.get(0)+"[ public int validate(String username, String password) ]");
+            resposta = (int)checkLogin.get(0);
         }
         catch(Exception ex){
-            resposta = -1;
+            System.out.println("\nBACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
         }
-        System.out.print("==================: "+resposta);
         return resposta;
     }
     
@@ -144,9 +155,9 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     @Override
     public List<String> getPelagemNames(){
         List<String> listaPelagens = new ArrayList<>();
-        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl")){
+        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl"))
             listaPelagens.add((String)obj);
-        }
+        System.out.println("\nBACK-END WARNING: LIST RETURNED! [ public List<String> getPelagemNames() ]");
         return listaPelagens;
     }    
     

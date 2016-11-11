@@ -31,6 +31,7 @@ public class Login implements Serializable {
 	private String pwd;
 	private String msg;
 	private String user;
+        private boolean logged=false;
 
 	public String getPwd() {
 		return pwd;
@@ -63,14 +64,17 @@ public class Login implements Serializable {
             int valid = work.validate(user, pwd);
             if (valid!=-1) {
 		BeautyText stringer = new BeautyText();
-                SessionUtils.getSession().setAttribute("username", stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
+                this.setUsername(stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
-                System.out.println(stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
+                System.out.println("\nBACK-END WARNING: USER LOGGED! username="+stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0))+" [ public String validateUsernamePassword() throws IOException ]");
+                logged=true;
                 return "index";
             } else {
                 FacesMessages mensagem = new FacesMessages();
                 mensagem.warn("Nome de usuário ou Senha incorretos!","Por favor, insira os dados corretamente!");
+                System.out.println("\nBACK-END WARNING: USER NOT LOGGED! [ public String validateUsernamePassword() throws IOException ]");
                 //FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");	
+                logged=false;
                 return "login";
             }
 	}
@@ -78,11 +82,29 @@ public class Login implements Serializable {
         public String getUsername(){
             return SessionUtils.getUserName();
         }
+        
+        public void setUsername(String name){
+            SessionUtils.getSession().setAttribute("username",name);
+        }
 
 	//logout event, invalidate session
-	public String logout() {
+        
+	public void logout() throws IOException{
 		HttpSession session = SessionUtils.getSession();
 		session.invalidate();
-		return "login";
+                System.out.println("\nBACK-END WARNING: SESSION INVALIDATED!");
+                logged=false;
 	}
+        
+        public String goToLogin(){
+            return "login";
+        }
+        
+        public void checkLogin() throws IOException{
+            if(!logged){
+                FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");System.out.println("\nBACK-END WARNING: LOGIN CHECKED! REDIRECTED TO LOGIN! [ public void checkLogin() throws IOException ]");}
+            else{
+                System.out.println("\nBACK-END WARNING: LOGIN CHECKED! NO ACTION NEEDED! [ public void checkLogin() throws IOException ]");}
+            
+        }
 }
