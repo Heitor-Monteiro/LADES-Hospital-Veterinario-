@@ -11,11 +11,11 @@ package com.lades.sihv;
  */
 public class BeautyText {
 
-    public static String right(String value, int length) {
+    public String right(String value, int length) {
         return value.substring(value.length() - length);
     }
 
-    public static String firstCapital(String text){
+    public String firstCapital(String text){
         String backUp = text;
         try {
             text = text.toLowerCase();
@@ -28,7 +28,7 @@ public class BeautyText {
         }
     }
     
-    public static String Captalizador(String text) {
+    public String Captalizador(String text) {
         String backUp = text;
         try {
             text = text.toLowerCase();
@@ -50,11 +50,19 @@ public class BeautyText {
         }
     }
     
-    public static String fistNLast(String Str){;
+    public String fistNLast(String Str){;
       String[] name = Str.split(" ");
       if(name.length>1)
         return name[0]+" "+name[name.length-1];
       else
           return Str;
    }
+    
+    public String concatenaSTRING(String vetor[]){
+        String textoTEMP="";
+        for (String vetor1 : vetor) {
+            textoTEMP += " "+vetor1;
+        }
+        return textoTEMP;
+    }
 }

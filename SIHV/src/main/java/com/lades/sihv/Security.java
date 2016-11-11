@@ -15,7 +15,7 @@ import java.util.InputMismatchException;
  */
 public class Security {
 
-    public static String getSHA1(String senha) {
+    public String getSHA1(String senha) {
         try {
             MessageDigest md = MessageDigest.getInstance("SHA");
             md.update(senha.getBytes());
@@ -27,7 +27,7 @@ public class Security {
         }
     }
 
-    public static String getMD5(String plainText) {
+    public String getMD5(String plainText) {
         try {
             MessageDigest m = MessageDigest.getInstance("MD5");
             m.reset();
@@ -46,11 +46,11 @@ public class Security {
         }
     }
     
-    public static String encrypter(String plainText){
+    public String encrypter(String plainText){
         return getMD5(getSHA1(plainText));
     }
 
-    public static boolean checkCNPJ(String CNPJ) {
+    public boolean checkCNPJ(String CNPJ) {
         CNPJ=CNPJ.replace(".", "");
         CNPJ=CNPJ.replace("-", "");
         CNPJ=CNPJ.replace("/", "");
@@ -122,7 +122,7 @@ public class Security {
         }
     }
 
-    public static boolean checkCPF(String strCpf) {
+    public boolean checkCPF(String strCpf) {
         strCpf = strCpf.replace(".", "");
         strCpf = strCpf.replace("-", "");
         int d1, d2;

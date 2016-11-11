@@ -12,7 +12,7 @@ import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.ClienteId;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Telefone;
-import com.lades.sihv.Security;
+import com.lades.sihv.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -40,6 +40,8 @@ public class PessoaController implements Serializable{
     private Date data;
     private List<Pessoa> pessoasBuscadas;
     private boolean mudancaCpfCnpj = true;
+    private Security secure = new Security();
+    private BeautyText stringer = new BeautyText();
     
     
     
@@ -111,7 +113,7 @@ public class PessoaController implements Serializable{
 
                 userId.setFkPessoa(pessoa.getPkPessoa());
                 user.setId(userId);
-                user.setUserSenha(com.lades.sihv.Security.encrypter(user.getUserSenha()));
+                user.setUserSenha(secure.encrypter(user.getUserSenha()));
                 
                 if (!"".equals(numCRMV1) && !"".equals(numCRMV2)) {
                     user.setCrmvMatricula(numCRMV1+" "+numCRMV2);
@@ -127,7 +129,7 @@ public class PessoaController implements Serializable{
     }
       
     public boolean prepararSalvarPessoa(){
-        boolean checkCPF=com.lades.sihv.Security.checkCPF(pessoa.getCpf());
+        boolean checkCPF=secure.checkCPF(pessoa.getCpf());
         boolean checkExCPF=this.checkExistingCPF(pessoa.getCpf());
         if(!checkCPF){
             message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
@@ -141,12 +143,12 @@ public class PessoaController implements Serializable{
         if(!checkExCPF || !checkCPF)
             return false;
         try{
-        pessoa.setNome(BeautyText.Captalizador(pessoa.getNome()));
+        pessoa.setNome(stringer.Captalizador(pessoa.getNome()));
         pessoa.setEmail(pessoa.getEmail().toLowerCase());
-        pessoa.setCidade(BeautyText.Captalizador(pessoa.getCidade()));
-        pessoa.setBairro(BeautyText.Captalizador(pessoa.getBairro()));
-        pessoa.setComplemento(BeautyText.firstCapital(pessoa.getComplemento()));
-        pessoa.setLogra(BeautyText.firstCapital(pessoa.getLogra()));
+        pessoa.setCidade(stringer.Captalizador(pessoa.getCidade()));
+        pessoa.setBairro(stringer.Captalizador(pessoa.getBairro()));
+        pessoa.setComplemento(stringer.firstCapital(pessoa.getComplemento()));
+        pessoa.setLogra(stringer.firstCapital(pessoa.getLogra()));
         pessoa.setCadDataHora(data);return true;}catch(Exception ex){return false;}
     }
     

@@ -1,6 +1,6 @@
 package com.lades.sihv.DAO;
 
-
+import com.lades.sihv.*;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.AnimaisId;
@@ -63,9 +63,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     @Override
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
         if(searchMode.equals("nome"))
-            search=com.lades.sihv.BeautyText.Captalizador(search);
-        if(!searchMode.equals("rg"))
-            search="'%"+search+"%'";     
+            search= new BeautyText().Captalizador(search);
+        search="'%"+search+"%'";
         List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
         List<Pessoa> retornaPessoa = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
@@ -84,9 +83,8 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     @Override
     public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
         if(searchMode.equals("nome"))
-            search=com.lades.sihv.BeautyText.Captalizador(search);
-        if(!searchMode.equals("rg"))
-            search="'%"+search+"%'";     
+            search= new BeautyText().Captalizador(search);
+        search="'%"+search+"%'";
         List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
         List<Animais> retornaAnimais = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){

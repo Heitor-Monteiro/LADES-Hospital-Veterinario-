@@ -20,6 +20,6 @@ import org.hibernate.transform.*;
 public class WavesTestClass {
     public static void main(String[] args){
         String cpf = "029.499.942-61";
-        System.out.println("============|cpf checker | =========== "+com.lades.sihv.Security.checkCPF(cpf));
+        System.out.println("============|cpf checker | =========== "+new com.lades.sihv.Security().checkCPF(cpf));
     }
 }

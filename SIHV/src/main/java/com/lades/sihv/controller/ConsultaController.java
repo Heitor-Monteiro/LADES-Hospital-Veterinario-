@@ -151,10 +151,11 @@ public class ConsultaController implements Serializable{
                 daoGenerico.save(novaConsulta);
 
                 anamneseId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
-                anamnese.setId(anamneseId); 
-                anamnese.setVacinacao(concatenaSTRING(vacinacao));
-                anamnese.setQualEctoparasitas(concatenaSTRING(qualEctoparasitas));
-                anamnese.setAcessoRua(concatenaSTRING(acessoArua));
+                anamnese.setId(anamneseId);
+                com.lades.sihv.BeautyText Stringer = new com.lades.sihv.BeautyText();
+                anamnese.setVacinacao(Stringer.concatenaSTRING(vacinacao));
+                anamnese.setQualEctoparasitas(Stringer.concatenaSTRING(qualEctoparasitas));
+                anamnese.setAcessoRua(Stringer.concatenaSTRING(acessoArua));
 
                 sisDigestorioId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 sisDigestorio.setId(sisDigestorioId);
@@ -214,7 +215,7 @@ public class ConsultaController implements Serializable{
     uma nova consulta só será concretizada 
     se houver o aval do mesmo*/
     private void confirmaMEDICO(){
-        confirmeSENHA = Security.getMD5(confirmeSENHA);
+        confirmeSENHA = new Security().encrypter(confirmeSENHA);
         List<User> userLista;
         userLista =  daoGenerico.list("select u from User u where u.userSenha='"+confirmeSENHA+"' and u.crmvMatricula='"+confirmeCRMV+"'");
         
@@ -232,24 +233,7 @@ public class ConsultaController implements Serializable{
     
     /*O método é utilizado para concatenar valores
     pertencentes ao inputs do tipo checkBox.*/
-    private String concatenaSTRING(String vetor[]){
-        String textoTEMP="";
-        for (String vetor1 : vetor) {
-            textoTEMP += " "+vetor1;
-        }
-        return textoTEMP;
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     /*O métodos GETs e SETs utilizados para*/
     public Date getData() {
         return data;

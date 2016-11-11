@@ -16,7 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import com.lades.sihv.BeautyText;
+import com.lades.sihv.*;
 import com.lades.sihv.Security;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.DAO.SessionUtils;
@@ -58,14 +58,14 @@ public class Login implements Serializable {
 
 	//validate login
 	public String validateUsernamePassword() throws IOException {
-            pwd = Security.encrypter(pwd);
+            pwd = new Security().encrypter(pwd);
             GenericoDAOImpl work = new GenericoDAOImpl();
             int valid = work.validate(user, pwd);
             if (valid!=-1) {
-                HttpSession session = SessionUtils.getSession();
-		session.setAttribute("username", com.lades.sihv.BeautyText.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
+		BeautyText stringer = new BeautyText();
+                SessionUtils.getSession().setAttribute("username", stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
-                System.out.println(com.lades.sihv.BeautyText.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
+                System.out.println(stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
                 return "index";
             } else {
                 FacesMessages mensagem = new FacesMessages();
@@ -74,6 +74,10 @@ public class Login implements Serializable {
                 return "login";
             }
 	}
+        
+        public String getUsername(){
+            return SessionUtils.getUserName();
+        }
 
 	//logout event, invalidate session
 	public String logout() {
