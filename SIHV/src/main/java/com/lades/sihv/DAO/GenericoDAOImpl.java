@@ -4,7 +4,6 @@ import com.lades.sihv.*;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.AnimaisId;
-import com.lades.sihv.model.User;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -72,7 +71,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             newPessoa.setPkPessoa((int)obj[0]);
             newPessoa.setNome((String)obj[1]);
             newPessoa.setCpf((String)obj[2]);
-            newPessoa.setRg((int)obj[3]);
+            newPessoa.setRg((String)obj[3]);
             retornaPessoa.add(newPessoa);
         }
         return retornaPessoa;

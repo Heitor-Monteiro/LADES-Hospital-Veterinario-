@@ -144,9 +144,8 @@ public class ConsultaController implements Serializable{
         if (medicoCOFIRMADO == true) {
             try {
                 novaConsulta.setDataConsulta(data);
-                novaConsulta.setSistemasAfetados("Teste de sistemas afetados");
+                novaConsulta.setSistemasAfetados(sistemasAfetados());
                 novaConsulta.setAnimais(animais);
-
                 novaConsulta.setUser(medicoVET);
                 daoGenerico.save(novaConsulta);
 
@@ -206,6 +205,25 @@ public class ConsultaController implements Serializable{
             }
         }
     } 
+    
+    
+    
+    
+    private String sistemasAfetados(){
+        String sisAfetados="";
+        
+        sisAfetados += ("SIM".equals(sisDigestorio.getSistemaAfetado()))?"Sistema digestório e glândulas anexas, ":"";
+        sisAfetados += ("SIM".equals(sisRespCardio.getSistemaAfetado()))?"Sistema respiratório e cardiovascular, ":"";
+        sisAfetados += ("SIM".equals(sisUrinarioMamaria.getSistemaAfetado()))?"Sistema gênito-urinário e glândulas mamárias, ":"";
+        sisAfetados += ("SIM".equals(sisTegumentar.getSistemaAfetado()))?"Sistema tegumentar, ":"";
+        sisAfetados += ("SIM".equals(sisNeurologico.getSistemaAfetado()))?"Sistema neurológico, ":"";
+        sisAfetados += ("SIM".equals(sisOftalmico.getSistemaAfetado()))?"Sistema oftálmico, ":"";
+        sisAfetados += ("SIM".equals(sisMuscEsque.getSistemaAfetado()))?"Sistema músculo-esquelético, ":"";
+        
+        return sisAfetados;
+    }
+    
+    
     
     
     

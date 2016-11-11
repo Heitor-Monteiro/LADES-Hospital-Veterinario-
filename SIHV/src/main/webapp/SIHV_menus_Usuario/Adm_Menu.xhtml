@@ -100,27 +100,25 @@
                     <li>
                         <span class="open-submenu">Editar cadastro<span class="arrow down"></span></span>
                         <ul>
-                            <li>
-                        <span class="open-submenu">Editar cadastro<span class="arrow down"></span></span>
-                        <ul>
                             <li><h:link value="SubMenu1" /></li>
                             <li><h:link value="SubMenu2eeeeeeeeeeee" /></li>
                             <li><h:link value="SubMenu3" /></li>
                         </ul>
                     </li>
-                        </ul>
-                    </li>
                     
                     <li>
-                        <span class="open-submenu">Menu 1<span class="arrow down"></span></span>
+                        <span class="open-submenu">
+                            <p:outputLabel value="#{login.username}" />
+                            <span class="arrow down"></span>
+                        </span>
                         <ul>
                             <li><h:link value="Login" outcome="/login" /></li>
-                            <li><h:link value="SubMenu2eeeeeeeeeeee" /></li>
-                            <li><h:link value="SubMenu3" /></li>
+                            <li><p:link value=" Sair"
+                                        class="fa fa-sign-out"
+                                        onclick="#{login.logout()}" />
+                            </li>
                         </ul>
                     </li>
-                    
-                    <li><h:link value="Menu 2" /></li>
                     
                 </ul>
             </div>

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 11/11/2016 14:03:19 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -30,7 +30,7 @@ public class Pessoa  implements java.io.Serializable {
 
      private Integer pkPessoa;
      private String cpf;
-     private int rg;
+     private String rg;
      private String nome;
      private String sexo;
      private String logra;
@@ -51,7 +51,7 @@ public class Pessoa  implements java.io.Serializable {
     }
 
 	
-    public Pessoa(String cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String uf, Date cadDataHora, String email) {
+    public Pessoa(String cpf, String rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String uf, Date cadDataHora, String email) {
         this.cpf = cpf;
         this.rg = rg;
         this.nome = nome;
@@ -65,7 +65,7 @@ public class Pessoa  implements java.io.Serializable {
         this.cadDataHora = cadDataHora;
         this.email = email;
     }
-    public Pessoa(String cpf, int rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Telefone> telefones, Set<Cliente> clientes, Set<User> users) {
+    public Pessoa(String cpf, String rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Telefone> telefones, Set<Cliente> clientes, Set<User> users) {
        this.cpf = cpf;
        this.rg = rg;
        this.nome = nome;
@@ -108,12 +108,12 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="rg", nullable=false)
-    public int getRg() {
+    @Column(name="rg", nullable=false, length=20)
+    public String getRg() {
         return this.rg;
     }
     
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
