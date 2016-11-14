@@ -1,0 +1,13 @@
+@font-face {
+    font-family: Open Sans;
+    src: url("'#{resource['fonts:OpenSans-Regular.ttf']}") format('truetype');
+    src: url("'#{resource['fonts:OpenSans-Bold.ttf']}") format('truetype'),
+        url("'#{resource['fonts:OpenSans-BoldItalic.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-ExtraBold.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-ExtraBoldItalic.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-Italic.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-Light.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-LightItalic.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-Semibold.ttf']}") format('truetype')
+        url("'#{resource['fonts:OpenSans-SemiboldItalic.ttf']}") format('truetype');
+}

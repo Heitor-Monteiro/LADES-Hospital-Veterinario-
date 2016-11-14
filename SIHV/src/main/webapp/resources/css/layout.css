@@ -11,26 +11,26 @@ and open the template in the editor.
 /* Inicio da resposividade */
 
 .LADES-topbar{
-    
+
     top: 0;
     right: 0;
     left: 0;
     min-height: 40px;
     z-index: 9999;
-    
+
     background-color: #2d3e50;
-    
+
 }
 
 .LADES-logo-SIHV > img{
-    
+
     /*Responsividade imagem */
     max-width: max-content;
     max-height: 55px;
     background-size:100%;
     background-repeat: no-repeat;
     /*Responsividade imagem */
-    
+
     position: absolute;
 }
 
@@ -57,31 +57,31 @@ and open the template in the editor.
 
 @media (min-width: 960px) {
     .LADES-sidebar {
-            margin-left: 0px;
+        margin-left: 0px;
     }
 
     .LADES-sidebar.is-toggled {
-            margin-left: -211px;
+        margin-left: -211px;
     }
 }
 
 @media (min-width: 960px) {
-	.LADES-content {
-		margin-left: 210px;
-	}
-	
-	.LADES-content.is-toggled {
-		margin-left: 0;
-	}
+    .LADES-content {
+        margin-left: 210px;
+    }
+
+    .LADES-content.is-toggled {
+        margin-left: 0;
+    }
 }
 
 /*------- Fim responsividade ------------*/
 
 /* CONTENT */
 .LADES-content {
-	padding: 0 15px;
-	margin-top: 70px;
-	transition: margin-left 0.5s;
+    padding: 0 15px;
+    margin-top: 70px;
+    transition: margin-left 0.5s;
 }
 
 
@@ -127,7 +127,7 @@ and open the template in the editor.
 .LADES-indexBotao{
     height: 150px;
     margin-bottom: -60px;
-    
+
 }
 
 .LADES-textoBotao{
@@ -138,7 +138,7 @@ and open the template in the editor.
     margin-right: auto;
     width: 150px;
     text-align: center;
-    
+
 }
 /*Fim - Index estilização menu central*/
 
