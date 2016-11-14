@@ -10,105 +10,116 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui">
     <f:metadata>
-    <f:viewAction action="#{login.logout()}" />
+        <f:viewAction action="#{login.logout()}" />
     </f:metadata>
     <h:head>
         <title>
             <h:outputText value="#{label_SIHV.TituloSIHV}"></h:outputText>
         </title> 
-        
+
         <meta charset="utf-8" />
         <h:outputStylesheet  library="css" name="layout.css" />
         <h:outputStylesheet  library="css" name="custom.css" />
-    </h:head>
-    
+    </h:head>    
     <script>
-        function lockBack(){
-            window.location.hash="";
-            window.location.hash="";
-            window.onhashchange=function(){window.location.hash="";}
+        function lockBack() {
+            window.location.hash = "";
+            window.location.hash = "";
+            window.onhashchange = function () {
+                window.location.hash = "";
+            }
         }
-        jQuery(document).ready(function() {
+        jQuery(document).ready(function () {
             lockBack();
         });
     </script>
-    
+
     <h:body class="LADES-bodyLogin">
         <header class="LADES-topBarLogin">
-                <h:graphicImage library="imagens" 
-                                name="veterinaria_flat _II_nome.svg" />   
+            <h:graphicImage library="imagens" 
+                            name="veterinaria_flat _II_nome.svg" />   
         </header>
-        
+
         <div class="ui-fluid">
             <h:form>
                 <p:growl id="messageLogin" autoUpdate="true" sticky="true" showDetail="true"/>
-                
-                    <p:panelGrid columns="1" layout="grid"
+
+                <p:panelGrid columns="1" layout="grid"
                              styleClass="panelgrid-noborder"
                              columnClasses="ui-grid-col-12"
                              style="margin-top: 30px;
-                                    font-size: 20px;" >
-                        
-                        <p:inputText id="login" placeholder="Login"
-                                     maxlength="100"
-                                     required="true"
-                                     requiredMessage="Digite seu login!"
-                                     style="margin-bottom: 20px;
-                                            border-radius: 0px;
-                                            max-width: 400px; "
-                                            value="#{login.user}"/>
+                             font-size: 20px;" >
 
-                        <p:password id="senha" placeholder="Senha" 
-                                    maxlength="16"
-                                    required="true"
-                                    requiredMessage="Digite sua senha!"
-                                    style="margin-bottom: 20px;
-                                           border-radius: 0px;
-                                           max-width: 400px;"
-                                           value="#{login.pwd}"/>
+                    <p:inputText id="login" placeholder="Login"
+                                 maxlength="100"
+                                 required="true"
+                                 requiredMessage="Digite seu login!"
+                                 style="font-family: Open Sans, Helvetica, Arial;
+                                 margin-bottom: 20px;
+                                 border-radius: 4px;
+                                 max-width: 400px; "
+                                 value="#{login.user}"/>
 
-                        <p:commandButton value="Entrar" 
-                                         style="border-radius: 0px;
-                                                max-width: 400px;
-                                                color: #ffffff;
-                                                background: #1abc9c"
-                                                actionListener="#{login.validateUsernamePassword()}"
-                                                />
-                        
-                        <p:link value="Esqueceu sua senha?"
-                                style="color: #ffffff; font-size: 13px;"/>
-                        <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
-                            <f:facet name="default">
-                                
-                            </f:facet>
+                    <p:password id="senha" placeholder="Senha" 
+                                maxlength="16"
+                                required="true"
+                                requiredMessage="Digite sua senha!"
+                                style="font-family: Open Sans, Helvetica, Arial;
+                                margin-bottom: 20px;
+                                border-radius: 4px;
+                                max-width: 400px;"
+                                value="#{login.pwd}"/>
+                    <p:ajaxStatus style="display:block;margin-bottom:2em;height:24px;">
+                        <f:facet name="default">
+                            <p:commandButton value="Entrar" 
+                                             style="
+                                             font-family: Open Sans, Helvetica, Arial;
+                                             border-radius: 3px;
+                                             max-width: 400px;
+                                             color: #ffffff;
+                                             background: #1abc9c"
+                                             actionListener="#{login.validateUsernamePassword()}"
+                                             />
+                        </f:facet>
 
-                            <f:facet name="start">
-                                <p:graphicImage library="imagens" name="loading.gif" />
-                            </f:facet>
+                        <f:facet name="start">
+                            <p:graphicImage library="imagens" name="loading.gif" />
+                        </f:facet>
 
-                            <f:facet name="complete">
-                                
-                            </f:facet>
-                        </p:ajaxStatus>    
+                        <f:facet name="complete">
+                            <p:commandButton value="Entrar" 
+                                             style="
+                                             font-family: Open Sans, Helvetica, Arial;
+                                             border-radius: 4px;
+                                             max-width: 400px;
+                                             color: #ffffff;
+                                             background: #1abc9c"
+                                             actionListener="#{login.validateUsernamePassword()}"
+                                             />
+                        </f:facet>
+                    </p:ajaxStatus> 
+
+                    <p:link value="Esqueceu sua senha?"
+                            style="text-decoration: underline; font-family: Open Sans, Helvetica, Arial;color: #ffffff; font-size: 13px;"/>   
                 </p:panelGrid>
-                    
-               
-                
+
+
+
             </h:form>
-            
-            
-            
-            
-            
+
+
+
+
+
             <div class="LADES-contentLogosInferior">
                 <h:graphicImage class="LADES-logosInferior"
                                 library="imagens" 
                                 name="Logo-fabrica-de-software.svg" />
 
                 <a href="http://www.campuscastanhal.ufpa.br/">
-                <h:graphicImage class="LADES-logosInferior"
-                                library="imagens" 
-                                name="ufpa-nome.svg" />
+                    <h:graphicImage class="LADES-logosInferior"
+                                    library="imagens" 
+                                    name="ufpa-nome.svg" />
                 </a>
 
                 <a  href="http://facompcastanhal.ufpa.br/lades/">
@@ -117,9 +128,9 @@ and open the template in the editor.
                                     name="Logo-Lades3.svg" />
                 </a>
             </div>
-            
+
         </div>
-        
-        
+
+
     </h:body>
 </html>
