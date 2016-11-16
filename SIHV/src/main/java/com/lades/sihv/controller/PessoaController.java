@@ -21,6 +21,8 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import com.lades.sihv.BeautyText;
+import java.io.IOException;
+import javax.faces.context.FacesContext;
 /**
  *
  * @author thiberius
@@ -30,7 +32,7 @@ import com.lades.sihv.BeautyText;
 public class PessoaController implements Serializable{
     
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    private static final FacesMessages message = new FacesMessages();
+    private final FacesMessages message = new FacesMessages();
     private Pessoa pessoa;
     private Telefone telefone;
     private User user;
@@ -42,6 +44,9 @@ public class PessoaController implements Serializable{
     private boolean mudancaCpfCnpj = true;
     private Security secure = new Security();
     private BeautyText stringer = new BeautyText();
+    
+    private boolean dialogMessager = false;
+    private String mensageTIPO;
     
     
     
@@ -65,6 +70,10 @@ public class PessoaController implements Serializable{
         data = new Date();
         numCRMV1 = "";
         numCRMV2 = "";
+        if (dialogMessager){ 
+            message.infoDialog("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
+            dialogMessager = false;
+        }
     }
     
     
@@ -79,6 +88,10 @@ public class PessoaController implements Serializable{
         cliente = new Cliente();
         clienteId = new ClienteId();
         data = new Date();
+        if (dialogMessager) {
+            message.infoDialog("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+            dialogMessager = false;
+        }
     }
     
     
@@ -121,7 +134,22 @@ public class PessoaController implements Serializable{
                 user.setUserTipo(tipoUSER);
                 daoGenerico.save(user);
 
-                message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
+                this.mensageTIPO = mensageTIPO;
+                dialogMessager = true;
+                switch (tipoUSER){
+                    case "MEDICO":
+                        redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_medico.xhtml");
+                        break;
+                    case "ALUNO":
+                        redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_aluno.xhtml");
+                        break;
+                    case "TÉCNICO":
+                        redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_tecnico.xhtml");
+                        break;
+                    default:
+                        break;
+                }
+                //message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
             } catch (Exception e) {
                 message.warn("Erro ao efetuar cadastro!", e.getMessage()+"\nVerifique os dados e tente novamente!");
             }
@@ -181,7 +209,10 @@ public class PessoaController implements Serializable{
                 cliente.setId(clienteId);
                 daoGenerico.save(cliente);
 
-                message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+                //message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
+                dialogMessager = true;
+                redirecionar("/SIHV/faces/SIHV_Telas_Adm/ADM_cad_cliente.xhtml");
+                
                 return true;
             }else
                 throw new Exception();
@@ -194,6 +225,9 @@ public class PessoaController implements Serializable{
     }
     
     
+    public void redirecionar(String url) throws IOException{
+        FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+    }
     
     
     

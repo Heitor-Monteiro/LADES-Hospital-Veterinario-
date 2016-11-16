@@ -77,7 +77,13 @@ public class Login implements Serializable {
 	}
         
         public String getUsername(){
-            return SessionUtils.getUserName();
+            String nomeUser;
+//            try {
+                nomeUser = SessionUtils.getUserName();
+//            } catch (Exception e) {
+//                nomeUser = "UsuárioTemp";
+//            }
+            return nomeUser;
         }
         
         public void setUsername(String name){
