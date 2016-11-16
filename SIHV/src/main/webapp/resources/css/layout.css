@@ -100,7 +100,6 @@ and open the template in the editor.
     top: 0;
     right: 0;
     left: 0;
-    min-height: auto;
     z-index: 9999;
     background-color:#eaeaea;
 }
@@ -118,7 +117,8 @@ and open the template in the editor.
 
 .LADES-logosInferior{
     height: 30px;
-    margin-left: 30px;
+    margin-left: 25px;
+    margin-right: 25px;
 }
 /*Fim - Estilização de login*/
 
