@@ -1,9 +1,11 @@
 /* BASE */
 
+*{
+    font-family: Open Sans, Helvetica, sans-serif, Arial;
+}
+
 body {
     margin: 0;
-    font-family: Open Sans, Helvetica, sans-serif, Arial;
-
     /*Cor da fonte que está no body*/
     color: #3a4f54;
 

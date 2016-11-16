@@ -24,10 +24,10 @@ and open the template in the editor.
     </h:head>    
     <script>
         function lockBack() {
-            window.location.hash = "";
-            window.location.hash = "";
+            window.location.hash = "locked";
+            window.location.hash = "_locked";
             window.onhashchange = function () {
-                window.location.hash = "";
+                {window.location.hash="_";}
             }
         }
         jQuery(document).ready(function () {
@@ -38,7 +38,7 @@ and open the template in the editor.
     <h:body class="LADES-bodyLogin">
         <header class="LADES-topBarLogin">
             <h:graphicImage library="imagens" 
-                            name="veterinaria_flat _II_nome.svg" />   
+                            name="sihv_logo_full.svg" />   
         </header>
 
         <div class="ui-fluid">
@@ -115,18 +115,18 @@ and open the template in the editor.
             <div class="LADES-contentLogosInferior">
                 <h:graphicImage class="LADES-logosInferior"
                                 library="imagens" 
-                                name="Logo-fabrica-de-software.svg" />
+                                name="logo_fabricaDeSoftware_white.svg" />
 
                 <a href="http://www.campuscastanhal.ufpa.br/">
                     <h:graphicImage class="LADES-logosInferior"
                                     library="imagens" 
-                                    name="ufpa-nome.svg" />
+                                    name="ufpa_logo_white.svg" />
                 </a>
 
                 <a  href="http://facompcastanhal.ufpa.br/lades/">
                     <h:graphicImage class="LADES-logosInferior"
                                     library="imagens" 
-                                    name="Logo-Lades3.svg" />
+                                    name="lades_logo_white.svg" />
                 </a>
             </div>
 
