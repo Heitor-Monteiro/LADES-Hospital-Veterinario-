@@ -20,7 +20,8 @@
         <ui:define name="body">
             
             <f:metadata>
-                <f:viewAction action="#{PessoaControle.prepararAdicionarCliente()}" />
+                <f:viewAction action="#{MasterControle.prepararControllerPessoa()}" />
+                <f:viewAction action="#{MasterControle.pessoaControle.prepararAdicionarCliente()}" />
             </f:metadata>
             
             
@@ -50,7 +51,7 @@
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:commandButton action="#{PessoaControle.adicionarCLIENTE()}" 
+                                <p:commandButton action="#{MasterControle.pessoaControle.adicionarCLIENTE()}" 
                                             value="#{label_SIHV.CreatePessoaSaveLink}"
                                             style="width: 170px;"
                                             icon="fa fa-save"

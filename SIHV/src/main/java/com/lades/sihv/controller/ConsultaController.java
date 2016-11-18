@@ -6,7 +6,6 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
-import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.Security;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Animais;
@@ -41,8 +40,8 @@ import java.util.List;
  */
 public class ConsultaController implements Serializable{
     
-    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    private final FacesMessages message = new FacesMessages();
+    private GenericoDAO daoGenerico;
+    private FacesMessages message;
     
     private Consulta novaConsulta;
     private Date data;
@@ -88,6 +87,21 @@ public class ConsultaController implements Serializable{
     
     private boolean confirmeRAIOX = false;
     private boolean confirmeUltrasson = false;
+    
+    
+    
+    
+    
+    
+    private ConsultaController(){}
+    public ConsultaController(GenericoDAO daoGenerico,FacesMessages message){
+        this.daoGenerico = daoGenerico;
+        this.message = message;
+    }
+    
+    
+    
+    
     
     
     
@@ -198,8 +212,12 @@ public class ConsultaController implements Serializable{
                     exameImage.setTipo((confirmeRAIOX == true)?"RAIOX":"ULTRASSOM");
                     daoGenerico.save(exameImage);
                 }
-
-                message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
+                
+                
+                message.setTextoDialog("Cosulta efetuada!",
+                        "Consulta realizada com sucesso.",
+                        "/SIHV_Telas_Exame/Nova_Consulta");
+                //message.info("Cosulta efetuada.","Consulta realizada com sucesso.");
             } catch (Exception e) {
                 message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
             }

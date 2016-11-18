@@ -21,7 +21,8 @@
         <ui:define name="body">
             
             <f:metadata>
-                <f:viewAction action="#{PessoaControle.prepararAdicionarUSER()}" />  
+                <f:viewAction action="#{MasterControle.prepararControllerPessoa()}" />
+                <f:viewAction action="#{MasterControle.pessoaControle.prepararAdicionarUSER()}" />  
             </f:metadata>
             
             <h:form>
@@ -47,7 +48,7 @@
                                                    style="color: #1abc9c; font-weight: bold ;"
                                                    for="NumMatri" />
                                     <p:inputText id="NumMatri" 
-                                                 value="#{PessoaControle.user.crmvMatricula}" 
+                                                 value="#{MasterControle.pessoaControle.user.crmvMatricula}" 
                                                  title="Ex.: 201318640025"
                                                  maxlength="12"
                                                  required="true" 
@@ -81,7 +82,7 @@
                     
                     
                     <p:tab id="etapa4" title="Confirmação">
-                        <p:panel header="Confirmação">
+                        <p:panel>
                             
                             <ui:include src="/SIHV_Telas_Genericas/campo_pessoa_resposta.xhtml" />
                             
@@ -93,7 +94,7 @@
 
                                     <p:outputLabel value="Numero de matrícula:"
                                                    style="color: #1abc9c; font-weight: bold ;" />
-                                    <p:outputLabel value="#{PessoaControle.user.crmvMatricula}"
+                                    <p:outputLabel value="#{MasterControle.pessoaControle.user.crmvMatricula}"
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
@@ -103,7 +104,7 @@
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:commandButton action="#{PessoaControle.adicionarUSER('ALUNO', 'Aluno bolsista')}" 
+                                <p:commandButton action="#{MasterControle.pessoaControle.adicionarUSER('ALUNO', 'Aluno bolsista')}" 
                                                  value="Salvar"
                                                  style="width: 170px;"
                                                  icon="fa fa-save"

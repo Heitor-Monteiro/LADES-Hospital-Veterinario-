@@ -6,6 +6,7 @@
 package com.lades.sihv.controller;
 
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,6 +22,9 @@ import org.primefaces.context.RequestContext;
 public class FacesMessages implements Serializable{
     
     private static  final long serialVersionUID = 1L;
+    private String tituloDialog;
+    private String messageDialog;
+    private String urlButton;
     
     
     //Método gerador de mensagens
@@ -48,11 +52,7 @@ public class FacesMessages implements Serializable{
     public void warn(String title, String message){
         add(title, message, FacesMessage.SEVERITY_WARN);
     }
-    
-    
-    
-    
-    
+//--------------------------------------------------------------------------------------------    
     private void addDialog(String title, String message, Severity severity){
         Map<String, Object> opcoes = new HashMap<>();
         opcoes.put("modal", true);
@@ -63,7 +63,6 @@ public class FacesMessages implements Serializable{
         RequestContext.getCurrentInstance().
                 showMessageInDialog(new FacesMessage(severity,title,message));
     }
-    
     
     //Método para exibir mensagem informativa na tela
     public void infoDialog(String title, String message){
@@ -83,5 +82,26 @@ public class FacesMessages implements Serializable{
     //Método para exibir mensagem de advertência na tela
     public void warnDialog(String title, String message){
         addDialog(title, message, FacesMessage.SEVERITY_WARN);
+    }
+//--------------------------------------------------------------------------------------------
+    public void setTextoDialog(String titulo,String texto,String urlButton) throws IOException{
+        this.tituloDialog = titulo;
+        this.messageDialog = texto;
+        this.urlButton = urlButton;
+        FacesContext.getCurrentInstance().
+                getExternalContext().
+                redirect("/SIHV/faces/SIHV_Telas_Genericas/dialogMessage.xhtml");
+    }
+    
+    public String getTituloDialog() {
+        return tituloDialog;
+    }
+
+    public String getMessageDialog() {
+        return messageDialog;
+    }
+
+    public String getUrlButton() {
+        return urlButton;
     }
 }

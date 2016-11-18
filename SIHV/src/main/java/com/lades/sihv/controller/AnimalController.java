@@ -6,7 +6,6 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
-import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;
@@ -20,18 +19,26 @@ import java.util.List;
  */
 public class AnimalController implements Serializable{
     
-    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    private static final FacesMessages message = new FacesMessages();
+    private GenericoDAO daoGenerico;
+    private FacesMessages message;
     private Animais animal;
     private AnimaisId animalID;
     private Date data;
     
     
-    
+    private AnimalController(){}
+    public AnimalController(GenericoDAO daoGenerico,FacesMessages message){
+        this.daoGenerico = daoGenerico;
+        this.message = message;
+    }
     
     
     /*Pelagem*/
-    private List<String> listaPelagem = daoGenerico.getPelagemNames();
+    private List<String> listaPelagem;
+    
+    public void prepararListaPelagem(){
+        listaPelagem = daoGenerico.getPelagemNames();
+    }
 
     public List<String> getListaPelagem() {
         return listaPelagem;
@@ -66,26 +73,30 @@ public class AnimalController implements Serializable{
         String clientePK;
         List<Object> lista;
         
-        lista = daoGenerico.list("select c.id.pkCliente from Cliente c, Pessoa p where c.id.fkPessoa="+pessoa.getPkPessoa()+" and p.pkPessoa="+pessoa.getPkPessoa());
-        clientePK = ""+lista.get(0);
-        
-        animalID.setClienteFkPessoa(pessoa.getPkPessoa());
-        animalID.setClienteFkCliente(Integer.parseInt(clientePK));
-        animal.setId(animalID);
-        animal.setCadDataHora(data);
-        boolean newPelagem=true;
-        for(String check : listaPelagem){
-            if(check.equals(animal.getPelagem()))
-                newPelagem=false;
-        }
-        if(newPelagem){
-            Pelagem novaPelagem = new Pelagem();
-            novaPelagem.setNomePelagem(animal.getPelagem());
-            daoGenerico.save(novaPelagem);
-        }
-        daoGenerico.save(animal);
+            lista = daoGenerico.list("select c.id.pkCliente from Cliente c, Pessoa p where c.id.fkPessoa="+pessoa.getPkPessoa()+" and p.pkPessoa="+pessoa.getPkPessoa());
+            clientePK = ""+lista.get(0);
 
-        message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
+            animalID.setClienteFkPessoa(pessoa.getPkPessoa());
+            animalID.setClienteFkCliente(Integer.parseInt(clientePK));
+            animal.setId(animalID);
+            animal.setCadDataHora(data);
+            boolean newPelagem=true;
+            for(String check : listaPelagem){
+                if(check.equals(animal.getPelagem()))
+                    newPelagem=false;
+            }
+            if(newPelagem){
+                Pelagem novaPelagem = new Pelagem();
+                novaPelagem.setNomePelagem(animal.getPelagem());
+                daoGenerico.save(novaPelagem);
+            }
+            daoGenerico.save(animal);
+
+            
+            message.setTextoDialog("Cadastro efetuado!",
+                    "Animal cadastrado com sucesso.",
+                    "/SIHV_Telas_Adm/ADM_cad_basico_animal");
+        //message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
         }
         catch(Exception e){
             message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");

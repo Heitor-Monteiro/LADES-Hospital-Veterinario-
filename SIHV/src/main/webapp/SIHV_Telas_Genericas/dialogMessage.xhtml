@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+    
+    <ui:composition template="/template.xhtml">
+        
+        
+        <ui:define name="menu">
+            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
+        </ui:define>
+        
+        <ui:define name="title"  >
+            <br></br>
+            <h:outputText style="margin: 1% 0 0 2.7%;" value=""></h:outputText>
+        </ui:define>
+        
+        <ui:define name="body">
+            
+            <!-- The Modal -->
+            <div id="myModal" class="modal">
+
+              <!-- Modal content -->
+              <div class="modal-content">
+                <div class="modal-header">
+                    <p:outputLabel value="#{MasterControle.message.tituloDialog}"
+                                   style="font-size: 30px;"/>
+                </div>
+                <div class="modal-body">
+                    
+                    <p style="text-align: center" >
+                        <p:outputLabel class="fa fa-info-circle"
+                                       style="font-size: 26px;margin-right: 8px;" />
+                        <p:outputLabel value="#{MasterControle.message.messageDialog}"
+                                       style="font-size: 30px;" />
+                    </p>
+                    
+                        
+                    <div class="ui-fluid">
+                        <p:panelGrid columns="4"
+                                     style="margin-top: 1.5%;"
+                                     layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-3,ui-grid-col-3" >
+                            
+                            <p:outputLabel value=""/>
+                            <p:button value="Novo cadastro" 
+                                      outcome="#{MasterControle.message.urlButton}"
+                                      icon="fa fa-user-plus" />
+                            
+                            <p:button value="Sair" 
+                                      outcome="/index"
+                                      icon="fa fa-home" />
+                            <p:outputLabel value=""/>
+                            
+                        </p:panelGrid>
+                    </div>
+                    
+                </div>
+                <div class="modal-footer">
+                  <h4>Modal Footer</h4>
+                </div>
+              </div>
+
+            </div>
+            
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -6,7 +6,6 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
-import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.User;
 import com.lades.sihv.model.UserId;
 import com.lades.sihv.model.Cliente;
@@ -17,8 +16,6 @@ import com.lades.sihv.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import com.lades.sihv.BeautyText;
@@ -29,12 +26,10 @@ import javax.faces.context.FacesContext;
  *
  * @author thiberius
  */
-@ManagedBean(name = "PessoaControle")
-@SessionScoped
 public class PessoaController implements Serializable {
 
-    private final GenericoDAO daoGenerico = new GenericoDAOImpl();
-    private final FacesMessages message = new FacesMessages();
+    private GenericoDAO daoGenerico;
+    private FacesMessages message;
     private Pessoa pessoa;
     private Telefone telefone;
     private User user;
@@ -47,14 +42,24 @@ public class PessoaController implements Serializable {
     private Security secure = new Security();
     private BeautyText stringer = new BeautyText();
 
-    private boolean dialogMessager = false;
-    private String mensageTIPO;
+    
 
     /*Os dois atributos serão utilizado para
     a concatenação do CRMV do medico
     veterinário*/
     private String numCRMV1, numCRMV2;
-
+    
+    
+    
+    private PessoaController(){}
+    public PessoaController(GenericoDAO daoGenerico,FacesMessages message){
+        this.daoGenerico = daoGenerico;
+        this.message = message;
+    }
+    
+    
+    
+    
     /*O método prepara o cadastro de um
     usuário do sistema, ele deve ser
     chamado quando a pagina de cadastro
@@ -67,10 +72,6 @@ public class PessoaController implements Serializable {
         data = new Date();
         numCRMV1 = "";
         numCRMV2 = "";
-        if (dialogMessager) {
-            message.infoDialog("Cadastro efetuado!", mensageTIPO + " cadastrado com sucesso.");
-            dialogMessager = false;
-        }
     }
 
     /*O método prepara o cadastro de um
@@ -82,10 +83,6 @@ public class PessoaController implements Serializable {
         cliente = new Cliente();
         clienteId = new ClienteId();
         data = new Date();
-        if (dialogMessager) {
-            message.infoDialog("Cadastro efetuado!", "Cliente cadastrado com sucesso.");
-            dialogMessager = false;
-        }
     }
 
     /*O método realiza a persistência de usuários do sistema, 
@@ -127,22 +124,20 @@ public class PessoaController implements Serializable {
             user.setUserTipo(tipoUSER);
             daoGenerico.save(user);
 
-            this.mensageTIPO = mensageTIPO;
-            dialogMessager = true;
-            switch (tipoUSER) {
-                case "MEDICO":
-                    redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_medico.xhtml");
+            String userTIPO="";
+            switch(tipoUSER){
+                case "MEDICO": userTIPO = "cadUSER_medico";
                     break;
-                case "ALUNO":
-                    redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_aluno.xhtml");
+                case "ALUNO": userTIPO = "cadUSER_aluno";
                     break;
-                case "TÉCNICO":
-                    redirecionar("/SIHV/faces/SIHV_Telas_Adm/cadUSER_tecnico.xhtml");
+                case "TÉCNICO": userTIPO = "cadUSER_tecnico";
                     break;
                 default:
                     break;
             }
-            //message.info("Cadastro efetuado!",mensageTIPO+" cadastrado com sucesso.");
+            message.setTextoDialog("Cadastro efetuado!",
+                        mensageTIPO+" cadastrado com sucesso.",
+                        "/SIHV_Telas_Adm/"+userTIPO);
         } catch (Exception e) {
             message.warn("Erro ao efetuar cadastro!", e.getMessage() + "\nVerifique os dados e tente novamente!");
         }
@@ -213,9 +208,9 @@ public class PessoaController implements Serializable {
                 cliente.setId(clienteId);
                 daoGenerico.save(cliente);
 
-                //message.info("Cadastro efetuado!","Cliente cadastrado com sucesso.");
-                dialogMessager = true;
-                redirecionar("/SIHV/faces/SIHV_Telas_Adm/ADM_cad_cliente.xhtml");
+                message.setTextoDialog("Cadastro efetuado!",
+                        "Cliente cadastrado com sucesso.",
+                        "/SIHV_Telas_Adm/ADM_cad_cliente");
 
                 return true;
             } else {
