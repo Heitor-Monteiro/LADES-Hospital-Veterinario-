@@ -14,7 +14,7 @@ and open the template in the editor.
     top: 0px;
     left: 0px;
     right: 0px;
-    z-index: 9999;
+    z-index: 9998;
     position: fixed;
     /*background-color: #2d3e50;*/
     background-color: #eaeaea;
@@ -56,7 +56,7 @@ and open the template in the editor.
     left: 0;
     width: 270px;
     margin-left: -270px;
-    z-index: 9998;
+    z-index: 9999;
     transition: margin-left 0.5s;
     overflow-y: auto;
 
@@ -123,6 +123,7 @@ nav .menu-toggle:hover{
     background-color: #eaeaea;
     box-shadow: 4px -1px 8px 0px rgba(0,0,0,0.2);
     transition: 0.5s;
+    z-index: -1;
 }
 
 .LADES-topbar-mini.is-toggled {
@@ -132,6 +133,7 @@ nav .menu-toggle:hover{
 
 @media (min-width: 960px) {
     #botao2{display: none;}
+    #userNameNik2{display: none}
 }
 
 @media(max-width:960px ){
@@ -209,18 +211,12 @@ nav .menu-toggle:hover{
 
 /*Index estilização menu central*/
 .LADES-indexBotao{
-    height: 150px;
-    margin-bottom: -60px;
-
+    height: 130px;
 }
 
 .LADES-textoBotao{
     color: #1abc9c;
-    font-size: 17px;
-    margin-top: 60px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 150px;
+    font-size: 16px;
     text-align: center;
 
 }
