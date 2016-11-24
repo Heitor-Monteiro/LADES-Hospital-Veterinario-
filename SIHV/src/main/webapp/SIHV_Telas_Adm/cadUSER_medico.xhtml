@@ -8,17 +8,11 @@
 
     <ui:composition template="/template.xhtml">
         
-        
-        <ui:define name="menu">
-            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-        </ui:define>
-        
         <ui:define name="title"  >
-            <br></br>
             <h:outputText style="margin: 1% 0 0 2.7%;" value="Novo residente"></h:outputText>
         </ui:define>
         
-        <ui:define name="body">
+        <ui:define name="content">
             
             <f:metadata>
                 <f:viewAction action="#{MasterControle.prepararControllerPessoa()}" />

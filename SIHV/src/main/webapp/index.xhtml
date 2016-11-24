@@ -7,17 +7,14 @@
       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/template.xhtml">
         
-        <ui:define name="menu">
-            <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
-                       
-        </ui:define>
+        
         
         
         <ui:define name="title">
             <h:outputText value="" />
         </ui:define>
         
-        <ui:define name="body">
+        <ui:define name="content">
             
             
             <p:panelGrid columns="5" 
@@ -28,7 +25,7 @@
                          ui-grid-col-2, ui-grid-col-2, 
                          ui-grid-col-2, ui-grid-col-2" >
                              
-                <h:link outcome="/index">
+                <h:link outcome="/SIHV_Telas_Exame/Nova_Consulta">
                     <h:graphicImage id="ficha" class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-Ficha-icon.svg" />
@@ -46,7 +43,7 @@
                     <p class="LADES-textoBotao" >Novo cliente</p>
                 </h:link>
                 
-                <h:link outcome="/index" id="addMED" >
+                <h:link outcome="/SIHV_Telas_Adm/cadUSER_medico" id="addMED" >
                     <h:graphicImage class="LADES-indexBotao"
                         library="imagens" 
                         name="botao-addMED.svg" />

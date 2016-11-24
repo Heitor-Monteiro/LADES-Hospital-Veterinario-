@@ -6,39 +6,90 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        
+
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-	</f:facet>
-        
+        </f:facet>
+
         <title>
             <h:outputText value="#{label_SIHV.TituloSIHV}" />
         </title>       
-        
+
         <h:outputStylesheet library="css" name="layout.css" />
         <h:outputStylesheet library="css" name="componentes.css" />
         <h:outputStylesheet library="css" name="custom.css" />
         <h:outputStylesheet library="css" name="dialogModal.css" />
         <h:outputStylesheet library="fonts" name="fontloader.css" />
+        <h:outputStylesheet library="css" name="w3.css" />
+        <h:outputScript target="body" library="javascripts" name="/app.js" />
+
     </h:head>
-    
+
     <h:head>
         <div class="LADES-topbar" >
-            <ui:insert name="menu" />
+            <div class="LADES-topbar-mini " />
+
+            <nav>
+                <div id="botao1" class="menu-toggle 
+                     fa fa-chevron-right 
+                     js-toggle"></div>
+
+                <div id="botao2" class="menu-toggle 
+                     fa fa-chevron-right 
+                     js-toggle"></div>
+            </nav>
+
+            <div>
+                <h:link outcome="/index">
+                    <h:graphicImage id="NomeSistema"
+                                    class="LADES-logo-SIHV"
+                                    library="imagens" 
+                                    name="sihv_logo_simple.svg"/>
+                    <p:tooltip  for="NomeSistema" 
+                                value="Sistema Integrado do Hospital Veterinário"
+                                showEffect="clip" />
+                </h:link>
+            </div>
+
+            <div id="userNameNik"
+                 style="float: right;
+                 margin-top: -54px;margin-right: 10px; font-size: 14px;">
+
+                <i class="fa fa-user"
+                   style="margin-right: 10px;
+                   color: #5f666c;" ></i>
+
+                <p:outputLabel value="#{login.username}"
+                               style="color: #5f666c;
+                               margin-right: 10px;" />
+
+                <p:button value="Sair"
+                          outcome="/login"
+                          icon="fa fa-sign-out"
+                          style="color: #5f666c;" />
+            </div>
         </div>
     </h:head>
 
     <h:body>
-        
-        
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
-         
+
+
+        <div>
+            <ui:include src="/SIHV_menus_Usuario/menu.xhtml" />
+        </div>
+
+        <div class="LADES-content js-content" >
+
+            <h3>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h3>
+
+
+            <ui:insert name="content" />
+
+        </div>
+
     </h:body>
 
 </html>

@@ -11,43 +11,58 @@ and open the template in the editor.
 /* Inicio da resposividade */
 
 .LADES-topbar{
-
-    top: 0;
-    right: 0;
-    left: 0;
-    min-height: 40px;
+    top: 0px;
+    left: 0px;
+    right: 0px;
     z-index: 9999;
-
-    background-color: #2d3e50;
-
+    position: fixed;
+    /*background-color: #2d3e50;*/
+    background-color: #eaeaea;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
-.LADES-logo-SIHV > img{
+
+/* CONTENT */
+.LADES-content {
+    /*overflow: auto;*/
+    margin-top: 90px;
+    transition: margin-left 0.5s;
+}
+
+
+.LADES-logo-SIHV {
 
     /*Responsividade imagem */
-    max-width: max-content;
-    max-height: 55px;
-    background-size:100%;
-    background-repeat: no-repeat;
-    /*Responsividade imagem */
-
+    /*max-width: max-content;*/
+    height: 50px;
+    margin-left: 14px;
+    margin-top: 11px;
     position: absolute;
+    top: -1px;
+    /*background-size:100%;*/
+    /*background-repeat: no-repeat;*/
+    /*Responsividade imagem */
+
+    /*position: absolute;*/
+    /*margin-left: 30px;*/
+    /*top: 6px;*/
 }
 
 /*nome antigo= aw-sidebar*/
 .LADES-sidebar {
     position: fixed;
-    top: 0;
+    top: 75px;
     bottom: 0;
     left: 0;
-    width: 210px;
-    margin-left: -211px;
+    width: 270px;
+    margin-left: -270px;
     z-index: 9998;
     transition: margin-left 0.5s;
     overflow-y: auto;
 
-    background-color: #f6f6f6;
-    border-right: 1px solid #eaeaea;
+    background-color: #2d3e50;
+    border-right: 0px solid #eaeaea;
+    box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);
 }
 
 /*nome antigo= aw-sidebar.is-toggled*/
@@ -55,34 +70,103 @@ and open the template in the editor.
     margin-left: 0px;
 }
 
-@media (min-width: 960px) {
-    .LADES-sidebar {
-        margin-left: 0px;
-    }
 
-    .LADES-sidebar.is-toggled {
-        margin-left: -211px;
-    }
+@media (min-width: 960px) {
+    .LADES-sidebar {margin-left: 0px;}
+    .LADES-sidebar.is-toggled {margin-left: -276px;}
 }
 
-@media (min-width: 960px) {
-    .LADES-content {
-        margin-left: 210px;
-    }
 
-    .LADES-content.is-toggled {
-        margin-left: 0;
-    }
+@media (min-width: 960px) {
+    .LADES-content { margin-left: 270px;}
+
+    .LADES-content.is-toggled { margin-left: 0;}
 }
 
 /*------- Fim responsividade ------------*/
 
-/* CONTENT */
-.LADES-content {
-    padding: 0 15px;
-    margin-top: 70px;
+
+
+
+
+
+nav .menu-toggle {
+    position: fixed;
+    color: #009688;
+    font-size: 25px;
+    cursor: pointer;
+    float: left;
+    padding: 0px 0px 0px 0px;
+    margin: -50px 0px 0px 300px;
+    background: none;
     transition: margin-left 0.5s;
+    transform: rotate(180deg);
 }
+
+nav .menu-toggle:hover{
+    /*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/
+}
+.menu-toggle.is-toggled {
+    color: #5f666c;
+    margin-left: 170px;
+}
+
+.menu-toggle.is-rotacao {
+    transform: rotate(0deg);
+}
+
+
+.LADES-topbar-mini{
+    min-height: 75px;
+    width: 270px;
+    margin-left: 0px;
+    background-color: #eaeaea;
+    box-shadow: 4px -1px 8px 0px rgba(0,0,0,0.2);
+    transition: 0.5s;
+}
+
+.LADES-topbar-mini.is-toggled {
+    margin-left: -120px;
+}
+
+
+@media (min-width: 960px) {
+    #botao2{display: none;}
+}
+
+@media(max-width:960px ){
+    #botao1{display: none;}
+
+    .LADES-topbar-mini{margin-left:-120px;}
+    
+    .LADES-topbar-mini.is-toggled2 {margin-left: 0px;}
+
+    nav .menu-toggle{
+        color: #5f666c;
+        margin-left: 170px;
+        transform: rotate(0deg);
+    }
+
+    .menu-toggle.is-toggled2 {
+        color: #009688;
+        margin-left: 300px;
+    }
+    
+    .menu-toggle.is-rotacao2 {transform: rotate(180deg);}
+    
+    #userNameNik{display: none}
+}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -92,7 +176,7 @@ and open the template in the editor.
 
 /*Estilização de login*/
 .LADES-bodyLogin{
-    background-color: #2d3e50;
+    background-color: #116F5C;
     text-align: center;
 }
 
@@ -148,8 +232,4 @@ a {
     color: #1abc9c;
     text-decoration: none;
 }
-/*-----------------*/
-.textoTESTE{
-    color: #1abc9c;
-    font-weight: bold;
-}
+
