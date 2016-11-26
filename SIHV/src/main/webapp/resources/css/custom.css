@@ -1,18 +1,3 @@
-/* BASE */
-
-*{
-    font-family: Open Sans, Helvetica, sans-serif, Arial;
-}
-
-body {
-    margin: 0;
-    /*Cor da fonte que está no body*/
-    color: #3a4f54;
-
-    background-color: #f0f0f0;
-    font-size: small;
-}
-
 /* TABVIEW */
 .ui-tabs .ui-tabs-nav li.ui-tabs-selected a {
     color: #555;
@@ -36,3 +21,17 @@ body {
         border: none;
     }
 }
+
+
+/*---------------- Prime Faces modificações na estilizações ----------------*/
+
+
+/*WIZARD*/
+.ui-state-highlight{
+    background-color: #1ABC9C!important;
+    background-image: linear-gradient(to bottom, #1ABC9C, #138972)!important;
+}
+/*WIZARD*/
+
+
+/*---------------- Prime Faces modificações na estilizações ----------------*/

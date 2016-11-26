@@ -8,8 +8,18 @@ and open the template in the editor.
     Author     : heitor
 */
 
-/* Inicio da resposividade */
+/* BASE */
+*{font-family: Open Sans, Helvetica, sans-serif, Arial;}
 
+body {
+    margin: 0;
+    color: #5f666c;/*Cor da fonte que está no body*/
+    background-color: #f0f0f0;
+}
+/* BASE */
+
+
+/*-------------------------Inicio da resposividade-------------------------*/
 .LADES-topbar{
     top: 0px;
     left: 0px;
@@ -48,7 +58,7 @@ and open the template in the editor.
     /*top: 6px;*/
 }
 
-/*nome antigo= aw-sidebar*/
+/*-----Barra lateral-----*/
 .LADES-sidebar {
     position: fixed;
     top: 75px;
@@ -65,31 +75,26 @@ and open the template in the editor.
     box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);
 }
 
-/*nome antigo= aw-sidebar.is-toggled*/
-.LADES-sidebar.is-toggled {
-    margin-left: 0px;
-}
-
+.LADES-sidebar.is-toggled {margin-left: 0px;}
 
 @media (min-width: 960px) {
     .LADES-sidebar {margin-left: 0px;}
     .LADES-sidebar.is-toggled {margin-left: -276px;}
 }
 
-
 @media (min-width: 960px) {
     .LADES-content { margin-left: 270px;}
-
     .LADES-content.is-toggled { margin-left: 0;}
 }
+/*-----Fim Barra lateral-----*/
 
-/*------- Fim responsividade ------------*/
-
-
-
+/*----------------------Fim Inicio da resposividade-------------------------*/
 
 
 
+
+
+/*-----Botão para barra lateral-----*/
 nav .menu-toggle {
     position: fixed;
     color: #009688;
@@ -103,9 +108,8 @@ nav .menu-toggle {
     transform: rotate(180deg);
 }
 
-nav .menu-toggle:hover{
-    /*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/
-}
+nav .menu-toggle:hover{/*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/}
+
 .menu-toggle.is-toggled {
     color: #5f666c;
     margin-left: 170px;
@@ -191,10 +195,10 @@ nav .menu-toggle:hover{
 }
 
 .LADES-topBarLogin > img {
+    
     max-width: 400px;
-    height: auto;
-    padding-bottom: 2%;
-    padding-top: 2%;
+    /*height: auto;*/
+    margin: 10px 10px 10px 10px;
 }
 
 .LADES-contentLogosInferior{
@@ -228,4 +232,8 @@ a {
     color: #1abc9c;
     text-decoration: none;
 }
+
+
+
+
 
