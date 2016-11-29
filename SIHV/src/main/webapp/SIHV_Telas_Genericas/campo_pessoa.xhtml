@@ -12,7 +12,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}" 
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="nome" />
             <p:inputText id="nome" 
                          value="#{MasterControle.pessoaControle.pessoa.nome}" 
@@ -24,7 +24,7 @@
 
             
             <p:outputLabel value="Pessoa física/jurídica:"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="TipoPessoa" />
             <p:selectOneRadio id="TipoPessoa"
                               columns="2"
@@ -41,7 +41,7 @@
 
             <p:outputLabel value="CPF:"
                            rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cpf" />                                
             <p:inputMask mask="999.999.999-99"
                          id="cpf"
@@ -57,7 +57,7 @@
             
             <p:outputLabel value="CNPJ:"
                            rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cnpj" />                                
             <p:inputMask mask="99.999.999/9999-99"
                          id="cnpj"
@@ -73,7 +73,7 @@
             
             
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="rg" />                              
             <p:inputMask mask="9999999"
                          id="rg"
@@ -85,7 +85,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="sexo" />
             <p:selectOneRadio id="sexo"
                               columns="2"
@@ -100,7 +100,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="logra" />
             <p:inputText id="logra"
                          value="#{MasterControle.pessoaControle.pessoa.logra}" 
@@ -112,7 +112,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_numeroCasa}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="numeroCasa" />
             <p:inputText id="numeroCasa"
                          value="#{MasterControle.pessoaControle.pessoa.casaNumero}"
@@ -124,7 +124,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_bairro}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="bairro" />
             <p:inputText id="bairro"
                          value="#{MasterControle.pessoaControle.pessoa.bairro}" 
@@ -136,7 +136,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cidade}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cidade" />
             <p:inputText id="cidade"
                          value="#{MasterControle.pessoaControle.pessoa.cidade}" 
@@ -148,7 +148,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cep}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cep" />
             <p:inputMask mask="99999-999"
                          id="cep"
@@ -160,7 +160,7 @@
 
 
             <p:outputLabel value="Complemento"
-                           style="color: #1abc9c; font-weight: bold ;" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="complemento"
                          value="#{MasterControle.pessoaControle.pessoa.complemento}"
                          maxlength="100"
@@ -170,7 +170,7 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="uf" />                             
             <p:selectOneMenu id="uf"
                              value="#{MasterControle.pessoaControle.pessoa.uf}"
@@ -213,7 +213,7 @@
             
             
             <p:outputLabel value="Endereço de email"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="email" />
             <p:inputText id="email" 
                          value="#{MasterControle.pessoaControle.pessoa.email}" 
@@ -235,7 +235,7 @@
             
             
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
-                           style="color: #1abc9c; font-weight: bold ;"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="telefone" />
             <p:inputMask mask="(99) 99999-9999" 
                          id="telefone"
