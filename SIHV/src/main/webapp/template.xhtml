@@ -45,7 +45,7 @@
                     <h:graphicImage id="NomeSistema"
                                     class="LADES-logo-SIHV"
                                     library="imagens" 
-                                    name="sihv_logo_simple.svg"/>
+                                    name="sihv_logo_full.svg"/>
                     <p:tooltip  for="NomeSistema" 
                                 value="Sistema Integrado do Hospital Veterinário"
                                 showEffect="clip" />
@@ -73,6 +73,12 @@
                           color: #ffffff;
                           background: #009688" />
             </div>
+
+            <div class="tituloBar">
+                <h4>
+                    <ui:insert name="title">Default Title</ui:insert>
+                </h4>
+            </div>
         </div>
     </h:head>
 
@@ -85,13 +91,18 @@
 
         <div class="LADES-content js-content" >
 
-            <h3>
-                <ui:insert name="title">Default Title</ui:insert>
-            </h3>
+            <h4 id="tituloContente">
+                <ui:insert  name="title">Default Title</ui:insert>
+            </h4>
 
 
             <ui:insert name="content" />
-            
+
+            <div class="footer">
+                <p:separator />
+                <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
+                                   Sistemas | Copyright © 2016 Universidade Federal do Pará" />
+            </div>
         </div>
 
     </h:body>

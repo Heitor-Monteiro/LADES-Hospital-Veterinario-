@@ -7,59 +7,62 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        
+
         <ui:define name="title">
-            <h:outputText style="margin: 1% 0 0 2.7%;" value="#{label_SIHV.CreateAnimaisTitle}"></h:outputText>
+            <h:outputText value="#{label_SIHV.CreateAnimaisTitle}"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="content">
-            
+
             <f:metadata>
                 <f:viewAction action="#{MasterControle.prepararCadastroAnimal()}" />
                 <f:viewAction action="#{MasterControle.animalControle.prepararAdicionarAnimal()}" />
             </f:metadata>
-            
+
             <h:form >
                 <p:growl id="growl" sticky="true" showDetail="true"/>
-                
-                <p:wizard style="margin: 1% 2.7% 0 2.7%;" 
-                          nextLabel="próximo"
+
+                <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
-                    
-                    
+
+
                     <p:tab id="DadosCliente" title="Pesquisar por cliente" >
                         <p:panel>
+
                             <ui:include src="/SIHV_Telas_Genericas/pesquisa_pessoa.xhtml" />
+
                         </p:panel>
                     </p:tab>
-                    
-                    
-                    
+
+
+
                     <p:tab id="DadosPet" title="Dados do animal" >
                         <p:panel>
+
                             <ui:include src="/SIHV_Telas_Genericas/campo_animal.xhtml" />
+
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                     <p:tab id="Confirmacao" title="Confirmação">
                         <p:panel>
                             <div class="ui-fluid">
-           
+
                                 <p:panelGrid columns="2"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3">
 
                                     <p:outputLabel value="Nome do cliente:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.pessoa.nome}"
-                                               styleClass="outputLabel" />
+                                                   styleClass="outputLabel" />
 
                                     <p:outputLabel value="CPF do cliente:"
-                                               style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.pessoa.cpf}"
-                                               styleClass="outputLabel" />
+                                                   styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Nome do animal:"
@@ -105,39 +108,40 @@
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
-                            
-                            <div style="float: right; line-height: 58px; margin-right: -20px" >
-                                
-                                <p:commandButton action="#{MasterControle.adicionarNovoAnimal()}" 
-                                                 value="Salvar"
-                                                 style="width: 170px;"
-                                                 icon="fa fa-save"
-                                                 update="growl" 
-                                                 disabled="false" />
-                                
-                                <p:button value="Novo cadastro" 
-                                          outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"
-                                          icon="fa fa-user-plus" 
-                                          style="width: 170px;" />
-                                
-                                <p:button value="Sair" 
-                                          outcome="/index"
-                                          icon="fa fa-home" 
-                                          style="width: 170px;" />
-                                
+
+                            <div class="ui-fluid ui-g" >
+                                <div class="ui-g-12 ui-md-3 ui-lg-3"></div>
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:commandButton action="#{MasterControle.adicionarNovoAnimal()}" 
+                                                     value="Salvar"
+                                                     icon="fa fa-save"
+                                                     update="growl" 
+                                                     disabled="false" />
+                                </div>
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:button value="Novo cadastro" 
+                                              outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"
+                                              icon="fa fa-user-plus" />
+                                </div>
+
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:button value="Sair" 
+                                              outcome="/index"
+                                              icon="fa fa-home" />
+                                </div>
                             </div>
-                            
-                            
+
+
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                 </p:wizard>
             </h:form>
-            
-            
-            
-            
+
+            <div  style="height: 140px;" />
         </ui:define>
     </ui:composition>
 

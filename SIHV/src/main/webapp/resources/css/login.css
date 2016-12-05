@@ -1,0 +1,56 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 04/12/2016, 22:47:38
+    Author     : thiberius
+*/
+
+
+body{margin: 0;}
+
+.LADES-bodyLogin{
+    background-color: #006355;
+    text-align: center;
+}
+
+.LADES-topBarLogin{
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 9999;
+    background-color:#eaeaea;
+}
+
+.LADES-topBarLogin > img {
+
+    max-width: 400px;
+    /*height: auto;*/
+    margin: 30px 10px 30px 10px;
+}
+
+.LADES-contentLogosInferior{
+    margin-top: 5%;
+}
+
+.LADES-logosInferior{
+    height: 30px;
+}
+
+/* PANELGRID */
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive {
+    border: none;
+    background: none;
+}
+
+@media (max-width: 640px) {
+    .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {border: none;}
+}
+
+/*WIZARD*/
+.ui-state-highlight{
+    background-image: linear-gradient(to bottom, #00B59B, #008471)!important;
+}
+/*WIZARD*/

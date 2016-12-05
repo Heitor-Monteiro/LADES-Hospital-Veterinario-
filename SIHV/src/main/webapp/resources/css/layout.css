@@ -16,7 +16,14 @@ body {
     color: #5f666c;/*Cor da fonte que está no body*/
     background-color: #f0f0f0;
 }
+
+a {
+    color: #00B59B;
+    text-decoration: none;
+}
 /* BASE */
+
+
 
 
 /*-------------------------Inicio da resposividade-------------------------*/
@@ -35,10 +42,12 @@ body {
 /* CONTENT */
 .LADES-content {
     /*overflow: auto;*/
-    margin-top: 90px;
+    padding-top: 96px;
+    padding-left: 20px;
+    padding-right: 20px;
     transition: margin-left 0.5s;
 }
-
+/* CONTENT */
 
 .LADES-logo-SIHV {
 
@@ -65,7 +74,7 @@ body {
     bottom: 0;
     left: 0;
     width: 270px;
-    margin-left: -270px;
+    margin-left: -276px;
     z-index: 9999;
     transition: margin-left 0.5s;
     overflow-y: auto;
@@ -102,17 +111,20 @@ nav .menu-toggle {
     cursor: pointer;
     float: left;
     padding: 0px 0px 0px 0px;
-    margin: -50px 0px 0px 300px;
+    margin: -50px 0px 0px 289px;
     background: none;
     transition: margin-left 0.5s;
     transform: rotate(180deg);
 }
 
-nav .menu-toggle:hover{/*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/}
+nav .menu-toggle:hover{
+    transition: margin-left 0.5s;
+    font-weight: bold;
+}
 
 .menu-toggle.is-toggled {
     color: #5f666c;
-    margin-left: 170px;
+    margin-left: 190px;
 }
 
 .menu-toggle.is-rotacao {
@@ -131,25 +143,33 @@ nav .menu-toggle:hover{/*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/}
 }
 
 .LADES-topbar-mini.is-toggled {
-    margin-left: -120px;
+    margin-left: -103px;
 }
 
+.tituloBar{
+    position: fixed;
+    margin: -60px 0px 0px 350px;
+    transition: 0.5s;
+}
+
+.tituloBar.is-toggled {margin-left: 240px;}
 
 @media (min-width: 960px) {
     #botao2{display: none;}
     #userNameNik2{display: none}
+    #tituloContente{display: none}
 }
 
 @media(max-width:960px ){
     #botao1{display: none;}
 
-    .LADES-topbar-mini{margin-left:-120px;}
-    
+    .LADES-topbar-mini{margin-left:-103px;}
+
     .LADES-topbar-mini.is-toggled2 {margin-left: 0px;}
 
     nav .menu-toggle{
         color: #5f666c;
-        margin-left: 170px;
+        margin-left: 190px;
         transform: rotate(0deg);
     }
 
@@ -157,83 +177,23 @@ nav .menu-toggle:hover{/*box-shadow: 4px 3px 8px 0 rgba(0,0,0,0.2);*/}
         color: #009688;
         margin-left: 300px;
     }
-    
+
     .menu-toggle.is-rotacao2 {transform: rotate(180deg);}
-    
-    #userNameNik{display: none}
+
+    #userNameNik{display: none;}
+
+    .tituloBar{display: none;}
+
+    .LADES-content{
+        padding-top: 80px;
+        padding-left: 1px;
+        padding-right: 1px;
+    }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Estilização de login*/
-.LADES-bodyLogin{
-    background-color: #006355;
-    text-align: center;
-}
-
-.LADES-topBarLogin{
-    top: 0;
-    right: 0;
+.footer{
+    bottom: 0;
     left: 0;
-    z-index: 9999;
-    background-color:#eaeaea;
-}
-
-.LADES-topBarLogin > img {
-    
-    max-width: 400px;
-    /*height: auto;*/
-    margin: 30px 10px 30px 10px;
-}
-
-.LADES-contentLogosInferior{
-    margin-top: 10%;
-}
-
-.LADES-logosInferior{
-    height: 30px;
-    margin-left: 25px;
-    margin-right: 25px;
-}
-/*Fim - Estilização de login*/
-
-
-/*Index estilização menu central*/
-.LADES-indexBotao{
-    height: 130px;
-}
-
-.LADES-textoBotao{
-    color: #00B59B;
-    font-size: 16px;
+    right: 0;
     text-align: center;
-
 }
-/*Fim - Index estilização menu central*/
-
-
-/*Cor dos links*/
-a {
-    color: #00B59B;
-    text-decoration: none;
-}
-
-
-
-
-

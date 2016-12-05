@@ -11,14 +11,14 @@
             <p:panelGrid columns="3" layout="grid"
                          style="margin: 10px 0px 15px;"
                          styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3" > 
+                         columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" > 
 
                 <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                for="TipoPesquisa" />
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
-                                  columns="3"
+                                  columns="1"
                                   value="#{MasterControle.pesquisaControle.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
@@ -31,7 +31,7 @@
 
             <p:panelGrid columns="3" layout="grid"
                          styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                         columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4"
                          style="margin-bottom: 20px;" >
 
 

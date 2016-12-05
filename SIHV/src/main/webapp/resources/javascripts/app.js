@@ -3,7 +3,7 @@ $(function () {
         $('.js-sidebar, .js-content').toggleClass('is-toggled');
         event.preventDefault();
 
-        $('.LADES-topbar-mini').toggleClass('is-toggled');
+        $('.LADES-topbar-mini, .tituloBar').toggleClass('is-toggled');
         event.preventDefault();
 
         $('.LADES-topbar-mini').toggleClass('is-toggled2');

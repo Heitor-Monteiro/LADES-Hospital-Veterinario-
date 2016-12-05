@@ -7,131 +7,130 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
-        
+
         <ui:define name="title"  >
-            <h:outputText style="margin: 0% 0 0 2.7%;" value="Nova consulta"></h:outputText>
+            <h:outputText value="Nova consulta"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="content">
-            
+
             <f:metadata>
                 <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
                 <f:viewAction action="#{MasterControle.prepararNovaConsulta()}" />
             </f:metadata>
-            
+
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
-                
-                <p:wizard style="margin: 1% 2.7% 0 2.7%;"
-                          nextLabel="próximo"
+
+                <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
-                    
+
                     <p:tab id="etapa1" title="Dados do cliente" >
                         <p:panel >
-                            
+
                             <ui:include src="/SIHV_Telas_Genericas/pesquisa_AnimalCliente.xhtml" />
-                            
+
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
                             <p:wizard style="margin: 2% 3.7% 2% 3.7%;"
                                       nextLabel="próximo"
                                       backLabel="voltar">
-                                
+
                                 <p:tab id="anamnese1" title="etapa 1" >
                                     <p:panel>
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Anamnese.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
                                 <p:tab id="anamnese2" title="etapa 2" >
                                     <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Digestorio.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
                                 <p:tab id="anamnese3" title="etapa 3" >
                                     <p:panel header="Sistema respiratório e cardiovascular" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Resp_Cardio.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese4" title="etapa 4" >
                                     <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Urinario_Mamaria.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese5" title="etapa 5" >
                                     <p:panel header="Sistema tegumentar" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Tegumentar.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese6" title="etapa 6" >
                                     <p:panel header="Sistema neurológico" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Neurologico.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese7" title="etapa 7" >
                                     <p:panel header="Sistema oftálmico" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Oftalmico.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese8" title="etapa 8" >
                                     <p:panel header="Sistema músculo-esquelético" >
-                                        
+
                                         <ui:include src="/SIHV_Telas_Genericas/generico_Sis_MuscEsque.xhtml" />
-                                        
+
                                     </p:panel>
                                 </p:tab>
-                                
+
                             </p:wizard>
-                            
-                            
+
+
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel>
-                            
+
                             <ui:include src="/SIHV_Telas_Genericas/generico_Fisico.xhtml" />
-                            
+
                         </p:panel>
                     </p:tab>
-                    
-                    
-                    
+
+
+
                     <p:tab id="etapa4" title="Exames complementares" >
                         <p:panel>
-                            
-                            
+
+
                             <p:panelGrid columns="3"
                                          layout="grid"
                                          styleClass="panelgrid-noborder"
                                          columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-3" >
-                         
+
                                 <p:outputLabel value="Radiografia:"
                                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                
+
                                 <p:selectOneButton id="value2"
                                                    disabled="#{MasterControle.consultaControle.confirmeUltrasson}"
                                                    value="#{MasterControle.consultaControle.confirmeRAIOX}"
@@ -141,28 +140,28 @@
                                     <f:selectItem itemLabel="Não" itemValue="false" />
                                     <p:ajax update="RaioX0" />
                                 </p:selectOneButton>
-                                
+
                                 <p:outputLabel value="Bloqueado!"
                                                rendered="#{MasterControle.consultaControle.confirmeUltrasson}"
                                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                             </p:panelGrid>
-                            
-                            
+
+
                             <p:panel id="RaioX0">
                                 <ui:include src="/SIHV_Telas_Genericas/generico_RaioX.xhtml" />
                             </p:panel>
-                            
-                            
-                            
+
+
+
                             <p:panelGrid columns="2" 
                                          layout="grid"
                                          style="margin-top: 10px"
                                          styleClass="panelgrid-noborder"
                                          columnClasses="ui-grid-col-2, ui-grid-col-2, ui-grid-col-3" >
-                         
+
                                 <p:outputLabel value="Ultrassonografia:"
                                                style="color: #00B59B; font-weight: bold;" />
-                                
+
                                 <p:selectOneButton id="value3"
                                                    disabled="#{MasterControle.consultaControle.confirmeRAIOX}"
                                                    value="#{MasterControle.consultaControle.confirmeUltrasson}"
@@ -173,19 +172,19 @@
                                     <p:ajax update="Ultra0" />
                                 </p:selectOneButton>
                             </p:panelGrid>
-                            
-                            
+
+
                             <p:panel id="Ultra0" >
                                 <ui:include src="/SIHV_Telas_Genericas/generico_Ultrassom.xhtml" />
                             </p:panel>
-                            
-                            
+
+
                         </p:panel>
                     </p:tab>
-                    
-                    
-                    
-                    
+
+
+
+
                     <p:tab id="etapa5" title="Finalizar" >
                         <p:panel>
                             <div class="ui-fluid">
@@ -196,58 +195,58 @@
                                              columnClasses="ui-grid-col-3, ui-grid-col-3" >
 
 
-                                    
+
                                     <p:outputLabel value="Código de atendimento:"
                                                    style="color: #555;
-                                                          font-weight: bold;
-                                                          font-size: 16px; " />
+                                                   font-weight: bold;
+                                                   font-size: 16px; " />
                                     <p:outputLabel value="0000000000000000"
                                                    style="color: #555;
-                                                          font-weight: bold;
-                                                          font-size: 16px; " />
-                                    
-                                    
-                                    
+                                                   font-weight: bold;
+                                                   font-size: 16px; " />
+
+
+
                                     <p:outputLabel value="Proprietário:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="Nome do proprietario"
                                                    style="color: #555;" />
-                                    
-                                    
+
+
                                     <p:outputLabel value="CPF:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="00077788822"
                                                    style="color: #555;" />
 
-                                    
+
                                     <p:outputLabel value="RG:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="1234567"
                                                    style="color: #555;" />
-                                    
-                                    
+
+
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.animal.nomeAnimal}"
                                                    style="color: #555;" />
-                                    
-                                    
-                                    
+
+
+
                                     <p:outputLabel value="Espécie:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.animal.especie}"
                                                    style="color: #555;" />
-                                    
-                                    
-                                    
+
+
+
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.animal.id.pkAnimal}"
                                                    style="color: #555;" />
-                                    
-                                    
-                                    
-                                    
+
+
+
+
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MasterControle.consultaControle.data}"
@@ -260,15 +259,15 @@
                                              style="margin-top: 30px"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-                                    
-                                    
-                                    
+
+
+
                                     <p:outputLabel value="Confirmação do medico veterinário:"
                                                    style="color: #00B59B; font-weight: bold ; font-size: 17px " />
                                     <p:outputLabel value="" />
-                                    
-                                    
-                                    
+
+
+
                                     <p:outputLabel value="Informe o CRMV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:inputText id="ConfimMED1" 
@@ -277,9 +276,9 @@
                                                  required="true"
                                                  requiredMessage="Informe o CRMV para concretiza a consulta!"
                                                  maxlength="50"/>
-                                    
-                                    
-                                    
+
+
+
                                     <p:outputLabel value="Senha de acesso ao sistema:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:password id="ConfimMED2"
@@ -290,48 +289,49 @@
                                                 maxlength="100"
                                                 required="true" 
                                                 requiredMessage="Informe a senha de residente!" />
-                                    
-                                    
-                         
+
+
+
                                 </p:panelGrid>
-                            
-                                <p:panelGrid columns="5"
-                                             layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             style="margin-top: 30px;"
-                                             columnClasses="ui-grid-col-4, ui-grid-col-2, ui-grid-col-2, ui-grid-col-2, ui-grid-col-2" >
 
-                                    <p:outputLabel />
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:commandButton value="Imprimir"
+                                                         type="button"
+                                                         icon="fa fa-print">
+                                            <p:printer target="CODconsulta" />
+                                        </p:commandButton>
+                                    </div>
 
-                                    <p:commandButton value="Imprimir"
-                                                     type="button"
-                                                     icon="fa fa-print">
-                                        <p:printer target="CODconsulta" />
-                                    </p:commandButton>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:commandButton  action="#{MasterControle.adicionarNovaConsulta()}"
+                                                          value="Salvar consulta"
+                                                          icon="fa fa-save"
+                                                          update="growl" 
+                                                          disabled="false" />
+                                    </div>
 
-                                    <p:commandButton  action="#{MasterControle.adicionarNovaConsulta()}"
-                                                value="Salvar consulta"
-                                                icon="fa fa-save"
-                                                update="growl" 
-                                                disabled="false" />
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:button value="Nova consulta" 
+                                                  outcome="/SIHV_Telas_Exame/Nova_Consulta"
+                                                  icon="fa fa-user-plus" />
+                                    </div>
 
-                                    <p:button value="Nova consulta" 
-                                              outcome="/SIHV_Telas_Exame/Nova_Consulta"
-                                              icon="fa fa-user-plus" />
-
-                                    <p:button value="Sair" 
-                                              outcome="/index"
-                                              icon="fa fa-home" />
-                                </p:panelGrid>
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:button value="Sair" 
+                                                  outcome="/index"
+                                                  icon="fa fa-home" />
+                                    </div>
+                                </div>
                             </div>
                         </p:panel>
                     </p:tab>
-                    
+
                 </p:wizard>
-            
-                
-                
-                
+
+
+
+
                 <p:dialog modal="true"
                           resizable="false"
                           header="Values"
@@ -347,7 +347,7 @@
                     </p:panelGrid>
                 </p:dialog>
             </h:form>
-            
+            <div  style="height: 198px;" />
         </ui:define>
     </ui:composition>
 

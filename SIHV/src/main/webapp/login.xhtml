@@ -18,8 +18,7 @@ and open the template in the editor.
         </title> 
 
         <meta charset="utf-8" />
-        <h:outputStylesheet  library="css" name="layout.css" />
-        <h:outputStylesheet  library="css" name="custom.css" />
+        <h:outputStylesheet  library="css" name="login.css" />
         <h:outputStylesheet library="fonts" name="fontloader.css" />
     </h:head>    
     <script>
@@ -27,7 +26,9 @@ and open the template in the editor.
             window.location.hash = "locked";
             window.location.hash = "_locked";
             window.onhashchange = function () {
-                {window.location.hash="_";}
+                {
+                    window.location.hash = "_";
+                }
             }
         }
         jQuery(document).ready(function () {
@@ -36,21 +37,27 @@ and open the template in the editor.
     </script>
 
     <h:body class="LADES-bodyLogin">
-        <header class="LADES-topBarLogin">
+
+        <div class="LADES-topBarLogin">
             <h:graphicImage library="imagens" 
                             name="sihv_logo_full.svg" />   
-        </header>
+        </div>
+        
+        <h:form>
+            <p:growl id="messageLogin"
+                     autoUpdate="true"
+                     sticky="true"
+                     showDetail="true"/>
 
-        <div class="ui-fluid">
-            <h:form>
-                <p:growl id="messageLogin" autoUpdate="true" sticky="true" showDetail="true"/>
-
-                <p:panelGrid columns="1" layout="grid"
+            <div class="ui-fluid" >
+                
+                <p:panelGrid columns="1" 
+                             layout="grid"
                              styleClass="panelgrid-noborder"
                              columnClasses="ui-grid-col-12"
                              style="margin-top: 30px;
                              font-size: 15px;" >
-
+                    
                     <p:inputText id="login" placeholder="Login"
                                  maxlength="100"
                                  required="true"
@@ -105,24 +112,29 @@ and open the template in the editor.
                 </p:panelGrid>
 
 
-
-            </h:form>
-
-
+            </div>
+        </h:form>
 
 
 
-            <div class="LADES-contentLogosInferior">
+
+        <div class="ui-g LADES-contentLogosInferior">
+
+            <div class="ui-g-6 ui-md-3 ui-lg-3">
                 <h:graphicImage class="LADES-logosInferior"
                                 library="imagens" 
                                 name="logo_fabricaDeSoftware_white.svg" />
+            </div>
 
+            <div class="ui-g-6 ui-md-3 ui-lg-3">
                 <a href="http://www.campuscastanhal.ufpa.br/">
                     <h:graphicImage class="LADES-logosInferior"
                                     library="imagens" 
                                     name="ufpa_logo_white.svg" />
                 </a>
+            </div>
 
+            <div class="ui-g-6 ui-md-3 ui-lg-3">
                 <a  href="http://facompcastanhal.ufpa.br/lades/">
                     <h:graphicImage class="LADES-logosInferior"
                                     library="imagens" 
@@ -130,8 +142,13 @@ and open the template in the editor.
                 </a>
             </div>
 
+            <div class="ui-g-6 ui-md-3 ui-lg-3">
+                <a  href="http://www.facompcastanhal.ufpa.br/">
+                    <h:graphicImage class="LADES-logosInferior"
+                                    library="imagens" 
+                                    name="LogoFacompBranco.svg" />
+                </a>
+            </div>
         </div>
-
-
     </h:body>
 </html>

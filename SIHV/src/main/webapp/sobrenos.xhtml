@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <ui:composition template="/template.xhtml">
+
+
+
+
+        <ui:define name="title">
+            <h:outputText value="Sobre o SIHV" />
+        </ui:define>
+
+        <ui:define name="content">
+
+
+            <div class="ui-g" style="text-align: center">
+                <div class="ui-g-12">
+                    <h:graphicImage class="LADES-FullLogo"
+                                    library="imagens" 
+                                    name="sihv_logo_full.svg" />
+                </div>
+
+                <div class="ui-g-12 marg">
+                    <p:outputLabel value="Versão Alfa 0.1" />
+                    <p:separator />
+                    <p:outputLabel value="Sistema desenvolvido pela Fábrica de Software 
+                                   sob coordenação do Profᵒ Dr. Marcos Seruffo, no Laboratório 
+                                   de Desenvolvimento de Sistemas da Faculdade de 
+                                   Computação da Universiade Federal do Pará - Campus Castanhal." />
+                </div>
+
+                <div class="ui-g-12 corContent marg"
+                     style="padding-top: 5%;
+                     padding-bottom: 3%;">
+
+                    <div class="ui-g-4 ui-md-4 ui-lg-4">
+                        <h:graphicImage class="foto"
+                                        library="imagens" 
+                                        name="heitor.jpg"/>
+                        <p id="dev">Heitor Sobral</p>
+                        <p id="func">Desenvolvedor</p>
+                        <a id="lattes"
+                           href="http://lattes.cnpq.br/5862169165617304">
+                            Lattes
+                        </a>
+                    </div>
+
+                    <div class="ui-g-4 ui-md-4 ui-lg-4">
+                        <h:graphicImage class="foto"
+                                        library="imagens" 
+                                        name="Kennedy.jpg"/>
+                        <p id="dev">Kennedy Souza</p>
+                        <p id="func">Desenvolvedor</p>
+                        <a id="lattes"
+                           href="http://lattes.cnpq.br/1106866186533455">
+                            Lattes
+                        </a>
+                    </div>
+
+                    <div class="ui-g-4 ui-md-4 ui-lg-4">
+                        <h:graphicImage class="foto"
+                                        library="imagens" 
+                                        name="Seruffo.jpg"/>
+                        <p id="dev">Marcos Seruffo</p>
+                        <p id="func">Coordenador</p>
+                        <a id="lattes" href="#">Lattes</a>
+                    </div>
+
+                </div>
+
+                <div class="ui-g-12 marg">
+                    <div class="ui-g-6 ui-md-3 ui-lg-3">
+                        <a href="http://www.campuscastanhal.ufpa.br/">
+                            <h:graphicImage class="LADES-logosMini logo1"
+                                            library="imagens" 
+                                            name="ufpaColor.svg" />
+                        </a>
+                    </div>
+
+                    <div class="ui-g-6 ui-md-3 ui-lg-3" >
+                        <a href="http://www.facompcastanhal.ufpa.br/">
+                            <h:graphicImage class="LADES-logosMini logo2"
+                                            library="imagens" 
+                                            name="LogoFacomp.svg" />
+                        </a>
+                    </div>
+
+                    <div class="ui-g-6 ui-md-3 ui-lg-3" >
+                        <h:graphicImage class="LADES-logosMini"
+                                        library="imagens" 
+                                        name="Logofabricadesoftware.svg" />
+                    </div>
+
+                    <div class="ui-g-6 ui-md-3 ui-lg-3" >
+                        <a href="http://facompcastanhal.ufpa.br/lades/">
+                            <h:graphicImage class="LADES-logosMini logo4"
+                                            library="imagens" 
+                                            name="LogoLades3.svg" />
+                        </a>
+                    </div>
+                </div>
+
+                <div class="ui-g-12 corContent marg" style="display: none;">
+                    <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
+                                   Sistemas | Copyright © 2016 Universidade Federal do Pará" />
+                </div>
+
+
+            </div>
+
+        </ui:define>
+
+    </ui:composition>
+
+
+
+
+
+</html>
+

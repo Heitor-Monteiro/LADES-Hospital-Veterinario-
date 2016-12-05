@@ -9,7 +9,7 @@
     <ui:composition template="/template.xhtml">
         
         <ui:define name="title"  >
-            <h:outputText style="margin: 1% 0 0 2.7%;" value="Novo aluno bolsista"></h:outputText>
+            <h:outputText value="Novo aluno bolsista"></h:outputText>
         </ui:define>
         
         <ui:define name="content">
@@ -22,8 +22,7 @@
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
                 
-                <p:wizard style="margin: 1% 2.7% 0 2.7%;"
-                          nextLabel="próximo"
+                <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
                     
                     <p:tab id="etapa1" title="Dados do usuário" >
@@ -35,7 +34,7 @@
                                 <p:panelGrid columns="3"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-4" >
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
                                     
                                     
                                     <p:outputLabel value="Numero de matrícula:"

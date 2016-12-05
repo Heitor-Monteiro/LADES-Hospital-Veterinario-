@@ -8,12 +8,75 @@ and open the template in the editor.
     Author     : heitor
 */
 
-/*
-.LADES-toggle {
-	float: right;
-	line-height: 50px;
-	margin-right: 15px;
-	
-	color: #fff;
+
+/*Index estilização menu central*/
+.LADES-indexBotao{
+    height: 130px;
 }
-*/
+
+.LADES-textoBotao{
+    color: #00B59B;
+    font-size: 16px;
+    text-align: center;
+
+}
+/*Fim - Index estilização menu central*/
+
+
+
+
+/*----------Sobre nós----------*/
+.LADES-FullLogo{
+    width: 280px;
+}
+
+.LADES-logosMini{
+    width: 55%;
+}
+
+.logo1{margin-top: 4%;}
+.logo2{margin-top: 8%;}
+.logo4{margin-top: 9%;}
+
+.marg{margin: 10px 0px 10px 0px;}
+.marg2{
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.corContent{background-color: rgb(230, 230, 230);}
+
+.foto{
+    width: 60%;
+    border-radius: 200px;
+}
+
+#dev{
+    font-size: 23px;
+    margin-bottom: -13px;
+}
+
+#func{
+    font-size: 16px;
+}
+
+#lattes{
+    font-size: 14px;
+    border-radius: 30px;
+    color: #000;
+    background-color: rgb(204, 204, 204);
+    padding: 4px 7px 4px 7px;
+}
+
+#lattes:hover{
+    background-color: #00B59B;
+    color: #fff;
+    transition: 0.3s;
+    box-shadow: 1px 6px 8px 0px rgba(0,0,0,0.2);
+}
+
+@media(max-width: 960px){
+    #dev{font-size: 17px;}
+    #func{font-size: 11px;}
+}
+/*--------Fim Sobre nós-----------*/
