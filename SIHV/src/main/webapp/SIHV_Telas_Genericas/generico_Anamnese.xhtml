@@ -1,9 +1,9 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
@@ -12,7 +12,7 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            
+
             <p:outputLabel value="Queixa principal/Evolução:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese1" />
@@ -23,11 +23,11 @@
                              style="margin-bottom: 20px;"
                              maxlength="300" />
             <p:message for="Anamnese1" />
-            
-            
-            
-            
-            
+
+
+
+
+
             <p:outputLabel value="Já foi tratado:"
                            rendered="true"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -42,14 +42,14 @@
                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="SIM" />
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
-                
+
             </p:selectOneRadio>
             <p:message for="Anamnese2" />
-            
-            
-            
-            
-            
+
+
+
+
+
             <p:outputLabel value="Medicação/dose:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese3" />
@@ -60,19 +60,19 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Anamnese3" />
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="Antecedentes móbidos:"
+
+
+
+
+
+
+            <p:outputLabel value="Antecedentes mórbidos:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese4" />
             <p:inputTextarea id="Anamnese4"
                              value="#{MasterControle.consultaControle.anamnese.antecMorbido}"
                              required="true"
-                             requiredMessage="Informe antecedentes móbidos!"
+                             requiredMessage="Informe antecedentes mórbidos!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Anamnese4" />
@@ -91,7 +91,7 @@
             <p:message for="Anamnese5" />
 
 
-            
+
             <p:outputLabel value="Alimentação (Dieta caseira):"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese6" />
@@ -106,10 +106,10 @@
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
             <p:message for="Anamnese6" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Descrição da dieta caseira:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese7" />
@@ -120,10 +120,10 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Anamnese7" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Alimentação (Ração):"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese8" />
@@ -138,10 +138,10 @@
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
             <p:message for="Anamnese8" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Descrição da dieta por ração:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese9" />
@@ -152,8 +152,8 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Anamnese9" />
-            
-            
+
+
 
 
             <p:outputLabel value="Vacinação:"
@@ -172,8 +172,8 @@
             </p:selectManyCheckbox>
             <p:message for="Anamnese10" />
 
-            
-            
+
+
             <p:outputLabel value="Sobre a vacina:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese11" />
@@ -184,13 +184,13 @@
                              style="margin-bottom: 20px;"
                              maxlength="100" />
             <p:message for="Anamnese11" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Origem da vacina:"
-                       style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                       for="Anamnese12" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="Anamnese12" />
             <p:selectOneRadio id="Anamnese12"
                               value="#{MasterControle.consultaControle.anamnese.origemVacina}"
                               layout="responsive"
@@ -202,9 +202,9 @@
                 <f:selectItem itemLabel="Importada" itemValue="IMPORTADA" />
             </p:selectOneRadio>
             <p:message for="Anamnese12" />
-            
-            
-            
+
+
+
 
 
             <p:outputLabel value="Vermifugação:"
@@ -268,11 +268,11 @@
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
             <p:message for="Anamnese16" />
-            
-            
-            
-            
-            
+
+
+
+
+
             <p:outputLabel value="Qual ectoparasitas:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese17" />
@@ -288,16 +288,16 @@
                 <f:selectItem itemLabel="Phthiraptera" itemValue="PHTHIRAPTERA" />
             </p:selectManyCheckbox>
             <p:message for="Anamnese17" />
-            
-            
 
-            
+
+
+
 
 
 
             <p:outputLabel value="Controle de ectoparasitas:"
-                       style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                       for="Anamnese18" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="Anamnese18" />
             <p:selectOneRadio id="Anamnese18"
                               value="#{MasterControle.consultaControle.anamnese.controEctoparasitas}"
                               layout="responsive"
@@ -348,6 +348,8 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese21" />
             <p:inputTextarea id="Anamnese21" 
+                             required="true"
+                             requiredMessage="Descreva o habitat!"
                              value="#{MasterControle.consultaControle.anamnese.descriHabitat}"
                              title="Descreva o habitat que o animal vive"
                              required="false"
@@ -359,8 +361,8 @@
 
 
             <p:outputLabel value="Contactantes:"
-                       style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                       for="Anamnese22" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="Anamnese22" />
             <p:selectOneRadio id="Anamnese22"
                               value="#{MasterControle.consultaControle.anamnese.contactantes}"
                               layout="responsive"
@@ -372,10 +374,10 @@
                 <f:selectItem itemLabel="Não" itemValue="NAO" />
             </p:selectOneRadio>
             <p:message for="Anamnese22" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Descrição dos contactantes:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese23" />
@@ -387,9 +389,9 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Anamnese23" />
-            
-            
-            
+
+
+
 
 
             <p:outputLabel value="Mesmo problema em contactantes?"
@@ -410,8 +412,8 @@
 
 
             <p:outputLabel value="Contato com roedores"
-                       style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                       for="Anamnese25" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="Anamnese25" />
             <p:selectOneRadio id="Anamnese25"
                               value="#{MasterControle.consultaControle.anamnese.contatoRoedor}"
                               layout="responsive"
@@ -425,18 +427,18 @@
 
 
 
-            
-            
+
+
             <p:commandButton type="reset"
-                     style="padding: 15px 0px 15px 0px;
-                     margin-top: 25px;"
-                     id="LimparCamposAnamne" 
-                     icon="fa fa-eraser" 
-                     value="Limpar campos" />
-            
+                             style="padding: 15px 0px 15px 0px;
+                             margin-top: 25px;"
+                             id="LimparCamposAnamne" 
+                             icon="fa fa-eraser" 
+                             value="Limpar campos" />
+
         </p:panelGrid>    
     </div>
-    
-    
-    
+
+
+
 </ui:component>

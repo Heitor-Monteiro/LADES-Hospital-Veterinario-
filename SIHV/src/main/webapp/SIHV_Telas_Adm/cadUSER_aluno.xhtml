@@ -9,7 +9,7 @@
     <ui:composition template="/template.xhtml">
         
         <ui:define name="title"  >
-            <h:outputText value="Novo aluno bolsista"></h:outputText>
+            <h:outputText value="Novo recepcionista"></h:outputText>
         </ui:define>
         
         <ui:define name="content">
@@ -45,7 +45,7 @@
                                                  title="Ex.: 201318640025"
                                                  maxlength="12"
                                                  required="true" 
-                                                 requiredMessage="Informe o numero de matricula do aluno bolsista!" >
+                                                 requiredMessage="Informe o numero de matricula do recepcionista!" >
                                         <p:keyFilter regEx="/[\d\-\.]/" />
                                     </p:inputText>
                                     <p:message for="NumMatri" />
@@ -97,7 +97,7 @@
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:commandButton action="#{MasterControle.pessoaControle.adicionarUSER('ALUNO', 'Aluno bolsista')}" 
+                                <p:commandButton action="#{MasterControle.pessoaControle.adicionarUSER('ALUNO', 'Recepcionista')}" 
                                                  value="Salvar"
                                                  style="width: 170px;"
                                                  icon="fa fa-save"

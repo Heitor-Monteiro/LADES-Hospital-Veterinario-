@@ -138,21 +138,29 @@
                         maxlength="10" 
                         disabled="false" 
                         title="" 
-                        required="true"  
-                        requiredMessage="Informe o último cio!" 
+                        required="false"  
+                        requiredMessage="" 
                         locale="de"
                         navigator="true"  
                         pattern="yyyy-mm-dd" /> 
             <p:message for="UrianGlandu7" />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
             
-
-
-
-
-
-
-
+            
+            <p:outputLabel value="Prenhe:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="UrianGlandu13" />
+            <p:selectOneRadio id="UrianGlandu13"
+                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.prenhe}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal está prenhe!"
+                              style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="SIM" />
+                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+            </p:selectOneRadio>
+            <p:message for="UrianGlandu13" />
 
             <p:outputLabel value="Último parto:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -247,33 +255,7 @@
                 <f:selectItem itemLabel="Não" itemValue="NÃO" />
             </p:selectOneRadio>
             <p:message for="UrianGlandu12" />
-
-
-
-
-
-
-            <p:outputLabel value="Prenhe:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu13" />
-            <p:selectOneRadio id="UrianGlandu13"
-                              value="#{MasterControle.consultaControle.sisUrinarioMamaria.prenhe}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal está prenhe!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                <f:selectItem itemLabel="Não" itemValue="NÃO" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu13" />
-            
-            
-            
-            
-            
-            
-            
+                
             <p:outputLabel value="O sistema foi afetado?"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="UrianGlandu14" />
