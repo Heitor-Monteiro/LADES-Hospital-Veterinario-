@@ -18,17 +18,17 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico1" />
             <p:selectOneMenu id="oftalmico1"
-                             value="#{MasterControle.consultaControle.sisOftalmico.olhos}"
+                             value="#{MasterControle.consultaControle.sisOftalmico.olhosPupila}"
                              required="true"
                              requiredMessage="Informe se o animal apresenta perda de visão!"
                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Selecione" itemValue="" />
-                <f:selectItem itemLabel="Normal" itemValue="NORMAL" />
-                <f:selectItem itemLabel="Amaurose" itemValue="AMAUROSE" />
-                <f:selectItem itemLabel="Anisocoria" itemValue="ANISOCORIA" />
-                <f:selectItem itemLabel="Estrabismo" itemValue="ESTRABISMO" />
-                <f:selectItem itemLabel="Midríase" itemValue="MIDRIASE" />
-                <f:selectItem itemLabel="Miose" itemValue="MIOSE" />
+                <f:selectItem itemLabel="Normal" itemValue="Normal" />
+                <f:selectItem itemLabel="Amaurose" itemValue="Amaurose" />
+                <f:selectItem itemLabel="Anisocoria" itemValue="Anisocoria" />
+                <f:selectItem itemLabel="Estrabismo" itemValue="Estrabismo" />
+                <f:selectItem itemLabel="Midríase" itemValue="Midríase" />
+                <f:selectItem itemLabel="Miose" itemValue="Miose" />
                 
                 
             </p:selectOneMenu>
@@ -50,8 +50,8 @@
                              required="true"
                              requiredMessage="Informe se o animal apresenta secreção ocular!"
                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
             <p:message for="oftalmico2" />
 
@@ -74,8 +74,9 @@
                               required="false"
                               requiredMessage=""
                               style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Unilateral" itemValue="UNILATERAL" />
-                <f:selectItem itemLabel="Bilateral" itemValue="BILATERAL" />
+                <f:selectItem itemLabel="Unilateral(esquerdo)" itemValue="Unilateral(esquerdo)" />
+                <f:selectItem itemLabel="Unilateral(direito)" itemValue="Unilateral(direito)" />
+                <f:selectItem itemLabel="Bilateral" itemValue="Bilateral" />
             </p:selectOneRadio>
             <p:message for="oftalmico3" />
 
@@ -132,8 +133,8 @@
                               required="true"
                               requiredMessage="Informe o campo Blefaroespasmo!"
                               style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
             <p:message for="oftalmico6" />
 
@@ -174,8 +175,8 @@
                               required="true"
                               requiredMessage="Informe o campo exoftalmia!"
                               style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
             <p:message for="oftalmico8" />
             
@@ -191,7 +192,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico9" />
             <p:inputText id="oftalmico9" 
-                         value="#{MasterControle.consultaControle.sisOftalmico.exoftalComenra}"
+                         value="#{MasterControle.consultaControle.sisOftalmico.exoftalComenta}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -217,8 +218,8 @@
                               required="true"
                               requiredMessage="Informe se o sistema foi afetado!"
                               style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="SIM" />
-                <f:selectItem itemLabel="Não" itemValue="NÃO" />
+                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
             <p:message for="oftalmico10" />
         </p:panelGrid>    
