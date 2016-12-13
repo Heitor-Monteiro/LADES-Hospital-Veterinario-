@@ -9,20 +9,19 @@
     <ui:composition template="/template.xhtml">
         
         <ui:define name="title"  >
-            <h:outputText style="margin: 0% 0 0 2.7%;" value="Buscar consulta"></h:outputText>
+            <h:outputText value="Buscar consulta"></h:outputText>
         </ui:define>
         
         <ui:define name="content">
             
             <f:metadata>
-                <!--<f:viewAction action="#{MasterControle.prepararNovaConsulta()}" />-->
+                <f:viewAction action="#{MasterControle.prepararPesquisaController()}" />
             </f:metadata>
             
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
                 
-                <p:wizard style="margin: 1% 2.7% 0 2.7%;"
-                          nextLabel="próximo"
+                <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
                     
                     <p:tab id="etapa1" title="Dados da consulta" >

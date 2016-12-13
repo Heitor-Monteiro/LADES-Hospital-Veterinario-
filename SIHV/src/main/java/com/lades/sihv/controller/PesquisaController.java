@@ -10,6 +10,8 @@ import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Animais;
+import com.lades.sihv.model.Consulta;
+import javax.faces.model.DataModel;
 
 /**
  *
@@ -52,6 +54,11 @@ public class PesquisaController implements Serializable{
                 List<Animais> objList2 = null;
                 objBuscados = objList2;
                 objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
+                break;
+            case "Cosulta":
+//                List<Consulta> objList3 = null;
+//                objBuscados = objList3;
+                objBuscados = new GenericoDAOImpl().list("from Consulta");
                 break;
             default:
                 break;

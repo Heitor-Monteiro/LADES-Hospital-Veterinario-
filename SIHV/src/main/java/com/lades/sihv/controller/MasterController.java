@@ -9,6 +9,7 @@ import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Animais;
+import com.lades.sihv.model.Consulta;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -26,6 +27,7 @@ public class MasterController implements Serializable{
     
     private Pessoa pessoa;
     private Animais animal;
+    private Consulta consulta;
 
     
     private PesquisaController pesquisaControle;
@@ -64,7 +66,7 @@ public class MasterController implements Serializable{
         consultaControle.adicionarNovaConsulta(animal);
     }
     //-------------------------------------------------------
-    private void prepararPesquisaController(){
+    public void prepararPesquisaController(){
         pesquisaControle = new PesquisaController();
     }
     
@@ -89,6 +91,14 @@ public class MasterController implements Serializable{
 
     public void setAnimal(Animais animal) {
         this.animal = animal;
+    }
+    
+    public Consulta getConsulta() {
+        return consulta;
+    }
+
+    public void setConsulta(Consulta consulta) {
+        this.consulta = consulta;
     }
 
     public PesquisaController getPesquisaControle() {

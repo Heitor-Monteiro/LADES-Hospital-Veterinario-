@@ -25,7 +25,6 @@
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
-                    <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
@@ -45,7 +44,7 @@
                              requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Pessoa')}"
+                <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Cosulta')}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -77,36 +76,21 @@
                      columnClasses="ui-grid-col-12" >
 
             <p:dataTable id="PessoasBuscada"
-                         var="pessoa"
+                         var="consut"
                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
                          value="#{MasterControle.pesquisaControle.objBuscados}"
                          paginator="true"
                          rows="10"
-                         reflow="true"
-                         selection="#{MasterControle.pessoa}"
-                         rowKey="#{pessoa.pkPessoa}" >
+                         reflow="true" >
 
-                <p:column selectionMode="single" style="width:30px;text-align:center;"/>
+                <p:column selectionMode="single"
+                          style="width:30px;
+                          text-align:center;"/>
 
                 <p:column headerText="Código"
                           width="80">
-                    <h:outputText value="#{pessoa.pkPessoa}" />
+                    <h:outputText value="#{consut.pkConsulta}" />
                 </p:column>
-
-                <p:column headerText="Nome" >
-                    <h:outputText value="#{pessoa.nome}" />
-                </p:column>
-
-                <p:column headerText="CPF"
-                          width="140" >
-                    <h:outputText value="#{pessoa.cpf}"/>
-                </p:column>
-
-                <p:column headerText="RG"
-                          width="110" >
-                    <h:outputText value="#{pessoa.rg}"/>
-                </p:column>
-
             </p:dataTable>
 
         </p:panelGrid>

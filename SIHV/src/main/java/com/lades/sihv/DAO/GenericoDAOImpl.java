@@ -1,6 +1,7 @@
 package com.lades.sihv.DAO;
 
 import com.lades.sihv.*;
+import com.lades.sihv.controller.ConsultaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.AnimaisId;
@@ -109,6 +110,43 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
         return retornaAnimais;
     }
+    
+    
+    
+    
+    
+    
+    
+    @Override
+    public List<ConsultaBusca> listBySearchCONSULTA(String searchMode, String search) {
+        if(searchMode.equals("nome"))
+            search= new BeautyText().Captalizador(search);
+        search="'%"+search+"%'";
+        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.animais.id.pkAnimal, c.animais.id.clienteFkCliente, c.animais.id.clienteFkPessoa,c.animais.nomeAnimal, c.sistemasAfetados from Consulta c, Pessoa p where c.animais.id.clienteFkPessoa = p.pkPessoa and p."+searchMode+" = '"+search+"'");
+        List<ConsultaBusca> retornaConsulta = new ArrayList<>();
+        for(Object[] obj : (List<Object[]>)listaConsulta){
+            ConsultaBusca objbusca = new ConsultaBusca();
+            AnimaisId idAnimal = new AnimaisId();
+            
+            objbusca.geraObj();
+            
+            idAnimal.setPkAnimal((int)obj[1]);
+            idAnimal.setClienteFkCliente((int)obj[2]);
+            idAnimal.setClienteFkPessoa((int)obj[3]);
+            
+            objbusca.getAnimais().setId(idAnimal);
+            objbusca.getAnimais().setNomeAnimal((String)obj[4]);
+            
+            objbusca.getConsulta().setPkConsulta((int)obj[0]);
+            objbusca.getConsulta().setSistemasAfetados((String)obj[5]);
+            
+            retornaConsulta.add(objbusca);
+        }
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
+        return retornaConsulta;
+    }
+    
+    
     
     
 	
