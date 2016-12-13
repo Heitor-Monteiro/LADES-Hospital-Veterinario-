@@ -12,7 +12,7 @@ import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.ClienteId;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Telefone;
-import com.lades.sihv.*;
+import com.lades.sihv.Security;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -39,27 +39,57 @@ public class PessoaController implements Serializable {
     private Date data;
     private List<Pessoa> pessoasBuscadas;
     private boolean mudancaCpfCnpj = true;
-    private Security secure = new Security();
-    private BeautyText stringer = new BeautyText();
+    private final Security secure = new Security();
+    private final BeautyText stringer = new BeautyText();
 
     
+    
+    
+    
+    
+    
+    /*Os método e variáveis abaixo são utilizados
+    para controlar a opcionalidade do campo e-mail*/
+    private String tipoPessoa;
+    private boolean emailOpcional;
 
+    public boolean getTipoPessoa() {
+        boolean var;
+        if (this.tipoPessoa.equals("cliente")) {
+            var = true;
+        } else {
+            var = false;
+        }
+        return var;
+    }
+
+    public boolean isEmailOpcional() {
+        return emailOpcional;
+    }
+
+    public void setEmailOpcional(boolean emailOpcional) {
+        this.emailOpcional = emailOpcional;
+    }
+    //--------------------------------------------------
+    
+    
+    
+    
+    
+    
     /*Os dois atributos serão utilizado para
     a concatenação do CRMV do medico
     veterinário*/
     private String numCRMV1, numCRMV2;
-    
-    
-    
-    private PessoaController(){}
-    public PessoaController(GenericoDAO daoGenerico,FacesMessages message){
+
+    private PessoaController() {
+    }
+
+    public PessoaController(GenericoDAO daoGenerico, FacesMessages message) {
         this.daoGenerico = daoGenerico;
         this.message = message;
     }
-    
-    
-    
-    
+
     /*O método prepara o cadastro de um
     usuário do sistema, ele deve ser
     chamado quando a pagina de cadastro
@@ -72,6 +102,8 @@ public class PessoaController implements Serializable {
         data = new Date();
         numCRMV1 = "";
         numCRMV2 = "";
+        tipoPessoa = "user";
+        emailOpcional = true;
     }
 
     /*O método prepara o cadastro de um
@@ -83,6 +115,8 @@ public class PessoaController implements Serializable {
         cliente = new Cliente();
         clienteId = new ClienteId();
         data = new Date();
+        tipoPessoa = "cliente";
+        emailOpcional = false;
     }
 
     /*O método realiza a persistência de usuários do sistema, 
@@ -124,20 +158,23 @@ public class PessoaController implements Serializable {
             user.setUserTipo(tipoUSER);
             daoGenerico.save(user);
 
-            String userTIPO="";
-            switch(tipoUSER){
-                case "MEDICO": userTIPO = "cadUSER_medico";
+            String userTIPO = "";
+            switch (tipoUSER) {
+                case "MEDICO":
+                    userTIPO = "cadUSER_medico";
                     break;
-                case "ALUNO": userTIPO = "cadUSER_aluno";
+                case "ALUNO":
+                    userTIPO = "cadUSER_aluno";
                     break;
-                case "TÉCNICO": userTIPO = "cadUSER_tecnico";
+                case "TÉCNICO":
+                    userTIPO = "cadUSER_tecnico";
                     break;
                 default:
                     break;
             }
             message.setTextoDialog("Cadastro efetuado!",
-                        mensageTIPO+" cadastrado com sucesso.",
-                        "/SIHV_Telas_Adm/"+userTIPO);
+                    mensageTIPO + " cadastrado com sucesso.",
+                    "/SIHV_Telas_Adm/" + userTIPO);
         } catch (Exception e) {
             message.warn("Erro ao efetuar cadastro!", e.getMessage() + "\nVerifique os dados e tente novamente!");
         }
@@ -198,6 +235,13 @@ public class PessoaController implements Serializable {
 
     private boolean addCLIENTE() {
         try {
+            if(emailOpcional){
+                System.out.println("email-informado===============================");
+            }else{
+                pessoa.setEmail("naoInformado@naoInformado.com");
+                System.out.println("email-não-informado===========================");
+            }
+
             if (this.prepararSalvarPessoa()) {
                 daoGenerico.save(pessoa);
 
