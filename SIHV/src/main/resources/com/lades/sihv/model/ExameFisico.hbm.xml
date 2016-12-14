@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -15,38 +15,38 @@
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
-        <property name="fcBpm" type="double">
-            <column name="fcBpm" precision="22" scale="0" not-null="true" />
+        <property name="fcBpm" type="short">
+            <column name="fcBpm" precision="4" scale="0" not-null="true" />
         </property>
-        <property name="frMpm" type="double">
-            <column name="frMpm" precision="22" scale="0" not-null="true" />
+        <property name="frMpm" type="short">
+            <column name="frMpm" precision="4" scale="0" not-null="true" />
         </property>
-        <property name="termpeReta" type="double">
-            <column name="termpeReta" precision="22" scale="0" not-null="true" />
+        <property name="termpeReta" type="big_decimal">
+            <column name="termpeReta" precision="5" scale="1" not-null="true" />
         </property>
-        <property name="tpc" type="double">
-            <column name="tpc" precision="22" scale="0" not-null="true" />
+        <property name="tpc" type="short">
+            <column name="tpc" precision="4" scale="0" not-null="true" />
         </property>
         <property name="estadoNutric" type="string">
-            <column name="estadoNutric" length="9" not-null="true" />
+            <column name="estadoNutric" length="31" not-null="true" />
         </property>
         <property name="mucosaOral" type="string">
-            <column name="mucosaOral" length="10" not-null="true" />
+            <column name="mucosaOral" length="55" not-null="true" />
         </property>
         <property name="mucosVagPeni" type="string">
-            <column name="mucosVagPeni" length="10" not-null="true" />
+            <column name="mucosVagPeni" length="55" not-null="true" />
         </property>
         <property name="mucosaOcular" type="string">
-            <column name="mucosaOcular" length="10" not-null="true" />
+            <column name="mucosaOcular" length="55" not-null="true" />
         </property>
         <property name="pulso" type="string">
-            <column name="pulso" length="7" not-null="true" />
+            <column name="pulso" length="19" not-null="true" />
         </property>
         <property name="estadoPulso" type="string">
-            <column name="estadoPulso" length="9" not-null="true" />
+            <column name="estadoPulso" length="17" not-null="true" />
         </property>
         <property name="hidratacao" type="string">
-            <column name="hidratacao" length="22" not-null="true" />
+            <column name="hidratacao" length="96" not-null="true" />
         </property>
         <property name="palpaAbdom" type="string">
             <column name="palpaAbdom" length="200" not-null="true" />
@@ -63,35 +63,11 @@
         <property name="pelePelos" type="string">
             <column name="pelePelos" length="200" not-null="true" />
         </property>
-        <property name="diagDifer1" type="int">
-            <column name="diagDifer1" not-null="true" />
+        <property name="inforAdiciona" type="string">
+            <column name="inforAdiciona" length="200" />
         </property>
-        <property name="diagDifer2" type="int">
-            <column name="diagDifer2" not-null="true" />
-        </property>
-        <property name="diagDifer3" type="int">
-            <column name="diagDifer3" not-null="true" />
-        </property>
-        <property name="diagDifer4" type="int">
-            <column name="diagDifer4" not-null="true" />
-        </property>
-        <property name="diagDifer5" type="int">
-            <column name="diagDifer5" not-null="true" />
-        </property>
-        <property name="diagDifer6" type="int">
-            <column name="diagDifer6" not-null="true" />
-        </property>
-        <property name="diagDifer7" type="int">
-            <column name="diagDifer7" not-null="true" />
-        </property>
-        <property name="diagDifer8" type="int">
-            <column name="diagDifer8" not-null="true" />
-        </property>
-        <property name="diagDifer9" type="int">
-            <column name="diagDifer9" not-null="true" />
-        </property>
-        <property name="diagDifer10" type="int">
-            <column name="diagDifer10" not-null="true" />
+        <property name="diagDifer" type="string">
+            <column name="diagDifer" length="500" />
         </property>
     </class>
 </hibernate-mapping>

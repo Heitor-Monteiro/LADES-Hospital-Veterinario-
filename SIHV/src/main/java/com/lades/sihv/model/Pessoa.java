@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 11/11/2016 14:03:19 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -23,16 +23,14 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name="pessoa"
     ,catalog="bd_sihv"
-    , uniqueConstraints = @UniqueConstraint(columnNames="cpf") 
+    , uniqueConstraints = @UniqueConstraint(columnNames="cpf-cnpj") 
 )
 public class Pessoa  implements java.io.Serializable {
 
 
      private Integer pkPessoa;
-     private String cpf;
-     private String rg;
+     private String cpfCnpj;
      private String nome;
-     private String sexo;
      private String logra;
      private String casaNumero;
      private String bairro;
@@ -41,21 +39,21 @@ public class Pessoa  implements java.io.Serializable {
      private String complemento;
      private String uf;
      private Date cadDataHora;
-     private Boolean exclusaoLogica;
      private String email;
+     private Boolean exclusaoLogica;
      private Set<Telefone> telefones = new HashSet<Telefone>(0);
      private Set<Cliente> clientes = new HashSet<Cliente>(0);
+     private Set<Juridica> juridicas = new HashSet<Juridica>(0);
+     private Set<Fisica> fisicas = new HashSet<Fisica>(0);
      private Set<User> users = new HashSet<User>(0);
 
     public Pessoa() {
     }
 
 	
-    public Pessoa(String cpf, String rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String uf, Date cadDataHora, String email) {
-        this.cpf = cpf;
-        this.rg = rg;
+    public Pessoa(String cpfCnpj, String nome, String logra, String casaNumero, String bairro, String cidade, String cep, String uf, Date cadDataHora, String email) {
+        this.cpfCnpj = cpfCnpj;
         this.nome = nome;
-        this.sexo = sexo;
         this.logra = logra;
         this.casaNumero = casaNumero;
         this.bairro = bairro;
@@ -65,11 +63,9 @@ public class Pessoa  implements java.io.Serializable {
         this.cadDataHora = cadDataHora;
         this.email = email;
     }
-    public Pessoa(String cpf, String rg, String nome, String sexo, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, Boolean exclusaoLogica, String email, Set<Telefone> telefones, Set<Cliente> clientes, Set<User> users) {
-       this.cpf = cpf;
-       this.rg = rg;
+    public Pessoa(String cpfCnpj, String nome, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, String email, Boolean exclusaoLogica, Set<Telefone> telefones, Set<Cliente> clientes, Set<Juridica> juridicas, Set<Fisica> fisicas, Set<User> users) {
+       this.cpfCnpj = cpfCnpj;
        this.nome = nome;
-       this.sexo = sexo;
        this.logra = logra;
        this.casaNumero = casaNumero;
        this.bairro = bairro;
@@ -78,10 +74,12 @@ public class Pessoa  implements java.io.Serializable {
        this.complemento = complemento;
        this.uf = uf;
        this.cadDataHora = cadDataHora;
-       this.exclusaoLogica = exclusaoLogica;
        this.email = email;
+       this.exclusaoLogica = exclusaoLogica;
        this.telefones = telefones;
        this.clientes = clientes;
+       this.juridicas = juridicas;
+       this.fisicas = fisicas;
        this.users = users;
     }
    
@@ -98,23 +96,13 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="cpf", unique=true, nullable=false, length=18)
-    public String getCpf() {
-        return this.cpf;
+    @Column(name="cpf-cnpj", unique=true, nullable=false, length=18)
+    public String getCpfCnpj() {
+        return this.cpfCnpj;
     }
     
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    
-    @Column(name="rg", nullable=false, length=20)
-    public String getRg() {
-        return this.rg;
-    }
-    
-    public void setRg(String rg) {
-        this.rg = rg;
+    public void setCpfCnpj(String cpfCnpj) {
+        this.cpfCnpj = cpfCnpj;
     }
 
     
@@ -125,16 +113,6 @@ public class Pessoa  implements java.io.Serializable {
     
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    
-    @Column(name="sexo", nullable=false, length=3)
-    public String getSexo() {
-        return this.sexo;
-    }
-    
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     
@@ -218,16 +196,6 @@ public class Pessoa  implements java.io.Serializable {
     }
 
     
-    @Column(name="exclusaoLogica")
-    public Boolean getExclusaoLogica() {
-        return this.exclusaoLogica;
-    }
-    
-    public void setExclusaoLogica(Boolean exclusaoLogica) {
-        this.exclusaoLogica = exclusaoLogica;
-    }
-
-    
     @Column(name="email", nullable=false, length=100)
     public String getEmail() {
         return this.email;
@@ -235,6 +203,16 @@ public class Pessoa  implements java.io.Serializable {
     
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    
+    @Column(name="exclusaoLogica")
+    public Boolean getExclusaoLogica() {
+        return this.exclusaoLogica;
+    }
+    
+    public void setExclusaoLogica(Boolean exclusaoLogica) {
+        this.exclusaoLogica = exclusaoLogica;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
@@ -253,6 +231,24 @@ public class Pessoa  implements java.io.Serializable {
     
     public void setClientes(Set<Cliente> clientes) {
         this.clientes = clientes;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
+    public Set<Juridica> getJuridicas() {
+        return this.juridicas;
+    }
+    
+    public void setJuridicas(Set<Juridica> juridicas) {
+        this.juridicas = juridicas;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
+    public Set<Fisica> getFisicas() {
+        return this.fisicas;
+    }
+    
+    public void setFisicas(Set<Fisica> fisicas) {
+        this.fisicas = fisicas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")

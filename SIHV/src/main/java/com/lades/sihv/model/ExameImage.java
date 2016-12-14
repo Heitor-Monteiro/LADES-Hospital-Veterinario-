@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -34,6 +34,8 @@ public class Consulta  implements java.io.Serializable {
      private User user;
      private Date dataConsulta;
      private String sistemasAfetados;
+     private String laudo;
+     private String laudoConfirme;
      private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
      private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
      private Set<ExameImage> exameImages = new HashSet<ExameImage>(0);
@@ -54,11 +56,13 @@ public class Consulta  implements java.io.Serializable {
         this.user = user;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<ExameFisico> exameFisicos, Set<SisRespCardio> sisRespCardios, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisOftalmico> sisOftalmicos, Set<SisNeurologico> sisNeurologicos) {
+    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<ExameFisico> exameFisicos, Set<SisRespCardio> sisRespCardios, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisOftalmico> sisOftalmicos, Set<SisNeurologico> sisNeurologicos) {
        this.animais = animais;
        this.user = user;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
+       this.laudo = laudo;
+       this.laudoConfirme = laudoConfirme;
        this.sisDigestorios = sisDigestorios;
        this.sisUrinarioMamarias = sisUrinarioMamarias;
        this.exameImages = exameImages;
@@ -126,6 +130,26 @@ public class Consulta  implements java.io.Serializable {
     
     public void setSistemasAfetados(String sistemasAfetados) {
         this.sistemasAfetados = sistemasAfetados;
+    }
+
+    
+    @Column(name="laudo", length=500)
+    public String getLaudo() {
+        return this.laudo;
+    }
+    
+    public void setLaudo(String laudo) {
+        this.laudo = laudo;
+    }
+
+    
+    @Column(name="laudoConfirme", length=7)
+    public String getLaudoConfirme() {
+        return this.laudoConfirme;
+    }
+    
+    public void setLaudoConfirme(String laudoConfirme) {
+        this.laudoConfirme = laudoConfirme;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")

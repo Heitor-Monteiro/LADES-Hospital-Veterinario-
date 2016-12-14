@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -81,7 +81,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="claudicacao", nullable=false, length=3)
+    @Column(name="claudicacao", nullable=false, length=7)
     public String getClaudicacao() {
         return this.claudicacao;
     }
@@ -101,7 +101,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="fraturas", nullable=false, length=3)
+    @Column(name="fraturas", nullable=false, length=7)
     public String getFraturas() {
         return this.fraturas;
     }
@@ -121,7 +121,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="atrofMusc", nullable=false, length=3)
+    @Column(name="atrofMusc", nullable=false, length=7)
     public String getAtrofMusc() {
         return this.atrofMusc;
     }

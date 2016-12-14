@@ -1,7 +1,8 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import javax.persistence.AttributeOverride;
 import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
@@ -24,10 +25,10 @@ public class ExameFisico  implements java.io.Serializable {
 
      private ExameFisicoId id;
      private Consulta consulta;
-     private double fcBpm;
-     private double frMpm;
-     private double termpeReta;
-     private double tpc;
+     private short fcBpm;
+     private short frMpm;
+     private BigDecimal termpeReta;
+     private short tpc;
      private String estadoNutric;
      private String mucosaOral;
      private String mucosVagPeni;
@@ -40,21 +41,34 @@ public class ExameFisico  implements java.io.Serializable {
      private String auscuPulmona;
      private String linfonodos;
      private String pelePelos;
-     private int diagDifer1;
-     private int diagDifer2;
-     private int diagDifer3;
-     private int diagDifer4;
-     private int diagDifer5;
-     private int diagDifer6;
-     private int diagDifer7;
-     private int diagDifer8;
-     private int diagDifer9;
-     private int diagDifer10;
+     private String inforAdiciona;
+     private String diagDifer;
 
     public ExameFisico() {
     }
 
-    public ExameFisico(ExameFisicoId id, Consulta consulta, double fcBpm, double frMpm, double termpeReta, double tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, int diagDifer1, int diagDifer2, int diagDifer3, int diagDifer4, int diagDifer5, int diagDifer6, int diagDifer7, int diagDifer8, int diagDifer9, int diagDifer10) {
+	
+    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos) {
+        this.id = id;
+        this.consulta = consulta;
+        this.fcBpm = fcBpm;
+        this.frMpm = frMpm;
+        this.termpeReta = termpeReta;
+        this.tpc = tpc;
+        this.estadoNutric = estadoNutric;
+        this.mucosaOral = mucosaOral;
+        this.mucosVagPeni = mucosVagPeni;
+        this.mucosaOcular = mucosaOcular;
+        this.pulso = pulso;
+        this.estadoPulso = estadoPulso;
+        this.hidratacao = hidratacao;
+        this.palpaAbdom = palpaAbdom;
+        this.auscuCardiaca = auscuCardiaca;
+        this.auscuPulmona = auscuPulmona;
+        this.linfonodos = linfonodos;
+        this.pelePelos = pelePelos;
+    }
+    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, String inforAdiciona, String diagDifer) {
        this.id = id;
        this.consulta = consulta;
        this.fcBpm = fcBpm;
@@ -73,16 +87,8 @@ public class ExameFisico  implements java.io.Serializable {
        this.auscuPulmona = auscuPulmona;
        this.linfonodos = linfonodos;
        this.pelePelos = pelePelos;
-       this.diagDifer1 = diagDifer1;
-       this.diagDifer2 = diagDifer2;
-       this.diagDifer3 = diagDifer3;
-       this.diagDifer4 = diagDifer4;
-       this.diagDifer5 = diagDifer5;
-       this.diagDifer6 = diagDifer6;
-       this.diagDifer7 = diagDifer7;
-       this.diagDifer8 = diagDifer8;
-       this.diagDifer9 = diagDifer9;
-       this.diagDifer10 = diagDifer10;
+       this.inforAdiciona = inforAdiciona;
+       this.diagDifer = diagDifer;
     }
    
      @EmbeddedId
@@ -110,47 +116,47 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="fcBpm", nullable=false, precision=22, scale=0)
-    public double getFcBpm() {
+    @Column(name="fcBpm", nullable=false, precision=4, scale=0)
+    public short getFcBpm() {
         return this.fcBpm;
     }
     
-    public void setFcBpm(double fcBpm) {
+    public void setFcBpm(short fcBpm) {
         this.fcBpm = fcBpm;
     }
 
     
-    @Column(name="frMpm", nullable=false, precision=22, scale=0)
-    public double getFrMpm() {
+    @Column(name="frMpm", nullable=false, precision=4, scale=0)
+    public short getFrMpm() {
         return this.frMpm;
     }
     
-    public void setFrMpm(double frMpm) {
+    public void setFrMpm(short frMpm) {
         this.frMpm = frMpm;
     }
 
     
-    @Column(name="termpeReta", nullable=false, precision=22, scale=0)
-    public double getTermpeReta() {
+    @Column(name="termpeReta", nullable=false, precision=5, scale=1)
+    public BigDecimal getTermpeReta() {
         return this.termpeReta;
     }
     
-    public void setTermpeReta(double termpeReta) {
+    public void setTermpeReta(BigDecimal termpeReta) {
         this.termpeReta = termpeReta;
     }
 
     
-    @Column(name="tpc", nullable=false, precision=22, scale=0)
-    public double getTpc() {
+    @Column(name="tpc", nullable=false, precision=4, scale=0)
+    public short getTpc() {
         return this.tpc;
     }
     
-    public void setTpc(double tpc) {
+    public void setTpc(short tpc) {
         this.tpc = tpc;
     }
 
     
-    @Column(name="estadoNutric", nullable=false, length=9)
+    @Column(name="estadoNutric", nullable=false, length=31)
     public String getEstadoNutric() {
         return this.estadoNutric;
     }
@@ -160,7 +166,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="mucosaOral", nullable=false, length=10)
+    @Column(name="mucosaOral", nullable=false, length=55)
     public String getMucosaOral() {
         return this.mucosaOral;
     }
@@ -170,7 +176,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="mucosVagPeni", nullable=false, length=10)
+    @Column(name="mucosVagPeni", nullable=false, length=55)
     public String getMucosVagPeni() {
         return this.mucosVagPeni;
     }
@@ -180,7 +186,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="mucosaOcular", nullable=false, length=10)
+    @Column(name="mucosaOcular", nullable=false, length=55)
     public String getMucosaOcular() {
         return this.mucosaOcular;
     }
@@ -190,7 +196,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="pulso", nullable=false, length=7)
+    @Column(name="pulso", nullable=false, length=19)
     public String getPulso() {
         return this.pulso;
     }
@@ -200,7 +206,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="estadoPulso", nullable=false, length=9)
+    @Column(name="estadoPulso", nullable=false, length=17)
     public String getEstadoPulso() {
         return this.estadoPulso;
     }
@@ -210,7 +216,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="hidratacao", nullable=false, length=22)
+    @Column(name="hidratacao", nullable=false, length=96)
     public String getHidratacao() {
         return this.hidratacao;
     }
@@ -270,103 +276,23 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="diagDifer1", nullable=false)
-    public int getDiagDifer1() {
-        return this.diagDifer1;
+    @Column(name="inforAdiciona", length=200)
+    public String getInforAdiciona() {
+        return this.inforAdiciona;
     }
     
-    public void setDiagDifer1(int diagDifer1) {
-        this.diagDifer1 = diagDifer1;
-    }
-
-    
-    @Column(name="diagDifer2", nullable=false)
-    public int getDiagDifer2() {
-        return this.diagDifer2;
-    }
-    
-    public void setDiagDifer2(int diagDifer2) {
-        this.diagDifer2 = diagDifer2;
+    public void setInforAdiciona(String inforAdiciona) {
+        this.inforAdiciona = inforAdiciona;
     }
 
     
-    @Column(name="diagDifer3", nullable=false)
-    public int getDiagDifer3() {
-        return this.diagDifer3;
+    @Column(name="diagDifer", length=500)
+    public String getDiagDifer() {
+        return this.diagDifer;
     }
     
-    public void setDiagDifer3(int diagDifer3) {
-        this.diagDifer3 = diagDifer3;
-    }
-
-    
-    @Column(name="diagDifer4", nullable=false)
-    public int getDiagDifer4() {
-        return this.diagDifer4;
-    }
-    
-    public void setDiagDifer4(int diagDifer4) {
-        this.diagDifer4 = diagDifer4;
-    }
-
-    
-    @Column(name="diagDifer5", nullable=false)
-    public int getDiagDifer5() {
-        return this.diagDifer5;
-    }
-    
-    public void setDiagDifer5(int diagDifer5) {
-        this.diagDifer5 = diagDifer5;
-    }
-
-    
-    @Column(name="diagDifer6", nullable=false)
-    public int getDiagDifer6() {
-        return this.diagDifer6;
-    }
-    
-    public void setDiagDifer6(int diagDifer6) {
-        this.diagDifer6 = diagDifer6;
-    }
-
-    
-    @Column(name="diagDifer7", nullable=false)
-    public int getDiagDifer7() {
-        return this.diagDifer7;
-    }
-    
-    public void setDiagDifer7(int diagDifer7) {
-        this.diagDifer7 = diagDifer7;
-    }
-
-    
-    @Column(name="diagDifer8", nullable=false)
-    public int getDiagDifer8() {
-        return this.diagDifer8;
-    }
-    
-    public void setDiagDifer8(int diagDifer8) {
-        this.diagDifer8 = diagDifer8;
-    }
-
-    
-    @Column(name="diagDifer9", nullable=false)
-    public int getDiagDifer9() {
-        return this.diagDifer9;
-    }
-    
-    public void setDiagDifer9(int diagDifer9) {
-        this.diagDifer9 = diagDifer9;
-    }
-
-    
-    @Column(name="diagDifer10", nullable=false)
-    public int getDiagDifer10() {
-        return this.diagDifer10;
-    }
-    
-    public void setDiagDifer10(int diagDifer10) {
-        this.diagDifer10 = diagDifer10;
+    public void setDiagDifer(String diagDifer) {
+        this.diagDifer = diagDifer;
     }
 
 

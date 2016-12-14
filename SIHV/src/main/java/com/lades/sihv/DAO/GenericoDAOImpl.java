@@ -3,8 +3,11 @@ package com.lades.sihv.DAO;
 import com.lades.sihv.*;
 import com.lades.sihv.controller.ConsultaBusca;
 import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.AnimaisId;
+import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.Fisica;
+import com.lades.sihv.model.Juridica;
+import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.Stateless;
@@ -65,19 +68,45 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
     
     //Método para listar Pessoas baseado em cpf, cnpj, ou nome
+//    @Override
+//    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
+//        if(searchMode.equals("nome"))
+//            search= new BeautyText().Captalizador(search);
+//        search="'%"+search+"%'";
+//        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
+//        List<Pessoa> retornaPessoa = new ArrayList<>();
+//        for(Object[] obj : (List<Object[]>)listaPessoa){
+//            Pessoa newPessoa = new Pessoa();
+//            newPessoa.setPkPessoa((int)obj[0]);
+//            newPessoa.setNome((String)obj[1]);
+//            newPessoa.setCpfCnpj((String)obj[2]);
+//            newPessoa.setRg((String)obj[3]);
+//            retornaPessoa.add(newPessoa);
+//        }
+//        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
+//        return retornaPessoa;
+//    }
+    
     @Override
-    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
+    public List<PessoaBusca> listBySearchPESSOA(String searchMode, String search) {
         if(searchMode.equals("nome"))
             search= new BeautyText().Captalizador(search);
         search="'%"+search+"%'";
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
-        List<Pessoa> retornaPessoa = new ArrayList<>();
+        
+        if(searchMode.equals("cpfCnpj") || searchMode.equals("nome")){
+            searchMode = "p."+searchMode;
+        }else{
+            searchMode = "f."+searchMode;
+        }
+        
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where c.id.fkPessoa=p.pkPessoa and p.pkPessoa=f.id.fkPessoa and "+searchMode+" like "+search);
+        List<PessoaBusca> retornaPessoa = new ArrayList<>();
         for(Object[] obj : (List<Object[]>)listaPessoa){
-            Pessoa newPessoa = new Pessoa();
-            newPessoa.setPkPessoa((int)obj[0]);
-            newPessoa.setNome((String)obj[1]);
-            newPessoa.setCpf((String)obj[2]);
-            newPessoa.setRg((String)obj[3]);
+            PessoaBusca newPessoa = new PessoaBusca();
+            newPessoa.getPessoa().setPkPessoa((int)obj[0]);
+            newPessoa.getPessoa().setNome((String)obj[1]);
+            newPessoa.getPessoa().setCpfCnpj((String)obj[2]);
+            newPessoa.getPesFisica().setRg((String)obj[3]);
             retornaPessoa.add(newPessoa);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");

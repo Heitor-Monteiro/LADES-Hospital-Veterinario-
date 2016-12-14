@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -136,7 +136,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="jaFoiTratado", nullable=false, length=3)
+    @Column(name="jaFoiTratado", nullable=false, length=7)
     public String getJaFoiTratado() {
         return this.jaFoiTratado;
     }
@@ -176,7 +176,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="alimentacaoCaseira", nullable=false, length=3)
+    @Column(name="alimentacaoCaseira", nullable=false, length=7)
     public String getAlimentacaoCaseira() {
         return this.alimentacaoCaseira;
     }
@@ -196,7 +196,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="alimentacaoRacao", nullable=false, length=3)
+    @Column(name="alimentacaoRacao", nullable=false, length=7)
     public String getAlimentacaoRacao() {
         return this.alimentacaoRacao;
     }
@@ -216,7 +216,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="vacinacao", nullable=false, length=22)
+    @Column(name="vacinacao", nullable=false, length=21)
     public String getVacinacao() {
         return this.vacinacao;
     }
@@ -246,7 +246,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="vermifugacao", nullable=false, length=3)
+    @Column(name="vermifugacao", nullable=false, length=7)
     public String getVermifugacao() {
         return this.vermifugacao;
     }
@@ -276,7 +276,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="ectoparasitas", nullable=false, length=3)
+    @Column(name="ectoparasitas", nullable=false, length=7)
     public String getEctoparasitas() {
         return this.ectoparasitas;
     }
@@ -286,7 +286,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="qualEctoparasitas", length=34)
+    @Column(name="qualEctoparasitas", length=33)
     public String getQualEctoparasitas() {
         return this.qualEctoparasitas;
     }
@@ -296,7 +296,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="controEctoparasitas", length=3)
+    @Column(name="controEctoparasitas", length=7)
     public String getControEctoparasitas() {
         return this.controEctoparasitas;
     }
@@ -316,7 +316,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="acessoRua", nullable=false, length=24)
+    @Column(name="acessoRua", nullable=false, length=23)
     public String getAcessoRua() {
         return this.acessoRua;
     }
@@ -336,7 +336,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="contactantes", length=3)
+    @Column(name="contactantes", length=7)
     public String getContactantes() {
         return this.contactantes;
     }
@@ -356,7 +356,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="mesmoProbleContacta", length=3)
+    @Column(name="mesmoProbleContacta", length=7)
     public String getMesmoProbleContacta() {
         return this.mesmoProbleContacta;
     }
@@ -366,7 +366,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="contatoRoedor", length=3)
+    @Column(name="contatoRoedor", length=7)
     public String getContatoRoedor() {
         return this.contatoRoedor;
     }

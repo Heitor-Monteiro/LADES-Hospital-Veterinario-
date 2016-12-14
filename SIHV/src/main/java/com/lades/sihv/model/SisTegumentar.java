@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -112,7 +112,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="pruridoCutaneo", nullable=false, length=3)
+    @Column(name="pruridoCutaneo", nullable=false, length=7)
     public String getPruridoCutaneo() {
         return this.pruridoCutaneo;
     }
@@ -132,7 +132,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="pruridoOtolog", nullable=false, length=3)
+    @Column(name="pruridoOtolog", nullable=false, length=7)
     public String getPruridoOtolog() {
         return this.pruridoOtolog;
     }
@@ -152,7 +152,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOtolog", nullable=false, length=3)
+    @Column(name="secreOtolog", nullable=false, length=7)
     public String getSecreOtolog() {
         return this.secreOtolog;
     }

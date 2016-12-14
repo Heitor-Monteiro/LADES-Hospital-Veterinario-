@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisNeurologico" table="sisNeurologico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisNeurologicoId">
@@ -16,13 +16,13 @@
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="consciencia" type="string">
-            <column name="consciencia" length="9" not-null="true" />
+            <column name="consciencia" length="30" not-null="true" />
         </property>
         <property name="comportamento" type="string">
-            <column name="comportamento" length="13" not-null="true" />
+            <column name="comportamento" length="29" not-null="true" />
         </property>
         <property name="ataxia" type="string">
-            <column name="ataxia" length="3" not-null="true" />
+            <column name="ataxia" length="7" not-null="true" />
         </property>
         <property name="ataxiaTipo" type="string">
             <column name="ataxiaTipo" length="50" />
@@ -31,10 +31,10 @@
             <column name="ataxiaEvolu" length="200" />
         </property>
         <property name="paralisia" type="string">
-            <column name="paralisia" length="3" not-null="true" />
+            <column name="paralisia" length="7" not-null="true" />
         </property>
         <property name="paralisiaEspFla" type="string">
-            <column name="paralisiaEspFla" length="9" />
+            <column name="paralisiaEspFla" length="17" />
         </property>
         <property name="paralisiaTipo" type="string">
             <column name="paralisiaTipo" length="50" />
@@ -43,7 +43,7 @@
             <column name="paralisiaEvolu" length="200" />
         </property>
         <property name="convulsao" type="string">
-            <column name="convulsao" length="3" not-null="true" />
+            <column name="convulsao" length="7" not-null="true" />
         </property>
         <property name="convulsaoTipo" type="string">
             <column name="convulsaoTipo" length="50" />
@@ -52,7 +52,7 @@
             <column name="convulsaoEvolu" length="200" />
         </property>
         <property name="audicao" type="string">
-            <column name="audicao" length="6" not-null="true" />
+            <column name="audicao" length="21" not-null="true" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

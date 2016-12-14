@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -36,8 +36,11 @@ public class Animais  implements java.io.Serializable {
      private String raca;
      private String pelagem;
      private String sexoAnimal;
-     private int idadeAtual;
+     private Date dataNac;
      private double peso;
+     private String rghv;
+     private short rghvNum;
+     private String categoriaAnimal;
      private Date cadDataHora;
      private Set<Consulta> consultas = new HashSet<Consulta>(0);
 
@@ -45,7 +48,7 @@ public class Animais  implements java.io.Serializable {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, int idadeAtual, double peso, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
@@ -53,11 +56,13 @@ public class Animais  implements java.io.Serializable {
         this.raca = raca;
         this.pelagem = pelagem;
         this.sexoAnimal = sexoAnimal;
-        this.idadeAtual = idadeAtual;
         this.peso = peso;
+        this.rghv = rghv;
+        this.rghvNum = rghvNum;
+        this.categoriaAnimal = categoriaAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, int idadeAtual, double peso, Date cadDataHora, Set<Consulta> consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, Date dataNac, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set<Consulta> consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -65,8 +70,11 @@ public class Animais  implements java.io.Serializable {
        this.raca = raca;
        this.pelagem = pelagem;
        this.sexoAnimal = sexoAnimal;
-       this.idadeAtual = idadeAtual;
+       this.dataNac = dataNac;
        this.peso = peso;
+       this.rghv = rghv;
+       this.rghvNum = rghvNum;
+       this.categoriaAnimal = categoriaAnimal;
        this.cadDataHora = cadDataHora;
        this.consultas = consultas;
     }
@@ -148,14 +156,14 @@ public class Animais  implements java.io.Serializable {
         this.sexoAnimal = sexoAnimal;
     }
 
-    
-    @Column(name="idadeAtual", nullable=false)
-    public int getIdadeAtual() {
-        return this.idadeAtual;
+    @Temporal(TemporalType.DATE)
+    @Column(name="dataNac", length=10)
+    public Date getDataNac() {
+        return this.dataNac;
     }
     
-    public void setIdadeAtual(int idadeAtual) {
-        this.idadeAtual = idadeAtual;
+    public void setDataNac(Date dataNac) {
+        this.dataNac = dataNac;
     }
 
     
@@ -166,6 +174,36 @@ public class Animais  implements java.io.Serializable {
     
     public void setPeso(double peso) {
         this.peso = peso;
+    }
+
+    
+    @Column(name="rghv", nullable=false, length=9)
+    public String getRghv() {
+        return this.rghv;
+    }
+    
+    public void setRghv(String rghv) {
+        this.rghv = rghv;
+    }
+
+    
+    @Column(name="rghvNum", nullable=false, precision=4, scale=0)
+    public short getRghvNum() {
+        return this.rghvNum;
+    }
+    
+    public void setRghvNum(short rghvNum) {
+        this.rghvNum = rghvNum;
+    }
+
+    
+    @Column(name="categoriaAnimal", nullable=false, length=5)
+    public String getCategoriaAnimal() {
+        return this.categoriaAnimal;
+    }
+    
+    public void setCategoriaAnimal(String categoriaAnimal) {
+        this.categoriaAnimal = categoriaAnimal;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

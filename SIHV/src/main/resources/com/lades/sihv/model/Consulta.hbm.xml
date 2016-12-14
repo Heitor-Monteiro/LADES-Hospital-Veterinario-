@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Consulta" table="consulta" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkConsulta" type="java.lang.Integer">
@@ -22,6 +22,12 @@
         </property>
         <property name="sistemasAfetados" type="string">
             <column name="sistemasAfetados" length="500" />
+        </property>
+        <property name="laudo" type="string">
+            <column name="laudo" length="500" />
+        </property>
+        <property name="laudoConfirme" type="string">
+            <column name="laudoConfirme" length="7" />
         </property>
         <set name="sisDigestorios" table="sisDigestorio" inverse="true" lazy="true" fetch="select">
             <key>

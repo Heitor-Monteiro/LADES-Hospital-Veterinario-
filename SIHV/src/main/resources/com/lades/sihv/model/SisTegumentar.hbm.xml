@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisTegumentar" table="sisTegumentar" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisTegumentarId">
@@ -22,19 +22,19 @@
             <column name="localiLesao" length="200" not-null="true" />
         </property>
         <property name="pruridoCutaneo" type="string">
-            <column name="pruridoCutaneo" length="3" not-null="true" />
+            <column name="pruridoCutaneo" length="7" not-null="true" />
         </property>
         <property name="pruridoCutaneoEvolu" type="string">
             <column name="pruridoCutaneoEvolu" length="50" />
         </property>
         <property name="pruridoOtolog" type="string">
-            <column name="pruridoOtolog" length="3" not-null="true" />
+            <column name="pruridoOtolog" length="7" not-null="true" />
         </property>
         <property name="pruridoOtologEvolu" type="string">
             <column name="pruridoOtologEvolu" length="50" />
         </property>
         <property name="secreOtolog" type="string">
-            <column name="secreOtolog" length="3" not-null="true" />
+            <column name="secreOtolog" length="7" not-null="true" />
         </property>
         <property name="secreOtologEvolu" type="string">
             <column name="secreOtologEvolu" length="50" />

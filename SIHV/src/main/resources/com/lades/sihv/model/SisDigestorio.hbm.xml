@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisDigestorio" table="sisDigestorio" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisDigestorioId">
@@ -16,13 +16,13 @@
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="estaSeAlimentando" type="string">
-            <column name="estaSeAlimentando" length="3" not-null="true" />
+            <column name="estaSeAlimentando" length="7" not-null="true" />
         </property>
         <property name="descriNaoSeAlimeta" type="string">
             <column name="descriNaoSeAlimeta" length="200" />
         </property>
         <property name="vomito" type="string">
-            <column name="vomito" length="3" not-null="true" />
+            <column name="vomito" length="7" not-null="true" />
         </property>
         <property name="aspectoVomito" type="string">
             <column name="aspectoVomito" length="100" />
@@ -31,13 +31,13 @@
             <column name="evoluVomito" length="200" />
         </property>
         <property name="regurgitacao" type="string">
-            <column name="regurgitacao" length="3" not-null="true" />
+            <column name="regurgitacao" length="7" not-null="true" />
         </property>
         <property name="evoluRegurgitacao" type="string">
             <column name="evoluRegurgitacao" length="200" />
         </property>
         <property name="diarreia" type="string">
-            <column name="diarreia" length="3" not-null="true" />
+            <column name="diarreia" length="7" not-null="true" />
         </property>
         <property name="aspectDiarreia" type="string">
             <column name="aspectDiarreia" length="100" />
@@ -46,7 +46,7 @@
             <column name="evoluDiarreia" length="100" />
         </property>
         <property name="disquesiaTenesmo" type="string">
-            <column name="disquesiaTenesmo" length="3" not-null="true" />
+            <column name="disquesiaTenesmo" length="7" not-null="true" />
         </property>
         <property name="evoluDisquesiaTenesmo" type="string">
             <column name="evoluDisquesiaTenesmo" length="100" />

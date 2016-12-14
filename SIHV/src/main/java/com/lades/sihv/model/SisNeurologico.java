@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -98,7 +98,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="consciencia", nullable=false, length=9)
+    @Column(name="consciencia", nullable=false, length=30)
     public String getConsciencia() {
         return this.consciencia;
     }
@@ -108,7 +108,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="comportamento", nullable=false, length=13)
+    @Column(name="comportamento", nullable=false, length=29)
     public String getComportamento() {
         return this.comportamento;
     }
@@ -118,7 +118,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="ataxia", nullable=false, length=3)
+    @Column(name="ataxia", nullable=false, length=7)
     public String getAtaxia() {
         return this.ataxia;
     }
@@ -148,7 +148,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="paralisia", nullable=false, length=3)
+    @Column(name="paralisia", nullable=false, length=7)
     public String getParalisia() {
         return this.paralisia;
     }
@@ -158,7 +158,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="paralisiaEspFla", length=9)
+    @Column(name="paralisiaEspFla", length=17)
     public String getParalisiaEspFla() {
         return this.paralisiaEspFla;
     }
@@ -188,7 +188,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="convulsao", nullable=false, length=3)
+    @Column(name="convulsao", nullable=false, length=7)
     public String getConvulsao() {
         return this.convulsao;
     }
@@ -218,7 +218,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="audicao", nullable=false, length=6)
+    @Column(name="audicao", nullable=false, length=21)
     public String getAudicao() {
         return this.audicao;
     }

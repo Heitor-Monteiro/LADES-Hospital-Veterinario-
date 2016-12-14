@@ -1,5 +1,6 @@
 package com.lades.sihv.DAO;
 
+import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.controller.ConsultaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
@@ -13,7 +14,7 @@ public interface GenericoDAO<Ent> {
     public Ent getById(String model, Integer id);
 
     public List<Ent> list(String sqlHQL);    
-    public List<Pessoa> listBySearchPESSOA(String searchMode, String search);
+    public List<PessoaBusca> listBySearchPESSOA(String searchMode, String search);
     public List<Animais> listBySearchANIMAIS(String searchMode, String search);
     public List<ConsultaBusca> listBySearchCONSULTA(String searchMode, String search);
     public List<String> getPelagemNames();    

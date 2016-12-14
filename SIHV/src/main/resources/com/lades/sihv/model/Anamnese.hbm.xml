@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Anamnese" table="anamnese" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnamneseId">
@@ -19,7 +19,7 @@
             <column name="queixaPrincipal" length="300" not-null="true" />
         </property>
         <property name="jaFoiTratado" type="string">
-            <column name="jaFoiTratado" length="3" not-null="true" />
+            <column name="jaFoiTratado" length="7" not-null="true" />
         </property>
         <property name="medicacaoDose" type="string">
             <column name="medicacaoDose" length="200" />
@@ -31,19 +31,19 @@
             <column name="histoFamiliar" length="200" not-null="true" />
         </property>
         <property name="alimentacaoCaseira" type="string">
-            <column name="alimentacaoCaseira" length="3" not-null="true" />
+            <column name="alimentacaoCaseira" length="7" not-null="true" />
         </property>
         <property name="descriCaseira" type="string">
             <column name="descriCaseira" length="200" />
         </property>
         <property name="alimentacaoRacao" type="string">
-            <column name="alimentacaoRacao" length="3" not-null="true" />
+            <column name="alimentacaoRacao" length="7" not-null="true" />
         </property>
         <property name="descriRacao" type="string">
             <column name="descriRacao" length="200" />
         </property>
         <property name="vacinacao" type="string">
-            <column name="vacinacao" length="22" not-null="true" />
+            <column name="vacinacao" length="21" not-null="true" />
         </property>
         <property name="sobreVacina" type="string">
             <column name="sobreVacina" length="100" />
@@ -52,7 +52,7 @@
             <column name="origemVacina" length="18" />
         </property>
         <property name="vermifugacao" type="string">
-            <column name="vermifugacao" length="3" not-null="true" />
+            <column name="vermifugacao" length="7" not-null="true" />
         </property>
         <property name="doseVermifugacao" type="string">
             <column name="doseVermifugacao" length="50" />
@@ -61,34 +61,34 @@
             <column name="dataVermifugacao" length="10" />
         </property>
         <property name="ectoparasitas" type="string">
-            <column name="ectoparasitas" length="3" not-null="true" />
+            <column name="ectoparasitas" length="7" not-null="true" />
         </property>
         <property name="qualEctoparasitas" type="string">
-            <column name="qualEctoparasitas" length="34" />
+            <column name="qualEctoparasitas" length="33" />
         </property>
         <property name="controEctoparasitas" type="string">
-            <column name="controEctoparasitas" length="3" />
+            <column name="controEctoparasitas" length="7" />
         </property>
         <property name="qualProdutoUtiliza" type="string">
             <column name="qualProdutoUtiliza" length="50" />
         </property>
         <property name="acessoRua" type="string">
-            <column name="acessoRua" length="24" not-null="true" />
+            <column name="acessoRua" length="23" not-null="true" />
         </property>
         <property name="descriHabitat" type="string">
             <column name="descriHabitat" length="200" />
         </property>
         <property name="contactantes" type="string">
-            <column name="contactantes" length="3" />
+            <column name="contactantes" length="7" />
         </property>
         <property name="descriContactantes" type="string">
             <column name="descriContactantes" length="200" />
         </property>
         <property name="mesmoProbleContacta" type="string">
-            <column name="mesmoProbleContacta" length="3" />
+            <column name="mesmoProbleContacta" length="7" />
         </property>
         <property name="contatoRoedor" type="string">
-            <column name="contatoRoedor" length="3" />
+            <column name="contatoRoedor" length="7" />
         </property>
     </class>
 </hibernate-mapping>

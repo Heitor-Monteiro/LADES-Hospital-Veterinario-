@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/11/2016 10:58:37 by Hibernate Tools 4.3.1
+// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -24,7 +24,7 @@ public class SisOftalmico  implements java.io.Serializable {
 
      private SisOftalmicoId id;
      private Consulta consulta;
-     private String olhos;
+     private String olhosPupila;
      private String secreOcular;
      private String secreOcularUniBi;
      private String secreOculaTipo;
@@ -32,26 +32,26 @@ public class SisOftalmico  implements java.io.Serializable {
      private String blefaroespasmo;
      private String blefaroComenta;
      private String exoftalmia;
-     private String exoftalComenra;
+     private String exoftalComenta;
      private String sistemaAfetado;
 
     public SisOftalmico() {
     }
 
 	
-    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhos, String secreOcular, String blefaroespasmo, String exoftalmia, String sistemaAfetado) {
+    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhosPupila, String secreOcular, String blefaroespasmo, String exoftalmia, String sistemaAfetado) {
         this.id = id;
         this.consulta = consulta;
-        this.olhos = olhos;
+        this.olhosPupila = olhosPupila;
         this.secreOcular = secreOcular;
         this.blefaroespasmo = blefaroespasmo;
         this.exoftalmia = exoftalmia;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhos, String secreOcular, String secreOcularUniBi, String secreOculaTipo, String secreOculaEvolu, String blefaroespasmo, String blefaroComenta, String exoftalmia, String exoftalComenra, String sistemaAfetado) {
+    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhosPupila, String secreOcular, String secreOcularUniBi, String secreOculaTipo, String secreOculaEvolu, String blefaroespasmo, String blefaroComenta, String exoftalmia, String exoftalComenta, String sistemaAfetado) {
        this.id = id;
        this.consulta = consulta;
-       this.olhos = olhos;
+       this.olhosPupila = olhosPupila;
        this.secreOcular = secreOcular;
        this.secreOcularUniBi = secreOcularUniBi;
        this.secreOculaTipo = secreOculaTipo;
@@ -59,7 +59,7 @@ public class SisOftalmico  implements java.io.Serializable {
        this.blefaroespasmo = blefaroespasmo;
        this.blefaroComenta = blefaroComenta;
        this.exoftalmia = exoftalmia;
-       this.exoftalComenra = exoftalComenra;
+       this.exoftalComenta = exoftalComenta;
        this.sistemaAfetado = sistemaAfetado;
     }
    
@@ -88,17 +88,17 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="olhos", nullable=false, length=10)
-    public String getOlhos() {
-        return this.olhos;
+    @Column(name="olhosPupila", nullable=false, length=52)
+    public String getOlhosPupila() {
+        return this.olhosPupila;
     }
     
-    public void setOlhos(String olhos) {
-        this.olhos = olhos;
+    public void setOlhosPupila(String olhosPupila) {
+        this.olhosPupila = olhosPupila;
     }
 
     
-    @Column(name="secreOcular", nullable=false, length=3)
+    @Column(name="secreOcular", nullable=false, length=7)
     public String getSecreOcular() {
         return this.secreOcular;
     }
@@ -108,7 +108,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOcularUniBi", length=10)
+    @Column(name="secreOcularUniBi", length=50)
     public String getSecreOcularUniBi() {
         return this.secreOcularUniBi;
     }
@@ -138,7 +138,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="blefaroespasmo", nullable=false, length=3)
+    @Column(name="blefaroespasmo", nullable=false, length=7)
     public String getBlefaroespasmo() {
         return this.blefaroespasmo;
     }
@@ -158,7 +158,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="exoftalmia", nullable=false, length=3)
+    @Column(name="exoftalmia", nullable=false, length=7)
     public String getExoftalmia() {
         return this.exoftalmia;
     }
@@ -168,13 +168,13 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="exoftalComenra", length=50)
-    public String getExoftalComenra() {
-        return this.exoftalComenra;
+    @Column(name="exoftalComenta", length=50)
+    public String getExoftalComenta() {
+        return this.exoftalComenta;
     }
     
-    public void setExoftalComenra(String exoftalComenra) {
-        this.exoftalComenra = exoftalComenra;
+    public void setExoftalComenta(String exoftalComenta) {
+        this.exoftalComenta = exoftalComenta;
     }
 
     

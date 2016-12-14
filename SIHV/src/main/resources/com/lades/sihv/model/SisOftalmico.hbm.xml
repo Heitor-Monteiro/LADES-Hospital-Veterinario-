@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/11/2016 10:58:38 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisOftalmico" table="sisOftalmico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisOftalmicoId">
@@ -15,14 +15,14 @@
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
-        <property name="olhos" type="string">
-            <column name="olhos" length="10" not-null="true" />
+        <property name="olhosPupila" type="string">
+            <column name="olhosPupila" length="52" not-null="true" />
         </property>
         <property name="secreOcular" type="string">
-            <column name="secreOcular" length="3" not-null="true" />
+            <column name="secreOcular" length="7" not-null="true" />
         </property>
         <property name="secreOcularUniBi" type="string">
-            <column name="secreOcularUniBi" length="10" />
+            <column name="secreOcularUniBi" length="50" />
         </property>
         <property name="secreOculaTipo" type="string">
             <column name="secreOculaTipo" length="50" />
@@ -31,16 +31,16 @@
             <column name="secreOculaEvolu" length="200" />
         </property>
         <property name="blefaroespasmo" type="string">
-            <column name="blefaroespasmo" length="3" not-null="true" />
+            <column name="blefaroespasmo" length="7" not-null="true" />
         </property>
         <property name="blefaroComenta" type="string">
             <column name="blefaroComenta" length="50" />
         </property>
         <property name="exoftalmia" type="string">
-            <column name="exoftalmia" length="3" not-null="true" />
+            <column name="exoftalmia" length="7" not-null="true" />
         </property>
-        <property name="exoftalComenra" type="string">
-            <column name="exoftalComenra" length="50" />
+        <property name="exoftalComenta" type="string">
+            <column name="exoftalComenta" length="50" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

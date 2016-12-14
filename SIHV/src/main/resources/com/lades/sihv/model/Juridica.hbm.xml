@@ -3,10 +3,10 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="com.lades.sihv.model.Cliente" table="cliente" catalog="bd_sihv" optimistic-lock="version">
-        <composite-id name="id" class="com.lades.sihv.model.ClienteId">
-            <key-property name="pkCliente" type="int">
-                <column name="PK_cliente" />
+    <class name="com.lades.sihv.model.Juridica" table="juridica" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.JuridicaId">
+            <key-property name="pkJuridica" type="int">
+                <column name="PK_juridica" />
             </key-property>
             <key-property name="fkPessoa" type="int">
                 <column name="FK_pessoa" />
@@ -15,12 +15,8 @@
         <many-to-one name="pessoa" class="com.lades.sihv.model.Pessoa" update="false" insert="false" fetch="select">
             <column name="FK_pessoa" not-null="true" />
         </many-to-one>
-        <set name="animaises" table="animais" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="cliente_FK_cliente" not-null="true" />
-                <column name="cliente_FK_pessoa" not-null="true" />
-            </key>
-            <one-to-many class="com.lades.sihv.model.Animais" />
-        </set>
+        <property name="tipoPessoaJuridica" type="string">
+            <column name="tipoPessoaJuridica" length="100" not-null="true" />
+        </property>
     </class>
 </hibernate-mapping>

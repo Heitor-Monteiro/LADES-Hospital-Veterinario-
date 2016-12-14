@@ -182,16 +182,16 @@ public class PessoaController implements Serializable {
     }
 
     public boolean prepararSalvarPessoa() {
-        boolean checkCPF = secure.checkCPF(pessoa.getCpf());
-        boolean checkExCPF = this.checkExistingCPF(pessoa.getCpf());
+        boolean checkCPF = secure.checkCPF(pessoa.getCpfCnpj());
+        boolean checkExCPF = this.checkExistingCPF(pessoa.getCpfCnpj());
         if (!checkCPF) {
             message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
-            pessoa.setCpf("");
+            pessoa.setCpfCnpj("");
         }
 
         if (!checkExCPF) {
             message.warn("Erro ao efetuar cadastro!", "O CPF informado já existe!");
-            pessoa.setCpf("");
+            pessoa.setCpfCnpj("");
         }
         if (!checkExCPF || !checkCPF) {
             return false;
@@ -261,7 +261,7 @@ public class PessoaController implements Serializable {
                 throw new Exception();
             }
         } catch (Exception e) {
-            pessoa.setCpf("");
+            pessoa.setCpfCnpj("");
             message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
             return false;
         }
