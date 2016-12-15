@@ -18,13 +18,14 @@
                                for="TipoPesquisa" />
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
-                                  columns="1"
+                                  columns="2"
                                   value="#{MasterControle.pesquisaControle.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
-                    <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
+                    <f:selectItem itemLabel="CPF" itemValue="cpf" />
+                    <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
-                    <f:selectItem itemLabel="Nome-cliente/fazenda" itemValue="nome" />
+                    <f:selectItem itemLabel="Nome" itemValue="nome" />
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
@@ -75,34 +76,35 @@
                     columnClasses="ui-grid-col-12" >
         
             <p:dataTable id="PessoasBuscada"
-                         var="pessoa"
+                         var="pessoaBusca"
                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
                          value="#{MasterControle.pesquisaControle.objBuscados}"
                          paginator="true"
                          rows="10"
                          reflow="true"
-                         selection="#{MasterControle.pessoa}"
-                         rowKey="#{pessoa.pkPessoa}" >
+                         selection="#{MasterControle.pessoaBusca}"
+                         rowKey="#{pessoaBusca.pessoa.pkPessoa}" >
             
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>
                 
                 <p:column headerText="Código"
                           width="80">
-                    <h:outputText value="#{pessoa.pkPessoa}" />
+                    <h:outputText value="#{pessoaBusca.pessoa.pkPessoa}" />
                 </p:column>
                 
                 <p:column headerText="Nome" >
-                    <h:outputText value="#{pessoa.nome}" />
+                    <h:outputText value="#{pessoaBusca.pessoa.nome}" />
                 </p:column>
                 
-                <p:column headerText="CPF"
+                <p:column headerText="CPF/CNPJ"
                           width="140" >
-                    <h:outputText value="#{pessoa.cpf}"/>
+                    <h:outputText value="#{pessoaBusca.pessoa.cpfCnpj}"/>
                 </p:column>
                 
                 <p:column headerText="RG"
-                          width="110" >
-                    <h:outputText value="#{pessoa.rg}"/>
+                          width="110"
+                          rendered="#{MasterControle.pesquisaControle.viewRG}" >
+                    <h:outputText value="#{pessoaBusca.pesFisica.rg}"/>
                 </p:column>
                 
         </p:dataTable>

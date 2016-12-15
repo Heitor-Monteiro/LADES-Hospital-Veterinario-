@@ -27,12 +27,10 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 //		}
 //		return parametros;
 //	}
-
     /**
      *
      * @param entidade
      */
-
     //Método genérico para persistir Classes que representam entidades
     @Override
     public void save(Ent entidade) {
@@ -43,17 +41,20 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.close();
         System.out.println("BACK-END WARNING: OBJECT SAVED! [ public void save(Ent entidade) ]");
     }
+
     //Método genérico para recuperação de objetos do banco de dados
     @Override
-    public Ent getById(String model, Integer id){
-        List<Ent>getObject=new java.util.ArrayList<Ent>();
-        String idType="pk";
-        if(model.equals("User")||model.equals("Animais")||model.equals("Cliente"))
-            idType="id.pk";
-        getObject = this.list("SELECT o from "+model+" o where o."+idType+model+"="+id);
+    public Ent getById(String model, Integer id) {
+        List<Ent> getObject = new java.util.ArrayList<Ent>();
+        String idType = "pk";
+        if (model.equals("User") || model.equals("Animais") || model.equals("Cliente")) {
+            idType = "id.pk";
+        }
+        getObject = this.list("SELECT o from " + model + " o where o." + idType + model + "=" + id);
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public Ent getById(String model, Integer id) ]");
-        return (Ent)getObject.get(0);
+        return (Ent) getObject.get(0);
     }
+
     //Método genérico para listar objetos baseado em uma Query HQL
     @Override
     public List<Ent> list(String sqlHQL) {
@@ -66,7 +67,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Ent> list(String sqlHQL) ]");
         return lista;
     }
-    
+
     //Método para listar Pessoas baseado em cpf, cnpj, ou nome
 //    @Override
 //    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
@@ -86,99 +87,107 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 //        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
 //        return retornaPessoa;
 //    }
-    
     @Override
     public List<PessoaBusca> listBySearchPESSOA(String searchMode, String search) {
-        if(searchMode.equals("nome"))
-            search= new BeautyText().Captalizador(search);
-        search="'%"+search+"%'";
-        
-        if(searchMode.equals("cpfCnpj") || searchMode.equals("nome")){
-            searchMode = "p."+searchMode;
-        }else{
-            searchMode = "f."+searchMode;
+//        if(searchMode.equals("nome"))
+//            search= new BeautyText().Captalizador(search);
+        search = "'%" + search + "%'";
+
+        String sqlHql = "";
+        switch (searchMode) {
+            case "cpf":
+                //pesquisa pessoa(cpf) fisica
+                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=f.id.fkPessoa and p.exclusaoLogica=0 and p.cpfCnpj like " + search;
+                break;
+            case "rg":
+                //pesquisa pessoa(rg) fisica
+                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=f.id.fkPessoa and p.exclusaoLogica=0 and f.rg like " + search;
+                break;
+            case "cnpj":
+                //pesquisa pessoa(cnpj) juridica
+                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c, Juridica j where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=j.id.fkPessoa and p.exclusaoLogica=0 and p.cpfCnpj like " + search;
+                break;
+            case "nome":
+                //pesquisa pessoa(nome) não considera se é pessoa fisica ou juridica.
+                search = new BeautyText().Captalizador(search);
+                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c where p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and p.nome like " + search;
+                break;
+            default:
+                break;
         }
-        
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where c.id.fkPessoa=p.pkPessoa and p.pkPessoa=f.id.fkPessoa and "+searchMode+" like "+search);
+
+        List<Ent> listaPessoa = this.list(sqlHql);
         List<PessoaBusca> retornaPessoa = new ArrayList<>();
-        for(Object[] obj : (List<Object[]>)listaPessoa){
+        for (Object[] obj : (List<Object[]>) listaPessoa) {
             PessoaBusca newPessoa = new PessoaBusca();
-            newPessoa.getPessoa().setPkPessoa((int)obj[0]);
-            newPessoa.getPessoa().setNome((String)obj[1]);
-            newPessoa.getPessoa().setCpfCnpj((String)obj[2]);
-            newPessoa.getPesFisica().setRg((String)obj[3]);
+            newPessoa.getPessoa().setPkPessoa((int) obj[0]);
+            newPessoa.getPessoa().setNome((String) obj[1]);
+            newPessoa.getPessoa().setCpfCnpj((String) obj[2]);
+            if (searchMode.equals("cpf") || searchMode.equals("rg")) {
+                newPessoa.getPesFisica().setRg((String) obj[3]);
+            }
             retornaPessoa.add(newPessoa);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
         return retornaPessoa;
     }
-    
-    
-    
+
     @Override
     public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
-        if(searchMode.equals("nome"))
-            search= new BeautyText().Captalizador(search);
-        search="'%"+search+"%'";
-        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p."+searchMode+" like "+search);
+        if (searchMode.equals("nome")) {
+            search = new BeautyText().Captalizador(search);
+        }
+        search = "'%" + search + "%'";
+        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p." + searchMode + " like " + search);
         List<Animais> retornaAnimais = new ArrayList<>();
-        for(Object[] obj : (List<Object[]>)listaPessoa){
+        for (Object[] obj : (List<Object[]>) listaPessoa) {
             Animais newAnimal = new Animais();
             AnimaisId idAnimal = new AnimaisId();
-            
-            idAnimal.setPkAnimal((int)obj[0]);
-            idAnimal.setClienteFkCliente((int)obj[1]);
-            idAnimal.setClienteFkPessoa((int)obj[2]);
-            
+
+            idAnimal.setPkAnimal((int) obj[0]);
+            idAnimal.setClienteFkCliente((int) obj[1]);
+            idAnimal.setClienteFkPessoa((int) obj[2]);
+
             newAnimal.setId(idAnimal);
-            newAnimal.setNomeAnimal((String)obj[3]);
-            newAnimal.setEspecie((String)obj[4]);
-            newAnimal.setSexoAnimal((String)obj[5]);
+            newAnimal.setNomeAnimal((String) obj[3]);
+            newAnimal.setEspecie((String) obj[4]);
+            newAnimal.setSexoAnimal((String) obj[5]);
             retornaAnimais.add(newAnimal);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
         return retornaAnimais;
     }
-    
-    
-    
-    
-    
-    
-    
+
     @Override
     public List<ConsultaBusca> listBySearchCONSULTA(String searchMode, String search) {
-        if(searchMode.equals("nome"))
-            search= new BeautyText().Captalizador(search);
-        search="'%"+search+"%'";
-        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.animais.id.pkAnimal, c.animais.id.clienteFkCliente, c.animais.id.clienteFkPessoa,c.animais.nomeAnimal, c.sistemasAfetados from Consulta c, Pessoa p where c.animais.id.clienteFkPessoa = p.pkPessoa and p."+searchMode+" = '"+search+"'");
+        if (searchMode.equals("nome")) {
+            search = new BeautyText().Captalizador(search);
+        }
+        search = "'%" + search + "%'";
+        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.animais.id.pkAnimal, c.animais.id.clienteFkCliente, c.animais.id.clienteFkPessoa,c.animais.nomeAnimal, c.sistemasAfetados from Consulta c, Pessoa p where c.animais.id.clienteFkPessoa = p.pkPessoa and p." + searchMode + " = '" + search + "'");
         List<ConsultaBusca> retornaConsulta = new ArrayList<>();
-        for(Object[] obj : (List<Object[]>)listaConsulta){
+        for (Object[] obj : (List<Object[]>) listaConsulta) {
             ConsultaBusca objbusca = new ConsultaBusca();
             AnimaisId idAnimal = new AnimaisId();
-            
+
             objbusca.geraObj();
-            
-            idAnimal.setPkAnimal((int)obj[1]);
-            idAnimal.setClienteFkCliente((int)obj[2]);
-            idAnimal.setClienteFkPessoa((int)obj[3]);
-            
+
+            idAnimal.setPkAnimal((int) obj[1]);
+            idAnimal.setClienteFkCliente((int) obj[2]);
+            idAnimal.setClienteFkPessoa((int) obj[3]);
+
             objbusca.getAnimais().setId(idAnimal);
-            objbusca.getAnimais().setNomeAnimal((String)obj[4]);
-            
-            objbusca.getConsulta().setPkConsulta((int)obj[0]);
-            objbusca.getConsulta().setSistemasAfetados((String)obj[5]);
-            
+            objbusca.getAnimais().setNomeAnimal((String) obj[4]);
+
+            objbusca.getConsulta().setPkConsulta((int) obj[0]);
+            objbusca.getConsulta().setSistemasAfetados((String) obj[5]);
+
             retornaConsulta.add(objbusca);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
         return retornaConsulta;
     }
-    
-    
-    
-    
-	
+
     //Método genérico para remoção de uma tupla de uma entidade
     @Override
     public void remove(Object entidade) {
@@ -189,7 +198,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.close();
         System.out.println("BACK-END WARNING: OBJECT REMOVED! [ public void remove(Object entidade) ]");
     }
-    
+
     //Método genérico para atualizar uma tupla em uma entidade
     @Override
     public void update(Object entidade) {
@@ -200,32 +209,32 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         session.close();
         System.out.println("BACK-END WARNING: OBJECT UPDATED! [ public void update(Object entidade) ]");
     }
-    
+
     //Método para validação de credenciais de login
     @Override
-    public int validate(String username, String password){
-        int resposta=-1;
+    public int validate(String username, String password) {
+        int resposta = -1;
         username = username.toLowerCase();
         System.out.print(username);
-        List<Object>checkLogin = (List<Object>)this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='"+password+"' and (p.email='"+username+"' or u.userNick='"+username+"')");
-        try{
-            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa="+checkLogin.get(0)+"[ public int validate(String username, String password) ]");
-            resposta = (int)checkLogin.get(0);
-        }
-        catch(Exception ex){
+        List<Object> checkLogin = (List<Object>) this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='" + password + "' and (p.email='" + username + "' or u.userNick='" + username + "')");
+        try {
+            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa=" + checkLogin.get(0) + "[ public int validate(String username, String password) ]");
+            resposta = (int) checkLogin.get(0);
+        } catch (Exception ex) {
             System.out.println("BACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
         }
         return resposta;
     }
-    
+
     //Método para listar os nomes de pelagens inseridas no banco de dados
     @Override
-    public List<String> getPelagemNames(){
+    public List<String> getPelagemNames() {
         List<String> listaPelagens = new ArrayList<>();
-        for(Object obj : (List<Object>)this.list("SELECT pl.nomePelagem from Pelagem pl"))
-            listaPelagens.add((String)obj);
+        for (Object obj : (List<Object>) this.list("SELECT pl.nomePelagem from Pelagem pl")) {
+            listaPelagens.add((String) obj);
+        }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<String> getPelagemNames() ]");
         return listaPelagens;
-    }    
-    
+    }
+
 }

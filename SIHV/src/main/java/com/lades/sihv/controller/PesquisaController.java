@@ -8,6 +8,7 @@ package com.lades.sihv.controller;
 import java.io.Serializable;
 import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
+import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
@@ -46,7 +47,7 @@ public class PesquisaController implements Serializable{
         
         switch (item){
             case "Pessoa":
-                List<Pessoa> objList = null;
+                List<PessoaBusca> objList = null;
                 objBuscados = objList;
                 objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
                 break;
@@ -71,7 +72,16 @@ public class PesquisaController implements Serializable{
         }
     }
        
-        
+      
+    public boolean getViewRG(){
+        boolean var = false;
+        if (itemPesquisa.equals("cpf") || itemPesquisa.equals("rg")) 
+            var = true;
+        return var;
+    }
+    
+    
+    
 //MÉTODOS GET & SET    
 //-----------------------------------------------------------------------------
     public String getItemPesquisa() {

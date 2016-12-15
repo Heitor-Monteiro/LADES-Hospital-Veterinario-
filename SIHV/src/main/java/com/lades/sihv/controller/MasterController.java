@@ -8,6 +8,7 @@ package com.lades.sihv.controller;
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
 import java.io.Serializable;
@@ -26,6 +27,7 @@ public class MasterController implements Serializable{
     private final FacesMessages message = new FacesMessages();
     
     private Pessoa pessoa;
+    private PessoaBusca pessoaBusca;
     private Animais animal;
     private Consulta consulta;
 
@@ -83,6 +85,14 @@ public class MasterController implements Serializable{
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
+    }
+    
+    public PessoaBusca getPessoaBusca() {
+        return pessoaBusca;
+    }
+
+    public void setPessoaBusca(PessoaBusca pessoaBusca) {
+        this.pessoaBusca = pessoaBusca;
     }
     
     public Animais getAnimal() {
