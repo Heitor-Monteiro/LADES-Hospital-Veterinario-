@@ -19,6 +19,10 @@ import java.util.List;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import com.lades.sihv.BeautyText;
+import com.lades.sihv.model.Fisica;
+import com.lades.sihv.model.Juridica;
+import com.lades.sihv.model.FisicaId;
+import com.lades.sihv.model.JuridicaId;
 import java.io.IOException;
 import javax.faces.context.FacesContext;
 
@@ -31,23 +35,37 @@ public class PessoaController implements Serializable {
     private GenericoDAO daoGenerico;
     private FacesMessages message;
     private Pessoa pessoa;
+    private Fisica fisica;
+    private FisicaId fisicaId;
+    private JuridicaId juridicaId;
+    private Juridica juridica;
     private Telefone telefone;
     private User user;
     private UserId userId;
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
+
+    public Fisica getFisica() {
+        return fisica;
+    }
+
+    public void setFisica(Fisica fisica) {
+        this.fisica = fisica;
+    }
+
+    public Juridica getJuridica() {
+        return juridica;
+    }
+
+    public void setJuridica(Juridica juridica) {
+        this.juridica = juridica;
+    }
     private List<Pessoa> pessoasBuscadas;
     private boolean mudancaCpfCnpj = true;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
 
-    
-    
-    
-    
-    
-    
     /*Os método e variáveis abaixo são utilizados
     para controlar a opcionalidade do campo e-mail*/
     private String tipoPessoa;
@@ -71,12 +89,7 @@ public class PessoaController implements Serializable {
         this.emailOpcional = emailOpcional;
     }
     //--------------------------------------------------
-    
-    
-    
-    
-    
-    
+
     /*Os dois atributos serão utilizado para
     a concatenação do CRMV do medico
     veterinário*/
@@ -114,6 +127,10 @@ public class PessoaController implements Serializable {
         telefone = new Telefone();
         cliente = new Cliente();
         clienteId = new ClienteId();
+        fisica = new Fisica();
+        juridica = new Juridica();
+        fisicaId = new FisicaId();
+        juridicaId = new JuridicaId();
         data = new Date();
         tipoPessoa = "cliente";
         emailOpcional = false;
@@ -145,6 +162,9 @@ public class PessoaController implements Serializable {
         }
         try {
             daoGenerico.save(pessoa);
+            fisicaId.setFkPessoa(pessoa.getPkPessoa());
+            fisica.setId(fisicaId);
+            daoGenerico.save(fisica);
             telefone.setPessoa(pessoa);
             daoGenerico.save(telefone);
 
@@ -182,19 +202,36 @@ public class PessoaController implements Serializable {
     }
 
     public boolean prepararSalvarPessoa() {
-        boolean checkCPF = secure.checkCPF(pessoa.getCpfCnpj());
-        boolean checkExCPF = this.checkExistingCPF(pessoa.getCpfCnpj());
-        if (!checkCPF) {
-            message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
-            pessoa.setCpfCnpj("");
-        }
+        if (mudancaCpfCnpj) {
+            boolean checkCPF = secure.checkCPF(pessoa.getCpfCnpj());
+            boolean checkExCPF = this.checkExistingCPF(pessoa.getCpfCnpj());
+            if (!checkCPF) {
+                message.warn("Erro ao efetuar cadastro!", "CPF Inválido!");
+                pessoa.setCpfCnpj("");
+            }
 
-        if (!checkExCPF) {
-            message.warn("Erro ao efetuar cadastro!", "O CPF informado já existe!");
-            pessoa.setCpfCnpj("");
-        }
-        if (!checkExCPF || !checkCPF) {
-            return false;
+            if (!checkExCPF) {
+                message.warn("Erro ao efetuar cadastro!", "O CPF informado já existe!");
+                pessoa.setCpfCnpj("");
+            }
+            if (!checkExCPF || !checkCPF) {
+                return false;
+            }
+        } else {
+            boolean checkCnpj = secure.checkCNPJ(pessoa.getCpfCnpj());
+            boolean checkExCnpj = this.checkExistingCPF(pessoa.getCpfCnpj());
+            if (!checkCnpj) {
+                message.warn("Erro ao efetuar cadastro!", "CNPJ Inválido!");
+                pessoa.setCpfCnpj("");
+            }
+
+            if (!checkExCnpj) {
+                message.warn("Erro ao efetuar cadastro!", "O CNPJ informado já existe!");
+                pessoa.setCpfCnpj("");
+            }
+            if (!checkExCnpj || !checkCnpj) {
+                return false;
+            }
         }
         try {
             pessoa.setNome(stringer.Captalizador(pessoa.getNome()));
@@ -212,7 +249,7 @@ public class PessoaController implements Serializable {
 
     public boolean checkExistingCPF(String cpf) {
         try {
-            List<Pessoa> checkLogin = (List<Pessoa>) daoGenerico.list("select p from Pessoa p where p.cpf='" + cpf + "'");
+            List<Pessoa> checkLogin = (List<Pessoa>) daoGenerico.list("select p from Pessoa p where p.cpfCnpj='" + cpf + "'");
             return checkLogin.isEmpty();
         } catch (Exception ex) {
             return true;
@@ -235,9 +272,9 @@ public class PessoaController implements Serializable {
 
     private boolean addCLIENTE() {
         try {
-            if(emailOpcional){
+            if (emailOpcional) {
                 System.out.println("email-informado===============================");
-            }else{
+            } else {
                 pessoa.setEmail("naoInformado@naoInformado.com");
                 System.out.println("email-não-informado===========================");
             }
@@ -247,7 +284,15 @@ public class PessoaController implements Serializable {
 
                 telefone.setPessoa(pessoa);
                 daoGenerico.save(telefone);
-
+                if (mudancaCpfCnpj) {
+                    fisicaId.setFkPessoa(pessoa.getPkPessoa());
+                    fisica.setId(fisicaId);
+                    daoGenerico.save(fisica);
+                } else {
+                    juridicaId.setFkPessoa(pessoa.getPkPessoa());
+                    juridica.setId(juridicaId);
+                    daoGenerico.save(juridica);
+                }
                 clienteId.setFkPessoa(pessoa.getPkPessoa());
                 cliente.setId(clienteId);
                 daoGenerico.save(cliente);

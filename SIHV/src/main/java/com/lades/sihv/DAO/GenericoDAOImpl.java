@@ -216,11 +216,12 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         int resposta = -1;
         username = username.toLowerCase();
         System.out.print(username);
-        List<Object> checkLogin = (List<Object>) this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='" + password + "' and (p.email='" + username + "' or u.userNick='" + username + "')");
-        try {
-            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa=" + checkLogin.get(0) + "[ public int validate(String username, String password) ]");
-            resposta = (int) checkLogin.get(0);
-        } catch (Exception ex) {
+        List<Object>checkLogin = (List<Object>)this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='"+password+"' and p.exclusaoLogica=1 and (p.email='"+username+"' or u.userNick='"+username+"')");
+        try{
+            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa="+checkLogin.get(0)+"[ public int validate(String username, String password) ]");
+            resposta = (int)checkLogin.get(0);
+        }
+        catch(Exception ex){
             System.out.println("BACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
         }
         return resposta;

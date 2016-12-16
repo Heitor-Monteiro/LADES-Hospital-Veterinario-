@@ -11,6 +11,8 @@ import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.Fisica;
+import com.lades.sihv.model.Juridica;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,64 +23,51 @@ import javax.faces.bean.SessionScoped;
  */
 @ManagedBean(name = "MasterControle")
 @SessionScoped
-public class MasterController implements Serializable{
-    
+public class MasterController implements Serializable {
+
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private final FacesMessages message = new FacesMessages();
-    
+
     private Pessoa pessoa;
     private PessoaBusca pessoaBusca;
     private Animais animal;
     private Consulta consulta;
-
-    
     private PesquisaController pesquisaControle;
     private PessoaController pessoaControle;
     private AnimalController animalControle;
     private ConsultaController consultaControle;
-    
-    
-    
-    
-    
-    
-    
-    
-    public void prepararControllerPessoa(){
-        pessoaControle = new PessoaController(daoGenerico,message);
+
+    public void prepararControllerPessoa() {
+        pessoaControle = new PessoaController(daoGenerico, message);
     }
+
     //-------------------------------------------------------
-    public void prepararCadastroAnimal(){
+    public void prepararCadastroAnimal() {
         prepararPesquisaController();
-        animalControle = new AnimalController(daoGenerico,message);
+        animalControle = new AnimalController(daoGenerico, message);
         animalControle.prepararListaPelagem();
     }
-    
-    public void adicionarNovoAnimal(){
+
+    public void adicionarNovoAnimal() {
         animalControle.adicionarANIMAL(pessoa);
     }
+
     //-------------------------------------------------------
-    public void prepararNovaConsulta(){
+    public void prepararNovaConsulta() {
         prepararPesquisaController();
-        consultaControle = new ConsultaController(daoGenerico,message);
+        consultaControle = new ConsultaController(daoGenerico, message);
         consultaControle.prepararNovaConsulta();
     }
-    
-    public void adicionarNovaConsulta(){
+
+    public void adicionarNovaConsulta() {
         consultaControle.adicionarNovaConsulta(animal);
     }
+
     //-------------------------------------------------------
-    public void prepararPesquisaController(){
+    public void prepararPesquisaController() {
         pesquisaControle = new PesquisaController();
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     public Pessoa getPessoa() {
         return pessoa;
     }
@@ -102,7 +91,7 @@ public class MasterController implements Serializable{
     public void setAnimal(Animais animal) {
         this.animal = animal;
     }
-    
+
     public Consulta getConsulta() {
         return consulta;
     }
@@ -118,7 +107,6 @@ public class MasterController implements Serializable{
 //    public void setPesquisaControle(PesquisaController pesquisaControle) {
 //        this.pesquisaControle = pesquisaControle;
 //    }
-
     public AnimalController getAnimalControle() {
         return animalControle;
     }
@@ -126,7 +114,6 @@ public class MasterController implements Serializable{
 //    public void setAnimalControle(AnimalController animalControle) {
 //        this.animalControle = animalControle;
 //    }
-
     public ConsultaController getConsultaControle() {
         return consultaControle;
     }
@@ -134,7 +121,6 @@ public class MasterController implements Serializable{
 //    public void setConsultaControle(ConsultaController consultaControle) {
 //        this.consultaControle = consultaControle;
 //    }
-
     public FacesMessages getMessage() {
         return message;
     }
