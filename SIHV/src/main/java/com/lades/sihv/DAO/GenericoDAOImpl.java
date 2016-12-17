@@ -88,7 +88,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 //        return retornaPessoa;
 //    }
     @Override
-    public List<PessoaBusca> listBySearchPESSOA(String searchMode, String search) {
+    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
 //        if(searchMode.equals("nome"))
 //            search= new BeautyText().Captalizador(search);
         search = "'%" + search + "%'";
@@ -117,15 +117,15 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         }
 
         List<Ent> listaPessoa = this.list(sqlHql);
-        List<PessoaBusca> retornaPessoa = new ArrayList<>();
+        List<Pessoa> retornaPessoa = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
-            PessoaBusca newPessoa = new PessoaBusca();
-            newPessoa.getPessoa().setPkPessoa((int) obj[0]);
-            newPessoa.getPessoa().setNome((String) obj[1]);
-            newPessoa.getPessoa().setCpfCnpj((String) obj[2]);
-            if (searchMode.equals("cpf") || searchMode.equals("rg")) {
-                newPessoa.getPesFisica().setRg((String) obj[3]);
-            }
+            Pessoa newPessoa = new Pessoa();
+            newPessoa.setPkPessoa((int) obj[0]);
+            newPessoa.setNome((String) obj[1]);
+            newPessoa.setCpfCnpj((String) obj[2]);
+//            if (searchMode.equals("cpf") || searchMode.equals("rg")) {
+//                newPessoa.getPesFisica().setRg((String) obj[3]);
+//            }
             retornaPessoa.add(newPessoa);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");

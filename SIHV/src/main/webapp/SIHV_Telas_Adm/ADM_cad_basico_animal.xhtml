@@ -9,7 +9,7 @@
     <ui:composition template="/template.xhtml">
 
         <ui:define name="title">
-            <h:outputText value="#{label_SIHV.CreateAnimaisTitle}"></h:outputText>
+            <h:outputText value="Cadastrar novo animal pequeno"></h:outputText>
         </ui:define>
 
         <ui:define name="content">
@@ -17,6 +17,8 @@
             <f:metadata>
                 <f:viewAction action="#{MasterControle.prepararCadastroAnimal()}" />
                 <f:viewAction action="#{MasterControle.animalControle.prepararAdicionarAnimal()}" />
+                <f:viewAction action="#{MasterControle.animalControle.animal.setCategoriaAnimal('P')}" />
+                <f:viewAction action="#{MasterControle.animalControle.gerarRGHV()}" />
             </f:metadata>
 
             <h:form >
@@ -27,10 +29,10 @@
 
 
                     <p:tab id="DadosCliente" title="Pesquisar por cliente" >
-                        <p:panel>
-
+                        <p:panel id="PesquisaPessoa">
+                            
                             <ui:include src="/SIHV_Telas_Genericas/pesquisa_pessoa.xhtml" />
-
+                            
                         </p:panel>
                     </p:tab>
 
@@ -54,16 +56,20 @@
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3">
 
-                                    <p:outputLabel value="Nome do cliente:"
+                                    <p:outputLabel value="Nome do cliente1:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.pessoaBusca.pessoa.nome}"
+                                    <p:outputLabel value="#{MasterControle.pessoa.nome}"
                                                    styleClass="outputLabel" />
 
-                                    <p:outputLabel value="CPF do cliente:"
+                                    <p:outputLabel value="CPF/CNPJ do cliente:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.pessoaBusca.pessoa.cpfCnpj}"
+                                    <p:outputLabel value="#{MasterControle.pessoa.cpfCnpj}"
                                                    styleClass="outputLabel" />
 
+                                    <p:outputLabel value="RGHV:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MasterControle.animalControle.animal.rghv}"
+                                                   styleClass="outputLabel" />
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
@@ -96,15 +102,22 @@
 
 
 
-                                    <p:outputLabel value="Idade atual do animal:"
+                                    <p:outputLabel value="Data de nascimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.idadeAtual}"
+                                    <p:outputLabel value="#{MasterControle.animalControle.animal.dataNac}"
                                                    styleClass="outputLabel"/>
-
+                                </p:panelGrid>
+                                
+                                <p:panelGrid columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-1, ui-grid-col-3">
 
                                     <p:outputLabel value="Peso atual do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="Kg #{MasterControle.animalControle.animal.peso}"
+                                    <p:outputLabel value="#{MasterControle.animalControle.animal.escalaPeso}"
+                                                   styleClass="outputLabel" />
+                                    <p:outputLabel value="#{MasterControle.animalControle.animal.peso}"
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
@@ -139,6 +152,20 @@
 
 
                 </p:wizard>
+                <p:dialog modal="true"
+                          resizable="false"
+                          header="Values"
+                          widgetVar="dlg"
+                          showEffect="fold">
+                    <p:panelGrid id="display"
+                                 columns="2"
+                                 columnClasses="label,value">
+                        <h:outputText value="German:" />
+                        <h:outputText >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:dialog>
             </h:form>
 
             <div  style="height: 140px;" />

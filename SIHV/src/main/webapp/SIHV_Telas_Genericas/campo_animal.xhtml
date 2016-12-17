@@ -21,7 +21,15 @@
 
             <p:outputLabel value="CPF do cliente:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MasterControle.pessoa.cpf}" />
+            <p:outputLabel value="#{MasterControle.pessoa.cpfCnpj}" />
+            <p:outputLabel />
+
+
+            <p:outputLabel value="RGHV:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold ;"/>
+            <p:outputLabel value="#{MasterControle.animalControle.animal.rghv}" />
             <p:outputLabel />
 
 
@@ -109,22 +117,43 @@
             <p:message for="sexoAnimal" />
 
 
-            <p:outputLabel value="Idade atual do animal:"
+            <p:outputLabel value="Data de nascimento:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="idade" />
-            <p:inputText id="idade"
-                         value="#{MasterControle.animalControle.animal.dataNac}"
-                         title="Informe a idade atual do animal"
-                         maxlength="3"
-                         required="true"
-                         requiredMessage="Informe a idade atual do animal!"
-                         validatorMessage="Formato incorreto para idade!">
-                <f:validateDoubleRange minimum="1" maximum="999" />
-            </p:inputText>
+            <p:calendar id="idade" 
+                        value="#{MasterControle.animalControle.animal.dataNac}"
+                        maxlength="10" 
+                        disabled="false" 
+                        title="" 
+                        required="false"  
+                        requiredMessage="" 
+                        locale="de"
+                        navigator="true"  
+                        pattern="yyyy-mm-dd" />
             <p:message for="idade" />
 
 
-            <p:outputLabel value="Peso atual do animal(Kg):"
+
+
+            <p:outputLabel value="Escala de peso:"
+                           for="escalaPeso"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+            <p:selectOneRadio id="escalaPeso"
+                              layout="responsive"
+                              columns="3"
+                              value="#{MasterControle.animalControle.animal.escalaPeso}"
+                              required="true"
+                              requiredMessage="Escolha uma escala de peso!">
+                <f:selectItem itemLabel="g" itemValue="g" />
+                <f:selectItem itemLabel="kg" itemValue="kg" />
+                <f:selectItem itemLabel="T" itemValue="T" />
+            </p:selectOneRadio>
+            <p:message for="escalaPeso" />
+
+
+
+
+            <p:outputLabel value="Peso atual do animal:"
                            for="pesoAnimal"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="pesoAnimal"

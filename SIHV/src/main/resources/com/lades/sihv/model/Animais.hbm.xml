@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 16/12/2016 13:25:00 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Animais" table="animais" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnimaisId">
@@ -36,6 +36,9 @@
         </property>
         <property name="dataNac" type="date">
             <column name="dataNac" length="10" />
+        </property>
+        <property name="escalaPeso" type="string">
+            <column name="escalaPeso" length="6" not-null="true" />
         </property>
         <property name="peso" type="double">
             <column name="peso" precision="22" scale="0" not-null="true" />

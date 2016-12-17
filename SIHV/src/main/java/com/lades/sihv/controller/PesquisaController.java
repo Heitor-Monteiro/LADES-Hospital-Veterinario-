@@ -24,6 +24,10 @@ public class PesquisaController implements Serializable{
     private boolean showDataTable;
     private List<?> objBuscados;
     private static final FacesMessages mensagem = new FacesMessages();
+    private boolean cpfView = false;
+    private boolean rgView = false;
+    private boolean nomeView = false;
+    private boolean cnpjView = false;
     
     
     /*Este método objetiva limpar os campos
@@ -47,7 +51,7 @@ public class PesquisaController implements Serializable{
         
         switch (item){
             case "Pessoa":
-                List<PessoaBusca> objList = null;
+                List<Pessoa> objList = null;
                 objBuscados = objList;
                 objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
                 break;
@@ -80,6 +84,24 @@ public class PesquisaController implements Serializable{
         return var;
     }
     
+    
+    
+    
+    public void ViewInput(){
+        switch (itemPesquisa){
+            case "cpf":
+                cpfView = true;
+                break;
+            case "rg":
+                rgView = true;
+                break;
+            case "":
+                
+                break;
+            default:
+                break;
+        }
+    }
     
     
 //MÉTODOS GET & SET    
@@ -116,6 +138,40 @@ public class PesquisaController implements Serializable{
         this.objBuscados = objBuscados;
     }
 //-----------------------------------------------------------------------------
+
+    public boolean isCpfView() {
+        return cpfView;
+    }
+
+    public void setCpfView(boolean cpfView) {
+        this.cpfView = cpfView;
+    }
+
+    public boolean isRgView() {
+        return rgView;
+    }
+
+    public void setRgView(boolean rgView) {
+        this.rgView = rgView;
+    }
+
+    public boolean isNomeView() {
+        return nomeView;
+    }
+
+    public void setNomeView(boolean nomeView) {
+        this.nomeView = nomeView;
+    }
+
+    public boolean isCnpjView() {
+        return cnpjView;
+    }
+
+    public void setCnpjView(boolean cnpjView) {
+        this.cnpjView = cnpjView;
+    }
+
+    
     
     
 }

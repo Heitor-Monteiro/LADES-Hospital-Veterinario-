@@ -14,7 +14,7 @@ public interface GenericoDAO<Ent> {
     public Ent getById(String model, Integer id);
 
     public List<Ent> list(String sqlHQL);    
-    public List<PessoaBusca> listBySearchPESSOA(String searchMode, String search);
+    public List<Pessoa> listBySearchPESSOA(String searchMode, String search);
     public List<Animais> listBySearchANIMAIS(String searchMode, String search);
     public List<ConsultaBusca> listBySearchCONSULTA(String searchMode, String search);
     public List<String> getPelagemNames();    

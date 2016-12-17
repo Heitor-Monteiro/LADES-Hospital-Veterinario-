@@ -14,11 +14,16 @@ import com.lades.sihv.model.Juridica;
  * @author thiberius
  */
 public class PessoaBusca {
-    private Pessoa pessoa = new Pessoa();
-    private Fisica pesFisica = new Fisica();
-    private Juridica pesJuridica = new Juridica();
+    private Pessoa pessoa;
+    private Fisica pesFisica;
+    private Juridica pesJuridica;
 
     
+    public void creatObjects(){
+        pessoa = new Pessoa();
+        pesFisica = new Fisica();
+        pesJuridica = new Juridica();
+    }
     
     
     public Pessoa getPessoa() {

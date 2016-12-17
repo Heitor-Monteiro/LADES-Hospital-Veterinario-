@@ -15,8 +15,8 @@
     <mapping resource="com/lades/sihv/model/SisRespCardio.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Juridica.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisOftalmico.hbm.xml"/>
-    <mapping resource="com/lades/sihv/model/ExameImage.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisTegumentar.hbm.xml"/>
+    <mapping resource="com/lades/sihv/model/ExameImage.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Anamnese.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/SisMuscEsque.hbm.xml"/>
     <mapping resource="com/lades/sihv/model/Raca.hbm.xml"/>

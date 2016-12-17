@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 16/12/2016 13:24:59 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -37,6 +37,7 @@ public class Animais  implements java.io.Serializable {
      private String pelagem;
      private String sexoAnimal;
      private Date dataNac;
+     private String escalaPeso;
      private double peso;
      private String rghv;
      private short rghvNum;
@@ -48,7 +49,7 @@ public class Animais  implements java.io.Serializable {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
@@ -56,13 +57,14 @@ public class Animais  implements java.io.Serializable {
         this.raca = raca;
         this.pelagem = pelagem;
         this.sexoAnimal = sexoAnimal;
+        this.escalaPeso = escalaPeso;
         this.peso = peso;
         this.rghv = rghv;
         this.rghvNum = rghvNum;
         this.categoriaAnimal = categoriaAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, Date dataNac, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set<Consulta> consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, Date dataNac, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set<Consulta> consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -71,6 +73,7 @@ public class Animais  implements java.io.Serializable {
        this.pelagem = pelagem;
        this.sexoAnimal = sexoAnimal;
        this.dataNac = dataNac;
+       this.escalaPeso = escalaPeso;
        this.peso = peso;
        this.rghv = rghv;
        this.rghvNum = rghvNum;
@@ -164,6 +167,16 @@ public class Animais  implements java.io.Serializable {
     
     public void setDataNac(Date dataNac) {
         this.dataNac = dataNac;
+    }
+
+    
+    @Column(name="escalaPeso", nullable=false, length=6)
+    public String getEscalaPeso() {
+        return this.escalaPeso;
+    }
+    
+    public void setEscalaPeso(String escalaPeso) {
+        this.escalaPeso = escalaPeso;
     }
 
     
