@@ -20,8 +20,8 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import com.lades.sihv.BeautyText;
 import com.lades.sihv.model.Fisica;
-import com.lades.sihv.model.Juridica;
 import com.lades.sihv.model.FisicaId;
+import com.lades.sihv.model.Juridica;
 import com.lades.sihv.model.JuridicaId;
 import java.io.IOException;
 import javax.faces.context.FacesContext;
@@ -45,27 +45,14 @@ public class PessoaController implements Serializable {
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
-
-    public Fisica getFisica() {
-        return fisica;
-    }
-
-    public void setFisica(Fisica fisica) {
-        this.fisica = fisica;
-    }
-
-    public Juridica getJuridica() {
-        return juridica;
-    }
-
-    public void setJuridica(Juridica juridica) {
-        this.juridica = juridica;
-    }
-    private List<Pessoa> pessoasBuscadas;
-    private boolean mudancaCpfCnpj = true;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
 
+    
+//    private List<Pessoa> pessoasBuscadas;
+    private boolean mudancaCpfCnpj = true;
+    
+    
     /*Os método e variáveis abaixo são utilizados
     para controlar a opcionalidade do campo e-mail*/
     private String tipoPessoa;
@@ -109,6 +96,9 @@ public class PessoaController implements Serializable {
     for aberta.*/
     public void prepararAdicionarUSER() {
         pessoa = new Pessoa();
+        pessoa.setExclusaoLogica(false);
+        fisica = new Fisica();
+        fisicaId = new FisicaId();
         telefone = new Telefone();
         user = new User();
         userId = new UserId();
@@ -124,12 +114,13 @@ public class PessoaController implements Serializable {
     a pagina de cadastro for aberta.*/
     public void prepararAdicionarCliente() {
         pessoa = new Pessoa();
+        pessoa.setExclusaoLogica(false);
         telefone = new Telefone();
         cliente = new Cliente();
         clienteId = new ClienteId();
         fisica = new Fisica();
-        juridica = new Juridica();
         fisicaId = new FisicaId();
+        juridica = new Juridica();
         juridicaId = new JuridicaId();
         data = new Date();
         tipoPessoa = "cliente";
@@ -325,14 +316,30 @@ public class PessoaController implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-
-    public List<Pessoa> getPessoasBuscadas() {
-        return pessoasBuscadas;
+    
+    public Fisica getFisica() {
+        return fisica;
     }
 
-    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
-        this.pessoasBuscadas = pessoasBuscadas;
+    public void setFisica(Fisica fisica) {
+        this.fisica = fisica;
     }
+
+    public Juridica getJuridica() {
+        return juridica;
+    }
+
+    public void setJuridica(Juridica juridica) {
+        this.juridica = juridica;
+    }
+
+//    public List<Pessoa> getPessoasBuscadas() {
+//        return pessoasBuscadas;
+//    }
+//
+//    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
+//        this.pessoasBuscadas = pessoasBuscadas;
+//    }
 
     public Telefone getTelefone() {
         return telefone;
@@ -380,20 +387,20 @@ public class PessoaController implements Serializable {
         return "index";
     }
 
-    public DataModel getListaPessoaDataModel() {
-        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
-        return listarPessoas;
-    }
+//    public DataModel getListaPessoaDataModel() {
+//        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
+//        return listarPessoas;
+//    }
 
-    public String prepararAlterarPessoa() {
-        pessoa = (Pessoa) (getListaPessoaDataModel().getRowData());
-        return "gerenciarLivro";
-    }
+//    public String prepararAlterarPessoa() {
+//        pessoa = (Pessoa) (getListaPessoaDataModel().getRowData());
+//        return "gerenciarLivro";
+//    }
 
-    public String excluirPessoa() {
-        Pessoa pessoaTemp = (Pessoa) (getListaPessoaDataModel().getRowData());
-        daoGenerico.remove(pessoaTemp);
-        return "index";
-    }
+//    public String excluirPessoa() {
+//        Pessoa pessoaTemp = (Pessoa) (getListaPessoaDataModel().getRowData());
+//        daoGenerico.remove(pessoaTemp);
+//        return "index";
+//    }
     //---------------------------------------------------------------
 }

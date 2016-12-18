@@ -13,17 +13,19 @@
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-4" > 
 
-                <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
+                <p:outputLabel value="Tipo de pesquisa:" 
                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                for="TipoPesquisa" />
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
-                                  columns="3"
+                                  columns="2"
                                   value="#{MasterControle.pesquisaControle.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
-                    <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
+                    <f:selectItem itemLabel="CPF" itemValue="cpf" />
+                    <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
+                    <f:selectItem itemLabel="RGHV" itemValue="rghv" />
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
@@ -86,8 +88,8 @@
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>
                 
                 <p:column headerText="Código"
-                          width="80">
-                    <h:outputText value="#{animais.id.pkAnimal}" />
+                          width="97">
+                    <h:outputText value="#{animais.rghv}" />
                 </p:column>
                 
                 <p:column headerText="Nome do animal" >

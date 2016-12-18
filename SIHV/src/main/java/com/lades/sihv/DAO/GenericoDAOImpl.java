@@ -69,63 +69,47 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
 
     //Método para listar Pessoas baseado em cpf, cnpj, ou nome
-//    @Override
-//    public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
-//        if(searchMode.equals("nome"))
-//            search= new BeautyText().Captalizador(search);
-//        search="'%"+search+"%'";
-//        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpf, p.rg from Pessoa p, Cliente c where c.id.fkPessoa=p.pkPessoa and p."+searchMode+" like "+search);
-//        List<Pessoa> retornaPessoa = new ArrayList<>();
-//        for(Object[] obj : (List<Object[]>)listaPessoa){
-//            Pessoa newPessoa = new Pessoa();
-//            newPessoa.setPkPessoa((int)obj[0]);
-//            newPessoa.setNome((String)obj[1]);
-//            newPessoa.setCpfCnpj((String)obj[2]);
-//            newPessoa.setRg((String)obj[3]);
-//            retornaPessoa.add(newPessoa);
-//        }
-//        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
-//        return retornaPessoa;
-//    }
     @Override
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
-//        if(searchMode.equals("nome"))
-//            search= new BeautyText().Captalizador(search);
         search = "'%" + search + "%'";
 
-        String sqlHql = "";
+        String tipoCliente="";
+        String joinTipoCli="";
         switch (searchMode) {
             case "cpf":
                 //pesquisa pessoa(cpf) fisica
-                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=f.id.fkPessoa and p.exclusaoLogica=0 and p.cpfCnpj like " + search;
+                searchMode = "p.cpfCnpj";
+                tipoCliente=", Fisica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "rg":
                 //pesquisa pessoa(rg) fisica
-                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj, f.rg from Pessoa p, Cliente c, Fisica f where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=f.id.fkPessoa and p.exclusaoLogica=0 and f.rg like " + search;
+                searchMode = "t." + searchMode;
+                tipoCliente=", Fisica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "cnpj":
                 //pesquisa pessoa(cnpj) juridica
-                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c, Juridica j where p.pkPessoa=c.id.fkPessoa and p.pkPessoa=j.id.fkPessoa and p.exclusaoLogica=0 and p.cpfCnpj like " + search;
+                searchMode = "p.cpfCnpj";
+                tipoCliente=", Juridica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "nome":
                 //pesquisa pessoa(nome) não considera se é pessoa fisica ou juridica.
                 search = new BeautyText().Captalizador(search);
-                sqlHql = "SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c where p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and p.nome like " + search;
+                searchMode = "p." + searchMode;
                 break;
             default:
                 break;
         }
 
-        List<Ent> listaPessoa = this.list(sqlHql);
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c"+tipoCliente+" where "+joinTipoCli+" p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and "+searchMode+" like " + search);
         List<Pessoa> retornaPessoa = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
             Pessoa newPessoa = new Pessoa();
             newPessoa.setPkPessoa((int) obj[0]);
             newPessoa.setNome((String) obj[1]);
             newPessoa.setCpfCnpj((String) obj[2]);
-//            if (searchMode.equals("cpf") || searchMode.equals("rg")) {
-//                newPessoa.getPesFisica().setRg((String) obj[3]);
-//            }
             retornaPessoa.add(newPessoa);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
@@ -134,11 +118,37 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 
     @Override
     public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
-        if (searchMode.equals("nome")) {
-            search = new BeautyText().Captalizador(search);
+        String tipoCliente="";
+        String joinTipoCli="";
+        switch (searchMode) {
+            case "cpf":
+                searchMode = "p.cpfCnpj";
+                tipoCliente=", Fisica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                break;
+            case "cnpj":
+                searchMode = "p.cpfCnpj";
+                tipoCliente=", Juridica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                break;
+            case "rg":
+                searchMode = "t." + searchMode;
+                tipoCliente=", Fisica t";
+                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                break;
+            case "nome":
+                search = new BeautyText().Captalizador(search);
+                searchMode = "p." + searchMode;
+                break;
+            case "rghv":
+                searchMode = "a." + searchMode;
+                break;
+            default:
+                break;
         }
+
         search = "'%" + search + "%'";
-        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal from Animais a, Pessoa p, Cliente c where p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and p." + searchMode + " like " + search);
+        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal, a.rghv from Animais a, Pessoa p, Cliente c"+tipoCliente+" where "+joinTipoCli+" p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and " + searchMode + " like " + search);
         List<Animais> retornaAnimais = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
             Animais newAnimal = new Animais();
@@ -152,6 +162,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             newAnimal.setNomeAnimal((String) obj[3]);
             newAnimal.setEspecie((String) obj[4]);
             newAnimal.setSexoAnimal((String) obj[5]);
+            newAnimal.setRghv((String) obj[6]);
             retornaAnimais.add(newAnimal);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
@@ -216,12 +227,11 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         int resposta = -1;
         username = username.toLowerCase();
         System.out.print(username);
-        List<Object>checkLogin = (List<Object>)this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='"+password+"' and p.exclusaoLogica=1 and (p.email='"+username+"' or u.userNick='"+username+"')");
-        try{
-            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa="+checkLogin.get(0)+"[ public int validate(String username, String password) ]");
-            resposta = (int)checkLogin.get(0);
-        }
-        catch(Exception ex){
+        List<Object> checkLogin = (List<Object>) this.list("select p.pkPessoa from  Pessoa p, User u where p.pkPessoa = u.id.fkPessoa and u.userSenha='" + password + "' and p.exclusaoLogica=1 and (p.email='" + username + "' or u.userNick='" + username + "')");
+        try {
+            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa=" + checkLogin.get(0) + "[ public int validate(String username, String password) ]");
+            resposta = (int) checkLogin.get(0);
+        } catch (Exception ex) {
             System.out.println("BACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
         }
         return resposta;

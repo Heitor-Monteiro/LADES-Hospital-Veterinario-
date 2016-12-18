@@ -8,12 +8,13 @@ package com.lades.sihv.classeMoldeBusca;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Fisica;
 import com.lades.sihv.model.Juridica;
+import java.io.Serializable;
 
 /**
  *
  * @author thiberius
  */
-public class PessoaBusca {
+public class PessoaBusca implements Serializable{
     private Pessoa pessoa;
     private Fisica pesFisica;
     private Juridica pesJuridica;
