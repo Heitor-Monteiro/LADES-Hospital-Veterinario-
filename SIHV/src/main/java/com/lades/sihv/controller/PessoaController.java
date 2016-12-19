@@ -280,6 +280,9 @@ public class PessoaController implements Serializable {
                     fisica.setId(fisicaId);
                     daoGenerico.save(fisica);
                 } else {
+                    if(juridica.getTipoPessoaJuridica().equals(""))
+                        juridica.setTipoPessoaJuridica("Não informado");
+                    
                     juridicaId.setFkPessoa(pessoa.getPkPessoa());
                     juridica.setId(juridicaId);
                     daoGenerico.save(juridica);

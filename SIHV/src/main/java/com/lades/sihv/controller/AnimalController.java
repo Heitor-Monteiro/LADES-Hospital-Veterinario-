@@ -134,9 +134,9 @@ public class AnimalController implements Serializable {
     }
 
     public String getIdade() {
-        Date data = animal.getDataNac();
-        int mes = data.getMonth();
-        int ano = data.getYear();
+        Date data2 = animal.getDataNac();
+        int mes = data2.getMonth();
+        int ano = data2.getYear();
         Calendar now = Calendar.getInstance();
         int mesAtual = now.get(Calendar.MONTH);
         String output = "";

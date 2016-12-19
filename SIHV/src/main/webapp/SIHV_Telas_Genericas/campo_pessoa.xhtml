@@ -34,7 +34,7 @@
                               required="true"
                               requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
                 <f:selectItem itemLabel="CPF" itemValue="true" />
-                <f:selectItem itemLabel="CNPF" itemValue="false" />
+                <f:selectItem itemLabel="CNPJ" itemValue="false" />
                 <p:ajax update="PessoaForm" />
             </p:selectOneRadio>
             <p:message for="TipoPessoa" />
@@ -64,14 +64,28 @@
                          id="cnpj"
                          rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
                          value="#{MasterControle.pessoaControle.pessoa.cpfCnpj}" 
-                         title="#{label_SIHV.CreatePessoaTitle_cpf}" 
+                         title="Informe o CNPJ da empresa." 
                          required="true" 
                          requiredMessage="Informe o CNPJ!" />
             <p:message for="cnpj"
                        rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
 
 
-
+            
+            <p:outputLabel value="Tipo pessoa jurídica:"
+                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="TipoPesJuri" />                                
+            <p:inputText id="TipoPesJuri"
+                         rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                         value="#{MasterControle.pessoaControle.juridica.tipoPessoaJuridica}" 
+                         title="" 
+                         required="false" 
+                         requiredMessage="Informe o tipo de pessoa jurídica" />
+            <p:message for="TipoPesJuri"
+                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
+            
+            
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
                            rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
