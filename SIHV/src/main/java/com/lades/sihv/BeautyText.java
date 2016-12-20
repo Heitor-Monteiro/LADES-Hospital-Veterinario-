@@ -58,6 +58,9 @@ public class BeautyText {
           return Str;
    }
     
+    
+    /*O método é utilizado para concatenar valores
+    pertencentes ao inputs do tipo checkBox.*/
     public String concatenaSTRING(String vetor[]){
         String textoTEMP="";
         for (String vetor1 : vetor) {

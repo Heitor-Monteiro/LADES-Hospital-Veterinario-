@@ -1,12 +1,13 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3" layout="grid"
+        <p:panelGrid columns="3"
+                     layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
 
@@ -17,18 +18,17 @@
             <p:inputNumber id="fisico1" 
                            value="#{MasterControle.consultaControle.exameFisico.fcBpm}"
                            title="Frequência cardíaca"
-                           decimalSeparator=","
-                           thousandSeparator="."
-                           maxlength="3"
-                           maxValue="999"
+                           maxlength="4"
+                           maxValue="9999"
+                           decimalPlaces="0"
                            required="true" 
                            requiredMessage="Informe a frequência cardíaca!" />
             <p:message for="fisico1" />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
-            
-            
-            
+
+
+
             <p:outputLabel value="FR(mpm):"
                            title="FR(Frequência Respiratória) mpm(Movimento Por Minuto)"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -36,19 +36,18 @@
             <p:inputNumber id="fisico2" 
                            value="#{MasterControle.consultaControle.exameFisico.frMpm}"
                            title="Frequência respiratória"
-                           decimalSeparator=","
-                           thousandSeparator="."
                            maxlength="3"
                            maxValue="999"
+                           decimalPlaces="0"
                            required="true" 
                            requiredMessage="Informe a frequência respiratória!" 
                            style="margin-bottom: 20px;" />
             <p:message for="fisico2" />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
-            
-            
-            
+
+
+
             <p:outputLabel value="Temperatura retal:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico3" />
@@ -56,17 +55,18 @@
                            value="#{MasterControle.consultaControle.exameFisico.termpeReta}"
                            decimalSeparator=","
                            thousandSeparator="."
-                           maxlength="3"
+                           maxlength="4"
                            maxValue="999"
+                           decimalPlaces="1"
                            required="true" 
                            requiredMessage="Informe a temperatura retal!"
                            style="margin-bottom: 20px;" />
             <p:message for="fisico3" />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
-            
-            
-            
+
+
+
             <p:outputLabel value="TPC:"
                            title="TPC(Tempo de Preenchimento Capilar)"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -74,18 +74,17 @@
             <p:inputNumber id="fisico4" 
                            value="#{MasterControle.consultaControle.exameFisico.tpc}"
                            title="Tempo de preenchimento capilar"
-                           decimalSeparator=","
-                           thousandSeparator="."
                            maxlength="3"
-                           maxValue="100"
+                           maxValue="999"
+                           decimalPlaces="0"
                            required="true" 
                            requiredMessage="Informe o tempo de preenchimento capilar!"
                            style="margin-bottom: 20px;" />
             <p:message for="fisico4" />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
             <p:outputLabel /><p:outputLabel /><p:outputLabel />
-            
-            
+
+
 
             <p:outputLabel value="Estado nutricional:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -103,9 +102,9 @@
                 <f:selectItem itemLabel="Obeso" itemValue="Obeso" />
             </p:selectOneMenu>
             <p:message for="fisico5" />
-            
 
-            
+
+
             <p:outputLabel value="Mucosa Oral:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico6" />
@@ -123,9 +122,9 @@
                 <f:selectItem itemLabel="Ictéricas" itemValue="Ictéricas" />
             </p:selectOneMenu>
             <p:message for="fisico6" />
-            
 
-            
+
+
             <p:outputLabel value="Mucosa vaginal/peniana:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico7" />
@@ -144,7 +143,7 @@
             </p:selectOneMenu>
             <p:message for="fisico7" />
 
-            
+
 
             <p:outputLabel value="Mucosa ocular:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -180,11 +179,11 @@
                 <f:selectItem itemLabel="Ausente" itemValue="Ausente" />
             </p:selectOneRadio>
             <p:message for="fisico9" />
-            
-            
-            
-            
-            
+
+
+
+
+
             <p:outputLabel value="Estado do pulso:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico10" />
@@ -199,8 +198,8 @@
                 <f:selectItem itemLabel="Irregular" itemValue="Irregular" />
             </p:selectOneRadio>
             <p:message for="fisico10" />
-            
-            
+
+
 
 
             <p:outputLabel value="Hidratação:"
@@ -219,9 +218,9 @@
                 <f:selectItem itemLabel="10-12% de desidratação" itemValue="10-12% de desidratação" />
             </p:selectOneMenu>
             <p:message for="fisico11" />
-            
-            
-            
+
+
+
 
             <p:outputLabel value="Palpação abdominal:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -235,8 +234,8 @@
             <p:message for="fisico12" />
 
 
-            
-            
+
+
             <p:outputLabel value="Auscultação cardíaca:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico13" />
@@ -247,10 +246,10 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="fisico13" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Auscultação pulmonar:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico14" />
@@ -262,8 +261,8 @@
                              maxlength="200" />
             <p:message for="fisico14" />
 
-            
-            
+
+
 
             <p:outputLabel value="Linfonodos:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -276,8 +275,8 @@
                              maxlength="200" />
             <p:message for="fisico15" />
 
-            
-            
+
+
 
             <p:outputLabel value="Pele/pelos:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -289,68 +288,55 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="fisico16" />
-        </p:panelGrid>
 
-        
-        <p:panelGrid columns="3" layout="grid"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-1, ui-grid-col-1, ui-grid-col-3" >
+
+
+
+
+            <p:outputLabel value="Informações adicionais:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="fisico17" />
+            <p:inputText id="fisico17"
+                         value="#{MasterControle.consultaControle.exameFisico.inforAdiciona}"
+                         required="false"
+                         requiredMessage=""
+                         style="margin-bottom: 20px;"
+                         maxlength="200" />
+            <p:message for="fisico17" />
+
+
+
+
 
             <p:outputLabel value="Diagnósticos diferenciais:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"/>
-
-            <p:row style="margin-top: 20px;">
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer1}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer2}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer3}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer4}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer5}" />
-            </p:row>
-
-            <p:row style="margin-top: 20px;">
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer6}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer7}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer8}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer9}" />
-
-                <p:spinner min="0" max="100" required="true"
-                           value="#{MasterControle.consultaControle.exameFisico.diagDifer10}" />
-            </p:row>
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="fisico18" />
+            <p:inputTextarea id="fisico18"
+                             value="#{MasterControle.consultaControle.exameFisico.diagDifer}"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;"
+                             maxlength="500" />
+            <p:message for="fisico18" />
         </p:panelGrid>
-        
-        
-        
+
+
+
         <p:panelGrid columns="3" layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4" >
-            
+
             <p:outputLabel />      
             <p:commandButton type="reset"
-                         style="padding: 15px 0px 15px 0px;
-                               margin-top: 25px;"
-                         id="LimparCamposFisico" 
-                         icon="fa fa-eraser" 
-                         value="Limpar cadastro" />
-            
+                             style="padding: 15px 0px 15px 0px;
+                             margin-top: 25px;"
+                             id="LimparCamposFisico" 
+                             icon="fa fa-eraser" 
+                             value="Limpar cadastro" />
+
         </p:panelGrid>
     </div>
-    
-    
-    
+
+
+
 </ui:component>

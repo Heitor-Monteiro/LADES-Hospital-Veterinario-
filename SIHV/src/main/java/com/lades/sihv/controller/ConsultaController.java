@@ -266,9 +266,6 @@ public class ConsultaController implements Serializable{
     
     
     
-    
-    /*O método é utilizado para concatenar valores
-    pertencentes ao inputs do tipo checkBox.*/
  
     /*O métodos GETs e SETs utilizados para*/
     public Date getData() {
