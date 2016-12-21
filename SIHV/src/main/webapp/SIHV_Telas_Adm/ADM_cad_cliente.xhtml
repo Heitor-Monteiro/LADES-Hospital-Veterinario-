@@ -25,7 +25,8 @@
 
 
             <h:form >
-                <p:growl id="growl" sticky="true" showDetail="true"/>                
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+                
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
 
@@ -44,20 +45,30 @@
 
 
                     <p:tab id="Confirmacao" title="Confirmação">
-                        <p:panel>
+                        <p:panel id="CadPessoaFinal"
+                                 header="Dados cadastrais do cliente"
+                                 style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;">
 
                             <ui:include src="/SIHV_Telas_Genericas/campo_pessoa_resposta.xhtml" />
 
 
                             <div class="ui-fluid ui-g">
 
-                                <div class="ui-g-12 ui-md-3 ui-lg-3"></div>
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:commandButton value="Imprimir"
+                                                     rendered="#{MasterControle.pessoaControle.showButtonPrint}"
+                                                     disabled=""
+                                                     type="button"
+                                                     icon="fa fa-print">
+                                        <p:printer target="CadPessoaFinal" />
+                                    </p:commandButton>
+                                </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton action="#{MasterControle.pessoaControle.adicionarCLIENTE()}" 
-                                                     value="#{label_SIHV.CreatePessoaSaveLink}"
+                                                     value="Salvar"
                                                      icon="fa fa-save"
-                                                     update="growl" 
+                                                     update="growl, CadPessoaFinal" 
                                                      disabled="false" />
                                 </div>
 

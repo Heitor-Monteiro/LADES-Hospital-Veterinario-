@@ -25,6 +25,7 @@ import com.lades.sihv.model.Juridica;
 import com.lades.sihv.model.JuridicaId;
 import java.io.IOException;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -47,6 +48,9 @@ public class PessoaController implements Serializable {
     private Date data;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
+    
+    //A variável controla a visibilidade do botão para imprimir o formulário
+    private boolean showButtonPrint = false;
 
     
 //    private List<Pessoa> pessoasBuscadas;
@@ -291,9 +295,17 @@ public class PessoaController implements Serializable {
                 cliente.setId(clienteId);
                 daoGenerico.save(cliente);
 
-                message.setTextoDialog("Cadastro efetuado!",
-                        "Cliente cadastrado com sucesso.",
-                        "/SIHV_Telas_Adm/ADM_cad_cliente");
+//                message.setTextoDialog("Cadastro efetuado!",
+//                        "Cliente cadastrado com sucesso.",
+//                        "/SIHV_Telas_Adm/ADM_cad_cliente");
+                
+                //Bloqueio do botão back do Wizard PrimeFAces
+                RequestContext.getCurrentInstance().execute("wiz.hideBackNav();");
+                
+                message.info("Cadastro efetuado!", "Cliente cadastrado com sucesso.");
+                
+                //Habilitando visibilidade do botão para impressão
+                this.showButtonPrint=true;
 
                 return true;
             } else {
@@ -305,7 +317,7 @@ public class PessoaController implements Serializable {
             return false;
         }
     }
-
+    
     public void redirecionar(String url) throws IOException {
         FacesContext.getCurrentInstance().getExternalContext().redirect(url);
     }
@@ -383,6 +395,19 @@ public class PessoaController implements Serializable {
     public void setMudancaCpfCnpj(boolean mudancaCpfCnpj) {
         this.mudancaCpfCnpj = mudancaCpfCnpj;
     }
+    
+    /*Método usados para alterar o estado de visibilidade do botão de impressão*/
+    public boolean isShowButtonPrint() {
+        return showButtonPrint;
+    }
+
+    public void setShowButtonPrint(boolean showButtonPrint) {
+        this.showButtonPrint = showButtonPrint;
+    }
+    //-------------------------------------------------------------------------
+    
+    
+    
 
     //métodos que não estão sendo utilizado ainda
     public String alterarPessoa() {
