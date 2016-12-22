@@ -37,6 +37,9 @@ public class PessoaController implements Serializable {
     private JuridicaId juridicaId;
     private Juridica juridica;
     private Telefone telefone;
+    private Telefone celular;
+
+
     private User user;
     private UserId userId;
     private Cliente cliente;
@@ -99,6 +102,7 @@ public class PessoaController implements Serializable {
         fisica = new Fisica();
         fisicaId = new FisicaId();
         telefone = new Telefone();
+        celular = new Telefone();
         user = new User();
         userId = new UserId();
         data = new Date();
@@ -273,6 +277,7 @@ public class PessoaController implements Serializable {
                 daoGenerico.save(pessoa);
 
                 telefone.setPessoa(pessoa);
+                celular.setPessoa(pessoa);
                 daoGenerico.save(telefone);
                 if (mudancaCpfCnpj) {
                     fisicaId.setFkPessoa(pessoa.getPkPessoa());
@@ -395,6 +400,14 @@ public class PessoaController implements Serializable {
         return "index";
     }
 
+        public Telefone getCelular() {
+        return celular;
+    }
+
+    public void setCelular(Telefone celular) {
+        this.celular = celular;
+    }
+    
 //    public DataModel getListaPessoaDataModel() {
 //        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
 //        return listarPessoas;

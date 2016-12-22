@@ -12,7 +12,12 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" > 
 
 
-            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_nome}" 
+            <p:outputLabel value="Nome:"
+                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="nome" />
+            <p:outputLabel value="Razão social:"
+                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="nome" />
             <p:inputText id="nome" 
@@ -25,11 +30,13 @@
 
 
             <p:outputLabel value="Pessoa física/jurídica:"
+                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="TipoPessoa" />
             <p:selectOneRadio id="TipoPessoa"
                               columns="2"
                               layout="responsive"
+                              rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                               value="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
                               required="true"
                               requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
@@ -37,7 +44,7 @@
                 <f:selectItem itemLabel="CNPJ" itemValue="false" />
                 <p:ajax update="PessoaForm" />
             </p:selectOneRadio>
-            <p:message for="TipoPessoa" />
+            <p:message for="TipoPessoa" rendered="#{MasterControle.pessoaControle.tipoPessoa}"/>
 
 
             <p:outputLabel value="CPF:"
@@ -70,20 +77,6 @@
             <p:message for="cnpj"
                        rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
 
-
-            
-            <p:outputLabel value="Tipo pessoa jurídica:"
-                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="TipoPesJuri" />                                
-            <p:inputText id="TipoPesJuri"
-                         rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                         value="#{MasterControle.pessoaControle.juridica.tipoPessoaJuridica}" 
-                         title="" 
-                         required="false" 
-                         requiredMessage="Informe o tipo de pessoa jurídica" />
-            <p:message for="TipoPesJuri"
-                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
             
             
 
@@ -227,38 +220,18 @@
             </p:selectOneMenu>
             <p:message for="uf" />
 
-
-
-
-
-
-            <p:outputLabel value="Informar e-mail:"
-                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:selectOneButton id="value2"
-                               rendered="#{MasterControle.pessoaControle.tipoPessoa}"
-                               value="#{MasterControle.pessoaControle.emailOpcional}"
-                               required="false" >
-                <f:selectItem itemLabel="Sim" itemValue="true" />
-                <f:selectItem itemLabel="Não" itemValue="false" />
-                <p:ajax update="CadPessoa" />
-            </p:selectOneButton>
-            <p:outputLabel rendered="#{MasterControle.pessoaControle.tipoPessoa}" />
-
-
-
-
-
-
-
             <p:outputLabel value="Endereço de email:"
-                           rendered="#{MasterControle.pessoaControle.emailOpcional}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                            for="email" />
-            <p:inputText id="email" 
+                        <p:outputLabel value="Endereço de email:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
+                           for="email_obr" />
+            <p:inputText id="email_obr" 
                          value="#{MasterControle.pessoaControle.pessoa.email}" 
                          title="Ex.: usuario@email.com"
-                         rendered="#{MasterControle.pessoaControle.emailOpcional}"
+                         rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
                          maxlength="100"
                          required="true" 
                          requiredMessage="Por favor, informe seu e-mail!"
@@ -266,26 +239,39 @@
                 <f:validateRegex
                     pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </p:inputText>
-            <p:message for="email"
-                       rendered="#{MasterControle.pessoaControle.emailOpcional}"/>
-
-
-
-
-
-
-
+            <p:inputText id="email" 
+                         value="#{MasterControle.pessoaControle.pessoa.email}" 
+                         title="Ex.: usuario@email.com"
+                         rendered="#{MasterControle.pessoaControle.tipoPessoa}"
+                         maxlength="100"
+                         required="false" 
+                         validatorMessage="Formato de e-mail incorreto!" >
+                <f:validateRegex
+                    pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+            </p:inputText>
+            
+            <p:message for="email"/>
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="telefone" />
-            <p:inputMask mask="(99) 99999-9999" 
+            <p:inputMask mask="(99) 9999-9999" 
                          id="telefone"
                          value="#{MasterControle.pessoaControle.telefone.numero}"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
+                         required="false"
+                         />
+            <p:message for="telefone"/>
+            <p:outputLabel value="#{label_SIHV.celular_label}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="celular" />
+            <p:inputMask mask="(99) 99999-9999" 
+                         id="celular"
+                         value="#{MasterControle.pessoaControle.celular.numero}"
+                         title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="true"
-                         requiredMessage="#{label_SIHV.CreateTelefoneRequiredMessage_numero}"/>
-            <p:message for="telefone" />
+                         requiredMessage="#{label_SIHV.celular_requiredMsg}"/>
+            <p:message for="celular" />
         </p:panelGrid>
     </div>
 

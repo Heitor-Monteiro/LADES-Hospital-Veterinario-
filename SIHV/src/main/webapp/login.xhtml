@@ -13,10 +13,12 @@ and open the template in the editor.
         <f:viewAction action="#{login.logout()}" />
     </f:metadata>
     <h:head>
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagens/favicon.ico" />
         <title>
-            <h:outputText value="#{label_SIHV.TituloSIHV}"></h:outputText>
+            <h:outputText value="Login | SIHV - Sistema Integrado do Hospital Veterinário"></h:outputText>
         </title> 
-
+        <meta name="theme-color" content="#eaeaea"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
         <meta charset="utf-8" />
         <h:outputStylesheet  library="css" name="login.css" />
         <h:outputStylesheet library="fonts" name="fontloader.css" />

@@ -10,6 +10,12 @@
                      columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3">
 
             <p:outputLabel value="Nome:"
+                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+            <p:outputLabel value="#{MasterControle.pessoaControle.pessoa.nome}" styleClass="outputLabel" />
+
+            <p:outputLabel value="Razão social:"
+                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:outputLabel value="#{MasterControle.pessoaControle.pessoa.nome}" styleClass="outputLabel" />
 
@@ -21,12 +27,7 @@
                            rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:outputLabel value="#{MasterControle.pessoaControle.pessoa.cpfCnpj}" styleClass="outputLabel" />
-            
-            <p:outputLabel value="Tipo pessoa jurídica:"
-                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
-            <p:outputLabel value="#{MasterControle.pessoaControle.juridica.tipoPessoaJuridica}" styleClass="outputLabel" rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"/>
-            
+
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
                            rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
@@ -77,13 +78,16 @@
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:outputLabel value="#{MasterControle.pessoaControle.telefone.numero}" styleClass="outputLabel" />
-
+            
+            <p:outputLabel value="#{label_SIHV.celular_label}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+            <p:outputLabel value="#{MasterControle.pessoaControle.celular.numero}" styleClass="outputLabel" />
 
             <p:outputLabel value="E-mail:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           rendered="#{MasterControle.pessoaControle.emailOpcional}" />
+                           />
             <p:outputLabel value="#{MasterControle.pessoaControle.pessoa.email}" styleClass="outputLabel"
-                           rendered="#{MasterControle.pessoaControle.emailOpcional}" />
+                           />
 
         </p:panelGrid>
 

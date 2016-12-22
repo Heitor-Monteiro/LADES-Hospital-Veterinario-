@@ -6,10 +6,11 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-
+        <link rel="shortcut icon" type="image/x-icon" href="#{request.contextPath}/resources/imagens/favicon.ico" />
         <f:facet name="first">
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
+            <meta name="theme-color" content="#00B59B"/>
         </f:facet>
 
         <title>
@@ -97,12 +98,11 @@
 
 
             <ui:insert name="content" />
-
             <div class="footer">
-                <p:separator />
                 <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
-                                   Sistemas | Copyright © 2016 Universidade Federal do Pará" />
+                               Sistemas | Copyright © 2016 Universidade Federal do Pará" style="font-family: Open Sans, Helvetica, Arial;" />
             </div>
+
         </div>
 
     </h:body>
