@@ -16,16 +16,12 @@ import com.lades.sihv.Security;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.faces.model.DataModel;
-import javax.faces.model.ListDataModel;
 import com.lades.sihv.BeautyText;
+import com.lades.sihv.Tools;
 import com.lades.sihv.model.Fisica;
 import com.lades.sihv.model.FisicaId;
 import com.lades.sihv.model.Juridica;
 import com.lades.sihv.model.JuridicaId;
-import java.io.IOException;
-import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -46,11 +42,9 @@ public class PessoaController implements Serializable {
     private Cliente cliente;
     private ClienteId clienteId;
     private Date data;
+    private Tools tools;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
-    
-    //A variável controla a visibilidade do botão para imprimir o formulário
-    private boolean showButtonPrint = false;
 
     
 //    private List<Pessoa> pessoasBuscadas;
@@ -89,9 +83,10 @@ public class PessoaController implements Serializable {
     private PessoaController() {
     }
 
-    public PessoaController(GenericoDAO daoGenerico, FacesMessages message) {
+    public PessoaController(GenericoDAO daoGenerico, FacesMessages message, Tools tools) {
         this.daoGenerico = daoGenerico;
         this.message = message;
+        this.tools = tools;
     }
 
     /*O método prepara o cadastro de um
@@ -300,12 +295,12 @@ public class PessoaController implements Serializable {
 //                        "/SIHV_Telas_Adm/ADM_cad_cliente");
                 
                 //Bloqueio do botão back do Wizard PrimeFAces
-                RequestContext.getCurrentInstance().execute("wiz.hideBackNav();");
+                tools.blockBackWizad();
                 
                 message.info("Cadastro efetuado!", "Cliente cadastrado com sucesso.");
                 
                 //Habilitando visibilidade do botão para impressão
-                this.showButtonPrint=true;
+                this.tools.setShowButtonPrint(true);
 
                 return true;
             } else {
@@ -318,9 +313,7 @@ public class PessoaController implements Serializable {
         }
     }
     
-    public void redirecionar(String url) throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect(url);
-    }
+    
 
     /*O métodos GETs e SETs utilizados para 
     persistir usuários do sistema e clientes*/
@@ -395,19 +388,6 @@ public class PessoaController implements Serializable {
     public void setMudancaCpfCnpj(boolean mudancaCpfCnpj) {
         this.mudancaCpfCnpj = mudancaCpfCnpj;
     }
-    
-    /*Método usados para alterar o estado de visibilidade do botão de impressão*/
-    public boolean isShowButtonPrint() {
-        return showButtonPrint;
-    }
-
-    public void setShowButtonPrint(boolean showButtonPrint) {
-        this.showButtonPrint = showButtonPrint;
-    }
-    //-------------------------------------------------------------------------
-    
-    
-    
 
     //métodos que não estão sendo utilizado ainda
     public String alterarPessoa() {

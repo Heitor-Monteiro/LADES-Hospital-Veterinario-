@@ -7,6 +7,7 @@ package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
+import com.lades.sihv.Tools;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.model.Animais;
@@ -27,6 +28,7 @@ public class MasterController implements Serializable {
 
     private final GenericoDAO daoGenerico = new GenericoDAOImpl();
     private final FacesMessages message = new FacesMessages();
+    private final Tools tools = new Tools();
 
     private Pessoa pessoa;
     private PessoaBusca pessoaBusca;
@@ -38,13 +40,13 @@ public class MasterController implements Serializable {
     private ConsultaController consultaControle;
 
     public void prepararControllerPessoa() {
-        pessoaControle = new PessoaController(daoGenerico, message);
+        pessoaControle = new PessoaController(daoGenerico, message, tools);
     }
 
     //-------------------------------------------------------
     public void prepararCadastroAnimal() {
         prepararPesquisaController();
-        animalControle = new AnimalController(daoGenerico, message);
+        animalControle = new AnimalController(daoGenerico, message, tools);
         animalControle.prepararListaPelagem();
     }
 
@@ -127,5 +129,9 @@ public class MasterController implements Serializable {
 
     public PessoaController getPessoaControle() {
         return pessoaControle;
+    }
+
+    public Tools getTools() {
+        return tools;
     }
 }

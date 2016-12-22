@@ -21,6 +21,7 @@
             <f:metadata>
                 <f:viewAction action="#{MasterControle.prepararControllerPessoa()}" />
                 <f:viewAction action="#{MasterControle.pessoaControle.prepararAdicionarCliente()}" />
+                <f:viewAction action="#{MasterControle.tools.setRestShowButtonPrint()}" />
             </f:metadata>
 
 
@@ -56,7 +57,7 @@
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton value="Imprimir"
-                                                     rendered="#{MasterControle.pessoaControle.showButtonPrint}"
+                                                     rendered="#{MasterControle.tools.showButtonPrint}"
                                                      disabled=""
                                                      type="button"
                                                      icon="fa fa-print">

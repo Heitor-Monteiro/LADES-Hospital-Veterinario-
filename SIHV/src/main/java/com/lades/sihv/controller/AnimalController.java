@@ -6,6 +6,7 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
+import com.lades.sihv.Tools;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;
@@ -26,13 +27,15 @@ public class AnimalController implements Serializable {
     private Animais animal;
     private AnimaisId animalID;
     private Date data;
+    private Tools tools;
 
     private AnimalController() {
     }
 
-    public AnimalController(GenericoDAO daoGenerico, FacesMessages message) {
+    public AnimalController(GenericoDAO daoGenerico, FacesMessages message, Tools tools) {
         this.daoGenerico = daoGenerico;
         this.message = message;
+        this.tools = tools;
     }
 
     /*Pelagem*/
@@ -52,7 +55,7 @@ public class AnimalController implements Serializable {
 
     /*Pelagem*/
 
- /*Este método prepara o cadastro de um novo animal,
+    /*Este método prepara o cadastro de um novo animal,
     ele é invocado quando o formulários para cadastrar
     um novo animal for chamado, ele também realiza
     a limpeza dos campos para cadastrar um animal
@@ -62,43 +65,38 @@ public class AnimalController implements Serializable {
         animalID = new AnimaisId();
         data = new Date();
     }
-    
-    
-    
-    public void gerarRGHV(){
+
+    public void gerarRGHV() {
         //pegando ano atual
-        String rghv = ""+Calendar.getInstance().get(Calendar.YEAR);
-        
+        String rghv = "" + Calendar.getInstance().get(Calendar.YEAR);
+
         //Consultando o tipo(P,G,S)
         rghv += animal.getCategoriaAnimal();
-        
-        List<Animais> lista = daoGenerico.list("select a from Animais a where a.id.pkAnimal >= 1 and a.categoriaAnimal ='"+animal.getCategoriaAnimal()+"'");
-        
+
+        List<Animais> lista = daoGenerico.list("select a from Animais a where a.id.pkAnimal >= 1 and a.categoriaAnimal ='" + animal.getCategoriaAnimal() + "'");
+
         short rghvNum = 0;
         if (lista.size() > 0) {
-            rghvNum = (short)daoGenerico.list("select max(a.rghvNum) from Animais a where a.categoriaAnimal ='"+animal.getCategoriaAnimal()+"'").get(0);
+            rghvNum = (short) daoGenerico.list("select max(a.rghvNum) from Animais a where a.categoriaAnimal ='" + animal.getCategoriaAnimal() + "'").get(0);
             System.out.println("Lista não vazia===========================================");
         }
-        
+
         rghvNum++;
-        
-        if(rghvNum <= 9){
-            rghv += "000"+rghvNum;
-        }else if(rghvNum <= 99){
-            rghv += "00"+rghvNum;
-        }else if(rghvNum <= 999){
-            rghv += "0"+rghvNum;
-        }else{
+
+        if (rghvNum <= 9) {
+            rghv += "000" + rghvNum;
+        } else if (rghvNum <= 99) {
+            rghv += "00" + rghvNum;
+        } else if (rghvNum <= 999) {
+            rghv += "0" + rghvNum;
+        } else {
             rghv += rghvNum;
         }
-        
+
         animal.setRghv(rghv);
         animal.setRghvNum(rghvNum);
     }
-    
-    
-    
-    
+
     //Método para persistir um novo animal
     public void adicionarANIMAL(Pessoa pessoa) {
         try {
@@ -112,10 +110,11 @@ public class AnimalController implements Serializable {
             animalID.setClienteFkCliente(Integer.parseInt(clientePK));
             animal.setId(animalID);
             animal.setCadDataHora(data);
-            boolean newPelagem=true;
-            for(String check : listaPelagem){
-                if(check.equals(animal.getPelagem()))
-                    newPelagem=false;
+            boolean newPelagem = true;
+            for (String check : listaPelagem) {
+                if (check.equals(animal.getPelagem())) {
+                    newPelagem = false;
+                }
             }
             if (newPelagem) {
                 Pelagem novaPelagem = new Pelagem();
@@ -124,10 +123,15 @@ public class AnimalController implements Serializable {
             }
             daoGenerico.save(animal);
 
-            message.setTextoDialog("Cadastro efetuado!",
-                    "Animal cadastrado com sucesso.",
-                    "/SIHV_Telas_Adm/ADM_cad_basico_animal");
-            //message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
+//            message.setTextoDialog("Cadastro efetuado!",
+//                    "Animal cadastrado com sucesso.",
+//                    "/SIHV_Telas_Adm/ADM_cad_basico_animal");
+
+            tools.blockBackWizad();
+
+            //Habilitando visibilidade do botão para impressão
+            this.tools.setShowButtonPrint(true);
+            message.info("Cadastro efetuado!","Animal cadastrado com sucesso.");
         } catch (Exception e) {
             message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
         }
