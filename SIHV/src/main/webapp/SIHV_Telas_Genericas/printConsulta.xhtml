@@ -1,0 +1,358 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        .titulo{
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .subtext{
+            font-size: 12px;
+        }
+
+        .corFont{
+            color: #5f666c;
+        }
+
+        .negrit{
+            font-weight: bold;
+        }
+    </style>
+
+
+    <div class="corFont" style="height: 1300px;">
+        <div style="text-align: center">
+            <h:graphicImage library="imagens" 
+                            name="sihv_logo_full.svg"
+                            style="height: 50px;" />
+        </div>
+
+        <h:outputLabel class="titulo"
+                       value="Dados da consulta:" />
+        <div class="ui-g-12 subtext">
+            <div class="ui-g-3 ui-md-3 ui-lg-3">
+                <h:outputLabel class="negrit"
+                               value="Código: "/>
+                <h:outputText value="000000" />
+            </div>
+
+            <div class="ui-g-2 ui-md-2 ui-lg-2">
+                <h:outputLabel class="negrit"
+                               value="Data: "/>
+                <h:outputText value="00/00/0000" />
+            </div>
+
+        </div>
+        <p:separator/>
+        <h:outputLabel class="titulo"
+                       value="Dados do proprietário:" />
+
+        <div class="ui-g-12 subtext">
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <h:outputText class="negrit"
+                              value="Nome do cliente:"/>
+                <h:outputText value="textobbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" />
+            </div>
+
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <h:outputText class="negrit"
+                              value="CPF/CNPJ:"/>
+                <h:outputText value="000.000.000-00" />
+            </div>
+
+
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <h:outputText class="negrit"
+                              value="Endereço:"/>
+                <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+            </div>
+
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <h:outputText class="negrit"
+                              value="Cidade:"/>
+                <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+            </div>
+
+            <div class="ui-g-6 ui-md-6 ui-lg-6">
+                <h:outputText class="negrit"
+                              value="CEP:"/>
+                <h:outputText value="68786-000" />
+            </div>
+        </div>
+
+
+
+
+        <p:separator/>
+        <h:outputLabel class="titulo"
+                       value="Dados do animal:"/>
+
+        <div class="ui-g-12 subtext">
+            <div class="ui-g-6 ui-md-2 ui-lg-2">
+                <h:outputText class="negrit"
+                              value="RGHV: "/>
+                <h:outputText value="2016P0001" />
+            </div>
+
+            <div class="ui-g-6 ui-md-4 ui-lg-4">
+                <h:outputText class="negrit"
+                              value="Nome do animal: "/>
+                <h:outputText value="Chavier" />
+            </div>
+
+            <div class="ui-g-2 ui-md-1 ui-lg-1">
+                <h:outputText class="negrit"
+                              value="Sexo: "/>
+                <h:outputText value="M" />
+            </div>
+
+            <div class="ui-g-2 ui-md-1 ui-lg-1">
+                <h:outputText class="negrit"
+                              value="Peso: "/>
+                <h:outputText value="Kg" />
+                <h:outputText value="10" />
+            </div>
+
+            <div class="ui-g-3 ui-md-2 ui-lg-2">
+                <h:outputText class="negrit"
+                              value="Categoria: "/>
+                <h:outputText value="P" />
+            </div>
+
+            <div class="ui-g-2 ui-md-2 ui-lg-2">
+                <h:outputText class="negrit"
+                              value="Especie: "/>
+                <h:outputText value="Canino" />
+            </div>
+        </div>
+
+        <p:separator />
+
+        <h:outputLabel class="titulo"
+                       value="Resultados do exame:"/>
+
+
+        <div class="ui-g-12 ui-md-12 ui-lg-12 subtext">
+            <h:outputText class="negrit"
+                          value="Sistemas afetados: " />
+            <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+        </div>
+
+        <div class="ui-g-12 ui-md-12 ui-lg-12 subtext">
+            <h:outputText class="negrit"
+                          value="Laudo:: " />
+            <h:outputText value="mmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmmmm" />
+        </div>
+
+        <p:separator />
+
+        <div class="ui-g-12 ui-md-12 ui-lg-12">
+            <h:outputLabel class="titulo"
+                           value="Anamnese:"/>
+        </div>
+
+        <div class="subtext">
+            <div class="ui-g-12">
+                <div class="ui-g-4 ui-md-4 ui-lg-4">
+                    <h:outputText class="negrit"
+                                  value="Queixa principal: " />
+                    <h:outputText value="mm mmm mmmm mmmmm mmmm mmmmmm mmmmmm mmmmm mmmm mmmmm mmmmmm mmmm mmmm" />
+                </div>
+
+                <div class="ui-g-2 ui-md-2 ui-lg-2">
+                    <h:outputText class="negrit"
+                                  value="Já foi tratado: " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-2 ui-md-4 ui-lg-4">
+                    <h:outputText class="negrit"
+                                  value="Medicação/dose: " />
+                    <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <h:outputText class="negrit"
+                                  value="Antecedentes mórbidos: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+
+                <div class="ui-g-6 ui-md-6 ui-lg-6">
+                    <h:outputText class="negrit"
+                                  value="Histórico familiar: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+            </div>
+
+            <div class="ui-g-12 ">
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Alimentação (Dieta caseira): " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-3 ui-md-6 ui-lg-6">
+                    <h:outputText class="negrit"
+                                  value="Descrição da dieta caseira: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Alimentação (Ração): " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-3 ui-md-6 ui-lg-6">
+                    <h:outputText class="negrit"
+                                  value="Descrição da dieta por ração: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Vacinação: " />
+                    <h:outputText value="gdsvgghvhdsgcdhdsgdsgdhgdssdgdgsd" />
+                </div>
+
+                <div class="ui-g-3 ui-md-5 ui-lg-5">
+                    <h:outputText class="negrit"
+                                  value="Sobre a vacina: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Origem da vacina: " />
+                    <h:outputText value="Nacional" />
+                </div>
+            </div>
+
+            <div class="ui-g-12">
+                <div class="ui-g-2 ui-md-2 ui-lg-2">
+                    <h:outputText class="negrit"
+                                  value="Vermifugação: " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-5 ui-md-5 ui-lg-5">
+                    <h:outputText class="negrit"
+                                  value="Qual/Dose vermifugação: " />
+                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4 ui-lg-4">
+                    <h:outputText class="negrit"
+                                  value="Data: aplicação de vermifugação: " />
+                    <h:outputText value="00/00/0000" />
+                </div>
+            </div>
+            
+            <div class="ui-g-12">
+                <div class="ui-g-2 ui-md-2 ui-lg-2">
+                    <h:outputText class="negrit"
+                                  value="Ectoparasitas: " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Qual ectoparasitas: " />
+                    <h:outputText value="Ixodidiose Puliciose Phthiraptera" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Controle de ectoparasitas: " />
+                    <h:outputText value="Sim" />
+                </div>
+                
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Qual produto utilizado: " />
+                    <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
+                </div>
+            </div>
+            
+            <div class="ui-g-12">
+                <div class="ui-g-2 ui-md-2 ui-lg-2">
+                    <h:outputText class="negrit"
+                                  value="Acesso à rua: " />
+                    <h:outputText value="Sozinho Acompanhado" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Descrição do habitat: " />
+                    <h:outputText value="fhhfbv dfkhhfdbjh kjvfbe e dsiuncdidbk dckjcdsc ddd dskjcdkjs" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Contactantes: " />
+                    <h:outputText value="Sim" />
+                </div>
+                
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Descrição dos contactantes: " />
+                    <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
+                </div>
+            </div>
+            
+            <div class="ui-g-12">
+                <div class="ui-g-2 ui-md-2 ui-lg-2">
+                    <h:outputText class="negrit"
+                                  value="Mesmo problema em contactantes? " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-3 ui-md-3 ui-lg-3">
+                    <h:outputText class="negrit"
+                                  value="Contato com roedores: " />
+                    <h:outputText value="Sim" />
+                </div>
+            </div>
+        </div>
+
+        <p:separator />
+        
+        <div class="ui-g-12 ui-md-12 ui-lg-12">
+            <h:outputLabel class="titulo"
+                           value="Sistema digestório e glândulas anexas:"/>
+        </div>
+        
+        <div class="subtext">
+            <div class="ui-g-12">
+                <div class="ui-g-4 ui-md-4 ui-lg-4">
+                    <h:outputText class="negrit"
+                                  value="Está se alimentando normalmente: " />
+                    <h:outputText value="Sim" />
+                </div>
+
+                <div class="ui-g-4 ui-md-4 ui-lg-4">
+                    <h:outputText class="negrit"
+                                  value="Animal não se alimenta, descreva: " />
+                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <p:commandButton value="Imprimir"
+                     disabled=""
+                     type="button"
+                     icon="fa fa-print">
+        <p:printer target="printConsult" />
+    </p:commandButton>
+</ui:component>

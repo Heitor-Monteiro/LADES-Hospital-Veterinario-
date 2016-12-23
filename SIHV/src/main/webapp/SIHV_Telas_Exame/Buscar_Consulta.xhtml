@@ -23,7 +23,7 @@
                 
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
-                    
+                    <!--
                     <p:tab id="etapa1" title="Dados da consulta" >
                         <p:panel >
                             
@@ -31,45 +31,18 @@
                             
                         </p:panel>
                     </p:tab>
+                    -->
                     
-                    
-                    <p:tab id="etapa2" title="Anamnese" >
-                        <p:panel>
+                    <p:tab id="etapa2" title="Exame" >
+                        <p:panel id="printConsult">
                             
-                            
-                            
-                        </p:panel>
-                    </p:tab>
-                    
-                    
-                    <p:tab id="etapa3" title="Exame físico" >
-                        <p:panel>
-                            
-                            
+                            <ui:include src="/SIHV_Telas_Genericas/printConsulta.xhtml" />
                             
                         </p:panel>
                     </p:tab>
                     
                     
                     
-                    <p:tab id="etapa4" title="Exames complementares" >
-                        <p:panel>
-                            
-                            
-                            
-                            
-                            
-                        </p:panel>
-                    </p:tab>
-                    
-                    
-                    
-                    
-                    <p:tab id="etapa5" title="Finalizar" >
-                        <p:panel>
-                            
-                        </p:panel>
-                    </p:tab>
                     
                 </p:wizard>
             
