@@ -119,6 +119,7 @@ public class PessoaController implements Serializable {
         pessoa = new Pessoa();
         pessoa.setExclusaoLogica(false);
         telefone = new Telefone();
+        celular = new Telefone();
         cliente = new Cliente();
         clienteId = new ClienteId();
         fisica = new Fisica();
@@ -161,7 +162,7 @@ public class PessoaController implements Serializable {
             daoGenerico.save(fisica);
             telefone.setPessoa(pessoa);
             daoGenerico.save(telefone);
-
+            daoGenerico.save(celular);
             userId.setFkPessoa(pessoa.getPkPessoa());
             user.setId(userId);
             user.setUserSenha(secure.encrypter(user.getUserSenha()));
@@ -279,6 +280,7 @@ public class PessoaController implements Serializable {
                 telefone.setPessoa(pessoa);
                 celular.setPessoa(pessoa);
                 daoGenerico.save(telefone);
+                daoGenerico.save(celular);
                 if (mudancaCpfCnpj) {
                     fisicaId.setFkPessoa(pessoa.getPkPessoa());
                     fisica.setId(fisicaId);
