@@ -64,8 +64,10 @@ public class Login implements Serializable {
             if (valid!=-1) {
 		BeautyText stringer = new BeautyText();
                 this.setUsername(stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0)));
+                this.setUserTipo((String)work.list("select u.userTipo from Pessoa p, User u where p.pkPessoa="+valid+" and u.id.fkPessoa="+valid+"").get(0));
                 FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");	
                 System.out.println("BACK-END WARNING: USER LOGGED! username="+stringer.fistNLast((String)work.list("select p.nome from Pessoa p where p.pkPessoa="+valid).get(0))+" [ public String validateUsernamePassword() throws IOException ]");
+                System.out.println("BACK-END WARNING: TipoUser="+getUserTipo());
                 return "index";
             } else {
                 FacesMessages mensagem = new FacesMessages();
@@ -88,6 +90,14 @@ public class Login implements Serializable {
         
         public void setUsername(String name){
             SessionUtils.getSession().setAttribute("username",name);
+        }
+        
+        public void setUserTipo(String tipo){
+            SessionUtils.getSession().setAttribute("UserTipo", tipo);
+        }
+        
+        public String getUserTipo(){
+            return (String)SessionUtils.getSession().getAttribute("UserTipo");
         }
 
 	//logout event, invalidate session
