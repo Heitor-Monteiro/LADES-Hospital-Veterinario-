@@ -23,8 +23,14 @@
         }
     </style>
 
-
-    <div class="corFont" style="height: 3900px;">
+    <p:commandButton value="Imprimir"
+                     disabled=""
+                     type="button"
+                     icon="fa fa-print">
+        <p:printer target="printConsult" />
+    </p:commandButton>
+    
+    <div class="corFont">
         <div style="text-align: center">
             <h:graphicImage library="imagens" 
                             name="sihv_logo_full.svg"
@@ -257,7 +263,7 @@
                     <h:outputText value="00/00/0000" />
                 </div>
             </div>
-            
+
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
@@ -276,14 +282,14 @@
                                   value="Controle de ectoparasitas: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Qual produto utilizado: " />
                     <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
                 </div>
             </div>
-            
+
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
@@ -302,14 +308,14 @@
                                   value="Contactantes: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Descrição dos contactantes: " />
                     <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
                 </div>
             </div>
-            
+
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
@@ -326,12 +332,12 @@
         </div>
 
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema digestório e glândulas anexas:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
@@ -347,7 +353,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -361,7 +367,7 @@
                                   value="Aspecto do vômito: " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Evolução do vômito: " />
@@ -369,7 +375,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -385,7 +391,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -399,7 +405,7 @@
                                   value="Aspecto da diarreia: " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Evolução da diarreia: " />
@@ -407,7 +413,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -421,7 +427,7 @@
                                   value="Evolução (Disquesia/Tenesmo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="O sistema digestório e glândulas anexas foi afetado: " />
@@ -429,14 +435,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema respiratório e cardiovascular:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -450,7 +456,7 @@
                                   value="Tosse é produtiva?: " />
                     <h:outputText value="Não produtiva" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Tosse (Frequência/Evolução): " />
@@ -458,7 +464,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -466,7 +472,7 @@
                                   value="Espirro: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-7 ui-md-7 ui-lg-7">
                     <h:outputText class="negrit"
                                   value="Espirro (Evolução): " />
@@ -474,7 +480,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -488,13 +494,13 @@
                                   value="Secreção nasal (uni ou bilateral): " />
                     <h:outputText value="Unilateral(esquerdo)" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção nasal (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Secreção nasal (Evolução): " />
@@ -502,7 +508,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -516,13 +522,13 @@
                                   value="Dispneia/Taquipnéia (Evolução): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Cianose: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Cianose (Evolução): " />
@@ -530,7 +536,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -544,13 +550,13 @@
                                   value="Cansaço fácil (Evolução): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Síncope: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Síncope (Evolução): " />
@@ -558,7 +564,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -572,7 +578,7 @@
                                   value="Emagrecimento (Evolução): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Sistema respiratório e cardiovascular foi afetado? " />
@@ -580,14 +586,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema gênito-urinário e glândulas mamárias:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -603,7 +609,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -617,7 +623,7 @@
                                   value="Urina: " />
                     <h:outputText value="Incontinência" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Urina (aspecto/cor/odor): " />
@@ -631,7 +637,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -645,7 +651,7 @@
                                   value="Prenhe: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Último parto: " />
@@ -653,7 +659,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -667,7 +673,7 @@
                                   value="Secreção vaginal/peniana (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Secreção vaginal/peniana (Evolução): " />
@@ -675,7 +681,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -691,14 +697,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema tegumentar:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
@@ -714,7 +720,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -730,7 +736,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -746,7 +752,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -762,7 +768,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
@@ -778,7 +784,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
@@ -788,14 +794,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema neurológico:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
@@ -811,7 +817,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -825,7 +831,7 @@
                                   value="Ataxia (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Ataxia (Evolução): " />
@@ -833,7 +839,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -847,13 +853,13 @@
                                   value="Paresia/Paralisia: " />
                     <h:outputText value="Espástica" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia (Evolução): " />
@@ -861,7 +867,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -869,13 +875,13 @@
                                   value="Convulsão: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Convulsão (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Convulsão (Evolução): " />
@@ -883,7 +889,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -891,7 +897,7 @@
                                   value="Audição: " />
                     <h:outputText value="Perda auditiva" />
                 </div>
-                
+
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Sistema neurológico foi afetado: " />
@@ -899,14 +905,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema oftálmico:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -916,7 +922,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -924,19 +930,19 @@
                                   value="Secreção ocular: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular: " />
                     <h:outputText value="Unilateral(esquerdo)" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular (Tipo): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular (Evolução): " />
@@ -944,7 +950,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -952,7 +958,7 @@
                                   value="Blefaroespasmo: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Comentário(Blefaroespasmo): " />
@@ -960,7 +966,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -968,13 +974,13 @@
                                   value="Exoftalmia: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Comentário(Exoftalmia): " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Sistema oftálmico foi afetado: " />
@@ -982,14 +988,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Sistema músculo-esquelético:"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -997,7 +1003,7 @@
                                   value="Claudicação: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Claudicação (membro afetado/ evolução): " />
@@ -1005,7 +1011,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -1013,7 +1019,7 @@
                                   value="Fraturas: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Fraturas (membro afetado/ evolução): " />
@@ -1021,7 +1027,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -1029,7 +1035,7 @@
                                   value="Atrofia muscular: " />
                     <h:outputText value="Sim" />
                 </div>
-                
+
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Atrofia muscular (membro afetado/ evolução): " />
@@ -1037,7 +1043,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
@@ -1047,14 +1053,14 @@
                 </div>
             </div>
         </div>
-        
+
         <p:separator />
-        
+
         <div class="ui-g-12 ui-md-12 ui-lg-12">
             <h:outputLabel class="titulo"
                            value="Examefísico"/>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -1062,19 +1068,19 @@
                                   value="FC(bpm): " />
                     <h:outputText value="000" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="FR(mpm): " />
                     <h:outputText value="000" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Temperatura retal: " />
                     <h:outputText value="000,0" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="TPC: " />
@@ -1082,7 +1088,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -1090,19 +1096,19 @@
                                   value="Estado nutricional: " />
                     <h:outputText value="Caquético" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Mucosa Oral: " />
                     <h:outputText value="Cianóticas" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Mucosa vaginal/peniana: " />
                     <h:outputText value="Cianóticas" />
                 </div>
-                
+
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Mucosa ocular: " />
@@ -1110,7 +1116,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
@@ -1118,19 +1124,19 @@
                                   value="Pulso: " />
                     <h:outputText value="Ausente" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Estado do pulso: " />
                     <h:outputText value="Irregular" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Hidratação: " />
                     <h:outputText value="10-12% de desidratação" />
                 </div>
-                
+
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Palpação abdominal " />
@@ -1138,7 +1144,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
@@ -1146,7 +1152,7 @@
                                   value="Auscultação cardíaca: " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Auscultação pulmonar: " />
@@ -1154,7 +1160,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
@@ -1162,7 +1168,7 @@
                                   value="Linfonodos: " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Pele/pelos:" />
@@ -1170,7 +1176,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="subtext">
             <div class="ui-g-12">
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
@@ -1178,7 +1184,7 @@
                                   value="Informações adicionais: " />
                     <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
                 </div>
-                
+
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Diagnósticos diferenciais: " />
@@ -1186,8 +1192,9 @@
                 </div>
             </div>
         </div>
-        
+
     </div>
+    
     <p:commandButton value="Imprimir"
                      disabled=""
                      type="button"

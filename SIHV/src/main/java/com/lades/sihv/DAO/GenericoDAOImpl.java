@@ -1,14 +1,13 @@
 package com.lades.sihv.DAO;
 
 import com.lades.sihv.*;
-import com.lades.sihv.controller.ConsultaBusca;
+import com.lades.sihv.classeMolde.FormsExames;
+import com.lades.sihv.classeMolde.PesquisaConsulta;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.model.Fisica;
-import com.lades.sihv.model.Juridica;
-import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.Stateless;
 import org.hibernate.Session;
@@ -73,26 +72,26 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
         search = "'%" + search + "%'";
 
-        String tipoCliente="";
-        String joinTipoCli="";
+        String tipoCliente = "";
+        String joinTipoCli = "";
         switch (searchMode) {
             case "cpf":
                 //pesquisa pessoa(cpf) fisica
                 searchMode = "p.cpfCnpj";
-                tipoCliente=", Fisica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Fisica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "rg":
                 //pesquisa pessoa(rg) fisica
                 searchMode = "t." + searchMode;
-                tipoCliente=", Fisica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Fisica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "cnpj":
                 //pesquisa pessoa(cnpj) juridica
                 searchMode = "p.cpfCnpj";
-                tipoCliente=", Juridica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Juridica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "nome":
                 //pesquisa pessoa(nome) não considera se é pessoa fisica ou juridica.
@@ -103,7 +102,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
                 break;
         }
 
-        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c"+tipoCliente+" where "+joinTipoCli+" p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and "+searchMode+" like " + search);
+        List<Ent> listaPessoa = this.list("SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c" + tipoCliente + " where " + joinTipoCli + " p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and " + searchMode + " like " + search);
         List<Pessoa> retornaPessoa = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
             Pessoa newPessoa = new Pessoa();
@@ -118,23 +117,23 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 
     @Override
     public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
-        String tipoCliente="";
-        String joinTipoCli="";
+        String tipoCliente = "";
+        String joinTipoCli = "";
         switch (searchMode) {
             case "cpf":
                 searchMode = "p.cpfCnpj";
-                tipoCliente=", Fisica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Fisica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "cnpj":
                 searchMode = "p.cpfCnpj";
-                tipoCliente=", Juridica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Juridica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "rg":
                 searchMode = "t." + searchMode;
-                tipoCliente=", Fisica t";
-                joinTipoCli="p.pkPessoa = t.id.fkPessoa and";
+                tipoCliente = ", Fisica t";
+                joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "nome":
                 search = new BeautyText().Captalizador(search);
@@ -148,7 +147,12 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         }
 
         search = "'%" + search + "%'";
-        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal, a.rghv from Animais a, Pessoa p, Cliente c"+tipoCliente+" where "+joinTipoCli+" p.pkPessoa = c.id.fkPessoa and c.id.fkPessoa = a.id.clienteFkPessoa and " + searchMode + " like " + search);
+        List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, "
+                + "a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal, a.rghv "
+                + "from Animais a, Pessoa p, Cliente c" + tipoCliente + " where " + joinTipoCli + " "
+                + "p.pkPessoa = c.id.fkPessoa "
+                + "and c.id.fkPessoa = a.id.clienteFkPessoa "
+                + "and " + searchMode + " like " + search);
         List<Animais> retornaAnimais = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
             Animais newAnimal = new Animais();
@@ -170,33 +174,76 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
 
     @Override
-    public List<ConsultaBusca> listBySearchCONSULTA(String searchMode, String search) {
-        if (searchMode.equals("nome")) {
-            search = new BeautyText().Captalizador(search);
+    public List<PesquisaConsulta> listBySearchCONSULTA(String searchMode, String search) {
+        String tipoCliente = "";
+        String joinTipoCli = "";
+        switch (searchMode) {
+            case "cpf":
+                searchMode = "pcli.cpfCnpj";
+                tipoCliente = ", Fisica t ";
+                joinTipoCli = "pcli.pkPessoa = t.id.fkPessoa and ";
+                break;
+            case "cnpj":
+                searchMode = "pcli.cpfCnpj";
+                tipoCliente = ", Juridica t ";
+                joinTipoCli = "pcli.pkPessoa = t.id.fkPessoa and ";
+                break;
+            case "rg":
+                searchMode = "t." + searchMode;
+                tipoCliente = ", Fisica t ";
+                joinTipoCli = "pcli.pkPessoa = t.id.fkPessoa and ";
+                break;
+            case "nome":
+                search = new BeautyText().Captalizador(search);
+                searchMode = "pcli." + searchMode;
+                break;
+            case "rghv":
+                searchMode = "a." + searchMode;
+                break;
+            default:
+                break;
         }
-        search = "'%" + search + "%'";
-        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.animais.id.pkAnimal, c.animais.id.clienteFkCliente, c.animais.id.clienteFkPessoa,c.animais.nomeAnimal, c.sistemasAfetados from Consulta c, Pessoa p where c.animais.id.clienteFkPessoa = p.pkPessoa and p." + searchMode + " = '" + search + "'");
-        List<ConsultaBusca> retornaConsulta = new ArrayList<>();
-        for (Object[] obj : (List<Object[]>) listaConsulta) {
-            ConsultaBusca objbusca = new ConsultaBusca();
-            AnimaisId idAnimal = new AnimaisId();
 
+        search = "'%" + search + "%'";
+        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.sistemasAfetados, c.dataConsulta, "
+                + "a.nomeAnimal, a.sexoAnimal, "
+                + "puser.nome, user.crmvMatricula "
+                + "from Consulta c, Animais a, Pessoa puser, User user, Pessoa pcli, Cliente cli " + tipoCliente
+                + "where " + joinTipoCli
+                + "pcli.pkPessoa=cli.id.fkPessoa "
+                + "and cli.id.fkPessoa=a.id.clienteFkPessoa "
+                + "and a.id.clienteFkPessoa=c.animais.id.clienteFkPessoa "
+                + "and " + searchMode + " like " + search + " "
+                + "and puser.pkPessoa=user.id.fkPessoa "
+                + "and user.id.fkPessoa=c.user.id.fkPessoa "
+                + "and a.id.pkAnimal=c.animais.id.pkAnimal");
+        List<PesquisaConsulta> retornaConsulta = new ArrayList<>();
+        for (Object[] obj : (List<Object[]>) listaConsulta) {
+
+            PesquisaConsulta objbusca = new PesquisaConsulta();
             objbusca.geraObj();
 
-            idAnimal.setPkAnimal((int) obj[1]);
-            idAnimal.setClienteFkCliente((int) obj[2]);
-            idAnimal.setClienteFkPessoa((int) obj[3]);
-
-            objbusca.getAnimais().setId(idAnimal);
-            objbusca.getAnimais().setNomeAnimal((String) obj[4]);
-
             objbusca.getConsulta().setPkConsulta((int) obj[0]);
-            objbusca.getConsulta().setSistemasAfetados((String) obj[5]);
+            objbusca.getConsulta().setSistemasAfetados((String) obj[1]);
+            objbusca.getConsulta().setDataConsulta((Date) obj[2]);
+            objbusca.getAnimais().setNomeAnimal((String) obj[3]);
+            objbusca.getAnimais().setSexoAnimal((String) obj[4]);
+            objbusca.getPessoa().setNome((String) obj[5]);
+            objbusca.getUser().setCrmvMatricula((String) obj[6]);
 
             retornaConsulta.add(objbusca);
         }
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Consulta> listBySearchCONSULTA(String searchMode, String search) ]");
         return retornaConsulta;
+    }
+    
+    @Override
+    public FormsExames viewCONSULTA(String pkConsulta) {
+        FormsExames exames = new FormsExames();
+        
+        System.out.println("pkConsulta "+pkConsulta+" ====================================");
+        
+        return exames;
     }
 
     //Método genérico para remoção de uma tupla de uma entidade

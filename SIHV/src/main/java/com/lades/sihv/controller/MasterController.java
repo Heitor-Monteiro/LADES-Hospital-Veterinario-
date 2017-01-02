@@ -9,11 +9,9 @@ import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.Tools;
 import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.classeMoldeBusca.PessoaBusca;
+import com.lades.sihv.classeMolde.PessoaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
-import com.lades.sihv.model.Fisica;
-import com.lades.sihv.model.Juridica;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -64,7 +62,13 @@ public class MasterController implements Serializable {
     public void adicionarNovaConsulta() {
         consultaControle.adicionarNovaConsulta(animal);
     }
-
+    
+    //-------------------------------------------------------
+    public void pesquisarConsulta(){
+        prepararPesquisaController();
+        consultaControle = new ConsultaController(daoGenerico, message, pesquisaControle, tools);
+    }
+    
     //-------------------------------------------------------
     public void prepararPesquisaController() {
         pesquisaControle = new PesquisaController();

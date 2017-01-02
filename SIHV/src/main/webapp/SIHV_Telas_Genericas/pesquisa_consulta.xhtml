@@ -4,6 +4,64 @@
               xmlns:h="http://xmlns.jcp.org/jsf/html" 
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
+    <style>
+        @media(max-width:5640px){
+            .ui-datatable-reflow thead th,
+            .ui-datatable-reflow tfoot td{display:none}
+
+            .ui-datatable-reflow .ui-datatable-data td[role="gridcell"]{
+                text-align:left;
+                display:block;
+                border:0 none;
+                width:100%;
+                -webkit-box-sizing:border-box;
+                -moz-box-sizing:border-box;
+                box-sizing:border-box;
+                float:left;
+                clear:left
+            }
+
+            .ui-datatable-reflow 
+            .ui-datatable-data
+            .ui-widget-content{border:0 none}
+
+            .ui-datatable-reflow 
+            .ui-datatable-data tr
+            .ui-widget-content{
+                border-left:0 none;
+                border-right:0 none
+            }
+
+            .ui-datatable-reflow 
+            .ui-datatable-data td[role="gridcell"] 
+            .ui-column-title{
+                padding:.4em;
+                min-width:30%;
+                display:inline-block;
+                margin:-.4em 1em -.4em -.4em
+            }
+
+            .ui-datatable-reflow 
+            .ui-reflow-label,
+            .ui-datatable-reflow 
+            .ui-reflow-dropdown{display:inline-block}
+            .ui-datatable-reflow .ui-reflow-dropdown{
+                margin-left:5px;
+                border-top-left-radius:3px;
+                border-bottom-left-radius:3px
+            }
+
+            .ui-datatable-reflow tr.ui-datatable-empty-message>td{
+                display:block;
+                border:0 none
+            }
+        }
+
+        @media(min-width:640px){
+            .buttonWidth{max-width: 250px;}
+        }
+    </style>
+
     <div class="ui-fluid">
 
         <h:form>
@@ -12,19 +70,22 @@
                          layout="grid"
                          style="margin: 10px 0px 15px;"
                          styleClass="panelgrid-noborder"
-                         columnClasses="ui-grid-col-2, ui-grid-col-6, ui-grid-col-3" > 
+                         columnClasses="ui-grid-col-3, ui-grid-col-6, ui-grid-col-3" > 
 
                 <p:outputLabel value="#{label_SIHV.PesquisaPessoaLabel_TipoPesquisa}" 
                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                for="TipoPesquisa" />
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
-                                  columns="1"
+                                  columns="2"
                                   value="#{MasterControle.pesquisaControle.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
-                    <f:selectItem itemLabel="CPF/CNPJ" itemValue="cpf" />
+                    <f:selectItem itemLabel="CPF" itemValue="cpf" />
+                    <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
+                    <f:selectItem itemLabel="RGHV" itemValue="rghv" />
+                    <f:selectItem itemLabel="Nome do cliente" itemValue="nome" />
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
@@ -54,7 +115,8 @@
 
         </h:form>
 
-        <p:panelGrid columns="1" layout="grid"
+        <p:panelGrid columns="1" 
+                     layout="grid"
                      style="margin: 10px 0px 15px;"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-5" >
@@ -76,20 +138,50 @@
                      columnClasses="ui-grid-col-12" >
 
             <p:dataTable id="PessoasBuscada"
-                         var="consut"
+                         var="consulta"
                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
                          value="#{MasterControle.pesquisaControle.objBuscados}"
                          paginator="true"
                          rows="10"
                          reflow="true" >
 
-                <p:column selectionMode="single"
-                          style="width:30px;
-                          text-align:center;"/>
-
-                <p:column headerText="Código"
+                <p:column headerText="Código-consulta"
                           width="80">
-                    <h:outputText value="#{consut.pkConsulta}" />
+                    <h:outputText value="#{consulta.consulta.pkConsulta}" />
+                </p:column>
+
+                <p:column headerText="Data da consulta" >
+                    <h:outputText value="#{consulta.consulta.dataConsulta}" />
+                </p:column>
+
+                <p:column headerText="Nome do animal" >
+                    <h:outputText value="#{consulta.animais.nomeAnimal}" />
+                </p:column>
+
+                <p:column headerText="Sexo do animal" >
+                    <h:outputText value="#{consulta.animais.sexoAnimal}" />
+                </p:column>
+
+                <p:column headerText="Residente" >
+                    <h:outputText value="#{consulta.pessoa.nome}" />
+                </p:column>
+
+                <p:column headerText="CRMV" >
+                    <h:outputText value="#{consulta.user.crmvMatricula}" />
+                </p:column>
+
+                <p:column headerText="Sistemas afetados" >
+                    <h:outputText value="#{consulta.consulta.sistemasAfetados}" />
+                </p:column>
+
+                <p:column headerText=" " >
+                    <p:commandButton class="buttonWidth"
+                                     action="#{MasterControle.consultaControle.verConsulta()}"
+                                     value="Visualizar exame"
+                                     icon="fa fa-search-plus">
+                        <f:setPropertyActionListener value="#{consulta}" 
+                                                     target="#{MasterControle.consultaControle.pesquisaConsulta}" />
+                    </p:commandButton>
                 </p:column>
             </p:dataTable>
 

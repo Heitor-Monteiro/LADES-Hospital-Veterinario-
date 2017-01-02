@@ -3,27 +3,28 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller;
+package com.lades.sihv.classeMolde;
 
 import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.User;
 
 /**
  *
  * @author thiberius
  */
-public class ConsultaBusca {
+public class PesquisaConsulta {
     private Pessoa pessoa;
-    private Cliente cliente;
+    private User user;
     private Animais animais;
     private Consulta consulta;
 
     
     public void geraObj(){
-        animais = new Animais();
         pessoa = new Pessoa();
+        user = new User();
+        animais = new Animais();
         consulta = new Consulta();
     }
 
@@ -36,14 +37,6 @@ public class ConsultaBusca {
 
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
     }
 
     public Animais getAnimais() {
@@ -62,7 +55,13 @@ public class ConsultaBusca {
         this.consulta = consulta;
     }
 
-    
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
     
     
 }

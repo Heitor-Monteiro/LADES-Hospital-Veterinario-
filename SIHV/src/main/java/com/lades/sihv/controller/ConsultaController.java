@@ -7,6 +7,9 @@ package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.Security;
+import com.lades.sihv.Tools;
+import com.lades.sihv.classeMolde.FormsExames;
+import com.lades.sihv.classeMolde.PesquisaConsulta;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.User;
@@ -30,9 +33,12 @@ import com.lades.sihv.model.ExameFisico;
 import com.lades.sihv.model.ExameFisicoId;
 import com.lades.sihv.model.ExameImage;
 import com.lades.sihv.model.ExameImageId;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -42,6 +48,8 @@ public class ConsultaController implements Serializable{
     
     private GenericoDAO daoGenerico;
     private FacesMessages message;
+    private PesquisaController pesquisaControle;
+    private Tools tools;
     
     private Consulta novaConsulta;
     private Date data;
@@ -51,6 +59,10 @@ public class ConsultaController implements Serializable{
     private String confirmeCRMV;
     private String confirmeSENHA;
     private boolean medicoCOFIRMADO = false;
+    
+    
+    private PesquisaConsulta pesquisaConsulta;
+    private FormsExames formsExame;
     
     private Anamnese anamnese;
     private AnamneseId anamneseId;
@@ -98,6 +110,12 @@ public class ConsultaController implements Serializable{
         this.daoGenerico = daoGenerico;
         this.message = message;
     }
+    public ConsultaController(GenericoDAO daoGenerico,FacesMessages message,PesquisaController pesquisaControle,Tools tools){
+        this.daoGenerico = daoGenerico;
+        this.message = message;
+        this.pesquisaControle = pesquisaControle;
+        this.tools = tools;
+    }
     
     
     
@@ -108,8 +126,7 @@ public class ConsultaController implements Serializable{
     
     /*O método prepara os objetos necessários 
     para receber informações escritas pelo usuário, 
-    o mesmo também faz a limpeza dos campos utilizados 
-    e listas(Obs.: a lista é limpa caso esteja cheia)*/
+    o mesmo também faz a limpeza dos campos utilizados*/
     public void prepararNovaConsulta(){
         novaConsulta = new Consulta();
         data = new Date();
@@ -230,13 +247,13 @@ public class ConsultaController implements Serializable{
     private String sistemasAfetados(){
         String sisAfetados="";
         
-        sisAfetados += ("SIM".equals(sisDigestorio.getSistemaAfetado()))?"Sistema digestório e glândulas anexas, ":"";
-        sisAfetados += ("SIM".equals(sisRespCardio.getSistemaAfetado()))?"Sistema respiratório e cardiovascular, ":"";
-        sisAfetados += ("SIM".equals(sisUrinarioMamaria.getSistemaAfetado()))?"Sistema gênito-urinário e glândulas mamárias, ":"";
-        sisAfetados += ("SIM".equals(sisTegumentar.getSistemaAfetado()))?"Sistema tegumentar, ":"";
-        sisAfetados += ("SIM".equals(sisNeurologico.getSistemaAfetado()))?"Sistema neurológico, ":"";
-        sisAfetados += ("SIM".equals(sisOftalmico.getSistemaAfetado()))?"Sistema oftálmico, ":"";
-        sisAfetados += ("SIM".equals(sisMuscEsque.getSistemaAfetado()))?"Sistema músculo-esquelético, ":"";
+        sisAfetados += ("Sim".equals(sisDigestorio.getSistemaAfetado()))?"Sistema digestório e glândulas anexas, ":"";
+        sisAfetados += ("Sim".equals(sisRespCardio.getSistemaAfetado()))?"Sistema respiratório e cardiovascular, ":"";
+        sisAfetados += ("Sim".equals(sisUrinarioMamaria.getSistemaAfetado()))?"Sistema gênito-urinário e glândulas mamárias, ":"";
+        sisAfetados += ("Sim".equals(sisTegumentar.getSistemaAfetado()))?"Sistema tegumentar, ":"";
+        sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado()))?"Sistema neurológico, ":"";
+        sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado()))?"Sistema oftálmico, ":"";
+        sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado()))?"Sistema músculo-esquelético, ":"";
         
         return sisAfetados;
     }
@@ -263,6 +280,25 @@ public class ConsultaController implements Serializable{
             message.warn("Verificação não confirmada!", "É necessário um medico veterinário cadastrado!");
         }
     }
+    
+    
+    
+    
+    
+    
+    public void verConsulta(){
+        formsExame = daoGenerico.viewCONSULTA(""+pesquisaConsulta.getConsulta().getPkConsulta());
+        
+        System.out.println(pesquisaConsulta.getAnimais().getNomeAnimal()+"===============================================================\n");
+        
+        
+        try {
+            tools.redirecionar("/SIHV/faces/SIHV_Telas_Exame/Exames.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
     
     
     
@@ -433,9 +469,22 @@ public class ConsultaController implements Serializable{
         this.confirmeUltrasson = confirmeUltrasson;
     }
 
-    
-    
-    
-    
-    
+    public PesquisaController getPesquisaControle() {
+        return pesquisaControle;
+    }
+
+    public void setPesquisaControle(PesquisaController pesquisaControle) {
+        this.pesquisaControle = pesquisaControle;
+    }
+
+    public PesquisaConsulta getPesquisaConsulta() {
+        return pesquisaConsulta;
+    }
+
+    public void setPesquisaConsulta(PesquisaConsulta pesquisaConsulta) {
+        System.out.println("Selecionando objeto pesquisaConsulta========================");
+        this.pesquisaConsulta = pesquisaConsulta;
+    }
+
+     
 }

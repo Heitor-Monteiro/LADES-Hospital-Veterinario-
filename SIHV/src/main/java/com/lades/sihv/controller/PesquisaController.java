@@ -8,10 +8,8 @@ package com.lades.sihv.controller;
 import java.io.Serializable;
 import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import com.lades.sihv.classeMoldeBusca.PessoaBusca;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Consulta;
 import javax.faces.model.DataModel;
 
 /**
@@ -24,10 +22,6 @@ public class PesquisaController implements Serializable{
     private boolean showDataTable;
     private List<?> objBuscados;
     private static final FacesMessages mensagem = new FacesMessages();
-    private boolean cpfView = false;
-    private boolean rgView = false;
-    private boolean nomeView = false;
-    private boolean cnpjView = false;
     
     
     /*Este método objetiva limpar os campos
@@ -61,11 +55,10 @@ public class PesquisaController implements Serializable{
                 objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
                 break;
             case "Cosulta":
-//                List<Consulta> objList3 = null;
-//                objBuscados = objList3;
-                objBuscados = new GenericoDAOImpl().list("from Consulta");
+                objBuscados = new GenericoDAOImpl().listBySearchCONSULTA(itemPesquisa, textoPesquisa);
                 break;
             default:
+                mensagem.warn("Erro ao listar!","Item não encontrado.");
                 break;
         }
         
@@ -84,24 +77,6 @@ public class PesquisaController implements Serializable{
         return var;
     }
     
-    
-    
-    
-    public void ViewInput(){
-        switch (itemPesquisa){
-            case "cpf":
-                cpfView = true;
-                break;
-            case "rg":
-                rgView = true;
-                break;
-            case "":
-                
-                break;
-            default:
-                break;
-        }
-    }
     
     
 //MÉTODOS GET & SET    
@@ -139,39 +114,4 @@ public class PesquisaController implements Serializable{
     }
 //-----------------------------------------------------------------------------
 
-    public boolean isCpfView() {
-        return cpfView;
-    }
-
-    public void setCpfView(boolean cpfView) {
-        this.cpfView = cpfView;
-    }
-
-    public boolean isRgView() {
-        return rgView;
-    }
-
-    public void setRgView(boolean rgView) {
-        this.rgView = rgView;
-    }
-
-    public boolean isNomeView() {
-        return nomeView;
-    }
-
-    public void setNomeView(boolean nomeView) {
-        this.nomeView = nomeView;
-    }
-
-    public boolean isCnpjView() {
-        return cnpjView;
-    }
-
-    public void setCnpjView(boolean cnpjView) {
-        this.cnpjView = cnpjView;
-    }
-
-    
-    
-    
 }
