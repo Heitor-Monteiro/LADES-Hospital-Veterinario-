@@ -254,6 +254,7 @@ public class ConsultaController implements Serializable{
         sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado()))?"Sistema neurológico, ":"";
         sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado()))?"Sistema oftálmico, ":"";
         sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado()))?"Sistema músculo-esquelético, ":"";
+        sisAfetados += ("".equals(sisAfetados))?"Não houve sistemas afetados":"";
         
         return sisAfetados;
     }
@@ -486,5 +487,12 @@ public class ConsultaController implements Serializable{
         this.pesquisaConsulta = pesquisaConsulta;
     }
 
-     
+    public FormsExames getFormsExame() {
+        return formsExame;
+    }
+
+    public void setFormsExame(FormsExames formsExame) {
+        this.formsExame = formsExame;
+    }
+    
 }

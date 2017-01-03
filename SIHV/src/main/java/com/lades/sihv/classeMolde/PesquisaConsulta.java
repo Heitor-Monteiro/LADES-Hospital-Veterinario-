@@ -15,14 +15,16 @@ import com.lades.sihv.model.User;
  * @author thiberius
  */
 public class PesquisaConsulta {
-    private Pessoa pessoa;
+    private Pessoa residente;
+    private Pessoa proprietario;
     private User user;
     private Animais animais;
     private Consulta consulta;
 
     
     public void geraObj(){
-        pessoa = new Pessoa();
+        residente = new Pessoa();
+        proprietario = new Pessoa();
         user = new User();
         animais = new Animais();
         consulta = new Consulta();
@@ -31,14 +33,6 @@ public class PesquisaConsulta {
     
     
     
-    public Pessoa getPessoa() {
-        return pessoa;
-    }
-
-    public void setPessoa(Pessoa pessoa) {
-        this.pessoa = pessoa;
-    }
-
     public Animais getAnimais() {
         return animais;
     }
@@ -61,6 +55,22 @@ public class PesquisaConsulta {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Pessoa getResidente() {
+        return residente;
+    }
+
+    public void setResidente(Pessoa residente) {
+        this.residente = residente;
+    }
+
+    public Pessoa getProprietario() {
+        return proprietario;
+    }
+
+    public void setProprietario(Pessoa proprietario) {
+        this.proprietario = proprietario;
     }
     
     

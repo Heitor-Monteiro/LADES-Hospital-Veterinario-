@@ -43,13 +43,13 @@
             <div class="ui-g-3 ui-md-3 ui-lg-3">
                 <h:outputLabel class="negrit"
                                value="Código: "/>
-                <h:outputText value="000000" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.consulta.pkConsulta}" />
             </div>
 
             <div class="ui-g-2 ui-md-2 ui-lg-2">
                 <h:outputLabel class="negrit"
                                value="Data: "/>
-                <h:outputText value="00/00/0000" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.consulta.dataConsulta}" />
             </div>
 
         </div>
@@ -60,32 +60,32 @@
         <div class="ui-g-12 subtext">
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <h:outputText class="negrit"
-                              value="Nome do cliente:"/>
-                <h:outputText value="textobbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb" />
+                              value="Nome do cliente: "/>
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.proprietario.nome}" />
             </div>
 
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <h:outputText class="negrit"
-                              value="CPF/CNPJ:"/>
-                <h:outputText value="000.000.000-00" />
+                              value="CPF/CNPJ: "/>
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.proprietario.cpfCnpj}" />
             </div>
 
 
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <h:outputText class="negrit"
-                              value="Endereço:"/>
-                <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+                              value="Endereço: "/>
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.proprietario.logra}" />
             </div>
 
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <h:outputText class="negrit"
-                              value="Cidade:"/>
-                <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+                              value="Cidade: "/>
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.proprietario.cidade}" />
             </div>
 
             <div class="ui-g-6 ui-md-6 ui-lg-6">
                 <h:outputText class="negrit"
-                              value="CEP:"/>
+                              value="CEP: "/>
                 <h:outputText value="68786-000" />
             </div>
         </div>
@@ -101,38 +101,38 @@
             <div class="ui-g-6 ui-md-2 ui-lg-2">
                 <h:outputText class="negrit"
                               value="RGHV: "/>
-                <h:outputText value="2016P0001" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.rghv}" />
             </div>
 
             <div class="ui-g-6 ui-md-4 ui-lg-4">
                 <h:outputText class="negrit"
                               value="Nome do animal: "/>
-                <h:outputText value="Chavier" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.nomeAnimal}" />
             </div>
 
             <div class="ui-g-2 ui-md-1 ui-lg-1">
                 <h:outputText class="negrit"
                               value="Sexo: "/>
-                <h:outputText value="M" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.sexoAnimal}" />
             </div>
 
             <div class="ui-g-2 ui-md-1 ui-lg-1">
                 <h:outputText class="negrit"
                               value="Peso: "/>
                 <h:outputText value="Kg" />
-                <h:outputText value="10" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.peso}" />
             </div>
 
             <div class="ui-g-3 ui-md-2 ui-lg-2">
                 <h:outputText class="negrit"
                               value="Categoria: "/>
-                <h:outputText value="P" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.categoriaAnimal}" />
             </div>
 
             <div class="ui-g-2 ui-md-2 ui-lg-2">
                 <h:outputText class="negrit"
                               value="Especie: "/>
-                <h:outputText value="Canino" />
+                <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.animais.especie}" />
             </div>
         </div>
 
@@ -145,13 +145,13 @@
         <div class="ui-g-12 ui-md-12 ui-lg-12 subtext">
             <h:outputText class="negrit"
                           value="Sistemas afetados: " />
-            <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+            <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.consulta.sistemasAfetados}" />
         </div>
 
         <div class="ui-g-12 ui-md-12 ui-lg-12 subtext">
             <h:outputText class="negrit"
-                          value="Laudo:: " />
-            <h:outputText value="mmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmm mmmmmmmmmmmmmmmmmmmmmmm" />
+                          value="Laudo: " />
+            <h:outputText value="#{MasterControle.consultaControle.pesquisaConsulta.consulta.laudo}" />
         </div>
 
         <p:separator />
@@ -166,19 +166,19 @@
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Queixa principal: " />
-                    <h:outputText value="mm mmm mmmm mmmmm mmmm mmmmmm mmmmmm mmmmm mmmm mmmmm mmmmmm mmmm mmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.queixaPrincipal}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Já foi tratado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.jaFoiTratado}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Medicação/dose: " />
-                    <h:outputText value="mmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.medicacaoDose}" />
                 </div>
             </div>
 
@@ -186,13 +186,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Antecedentes mórbidos: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.antecMorbido}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Histórico familiar: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.histoFamiliar}" />
                 </div>
             </div>
 
@@ -200,13 +200,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Alimentação (Dieta caseira): " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.alimentacaoCaseira}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Descrição da dieta caseira: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.descriCaseira}" />
                 </div>
             </div>
 
@@ -214,13 +214,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Alimentação (Ração): " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.alimentacaoRacao}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Descrição da dieta por ração: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.descriRacao}" />
                 </div>
             </div>
 
@@ -228,19 +228,19 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Vacinação: " />
-                    <h:outputText value="gdsvgghvhdsgcdhdsgdsgdhgdssdgdgsd" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.vacinacao}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Sobre a vacina: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.sobreVacina}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Origem da vacina: " />
-                    <h:outputText value="Nacional" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.origemVacina}" />
                 </div>
             </div>
 
@@ -248,19 +248,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Vermifugação: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.vermifugacao}" />
                 </div>
 
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Qual/Dose vermifugação: " />
-                    <h:outputText value="mmmmmm mmmmmmmm mmmmmmmmmmmm mmmmmmm" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.doseVermifugacao}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Data: aplicação de vermifugação: " />
-                    <h:outputText value="00/00/0000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.dataVermifugacao}" />
                 </div>
             </div>
 
@@ -268,25 +268,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Ectoparasitas: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.ectoparasitas}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Qual ectoparasitas: " />
-                    <h:outputText value="Ixodidiose Puliciose Phthiraptera" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.qualEctoparasitas}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Controle de ectoparasitas: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.controEctoparasitas}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Qual produto utilizado: " />
-                    <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.qualProdutoUtiliza}" />
                 </div>
             </div>
 
@@ -294,25 +294,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Acesso à rua: " />
-                    <h:outputText value="Sozinho Acompanhado" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.acessoRua}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Descrição do habitat: " />
-                    <h:outputText value="fhhfbv dfkhhfdbjh kjvfbe e dsiuncdidbk dckjcdsc ddd dskjcdkjs" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.descriHabitat}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Contactantes: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.contactantes}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Descrição dos contactantes: " />
-                    <h:outputText value="gdsvg kewwehefhj khewihefbs ujeyedjegy  kewffbyuyfewuy ddkbfkj ivbiyhdihs" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.descriContactantes}" />
                 </div>
             </div>
 
@@ -320,13 +320,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Mesmo problema em contactantes? " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.mesmoProbleContacta}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Contato com roedores: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.anamnese.contatoRoedor}" />
                 </div>
             </div>
         </div>
@@ -343,13 +343,13 @@
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Está se alimentando normalmente: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.estaSeAlimentando}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Animal não se alimenta, descreva: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.descriNaoSeAlimeta}" />
                 </div>
             </div>
         </div>
@@ -359,19 +359,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Vômito: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.vomito}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Aspecto do vômito: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.aspectoVomito}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Evolução do vômito: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.evoluVomito}" />
                 </div>
             </div>
         </div>
@@ -381,13 +381,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Regurgitação: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.regurgitacao}" />
                 </div>
 
                 <div class="ui-g-7 ui-md-7 ui-lg-7">
                     <h:outputText class="negrit"
                                   value="Evolução da regurgitação: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.evoluRegurgitacao}" />
                 </div>
             </div>
         </div>
@@ -397,19 +397,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Diarreia: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.diarreia}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Aspecto da diarreia: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.aspectDiarreia}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Evolução da diarreia: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.evoluDiarreia}" />
                 </div>
             </div>
         </div>
@@ -419,19 +419,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Disquesia/Tenesmo: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.disquesiaTenesmo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Evolução (Disquesia/Tenesmo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.evoluDisquesiaTenesmo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="O sistema digestório e glândulas anexas foi afetado: " />
-                    <h:outputText value="Sim " />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisDigestorio.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -448,19 +448,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Tosse: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.tosse}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Tosse é produtiva?: " />
-                    <h:outputText value="Não produtiva" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.tosseProdutiva}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Tosse (Frequência/Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.tosseEvolu}" />
                 </div>
             </div>
         </div>
@@ -470,13 +470,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Espirro: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.espirro}" />
                 </div>
 
                 <div class="ui-g-7 ui-md-7 ui-lg-7">
                     <h:outputText class="negrit"
                                   value="Espirro (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.espirroEvolu}" />
                 </div>
             </div>
         </div>
@@ -486,25 +486,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Secreção nasal: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.secrecaoNasal}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção nasal (uni ou bilateral): " />
-                    <h:outputText value="Unilateral(esquerdo)" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.secreNasalUniBilateral}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção nasal (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.secreNasalTipo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Secreção nasal (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.secreNasalEvolu}" />
                 </div>
             </div>
         </div>
@@ -514,25 +514,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Dispneia/Taquipnéia: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.dispneiaTaquipneia}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Dispneia/Taquipnéia (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.dispnTaquipEvolu}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Cianose: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.cianose}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Cianose (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.cianoseEvolu}" />
                 </div>
             </div>
         </div>
@@ -542,25 +542,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Cansaço fácil: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.cansacoFacil}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Cansaço fácil (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.cansaFacilEvolu}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Síncope: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.sincope}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Síncope (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.sincopeEvolu}" />
                 </div>
             </div>
         </div>
@@ -570,19 +570,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Emagrecimento: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.emagrecimento}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Emagrecimento (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.emagrecEvolu}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Sistema respiratório e cardiovascular foi afetado? " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisRespCardio.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -599,13 +599,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Ingestão hídrica: " />
-                    <h:outputText value="Hipodipsia" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.ingestHidrica}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Ingestão hídrica (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.ingestHidricaEvolu}" />
                 </div>
             </div>
         </div>
@@ -615,25 +615,25 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Estado da urina: " />
-                    <h:outputText value="Alterado" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.estadoUrina}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Urina: " />
-                    <h:outputText value="Incontinência" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.urina}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Urina (aspecto/cor/odor): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.urinaAspecto}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Urina (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.urinaEvolu}" />
                 </div>
             </div>
         </div>
@@ -643,19 +643,19 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Último cio: " />
-                    <h:outputText value="00/00/0000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.ultimoCio}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Prenhe: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.prenhe}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Último parto: " />
-                    <h:outputText value="00/00/0000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.ultimoParto}" />
                 </div>
             </div>
         </div>
@@ -665,19 +665,19 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção vaginal/peniana: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.secreVagiPeni}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Secreção vaginal/peniana (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.secreVagiPeniTipo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Secreção vaginal/peniana (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.secreVagiPeniEvolu}" />
                 </div>
             </div>
         </div>
@@ -687,13 +687,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Castrado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.castrado}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Sistema gênito-urinário e glândulas mamárias foi afetado? " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisUrinarioMamaria.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -710,13 +710,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Início/evolução da lesão: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.evoluLesao}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Localização e características das lesões: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.localiLesao}" />
                 </div>
             </div>
         </div>
@@ -726,13 +726,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Prurido cutâneo: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.pruridoCutaneo}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Prurido cutâneo (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.pruridoCutaneoEvolu}" />
                 </div>
             </div>
         </div>
@@ -742,13 +742,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Prurido otológico: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.pruridoOtolog}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Prurido otológico (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.pruridoOtologEvolu}" />
                 </div>
             </div>
         </div>
@@ -758,13 +758,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção otológica: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.secreOtolog}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Secreção otológica (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.secreOtologEvolu}" />
                 </div>
             </div>
         </div>
@@ -774,13 +774,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Frequência de banhos: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.frequeBanhos}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Produto utilizado no banho: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.produUtilBanho}" />
                 </div>
             </div>
         </div>
@@ -790,7 +790,7 @@
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Sistema tegumentar foi afetado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisTegumentar.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -807,13 +807,13 @@
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Consciência: " />
-                    <h:outputText value="Depressão" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.consciencia}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Comportamento: " />
-                    <h:outputText value="Agressividade" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.comportamento}" />
                 </div>
             </div>
         </div>
@@ -823,19 +823,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Ataxia: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.ataxia}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Ataxia (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.ataxiaTipo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Ataxia (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.ataxiaEvolu}" />
                 </div>
             </div>
         </div>
@@ -845,25 +845,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.paralisia}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia: " />
-                    <h:outputText value="Espástica" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.paralisiaEspFla}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.paralisiaTipo}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Paresia/Paralisia (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.paralisiaEvolu}" />
                 </div>
             </div>
         </div>
@@ -873,19 +873,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Convulsão: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.convulsao}" />
                 </div>
 
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Convulsão (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.convulsaoTipo}" />
                 </div>
 
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Convulsão (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.convulsaoEvolu}" />
                 </div>
             </div>
         </div>
@@ -895,13 +895,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Audição: " />
-                    <h:outputText value="Perda auditiva" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.audicao}" />
                 </div>
 
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Sistema neurológico foi afetado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisNeurologico.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -918,7 +918,7 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Olhos/Pupila: " />
-                    <h:outputText value="Estrabismo" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.olhosPupila}" />
                 </div>
             </div>
         </div>
@@ -928,25 +928,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Secreção ocular: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.secreOcular}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular: " />
-                    <h:outputText value="Unilateral(esquerdo)" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.secreOcularUniBi}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular (Tipo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.secreOculaTipo}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Secreção ocular (Evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.secreOculaEvolu}" />
                 </div>
             </div>
         </div>
@@ -956,13 +956,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Blefaroespasmo: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.blefaroespasmo}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Comentário(Blefaroespasmo): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.blefaroComenta}" />
                 </div>
             </div>
         </div>
@@ -972,19 +972,19 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Exoftalmia: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.exoftalmia}" />
                 </div>
 
                 <div class="ui-g-5 ui-md-5 ui-lg-5">
                     <h:outputText class="negrit"
                                   value="Comentário(Exoftalmia): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.exoftalComenta}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Sistema oftálmico foi afetado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisOftalmico.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -1001,13 +1001,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Claudicação: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.claudicacao}" />
                 </div>
 
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Claudicação (membro afetado/ evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.claudicacaoEvolu}" />
                 </div>
             </div>
         </div>
@@ -1017,13 +1017,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Fraturas: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.fraturas}" />
                 </div>
 
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Fraturas (membro afetado/ evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.fraturasEvolu}" />
                 </div>
             </div>
         </div>
@@ -1033,13 +1033,13 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Atrofia muscular: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.atrofMusc}" />
                 </div>
 
                 <div class="ui-g-10 ui-md-10 ui-lg-10">
                     <h:outputText class="negrit"
                                   value="Atrofia muscular (membro afetado/ evolução): " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.atrofMuscEvolu}" />
                 </div>
             </div>
         </div>
@@ -1049,7 +1049,7 @@
                 <div class="ui-g-4 ui-md-4 ui-lg-4">
                     <h:outputText class="negrit"
                                   value="Sistema músculo-esquelético foi afetado: " />
-                    <h:outputText value="Sim" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.sisMuscEsque.sistemaAfetado}" />
                 </div>
             </div>
         </div>
@@ -1066,25 +1066,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="FC(bpm): " />
-                    <h:outputText value="000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.fcBpm}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="FR(mpm): " />
-                    <h:outputText value="000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.frMpm}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Temperatura retal: " />
-                    <h:outputText value="000,0" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.termpeReta}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="TPC: " />
-                    <h:outputText value="000" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.tpc}" />
                 </div>
             </div>
         </div>
@@ -1094,25 +1094,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Estado nutricional: " />
-                    <h:outputText value="Caquético" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.estadoNutric}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Mucosa Oral: " />
-                    <h:outputText value="Cianóticas" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.mucosaOral}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Mucosa vaginal/peniana: " />
-                    <h:outputText value="Cianóticas" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.mucosVagPeni}" />
                 </div>
 
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Mucosa ocular: " />
-                    <h:outputText value="Cianóticas" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.mucosaOcular}" />
                 </div>
             </div>
         </div>
@@ -1122,25 +1122,25 @@
                 <div class="ui-g-2 ui-md-2 ui-lg-2">
                     <h:outputText class="negrit"
                                   value="Pulso: " />
-                    <h:outputText value="Ausente" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.pulso}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Estado do pulso: " />
-                    <h:outputText value="Irregular" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.estadoPulso}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Hidratação: " />
-                    <h:outputText value="10-12% de desidratação" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.hidratacao}" />
                 </div>
 
                 <div class="ui-g-3 ui-md-3 ui-lg-3">
                     <h:outputText class="negrit"
                                   value="Palpação abdominal " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.palpaAbdom}" />
                 </div>
             </div>
         </div>
@@ -1150,13 +1150,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Auscultação cardíaca: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.auscuCardiaca}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Auscultação pulmonar: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.auscuPulmona}" />
                 </div>
             </div>
         </div>
@@ -1166,13 +1166,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Linfonodos: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.linfonodos}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Pele/pelos:" />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.pelePelos}" />
                 </div>
             </div>
         </div>
@@ -1182,13 +1182,13 @@
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Informações adicionais: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.inforAdiciona}" />
                 </div>
 
                 <div class="ui-g-6 ui-md-6 ui-lg-6">
                     <h:outputText class="negrit"
                                   value="Diagnósticos diferenciais: " />
-                    <h:outputText value="fh fvhvfhdffh rkr fvf vdfhvvf fvff  vffvv f vf f  df fvfvvdfdf vf vf vf ffff  dffvffdfdfvf" />
+                    <h:outputText value="#{MasterControle.consultaControle.formsExame.exameFisico.diagDifer}" />
                 </div>
             </div>
         </div>

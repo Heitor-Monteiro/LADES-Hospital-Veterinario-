@@ -154,6 +154,10 @@
                     <h:outputText value="#{consulta.consulta.dataConsulta}" />
                 </p:column>
 
+                <p:column headerText="RGHV" >
+                    <h:outputText value="#{consulta.animais.rghv}" />
+                </p:column>
+                
                 <p:column headerText="Nome do animal" >
                     <h:outputText value="#{consulta.animais.nomeAnimal}" />
                 </p:column>
@@ -163,7 +167,7 @@
                 </p:column>
 
                 <p:column headerText="Residente" >
-                    <h:outputText value="#{consulta.pessoa.nome}" />
+                    <h:outputText value="#{consulta.residente.nome}" />
                 </p:column>
 
                 <p:column headerText="CRMV" >

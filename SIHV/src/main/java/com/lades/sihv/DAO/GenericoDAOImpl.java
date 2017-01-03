@@ -3,9 +3,18 @@ package com.lades.sihv.DAO;
 import com.lades.sihv.*;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.classeMolde.PesquisaConsulta;
+import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
+import com.lades.sihv.model.ExameFisico;
 import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.SisDigestorio;
+import com.lades.sihv.model.SisMuscEsque;
+import com.lades.sihv.model.SisNeurologico;
+import com.lades.sihv.model.SisOftalmico;
+import com.lades.sihv.model.SisRespCardio;
+import com.lades.sihv.model.SisTegumentar;
+import com.lades.sihv.model.SisUrinarioMamaria;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -205,9 +214,10 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
         }
 
         search = "'%" + search + "%'";
-        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.sistemasAfetados, c.dataConsulta, "
-                + "a.nomeAnimal, a.sexoAnimal, "
-                + "puser.nome, user.crmvMatricula "
+        List<Ent> listaConsulta = this.list("select c.pkConsulta, c.sistemasAfetados, c.dataConsulta, c.laudo, "
+                + "a.nomeAnimal, a.sexoAnimal, a.rghv, a.peso, a.categoriaAnimal, a.especie, "
+                + "puser.nome, user.crmvMatricula, "
+                + "pcli.nome, pcli.cpfCnpj, pcli.logra, pcli.bairro, pcli.cidade "
                 + "from Consulta c, Animais a, Pessoa puser, User user, Pessoa pcli, Cliente cli " + tipoCliente
                 + "where " + joinTipoCli
                 + "pcli.pkPessoa=cli.id.fkPessoa "
@@ -226,10 +236,20 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
             objbusca.getConsulta().setPkConsulta((int) obj[0]);
             objbusca.getConsulta().setSistemasAfetados((String) obj[1]);
             objbusca.getConsulta().setDataConsulta((Date) obj[2]);
-            objbusca.getAnimais().setNomeAnimal((String) obj[3]);
-            objbusca.getAnimais().setSexoAnimal((String) obj[4]);
-            objbusca.getPessoa().setNome((String) obj[5]);
-            objbusca.getUser().setCrmvMatricula((String) obj[6]);
+            objbusca.getConsulta().setLaudo((String) obj[3]);
+            objbusca.getAnimais().setNomeAnimal((String) obj[4]);
+            objbusca.getAnimais().setSexoAnimal((String) obj[5]);
+            objbusca.getAnimais().setRghv((String) obj[6]);
+            objbusca.getAnimais().setPeso((double) obj[7]);
+            objbusca.getAnimais().setCategoriaAnimal((String) obj[8]);
+            objbusca.getAnimais().setEspecie((String) obj[9]);
+            objbusca.getResidente().setNome((String) obj[10]);
+            objbusca.getUser().setCrmvMatricula((String) obj[11]);
+            objbusca.getProprietario().setNome((String) obj[12]);
+            objbusca.getProprietario().setCpfCnpj((String) obj[13]);
+            objbusca.getProprietario().setLogra((String) obj[14]);
+            objbusca.getProprietario().setBairro((String) obj[15]);
+            objbusca.getProprietario().setCidade((String) obj[16]);
 
             retornaConsulta.add(objbusca);
         }
@@ -241,7 +261,18 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     public FormsExames viewCONSULTA(String pkConsulta) {
         FormsExames exames = new FormsExames();
         
-        System.out.println("pkConsulta "+pkConsulta+" ====================================");
+        exames.setAnamnese((Anamnese)list("select a from Anamnese a where a.id.pkAnamnese="+pkConsulta).get(0));
+        exames.setSisDigestorio((SisDigestorio)list("select s from SisDigestorio s where s.id.pkSisDigestorio="+pkConsulta).get(0));
+        exames.setSisRespCardio((SisRespCardio)list("select s from SisRespCardio s where s.id.pkSisRespCardio="+pkConsulta).get(0));
+        exames.setSisUrinarioMamaria((SisUrinarioMamaria)list("select s from SisUrinarioMamaria s where s.id.pkSisUrinarioMamaria="+pkConsulta).get(0));
+        exames.setSisTegumentar((SisTegumentar)list("select s from SisTegumentar s where s.id.pkSisTegumentar="+pkConsulta).get(0));
+        exames.setSisNeurologico((SisNeurologico)list("select s from SisNeurologico s where s.id.pkSisNeurologico="+pkConsulta).get(0));
+        exames.setSisOftalmico((SisOftalmico)list("select s from SisOftalmico s where s.id.pkSisOftalmico="+pkConsulta).get(0));
+        exames.setSisMuscEsque((SisMuscEsque)list("select s from SisMuscEsque s where s.id.pkSisMuscEsque="+pkConsulta).get(0));
+        exames.setExameFisico((ExameFisico)list("select s from ExameFisico s where s.id.pkExameFisico="+pkConsulta).get(0));
+        
+        System.out.println("pkConsulta "+pkConsulta+" ====================================\n");
+        System.out.println("Anamnese: "+exames.getAnamnese().getQueixaPrincipal());
         
         return exames;
     }
