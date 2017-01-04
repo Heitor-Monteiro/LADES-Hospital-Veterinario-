@@ -222,29 +222,12 @@
 
             <p:outputLabel value="Endereço de email:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                            for="email" />
-                        <p:outputLabel value="Endereço de email:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
-                           for="email_obr" />
-            <p:inputText id="email_obr" 
-                         value="#{MasterControle.pessoaControle.pessoa.email}" 
-                         title="Ex.: usuario@email.com"
-                         rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
-                         maxlength="100"
-                         required="true" 
-                         requiredMessage="Por favor, informe seu e-mail!"
-                         validatorMessage="Formato de e-mail incorreto!" >
-                <f:validateRegex
-                    pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-            </p:inputText>
             <p:inputText id="email" 
                          value="#{MasterControle.pessoaControle.pessoa.email}" 
                          title="Ex.: usuario@email.com"
-                         rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                          maxlength="100"
-                         required="false" 
+                         required="#{!MasterControle.pessoaControle.tipoPessoa}" 
                          validatorMessage="Formato de e-mail incorreto!" >
                 <f:validateRegex
                     pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
