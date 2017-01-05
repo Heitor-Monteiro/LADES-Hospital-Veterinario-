@@ -3,7 +3,7 @@
               xmlns:p="http://primefaces.org/ui" 
               xmlns:h="http://xmlns.jcp.org/jsf/html" 
               xmlns:f="http://xmlns.jcp.org/jsf/core">
-    
+
     <div class="ui-fluid">
         <p:panelGrid id="PessoaForm"
                      columns="3"
@@ -77,21 +77,21 @@
             <p:message for="cnpj"
                        rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
 
-            
-            
+
+
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
                            rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="rg" />                              
             <p:inputText
-                         id="rg"
-                         rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
-                         value="#{MasterControle.pessoaControle.fisica.rg}" 
-                         title="#{label_SIHV.CreatePessoaTitle_rg}" 
-                         maxlength="15"
-                         required="true" 
-                         requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
+                id="rg"
+                rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                value="#{MasterControle.pessoaControle.fisica.rg}" 
+                title="#{label_SIHV.CreatePessoaTitle_rg}" 
+                maxlength="15"
+                required="true" 
+                requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
             <p:message for="rg" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />  
 
 
@@ -222,17 +222,33 @@
 
             <p:outputLabel value="Endereço de email:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
                            for="email" />
-            <p:inputText id="email" 
+            <p:outputLabel value="Endereço de email:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
+                           for="email_obr" />
+            <p:inputText id="email_obr" 
                          value="#{MasterControle.pessoaControle.pessoa.email}" 
                          title="Ex.: usuario@email.com"
+                         rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
                          maxlength="100"
-                         required="#{!MasterControle.pessoaControle.tipoPessoa}" 
+                         required="true" 
+                         requiredMessage="Por favor, informe seu e-mail!"
                          validatorMessage="Formato de e-mail incorreto!" >
                 <f:validateRegex
                     pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </p:inputText>
-            
+
+            <p:inputText id="email" 
+                         value="#{MasterControle.pessoaControle.pessoa.email}" 
+                         title="Ex.: usuario@email.com"
+                         rendered="#{MasterControle.pessoaControle.tipoPessoa}"
+                         maxlength="100"
+                         required="false" 
+                         validatorMessage="Formato de e-mail incorreto!" >
+            </p:inputText>
+
             <p:message for="email"/>
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
