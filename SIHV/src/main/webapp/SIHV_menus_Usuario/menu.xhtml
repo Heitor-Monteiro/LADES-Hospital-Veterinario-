@@ -106,7 +106,7 @@
         </div>
 
         <div class="w3-accordion">
-            <p:outputLabel rendered="true">
+            <p:outputLabel rendered="#{login.userTipo == 'MEDICO'}">
                 <a class="itemMenu" onclick="myDropFunc()" href="#">
                     <i class="fa fa-user-secret"></i> 
                     <p:outputLabel value="Usuário do sistema"
@@ -148,7 +148,7 @@
         </div>
 
         <p:link class="itemMenu"
-                rendered="true"
+                rendered="#{login.userTipo == 'MEDICO'}"
                 outcome="/SIHV_Telas_Exame/Nova_Consulta" >
             <i class="fa fa-stethoscope"
                style="margin: 0px 18px 0px 0px;"></i>

@@ -19,7 +19,8 @@
 
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Exame/Nova_Consulta">
+                            <h:link outcome="/SIHV_Telas_Exame/Nova_Consulta"
+                                    rendered="#{login.userTipo == 'MEDICO'}" >
                                 <h:graphicImage id="ficha"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -50,7 +51,8 @@
                 <div class="ui-g-12 ui-md-6 ui-lg-4">
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/cadUSER_medico">
+                            <h:link outcome="/SIHV_Telas_Adm/cadUSER_medico"
+                                    rendered="#{login.userTipo == 'MEDICO'}" >
                                 <h:graphicImage id="addMED"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
