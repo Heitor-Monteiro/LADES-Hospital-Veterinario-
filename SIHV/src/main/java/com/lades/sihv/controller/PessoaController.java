@@ -38,8 +38,6 @@ public class PessoaController implements Serializable {
     private Juridica juridica;
     private Telefone telefone;
     private Telefone celular;
-
-
     private User user;
     private UserId userId;
     private Cliente cliente;
@@ -48,16 +46,13 @@ public class PessoaController implements Serializable {
     private Tools tools;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
-
-    
-//    private List<Pessoa> pessoasBuscadas;
     private boolean mudancaCpfCnpj = true;
-    
-    
-    /*Os método e variáveis abaixo são utilizados
-    para controlar a opcionalidade do campo e-mail*/
+
+    /*Os método e variáveis abaixo são
+    utilizados para controlar a visibilidade
+    de campos para cadastro de clientes e
+    usuários do sistema*/
     private String tipoPessoa;
-    private boolean emailOpcional;
 
     public boolean getTipoPessoa() {
         boolean var;
@@ -67,14 +62,6 @@ public class PessoaController implements Serializable {
             var = false;
         }
         return var;
-    }
-
-    public boolean isEmailOpcional() {
-        return emailOpcional;
-    }
-
-    public void setEmailOpcional(boolean emailOpcional) {
-        this.emailOpcional = emailOpcional;
     }
     //--------------------------------------------------
 
@@ -109,7 +96,6 @@ public class PessoaController implements Serializable {
         numCRMV1 = "";
         numCRMV2 = "";
         tipoPessoa = "user";
-        emailOpcional = true;
     }
 
     /*O método prepara o cadastro de um
@@ -128,7 +114,6 @@ public class PessoaController implements Serializable {
         juridicaId = new JuridicaId();
         data = new Date();
         tipoPessoa = "cliente";
-        emailOpcional = false;
     }
 
     /*O método realiza a persistência de usuários do sistema, 
@@ -160,9 +145,7 @@ public class PessoaController implements Serializable {
             fisicaId.setFkPessoa(pessoa.getPkPessoa());
             fisica.setId(fisicaId);
             daoGenerico.save(fisica);
-            telefone.setPessoa(pessoa);
-            daoGenerico.save(telefone);
-            daoGenerico.save(celular);
+            addTelefones();
             userId.setFkPessoa(pessoa.getPkPessoa());
             user.setId(userId);
             user.setUserSenha(secure.encrypter(user.getUserSenha()));
@@ -267,28 +250,23 @@ public class PessoaController implements Serializable {
 
     private boolean addCLIENTE() {
         try {
-            if (emailOpcional) {
-                System.out.println("email-informado===============================");
-            } else {
+            if ("".equals(pessoa.getEmail())) {
                 pessoa.setEmail("naoInformado@naoInformado.com");
                 System.out.println("email-não-informado===========================");
             }
 
             if (this.prepararSalvarPessoa()) {
                 daoGenerico.save(pessoa);
-
-                telefone.setPessoa(pessoa);
-                celular.setPessoa(pessoa);
-                daoGenerico.save(telefone);
-                daoGenerico.save(celular);
+                addTelefones();
                 if (mudancaCpfCnpj) {
                     fisicaId.setFkPessoa(pessoa.getPkPessoa());
                     fisica.setId(fisicaId);
                     daoGenerico.save(fisica);
                 } else {
-                    if(juridica.getTipoPessoaJuridica().equals(""))
+                    if (juridica.getTipoPessoaJuridica().equals("")) {
                         juridica.setTipoPessoaJuridica("Não informado");
-                    
+                    }
+
                     juridicaId.setFkPessoa(pessoa.getPkPessoa());
                     juridica.setId(juridicaId);
                     daoGenerico.save(juridica);
@@ -297,15 +275,11 @@ public class PessoaController implements Serializable {
                 cliente.setId(clienteId);
                 daoGenerico.save(cliente);
 
-//                message.setTextoDialog("Cadastro efetuado!",
-//                        "Cliente cadastrado com sucesso.",
-//                        "/SIHV_Telas_Adm/ADM_cad_cliente");
-                
                 //Bloqueio do botão back do Wizard PrimeFAces
                 tools.blockBackWizad();
-                
+
                 message.info("Cadastro efetuado!", "Cliente cadastrado com sucesso.");
-                
+
                 //Habilitando visibilidade do botão para impressão
                 this.tools.setShowButtonPrint(true);
 
@@ -319,8 +293,17 @@ public class PessoaController implements Serializable {
             return false;
         }
     }
-    
-    
+
+    /*O método é utilizado para controlar
+    a persistência das variáveis telefone e celular*/
+    private void addTelefones() {
+        if (!"".equals(telefone.getNumero())) {
+            telefone.setPessoa(pessoa);
+            daoGenerico.save(telefone);
+        }
+        celular.setPessoa(pessoa);
+        daoGenerico.save(celular);
+    }
 
     /*O métodos GETs e SETs utilizados para 
     persistir usuários do sistema e clientes*/
@@ -331,7 +314,7 @@ public class PessoaController implements Serializable {
     public void setPessoa(Pessoa pessoa) {
         this.pessoa = pessoa;
     }
-    
+
     public Fisica getFisica() {
         return fisica;
     }
@@ -347,14 +330,6 @@ public class PessoaController implements Serializable {
     public void setJuridica(Juridica juridica) {
         this.juridica = juridica;
     }
-
-//    public List<Pessoa> getPessoasBuscadas() {
-//        return pessoasBuscadas;
-//    }
-//
-//    public void setPessoasBuscadas(List<Pessoa> pessoasBuscadas) {
-//        this.pessoasBuscadas = pessoasBuscadas;
-//    }
 
     public Telefone getTelefone() {
         return telefone;
@@ -402,28 +377,11 @@ public class PessoaController implements Serializable {
         return "index";
     }
 
-        public Telefone getCelular() {
+    public Telefone getCelular() {
         return celular;
     }
 
     public void setCelular(Telefone celular) {
         this.celular = celular;
     }
-    
-//    public DataModel getListaPessoaDataModel() {
-//        DataModel listarPessoas = new ListDataModel(pessoasBuscadas);
-//        return listarPessoas;
-//    }
-
-//    public String prepararAlterarPessoa() {
-//        pessoa = (Pessoa) (getListaPessoaDataModel().getRowData());
-//        return "gerenciarLivro";
-//    }
-
-//    public String excluirPessoa() {
-//        Pessoa pessoaTemp = (Pessoa) (getListaPessoaDataModel().getRowData());
-//        daoGenerico.remove(pessoaTemp);
-//        return "index";
-//    }
-    //---------------------------------------------------------------
 }
