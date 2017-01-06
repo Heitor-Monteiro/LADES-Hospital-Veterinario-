@@ -9,24 +9,7 @@
                      columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" > 
-
-
-            <p:outputLabel value="Nome:"
-                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="nome" />
-            <p:outputLabel value="Razão social:"
-                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="nome" />
-            <p:inputText id="nome" 
-                         value="#{MasterControle.pessoaControle.pessoa.nome}" 
-                         title="#{label_SIHV.CreatePessoaTitle_nome}"
-                         maxlength="100"
-                         required="true" 
-                         requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_nome}"/>
-            <p:message for="nome" />
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
 
 
             <p:outputLabel value="Pessoa física/jurídica:"
@@ -55,7 +38,7 @@
                          id="cpf"
                          rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
                          value="#{MasterControle.pessoaControle.pessoa.cpfCnpj}" 
-                         title="#{label_SIHV.CreatePessoaTitle_cpf}" 
+                         title="Ex.: 999.999.999-99" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
             <p:message for="cpf"
@@ -92,8 +75,48 @@
                 maxlength="15"
                 required="true" 
                 requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
-            <p:message for="rg" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />  
+            <p:message for="rg" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />
 
+
+
+
+
+            <p:outputLabel value="Nome:"
+                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="nome" />
+            <p:inputText id="nome" 
+                         value="#{MasterControle.pessoaControle.pessoa.nome}" 
+                         title="#{label_SIHV.CreatePessoaTitle_nome}"
+                         maxlength="100"
+                         rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                         required="true" 
+                         requiredMessage="Informe seu nome!"/>
+            <p:message for="nome"
+                       rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />
+            
+            
+            
+            
+            <p:outputLabel value="Razão social:"
+                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           for="razaoSocial" />
+            <p:inputText id="razaoSocial" 
+                         value="#{MasterControle.pessoaControle.pessoa.nome}" 
+                         title="Nome da empresa"
+                         maxlength="100"
+                         rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                         required="true" 
+                         requiredMessage="Informe o nome da empresa!"/>
+            <p:message for="razaoSocial"
+                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
+            <p:tooltip for="razaoSocial"
+                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                       position="top" />
+            
+            
+            
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
                            rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
@@ -110,6 +133,14 @@
                 <f:selectItem itemLabel="F" itemValue="F" />
             </p:selectOneRadio>
             <p:message for="sexo" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"/>
+
+        </p:panelGrid>
+
+        <p:panelGrid id="PessoaForm2"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
@@ -235,7 +266,7 @@
                          maxlength="100"
                          required="true" 
                          requiredMessage="Por favor, informe seu e-mail!"
-                         validatorMessage="Formato de e-mail incorreto!" >
+                         validatorMessage="Formato de e-mail incorreto! Ex.: usuario@email.com" >
                 <f:validateRegex
                     pattern="^[_A-Za-z0-9- \+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
             </p:inputText>
@@ -249,7 +280,7 @@
                          validatorMessage="Formato de e-mail incorreto!" >
             </p:inputText>
 
-            <p:message for="email"/>
+            <p:message for="email_obr"/>
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
