@@ -1,9 +1,9 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
@@ -17,23 +17,19 @@
             <p:outputLabel value="Código US:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Ultrassom0" />
-            <p:inputText id="Ultrassom0" 
-                         value="#{1+1}"
-                         title="Numero identificador do Ultrassom"
-                         disabled="true"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;" />
+            <p:outputLabel id="Ultrassom0"
+                           value="#{MasterControle.consultaControle.codUltrasson}"
+                           style="margin-bottom: 20px;" />
             <p:message for="Ultrassom0" />
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Região examinada (US):"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Ultrassom1" />
             <p:inputTextarea id="Ultrassom1" 
-                             value="#{MasterControle.consultaControle.exameImage.regiExami}"
+                             value="#{MasterControle.consultaControle.exameImageUltrason.regiExami}"
                              maxlength="200"
                              required="true"
                              requiredMessage="Informe a região examinada!"
@@ -42,7 +38,7 @@
 
         </p:panelGrid>    
     </div>
-    
-    
-    
+
+
+
 </ui:component>

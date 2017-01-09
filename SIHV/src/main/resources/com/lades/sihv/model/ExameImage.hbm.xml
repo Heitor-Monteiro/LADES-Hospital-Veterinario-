@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/01/2017 01:03:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameImage" table="exameImage" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameImageId">
@@ -28,10 +28,16 @@
             <column name="laudo" length="200" />
         </property>
         <property name="tipo" type="string">
-            <column name="tipo" length="15" />
+            <column name="tipo" length="15" not-null="true" />
         </property>
         <property name="dataExaImage" type="timestamp">
-            <column name="dataExaImage" length="19" />
+            <column name="dataExaImage" length="19" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="17" not-null="true" />
+        </property>
+        <property name="codExameImage" type="string">
+            <column name="codExameImage" length="8" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

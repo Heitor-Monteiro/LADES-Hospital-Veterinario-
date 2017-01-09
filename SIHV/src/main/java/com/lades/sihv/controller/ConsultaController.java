@@ -35,6 +35,7 @@ import com.lades.sihv.model.ExameImage;
 import com.lades.sihv.model.ExameImageId;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -44,133 +45,129 @@ import java.util.logging.Logger;
  *
  * @author thiberius
  */
-public class ConsultaController implements Serializable{
-    
+public class ConsultaController implements Serializable {
+
     private GenericoDAO daoGenerico;
     private FacesMessages message;
     private PesquisaController pesquisaControle;
     private Tools tools;
-    
+
     private Consulta novaConsulta;
     private Date data;
-    
+
     private User medicoVET;
-    
+
     private String confirmeCRMV;
     private String confirmeSENHA;
     private boolean medicoCOFIRMADO = false;
-    
-    
+
     private PesquisaConsulta pesquisaConsulta;
     private FormsExames formsExame;
-    
+
     private Anamnese anamnese;
     private AnamneseId anamneseId;
     private String vacinacao[];
     private String qualEctoparasitas[];
     private String acessoArua[];
-    
+
     private SisDigestorio sisDigestorio;
     private SisDigestorioId sisDigestorioId;
-    
+
     private SisRespCardio sisRespCardio;
     private SisRespCardioId sisRespCardioId;
-    
+
     private SisUrinarioMamaria sisUrinarioMamaria;
     private SisUrinarioMamariaId sisUrinarioMamariaId;
-    
+
     private SisTegumentar sisTegumentar;
     private SisTegumentarId sisTegumentarId;
-    
+
     private SisNeurologico sisNeurologico;
     private SisNeurologicoId sisNeurologicoId;
-    
+
     private SisOftalmico sisOftalmico;
     private SisOftalmicoId sisOftalmicoId;
-    
+
     private SisMuscEsque sisMuscEsque;
     private SisMuscEsqueId sisMuscEsqueId;
-    
+
     private ExameFisico exameFisico;
     private ExameFisicoId exameFisicoId;
-    
-    private ExameImage exameImage;
-    private ExameImageId exameImageId;
-    
+
+    private ExameImage exameImageRaioX;
+    private ExameImageId exameImageRaioXId;
+
+    private ExameImage exameImageUltrason;
+    private ExameImageId exameImageUltrasonId;
+
     private boolean confirmeRAIOX = false;
     private boolean confirmeUltrasson = false;
-    
-    
-    
-    
-    
-    
-    private ConsultaController(){}
-    public ConsultaController(GenericoDAO daoGenerico,FacesMessages message){
+
+    private String codRaioX;
+    private String codUltrasson;
+    private int numCodImage;
+
+    private ConsultaController() {
+    }
+
+    public ConsultaController(GenericoDAO daoGenerico, FacesMessages message) {
         this.daoGenerico = daoGenerico;
         this.message = message;
     }
-    public ConsultaController(GenericoDAO daoGenerico,FacesMessages message,PesquisaController pesquisaControle,Tools tools){
+
+    public ConsultaController(GenericoDAO daoGenerico, FacesMessages message, PesquisaController pesquisaControle, Tools tools) {
         this.daoGenerico = daoGenerico;
         this.message = message;
         this.pesquisaControle = pesquisaControle;
         this.tools = tools;
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     /*O método prepara os objetos necessários 
     para receber informações escritas pelo usuário, 
     o mesmo também faz a limpeza dos campos utilizados*/
-    public void prepararNovaConsulta(){
+    public void prepararNovaConsulta() {
         novaConsulta = new Consulta();
         data = new Date();
-        
+
         anamnese = new Anamnese();
-        anamneseId =  new AnamneseId();
-        
+        anamneseId = new AnamneseId();
+
         sisDigestorio = new SisDigestorio();
         sisDigestorioId = new SisDigestorioId();
-        
-        sisRespCardio =  new SisRespCardio();
-        sisRespCardioId =  new SisRespCardioId();
-        
-        sisUrinarioMamaria =  new SisUrinarioMamaria();
+
+        sisRespCardio = new SisRespCardio();
+        sisRespCardioId = new SisRespCardioId();
+
+        sisUrinarioMamaria = new SisUrinarioMamaria();
         sisUrinarioMamariaId = new SisUrinarioMamariaId();
-        
-        sisTegumentar =  new SisTegumentar();
-        sisTegumentarId =  new SisTegumentarId();
-        
+
+        sisTegumentar = new SisTegumentar();
+        sisTegumentarId = new SisTegumentarId();
+
         sisNeurologico = new SisNeurologico();
         sisNeurologicoId = new SisNeurologicoId();
-    
+
         sisOftalmico = new SisOftalmico();
-        sisOftalmicoId =  new SisOftalmicoId();
-    
+        sisOftalmicoId = new SisOftalmicoId();
+
         sisMuscEsque = new SisMuscEsque();
         sisMuscEsqueId = new SisMuscEsqueId();
-        
-        exameFisico =  new ExameFisico();
+
+        exameFisico = new ExameFisico();
         exameFisicoId = new ExameFisicoId();
-        
-        exameImage = new ExameImage();
-        exameImageId = new ExameImageId();
+
+        exameImageRaioX = new ExameImage();
+        exameImageRaioXId = new ExameImageId();
+
+        exameImageUltrason = new ExameImage();
+        exameImageUltrasonId = new ExameImageId();
     }
-    
-    
-    
-    
-    
+
     /*Método utilizado para salvar uma nova consulta.
     Obs.: a consulta será salva caso tenha confirmação 
     do medico veterinário usando o método 
     confirmaMEDICO()*/
-    public void adicionarNovaConsulta(Animais animais){
+    public void adicionarNovaConsulta(Animais animais) {
         confirmaMEDICO();
         if (medicoCOFIRMADO == true) {
             try {
@@ -210,7 +207,6 @@ public class ConsultaController implements Serializable{
 
                 exameFisicoId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
                 exameFisico.setId(exameFisicoId);
-                
 
                 daoGenerico.save(anamnese);
                 daoGenerico.save(sisDigestorio);
@@ -221,16 +217,26 @@ public class ConsultaController implements Serializable{
                 daoGenerico.save(sisOftalmico);
                 daoGenerico.save(sisMuscEsque);
                 daoGenerico.save(exameFisico);
-                
-                if (confirmeRAIOX == true || confirmeUltrasson == true) {
-                    exameImageId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
-                    exameImage.setId(exameImageId);
-                    exameImage.setDataExaImage(data);
-                    exameImage.setTipo((confirmeRAIOX == true)?"RAIOX":"ULTRASSOM");
-                    daoGenerico.save(exameImage);
+
+                if (confirmeRAIOX == true) {
+                    exameImageRaioXId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
+                    exameImageRaioX.setId(exameImageRaioXId);
+                    exameImageRaioX.setDataExaImage(data);
+                    exameImageRaioX.setTipo("RAIOX");
+                    exameImageRaioX.setCodExameImage(codRaioX);
+                    exameImageRaioX.setStatus("Pendente");
+                    daoGenerico.save(exameImageRaioX);
                 }
-                
-                
+                if (confirmeUltrasson == true) {
+                    exameImageUltrasonId.setConsultaFkConsulta(novaConsulta.getPkConsulta());
+                    exameImageUltrason.setId(exameImageUltrasonId);
+                    exameImageUltrason.setDataExaImage(data);
+                    exameImageUltrason.setTipo("ULTRASSOM");
+                    exameImageUltrason.setCodExameImage(codUltrasson);
+                    exameImageUltrason.setStatus("Pendente");
+                    daoGenerico.save(exameImageUltrason);
+                }
+
                 message.setTextoDialog("Cosulta efetuada!",
                         "Consulta realizada com sucesso.",
                         "/SIHV_Telas_Exame/Nova_Consulta");
@@ -239,75 +245,88 @@ public class ConsultaController implements Serializable{
                 message.warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
             }
         }
-    } 
-    
-    
-    
-    
-    private String sistemasAfetados(){
-        String sisAfetados="";
-        
-        sisAfetados += ("Sim".equals(sisDigestorio.getSistemaAfetado()))?"Sistema digestório e glândulas anexas, ":"";
-        sisAfetados += ("Sim".equals(sisRespCardio.getSistemaAfetado()))?"Sistema respiratório e cardiovascular, ":"";
-        sisAfetados += ("Sim".equals(sisUrinarioMamaria.getSistemaAfetado()))?"Sistema gênito-urinário e glândulas mamárias, ":"";
-        sisAfetados += ("Sim".equals(sisTegumentar.getSistemaAfetado()))?"Sistema tegumentar, ":"";
-        sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado()))?"Sistema neurológico, ":"";
-        sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado()))?"Sistema oftálmico, ":"";
-        sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado()))?"Sistema músculo-esquelético, ":"";
-        sisAfetados += ("".equals(sisAfetados))?"Não houve sistemas afetados":"";
-        
+    }
+
+    public void maxExameImagem() {
+        List<?> list;
+        list = daoGenerico.list("select e.id.pkExameImage from ExameImage e where e.id.pkExameImage=1");
+        if(list.size()>0){
+            numCodImage = (int) daoGenerico.list("select max(e.id.pkExameImage) from ExameImage e").get(0);
+        }
+    }
+
+    private void gerarCodExameImagem() {
+        int num1;
+        int num2;
+        if (confirmeRAIOX == true && confirmeUltrasson == true) {
+            // Ambos exames por imagem
+            num1 = numCodImage + 1;
+            num2 = num1 + 1;
+            this.codRaioX = "" + Calendar.getInstance().get(Calendar.YEAR) + num1;
+            this.codUltrasson = "" + Calendar.getInstance().get(Calendar.YEAR) + num2;
+        } else if (confirmeRAIOX == true && confirmeUltrasson == false) {
+            //Para raio x
+            num1 = numCodImage + 1;
+            this.codRaioX = "" + Calendar.getInstance().get(Calendar.YEAR) + num1;
+            codUltrasson = "";
+        } else {
+            //Para ultrassom
+            num2 = numCodImage + 1;
+            this.codUltrasson = "" + Calendar.getInstance().get(Calendar.YEAR) + num2;
+            codRaioX = "";
+        }
+    }
+
+    private String sistemasAfetados() {
+        String sisAfetados = "";
+
+        sisAfetados += ("Sim".equals(sisDigestorio.getSistemaAfetado())) ? "Sistema digestório e glândulas anexas, " : "";
+        sisAfetados += ("Sim".equals(sisRespCardio.getSistemaAfetado())) ? "Sistema respiratório e cardiovascular, " : "";
+        sisAfetados += ("Sim".equals(sisUrinarioMamaria.getSistemaAfetado())) ? "Sistema gênito-urinário e glândulas mamárias, " : "";
+        sisAfetados += ("Sim".equals(sisTegumentar.getSistemaAfetado())) ? "Sistema tegumentar, " : "";
+        sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado())) ? "Sistema neurológico, " : "";
+        sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado())) ? "Sistema oftálmico, " : "";
+        sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado())) ? "Sistema músculo-esquelético, " : "";
+        sisAfetados += ("".equals(sisAfetados)) ? "Não houve sistemas afetados" : "";
+
         return sisAfetados;
     }
-    
-    
-    
-    
-    
-    
+
     /*O método é chamado para atestar que um medico
     veterinário ira fazer a consulta, ou seja, 
     uma nova consulta só será concretizada 
     se houver o aval do mesmo*/
-    private void confirmaMEDICO(){
+    private void confirmaMEDICO() {
         confirmeSENHA = new Security().encrypter(confirmeSENHA);
         List<User> userLista;
-        userLista =  daoGenerico.list("select u from User u where u.userSenha='"+confirmeSENHA+"' and u.crmvMatricula='"+confirmeCRMV+"'");
-        
+        userLista = daoGenerico.list("select u from User u where u.userSenha='" + confirmeSENHA + "' and u.crmvMatricula='" + confirmeCRMV + "'");
+
         if (userLista.size() > 0) {
             medicoVET = userLista.get(0);
             medicoCOFIRMADO = true;
-        }else{
+        } else {
             medicoCOFIRMADO = false;
             message.warn("Verificação não confirmada!", "É necessário um medico veterinário cadastrado!");
         }
     }
-    
-    
-    
-    
-    
-    
-    public void verConsulta(){
-        formsExame = daoGenerico.viewCONSULTA(""+pesquisaConsulta.getConsulta().getPkConsulta());
-        
-        System.out.println(pesquisaConsulta.getAnimais().getNomeAnimal()+"===============================================================\n");
-        
-        
+
+    public void verConsulta() {
+        formsExame = daoGenerico.viewCONSULTA("" + pesquisaConsulta.getConsulta().getPkConsulta());
+
+        System.out.println(pesquisaConsulta.getAnimais().getNomeAnimal() + "===============================================================\n");
+
         try {
             tools.redirecionar("/SIHV/faces/SIHV_Telas_Exame/Exames.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ConsultaController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    
-    
-    
- 
+
     /*O métodos GETs e SETs utilizados para*/
     public Date getData() {
         return data;
     }
+
     //----------------------------------------------------
     public String getConfirmeCRMV() {
         return confirmeCRMV;
@@ -325,8 +344,7 @@ public class ConsultaController implements Serializable{
         this.confirmeSENHA = confirmeSENHA;
     }
     //-----------------------------------------------------
-    
-    
+
     //GETs & SET ANAMNESE
     public Anamnese getAnamnese() {
         return anamnese;
@@ -335,7 +353,7 @@ public class ConsultaController implements Serializable{
     public void setAnamnese(Anamnese anamnese) {
         this.anamnese = anamnese;
     }
-    
+
     public String[] getVacinacao() {
         return vacinacao;
     }
@@ -360,18 +378,17 @@ public class ConsultaController implements Serializable{
         this.acessoArua = acessoArua;
     }
     //-----------------------------------------------------------------
-    
-    
+
     //------GETs & SETs de generico_Sis_Digestorio---------------------
     public SisDigestorio getSisDigestorio() {
         return sisDigestorio;
     }
+
     public void setSisDigestorio(SisDigestorio sisDigestorio) {
         this.sisDigestorio = sisDigestorio;
     }
     //-----------------------------------------------------------------
-    
-    
+
     //------GETs & SETs de generico_Sis_Resp_Cardio---------------------
     public SisRespCardio getSisRespCardio() {
         return sisRespCardio;
@@ -381,8 +398,7 @@ public class ConsultaController implements Serializable{
         this.sisRespCardio = sisRespCardio;
     }
     //------------------------------------------------------------------
-    
-    
+
     //------GETs & SETs SisUrinarioMamaria------------------------------
     public SisUrinarioMamaria getSisUrinarioMamaria() {
         return sisUrinarioMamaria;
@@ -402,7 +418,7 @@ public class ConsultaController implements Serializable{
         this.sisTegumentar = sisTegumentar;
     }
     //-----------------------------------------------------------------
-    
+
     //------GETs & SETs SisNeurologico----------------------------------
     public SisNeurologico getSisNeurologico() {
         return sisNeurologico;
@@ -444,22 +460,64 @@ public class ConsultaController implements Serializable{
     //-----------------------------------------------------------------
 
     //------GETs & SETs Exame por Imagem----------------------------------
-    public ExameImage getExameImage() {
-        return exameImage;
+    public ExameImage getExameImageRaioX() {
+        return exameImageRaioX;
     }
 
-    public void setExameImage(ExameImage exameImage) {
-        this.exameImage = exameImage;
+    public void setExameImageRaioX(ExameImage exameImageRaioX) {
+        this.exameImageRaioX = exameImageRaioX;
     }
 
+    public ExameImageId getExameImageRaioXId() {
+        return exameImageRaioXId;
+    }
+
+    public void setExameImageRaioXId(ExameImageId exameImageRaioXId) {
+        this.exameImageRaioXId = exameImageRaioXId;
+    }
+
+    public ExameImage getExameImageUltrason() {
+        return exameImageUltrason;
+    }
+
+    public void setExameImageUltrason(ExameImage exameImageUltrason) {
+        this.exameImageUltrason = exameImageUltrason;
+    }
+
+    public ExameImageId getExameImageUltrasonId() {
+        return exameImageUltrasonId;
+    }
+
+    public void setExameImageUltrasonId(ExameImageId exameImageUltrasonId) {
+        this.exameImageUltrasonId = exameImageUltrasonId;
+    }
     //------------------------------------------------------------------
+    
+    //GETs e SETs para código de exames por imagens
+    public String getCodRaioX() {
+        return codRaioX;
+    }
 
+    public void setCodRaioX(String codRaioX) {
+        this.codRaioX = codRaioX;
+    }
+
+    public String getCodUltrasson() {
+        return codUltrasson;
+    }
+
+    public void setCodUltrasson(String codUltrasson) {
+        this.codUltrasson = codUltrasson;
+    }
+    //------------------------------------------------------------------
+    
     public boolean isConfirmeRAIOX() {
         return confirmeRAIOX;
     }
 
     public void setConfirmeRAIOX(boolean confirmeRAIOX) {
         this.confirmeRAIOX = confirmeRAIOX;
+        gerarCodExameImagem();
     }
 
     public boolean isConfirmeUltrasson() {
@@ -468,6 +526,7 @@ public class ConsultaController implements Serializable{
 
     public void setConfirmeUltrasson(boolean confirmeUltrasson) {
         this.confirmeUltrasson = confirmeUltrasson;
+        gerarCodExameImagem();
     }
 
     public PesquisaController getPesquisaControle() {
@@ -494,5 +553,4 @@ public class ConsultaController implements Serializable{
     public void setFormsExame(FormsExames formsExame) {
         this.formsExame = formsExame;
     }
-    
 }

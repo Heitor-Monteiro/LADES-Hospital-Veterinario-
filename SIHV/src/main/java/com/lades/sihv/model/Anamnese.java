@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 09/01/2017 01:03:35 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -216,7 +216,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="vacinacao", nullable=false, length=21)
+    @Column(name="vacinacao", nullable=false, length=22)
     public String getVacinacao() {
         return this.vacinacao;
     }
@@ -286,7 +286,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="qualEctoparasitas", length=33)
+    @Column(name="qualEctoparasitas", length=34)
     public String getQualEctoparasitas() {
         return this.qualEctoparasitas;
     }
@@ -316,7 +316,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="acessoRua", nullable=false, length=23)
+    @Column(name="acessoRua", nullable=false, length=24)
     public String getAcessoRua() {
         return this.acessoRua;
     }

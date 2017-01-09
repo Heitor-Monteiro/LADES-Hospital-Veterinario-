@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 09/01/2017 01:03:36 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Anamnese" table="anamnese" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnamneseId">
@@ -43,7 +43,7 @@
             <column name="descriRacao" length="200" />
         </property>
         <property name="vacinacao" type="string">
-            <column name="vacinacao" length="21" not-null="true" />
+            <column name="vacinacao" length="22" not-null="true" />
         </property>
         <property name="sobreVacina" type="string">
             <column name="sobreVacina" length="100" />
@@ -64,7 +64,7 @@
             <column name="ectoparasitas" length="7" not-null="true" />
         </property>
         <property name="qualEctoparasitas" type="string">
-            <column name="qualEctoparasitas" length="33" />
+            <column name="qualEctoparasitas" length="34" />
         </property>
         <property name="controEctoparasitas" type="string">
             <column name="controEctoparasitas" length="7" />
@@ -73,7 +73,7 @@
             <column name="qualProdutoUtiliza" length="50" />
         </property>
         <property name="acessoRua" type="string">
-            <column name="acessoRua" length="23" not-null="true" />
+            <column name="acessoRua" length="24" not-null="true" />
         </property>
         <property name="descriHabitat" type="string">
             <column name="descriHabitat" length="200" />
