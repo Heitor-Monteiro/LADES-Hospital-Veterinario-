@@ -79,6 +79,7 @@
                                   layout="responsive"
                                   columns="2"
                                   value="#{MasterControle.pesquisaControle.itemPesquisa}"
+
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF" itemValue="cpf" />
@@ -86,23 +87,26 @@
                     <f:selectItem itemLabel="RG" itemValue="rg" />
                     <f:selectItem itemLabel="RGHV" itemValue="rghv" />
                     <f:selectItem itemLabel="Nome do cliente" itemValue="nome" />
+                    <p:ajax update="search" listener="#{MasterControle.pesquisaControle.changeMask()}"/>
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
 
-            <p:panelGrid columns="3"
+            <p:panelGrid id="search"
+                         columns="3"
                          layout="grid"
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                          style="margin-bottom: 20px;" >
 
+                <p:inputMask
+                    mask="#{MasterControle.pesquisaControle.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MasterControle.pesquisaControle.textoPesquisa}" 
+                    title="#{MasterControle.pesquisaControle.searchTip}"
+                    required="true" 
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
-                <p:inputText id="ValorPesquisa" 
-                             value="#{MasterControle.pesquisaControle.textoPesquisa}" 
-                             title="Ex.: 33344455511"
-                             maxlength="100"
-                             required="true" 
-                             requiredMessage="Informe o valor de pesquisa!"/>
 
 
                 <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Cosulta')}"
@@ -110,7 +114,8 @@
                                  disabled="false"
                                  icon="fa fa-search"
                                  update="@([id$=:GridBusca])" />
-                <p:message for="ValorPesquisa" />
+
+                <p:message for="ValorPesquisa"/>
             </p:panelGrid>
 
         </h:form>
@@ -157,7 +162,7 @@
                 <p:column headerText="RGHV" >
                     <h:outputText value="#{consulta.animais.rghv}" />
                 </p:column>
-                
+
                 <p:column headerText="Nome do animal" >
                     <h:outputText value="#{consulta.animais.nomeAnimal}" />
                 </p:column>

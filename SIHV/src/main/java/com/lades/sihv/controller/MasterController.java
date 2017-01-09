@@ -37,6 +37,7 @@ public class MasterController implements Serializable {
     private AnimalController animalControle;
     private ConsultaController consultaControle;
 
+
     public void prepararControllerPessoa() {
         pessoaControle = new PessoaController(daoGenerico, message, tools);
     }

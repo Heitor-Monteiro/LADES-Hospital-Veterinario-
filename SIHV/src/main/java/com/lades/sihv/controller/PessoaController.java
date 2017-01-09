@@ -46,6 +46,8 @@ public class PessoaController implements Serializable {
     private Tools tools;
     private final Security secure = new Security();
     private final BeautyText stringer = new BeautyText();
+        
+//    private List<Pessoa> pessoasBuscadas;
     private boolean mudancaCpfCnpj = true;
 
     /*Os método e variáveis abaixo são
