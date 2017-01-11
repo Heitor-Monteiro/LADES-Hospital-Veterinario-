@@ -1,13 +1,13 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
     <div class="ui-fluid">
-        
+
         <h:form>
-        
+
             <p:panelGrid columns="3" layout="grid"
                          style="margin: 10px 0px 15px;"
                          styleClass="panelgrid-noborder"
@@ -24,24 +24,29 @@
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF" itemValue="cpf" />
                     <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
+
+
                     <f:selectItem itemLabel="RG" itemValue="rg" />
+
                     <f:selectItem itemLabel="RGHV" itemValue="rghv" />
+                    <p:ajax update="search" listener="#{MasterControle.pesquisaControle.changeMask()}"/>
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
             </p:panelGrid>
 
-            <p:panelGrid columns="3" layout="grid"
+            <p:panelGrid id="search" columns="3" layout="grid"
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                          style="margin-bottom: 20px;" >
 
 
-                <p:inputText id="ValorPesquisa" 
-                             value="#{MasterControle.pesquisaControle.textoPesquisa}" 
-                             title="Ex.: 33344455511"
-                             maxlength="100"
-                             required="true" 
-                             requiredMessage="Informe o valor de pesquisa!"/>
+                <p:inputMask
+                    mask="#{MasterControle.pesquisaControle.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MasterControle.pesquisaControle.textoPesquisa}" 
+                    title="#{MasterControle.pesquisaControle.searchTip}"
+                    required="true" 
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
 
                 <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Animal')}"
@@ -51,30 +56,30 @@
                                  update="@([id$=:GridBusca])" />
                 <p:message for="ValorPesquisa" />
             </p:panelGrid>
-    
+
         </h:form>
-        
-       <p:panelGrid columns="1" layout="grid"
-                    style="margin: 10px 0px 15px;"
-                    styleClass="panelgrid-noborder"
-                    columnClasses="ui-grid-col-5" >
-           
-           <p:outputLabel value="Animais encontrados:"
-                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
-                          style="color: #00B59B; 
-                              font-weight: bold;
-                              padding-top: 20px;"/>
-                         
-       </p:panelGrid>
-        
-       
-       <p:panelGrid id="GridBusca"
-                    columns="1"
-                    layout="grid"
-                    style="margin: 10px 0px 15px;"
-                    styleClass="panelgrid-noborder"
-                    columnClasses="ui-grid-col-12" >
-        
+
+        <p:panelGrid columns="1" layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-5" >
+
+            <p:outputLabel value="Animais encontrados:"
+                           rendered="#{MasterControle.pesquisaControle.showDataTable}"
+                           style="color: #00B59B; 
+                           font-weight: bold;
+                           padding-top: 20px;"/>
+
+        </p:panelGrid>
+
+
+        <p:panelGrid id="GridBusca"
+                     columns="1"
+                     layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
+
             <p:dataTable id="AnimaisBuscada"
                          var="animais"
                          rendered="#{MasterControle.pesquisaControle.showDataTable}"
@@ -84,30 +89,30 @@
                          reflow="true"
                          selection="#{MasterControle.animal}"
                          rowKey="#{animais.id.pkAnimal}" >
-            
+
                 <p:column selectionMode="single" style="width:30px;text-align:center;"/>
-                
+
                 <p:column headerText="Código"
                           width="97">
                     <h:outputText value="#{animais.rghv}" />
                 </p:column>
-                
+
                 <p:column headerText="Nome do animal" >
                     <h:outputText value="#{animais.nomeAnimal}" />
                 </p:column>
-                
+
                 <p:column headerText="Especie"
                           width="380" >
                     <h:outputText value="#{animais.especie}"/>
                 </p:column>
-                
+
                 <p:column headerText="Sexo"
                           width="60" >
                     <h:outputText value="#{animais.sexoAnimal}"/>
                 </p:column>
-                
-        </p:dataTable>
-    
+
+            </p:dataTable>
+
         </p:panelGrid>
     </div>
 </ui:component>

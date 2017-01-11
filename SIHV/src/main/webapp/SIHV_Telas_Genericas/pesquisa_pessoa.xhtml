@@ -27,23 +27,25 @@
                     <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
                     <f:selectItem itemLabel="Nome" itemValue="nome" />
+                    <p:ajax update="search" listener="#{MasterControle.pesquisaControle.changeMask()}"/>
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
 
             </p:panelGrid>
 
-            <p:panelGrid columns="3" layout="grid"
+            <p:panelGrid id="search" columns="3" layout="grid"
                          styleClass="panelgrid-noborder"
                          columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4"
                          style="margin-bottom: 20px;" >
 
 
-                <p:inputText id="ValorPesquisa" 
-                             value="#{MasterControle.pesquisaControle.textoPesquisa}" 
-                             title="Ex.: 33344455511"
-                             maxlength="100"
-                             required="true" 
-                             requiredMessage="Informe o valor de pesquisa!"/>
+                <p:inputMask
+                    mask="#{MasterControle.pesquisaControle.searchMask}"
+                    id="ValorPesquisa"
+                    value="#{MasterControle.pesquisaControle.textoPesquisa}" 
+                    title="#{MasterControle.pesquisaControle.searchTip}"
+                    required="true" 
+                    requiredMessage="Informe o valor de pesquisa!"/>
 
 
                 <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Pessoa')}"
@@ -55,7 +57,7 @@
             </p:panelGrid>
 
         </h:form>
- 
+
         <p:panelGrid columns="1"
                      layout="grid"
                      style="margin: 10px 0px 15px;"
@@ -72,7 +74,7 @@
 
 
 
-        
+
         <p:panelGrid id="GridBusca"
                      columns="1"
                      layout="grid"
