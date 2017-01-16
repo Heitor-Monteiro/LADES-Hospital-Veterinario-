@@ -1,8 +1,7 @@
 package com.lades.sihv.DAO;
 
 import com.lades.sihv.classeMolde.FormsExames;
-import com.lades.sihv.classeMolde.PesquisaConsulta;
-import com.lades.sihv.model.Animais;
+import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.Pessoa;
 import java.util.List;
 
@@ -15,8 +14,8 @@ public interface GenericoDAO<Ent> {
 
     public List<Ent> list(String sqlHQL);    
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search);
-    public List<Animais> listBySearchANIMAIS(String searchMode, String search);
-    public List<PesquisaConsulta> listBySearchCONSULTA(String searchMode, String search);
+    public List<CollectionClasses> listBySearchANIMAIS(String searchMode, String search);
+    public List<CollectionClasses> listBySearchCONSULTA(String searchMode, String search);
     public FormsExames viewCONSULTA(String pkConsulta);
     public List<String> getPelagemNames();    
     public void remove(Object entidade);

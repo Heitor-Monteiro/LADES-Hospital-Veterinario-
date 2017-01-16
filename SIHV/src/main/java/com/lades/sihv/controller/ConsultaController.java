@@ -9,7 +9,7 @@ import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.Security;
 import com.lades.sihv.Tools;
 import com.lades.sihv.classeMolde.FormsExames;
-import com.lades.sihv.classeMolde.PesquisaConsulta;
+import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.User;
@@ -52,6 +52,7 @@ public class ConsultaController implements Serializable {
     private PesquisaController pesquisaControle;
     private Tools tools;
 
+    private int maxCodConsulta;
     private Consulta novaConsulta;
     private Date data;
 
@@ -61,7 +62,7 @@ public class ConsultaController implements Serializable {
     private String confirmeSENHA;
     private boolean medicoCOFIRMADO = false;
 
-    private PesquisaConsulta pesquisaConsulta;
+    private CollectionClasses collectionClasses;
     private FormsExames formsExame;
 
     private Anamnese anamnese;
@@ -110,9 +111,10 @@ public class ConsultaController implements Serializable {
     private ConsultaController() {
     }
 
-    public ConsultaController(GenericoDAO daoGenerico, FacesMessages message) {
+    public ConsultaController(GenericoDAO daoGenerico, FacesMessages message, Tools tools) {
         this.daoGenerico = daoGenerico;
         this.message = message;
+        this.tools = tools;
     }
 
     public ConsultaController(GenericoDAO daoGenerico, FacesMessages message, PesquisaController pesquisaControle, Tools tools) {
@@ -247,14 +249,18 @@ public class ConsultaController implements Serializable {
         }
     }
 
+    /*O método é utilizar para saber o
+    maior código de um exame por imagem.*/
     public void maxExameImagem() {
         List<?> list;
         list = daoGenerico.list("select e.id.pkExameImage from ExameImage e where e.id.pkExameImage=1");
-        if(list.size()>0){
+        if (list.size() > 0) {
             numCodImage = (int) daoGenerico.list("select max(e.id.pkExameImage) from ExameImage e").get(0);
         }
     }
 
+    /*O método é utilizar para gera o código de
+    uma exame por imagem no formato AnoNumero.*/
     private void gerarCodExameImagem() {
         int num1;
         int num2;
@@ -277,6 +283,8 @@ public class ConsultaController implements Serializable {
         }
     }
 
+    /*O método verifica quais sistema
+    de anamnese foram afetados.*/
     private String sistemasAfetados() {
         String sisAfetados = "";
 
@@ -310,15 +318,35 @@ public class ConsultaController implements Serializable {
         }
     }
 
+    /*O método direciona o usuário para uma
+    pagina que exibirá todos os exames.*/
     public void verConsulta() {
-        formsExame = daoGenerico.viewCONSULTA("" + pesquisaConsulta.getConsulta().getPkConsulta());
-
-        System.out.println(pesquisaConsulta.getAnimais().getNomeAnimal() + "===============================================================\n");
-
+        formsExame = daoGenerico.viewCONSULTA("" + collectionClasses.getConsulta().getPkConsulta());
         try {
             tools.redirecionar("/SIHV/faces/SIHV_Telas_Exame/Exames.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ConsultaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*O método direciona o usuário para o
+    preenchimento dos formulário de consultas.*/
+    public void continuarConsulta() {
+        try {
+            tools.redirecionar("/SIHV/faces/SIHV_Telas_Exame/Nova_Consulta.xhtml");
+        } catch (IOException ex) {
+            Logger.getLogger(ConsultaController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    /*O método é utilizar para saber qual
+    será o próximo código de uma nova consulta.*/
+    public void maxConsultaCod() {
+        List<?> list;
+        list = daoGenerico.list("select c.pkConsulta from Consulta c where c.pkConsulta=1");
+        if (list.size() > 0) {
+            maxCodConsulta = (int) daoGenerico.list("select max(c.pkConsulta) from Consulta c").get(0);
+            maxCodConsulta++;
         }
     }
 
@@ -492,7 +520,7 @@ public class ConsultaController implements Serializable {
         this.exameImageUltrasonId = exameImageUltrasonId;
     }
     //------------------------------------------------------------------
-    
+
     //GETs e SETs para código de exames por imagens
     public String getCodRaioX() {
         return codRaioX;
@@ -510,7 +538,7 @@ public class ConsultaController implements Serializable {
         this.codUltrasson = codUltrasson;
     }
     //------------------------------------------------------------------
-    
+
     public boolean isConfirmeRAIOX() {
         return confirmeRAIOX;
     }
@@ -537,13 +565,12 @@ public class ConsultaController implements Serializable {
         this.pesquisaControle = pesquisaControle;
     }
 
-    public PesquisaConsulta getPesquisaConsulta() {
-        return pesquisaConsulta;
+    public CollectionClasses getCollectionClasses() {
+        return collectionClasses;
     }
 
-    public void setPesquisaConsulta(PesquisaConsulta pesquisaConsulta) {
-        System.out.println("Selecionando objeto pesquisaConsulta========================");
-        this.pesquisaConsulta = pesquisaConsulta;
+    public void setCollectionClasses(CollectionClasses collectionClasses) {
+        this.collectionClasses = collectionClasses;
     }
 
     public FormsExames getFormsExame() {
@@ -553,4 +580,12 @@ public class ConsultaController implements Serializable {
     public void setFormsExame(FormsExames formsExame) {
         this.formsExame = formsExame;
     }
+
+    /*Método GET para exibir código demostrativos
+    ao finalizar uma nova consulta.*/
+    public int getMaxCodConsulta() {
+        return maxCodConsulta;
+    }
+    //------------------------------------------------------------------
+
 }

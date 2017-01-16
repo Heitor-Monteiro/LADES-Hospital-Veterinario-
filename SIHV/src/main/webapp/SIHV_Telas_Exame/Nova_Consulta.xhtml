@@ -15,9 +15,7 @@
         <ui:define name="content">
 
             <f:metadata>
-                <f:viewAction action="#{RenderedControle.prepararRenderedArray(2)}" />  
-                <f:viewAction action="#{MasterControle.prepararNovaConsulta()}" />
-                <f:viewAction action="#{MasterControle.consultaControle.maxExameImagem()}" />
+                
             </f:metadata>
 
             <h:form>
@@ -25,14 +23,6 @@
 
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
-
-                    <p:tab id="etapa1" title="Dados do cliente" >
-                        <p:panel >
-                            
-                            <ui:include src="/SIHV_Telas_Genericas/pesquisa_AnimalCliente.xhtml" />
-                            
-                        </p:panel>
-                    </p:tab>
 
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
@@ -107,7 +97,7 @@
 
                         </p:panel>
                     </p:tab>
-                    
+               
 
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel id="ExameFisico">
@@ -194,7 +184,7 @@
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
-                                    <p:outputLabel value="0000000000000000"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.maxCodConsulta}"
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
@@ -203,39 +193,34 @@
 
                                     <p:outputLabel value="Proprietário:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="Nome do proprietario"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.proprietario.nome}"
                                                    style="color: #555;" />
 
 
-                                    <p:outputLabel value="CPF:"
+                                    <p:outputLabel value="CPF/CNPJ:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="00077788822"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.proprietario.cpfCnpj}"
                                                    style="color: #555;" />
 
-
-                                    <p:outputLabel value="RG:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="1234567"
-                                                   style="color: #555;" />
 
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animal.nomeAnimal}"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.nomeAnimal }"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Espécie:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animal.especie}"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.especie}"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animal.id.pkAnimal}"
+                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.rghv}"
                                                    style="color: #555;" />
 
 

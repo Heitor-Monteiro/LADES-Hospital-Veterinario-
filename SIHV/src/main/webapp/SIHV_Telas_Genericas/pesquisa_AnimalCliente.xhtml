@@ -24,10 +24,7 @@
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF" itemValue="cpf" />
                     <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
-
-
                     <f:selectItem itemLabel="RG" itemValue="rg" />
-
                     <f:selectItem itemLabel="RGHV" itemValue="rghv" />
                     <p:ajax update="search" listener="#{MasterControle.pesquisaControle.changeMask()}"/>
                 </p:selectOneRadio>
@@ -86,33 +83,40 @@
                          value="#{MasterControle.pesquisaControle.objBuscados}"
                          paginator="true"
                          rows="10"
-                         reflow="true"
-                         selection="#{MasterControle.animal}"
-                         rowKey="#{animais.id.pkAnimal}" >
-
-                <p:column selectionMode="single" style="width:30px;text-align:center;"/>
-
+                         reflow="true" >
+                
                 <p:column headerText="Código"
                           width="97">
-                    <h:outputText value="#{animais.rghv}" />
+                    <h:outputText value="#{animais.animais.rghv}" />
                 </p:column>
 
                 <p:column headerText="Nome do animal" >
-                    <h:outputText value="#{animais.nomeAnimal}" />
+                    <h:outputText value="#{animais.animais.nomeAnimal}" />
                 </p:column>
 
                 <p:column headerText="Especie"
-                          width="380" >
-                    <h:outputText value="#{animais.especie}"/>
+                          width="240" >
+                    <h:outputText value="#{animais.animais.especie}"/>
                 </p:column>
 
                 <p:column headerText="Sexo"
                           width="60" >
-                    <h:outputText value="#{animais.sexoAnimal}"/>
+                    <h:outputText value="#{animais.animais.sexoAnimal}"/>
                 </p:column>
-
-            </p:dataTable>
-
+                
+                <p:column headerText=" "
+                          width="210" >
+                    <p:commandButton class="buttonWidth"
+                                     action="#{MasterControle.consultaControle.continuarConsulta()}"
+                                     value="Selecionar animal"
+                                     icon="fa fa-check">
+                        <f:setPropertyActionListener value="#{animais}" 
+                                                     target="#{MasterControle.consultaControle.collectionClasses}" />
+                    </p:commandButton>
+                </p:column>
+                
+        </p:dataTable>
+    
         </p:panelGrid>
     </div>
 </ui:component>

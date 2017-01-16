@@ -8,8 +8,8 @@ package com.lades.sihv.controller;
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.Tools;
+import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.classeMolde.PessoaBusca;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
 import java.io.Serializable;
@@ -29,15 +29,15 @@ public class MasterController implements Serializable {
     private final Tools tools = new Tools();
 
     private Pessoa pessoa;
-    private PessoaBusca pessoaBusca;
+    private CollectionClasses collectionClasses;
     private Animais animal;
     private Consulta consulta;
     private PesquisaController pesquisaControle;
     private PessoaController pessoaControle;
     private AnimalController animalControle;
     private ConsultaController consultaControle;
-
-
+    
+    
     public void prepararControllerPessoa() {
         pessoaControle = new PessoaController(daoGenerico, message, tools);
     }
@@ -56,7 +56,7 @@ public class MasterController implements Serializable {
     //-------------------------------------------------------
     public void prepararNovaConsulta() {
         prepararPesquisaController();
-        consultaControle = new ConsultaController(daoGenerico, message);
+        consultaControle = new ConsultaController(daoGenerico, message, tools);
         consultaControle.prepararNovaConsulta();
     }
 
@@ -83,13 +83,13 @@ public class MasterController implements Serializable {
         this.pessoa = pessoa;
     }
     
-    public PessoaBusca getPessoaBusca() {
-        return pessoaBusca;
-    }
-
-    public void setPessoaBusca(PessoaBusca pessoaBusca) {
-        this.pessoaBusca = pessoaBusca;
-    }
+//    public PessoaBusca getPessoaBusca() {
+//        return pessoaBusca;
+//    }
+//
+//    public void setPessoaBusca(PessoaBusca pessoaBusca) {
+//        this.pessoaBusca = pessoaBusca;
+//    }
     
     public Animais getAnimal() {
         return animal;
@@ -139,4 +139,13 @@ public class MasterController implements Serializable {
     public Tools getTools() {
         return tools;
     }
+
+    public CollectionClasses getCollectionClasses() {
+        return collectionClasses;
+    }
+
+    public void setCollectionClasses(CollectionClasses collectionClasses) {
+        this.collectionClasses = collectionClasses;
+    }
+    
 }

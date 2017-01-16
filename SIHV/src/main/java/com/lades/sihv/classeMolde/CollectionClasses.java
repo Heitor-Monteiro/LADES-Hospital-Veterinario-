@@ -9,14 +9,17 @@ import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.User;
+import com.lades.sihv.model.Fisica;
+import java.io.Serializable;
 
 /**
  *
  * @author thiberius
  */
-public class PesquisaConsulta {
+public class CollectionClasses implements Serializable {
     private Pessoa residente;
     private Pessoa proprietario;
+    private Fisica pessoaFisica;
     private User user;
     private Animais animais;
     private Consulta consulta;
@@ -30,8 +33,14 @@ public class PesquisaConsulta {
         consulta = new Consulta();
     }
 
+    public void gerarObjNovaConsulta(){
+        animais = new Animais();
+        proprietario = new Pessoa();
+    }
     
-    
+    public void gerarObjPessoaFisica(){
+        pessoaFisica = new Fisica();
+    }
     
     public Animais getAnimais() {
         return animais;
@@ -72,6 +81,13 @@ public class PesquisaConsulta {
     public void setProprietario(Pessoa proprietario) {
         this.proprietario = proprietario;
     }
-    
+
+    public Fisica getPessoaFisica() {
+        return pessoaFisica;
+    }
+
+    public void setPessoaFisica(Fisica pessoaFisica) {
+        this.pessoaFisica = pessoaFisica;
+    }
     
 }

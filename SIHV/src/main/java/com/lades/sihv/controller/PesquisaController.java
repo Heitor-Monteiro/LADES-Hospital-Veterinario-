@@ -9,8 +9,6 @@ import java.io.Serializable;
 import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.model.Animais;
-import javax.faces.model.DataModel;
 
 /**
  *
@@ -21,6 +19,7 @@ public class PesquisaController implements Serializable {
     private String textoPesquisa;
     private String itemPesquisa = "cpf";
     private boolean showDataTable;
+    private Object objItem;
     private List<?> objBuscados;
     private static final FacesMessages mensagem = new FacesMessages();
     private String searchMask = "999.999.999-99";
@@ -98,13 +97,9 @@ public class PesquisaController implements Serializable {
 
         switch (item) {
             case "Pessoa":
-                List<Pessoa> objList = null;
-                objBuscados = objList;
                 objBuscados = new GenericoDAOImpl().listBySearchPESSOA(itemPesquisa, textoPesquisa);
                 break;
-            case "Animal":
-                List<Animais> objList2 = null;
-                objBuscados = objList2;
+            case "Animal":           
                 objBuscados = new GenericoDAOImpl().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
                 break;
             case "Cosulta":

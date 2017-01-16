@@ -2,9 +2,8 @@ package com.lades.sihv.DAO;
 
 import com.lades.sihv.*;
 import com.lades.sihv.classeMolde.FormsExames;
-import com.lades.sihv.classeMolde.PesquisaConsulta;
+import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.Anamnese;
-import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.ExameFisico;
 import com.lades.sihv.model.Pessoa;
@@ -125,7 +124,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
 
     @Override
-    public List<Animais> listBySearchANIMAIS(String searchMode, String search) {
+    public List<CollectionClasses> listBySearchANIMAIS(String searchMode, String search) {
         String tipoCliente = "";
         String joinTipoCli = "";
         switch (searchMode) {
@@ -157,25 +156,29 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
 
         search = "'%" + search + "%'";
         List<Ent> listaPessoa = this.list("select a.id.pkAnimal, a.id.clienteFkCliente, "
-                + "a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal, a.rghv "
+                + "a.id.clienteFkPessoa, a.nomeAnimal, a.especie, a.sexoAnimal, a.rghv, "
+                + "p.nome, p.cpfCnpj "
                 + "from Animais a, Pessoa p, Cliente c" + tipoCliente + " where " + joinTipoCli + " "
                 + "p.pkPessoa = c.id.fkPessoa "
                 + "and c.id.fkPessoa = a.id.clienteFkPessoa "
                 + "and " + searchMode + " like " + search);
-        List<Animais> retornaAnimais = new ArrayList<>();
+        List<CollectionClasses> retornaAnimais = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
-            Animais newAnimal = new Animais();
+            CollectionClasses newAnimal = new CollectionClasses();
+            newAnimal.gerarObjNovaConsulta();
             AnimaisId idAnimal = new AnimaisId();
 
             idAnimal.setPkAnimal((int) obj[0]);
             idAnimal.setClienteFkCliente((int) obj[1]);
             idAnimal.setClienteFkPessoa((int) obj[2]);
 
-            newAnimal.setId(idAnimal);
-            newAnimal.setNomeAnimal((String) obj[3]);
-            newAnimal.setEspecie((String) obj[4]);
-            newAnimal.setSexoAnimal((String) obj[5]);
-            newAnimal.setRghv((String) obj[6]);
+            newAnimal.getAnimais().setId(idAnimal);
+            newAnimal.getAnimais().setNomeAnimal((String) obj[3]);
+            newAnimal.getAnimais().setEspecie((String) obj[4]);
+            newAnimal.getAnimais().setSexoAnimal((String) obj[5]);
+            newAnimal.getAnimais().setRghv((String) obj[6]);
+            newAnimal.getProprietario().setNome((String) obj[7]);
+            newAnimal.getProprietario().setCpfCnpj((String) obj[8]);
             retornaAnimais.add(newAnimal);
         }
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Animais> listBySearchANIMAIS(String searchMode, String search) ]");
@@ -183,7 +186,7 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
     }
 
     @Override
-    public List<PesquisaConsulta> listBySearchCONSULTA(String searchMode, String search) {
+    public List<CollectionClasses> listBySearchCONSULTA(String searchMode, String search) {
         String tipoCliente = "";
         String joinTipoCli = "";
         switch (searchMode) {
@@ -227,10 +230,10 @@ public class GenericoDAOImpl<Ent> implements GenericoDAO<Ent> {
                 + "and puser.pkPessoa=user.id.fkPessoa "
                 + "and user.id.fkPessoa=c.user.id.fkPessoa "
                 + "and a.id.pkAnimal=c.animais.id.pkAnimal");
-        List<PesquisaConsulta> retornaConsulta = new ArrayList<>();
+        List<CollectionClasses> retornaConsulta = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaConsulta) {
 
-            PesquisaConsulta objbusca = new PesquisaConsulta();
+            CollectionClasses objbusca = new CollectionClasses();
             objbusca.geraObj();
 
             objbusca.getConsulta().setPkConsulta((int) obj[0]);
