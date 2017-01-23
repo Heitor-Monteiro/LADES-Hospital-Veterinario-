@@ -1,0 +1,16 @@
+#!/bin/bash
+
+#Esse script sh será utilizado para
+#desligar o computador de modo que,
+#uma pessoa leiga em comandos Linux
+#possa realizar o comando digitando
+#em idioma local a palavra “DESLIGAR”
+#em caixa alta.
+
+echo "Makvet-script ----> Parando servidor Glassfish !!!";
+/opt/glassfish4/bin/asadmin stop-domain;
+
+echo "Makvet-script ----> Desligando computador makvet !!!";
+shutdown -h now;
+
+exit 0;
