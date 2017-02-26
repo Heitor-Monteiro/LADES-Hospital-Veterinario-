@@ -1,0 +1,70 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 26/02/2017, 14:29:46
+    Author     : thiberius
+
+    Este css é utilizado para travar a
+    tabela do PrimeFaces no modo responsivo
+    caso este recurso esteja habilitado
+    no componente.
+*/
+
+@media(max-width:5640px){
+    .ui-datatable-reflow thead th,
+    .ui-datatable-reflow tfoot td{display:none}
+
+    .ui-datatable-reflow .ui-datatable-data td[role="gridcell"]{
+        text-align:left;
+        display:block;
+        border:0 none;
+        width:100%;
+        -webkit-box-sizing:border-box;
+        -moz-box-sizing:border-box;
+        box-sizing:border-box;
+        float:left;
+        clear:left
+    }
+
+    .ui-datatable-reflow 
+    .ui-datatable-data
+    .ui-widget-content{border:0 none}
+
+    .ui-datatable-reflow 
+    .ui-datatable-data tr
+    .ui-widget-content{
+        border-left:0 none;
+        border-right:0 none
+    }
+
+    .ui-datatable-reflow 
+    .ui-datatable-data td[role="gridcell"] 
+    .ui-column-title{
+        padding:.4em;
+        min-width:30%;
+        display:inline-block;
+        margin:-.4em 1em -.4em -.4em
+    }
+
+    .ui-datatable-reflow 
+    .ui-reflow-label,
+    .ui-datatable-reflow 
+    .ui-reflow-dropdown{display:inline-block}
+    .ui-datatable-reflow .ui-reflow-dropdown{
+        margin-left:5px;
+        border-top-left-radius:3px;
+        border-bottom-left-radius:3px
+    }
+
+    .ui-datatable-reflow tr.ui-datatable-empty-message>td{
+        display:block;
+        border:0 none
+    }
+}
+
+@media(min-width:640px){
+    .buttonWidth{max-width: 250px;}
+}
