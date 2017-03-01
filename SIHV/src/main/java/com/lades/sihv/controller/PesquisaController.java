@@ -8,7 +8,6 @@ package com.lades.sihv.controller;
 import java.io.Serializable;
 import java.util.List;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import com.lades.sihv.model.Pessoa;
 
 /**
  *

@@ -9,6 +9,7 @@ import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.Tools;
 import com.lades.sihv.classeMolde.CollectionClasses;
+import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
@@ -30,12 +31,12 @@ public class MasterController implements Serializable {
 
     private Pessoa pessoa;
     private CollectionClasses collectionClasses;
+    private FormsExames formsExame;
     private Animais animal;
     private Consulta consulta;
     private PesquisaController pesquisaControle;
     private PessoaController pessoaControle;
     private AnimalController animalControle;
-    private ConsultaController consultaControle;
     
     
     public void prepararControllerPessoa() {
@@ -56,23 +57,23 @@ public class MasterController implements Serializable {
     //-------------------------------------------------------
     public void prepararNovaConsulta() {
         prepararPesquisaController();
-        consultaControle = new ConsultaController(daoGenerico, message, tools);
-        consultaControle.prepararNovaConsulta();
-    }
-
-    public void adicionarNovaConsulta() {
-        consultaControle.adicionarNovaConsulta(animal);
+        prepareFormsExames();
+        formsExame.prepararFormsConsulta();
     }
     
     //-------------------------------------------------------
     public void pesquisarConsulta(){
         prepararPesquisaController();
-        consultaControle = new ConsultaController(daoGenerico, message, pesquisaControle, tools);
+        
     }
     
     //-------------------------------------------------------
     public void prepararPesquisaController() {
         pesquisaControle = new PesquisaController();
+    }
+    
+    private void prepareFormsExames(){
+        formsExame = new FormsExames();
     }
 
     public Pessoa getPessoa() {
@@ -121,13 +122,8 @@ public class MasterController implements Serializable {
 //    public void setAnimalControle(AnimalController animalControle) {
 //        this.animalControle = animalControle;
 //    }
-    public ConsultaController getConsultaControle() {
-        return consultaControle;
-    }
+    
 
-//    public void setConsultaControle(ConsultaController consultaControle) {
-//        this.consultaControle = consultaControle;
-//    }
     public FacesMessages getMessage() {
         return message;
     }
@@ -147,5 +143,12 @@ public class MasterController implements Serializable {
     public void setCollectionClasses(CollectionClasses collectionClasses) {
         this.collectionClasses = collectionClasses;
     }
-    
+
+    public FormsExames getFormsExame() {
+        return formsExame;
+    }
+
+    public void setFormsExame(FormsExames formsExame) {
+        this.formsExame = formsExame;
+    }
 }

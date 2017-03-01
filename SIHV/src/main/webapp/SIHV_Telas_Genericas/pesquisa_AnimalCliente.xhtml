@@ -108,11 +108,11 @@
                 <p:column headerText=" "
                           width="210" >
                     <p:commandButton class="buttonWidth"
-                                     action="#{MasterControle.consultaControle.continuarConsulta()}"
+                                     action="#{consultaBean.continuarConsulta()}"
                                      value="Selecionar animal"
                                      icon="fa fa-check">
                         <f:setPropertyActionListener value="#{animais}" 
-                                                     target="#{MasterControle.consultaControle.collectionClasses}" />
+                                                     target="#{consultaBean.collectionClasses}" />
                     </p:commandButton>
                 </p:column>
                 

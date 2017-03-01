@@ -16,7 +16,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico1" />
             <p:inputNumber id="fisico1" 
-                           value="#{MasterControle.consultaControle.exameFisico.fcBpm}"
+                           value="#{consultaBean.formsExame.exameFisico.fcBpm}"
                            title="Frequência cardíaca"
                            maxlength="4"
                            maxValue="9999"
@@ -34,7 +34,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico2" />
             <p:inputNumber id="fisico2" 
-                           value="#{MasterControle.consultaControle.exameFisico.frMpm}"
+                           value="#{consultaBean.formsExame.exameFisico.frMpm}"
                            title="Frequência respiratória"
                            maxlength="3"
                            maxValue="999"
@@ -52,7 +52,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico3" />
             <p:inputNumber id="fisico3" 
-                           value="#{MasterControle.consultaControle.exameFisico.termpeReta}"
+                           value="#{consultaBean.formsExame.exameFisico.termpeReta}"
                            decimalSeparator=","
                            thousandSeparator="."
                            maxlength="4"
@@ -72,7 +72,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico4" />
             <p:inputNumber id="fisico4" 
-                           value="#{MasterControle.consultaControle.exameFisico.tpc}"
+                           value="#{consultaBean.formsExame.exameFisico.tpc}"
                            title="Tempo de preenchimento capilar"
                            maxlength="3"
                            maxValue="999"
@@ -90,7 +90,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico5" />
             <p:selectOneMenu id="fisico5"
-                             value="#{MasterControle.consultaControle.exameFisico.estadoNutric}"
+                             value="#{consultaBean.formsExame.exameFisico.estadoNutric}"
                              required="true"
                              requiredMessage="Informe o estado nutricional!"
                              style="margin-bottom: 20px;" >
@@ -109,7 +109,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico6" />
             <p:selectOneMenu id="fisico6"
-                             value="#{MasterControle.consultaControle.exameFisico.mucosaOral}"
+                             value="#{consultaBean.formsExame.exameFisico.mucosaOral}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa oral!"
                              style="margin-bottom: 20px;" >
@@ -129,7 +129,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico7" />
             <p:selectOneMenu id="fisico7"
-                             value="#{MasterControle.consultaControle.exameFisico.mucosVagPeni}"
+                             value="#{consultaBean.formsExame.exameFisico.mucosVagPeni}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa Vaginal/Peniana!"
                              style="margin-bottom: 20px;" >
@@ -149,7 +149,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico8" />
             <p:selectOneMenu id="fisico8"
-                             value="#{MasterControle.consultaControle.exameFisico.mucosaOcular}"
+                             value="#{consultaBean.formsExame.exameFisico.mucosaOcular}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa ocular!"
                              style="margin-bottom: 20px;" >
@@ -168,7 +168,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico9" />
             <p:selectOneRadio id="fisico9"
-                              value="#{MasterControle.consultaControle.exameFisico.pulso}"
+                              value="#{consultaBean.formsExame.exameFisico.pulso}"
                               layout="responsive"
                               columns="1"
                               required="true"
@@ -188,7 +188,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico10" />
             <p:selectOneRadio id="fisico10"
-                              value="#{MasterControle.consultaControle.exameFisico.estadoPulso}"
+                              value="#{consultaBean.formsExame.exameFisico.estadoPulso}"
                               layout="responsive"
                               columns="1"
                               required="true"
@@ -206,7 +206,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico11" />
             <p:selectOneMenu id="fisico11"
-                             value="#{MasterControle.consultaControle.exameFisico.hidratacao}"
+                             value="#{consultaBean.formsExame.exameFisico.hidratacao}"
                              required="true"
                              requiredMessage="Informe o estado da hidratação!"
                              style="margin-bottom: 20px;" >
@@ -226,7 +226,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico12" />
             <p:inputTextarea id="fisico12"
-                             value="#{MasterControle.consultaControle.exameFisico.palpaAbdom}"
+                             value="#{consultaBean.formsExame.exameFisico.palpaAbdom}"
                              required="true"
                              requiredMessage="Informe a palpação abdominal!"
                              style="margin-bottom: 20px;"
@@ -240,7 +240,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico13" />
             <p:inputTextarea id="fisico13"
-                             value="#{MasterControle.consultaControle.exameFisico.auscuCardiaca}"
+                             value="#{consultaBean.formsExame.exameFisico.auscuCardiaca}"
                              required="true"
                              requiredMessage="Informe a auscultação cardíaca!"
                              style="margin-bottom: 20px;"
@@ -254,7 +254,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico14" />
             <p:inputTextarea id="fisico14"
-                             value="#{MasterControle.consultaControle.exameFisico.auscuPulmona}"
+                             value="#{consultaBean.formsExame.exameFisico.auscuPulmona}"
                              required="true"
                              requiredMessage="Informe a auscultação pulmonar!"
                              style="margin-bottom: 20px;"
@@ -268,7 +268,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico15" />
             <p:inputTextarea id="fisico15"
-                             value="#{MasterControle.consultaControle.exameFisico.linfonodos}"
+                             value="#{consultaBean.formsExame.exameFisico.linfonodos}"
                              required="true"
                              requiredMessage="Informe o linfonodos!"
                              style="margin-bottom: 20px;"
@@ -282,7 +282,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico16" />
             <p:inputTextarea id="fisico16"
-                             value="#{MasterControle.consultaControle.exameFisico.pelePelos}"
+                             value="#{consultaBean.formsExame.exameFisico.pelePelos}"
                              required="true"
                              requiredMessage="Informe o estado de pele/pelos!"
                              style="margin-bottom: 20px;"
@@ -297,7 +297,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico17" />
             <p:inputText id="fisico17"
-                         value="#{MasterControle.consultaControle.exameFisico.inforAdiciona}"
+                         value="#{consultaBean.formsExame.exameFisico.inforAdiciona}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -312,7 +312,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico18" />
             <p:inputTextarea id="fisico18"
-                             value="#{MasterControle.consultaControle.exameFisico.diagDifer}"
+                             value="#{consultaBean.formsExame.exameFisico.diagDifer}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"

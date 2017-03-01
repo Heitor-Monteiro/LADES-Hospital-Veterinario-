@@ -37,6 +37,7 @@
 
                                     </p:panel>
                                 </p:tab>
+                                
                                 <p:tab id="anamnese2" title="etapa 2" >
                                     <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
 
@@ -91,13 +92,13 @@
 
                                     </p:panel>
                                 </p:tab>
-
+                                
                             </p:wizard>
 
 
                         </p:panel>
                     </p:tab>
-               
+
 
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel id="ExameFisico">
@@ -110,6 +111,7 @@
 
 
                     <p:tab id="etapa4" title="Exames complementares" >
+                        
                         <p:panel id="exameImagem">
 
 
@@ -122,7 +124,7 @@
                                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
 
                                 <p:selectOneButton id="value2"
-                                                   value="#{MasterControle.consultaControle.confirmeRAIOX}"
+                                                   value="#{consultaBean.confirmeRAIOX}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="true" />
@@ -148,7 +150,7 @@
                                                style="color: #00B59B; font-weight: bold;" />
 
                                 <p:selectOneButton id="value3"
-                                                   value="#{MasterControle.consultaControle.confirmeUltrasson}"
+                                                   value="#{consultaBean.confirmeUltrasson}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="true" />
@@ -164,6 +166,7 @@
 
 
                         </p:panel>
+                        
                     </p:tab>
 
 
@@ -184,7 +187,7 @@
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.maxCodConsulta}"
+                                    <p:outputLabel value="#{consultaBean.maxCodConsulta}"
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
@@ -193,34 +196,34 @@
 
                                     <p:outputLabel value="Proprietário:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.proprietario.nome}"
+                                    <p:outputLabel value="#{consultaBean.collectionClasses.proprietario.nome}"
                                                    style="color: #555;" />
 
 
                                     <p:outputLabel value="CPF/CNPJ:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.proprietario.cpfCnpj}"
+                                    <p:outputLabel value="#{consultaBean.collectionClasses.proprietario.cpfCnpj}"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.nomeAnimal }"
+                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.nomeAnimal }"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Espécie:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.especie}"
+                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.especie}"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.collectionClasses.animais.rghv}"
+                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.rghv}"
                                                    style="color: #555;" />
 
 
@@ -228,8 +231,26 @@
 
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.consultaControle.data}"
+                                    <p:outputLabel value="#{consultaBean.objData}"
                                                    style="color: #555;" />
+
+
+
+
+
+                                    <p:outputLabel value="Valor da consulta:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                                                   for="valorConsult" />
+                                    <p:inputNumber id="valorConsult" 
+                                                   value="#{consultaBean.formsExame.consulta.valorConsulta}"
+                                                   decimalSeparator=","
+                                                   thousandSeparator="."
+                                                   maxlength="6"
+                                                   maxValue="9999"
+                                                   decimalPlaces="2"
+                                                   required="true" 
+                                                   requiredMessage="Informe o valor da consulta!"
+                                                   style="margin-bottom: 20px;" />
                                 </p:panelGrid>
 
 
@@ -250,7 +271,7 @@
                                     <p:outputLabel value="Informe o CRMV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:inputText id="ConfimMED1" 
-                                                 value="#{MasterControle.consultaControle.confirmeCRMV}"
+                                                 value="#{consultaBean.confirmeCRMV}"
                                                  title="Ex.: CRMV-PA 00000"
                                                  required="true"
                                                  requiredMessage="Informe o CRMV para concretiza a consulta!"
@@ -263,7 +284,7 @@
                                     <p:password id="ConfimMED2"
                                                 feedback="false"
                                                 inline="true"
-                                                value="#{MasterControle.consultaControle.confirmeSENHA}"
+                                                value="#{consultaBean.confirmeSENHA}"
                                                 title="Residente: digite a senha que você utiliza para acessar o sistema."
                                                 maxlength="100"
                                                 required="true" 
@@ -283,7 +304,7 @@
                                     </div>
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:commandButton  action="#{MasterControle.adicionarNovaConsulta()}"
+                                        <p:commandButton  action="#{consultaBean.adicionarNovaConsulta()}"
                                                           value="Salvar consulta"
                                                           icon="fa fa-save"
                                                           update="growl" 

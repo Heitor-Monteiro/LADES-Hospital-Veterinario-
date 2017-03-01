@@ -1,7 +1,8 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 27/02/2017 17:04:52 by Hibernate Tools 4.3.1
 
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,6 +37,7 @@ public class Consulta  implements java.io.Serializable {
      private String sistemasAfetados;
      private String laudo;
      private String laudoConfirme;
+     private BigDecimal valorConsulta;
      private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
      private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
      private Set<ExameImage> exameImages = new HashSet<ExameImage>(0);
@@ -51,18 +53,20 @@ public class Consulta  implements java.io.Serializable {
     }
 
 	
-    public Consulta(Animais animais, User user, Date dataConsulta) {
+    public Consulta(Animais animais, User user, Date dataConsulta, BigDecimal valorConsulta) {
         this.animais = animais;
         this.user = user;
         this.dataConsulta = dataConsulta;
+        this.valorConsulta = valorConsulta;
     }
-    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<ExameFisico> exameFisicos, Set<SisRespCardio> sisRespCardios, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisOftalmico> sisOftalmicos, Set<SisNeurologico> sisNeurologicos) {
+    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<ExameFisico> exameFisicos, Set<SisRespCardio> sisRespCardios, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisOftalmico> sisOftalmicos, Set<SisNeurologico> sisNeurologicos) {
        this.animais = animais;
        this.user = user;
        this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
        this.laudo = laudo;
        this.laudoConfirme = laudoConfirme;
+       this.valorConsulta = valorConsulta;
        this.sisDigestorios = sisDigestorios;
        this.sisUrinarioMamarias = sisUrinarioMamarias;
        this.exameImages = exameImages;
@@ -150,6 +154,16 @@ public class Consulta  implements java.io.Serializable {
     
     public void setLaudoConfirme(String laudoConfirme) {
         this.laudoConfirme = laudoConfirme;
+    }
+
+    
+    @Column(name="valorConsulta", nullable=false, precision=6)
+    public BigDecimal getValorConsulta() {
+        return this.valorConsulta;
+    }
+    
+    public void setValorConsulta(BigDecimal valorConsulta) {
+        this.valorConsulta = valorConsulta;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
