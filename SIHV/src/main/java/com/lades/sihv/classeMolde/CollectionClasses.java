@@ -10,6 +10,7 @@ import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.User;
 import com.lades.sihv.model.Fisica;
+import com.lades.sihv.model.Juridica;
 import java.io.Serializable;
 
 /**
@@ -20,6 +21,7 @@ public class CollectionClasses implements Serializable {
     private Pessoa residente;
     private Pessoa proprietario;
     private Fisica pessoaFisica;
+    private Juridica pessoaJuridica;
     private User user;
     private Animais animais;
     private Consulta consulta;
@@ -43,6 +45,9 @@ public class CollectionClasses implements Serializable {
     }
     
     public Animais getAnimais() {
+        if(animais == null){
+            animais  =  new Animais();
+        }
         return animais;
     }
 
@@ -51,6 +56,9 @@ public class CollectionClasses implements Serializable {
     }
 
     public Consulta getConsulta() {
+        if(consulta == null){
+            consulta = new Consulta();
+        }
         return consulta;
     }
 
@@ -59,6 +67,9 @@ public class CollectionClasses implements Serializable {
     }
 
     public User getUser() {
+        if(user == null){
+            user = new User();
+        }
         return user;
     }
 
@@ -67,6 +78,9 @@ public class CollectionClasses implements Serializable {
     }
 
     public Pessoa getResidente() {
+        if(residente == null){
+            residente = new Pessoa();
+        }
         return residente;
     }
 
@@ -75,6 +89,9 @@ public class CollectionClasses implements Serializable {
     }
 
     public Pessoa getProprietario() {
+        if(proprietario == null){
+            proprietario = new Pessoa();
+        }
         return proprietario;
     }
 
@@ -83,11 +100,24 @@ public class CollectionClasses implements Serializable {
     }
 
     public Fisica getPessoaFisica() {
+        if(pessoaFisica == null){
+            pessoaFisica = new Fisica();
+        }
         return pessoaFisica;
     }
 
     public void setPessoaFisica(Fisica pessoaFisica) {
         this.pessoaFisica = pessoaFisica;
     }
-    
+
+    public Juridica getPessoaJuridica() {
+        if(pessoaJuridica == null){
+            pessoaJuridica = new Juridica();
+        }
+        return pessoaJuridica;
+    }
+
+    public void setPessoaJuridica(Juridica pessoaJuridica) {
+        this.pessoaJuridica = pessoaJuridica;
+    }
 }

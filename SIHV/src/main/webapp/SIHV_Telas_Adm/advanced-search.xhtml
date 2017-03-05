@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+
+    <ui:composition template="/template.xhtml">
+
+        <ui:define name="title">
+            <h:outputText value="Buscar clientes"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:outputStylesheet library="css" name="table-locked-in-responsive-mode.css" />
+            <f:metadata>
+
+            </f:metadata>
+
+
+            <p:growl id="growl" sticky="true" showDetail="true"/>
+            <p:panel>
+                <div class="ui-fluid">
+
+                    <h:form>
+                        <p:panelGrid columns="3"
+                                     layout="grid"
+                                     style="margin: 10px 0px 15px;"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" > 
+
+                            <p:outputLabel value="Tipo de pesquisa:" 
+                                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                                           for="TipoPesquisa" />
+                            <p:selectOneRadio id="TipoPesquisa"
+                                              layout="responsive"
+                                              columns="1"
+                                              value="#{pesquisaBean.itemPesquisa}"
+                                              required="true"
+                                              requiredMessage="Escolha um tipo de pesquisa!">
+                                <f:selectItem itemLabel="Pesquisar proprietário por nome" itemValue="nome" />
+                                <f:selectItem itemLabel="Pesquisar proprietário por CPF" itemValue="cpf" />
+                                <f:selectItem itemLabel="Pesquisar proprietário por CNPJ" itemValue="cnpj" />
+                                <f:selectItem itemLabel="Pesquisar proprietário por RG" itemValue="rg" />
+                                <f:selectItem itemLabel="Pesquisar proprietário por Data de cadastro" itemValue="cadDataHora" />
+                                <f:selectItem itemLabel="Pesquisar animal pelo nome" itemValue="nomeAnimal" />
+                                <f:selectItem itemLabel="Pesquisar animal pela RGHV" itemValue="rghv" />
+                                <f:selectItem itemLabel="Pesquisar animal por Data de cadastro" itemValue="cadDataHoraAnimal" />
+
+                                <p:ajax update="search" listener="#{pesquisaBean.changeMask()}"/>
+                            </p:selectOneRadio>
+                            <p:message for="TipoPesquisa" />
+                        </p:panelGrid>
+
+                        <p:panelGrid id="search"
+                                     columns="3"
+                                     layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                     style="margin-bottom: 20px;" >
+
+
+                            <p:inputMask
+                                mask="#{pesquisaBean.searchMask}"
+                                id="ValorPesquisa"
+                                value="#{pesquisaBean.textoPesquisa}" 
+                                title="#{pesquisaBean.searchTip}"
+                                maxlength="#{pesquisaBean.maxLength}"
+                                required="true" 
+                                requiredMessage="Informe o valor de pesquisa!"/>
+
+
+                            <p:commandButton actionListener="#{pesquisaBean.multipleItemList()}"
+                                             value="Pesquisar" 
+                                             disabled="false"
+                                             icon="fa fa-search"
+                                             update="@([id$=:GridBusca])" />
+                            <p:message for="ValorPesquisa" />
+                        </p:panelGrid>
+
+                    </h:form>
+
+
+
+                    <p:panelGrid id="GridBusca"
+                                 columns="1"
+                                 layout="grid"
+                                 style="margin: 10px 0px 15px;"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-12" >
+
+                        <p:dataTable id="pessoaBuscada"
+                                     var="collection"
+                                     rendered="#{pesquisaBean.showDataTablePessoa}"
+                                     value="#{pesquisaBean.objBuscados}"
+                                     paginator="true"
+                                     rows="10"
+                                     reflow="true" >
+
+                            <f:facet name="header">
+                                Proprietários encontrados
+                            </f:facet>
+
+                            <p:column headerText="Código">
+                                <h:outputText value="#{collection.proprietario.pkPessoa}" />
+                            </p:column>
+
+                            <p:column headerText="Nome" >
+                                <h:outputText value="#{collection.proprietario.nome}" />
+                                <br></br>
+                                <h:outputText value="Sexo"
+                                              rendered="#{collection.pessoaFisica.sexo != '---'}"
+                                              style="margin-right: 27.8%;" />
+                                <h:outputText value="#{collection.pessoaFisica.sexo}"
+                                              rendered="#{collection.pessoaFisica.sexo != '---'}"/>
+                            </p:column>
+
+                            <p:column headerText="CPF/CNPJ" >
+                                <h:outputText value="#{collection.proprietario.cpfCnpj}" />
+                                <br></br>
+                                <h:outputText value="RG"
+                                              rendered="#{collection.pessoaFisica.rg != '---'}"
+                                              style="margin-right: 29%;" />
+                                <h:outputText value="#{collection.pessoaFisica.rg}"
+                                              rendered="#{collection.pessoaFisica.rg != '---'}" />
+                            </p:column>
+
+                            <p:column headerText="Logradouro">
+                                <h:outputText value="#{collection.proprietario.logra}"/>
+                            </p:column>
+
+                            <p:column headerText="Numero">
+                                <h:outputText value="#{collection.proprietario.casaNumero}"/>
+                            </p:column>
+
+                            <p:column headerText="Bairro">
+                                <h:outputText value="#{collection.proprietario.bairro}"/>
+                            </p:column>
+
+                            <p:column headerText="Cidade">
+                                <h:outputText value="#{collection.proprietario.cidade}"/>
+                            </p:column>
+
+                            <p:column headerText="CEP">
+                                <h:outputText value="#{collection.proprietario.cep}"/>
+                            </p:column>
+
+                            <p:column headerText="Complemento">
+                                <h:outputText value="#{collection.proprietario.complemento}"/>
+                            </p:column>
+
+                            <p:column headerText="UF">
+                                <h:outputText value="#{collection.proprietario.uf}"/>
+                            </p:column>
+
+                            <p:column headerText="E-mail">
+                                <h:outputText value="#{collection.proprietario.email}"/>
+                            </p:column>
+
+                            <p:column headerText="Data de cadastro">
+                                <h:outputText value="#{collection.proprietario.cadDataHora}"/>
+                            </p:column>
+                            
+                            <p:column headerText="Animais Cadastrados">
+                                <h:outputText value="#{collection.animais.nomeAnimal}"/>
+                            </p:column>
+                            
+                            <p:column headerText="" >
+                                <h:outputText value="" />
+                            </p:column>
+
+                        </p:dataTable>
+                        
+                        <p:dataTable id="animaisBuscado"
+                                     var="collection"
+                                     rendered="#{pesquisaBean.showDataTableAnimal}"
+                                     value="#{pesquisaBean.objBuscados}"
+                                     paginator="true"
+                                     rows="10"
+                                     reflow="true" >
+
+                            <f:facet name="header">
+                                Animais encontrados
+                            </f:facet>
+
+                            <p:column headerText="Código">
+                                <h:outputText value="#{collection.animais.rghv}" />
+                            </p:column>
+
+                            <p:column headerText="Nome do animal" >
+                                <h:outputText value="#{collection.animais.nomeAnimal}" />
+                            </p:column>
+                            
+                            <p:column headerText="Especie" >
+                                <h:outputText value="#{collection.animais.especie}" />
+                            </p:column>
+
+                            <p:column headerText="Raça" >
+                                <h:outputText value="#{collection.animais.raca}" />
+                            </p:column>
+                            
+                            <p:column headerText="Pelagem" >
+                                <h:outputText value="#{collection.animais.pelagem}" />
+                            </p:column>
+
+                            <p:column headerText="Sexo do animal">
+                                <h:outputText value="#{collection.animais.sexoAnimal}"/>
+                            </p:column>
+
+                            <p:column headerText="Data de nascimento">
+                                <h:outputText value="#{collection.animais.dataNac}"/>
+                            </p:column>
+
+                            <p:column headerText="Peso do animal">
+                                <h:outputText value="#{collection.animais.peso}"/>
+                            </p:column>
+
+                            <p:column headerText="Categoria">
+                                <h:outputText value="#{collection.animais.categoriaAnimal}"/>
+                            </p:column>
+
+                            <p:column headerText="Data de cadastro">
+                                <h:outputText value="#{collection.animais.cadDataHora}"/>
+                            </p:column>
+                            
+                            <p:column headerText="Nome do proprietário" >
+                                <h:outputText value="#{collection.proprietario.nome}" />
+                            </p:column>
+
+                            <p:column headerText="CPF/CNPJ" >
+                                <h:outputText value="#{collection.proprietario.cpfCnpj}" />
+                            </p:column>
+                            
+                            <p:column headerText="" >
+                                <h:outputText value="" />
+                            </p:column>
+
+                        </p:dataTable>
+
+                    </p:panelGrid>
+                </div>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+
+</html>

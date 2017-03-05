@@ -7,13 +7,14 @@ import java.util.List;
 
 
 
-public interface GenericoDAO<Ent> {
+public interface GenericoDAO<T> {
     
-    public void save(Ent entidade);
-    public Ent getById(String model, Integer id);
+    public void save(T entidade);
+    public T getById(String model, Integer id);
 
-    public List<Ent> list(String sqlHQL);    
+    public List<T> list(String sqlHQL);    
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search);
+    public List<CollectionClasses> generalSearchList(String searchMode, String search);
     public List<CollectionClasses> listBySearchANIMAIS(String searchMode, String search);
     public List<CollectionClasses> listBySearchCONSULTA(String searchMode, String search);
     public FormsExames viewCONSULTA(String pkConsulta);
