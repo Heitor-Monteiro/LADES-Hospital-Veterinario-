@@ -153,7 +153,7 @@ public class ConsultaBean extends AbstractBean{
     public void verConsulta() {
         formsExame = getDaoGenerico().viewCONSULTA("" + collectionClasses.getConsulta().getPkConsulta());
         try {
-            getObjTools().redirecionar("/SIHV/faces/SIHV_Telas_Exame/Exames.xhtml");
+            getObjTools().redirecionar("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ConsultaBean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -163,7 +163,7 @@ public class ConsultaBean extends AbstractBean{
     preenchimento dos formulário de consultas.*/
     public void continuarConsulta() {
         try {
-            getObjTools().redirecionar("/SIHV/faces/SIHV_Telas_Exame/Nova_Consulta.xhtml");
+            getObjTools().redirecionar("/SIHV/faces/sihv-telas-exame/Nova_Consulta.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(ConsultaBean.class.getName()).log(Level.SEVERE, null, ex);
         }

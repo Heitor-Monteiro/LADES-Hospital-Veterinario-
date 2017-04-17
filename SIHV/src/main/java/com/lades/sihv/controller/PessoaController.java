@@ -161,20 +161,20 @@ public class PessoaController implements Serializable {
             String userTIPO = "";
             switch (tipoUSER) {
                 case "MEDICO":
-                    userTIPO = "cadUSER_medico";
+                    userTIPO = "cad-user-medico";
                     break;
                 case "ALUNO":
-                    userTIPO = "cadUSER_aluno";
+                    userTIPO = "cad-user-aluno";
                     break;
                 case "TÉCNICO":
-                    userTIPO = "cadUSER_tecnico";
+                    userTIPO = "cad-user-tecnico";
                     break;
                 default:
                     break;
             }
             message.setTextoDialog("Cadastro efetuado!",
                     mensageTIPO + " cadastrado com sucesso.",
-                    "/SIHV_Telas_Adm/" + userTIPO);
+                    "/sihv-telas/" + userTIPO);
         } catch (Exception e) {
             message.warn("Erro ao efetuar cadastro!", e.getMessage() + "\nVerifique os dados e tente novamente!");
         }

@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="menu">
             <ui:include src="/SIHV_menus_Usuario/Adm_Menu.xhtml" />
@@ -34,7 +34,7 @@
                     <p:tab id="DadosCliente" title="Dados do cliente" >
                         <p:panel id="CadPessoa">
 
-                            <ui:include src="/SIHV_Telas_Genericas/campo_pessoa.xhtml" />
+                            <ui:include src="/sihv-includes/campo_pessoa.xhtml" />
 
                             <p:commandButton type="reset" 
                                              id="LimparCampos" 
@@ -50,7 +50,7 @@
                                  header="Dados cadastrais do cliente"
                                  style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;">
 
-                            <ui:include src="/SIHV_Telas_Genericas/campo_pessoa_resposta.xhtml" />
+                            <ui:include src="/sihv-includes/campo_pessoa_resposta.xhtml" />
 
 
                             <div class="ui-fluid ui-g">
@@ -75,7 +75,7 @@
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:button value="Novo cadastro" 
-                                              outcome="/SIHV_Telas_Adm/ADM_cad_cliente"
+                                              outcome="/sihv-telas/cad-cliente"
                                               icon="fa fa-user-plus" />
                                 </div>
 

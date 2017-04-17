@@ -5,7 +5,7 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
         <ui:define name="title">
             <h:outputText value="" />
         </ui:define>
@@ -19,7 +19,7 @@
 
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Exame/Nova_Consulta"
+                            <h:link outcome="/sihv-telas-exame/Nova_Consulta"
                                     rendered="#{login.userTipo == 'MEDICO'}" >
                                 <h:graphicImage id="ficha"
                                                 class="LADES-indexBotao"
@@ -33,7 +33,7 @@
                             </h:link>
                         </div>
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/ADM_cad_cliente">
+                            <h:link outcome="/sihv-telas/cad-cliente">
                                 <h:graphicImage id="addUser"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -51,7 +51,7 @@
                 <div class="ui-g-12 ui-md-6 ui-lg-4">
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/cadUSER_medico"
+                            <h:link outcome="/sihv-telas/cad-user-medico"
                                     rendered="#{login.userTipo == 'MEDICO'}" >
                                 <h:graphicImage id="addMED"
                                                 class="LADES-indexBotao"
@@ -65,7 +65,7 @@
                             </h:link>
                         </div>
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal">
+                            <h:link outcome="/sihv-telas/cad-animal-p">
                                 <h:graphicImage id="addPet"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -83,7 +83,7 @@
                 <div class="ui-g-12 ui-md-6 ui-lg-4" style="filter: grayscale(100%);">
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/cadUSER_medico"
+                            <h:link outcome="/sihv-telas/cad-user-medico"
                                     disabled="true">
                                 <h:graphicImage id="addMED"
                                                 class="LADES-indexBotao"
@@ -97,7 +97,7 @@
                             </h:link>
                         </div>
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"
+                            <h:link outcome="/sihv-telas/cad-animal-p"
                                     disabled="true">
                                 <h:graphicImage id="addPet"
                                                 class="LADES-indexBotao"

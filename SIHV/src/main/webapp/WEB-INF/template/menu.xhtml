@@ -87,7 +87,7 @@
 
                 <p:link class="itemMenu itemMenuText"
                         rendered="true"
-                        outcome="/SIHV_Telas_Adm/ADM_cad_cliente" >
+                        outcome="/sihv-telas/cad-cliente" >
                     <i class="fa fa-user"
                        style="margin: 0px 15px 0px 15px;"></i>
                     <p:outputLabel value="Cadastrar Cliente"
@@ -96,7 +96,7 @@
 
                 <p:link class="itemMenu itemMenuText"
                         rendered="true"
-                        outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal" >
+                        outcome="/sihv-telas/cad-animal-p" >
                     <i class="fa fa-paw"
                        style="margin: 0px 15px 0px 15px;"></i>
                     <p:outputLabel value="Cadastrar animal pequeno"
@@ -120,7 +120,7 @@
 
                 <p:link class="itemMenu itemMenuText"
                         rendered="true"
-                        outcome="/SIHV_Telas_Adm/cadUSER_medico" >
+                        outcome="/sihv-telas/cad-user-medico" >
                     <i class="fa fa-user-md"
                        style="margin: 0px 15px 0px 15px;"></i>
                     <p:outputLabel value="Novo residente"
@@ -129,7 +129,7 @@
 
                 <p:link class="itemMenu itemMenuText"
                         rendered="true"
-                        outcome="/SIHV_Telas_Adm/cadUSER_aluno" >
+                        outcome="/sihv-telas/cad-user-aluno" >
                     <i class="fa fa-user"
                        style="margin: 0px 15px 0px 15px;"></i>
                     <p:outputLabel value="Novo recepcionista"
@@ -138,7 +138,7 @@
 
                 <p:link class="itemMenu itemMenuText"
                         rendered="true"
-                        outcome="/SIHV_Telas_Adm/cadUSER_tecnico" >
+                        outcome="/sihv-telas/cad-user-tecnico" >
                     <i class="fa fa-user"
                        style="margin: 0px 15px 0px 15px;"></i>
                     <p:outputLabel value="Novo funcionário/técnico"
@@ -149,7 +149,7 @@
 
         <p:link class="itemMenu"
                 rendered="#{login.userTipo == 'MEDICO'}"
-                outcome="/SIHV_Telas_Exame/Nova_Consulta_PesqCli" >
+                outcome="/sihv-telas-exame/Nova_Consulta_PesqCli" >
             <i class="fa fa-stethoscope"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Nova consulta"
@@ -158,7 +158,7 @@
         
         <p:link class="itemMenu"
                 rendered="true"
-                outcome="/SIHV_Telas_Adm/advanced-search" >
+                outcome="/sihv-telas/advanced-search" >
             <i class="fa fa-search"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Buscar clientes"
@@ -167,7 +167,7 @@
 
         <p:link class="itemMenu"
                 rendered="true"
-                outcome="/SIHV_Telas_Exame/Buscar_Consulta" >
+                outcome="/sihv-telas-exame/Buscar_Consulta" >
             <i class="fa fa-search"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Buscar consultas"
@@ -183,171 +183,4 @@
                            style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
         </p:link>
     </nav>
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--
-    <div class="LADES-sidebar js-sidebar">
-        <ul>
-            <li>
-                <p:link value="Home" />
-            </li>
-          
-            <li class="">
-                <p:link id="flip" value="Menu" />
-                <ul id="panel" >
-                    <li>
-                        <p:link value="Menu 1" />
-                        <ul>
-                            <li>
-                                <p:link value="Menu 1.1" />
-                            </li>
-                            <li>
-                                <p:link value="Menu 1.2" />
-                            </li>
-                        </ul>
-                    </li>
-
-                    <li>
-                        <p:link value="Menu 2" />
-                    </li>
-                </ul>
-            </li>
-            
-            <li>
-                <p:link value="Opções" />
-            </li>
-            <li>
-                <p:link value="Contact" />
-            </li>
-        </ul>
-    </div>
-    -->
-
-
-
-    <!--
-    <div id="flip" class="LADES-sidebar js-sidebar">
-        <p:link id="flip" value="teste" />
-        <div id="panel">Hello world!</div>
-    </div>-->
-
-
-
-    <!--
-    <div class="content">
-    
-    
-    <div class="sidebar">
-        <div class="sidebar-dropdown"><a href="#">Navigation</a></div>
-
-       
-        <ul id="nav">
-          
-            <li class="open">
-                <p:link value="Homer" />
-            </li>
-            
-            <li class="has_sub">
-                <p:link value="Widgets" />
-                <ul>
-                    <li><p:link value="Widgets #1" /></li>
-                    <li><p:link value="Widgets #1" /></li>
-                    <li><p:link value="Widgets #1" /></li>
-                </ul>
-            </li> 
-            
-            <li class="has_sub">
-                <p:link value="Pages #1" />
-                <ul>
-                    <li><p:link value="Widgets #1" /></li>
-                    <li><p:link value="Widgets #1" /></li>
-                    <li><p:link value="Widgets #1" /></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-     Sidebar ends -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!--
-    <p:panelMenu class="LADES-sidebar ">
-        <p:menuitem value="Cadastrar Cliente"
-                    outcome="/SIHV_Telas_Adm/ADM_cad_cliente"
-                    icon="fa fa-user" />
-        <p:submenu label="Cadastro" icon="fa fa-pencil" class="ui-menu">
-            <p:menuitem value="Cadastrar Cliente"
-                        outcome="/SIHV_Telas_Adm/ADM_cad_cliente"
-                        icon="fa fa-user" />
-            <p:menuitem value="Cadastrar Animal"
-                        outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"
-                        icon="fa fa-paw" />
-        </p:submenu>
-        
-        <p:submenu label="Cadastrar usuário do sistema" icon="fa fa-user-secret">
-            <p:menuitem value="Cadastrar residente"
-                        outcome="/SIHV_Telas_Adm/cadUSER_medico"
-                        icon="fa fa-user-md" />
-            <p:menuitem value="Cadastrar recepcionista"
-                        outcome="/SIHV_Telas_Adm/cadUSER_aluno"
-                        icon="fa fa-user" />
-            <p:menuitem value="Cadastrar funcionário/técnico"
-                        outcome="/SIHV_Telas_Adm/cadUSER_tecnico"
-                        icon="fa fa-user" />
-        </p:submenu>
-        
-        <p:submenu label="Consulta" icon="fa fa-stethoscope">
-            <p:menuitem value="Nova consulta"
-                        outcome="/SIHV_Telas_Exame/Nova_Consulta"
-                        icon="fa fa-pencil" />
-        </p:submenu>
-        
-    </p:panelMenu>
-    -->
-
 </ui:component>

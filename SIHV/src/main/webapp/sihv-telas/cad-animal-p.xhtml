@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title">
             <h:outputText value="Cadastrar novo animal pequeno"></h:outputText>
@@ -32,7 +32,7 @@
                     <p:tab id="DadosCliente" title="Pesquisar por cliente" >
                         <p:panel id="PesquisaPessoa">
                             
-                            <ui:include src="/SIHV_Telas_Genericas/pesquisa_pessoa.xhtml" />
+                            <ui:include src="/sihv-includes/pesquisa_pessoa.xhtml" />
                             
                         </p:panel>
                     </p:tab>
@@ -42,7 +42,7 @@
                     <p:tab id="DadosPet" title="Dados do animal" >
                         <p:panel>
 
-                            <ui:include src="/SIHV_Telas_Genericas/campo_animal.xhtml" />
+                            <ui:include src="/sihv-includes/campo_animal.xhtml" />
 
                         </p:panel>
                     </p:tab>
@@ -145,7 +145,7 @@
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:button value="Novo cadastro" 
-                                              outcome="/SIHV_Telas_Adm/ADM_cad_basico_animal"
+                                              outcome="/sihv-telas/cad-animal-p"
                                               icon="fa fa-user-plus" />
                                 </div>
 

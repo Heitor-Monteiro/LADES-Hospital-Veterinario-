@@ -6,7 +6,7 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title"  >
             <h:outputText value="Nova consulta"></h:outputText>
@@ -33,7 +33,7 @@
                                 <p:tab id="anamnese1" title="etapa 1" >
                                     <p:panel>
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Anamnese.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -41,14 +41,14 @@
                                 <p:tab id="anamnese2" title="etapa 2" >
                                     <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Digestorio.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
                                 <p:tab id="anamnese3" title="etapa 3" >
                                     <p:panel header="Sistema respiratório e cardiovascular" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Resp_Cardio.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -56,7 +56,7 @@
                                 <p:tab id="anamnese4" title="etapa 4" >
                                     <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Urinario_Mamaria.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -64,7 +64,7 @@
                                 <p:tab id="anamnese5" title="etapa 5" >
                                     <p:panel header="Sistema tegumentar" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Tegumentar.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -72,7 +72,7 @@
                                 <p:tab id="anamnese6" title="etapa 6" >
                                     <p:panel header="Sistema neurológico" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Neurologico.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -80,7 +80,7 @@
                                 <p:tab id="anamnese7" title="etapa 7" >
                                     <p:panel header="Sistema oftálmico" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_Oftalmico.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -88,7 +88,7 @@
                                 <p:tab id="anamnese8" title="etapa 8" >
                                     <p:panel header="Sistema músculo-esquelético" >
 
-                                        <ui:include src="/SIHV_Telas_Genericas/generico_Sis_MuscEsque.xhtml" />
+                                        <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
 
                                     </p:panel>
                                 </p:tab>
@@ -103,7 +103,7 @@
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel id="ExameFisico">
                             
-                            <ui:include src="/SIHV_Telas_Genericas/generico_Fisico.xhtml" />
+                            <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
                             
                         </p:panel>
                     </p:tab>
@@ -135,7 +135,7 @@
 
 
                             <p:panel id="RaioX0">
-                                <ui:include src="/SIHV_Telas_Genericas/generico_RaioX.xhtml" />
+                                <ui:include src="/sihv-includes/generico_RaioX.xhtml" />
                             </p:panel>
 
 
@@ -161,7 +161,7 @@
 
 
                             <p:panel id="Ultra0" >
-                                <ui:include src="/SIHV_Telas_Genericas/generico_Ultrassom.xhtml" />
+                                <ui:include src="/sihv-includes/generico_Ultrassom.xhtml" />
                             </p:panel>
 
 
@@ -313,7 +313,7 @@
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
                                         <p:button value="Nova consulta" 
-                                                  outcome="/SIHV_Telas_Exame/Nova_Consulta"
+                                                  outcome="/sihv-telas-exame/Nova_Consulta"
                                                   icon="fa fa-user-plus" />
                                     </div>
 

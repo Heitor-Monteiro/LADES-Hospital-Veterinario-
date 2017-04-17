@@ -90,7 +90,7 @@ public class FacesMessages implements Serializable{
         this.urlButton = urlButton;
         FacesContext.getCurrentInstance().
                 getExternalContext().
-                redirect("/SIHV/faces/SIHV_Telas_Genericas/dialogMessage.xhtml");
+                redirect("/SIHV/faces/sihv-includes/dialogMessage.xhtml");
     }
     
     public String getTituloDialog() {

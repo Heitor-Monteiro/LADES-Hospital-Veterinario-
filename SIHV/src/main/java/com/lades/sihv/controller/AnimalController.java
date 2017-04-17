@@ -125,7 +125,7 @@ public class AnimalController implements Serializable {
 
 //            message.setTextoDialog("Cadastro efetuado!",
 //                    "Animal cadastrado com sucesso.",
-//                    "/SIHV_Telas_Adm/ADM_cad_basico_animal");
+//                    "/sihv-telas/cad-animal-p");
 
             tools.blockBackWizad();
 

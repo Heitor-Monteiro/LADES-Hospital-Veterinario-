@@ -56,24 +56,3 @@ function myDropFunc() {
     $('.icoMenu2').toggleClass('is-rotacao');
         event.preventDefault();
 }
-
-
-
-
-
-
-
-//$(document).ready(function(){
-//    $("#flip").click(function(){
-//        $("#panel").slideToggle("slow");
-//    });
-//});
-
-
-//$(document).ready(function(){
-//    $("a").click(function(){
-//        $("ul").toggle();
-//    });
-//});
-
-

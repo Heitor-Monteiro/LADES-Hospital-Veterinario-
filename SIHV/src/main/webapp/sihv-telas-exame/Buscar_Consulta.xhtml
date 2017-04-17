@@ -6,25 +6,23 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition template="/template.xhtml">
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title"  >
-            <h:outputText value="Nova consulta"></h:outputText>
+            <h:outputText value="Buscar consulta"></h:outputText>
         </ui:define>
 
         <ui:define name="content">
 
             <f:metadata>
-                <f:viewAction action="#{MasterControle.prepararNovaConsulta()}" />
-                <f:viewAction action="#{consultaBean.maxConsultaCod()}" />
-                <f:viewAction action="#{consultaBean.prepararNovaConsulta()}" />
+                <f:viewAction action="#{MasterControle.pesquisarConsulta()}" />
             </f:metadata>
 
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
 
-                <p:panel header="Dados do cliente">
-                    <ui:include src="/SIHV_Telas_Genericas/pesquisa_AnimalCliente.xhtml" />
+                <p:panel>
+                    <ui:include src="/sihv-includes/pesquisa_consulta.xhtml" />
                 </p:panel>
             </h:form>
 
