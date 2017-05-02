@@ -13,7 +13,7 @@
             <p:outputLabel value="Login de usuário:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="LoginUser" 
-                         value="#{MasterControle.pessoaControle.user.userNick}" 
+                         value="#{MBpessoa.user.userNick}" 
                          maxlength="100"
                          required="true" 
                          requiredMessage="Por favor, informe um nome de Login!"
@@ -28,7 +28,7 @@
                         feedback="true"
                         inline="true"
                         match="senha2"
-                        value="#{MasterControle.pessoaControle.user.userSenha}"
+                        value="#{MBpessoa.user.userSenha}"
                         title="A senha pode conter números, letras e caracteres especiais."
                         promptLabel="Digite uma senha"
                         weakLabel="Fraco"

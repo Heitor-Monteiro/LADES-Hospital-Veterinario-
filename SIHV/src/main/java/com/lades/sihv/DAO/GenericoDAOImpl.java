@@ -1,6 +1,6 @@
 package com.lades.sihv.DAO;
 
-import com.lades.sihv.*;
+import com.lades.sihv.controller.BeautyText;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.Anamnese;
@@ -27,16 +27,6 @@ import org.hibernate.Transaction;
 @Stateless
 public class GenericoDAOImpl<T> implements GenericoDAO<T> {
 
-//	protected HashMap<String, Object> parametros(Object... valores) {
-//		List<Object> par = Arrays.asList(valores);
-//
-//		HashMap<String, Object> parametros = new HashMap<>();
-//
-//		for (int i = 0; i < par.size() - 1; i = i + 2) {
-//			parametros.put(par.get(i).toString(), par.get(i + 1));
-//		}
-//		return parametros;
-//	}
     /**
      *
      * @param entidade

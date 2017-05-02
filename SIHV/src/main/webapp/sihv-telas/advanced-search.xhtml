@@ -38,7 +38,7 @@
                             <p:selectOneRadio id="TipoPesquisa"
                                               layout="responsive"
                                               columns="1"
-                                              value="#{pesquisaBean.itemPesquisa}"
+                                              value="#{MBpesquisa.itemPesquisa}"
                                               required="true"
                                               requiredMessage="Escolha um tipo de pesquisa!">
                                 <f:selectItem itemLabel="Pesquisar proprietário por nome" itemValue="nome" />
@@ -50,7 +50,7 @@
                                 <f:selectItem itemLabel="Pesquisar animal pela RGHV" itemValue="rghv" />
                                 <f:selectItem itemLabel="Pesquisar animal por Data de cadastro" itemValue="cadDataHoraAnimal" />
 
-                                <p:ajax update="search" listener="#{pesquisaBean.changeMask()}"/>
+                                <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
                             </p:selectOneRadio>
                             <p:message for="TipoPesquisa" />
                         </p:panelGrid>
@@ -64,16 +64,16 @@
 
 
                             <p:inputMask
-                                mask="#{pesquisaBean.searchMask}"
+                                mask="#{MBpesquisa.searchMask}"
                                 id="ValorPesquisa"
-                                value="#{pesquisaBean.textoPesquisa}" 
-                                title="#{pesquisaBean.searchTip}"
-                                maxlength="#{pesquisaBean.maxLength}"
+                                value="#{MBpesquisa.textoPesquisa}" 
+                                title="#{MBpesquisa.searchTip}"
+                                maxlength="#{MBpesquisa.maxLength}"
                                 required="true" 
                                 requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                            <p:commandButton actionListener="#{pesquisaBean.multipleItemList()}"
+                            <p:commandButton actionListener="#{MBpesquisa.multipleItemList()}"
                                              value="Pesquisar" 
                                              disabled="false"
                                              icon="fa fa-search"
@@ -94,8 +94,8 @@
 
                         <p:dataTable id="pessoaBuscada"
                                      var="collection"
-                                     rendered="#{pesquisaBean.showDataTablePessoa}"
-                                     value="#{pesquisaBean.objBuscados}"
+                                     rendered="#{MBpesquisa.showDataTablePessoa}"
+                                     value="#{MBpesquisa.objBuscados}"
                                      paginator="true"
                                      rows="10"
                                      reflow="true" >
@@ -176,8 +176,8 @@
                         
                         <p:dataTable id="animaisBuscado"
                                      var="collection"
-                                     rendered="#{pesquisaBean.showDataTableAnimal}"
-                                     value="#{pesquisaBean.objBuscados}"
+                                     rendered="#{MBpesquisa.showDataTableAnimal}"
+                                     value="#{MBpesquisa.objBuscados}"
                                      paginator="true"
                                      rows="10"
                                      reflow="true" >

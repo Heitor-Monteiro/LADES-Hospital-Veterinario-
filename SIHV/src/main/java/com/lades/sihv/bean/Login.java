@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller;
+package com.lades.sihv.bean;
 
 /**
  *
@@ -14,10 +14,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
-import com.lades.sihv.*;
-import com.lades.sihv.Security;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.DAO.SessionUtils;
+import com.lades.sihv.controller.BeautyText;
+import com.lades.sihv.controller.FacesMessages;
+import com.lades.sihv.controller.Security;
 import java.io.IOException;
 
 @ManagedBean
@@ -110,14 +111,15 @@ public class Login implements Serializable {
     public String getCpfCnpj() {
         return (String) SessionUtils.getSession().getAttribute("cpfCnpj");
     }
+
     public void setFullName(String name) {
         SessionUtils.getSession().setAttribute("fullName", name);
     }
-        public String getFullName() {
+
+    public String getFullName() {
         return (String) SessionUtils.getSession().getAttribute("fullName");
     }
-    
-    
+
     public void setPkPessoa(int pk) {
         SessionUtils.getSession().setAttribute("pkPessoa", pk);
     }

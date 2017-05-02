@@ -5,7 +5,7 @@
  */
 package com.lades.sihv.classeMolde;
 
-import com.lades.sihv.BeautyText;
+import com.lades.sihv.controller.BeautyText;
 import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.AnamneseId;
 import com.lades.sihv.model.Animais;

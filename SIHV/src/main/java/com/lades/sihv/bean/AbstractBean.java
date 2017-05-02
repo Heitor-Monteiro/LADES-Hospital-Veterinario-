@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller;
+package com.lades.sihv.bean;
 
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import com.lades.sihv.Tools;
+import com.lades.sihv.controller.Tools;
+import com.lades.sihv.controller.FacesMessages;
 import java.io.Serializable;
 import java.util.Date;
 

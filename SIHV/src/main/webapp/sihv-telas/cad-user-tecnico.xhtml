@@ -15,8 +15,7 @@
         <ui:define name="content">
             
             <f:metadata>
-                <f:viewAction action="#{MasterControle.prepararControllerPessoa()}" />
-                <f:viewAction action="#{MasterControle.pessoaControle.prepararAdicionarUSER()}" />  
+                <f:viewAction action="#{MBpessoa.prepararAdicionarUSER()}" />  
             </f:metadata>
             
             <h:form>
@@ -41,7 +40,7 @@
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                                    for="MatriFunc" />
                                     <p:inputText id="MatriFunc" 
-                                                 value="#{MasterControle.pessoaControle.user.crmvMatricula}" 
+                                                 value="#{MBpessoa.user.crmvMatricula}" 
                                                  title=""
                                                  maxlength="43"
                                                  required="true" 
@@ -87,7 +86,7 @@
 
                                     <p:outputLabel value="Matrícula funcional:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.pessoaControle.user.crmvMatricula}"
+                                    <p:outputLabel value="#{MBpessoa.user.crmvMatricula}"
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
@@ -97,7 +96,7 @@
                             
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
                                 
-                                <p:commandButton action="#{MasterControle.pessoaControle.adicionarUSER('TÉCNICO', 'Funcionário/técnico')}" 
+                                <p:commandButton action="#{MBpessoa.cadastrarUserTecnico()}" 
                                                  value="Salvar"
                                                  style="width: 170px;"
                                                  icon="fa fa-save"

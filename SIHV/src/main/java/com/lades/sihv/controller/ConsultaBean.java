@@ -5,7 +5,7 @@
  */
 package com.lades.sihv.controller;
 
-import com.lades.sihv.Security;
+import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.model.User;

@@ -6,7 +6,6 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
-import com.lades.sihv.Tools;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;

@@ -7,7 +7,6 @@ package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
-import com.lades.sihv.Tools;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.model.Pessoa;
@@ -34,13 +33,13 @@ public class MasterController implements Serializable {
     private FormsExames formsExame;
     private Animais animal;
     private Consulta consulta;
-    private PesquisaController pesquisaControle;
-    private PessoaController pessoaControle;
+//    private PesquisaController pesquisaControle;
+//    private PessoaController pessoaControle;
     private AnimalController animalControle;
     
     
     public void prepararControllerPessoa() {
-        pessoaControle = new PessoaController(daoGenerico, message, tools);
+//        pessoaControle = new PessoaController(daoGenerico, message, tools);
     }
 
     //-------------------------------------------------------
@@ -69,7 +68,7 @@ public class MasterController implements Serializable {
     
     //-------------------------------------------------------
     public void prepararPesquisaController() {
-        pesquisaControle = new PesquisaController();
+//        pesquisaControle = new PesquisaController();
     }
     
     private void prepareFormsExames(){
@@ -108,9 +107,9 @@ public class MasterController implements Serializable {
         this.consulta = consulta;
     }
 
-    public PesquisaController getPesquisaControle() {
-        return pesquisaControle;
-    }
+//    public PesquisaController getPesquisaControle() {
+//        return pesquisaControle;
+//    }
 
 //    public void setPesquisaControle(PesquisaController pesquisaControle) {
 //        this.pesquisaControle = pesquisaControle;
@@ -128,9 +127,9 @@ public class MasterController implements Serializable {
         return message;
     }
 
-    public PessoaController getPessoaControle() {
-        return pessoaControle;
-    }
+//    public PessoaController getPessoaControle() {
+//        return pessoaControle;
+//    }
 
     public Tools getTools() {
         return tools;

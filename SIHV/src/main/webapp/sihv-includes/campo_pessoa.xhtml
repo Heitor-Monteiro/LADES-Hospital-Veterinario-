@@ -13,126 +13,126 @@
 
 
             <p:outputLabel value="Pessoa física/jurídica:"
-                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
+                           rendered="#{MBpessoa.tipoPessoa}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="TipoPessoa" />
             <p:selectOneRadio id="TipoPessoa"
                               columns="2"
                               layout="responsive"
-                              rendered="#{MasterControle.pessoaControle.tipoPessoa}"
-                              value="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                              rendered="#{MBpessoa.tipoPessoa}"
+                              value="#{MBpessoa.mudancaCpfCnpj}"
                               required="true"
                               requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
                 <f:selectItem itemLabel="CPF" itemValue="true" />
                 <f:selectItem itemLabel="CNPJ" itemValue="false" />
                 <p:ajax update="PessoaForm" />
             </p:selectOneRadio>
-            <p:message for="TipoPessoa" rendered="#{MasterControle.pessoaControle.tipoPessoa}"/>
+            <p:message for="TipoPessoa" rendered="#{MBpessoa.tipoPessoa}"/>
 
 
             <p:outputLabel value="CPF:"
-                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cpf" />                                
             <p:inputMask mask="999.999.999-99"
                          id="cpf"
-                         rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
-                         value="#{MasterControle.pessoaControle.pessoa.cpfCnpj}" 
+                         rendered="#{MBpessoa.mudancaCpfCnpj}"
+                         value="#{MBpessoa.pessoa.cpfCnpj}" 
                          title="Ex.: 999.999.999-99" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
             <p:message for="cpf"
-                       rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />
+                       rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
 
 
             <p:outputLabel value="CNPJ:"
-                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{!MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cnpj" />                                
             <p:inputMask mask="99.999.999/9999-99"
                          id="cnpj"
-                         rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
-                         value="#{MasterControle.pessoaControle.pessoa.cpfCnpj}" 
+                         rendered="#{!MBpessoa.mudancaCpfCnpj}"
+                         value="#{MBpessoa.pessoa.cpfCnpj}" 
                          title="Informe o CNPJ da empresa." 
                          required="true" 
                          requiredMessage="Informe o CNPJ!" />
             <p:message for="cnpj"
-                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
+                       rendered="#{!MBpessoa.mudancaCpfCnpj}" />
 
 
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
-                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="rg" />                              
             <p:inputText
                 id="rg"
-                rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
-                value="#{MasterControle.pessoaControle.fisica.rg}" 
+                rendered="#{MBpessoa.mudancaCpfCnpj}"
+                value="#{MBpessoa.fisica.rg}" 
                 title="#{label_SIHV.CreatePessoaTitle_rg}" 
                 maxlength="15"
                 required="true" 
                 requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
-            <p:message for="rg" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />
+            <p:message for="rg" rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
 
 
 
 
             <p:outputLabel value="Nome:"
-                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="nome" />
             <p:inputText id="nome" 
-                         value="#{MasterControle.pessoaControle.pessoa.nome}" 
+                         value="#{MBpessoa.pessoa.nome}" 
                          title="#{label_SIHV.CreatePessoaTitle_nome}"
                          maxlength="100"
-                         rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                         rendered="#{MBpessoa.mudancaCpfCnpj}"
                          required="true" 
                          requiredMessage="Informe seu nome!"/>
             <p:message for="nome"
-                       rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}" />
+                       rendered="#{MBpessoa.mudancaCpfCnpj}" />
             
             
             
             
             <p:outputLabel value="Razão social:"
-                           rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{!MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="razaoSocial" />
             <p:inputText id="razaoSocial" 
-                         value="#{MasterControle.pessoaControle.pessoa.nome}" 
+                         value="#{MBpessoa.pessoa.nome}" 
                          title="Nome da empresa"
                          maxlength="100"
-                         rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                         rendered="#{!MBpessoa.mudancaCpfCnpj}"
                          required="true" 
                          requiredMessage="Informe o nome da empresa!"/>
             <p:message for="razaoSocial"
-                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}" />
+                       rendered="#{!MBpessoa.mudancaCpfCnpj}" />
             <p:tooltip for="razaoSocial"
-                       rendered="#{!MasterControle.pessoaControle.mudancaCpfCnpj}"
+                       rendered="#{!MBpessoa.mudancaCpfCnpj}"
                        position="top" />
             
             
             
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
-                           rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="sexo" />
             <p:selectOneRadio id="sexo"
-                              rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"
+                              rendered="#{MBpessoa.mudancaCpfCnpj}"
                               columns="2"
                               layout="responsive"
-                              value="#{MasterControle.pessoaControle.fisica.sexo}"
+                              value="#{MBpessoa.fisica.sexo}"
                               required="true"
                               requiredMessage="#{label_SIHV.CreateAnimaisRequiredMessage_sexo}">
                 <f:selectItem itemLabel="M" itemValue="M" />
                 <f:selectItem itemLabel="F" itemValue="F" />
             </p:selectOneRadio>
-            <p:message for="sexo" rendered="#{MasterControle.pessoaControle.mudancaCpfCnpj}"/>
+            <p:message for="sexo" rendered="#{MBpessoa.mudancaCpfCnpj}"/>
 
         </p:panelGrid>
 
@@ -147,7 +147,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="logra" />
             <p:inputText id="logra"
-                         value="#{MasterControle.pessoaControle.pessoa.logra}" 
+                         value="#{MBpessoa.pessoa.logra}" 
                          title="#{label_SIHV.CreatePessoaTitle_logra}"
                          maxlength="100"
                          required="true" 
@@ -159,7 +159,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="numeroCasa" />
             <p:inputText id="numeroCasa"
-                         value="#{MasterControle.pessoaControle.pessoa.casaNumero}"
+                         value="#{MBpessoa.pessoa.casaNumero}"
                          title="#{label_SIHV.CreatePessoaTitle_numeroCasa}"
                          maxlength="6"
                          required="true"
@@ -171,7 +171,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="bairro" />
             <p:inputText id="bairro"
-                         value="#{MasterControle.pessoaControle.pessoa.bairro}" 
+                         value="#{MBpessoa.pessoa.bairro}" 
                          title="#{label_SIHV.CreatePessoaTitle_bairro}"
                          maxlength="100"
                          required="true" 
@@ -183,7 +183,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="cidade" />
             <p:inputText id="cidade"
-                         value="#{MasterControle.pessoaControle.pessoa.cidade}" 
+                         value="#{MBpessoa.pessoa.cidade}" 
                          title="#{label_SIHV.CreatePessoaTitle_cidade}"
                          maxlength="100"
                          required="true" 
@@ -196,7 +196,7 @@
                            for="cep" />
             <p:inputMask mask="99999-999"
                          id="cep"
-                         value="#{MasterControle.pessoaControle.pessoa.cep}" 
+                         value="#{MBpessoa.pessoa.cep}" 
                          title="#{label_SIHV.CreatePessoaTitle_cep}" 
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}" />
@@ -206,7 +206,7 @@
             <p:outputLabel value="Complemento:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="complemento"
-                         value="#{MasterControle.pessoaControle.pessoa.complemento}"
+                         value="#{MBpessoa.pessoa.complemento}"
                          maxlength="100"
                          required="false"
                          title="Endereço complementar"/>
@@ -217,7 +217,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="uf" />                             
             <p:selectOneMenu id="uf"
-                             value="#{MasterControle.pessoaControle.pessoa.uf}"
+                             value="#{MBpessoa.pessoa.uf}"
                              required="true"
                              requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_uf}">
                 <f:selectItem itemLabel="Selecione o estado" itemValue="" />
@@ -253,16 +253,16 @@
 
             <p:outputLabel value="Endereço de email:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           rendered="#{MasterControle.pessoaControle.tipoPessoa}"
+                           rendered="#{MBpessoa.tipoPessoa}"
                            for="email" />
             <p:outputLabel value="Endereço de email:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
+                           rendered="#{!MBpessoa.tipoPessoa}"
                            for="email_obr" />
             <p:inputText id="email_obr" 
-                         value="#{MasterControle.pessoaControle.pessoa.email}" 
+                         value="#{MBpessoa.pessoa.email}" 
                          title="Ex.: usuario@email.com"
-                         rendered="#{!MasterControle.pessoaControle.tipoPessoa}"
+                         rendered="#{!MBpessoa.tipoPessoa}"
                          maxlength="100"
                          required="true" 
                          requiredMessage="Por favor, informe seu e-mail!"
@@ -272,9 +272,9 @@
             </p:inputText>
 
             <p:inputText id="email" 
-                         value="#{MasterControle.pessoaControle.pessoa.email}" 
+                         value="#{MBpessoa.pessoa.email}" 
                          title="Ex.: usuario@email.com"
-                         rendered="#{MasterControle.pessoaControle.tipoPessoa}"
+                         rendered="#{MBpessoa.tipoPessoa}"
                          maxlength="100"
                          required="false" 
                          validatorMessage="Formato de e-mail incorreto!" >
@@ -287,7 +287,7 @@
                            for="telefone" />
             <p:inputMask mask="(99) 9999-9999"
                          id="telefone"
-                         value="#{MasterControle.pessoaControle.telefone.numero}"
+                         value="#{MBpessoa.telefone.numero}"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="false"
                          />
@@ -297,7 +297,7 @@
                            for="celular" />
             <p:inputMask mask="(99) 99999-9999" 
                          id="celular"
-                         value="#{MasterControle.pessoaControle.celular.numero}"
+                         value="#{MBpessoa.celular.numero}"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="true"
                          requiredMessage="#{label_SIHV.celular_requiredMsg}"/>

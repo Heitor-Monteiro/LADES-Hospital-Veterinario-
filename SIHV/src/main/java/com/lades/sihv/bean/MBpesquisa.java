@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller;
+package com.lades.sihv.bean;
 
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -13,9 +13,9 @@ import javax.faces.bean.ViewScoped;
  *
  * @author thiberius
  */
-@ManagedBean(name = "pesquisaBean")
+@ManagedBean(name = "MBpesquisa")
 @ViewScoped
-public class PesquisaBean extends AbstractBean {
+public class MBpesquisa extends AbstractBean {
 
     private String textoPesquisa;
     private String itemPesquisa = "cpf";

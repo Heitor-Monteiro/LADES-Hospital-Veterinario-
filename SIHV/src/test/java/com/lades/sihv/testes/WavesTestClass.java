@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller;
+package com.lades.sihv.testes;
 
 /**
  *
@@ -18,8 +18,8 @@ import org.hibernate.Transaction;
 import org.hibernate.transform.*;
 
 public class WavesTestClass {
-    public static void main(String[] args){
-        String cpf = "029.499.942-61";
-        System.out.println("============|cpf checker | =========== "+new com.lades.sihv.Security().checkCPF(cpf));
-    }
+//    public static void main(String[] args){
+//        String cpf = "029.499.942-61";
+////        System.out.println("============|cpf checker | =========== "+new com.lades.sihv.controller.Security().checkCPF(cpf));
+//    }
 }
