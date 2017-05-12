@@ -10,6 +10,7 @@ import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.AnimaisId;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Pelagem;
+import com.lades.sihv.controller.VariaveisDeSessao;
 import java.io.Serializable;
 import java.util.Calendar;
 import java.util.Date;
@@ -27,6 +28,7 @@ public class AnimalController implements Serializable {
     private AnimaisId animalID;
     private Date data;
     private Tools tools;
+    private final VariaveisDeSessao variaveisDeSessao = new VariaveisDeSessao();
 
     private AnimalController() {
     }
@@ -98,6 +100,7 @@ public class AnimalController implements Serializable {
 
     //Método para persistir um novo animal
     public void adicionarANIMAL(Pessoa pessoa) {
+        pessoa = variaveisDeSessao.objetoPessoa();
         try {
             String clientePK;
             List<Object> lista;

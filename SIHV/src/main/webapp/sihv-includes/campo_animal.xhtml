@@ -15,13 +15,13 @@
 
             <p:outputLabel value="Nome do cliente:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MasterControle.pessoa.nome}"/>
+            <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().nome}"/>
             <p:outputLabel />
 
 
             <p:outputLabel value="CPF do cliente:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MasterControle.pessoa.cpfCnpj}" />
+            <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().cpfCnpj}" />
             <p:outputLabel />
 
 
@@ -127,7 +127,7 @@
                         title="" 
                         required="false"  
                         requiredMessage="" 
-                        locale="de"
+                        locale="pt"
                         navigator="true"  
                         pattern="yyyy-mm-dd" />
             <p:message for="idade" />

@@ -20,14 +20,14 @@
                 <p:selectOneRadio id="TipoPesquisa"
                                   layout="responsive"
                                   columns="2"
-                                  value="#{MasterControle.pesquisaControle.itemPesquisa}"
+                                  value="#{MBpesquisa.itemPesquisa}"
                                   required="true"
                                   requiredMessage="Escolha um tipo de pesquisa!">
                     <f:selectItem itemLabel="CPF" itemValue="cpf" />
                     <f:selectItem itemLabel="CNPJ" itemValue="cnpj" />
                     <f:selectItem itemLabel="RG" itemValue="rg" />
                     <f:selectItem itemLabel="Nome" itemValue="nome" />
-                    <p:ajax update="search" listener="#{MasterControle.pesquisaControle.changeMask()}"/>
+                    <p:ajax update="search" listener="#{MBpesquisa.changeMask()}"/>
                 </p:selectOneRadio>
                 <p:message for="TipoPesquisa" />
 
@@ -40,15 +40,15 @@
 
 
                 <p:inputMask
-                    mask="#{MasterControle.pesquisaControle.searchMask}"
+                    mask="#{MBpesquisa.searchMask}"
                     id="ValorPesquisa"
-                    value="#{MasterControle.pesquisaControle.textoPesquisa}" 
-                    title="#{MasterControle.pesquisaControle.searchTip}"
+                    value="#{MBpesquisa.textoPesquisa}" 
+                    title="#{MBpesquisa.searchTip}"
                     required="true" 
                     requiredMessage="Informe o valor de pesquisa!"/>
 
 
-                <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Pessoa')}"
+                <p:commandButton actionListener="#{MBpesquisa.ListagemITENS('Pessoa')}"
                                  value="Pesquisar" 
                                  disabled="false"
                                  icon="fa fa-search"
@@ -65,7 +65,7 @@
                      columnClasses="ui-grid-col-5" >
 
             <p:outputLabel value="Clientes encontrados:"
-                           rendered="#{MasterControle.pesquisaControle.showDataTable}"
+                           rendered="#{MBpesquisa.showDataTable}"
                            style="color: #00B59B; 
                            font-weight: bold;
                            padding-top: 20px;"/>
@@ -84,12 +84,12 @@
 
             <p:dataTable id="PessoasBuscada"
                          var="pessoa"
-                         rendered="#{MasterControle.pesquisaControle.showDataTable}"
-                         value="#{MasterControle.pesquisaControle.objBuscados}"
+                         rendered="#{MBpesquisa.showDataTable}"
+                         value="#{MBpesquisa.objBuscados}"
                          paginator="true"
                          rows="10"
                          reflow="true"
-                         selection="#{MasterControle.pessoa}"
+                         selection="#{MBpesquisa.variaveisDeSessao.objetoTemp}"
                          rowKey="#{pessoa.pkPessoa}" >
 
                 <p:column selectionMode="single" width="38"/>

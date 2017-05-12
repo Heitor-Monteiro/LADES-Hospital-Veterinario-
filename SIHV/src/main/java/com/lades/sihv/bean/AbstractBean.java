@@ -9,6 +9,7 @@ import com.lades.sihv.DAO.GenericoDAO;
 import com.lades.sihv.DAO.GenericoDAOImpl;
 import com.lades.sihv.controller.Tools;
 import com.lades.sihv.controller.FacesMessages;
+import com.lades.sihv.controller.VariaveisDeSessao;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -52,5 +53,14 @@ public abstract class AbstractBean implements Serializable {
             data = new Date();
         }
         return data;
+    }
+    
+    private VariaveisDeSessao variaveisDeSessao;
+    
+    public VariaveisDeSessao getVariaveisDeSessao () {
+        if (variaveisDeSessao == null) {
+            variaveisDeSessao = new VariaveisDeSessao();
+        }
+        return variaveisDeSessao;
     }
 }
