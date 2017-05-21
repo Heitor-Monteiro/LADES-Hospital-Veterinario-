@@ -15,13 +15,13 @@
 
             <p:outputLabel value="Nome do cliente:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().nome}"/>
+            <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().nome}"/>
             <p:outputLabel />
 
 
             <p:outputLabel value="CPF do cliente:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().cpfCnpj}" />
+            <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().cpfCnpj}" />
             <p:outputLabel />
 
 
@@ -29,7 +29,7 @@
                            style="color: #00B59B;
                            font-family: Open Sans, Helvetica, Arial;
                            font-weight: bold ;"/>
-            <p:outputLabel value="#{MasterControle.animalControle.animal.rghv}" />
+            <p:outputLabel value="#{MBanimal.animal.rghv}" />
             <p:outputLabel />
 
 
@@ -37,7 +37,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="nomeAnimal" />
             <p:inputText id="nomeAnimal" 
-                         value="#{MasterControle.animalControle.animal.nomeAnimal}" 
+                         value="#{MBanimal.animal.nomeAnimal}" 
                          title="Informe o nome do animal"
                          maxlength="70"
                          required="true" 
@@ -51,7 +51,7 @@
                            for="especie"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="especie" 
-                         value="#{MasterControle.animalControle.animal.especie}"
+                         value="#{MBanimal.animal.especie}"
                          title="Informe a espécie do animal"
                          required="true"
                          requiredMessage="Informe a espécie do animal!" />
@@ -62,7 +62,7 @@
                            for="raca" 
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="raca" 
-                         value="#{MasterControle.animalControle.animal.raca}" 
+                         value="#{MBanimal.animal.raca}" 
                          title="Informe a raça do animal"
                          maxlength="100"
                          required="true" 
@@ -82,12 +82,12 @@
                            for="pelagem"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:selectOneMenu id="pelagem"
-                             value="#{MasterControle.animalControle.animal.pelagem}"
+                             value="#{MBanimal.animal.pelagem}"
                              title="Obs.: caso não tenha a pelagem desejada na lista, digite uma nova."
                              required="true"
                              editable="true"
                              requiredMessage="Informe a pelagem do animal!">
-                <f:selectItems value="#{MasterControle.animalControle.listaPelagem}" />           
+                <f:selectItems value="#{MBanimal.listaPelagem}" />           
             </p:selectOneMenu>
             <p:message for="pelagem" />
             <p:tooltip for="pelagem"
@@ -106,7 +106,7 @@
                            for="sexoAnimal"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />                                
             <p:selectOneRadio id="sexoAnimal" 
-                              value="#{MasterControle.animalControle.animal.sexoAnimal}"
+                              value="#{MBanimal.animal.sexoAnimal}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -121,13 +121,13 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="idade" />
             <p:calendar id="idade" 
-                        value="#{MasterControle.animalControle.animal.dataNac}"
+                        value="#{MBanimal.animal.dataNac}"
                         maxlength="10" 
                         disabled="false" 
                         title="" 
                         required="false"  
                         requiredMessage="" 
-                        locale="pt"
+                        locale="de"
                         navigator="true"  
                         pattern="yyyy-mm-dd" />
             <p:message for="idade" />
@@ -141,7 +141,7 @@
             <p:selectOneRadio id="escalaPeso"
                               layout="responsive"
                               columns="3"
-                              value="#{MasterControle.animalControle.animal.escalaPeso}"
+                              value="#{MBanimal.animal.escalaPeso}"
                               required="true"
                               requiredMessage="Escolha uma escala de peso!">
                 <f:selectItem itemLabel="g" itemValue="g" />
@@ -156,7 +156,7 @@
                            for="pesoAnimal"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:inputText id="pesoAnimal"
-                         value="#{MasterControle.animalControle.animal.peso}"
+                         value="#{MBanimal.animal.peso}"
                          title="Informe o peso atual do animal"
                          maxlength="5"
                          required="true"

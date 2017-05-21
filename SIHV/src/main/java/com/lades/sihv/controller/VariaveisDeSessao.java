@@ -31,4 +31,11 @@ public class VariaveisDeSessao {
         return (Animais) SessionUtils.getSession().getAttribute("objetoTemporario");
     }
     
+    public Object getFerramentaTemp() {
+        return (Object) SessionUtils.getSession().getAttribute("ferramentaTemporaria");
+    }
+
+    public void setFerramentaTemp(Object objeto) {
+        SessionUtils.getSession().setAttribute("ferramentaTemporaria", objeto);
+    }
 }

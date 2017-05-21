@@ -15,11 +15,8 @@
         <ui:define name="content">
 
             <f:metadata>
-                <f:viewAction action="#{MasterControle.prepararCadastroAnimal()}" />
-                <f:viewAction action="#{MasterControle.animalControle.prepararAdicionarAnimal()}" />
-                <f:viewAction action="#{MasterControle.animalControle.animal.setCategoriaAnimal('P')}" />
-                <f:viewAction action="#{MasterControle.animalControle.gerarRGHV()}" />
-                <f:viewAction action="#{MasterControle.tools.setRestShowButtonPrint()}" />
+                <f:viewAction action="#{MBanimal.prepararAnimalPequeno()}" />
+                <f:viewAction action="#{MBanimal.objTools.setRestShowButtonPrint()}" />
             </f:metadata>
 
             <h:form >
@@ -60,53 +57,53 @@
 
                                     <p:outputLabel value="Nome do cliente:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().nome}"
+                                    <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().nome}"
                                                    styleClass="outputLabel" />
 
                                     <p:outputLabel value="CPF/CNPJ do cliente:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBpesquisa.variaveisDeSessao.objetoPessoa().cpfCnpj}"
+                                    <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().cpfCnpj}"
                                                    styleClass="outputLabel" />
 
                                     <p:outputLabel value="RGHV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.rghv}"
+                                    <p:outputLabel value="#{MBanimal.animal.rghv}"
                                                    styleClass="outputLabel" />
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.nomeAnimal}"
+                                    <p:outputLabel value="#{MBanimal.animal.nomeAnimal}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Especie:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.especie}"
+                                    <p:outputLabel value="#{MBanimal.animal.especie}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Raça do animal:" 
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.raca}"
+                                    <p:outputLabel value="#{MBanimal.animal.raca}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Pelagem:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.pelagem}"
+                                    <p:outputLabel value="#{MBanimal.animal.pelagem}"
                                                    styleClass="outputLabel" />
 
 
                                     <p:outputLabel value="Sexo:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.sexoAnimal}"
+                                    <p:outputLabel value="#{MBanimal.animal.sexoAnimal}"
                                                    styleClass="outputLabel" />
 
 
 
                                     <p:outputLabel value="Data de nascimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.dataNac}"
+                                    <p:outputLabel value="#{MBanimal.animal.dataNac}"
                                                    styleClass="outputLabel"/>
                                 </p:panelGrid>
                                 
@@ -117,9 +114,9 @@
 
                                     <p:outputLabel value="Peso atual do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.escalaPeso}"
+                                    <p:outputLabel value="#{MBanimal.animal.escalaPeso}"
                                                    styleClass="outputLabel" />
-                                    <p:outputLabel value="#{MasterControle.animalControle.animal.peso}"
+                                    <p:outputLabel value="#{MBanimal.animal.peso}"
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
@@ -127,7 +124,7 @@
                             <div class="ui-fluid ui-g" >
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton value="Imprimir"
-                                                     rendered="#{MasterControle.tools.showButtonPrint}"
+                                                     rendered="#{MBanimal.objTools.showButtonPrint}"
                                                      disabled=""
                                                      type="button"
                                                      icon="fa fa-print">
@@ -136,7 +133,7 @@
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:commandButton action="#{MasterControle.adicionarNovoAnimal()}" 
+                                    <p:commandButton action="#{MBanimal.cadastrarAnimal()}" 
                                                      value="Salvar"
                                                      icon="fa fa-save"
                                                      update="growl, CadAnimalFinal" 

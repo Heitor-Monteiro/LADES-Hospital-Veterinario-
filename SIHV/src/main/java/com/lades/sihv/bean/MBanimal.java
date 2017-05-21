@@ -8,6 +8,9 @@ package com.lades.sihv.bean;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.controller.animal.AnimalGerarRGHV;
 import com.lades.sihv.controller.animal.AnimalGetIdade;
+import com.lades.sihv.controller.animal.AnimalListaPelagem;
+import com.lades.sihv.controller.animal.AnimalCadastro;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -18,29 +21,37 @@ import javax.faces.bean.ViewScoped;
 @ManagedBean(name = "MBanimal")
 @ViewScoped
 public class MBanimal extends AbstractBean {
+
     private Animais animal;
 
-    
-    
-    
-    
-    
-    
-    public void gerarRghvDeAnimal() {
-        ObjGeralRGHV().gerarRGHV(animal);
+    public void prepararAnimalPequeno() {
+        getAnimal().setCategoriaAnimal("P");
+        gerarRghvDeAnimal();
+        animalListaPelagem();
     }
-    
-    private AnimalGerarRGHV ObjGeralRGHV() {
-        return new AnimalGerarRGHV();
+
+    private void gerarRghvDeAnimal() {
+        new AnimalGerarRGHV().gerarRGHV(getAnimal());
     }
-    
-    private AnimalGetIdade ObjAnimalGetIdade(){
+
+    private void animalListaPelagem() {
+        AnimalListaPelagem obj = new AnimalListaPelagem();
+        obj.carregarListaPelagem();
+        getVariaveisDeSessao().setFerramentaTemp(obj);
+    }
+
+    public void cadastrarAnimal() {
+        boolean var = new AnimalCadastro().cadastrarANIMAL(animal);
+        getObjTools().setShowButtonPrint(var);//Habilitando visibilidade do botão para impressão
+    }
+
+    private AnimalGetIdade ObjAnimalGetIdade() {
         return new AnimalGetIdade();
     }
-    
+
 //  Métodos GETs e SETs
     public Animais getAnimal() {
-        if (animal == null){
+        if (animal == null) {
             animal = new Animais();
         }
         return animal;
@@ -49,6 +60,9 @@ public class MBanimal extends AbstractBean {
     public void setAnimal(Animais animal) {
         this.animal = animal;
     }
-    
-    
+
+    public List<String> getListaPelagem() {
+        AnimalListaPelagem obj = (AnimalListaPelagem) getVariaveisDeSessao().getFerramentaTemp();
+        return obj.getListaPelagem();
+    }
 }

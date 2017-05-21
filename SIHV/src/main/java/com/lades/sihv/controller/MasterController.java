@@ -35,7 +35,7 @@ public class MasterController implements Serializable {
     private Consulta consulta;
 //    private PesquisaController pesquisaControle;
 //    private PessoaController pessoaControle;
-    private AnimalController animalControle;
+//    private AnimalController animalControle;
     
     
     public void prepararControllerPessoa() {
@@ -43,33 +43,33 @@ public class MasterController implements Serializable {
     }
 
     //-------------------------------------------------------
-    public void prepararCadastroAnimal() {
-        prepararPesquisaController();
-        animalControle = new AnimalController(daoGenerico, message, tools);
-        animalControle.prepararListaPelagem();
-    }
+//    public void prepararCadastroAnimal() {
+//        prepararPesquisaController();
+//        animalControle = new AnimalController(daoGenerico, message, tools);
+//        animalControle.prepararListaPelagem();
+//    }
 
-    public void adicionarNovoAnimal() {
-        animalControle.adicionarANIMAL(pessoa);
-    }
+//    public void adicionarNovoAnimal() {
+//        animalControle.adicionarANIMAL(pessoa);
+//    }
 
     //-------------------------------------------------------
     public void prepararNovaConsulta() {
-        prepararPesquisaController();
+//        prepararPesquisaController();
         prepareFormsExames();
         formsExame.prepararFormsConsulta();
     }
     
     //-------------------------------------------------------
     public void pesquisarConsulta(){
-        prepararPesquisaController();
+//        prepararPesquisaController();
         
     }
     
     //-------------------------------------------------------
-    public void prepararPesquisaController() {
+//    public void prepararPesquisaController() {
 //        pesquisaControle = new PesquisaController();
-    }
+//    }
     
     private void prepareFormsExames(){
         formsExame = new FormsExames();
@@ -114,9 +114,9 @@ public class MasterController implements Serializable {
 //    public void setPesquisaControle(PesquisaController pesquisaControle) {
 //        this.pesquisaControle = pesquisaControle;
 //    }
-    public AnimalController getAnimalControle() {
-        return animalControle;
-    }
+//    public AnimalController getAnimalControle() {
+//        return animalControle;
+//    }
 
 //    public void setAnimalControle(AnimalController animalControle) {
 //        this.animalControle = animalControle;
