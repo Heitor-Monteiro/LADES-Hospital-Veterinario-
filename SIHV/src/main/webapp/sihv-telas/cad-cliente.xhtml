@@ -58,6 +58,13 @@
                                         <p:printer target="CadPessoaFinal" />
                                     </p:commandButton>
                                 </div>
+                                
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:button value="Novo cadastro"
+                                              rendered="#{MBpessoa.objTools.showButtonPrint}"
+                                              outcome="/sihv-telas/cad-cliente"
+                                              icon="fa fa-user-plus" />
+                                </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton action="#{MBpessoa.cadastrarCliente()}" 
@@ -65,12 +72,6 @@
                                                      icon="fa fa-save"
                                                      update="growl, CadPessoaFinal" 
                                                      disabled="false" />
-                                </div>
-
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:button value="Novo cadastro" 
-                                              outcome="/sihv-telas/cad-cliente"
-                                              icon="fa fa-user-plus" />
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
