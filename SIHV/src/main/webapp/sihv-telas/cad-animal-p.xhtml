@@ -133,17 +133,18 @@
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                    <p:button value="Novo cadastro" 
+                                              rendered="#{MBanimal.objTools.showButtonPrint}"
+                                              outcome="/sihv-telas/cad-animal-p"
+                                              icon="fa fa-user-plus" />
+                                </div>
+                                
+                                <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton action="#{MBanimal.cadastrarAnimal()}" 
                                                      value="Salvar"
                                                      icon="fa fa-save"
                                                      update="growl, CadAnimalFinal" 
                                                      disabled="false" />
-                                </div>
-
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:button value="Novo cadastro" 
-                                              outcome="/sihv-telas/cad-animal-p"
-                                              icon="fa fa-user-plus" />
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
