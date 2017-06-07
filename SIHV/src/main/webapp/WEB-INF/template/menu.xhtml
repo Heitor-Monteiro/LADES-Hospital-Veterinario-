@@ -28,7 +28,7 @@
         .icoMenu2.is-rotacao {
             transform: rotate(45deg);
         }
-        
+
         .icoHover:hover{font-weight: bold;}
     </style>
 
@@ -46,7 +46,7 @@
                style="margin: 30px 20px 20px 15px;
                color: #fff;" ></i>
 
-            <p:outputLabel value="#{login.username}"
+            <p:outputLabel value="#{login.variaveisDeSessao.username}"
                            style="color: #fff;
                            margin-right: 10px;" />
 
@@ -106,7 +106,7 @@
         </div>
 
         <div class="w3-accordion">
-            <p:outputLabel rendered="#{login.userTipo == 'MEDICO'}">
+            <p:outputLabel rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}">
                 <a class="itemMenu" onclick="myDropFunc()" href="#">
                     <i class="fa fa-user-secret"></i> 
                     <p:outputLabel value="Usuário do sistema"
@@ -148,14 +148,14 @@
         </div>
 
         <p:link class="itemMenu"
-                rendered="#{login.userTipo == 'MEDICO'}"
+                rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
                 outcome="/sihv-telas-exame/Nova_Consulta_PesqCli" >
             <i class="fa fa-stethoscope"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Nova consulta"
                            style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
         </p:link>
-        
+
         <p:link class="itemMenu"
                 rendered="true"
                 outcome="/sihv-telas/advanced-search" >

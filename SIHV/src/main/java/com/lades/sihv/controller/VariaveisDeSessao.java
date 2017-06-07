@@ -38,4 +38,62 @@ public class VariaveisDeSessao {
     public void setFerramentaTemp(Object objeto) {
         SessionUtils.getSession().setAttribute("ferramentaTemporaria", objeto);
     }
+    
+//---------------------------------------------------------------------------------------
+    
+    public void setUsername(String name) {
+        SessionUtils.getSession().setAttribute("username", name);
+    }
+    
+    public String getUsername() {
+        return (String) SessionUtils.getSession().getAttribute("username");
+    }
+
+    public void setUserTipo(String tipo) {
+        SessionUtils.getSession().setAttribute("UserTipo", tipo);
+    }
+
+    public String getUserTipo() {
+        return (String) SessionUtils.getSession().getAttribute("UserTipo");
+    }
+
+    public void setCpfCnpj(String numbers) {
+        SessionUtils.getSession().setAttribute("cpfCnpj", numbers);
+    }
+
+    public String getCpfCnpj() {
+        return (String) SessionUtils.getSession().getAttribute("cpfCnpj");
+    }
+
+    public void setFullName(String name) {
+        SessionUtils.getSession().setAttribute("fullName", name);
+    }
+
+    public String getFullName() {
+        return (String) SessionUtils.getSession().getAttribute("fullName");
+    }
+
+    public void setPkPessoa(int pk) {
+        SessionUtils.getSession().setAttribute("pkPessoa", pk);
+    }
+
+    public int getPkPessoa() {
+        return (int) SessionUtils.getSession().getAttribute("pkPessoa");
+    }
+    
+    public void setCrmvMatricula(String codMat) {
+        SessionUtils.getSession().setAttribute("crmvMatricula", codMat);
+    }
+
+    public String getCrmvMatricula() {
+        return (String) SessionUtils.getSession().getAttribute("crmvMatricula");
+    }
+    
+    public void setSenhaUser(String pass) {
+        SessionUtils.getSession().setAttribute("senhaUser", pass);
+    }
+
+    public String getSenhaUser() {
+        return (String) SessionUtils.getSession().getAttribute("senhaUser");
+    }
 }
