@@ -14,8 +14,6 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import com.lades.sihv.DAO.SessionUtils;
-import com.lades.sihv.controller.BeautyText;
-import com.lades.sihv.controller.FacesMessages;
 import com.lades.sihv.controller.Security;
 import java.io.IOException;
 
@@ -58,29 +56,19 @@ public class Login extends AbstractBean {
         pwd = new Security().encrypter(pwd);
         int valid = getDaoGenerico().validate(user, pwd);
         if (valid != -1) {
-            BeautyText stringer = new BeautyText();
-            getVariaveisDeSessao().setUsername(stringer.fistNLast((String) getDaoGenerico().list("select p.nome from Pessoa p where p.pkPessoa=" + valid).get(0)));
-            getVariaveisDeSessao().setCpfCnpj((String) getDaoGenerico().list("select p.cpfCnpj from Pessoa p where p.pkPessoa=" + valid).get(0));
-            getVariaveisDeSessao().setFullName((String) getDaoGenerico().list("select p.nome from Pessoa p where p.pkPessoa=" + valid).get(0));
-            getVariaveisDeSessao().setPkPessoa((int) getDaoGenerico().list("select p.pkPessoa from Pessoa p where p.pkPessoa=" + valid).get(0));
-            getVariaveisDeSessao().setUserTipo((String) getDaoGenerico().list("select u.userTipo from Pessoa p, User u where p.pkPessoa=" + valid + " and u.id.fkPessoa=" + valid + "").get(0));
-            getVariaveisDeSessao().setCrmvMatricula( (String) getDaoGenerico().list("select u.crmvMatricula from Pessoa p, User u where p.pkPessoa=" + valid + " and u.id.fkPessoa=" + valid + "").get(0));
-            getVariaveisDeSessao().setSenhaUser((String) pwd);
-            
-            
+            getVariaveisDeSessao().setDadosPESSOA((Object) getDaoGenerico().list("select p from Pessoa p where p.pkPessoa=" + valid).get(0));
+            getVariaveisDeSessao().setDadosUSER((Object) getDaoGenerico().list("select u from Pessoa p, User u where p.pkPessoa=" + valid + " and u.id.fkPessoa=" + valid + "").get(0));
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            System.out.println("BACK-END WARNING: USER LOGGED! username=" + stringer.fistNLast((String) getDaoGenerico().list("select p.nome from Pessoa p where p.pkPessoa=" + valid).get(0)) + " [ public String validateUsernamePassword() throws IOException ]");
+            System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
             System.out.println("BACK-END WARNING: TipoUser=" + getVariaveisDeSessao().getUserTipo());
             System.out.println("BACK-END WARNING: cpfCnpj=" + getVariaveisDeSessao().getCpfCnpj());
             System.out.println("BACK-END WARNING: pkPessoa=" + getVariaveisDeSessao().getPkPessoa());
             System.out.println("BACK-END WARNING: crmvMatricula=" + getVariaveisDeSessao().getCrmvMatricula());
-            System.out.println("BACK-END WARNING: userSenha= "+ getVariaveisDeSessao().getSenhaUser());
+            System.out.println("BACK-END WARNING: userSenha=" + getVariaveisDeSessao().getSenhaUser());
             return "index";
         } else {
-            FacesMessages mensagem = new FacesMessages();
-            mensagem.warn("Nome de usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");
+            getObjMessage().warn("Nome de usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");
             System.out.println("BACK-END WARNING: USER NOT LOGGED! [ public String validateUsernamePassword() throws IOException ]");
-            //FacesContext.getCurrentInstance().getExternalContext().redirect("login.xhtml");	
             return "login";
         }
     }

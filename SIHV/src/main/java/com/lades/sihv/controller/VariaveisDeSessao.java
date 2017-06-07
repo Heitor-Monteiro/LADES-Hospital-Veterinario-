@@ -8,6 +8,7 @@ package com.lades.sihv.controller;
 import com.lades.sihv.DAO.SessionUtils;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pessoa;
+import com.lades.sihv.model.User;
 
 /**
  *
@@ -26,11 +27,11 @@ public class VariaveisDeSessao {
     public Pessoa objetoPessoa() {
         return (Pessoa) SessionUtils.getSession().getAttribute("objetoTemporario");
     }
-    
+
     public Animais objetoAnimal() {
         return (Animais) SessionUtils.getSession().getAttribute("objetoTemporario");
     }
-    
+
     public Object getFerramentaTemp() {
         return (Object) SessionUtils.getSession().getAttribute("ferramentaTemporaria");
     }
@@ -38,62 +39,51 @@ public class VariaveisDeSessao {
     public void setFerramentaTemp(Object objeto) {
         SessionUtils.getSession().setAttribute("ferramentaTemporaria", objeto);
     }
-    
+
 //---------------------------------------------------------------------------------------
-    
-    public void setUsername(String name) {
-        SessionUtils.getSession().setAttribute("username", name);
+    public void setDadosUSER(Object objUser) {
+        SessionUtils.getSession().setAttribute("dadosUser", objUser);
     }
-    
+
+    private User getDadosUSER() {
+        return (User) SessionUtils.getSession().getAttribute("dadosUser");
+    }
+
+    public void setDadosPESSOA(Object objPessoa) {       
+        Pessoa obj = (Pessoa) objPessoa;
+        SessionUtils.getSession().setAttribute("username", new BeautyText().fistNLast(obj.getNome()));
+        SessionUtils.getSession().setAttribute("dadosPessoa", objPessoa);
+    }
+
+    private Pessoa getDadosPESSOA() {
+        return (Pessoa) SessionUtils.getSession().getAttribute("dadosPessoa");
+    }
+
     public String getUsername() {
         return (String) SessionUtils.getSession().getAttribute("username");
     }
 
-    public void setUserTipo(String tipo) {
-        SessionUtils.getSession().setAttribute("UserTipo", tipo);
-    }
-
     public String getUserTipo() {
-        return (String) SessionUtils.getSession().getAttribute("UserTipo");
-    }
-
-    public void setCpfCnpj(String numbers) {
-        SessionUtils.getSession().setAttribute("cpfCnpj", numbers);
+        return (String) getDadosUSER().getUserTipo();
     }
 
     public String getCpfCnpj() {
-        return (String) SessionUtils.getSession().getAttribute("cpfCnpj");
-    }
-
-    public void setFullName(String name) {
-        SessionUtils.getSession().setAttribute("fullName", name);
+        return (String) getDadosPESSOA().getCpfCnpj();
     }
 
     public String getFullName() {
-        return (String) SessionUtils.getSession().getAttribute("fullName");
-    }
-
-    public void setPkPessoa(int pk) {
-        SessionUtils.getSession().setAttribute("pkPessoa", pk);
+        return (String) getDadosPESSOA().getNome();
     }
 
     public int getPkPessoa() {
-        return (int) SessionUtils.getSession().getAttribute("pkPessoa");
-    }
-    
-    public void setCrmvMatricula(String codMat) {
-        SessionUtils.getSession().setAttribute("crmvMatricula", codMat);
+        return (int) getDadosPESSOA().getPkPessoa();
     }
 
     public String getCrmvMatricula() {
-        return (String) SessionUtils.getSession().getAttribute("crmvMatricula");
-    }
-    
-    public void setSenhaUser(String pass) {
-        SessionUtils.getSession().setAttribute("senhaUser", pass);
+        return (String) getDadosUSER().getCrmvMatricula();
     }
 
     public String getSenhaUser() {
-        return (String) SessionUtils.getSession().getAttribute("senhaUser");
+        return (String) getDadosUSER().getUserSenha();
     }
 }
