@@ -304,7 +304,6 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         List<CollectionClasses> retornaAnimais = new ArrayList<>();
         for (Object[] obj : (List<Object[]>) listaPessoa) {
             CollectionClasses newAnimal = new CollectionClasses();
-            newAnimal.gerarObjNovaConsulta();
             AnimaisId idAnimal = new AnimaisId();
 
             idAnimal.setPkAnimal((int) obj[0]);
@@ -373,7 +372,6 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         for (Object[] obj : (List<Object[]>) listaConsulta) {
 
             CollectionClasses objbusca = new CollectionClasses();
-            objbusca.geraObj();
 
             objbusca.getConsulta().setPkConsulta((int) obj[0]);
             objbusca.getConsulta().setSistemasAfetados((String) obj[1]);

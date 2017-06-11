@@ -27,22 +27,22 @@ public class CollectionClasses implements Serializable {
     private Consulta consulta;
 
     
-    public void geraObj(){
-        residente = new Pessoa();
-        proprietario = new Pessoa();
-        user = new User();
-        animais = new Animais();
-        consulta = new Consulta();
-    }
+//    public void geraObj(){
+//        residente = new Pessoa();
+//        proprietario = new Pessoa();
+//        user = new User();
+//        animais = new Animais();
+//        consulta = new Consulta();
+//    }
 
-    public void gerarObjNovaConsulta(){
-        animais = new Animais();
-        proprietario = new Pessoa();
-    }
+//    public void gerarObjNovaConsulta(){
+//        animais = new Animais();
+//        proprietario = new Pessoa();
+//    }
     
-    public void gerarObjPessoaFisica(){
-        pessoaFisica = new Fisica();
-    }
+//    public void gerarObjPessoaFisica(){
+//        pessoaFisica = new Fisica();
+//    }
     
     public Animais getAnimais() {
         if(animais == null){

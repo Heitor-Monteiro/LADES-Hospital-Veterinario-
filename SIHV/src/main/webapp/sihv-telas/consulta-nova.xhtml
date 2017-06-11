@@ -15,7 +15,7 @@
         <ui:define name="content">
 
             <f:metadata>
-                
+
             </f:metadata>
 
             <h:form>
@@ -24,8 +24,15 @@
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
 
+                    <p:tab id="etapa1" title="Dados do cliente" >
+                        <p:panel>
+                            <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
+                        </p:panel>
+                    </p:tab>
+                    
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
+
                             <p:wizard style="margin: 2% 3.7% 2% 3.7%;"
                                       nextLabel="próximo"
                                       backLabel="voltar">
@@ -37,7 +44,7 @@
 
                                     </p:panel>
                                 </p:tab>
-                                
+
                                 <p:tab id="anamnese2" title="etapa 2" >
                                     <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
 
@@ -92,26 +99,25 @@
 
                                     </p:panel>
                                 </p:tab>
-                                
+
                             </p:wizard>
-
-
+                            
                         </p:panel>
                     </p:tab>
 
 
                     <p:tab id="etapa3" title="Exame físico" >
                         <p:panel id="ExameFisico">
-                            
+
                             <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
-                            
+
                         </p:panel>
                     </p:tab>
 
 
-
+                    <!--
                     <p:tab id="etapa4" title="Exames complementares" >
-                        
+
                         <p:panel id="exameImagem">
 
 
@@ -124,7 +130,7 @@
                                                style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
 
                                 <p:selectOneButton id="value2"
-                                                   value="#{consultaBean.confirmeRAIOX}"
+                                                   value="#{MBconsulta.confirmeRAIOX}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="true" />
@@ -150,7 +156,7 @@
                                                style="color: #00B59B; font-weight: bold;" />
 
                                 <p:selectOneButton id="value3"
-                                                   value="#{consultaBean.confirmeUltrasson}"
+                                                   value="#{MBconsulta.confirmeUltrasson}"
                                                    required="false"
                                                    style="margin-bottom: 10px;" >
                                     <f:selectItem itemLabel="Sim" itemValue="true" />
@@ -166,17 +172,16 @@
 
 
                         </p:panel>
-                        
-                    </p:tab>
 
+                    </p:tab>
+                    -->
 
 
 
                     <p:tab id="etapa5" title="Finalizar" >
-                        <p:panel>
+                        <p:panel id="CODconsulta">
                             <div class="ui-fluid">
-                                <p:panelGrid id="CODconsulta"
-                                             columns="2"
+                                <p:panelGrid columns="2"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3" >
@@ -187,7 +192,7 @@
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
-                                    <p:outputLabel value="#{consultaBean.maxCodConsulta}"
+                                    <p:outputLabel value="#{MBconsulta.maxCodConsulta}"
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
@@ -196,34 +201,34 @@
 
                                     <p:outputLabel value="Proprietário:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.collectionClasses.proprietario.nome}"
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.nome}"
                                                    style="color: #555;" />
 
 
                                     <p:outputLabel value="CPF/CNPJ:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.collectionClasses.proprietario.cpfCnpj}"
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.cpfCnpj}"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Nome do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.nomeAnimal }"
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.nomeAnimal }"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Espécie:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.especie}"
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.especie}"
                                                    style="color: #555;" />
 
 
 
                                     <p:outputLabel value="Código do animal:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.collectionClasses.animais.rghv}"
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.rghv}"
                                                    style="color: #555;" />
 
 
@@ -231,7 +236,7 @@
 
                                     <p:outputLabel value="Data do atendimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{consultaBean.objData}"
+                                    <p:outputLabel value="#{MBconsulta.objData}"
                                                    style="color: #555;" />
 
 
@@ -242,7 +247,7 @@
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                                    for="valorConsult" />
                                     <p:inputNumber id="valorConsult" 
-                                                   value="#{consultaBean.formsExame.consulta.valorConsulta}"
+                                                   value="#{MBconsulta.formsExame.consulta.valorConsulta}"
                                                    decimalSeparator=","
                                                    thousandSeparator="."
                                                    maxlength="6"
@@ -265,13 +270,23 @@
                                     <p:outputLabel value="Confirmação do medico veterinário:"
                                                    style="color: #00B59B; font-weight: bold ; font-size: 17px " />
                                     <p:outputLabel value="" />
+                                    
+                                    
+                                    
+                                    
+                                    <p:outputLabel value="Nome do residente:"
+                                                   rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.variaveisDeSessao.fullName}"
+                                                   rendered="#{MBconsulta.objTools.showButtonPrint}" />
+                                    
 
 
 
                                     <p:outputLabel value="Informe o CRMV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:inputText id="ConfimMED1" 
-                                                 value="#{consultaBean.confirmeCRMV}"
+                                                 value="#{MBconsulta.confirmeCRMV}"
                                                  title="Ex.: CRMV-PA 00000"
                                                  required="true"
                                                  requiredMessage="Informe o CRMV para concretiza a consulta!"
@@ -284,7 +299,7 @@
                                     <p:password id="ConfimMED2"
                                                 feedback="false"
                                                 inline="true"
-                                                value="#{consultaBean.confirmeSENHA}"
+                                                value="#{MBconsulta.confirmeSENHA}"
                                                 title="Residente: digite a senha que você utiliza para acessar o sistema."
                                                 maxlength="100"
                                                 required="true" 
@@ -297,24 +312,26 @@
                                 <div class="ui-g">
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
                                         <p:commandButton value="Imprimir"
+                                                         rendered="#{MBconsulta.objTools.showButtonPrint}"
                                                          type="button"
                                                          icon="fa fa-print">
                                             <p:printer target="CODconsulta" />
                                         </p:commandButton>
                                     </div>
-
+                                    
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:commandButton  action="#{consultaBean.adicionarNovaConsulta()}"
-                                                          value="Salvar consulta"
-                                                          icon="fa fa-save"
-                                                          update="growl" 
-                                                          disabled="false" />
+                                        <p:button value="Nova consulta"
+                                                  rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                                  outcome="/sihv-telas/consulta-nova"
+                                                  icon="fa fa-user-plus" />
                                     </div>
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:button value="Nova consulta" 
-                                                  outcome="/sihv-telas-exame/Nova_Consulta"
-                                                  icon="fa fa-user-plus" />
+                                        <p:commandButton  action="#{MBconsulta.adicionarNovaConsulta()}"
+                                                          value="Salvar consulta"
+                                                          icon="fa fa-save"
+                                                          update="growl, CODconsulta" 
+                                                          disabled="false" />
                                     </div>
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">

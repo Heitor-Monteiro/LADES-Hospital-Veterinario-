@@ -276,7 +276,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="inforAdiciona", length=200)
+    @Column(name="inforAdiciona", length=900)
     public String getInforAdiciona() {
         return this.inforAdiciona;
     }

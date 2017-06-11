@@ -45,7 +45,7 @@ public class VariaveisDeSessao {
         SessionUtils.getSession().setAttribute("dadosUser", objUser);
     }
 
-    private User getDadosUSER() {
+    public User getDadosUSER() {
         return (User) SessionUtils.getSession().getAttribute("dadosUser");
     }
 
