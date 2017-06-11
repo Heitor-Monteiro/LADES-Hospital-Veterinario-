@@ -46,7 +46,7 @@
                style="margin: 30px 20px 20px 15px;
                color: #fff;" ></i>
 
-            <p:outputLabel value="#{login.username}"
+               <p:outputLabel value="#{login.variaveisDeSessao.username}"
                            style="color: #fff;
                            margin-right: 10px;" />
 
@@ -106,7 +106,7 @@
         </div>
 
         <div class="w3-accordion">
-            <p:outputLabel rendered="#{login.userTipo == 'MEDICO'}">
+            <p:outputLabel rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}">
                 <a class="itemMenu" onclick="myDropFunc()" href="#">
                     <i class="fa fa-user-secret"></i> 
                     <p:outputLabel value="Usuário do sistema"
@@ -148,8 +148,8 @@
         </div>
 
         <p:link class="itemMenu"
-                rendered="#{login.userTipo == 'MEDICO'}"
-                outcome="/sihv-telas-exame/Nova_Consulta_PesqCli" >
+                rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
+                outcome="/sihv-telas/consulta-nova" >
             <i class="fa fa-stethoscope"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Nova consulta"
@@ -167,7 +167,7 @@
 
         <p:link class="itemMenu"
                 rendered="false"
-                outcome="/sihv-telas-exame/Buscar_Consulta" >
+                outcome="/sihv-telas/consulta-pesquisar" >
             <i class="fa fa-search"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Buscar consultas"

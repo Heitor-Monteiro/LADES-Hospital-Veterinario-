@@ -17,7 +17,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese1" />
             <p:inputTextarea id="Anamnese1"
-                             value="#{consultaBean.formsExame.anamnese.queixaPrincipal}"
+                             value="#{MBconsulta.formsExame.anamnese.queixaPrincipal}"
                              required="true"
                              requiredMessage="Informe a queixa principal!"
                              style="margin-bottom: 20px;"
@@ -36,7 +36,7 @@
                               rendered="true"
                               layout="responsive"
                               columns="2"
-                              value="#{consultaBean.formsExame.anamnese.jaFoiTratado}"
+                              value="#{MBconsulta.formsExame.anamnese.jaFoiTratado}"
                               required="true"
                               requiredMessage="Informe se o animal já foi tratado!"
                               style="margin-bottom: 20px;" >
@@ -54,7 +54,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese3" />
             <p:inputTextarea id="Anamnese3"
-                             value="#{consultaBean.formsExame.anamnese.medicacaoDose}"
+                             value="#{MBconsulta.formsExame.anamnese.medicacaoDose}"
                              required="false"
                              requiredMessage="Informe o campo medicação/dose!"
                              style="margin-bottom: 20px;"
@@ -70,7 +70,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese4" />
             <p:inputTextarea id="Anamnese4"
-                             value="#{consultaBean.formsExame.anamnese.antecMorbido}"
+                             value="#{MBconsulta.formsExame.anamnese.antecMorbido}"
                              required="true"
                              requiredMessage="Informe antecedentes mórbidos!"
                              style="margin-bottom: 20px;"
@@ -83,7 +83,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese5" />
             <p:inputTextarea id="Anamnese5" 
-                             value="#{consultaBean.formsExame.anamnese.histoFamiliar}"
+                             value="#{MBconsulta.formsExame.anamnese.histoFamiliar}"
                              required="true"
                              requiredMessage="Informe o histórico familiar!" 
                              style="margin-bottom: 20px;"
@@ -96,7 +96,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese6" />
             <p:selectOneRadio id="Anamnese6"
-                              value="#{consultaBean.formsExame.anamnese.alimentacaoCaseira}"
+                              value="#{MBconsulta.formsExame.anamnese.alimentacaoCaseira}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -114,7 +114,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese7" />
             <p:inputTextarea id="Anamnese7" 
-                             value="#{consultaBean.formsExame.anamnese.descriCaseira}"
+                             value="#{MBconsulta.formsExame.anamnese.descriCaseira}"
                              required="false"
                              requiredMessage="Descreva a dieta caseira!" 
                              style="margin-bottom: 20px;"
@@ -128,7 +128,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese8" />
             <p:selectOneRadio id="Anamnese8"
-                              value="#{consultaBean.formsExame.anamnese.alimentacaoRacao}"
+                              value="#{MBconsulta.formsExame.anamnese.alimentacaoRacao}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -146,7 +146,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese9" />
             <p:inputTextarea id="Anamnese9" 
-                             value="#{consultaBean.formsExame.anamnese.descriRacao}"
+                             value="#{MBconsulta.formsExame.anamnese.descriRacao}"
                              required="false"
                              requiredMessage="Descreva a dieta por ração!" 
                              style="margin-bottom: 20px;"
@@ -160,7 +160,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese10" />
             <p:selectManyCheckbox id="Anamnese10"
-                                  value="#{consultaBean.formsExame.vacinacao}"
+                                  value="#{MBconsulta.formsExame.vacinacao}"
                                   layout="responsive"
                                   columns="1"
                                   required="true"
@@ -180,7 +180,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese11" />
             <p:inputTextarea id="Anamnese11" 
-                             value="#{consultaBean.formsExame.anamnese.sobreVacina}"
+                             value="#{MBconsulta.formsExame.anamnese.sobreVacina}"
                              required="false"
                              requiredMessage="Descreva a vacina!" 
                              style="margin-bottom: 20px;"
@@ -194,7 +194,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese12" />
             <p:selectOneRadio id="Anamnese12"
-                              value="#{consultaBean.formsExame.anamnese.origemVacina}"
+                              value="#{MBconsulta.formsExame.anamnese.origemVacina}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -215,7 +215,7 @@
             <p:selectOneRadio id="Anamnese13"
                               layout="responsive"
                               columns="2"
-                              value="#{consultaBean.formsExame.anamnese.vermifugacao}"
+                              value="#{MBconsulta.formsExame.anamnese.vermifugacao}"
                               required="true"
                               requiredMessage="Informe a vermifugação!"
                               style="margin-bottom: 20px;" >
@@ -230,7 +230,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese14" />
             <p:inputText id="Anamnese14" 
-                         value="#{consultaBean.formsExame.anamnese.doseVermifugacao}"
+                         value="#{MBconsulta.formsExame.anamnese.doseVermifugacao}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -243,7 +243,7 @@
                            for="Anamnese15"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
             <p:calendar id="Anamnese15"
-                        value="#{consultaBean.formsExame.anamnese.dataVermifugacao}"
+                        value="#{MBconsulta.formsExame.anamnese.dataVermifugacao}"
                         maxlength="10" 
                         disabled="false" 
                         title="" 
@@ -260,7 +260,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese16" />
             <p:selectOneRadio id="Anamnese16"
-                              value="#{consultaBean.formsExame.anamnese.ectoparasitas}"
+                              value="#{MBconsulta.formsExame.anamnese.ectoparasitas}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -279,7 +279,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese17" />
             <p:selectManyCheckbox id="Anamnese17"
-                                  value="#{consultaBean.formsExame.qualEctoparasitas}"
+                                  value="#{MBconsulta.formsExame.qualEctoparasitas}"
                                   layout="responsive"
                                   columns="1"
                                   required="false"
@@ -301,7 +301,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese18" />
             <p:selectOneRadio id="Anamnese18"
-                              value="#{consultaBean.formsExame.anamnese.controEctoparasitas}"
+                              value="#{MBconsulta.formsExame.anamnese.controEctoparasitas}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -323,7 +323,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese19" />
             <p:inputText id="Anamnese19" 
-                         value="#{consultaBean.formsExame.anamnese.qualProdutoUtiliza}"
+                         value="#{MBconsulta.formsExame.anamnese.qualProdutoUtiliza}"
                          title="Produto utilizado no controle de ectoparasitas"
                          required="false"
                          requiredMessage=""
@@ -337,7 +337,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese20" />
             <p:selectManyCheckbox id="Anamnese20"
-                                  value="#{consultaBean.formsExame.acessoArua}"
+                                  value="#{MBconsulta.formsExame.acessoArua}"
                                   layout="responsive"
                                   columns="1"
                                   required="true"
@@ -360,7 +360,7 @@
             <p:inputTextarea id="Anamnese21"
                              required="true"
                              requiredMessage="Descreva o habitat!"
-                             value="#{consultaBean.formsExame.anamnese.descriHabitat}"
+                             value="#{MBconsulta.formsExame.anamnese.descriHabitat}"
                              title="Descreva o habitat em que o animal vive"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
@@ -372,7 +372,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese22" />
             <p:selectOneRadio id="Anamnese22"
-                              value="#{consultaBean.formsExame.anamnese.contactantes}"
+                              value="#{MBconsulta.formsExame.anamnese.contactantes}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -390,7 +390,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese23" />
             <p:inputTextarea id="Anamnese23" 
-                             value="#{consultaBean.formsExame.anamnese.descriContactantes}"
+                             value="#{MBconsulta.formsExame.anamnese.descriContactantes}"
                              title="informado se o animal convive com outros bichos, exemplo, o animal convive com um gato e 5 cachorros"
                              required="false"
                              requiredMessage=""
@@ -406,7 +406,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese24" />
             <p:selectOneRadio id="Anamnese24"
-                              value="#{consultaBean.formsExame.anamnese.mesmoProbleContacta}"
+                              value="#{MBconsulta.formsExame.anamnese.mesmoProbleContacta}"
                               layout="responsive"
                               columns="2"
                               required="false"
@@ -423,7 +423,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese25" />
             <p:selectOneRadio id="Anamnese25"
-                              value="#{consultaBean.formsExame.anamnese.contatoRoedor}"
+                              value="#{MBconsulta.formsExame.anamnese.contatoRoedor}"
                               layout="responsive"
                               columns="2"
                               required="false"

@@ -76,60 +76,16 @@ public class FormsExames implements Serializable {
     private ExameImage exameImageUltra;
     private ExameImageId exameImageUltraId;
 
-    /*O método prepara os objetos necessários 
-    para receber informações escritas pelo usuário, 
-    o mesmo também faz a limpeza dos campos utilizados*/
-    public void prepararFormsConsulta() {
-        consulta = new Consulta();
-
-        anamnese = new Anamnese();
-        anamneseId = new AnamneseId();
-
-        sisDigestorio = new SisDigestorio();
-        sisDigestorioId = new SisDigestorioId();
-
-        sisRespCardio = new SisRespCardio();
-        sisRespCardioId = new SisRespCardioId();
-
-        sisUrinarioMamaria = new SisUrinarioMamaria();
-        sisUrinarioMamariaId = new SisUrinarioMamariaId();
-
-        sisTegumentar = new SisTegumentar();
-        sisTegumentarId = new SisTegumentarId();
-
-        sisNeurologico = new SisNeurologico();
-        sisNeurologicoId = new SisNeurologicoId();
-
-        sisOftalmico = new SisOftalmico();
-        sisOftalmicoId = new SisOftalmicoId();
-
-        sisMuscEsque = new SisMuscEsque();
-        sisMuscEsqueId = new SisMuscEsqueId();
-
-        exameFisico = new ExameFisico();
-        exameFisicoId = new ExameFisicoId();
-
-        exameImageRaioX = new ExameImage();
-        exameImageRaioXId = new ExameImageId();
-
-        exameImageUltra = new ExameImage();
-        exameImageUltraId = new ExameImageId();
-    }
-
-    //------Métodos para Consulta--------------------------------------
-    public void CreatObjConsulta() {
-        this.consulta = new Consulta();
-    }
-    
+    //------Métodos para Consulta-------------------------------------- 
     public void prepareConsulta(Date date, Animais animal, User medicoVET) {
         getConsulta().setDataConsulta(date);
         consulta.setSistemasAfetados(sistemasAfetados());
         consulta.setAnimais(animal);
         consulta.setUser(medicoVET);
     }
-    
+
     public Consulta getConsulta() {
-        if(consulta == null){
+        if (consulta == null) {
             consulta = new Consulta();
         }
         return consulta;
@@ -141,17 +97,9 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para Anamnese--------------------------------------
-    public void CreatObjAnamnese() {
-        this.anamnese = new Anamnese();
-    }
-
-    public void CreatObjAnamneseId() {
-        this.anamneseId = new AnamneseId();
-    }
-
     public void prepareAnamnese() {
         BeautyText Stringer = new BeautyText();
-        
+        anamneseId = new AnamneseId();
         anamneseId.setConsultaFkConsulta(consulta.getPkConsulta());
         anamnese.setId(anamneseId);
         anamnese.setVacinacao(Stringer.concatenaSTRING(vacinacao));
@@ -160,6 +108,9 @@ public class FormsExames implements Serializable {
     }
 
     public Anamnese getAnamnese() {
+        if (anamnese == null) {
+            anamnese = new Anamnese();
+        }
         return anamnese;
     }
 
@@ -193,20 +144,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisDigestorio---------------------------------
-    public void CreatObjSisDigestorio() {
-        this.sisDigestorio = new SisDigestorio();
-    }
-
-    public void CreatObjSisDigestorioId() {
-        this.sisDigestorioId = new SisDigestorioId();
-    }
-
     public void prepareSisDigestorio() {
+        sisDigestorioId = new SisDigestorioId();
         sisDigestorioId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisDigestorio.setId(sisDigestorioId);
     }
 
     public SisDigestorio getSisDigestorio() {
+        if (sisDigestorio == null) {
+            sisDigestorio = new SisDigestorio();
+        }
         return sisDigestorio;
     }
 
@@ -216,20 +163,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisRespCardio---------------------------------
-    public void CreatObjSisRespCardio() {
-        this.sisRespCardio = new SisRespCardio();
-    }
-
-    public void CreatObjSisRespCardioId() {
-        this.sisRespCardioId = new SisRespCardioId();
-    }
-
     public void prepareSisRespCardio() {
+        sisRespCardioId = new SisRespCardioId();
         sisRespCardioId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisRespCardio.setId(sisRespCardioId);
     }
 
     public SisRespCardio getSisRespCardio() {
+        if (sisRespCardio == null) {
+            sisRespCardio = new SisRespCardio();
+        }
         return sisRespCardio;
     }
 
@@ -239,20 +182,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisUrinarioMamaria----------------------------
-    public void CreatObjSisUrinarioMamaria() {
-        this.sisUrinarioMamaria = new SisUrinarioMamaria();
-    }
-
-    public void CreatObjSisUrinarioMamariaId() {
-        this.sisUrinarioMamariaId = new SisUrinarioMamariaId();
-    }
-
     public void prepareSisUrinarioMamaria() {
+        sisUrinarioMamariaId = new SisUrinarioMamariaId();
         sisUrinarioMamariaId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisUrinarioMamaria.setId(sisUrinarioMamariaId);
     }
 
     public SisUrinarioMamaria getSisUrinarioMamaria() {
+        if (sisUrinarioMamaria == null) {
+            sisUrinarioMamaria = new SisUrinarioMamaria();
+        }
         return sisUrinarioMamaria;
     }
 
@@ -262,20 +201,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisTegumentar---------------------------------
-    public void CreatObjSisTegumentar() {
-        this.sisTegumentar = new SisTegumentar();
-    }
-
-    public void CreatObjSisTegumentarId() {
-        this.sisTegumentarId = new SisTegumentarId();
-    }
-
     public void prepareSisTegumentar() {
+        sisTegumentarId = new SisTegumentarId();
         sisTegumentarId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisTegumentar.setId(sisTegumentarId);
     }
 
     public SisTegumentar getSisTegumentar() {
+        if (sisTegumentar == null) {
+            sisTegumentar = new SisTegumentar();
+        }
         return sisTegumentar;
     }
 
@@ -285,20 +220,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisNeurologico--------------------------------
-    public void CreatObjSisNeurologico() {
-        this.sisNeurologico = new SisNeurologico();
-    }
-
-    public void CreatObjSisNeurologicoId() {
-        this.sisNeurologicoId = new SisNeurologicoId();
-    }
-
     public void prepareSisNeurologico() {
+        sisNeurologicoId = new SisNeurologicoId();
         sisNeurologicoId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisNeurologico.setId(sisNeurologicoId);
     }
 
     public SisNeurologico getSisNeurologico() {
+        if (sisNeurologico == null) {
+            sisNeurologico = new SisNeurologico();
+        }
         return sisNeurologico;
     }
 
@@ -308,20 +239,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisOftalmico----------------------------------
-    public void CreatObjSisOftalmico() {
-        this.sisOftalmico = new SisOftalmico();
-    }
-
-    public void CreatObjSisOftalmicoId() {
-        this.sisOftalmicoId = new SisOftalmicoId();
-    }
-
     public void prepareSisOftalmico() {
+        sisOftalmicoId = new SisOftalmicoId();
         sisOftalmicoId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisOftalmico.setId(sisOftalmicoId);
     }
 
     public SisOftalmico getSisOftalmico() {
+        if (sisOftalmico == null) {
+            sisOftalmico = new SisOftalmico();
+        }
         return sisOftalmico;
     }
 
@@ -331,20 +258,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para SisMuscEsque----------------------------------
-    public void CreatObjSisMuscEsque() {
-        this.sisMuscEsque = new SisMuscEsque();
-    }
-
-    public void CreatObjSisMuscEsqueId() {
-        this.sisMuscEsqueId = new SisMuscEsqueId();
-    }
-
     public void prepareSisMuscEsque() {
+        sisMuscEsqueId = new SisMuscEsqueId();
         sisMuscEsqueId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisMuscEsque.setId(sisMuscEsqueId);
     }
 
     public SisMuscEsque getSisMuscEsque() {
+        if (sisMuscEsque == null) {
+            sisMuscEsque = new SisMuscEsque();
+        }
         return sisMuscEsque;
     }
 
@@ -354,20 +277,16 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para ExameFisico-----------------------------------
-    public void CreatObjExameFisico() {
-        this.exameFisico = new ExameFisico();
-    }
-
-    public void CreatObjExameFisicoId() {
-        this.exameFisicoId = new ExameFisicoId();
-    }
-
     public void prepareExameFisico() {
+        exameFisicoId = new ExameFisicoId();
         exameFisicoId.setConsultaFkConsulta(consulta.getPkConsulta());
         exameFisico.setId(exameFisicoId);
     }
 
     public ExameFisico getExameFisico() {
+        if (exameFisico == null) {
+            exameFisico = new ExameFisico();
+        }
         return exameFisico;
     }
 
@@ -377,15 +296,8 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para ExameImageRaioX-------------------------------
-    public void CreatObjExameImageRaioX() {
-        this.exameImageRaioX = new ExameImage();
-    }
-
-    public void CreatObjExameImageRaioXId() {
-        this.exameImageRaioXId = new ExameImageId();
-    }
-
     public void prepareExameImageRaioX(Date date, String codRaioX) {
+        exameImageRaioXId = new ExameImageId();
         exameImageRaioXId.setConsultaFkConsulta(consulta.getPkConsulta());
         exameImageRaioX.setId(exameImageRaioXId);
         exameImageRaioX.setTipo("RAIOX");
@@ -395,6 +307,9 @@ public class FormsExames implements Serializable {
     }
 
     public ExameImage getExameImageRaioX() {
+        if(exameImageRaioX == null){
+            exameImageRaioX = new ExameImage();
+        }
         return exameImageRaioX;
     }
 
@@ -404,15 +319,8 @@ public class FormsExames implements Serializable {
     //-----------------------------------------------------------------
 
     //------Métodos para ExameImageUltra-------------------------------
-    public void CreatObjExameImageUltra() {
-        this.exameImageUltra = new ExameImage();
-    }
-
-    public void CreatObjExameImageUltraId() {
-        this.exameImageUltraId = new ExameImageId();
-    }
-
     public void prepareExameImageUltra(Date date, String codUltrasson) {
+        exameImageUltraId = new ExameImageId();
         exameImageUltraId.setConsultaFkConsulta(consulta.getPkConsulta());
         exameImageUltra.setId(exameImageUltraId);
         exameImageUltra.setTipo("ULTRASSOM");
@@ -422,6 +330,9 @@ public class FormsExames implements Serializable {
     }
 
     public ExameImage getExameImageUltra() {
+        if(exameImageUltra == null){
+            exameImageUltra = new ExameImage();
+        }
         return exameImageUltra;
     }
 
@@ -446,14 +357,4 @@ public class FormsExames implements Serializable {
 
         return sisAfetados;
     }
-
-    public AnamneseId getAnamneseId() {
-        return anamneseId;
-    }
-
-    public void setAnamneseId(AnamneseId anamneseId) {
-        this.anamneseId = anamneseId;
-    }
-    
-    
 }

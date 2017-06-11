@@ -7,7 +7,7 @@
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
-                     rendered="#{consultaBean.confirmeRAIOX}"
+                     rendered="#{MBconsulta.confirmeRAIOX}"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
@@ -18,7 +18,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="RaioX1" />
             <p:outputLabel id="RaioX1"
-                           value="#{consultaBean.codRaioX}"
+                           value="#{MBconsulta.codRaioX}"
                            style="margin-bottom: 20px;" />
             <p:message for="RaioX1" />
 
@@ -29,7 +29,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="RaioX2" />
             <p:inputTextarea id="RaioX2" 
-                             value="#{consultaBean.formsExame.exameImageRaioX.regiExami}"
+                             value="#{MBconsulta.formsExame.exameImageRaioX.regiExami}"
                              maxlength="200"
                              required="true"
                              requiredMessage="Informe a região examinada"
@@ -43,7 +43,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="RaioX3" />
             <p:inputText id="RaioX3" 
-                         value="#{consultaBean.formsExame.exameImageRaioX.posicao}"
+                         value="#{MBconsulta.formsExame.exameImageRaioX.posicao}"
                          required="true"
                          maxlength="50"
                          requiredMessage="Informe a posição examinada"
