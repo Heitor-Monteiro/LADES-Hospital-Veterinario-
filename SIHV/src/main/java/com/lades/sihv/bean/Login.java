@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.lades.sihv.DAO.SessionUtils;
 import com.lades.sihv.controller.Security;
 import java.io.IOException;
+import java.util.List;
 
 @ManagedBean
 @SessionScoped
@@ -54,7 +55,7 @@ public class Login extends AbstractBean {
     //validate login
     public String validateUsernamePassword() throws IOException {
         pwd = new Security().encrypter(pwd);
-        int valid = getDaoGenerico().validate(user, pwd);
+        int valid = validate(user, pwd);
         if (valid != -1) {
             getVariaveisDeSessao().setDadosPESSOA((Object) getDaoGenerico().list("select p from Pessoa p where p.pkPessoa=" + valid).get(0));
             getVariaveisDeSessao().setDadosUSER((Object) getDaoGenerico().list("select u from Pessoa p, User u where p.pkPessoa=" + valid + " and u.id.fkPessoa=" + valid + "").get(0));
@@ -82,5 +83,25 @@ public class Login extends AbstractBean {
 
     public String goToLogin() {
         return "login";
+    }
+
+    //Método para validação de credenciais de login
+    private int validate(String username, String password) {
+        int resposta = -1;
+        username = username.toLowerCase();
+        System.out.print(username);
+        List<Object> checkLogin = (List<Object>) getDaoGenerico().list("select p.pkPessoa from  Pessoa p, User u where "
+                + "p.pkPessoa = u.id.fkPessoa "
+                + "and u.userSenha='" + password + "' "
+                + "and p.exclusaoLogica=0 "
+                + "and (p.email='" + username + "' "
+                + "or u.userNick='" + username + "')");
+        try {
+            System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa=" + checkLogin.get(0) + "[ public int validate(String username, String password) ]");
+            resposta = (int) checkLogin.get(0);
+        } catch (Exception ex) {
+            System.out.println("BACK-END WARNING: USER NOT FOUND! [ public int validate(String username, String password) ]");
+        }
+        return resposta;
     }
 }
