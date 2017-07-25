@@ -8,6 +8,7 @@ package com.lades.sihv.controller.animal;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Pelagem;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -19,7 +20,7 @@ public class AnimalListaPelagem extends AbstractBean {
     private List<String> listaPelagem;
 
     public void carregarListaPelagem() {
-        listaPelagem = getDaoGenerico().getPelagemNames();
+        listaPelagem = getPelagemNames();
     }
 
     public List<String> getListaPelagem() {
@@ -39,5 +40,15 @@ public class AnimalListaPelagem extends AbstractBean {
             novaPelagem.setNomePelagem(animal.getPelagem());
             getDaoGenerico().save(novaPelagem);
         }
+    }
+    
+    //Método para listar os nomes de pelagens inseridas no banco de dados
+    private List<String> getPelagemNames() {
+        List<String> listaPelagens = new ArrayList<>();
+        for (Object obj : (List<Object>) getDaoGenerico().list("SELECT pl.nomePelagem from Pelagem pl")) {
+            listaPelagens.add((String) obj);
+        }
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<String> getPelagemNames() ]");
+        return listaPelagens;
     }
 }

@@ -8,6 +8,7 @@ package com.lades.sihv.bean;
 import com.lades.sihv.controller.consulta.MaxCodigoConsulta;
 import com.lades.sihv.controller.consulta.CodExameImagem;
 import com.lades.sihv.controller.consulta.ConfirmarMedicoVeterinario;
+import com.lades.sihv.controller.consulta.VisualizarConsulta;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import java.io.IOException;
@@ -89,7 +90,7 @@ public class MBconsulta extends AbstractBean {
     /*O método direciona o usuário para uma
     pagina que exibirá todos os exames.*/
     public void verConsulta() {
-        formsExame = getDaoGenerico().viewCONSULTA("" + collectionClasses.getConsulta().getPkConsulta());
+        formsExame = new VisualizarConsulta().viewCONSULTA("" + collectionClasses.getConsulta().getPkConsulta());
         try {
             getObjTools().redirecionar("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
         } catch (IOException ex) {
