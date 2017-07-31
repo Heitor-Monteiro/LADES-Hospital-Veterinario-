@@ -29,7 +29,7 @@
                             <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
                         </p:panel>
                     </p:tab>
-                    
+
                     <p:tab id="etapa2" title="Anamnese" >
                         <p:panel>
 
@@ -101,7 +101,7 @@
                                 </p:tab>
 
                             </p:wizard>
-                            
+
                         </p:panel>
                     </p:tab>
 
@@ -270,16 +270,16 @@
                                     <p:outputLabel value="Confirmação do medico veterinário:"
                                                    style="color: #00B59B; font-weight: bold ; font-size: 17px " />
                                     <p:outputLabel value="" />
-                                    
-                                    
-                                    
-                                    
+
+
+
+
                                     <p:outputLabel value="Nome do residente:"
                                                    rendered="#{MBconsulta.objTools.showButtonPrint}"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBconsulta.variaveisDeSessao.fullName}"
                                                    rendered="#{MBconsulta.objTools.showButtonPrint}" />
-                                    
+
 
 
 
@@ -318,7 +318,7 @@
                                             <p:printer target="CODconsulta" />
                                         </p:commandButton>
                                     </div>
-                                    
+
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
                                         <p:button value="Nova consulta"
                                                   rendered="#{MBconsulta.objTools.showButtonPrint}"
@@ -331,7 +331,12 @@
                                                           value="Salvar consulta"
                                                           icon="fa fa-save"
                                                           update="growl, CODconsulta" 
-                                                          disabled="false" />
+                                                          disabled="#{MBconsulta.objTools.showButtonPrint}">
+                                            <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                            Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                            <p:ajax onstart="PF('statusDialog').show()"
+                                                    onsuccess="PF('statusDialog').hide()" />
+                                        </p:commandButton>
                                     </div>
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">

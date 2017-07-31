@@ -7,35 +7,36 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/WEB-INF/template/layout.xhtml">
-        
+
         <ui:define name="title"  >
             <h:outputText value="Novo recepcionista"></h:outputText>
         </ui:define>
-        
+
         <ui:define name="content">
-            
+
             <f:metadata>
-                <f:viewAction action="#{MBpessoa.prepararAdicionarUSER()}" />  
+                <f:viewAction action="#{MBpessoa.prepararAdicionarUSER()}" />
+                <f:viewAction action="#{MBpessoa.objTools.setRestShowButtonPrint() }" />
             </f:metadata>
-            
+
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
-                
+
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
-                    
+
                     <p:tab id="etapa1" title="Dados do usuário" >
                         <p:panel>
                             <ui:include src="/sihv-includes/campo_pessoa.xhtml" />
-                            
-                            
+
+
                             <div class="ui-fluid">
                                 <p:panelGrid columns="3"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
-                                    
-                                    
+
+
                                     <p:outputLabel value="Numero de matrícula:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                                    for="NumMatri" />
@@ -48,36 +49,36 @@
                                         <p:keyFilter regEx="/[\d\-\.]/" />
                                     </p:inputText>
                                     <p:message for="NumMatri" />
-                                    
+
                                 </p:panelGrid>
                             </div>
-                            
-                            
-                            
+
+
+
                             <p:commandButton type="reset" 
-                                            id="LimparCampos" 
-                                            icon="fa fa-eraser" 
-                                            value="Limpar cadastro" 
-                                            action="#" />
+                                             id="LimparCampos" 
+                                             icon="fa fa-eraser" 
+                                             value="Limpar cadastro" 
+                                             action="#" />
                         </p:panel>
                     </p:tab>
-                    
-                    
-                    
-                    
-                    
+
+
+
+
+
                     <p:tab id="etapa3" title="Login e senha" >
                         <p:panel>
                             <ui:include src="/sihv-includes/campo_LoginSenha.xhtml" />
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                     <p:tab id="etapa4" title="Confirmação">
-                        <p:panel>
-                            
+                        <p:panel id="CadUserFinal">
+
                             <ui:include src="/sihv-includes/campo_pessoa_resposta.xhtml" />
-                            
+
                             <div class="ui-fluid">  
                                 <p:panelGrid columns="4"
                                              layout="grid"
@@ -90,38 +91,43 @@
                                                    styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
-                            
+
                             <ui:include src="/sihv-includes/campo_LoginSenhaConfirme.xhtml" />
-                            
-                            
+
+
                             <div style="float: right; line-height: 58px; margin-right: -20px" >
-                                
+
                                 <p:commandButton action="#{MBpessoa.cadastrarUserAluno()}" 
                                                  value="Salvar"
                                                  style="width: 170px;"
                                                  icon="fa fa-save"
-                                                 update="growl" 
-                                                 disabled="false" />
-                                
+                                                 update="growl, CadUserFinal" 
+                                                 disabled="#{MBpessoa.objTools.showButtonPrint}">
+                                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                    <p:ajax onstart="PF('statusDialog').show()"
+                                            onsuccess="PF('statusDialog').hide()" />
+                                </p:commandButton>
+
                                 <p:button value="Novo cadastro" 
                                           outcome="/sihv-telas/cad-user-aluno"
                                           icon="fa fa-user-plus" 
                                           style="width: 170px;" />
-                                
+
                                 <p:button value="Sair" 
                                           outcome="/index"
                                           icon="fa fa-home" 
                                           style="width: 170px;" />
-                                
+
                             </div>
                         </p:panel>
                     </p:tab>
-                    
-                    
+
+
                 </p:wizard>
-            
+
             </h:form>
-            
+
         </ui:define>
     </ui:composition>
 

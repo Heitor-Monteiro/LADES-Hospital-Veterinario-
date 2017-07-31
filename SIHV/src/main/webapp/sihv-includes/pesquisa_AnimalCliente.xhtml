@@ -50,66 +50,71 @@
                 <p:commandButton actionListener="#{MBpesquisa.ListagemITENS('Animal')}"
                                  value="Pesquisar" 
                                  disabled="false"
-                                 icon="fa fa-search"
-                                 update="@([id$=:GridBusca])" />
-                <p:message for="ValorPesquisa" />
-            </p:panelGrid>
-
-        </h:form>
-
-        <p:panelGrid columns="1" layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-5" >
-
-            <p:outputLabel value="Animais encontrados:"
-                           rendered="#{MBpesquisa.showDataTable}"
-                           style="color: #00B59B; 
-                           font-weight: bold;
-                           padding-top: 20px;"/>
-
+                                 icon="fa fa-search">
+                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                    <p:ajax update="@([id$=:GridBusca])"
+                            onstart="PF('statusDialog').show()"
+                            onsuccess="PF('statusDialog').hide()" />
+            </p:commandButton>
+            <p:message for="ValorPesquisa" />
         </p:panelGrid>
 
+    </h:form>
 
-        <p:panelGrid id="GridBusca"
-                     columns="1"
-                     layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-12" >
+    <p:panelGrid columns="1" layout="grid"
+                 style="margin: 10px 0px 15px;"
+                 styleClass="panelgrid-noborder"
+                 columnClasses="ui-grid-col-5" >
 
-            <p:dataTable id="AnimaisBuscada"
-                         var="animais"
-                         rendered="#{MBpesquisa.showDataTable}"
-                         value="#{MBpesquisa.objBuscados}"
-                         paginator="true"
-                         rows="10"
-                         reflow="true"
-                         selection="#{MBpesquisa.variaveisDeSessao.objetoTemp}"
-                         rowKey="#{animais.animais.id.pkAnimal}" >
-                
-                <p:column selectionMode="single" width="38"/>
-                
-                <p:column headerText="Código"
-                          width="97">
-                    <h:outputText value="#{animais.animais.rghv}" />
-                </p:column>
+        <p:outputLabel value="Animais encontrados:"
+                       rendered="#{MBpesquisa.showDataTable}"
+                       style="color: #00B59B; 
+                       font-weight: bold;
+                       padding-top: 20px;"/>
 
-                <p:column headerText="Nome do animal" >
-                    <h:outputText value="#{animais.animais.nomeAnimal}" />
-                </p:column>
+    </p:panelGrid>
 
-                <p:column headerText="Especie"
-                          width="240" >
-                    <h:outputText value="#{animais.animais.especie}"/>
-                </p:column>
 
-                <p:column headerText="Sexo"
-                          width="60" >
-                    <h:outputText value="#{animais.animais.sexoAnimal}"/>
-                </p:column>
+    <p:panelGrid id="GridBusca"
+                 columns="1"
+                 layout="grid"
+                 style="margin: 10px 0px 15px;"
+                 styleClass="panelgrid-noborder"
+                 columnClasses="ui-grid-col-12" >
+
+        <p:dataTable id="AnimaisBuscada"
+                     var="animais"
+                     rendered="#{MBpesquisa.showDataTable}"
+                     value="#{MBpesquisa.objBuscados}"
+                     paginator="true"
+                     rows="10"
+                     reflow="true"
+                     selection="#{MBpesquisa.variaveisDeSessao.objetoTemp}"
+                     rowKey="#{animais.animais.id.pkAnimal}" >
+
+            <p:column selectionMode="single" width="38"/>
+
+            <p:column headerText="Código"
+                      width="97">
+                <h:outputText value="#{animais.animais.rghv}" />
+            </p:column>
+
+            <p:column headerText="Nome do animal" >
+                <h:outputText value="#{animais.animais.nomeAnimal}" />
+            </p:column>
+
+            <p:column headerText="Especie"
+                      width="240" >
+                <h:outputText value="#{animais.animais.especie}"/>
+            </p:column>
+
+            <p:column headerText="Sexo"
+                      width="60" >
+                <h:outputText value="#{animais.animais.sexoAnimal}"/>
+            </p:column>
         </p:dataTable>
-    
-        </p:panelGrid>
-    </div>
+
+    </p:panelGrid>
+</div>
 </ui:component>

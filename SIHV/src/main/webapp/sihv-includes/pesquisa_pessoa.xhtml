@@ -51,8 +51,13 @@
                 <p:commandButton actionListener="#{MBpesquisa.ListagemITENS('Pessoa')}"
                                  value="Pesquisar" 
                                  disabled="false"
-                                 icon="fa fa-search"
-                                 update="@([id$=:GridBusca])" />
+                                 icon="fa fa-search">
+                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                    <p:ajax update="@([id$=:GridBusca])"
+                            onstart="PF('statusDialog').show()"
+                            onsuccess="PF('statusDialog').hide()" />
+                </p:commandButton>
                 <p:message for="ValorPesquisa" />
             </p:panelGrid>
 

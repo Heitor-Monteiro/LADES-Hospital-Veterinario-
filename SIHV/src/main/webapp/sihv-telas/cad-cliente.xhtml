@@ -58,7 +58,7 @@
                                         <p:printer target="CadPessoaFinal" />
                                     </p:commandButton>
                                 </div>
-                                
+
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:button value="Novo cadastro"
                                               rendered="#{MBpessoa.objTools.showButtonPrint}"
@@ -67,11 +67,16 @@
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:commandButton action="#{MBpessoa.cadastrarCliente()}" 
+                                    <p:commandButton action="#{MBpessoa.cadastrarCliente()}"
                                                      value="Salvar"
                                                      icon="fa fa-save"
-                                                     update="growl, CadPessoaFinal" 
-                                                     disabled="false" />
+                                                     disabled="#{MBpessoa.objTools.showButtonPrint}"
+                                                     update="growl, CadPessoaFinal">
+                                        <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                        <p:ajax onstart="PF('statusDialog').show()"
+                                                onsuccess="PF('statusDialog').hide()" />
+                                    </p:commandButton>
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
