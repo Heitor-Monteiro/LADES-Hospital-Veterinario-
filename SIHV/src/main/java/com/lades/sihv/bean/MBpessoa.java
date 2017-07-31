@@ -35,7 +35,8 @@ public class MBpessoa extends AbstractBean {
     private User user;
     private boolean mudancaCpfCnpj = true;
 
-    private String numCRMV1, numCRMV2;
+    private String numCRMV1 = "";
+    private String numCRMV2 = "";
     /*Os dois atributos serão utilizado para
     a concatenação do CRMV do medico veterinário*/
 
@@ -96,6 +97,7 @@ public class MBpessoa extends AbstractBean {
             obj.cadastrarUser(pessoa, user, numCRMV1, numCRMV2);
             getObjMessage().info("Cadastro efetuado!", mensageTIPO + " cadastrado com sucesso.");
             getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
+            getObjTools().setShowButtonPrint(true);
         } catch (Exception e) {
             getObjMessage().warn("Erro ao efetuar cadastro!", e.getMessage()
                     + "\nVerifique os dados e tente novamente!");
