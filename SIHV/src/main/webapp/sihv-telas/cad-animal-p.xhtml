@@ -28,9 +28,9 @@
 
                     <p:tab id="DadosCliente" title="Pesquisar por cliente" >
                         <p:panel id="PesquisaPessoa">
-                            
+
                             <ui:include src="/sihv-includes/pesquisa_pessoa.xhtml" />
-                            
+
                         </p:panel>
                     </p:tab>
 
@@ -106,7 +106,7 @@
                                     <p:outputLabel value="#{MBanimal.animal.dataNac}"
                                                    styleClass="outputLabel"/>
                                 </p:panelGrid>
-                                
+
                                 <p:panelGrid columns="3"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
@@ -138,13 +138,18 @@
                                               outcome="/sihv-telas/cad-animal-p"
                                               icon="fa fa-user-plus" />
                                 </div>
-                                
+
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton action="#{MBanimal.cadastrarAnimal()}" 
                                                      value="Salvar"
                                                      icon="fa fa-save"
                                                      update="growl, CadAnimalFinal" 
-                                                     disabled="false" />
+                                                     disabled="#{MBanimal.objTools.showButtonPrint}">
+                                        <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                        <p:ajax onstart="PF('statusDialog').show()"
+                                                onsuccess="PF('statusDialog').hide()" />
+                                    </p:commandButton>
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">

@@ -15,7 +15,8 @@
         <ui:define name="content">
 
             <f:metadata>
-                <f:viewAction action="#{MBpessoa.prepararAdicionarUSER()}" />  
+                <f:viewAction action="#{MBpessoa.prepararAdicionarUSER()}" />
+                <f:viewAction action="#{MBpessoa.objTools.setRestShowButtonPrint() }" />
             </f:metadata>
 
             <h:form>
@@ -114,7 +115,7 @@
 
 
                     <p:tab id="etapa4" title="Confirmação">
-                        <p:panel>
+                        <p:panel id="CadUserFinal">
 
                             <ui:include src="/sihv-includes/campo_pessoa_resposta.xhtml" />
 
@@ -140,8 +141,13 @@
                                                  value="Salvar"
                                                  style="width: 170px;"
                                                  icon="fa fa-save"
-                                                 update="growl" 
-                                                 disabled="false" />
+                                                 update="growl, CadUserFinal" 
+                                                 disabled="#{MBpessoa.objTools.showButtonPrint}">
+                                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                    <p:ajax onstart="PF('statusDialog').show()"
+                                            onsuccess="PF('statusDialog').hide()" />
+                                </p:commandButton>
 
                                 <p:button value="Novo cadastro" 
                                           outcome="/sihv-telas/cad-user-medico"
