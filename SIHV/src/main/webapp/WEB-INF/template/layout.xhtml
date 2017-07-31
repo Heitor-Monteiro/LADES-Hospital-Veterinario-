@@ -61,7 +61,7 @@
                    style="margin-right: 10px;
                    color: #5f666c;" ></i>
 
-                   <p:outputLabel value="#{login.variaveisDeSessao.username}"
+                <p:outputLabel value="#{login.variaveisDeSessao.username}"
                                style="color: #5f666c;
                                margin-right: 10px;" />
 
@@ -98,6 +98,11 @@
 
 
             <ui:insert name="content" />
+
+            <!-- Chamando dialogo de processamento (arquivo:processando_gif.xhtml)
+            Calling processing dialog (file: processando_gif.xhtml) -->
+            <ui:include src="/sihv-includes/processando_dialog.xhtml" />
+
             <div class="footer">
                 <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
                                Sistemas | Copyright © 2016 Universidade Federal do Pará" style="font-family: Open Sans, Helvetica, Arial;" />

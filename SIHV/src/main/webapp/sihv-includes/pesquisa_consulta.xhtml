@@ -56,88 +56,93 @@
                 <p:commandButton actionListener="#{MasterControle.pesquisaControle.ListagemITENS('Cosulta')}"
                                  value="Pesquisar" 
                                  disabled="false"
-                                 icon="fa fa-search"
-                                 update="@([id$=:GridBusca])" />
+                                 icon="fa fa-search">
+                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                    <p:ajax update="@([id$=:GridBusca])"
+                            onstart="PF('statusDialog').show()"
+                            onsuccess="PF('statusDialog').hide()" />
+            </p:commandButton>
 
-                <p:message for="ValorPesquisa"/>
-            </p:panelGrid>
-
-        </h:form>
-
-        <p:panelGrid columns="1" 
-                     layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-5" >
-
-            <p:outputLabel value="Itens encontrados:"
-                           rendered="#{MasterControle.pesquisaControle.showDataTable}"
-                           style="color: #00B59B; 
-                           font-weight: bold;
-                           padding-top: 20px;"/>
-
+            <p:message for="ValorPesquisa"/>
         </p:panelGrid>
 
+    </h:form>
 
-        <p:panelGrid id="GridBusca"
-                     columns="1"
-                     layout="grid"
-                     style="margin: 10px 0px 15px;"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-12" >
+    <p:panelGrid columns="1" 
+                 layout="grid"
+                 style="margin: 10px 0px 15px;"
+                 styleClass="panelgrid-noborder"
+                 columnClasses="ui-grid-col-5" >
 
-            <p:dataTable id="PessoasBuscada"
-                         var="consulta"
-                         rendered="#{MasterControle.pesquisaControle.showDataTable}"
-                         value="#{MasterControle.pesquisaControle.objBuscados}"
-                         paginator="true"
-                         rows="10"
-                         reflow="true" >
+        <p:outputLabel value="Itens encontrados:"
+                       rendered="#{MasterControle.pesquisaControle.showDataTable}"
+                       style="color: #00B59B; 
+                       font-weight: bold;
+                       padding-top: 20px;"/>
 
-                <p:column headerText="Código-consulta"
-                          width="80">
-                    <h:outputText value="#{consulta.consulta.pkConsulta}" />
-                </p:column>
+    </p:panelGrid>
 
-                <p:column headerText="Data da consulta" >
-                    <h:outputText value="#{consulta.consulta.dataConsulta}" />
-                </p:column>
 
-                <p:column headerText="RGHV" >
-                    <h:outputText value="#{consulta.animais.rghv}" />
-                </p:column>
+    <p:panelGrid id="GridBusca"
+                 columns="1"
+                 layout="grid"
+                 style="margin: 10px 0px 15px;"
+                 styleClass="panelgrid-noborder"
+                 columnClasses="ui-grid-col-12" >
 
-                <p:column headerText="Nome do animal" >
-                    <h:outputText value="#{consulta.animais.nomeAnimal}" />
-                </p:column>
+        <p:dataTable id="PessoasBuscada"
+                     var="consulta"
+                     rendered="#{MasterControle.pesquisaControle.showDataTable}"
+                     value="#{MasterControle.pesquisaControle.objBuscados}"
+                     paginator="true"
+                     rows="10"
+                     reflow="true" >
 
-                <p:column headerText="Sexo do animal" >
-                    <h:outputText value="#{consulta.animais.sexoAnimal}" />
-                </p:column>
+            <p:column headerText="Código-consulta"
+                      width="80">
+                <h:outputText value="#{consulta.consulta.pkConsulta}" />
+            </p:column>
 
-                <p:column headerText="Residente" >
-                    <h:outputText value="#{consulta.residente.nome}" />
-                </p:column>
+            <p:column headerText="Data da consulta" >
+                <h:outputText value="#{consulta.consulta.dataConsulta}" />
+            </p:column>
 
-                <p:column headerText="CRMV" >
-                    <h:outputText value="#{consulta.user.crmvMatricula}" />
-                </p:column>
+            <p:column headerText="RGHV" >
+                <h:outputText value="#{consulta.animais.rghv}" />
+            </p:column>
 
-                <p:column headerText="Sistemas afetados" >
-                    <h:outputText value="#{consulta.consulta.sistemasAfetados}" />
-                </p:column>
+            <p:column headerText="Nome do animal" >
+                <h:outputText value="#{consulta.animais.nomeAnimal}" />
+            </p:column>
 
-                <p:column headerText=" " >
-                    <p:commandButton class="buttonWidth"
-                                     action="#{MasterControle.consultaControle.verConsulta()}"
-                                     value="Visualizar exame"
-                                     icon="fa fa-search-plus">
-                        <f:setPropertyActionListener value="#{consulta}" 
-                                                     target="#{MasterControle.consultaControle.collectionClasses}" />
-                    </p:commandButton>
-                </p:column>
-            </p:dataTable>
+            <p:column headerText="Sexo do animal" >
+                <h:outputText value="#{consulta.animais.sexoAnimal}" />
+            </p:column>
 
-        </p:panelGrid>
-    </div>
+            <p:column headerText="Residente" >
+                <h:outputText value="#{consulta.residente.nome}" />
+            </p:column>
+
+            <p:column headerText="CRMV" >
+                <h:outputText value="#{consulta.user.crmvMatricula}" />
+            </p:column>
+
+            <p:column headerText="Sistemas afetados" >
+                <h:outputText value="#{consulta.consulta.sistemasAfetados}" />
+            </p:column>
+
+            <p:column headerText=" " >
+                <p:commandButton class="buttonWidth"
+                                 action="#{MasterControle.consultaControle.verConsulta()}"
+                                 value="Visualizar exame"
+                                 icon="fa fa-search-plus">
+                    <f:setPropertyActionListener value="#{consulta}" 
+                                                 target="#{MasterControle.consultaControle.collectionClasses}" />
+                </p:commandButton>
+            </p:column>
+        </p:dataTable>
+
+    </p:panelGrid>
+</div>
 </ui:component>

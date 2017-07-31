@@ -76,8 +76,13 @@
                             <p:commandButton actionListener="#{MBpesquisa.multipleItemList()}"
                                              value="Pesquisar" 
                                              disabled="false"
-                                             icon="fa fa-search"
-                                             update="@([id$=:GridBusca])" />
+                                             icon="fa fa-search">
+                                <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                <p:ajax update="@([id$=:GridBusca])"
+                                        onstart="PF('statusDialog').show()"
+                                        onsuccess="PF('statusDialog').hide()" />
+                            </p:commandButton>
                             <p:message for="ValorPesquisa" />
                         </p:panelGrid>
 
@@ -163,17 +168,17 @@
                             <p:column headerText="Data de cadastro">
                                 <h:outputText value="#{collection.proprietario.cadDataHora}"/>
                             </p:column>
-                            
+
                             <p:column headerText="Animais Cadastrados">
                                 <h:outputText value="#{collection.animais.nomeAnimal}"/>
                             </p:column>
-                            
+
                             <p:column headerText="" >
                                 <h:outputText value="" />
                             </p:column>
 
                         </p:dataTable>
-                        
+
                         <p:dataTable id="animaisBuscado"
                                      var="collection"
                                      rendered="#{MBpesquisa.showDataTableAnimal}"
@@ -193,7 +198,7 @@
                             <p:column headerText="Nome do animal" >
                                 <h:outputText value="#{collection.animais.nomeAnimal}" />
                             </p:column>
-                            
+
                             <p:column headerText="Especie" >
                                 <h:outputText value="#{collection.animais.especie}" />
                             </p:column>
@@ -201,7 +206,7 @@
                             <p:column headerText="Raça" >
                                 <h:outputText value="#{collection.animais.raca}" />
                             </p:column>
-                            
+
                             <p:column headerText="Pelagem" >
                                 <h:outputText value="#{collection.animais.pelagem}" />
                             </p:column>
@@ -225,7 +230,7 @@
                             <p:column headerText="Data de cadastro">
                                 <h:outputText value="#{collection.animais.cadDataHora}"/>
                             </p:column>
-                            
+
                             <p:column headerText="Nome do proprietário" >
                                 <h:outputText value="#{collection.proprietario.nome}" />
                             </p:column>
@@ -233,7 +238,7 @@
                             <p:column headerText="CPF/CNPJ" >
                                 <h:outputText value="#{collection.proprietario.cpfCnpj}" />
                             </p:column>
-                            
+
                             <p:column headerText="" >
                                 <h:outputText value="" />
                             </p:column>
