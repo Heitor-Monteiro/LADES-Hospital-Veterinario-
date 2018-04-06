@@ -84,7 +84,7 @@
             <p:selectOneMenu id="pelagem"
                              value="#{MBanimal.animal.pelagem}"
                              title="Obs.: caso não tenha a pelagem desejada na lista, digite uma nova."
-                             required="true"
+                             required="false"
                              editable="true"
                              requiredMessage="Informe a pelagem do animal!">
                 <f:selectItems value="#{MBanimal.listaPelagem}" />           
@@ -120,16 +120,12 @@
             <p:outputLabel value="Data de nascimento:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="idade" />
-            <p:calendar id="idade" 
-                        value="#{MBanimal.animal.dataNac}"
-                        maxlength="10" 
-                        disabled="false" 
-                        title="" 
-                        required="false"  
-                        requiredMessage="" 
-                        locale="de"
-                        navigator="true"  
-                        pattern="yyyy-mm-dd" />
+            <p:inputText id="idade" 
+                         value="#{MBanimal.animal.idadeAnimal}" 
+                         title="Informe a idade do animal"
+                         maxlength="100"
+                         required="false" 
+                         requiredMessage=""/>
             <p:message for="idade" />
 
 

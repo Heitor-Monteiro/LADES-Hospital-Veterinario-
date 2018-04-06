@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -27,7 +27,7 @@ public class Cliente  implements java.io.Serializable {
 
      private ClienteId id;
      private Pessoa pessoa;
-     private Set<Animais> animaises = new HashSet<Animais>(0);
+     private Set animaises = new HashSet(0);
 
     public Cliente() {
     }
@@ -37,7 +37,7 @@ public class Cliente  implements java.io.Serializable {
         this.id = id;
         this.pessoa = pessoa;
     }
-    public Cliente(ClienteId id, Pessoa pessoa, Set<Animais> animaises) {
+    public Cliente(ClienteId id, Pessoa pessoa, Set animaises) {
        this.id = id;
        this.pessoa = pessoa;
        this.animaises = animaises;
@@ -68,11 +68,11 @@ public class Cliente  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="cliente")
-    public Set<Animais> getAnimaises() {
+    public Set getAnimaises() {
         return this.animaises;
     }
     
-    public void setAnimaises(Set<Animais> animaises) {
+    public void setAnimaises(Set animaises) {
         this.animaises = animaises;
     }
 

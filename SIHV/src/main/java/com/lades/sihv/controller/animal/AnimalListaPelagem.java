@@ -28,17 +28,19 @@ public class AnimalListaPelagem extends AbstractBean {
     }
 
     public void verificaNovaPelagem(Animais animal) {
-        boolean newPelagem = true;
-        for (String check : listaPelagem) {
-            if (check.equals(animal.getPelagem())) {
-                newPelagem = false;
+        if (animal.getPelagem() != null) {
+            boolean newPelagem = true;
+            for (String check : listaPelagem) {
+                if (check.equals(animal.getPelagem())) {
+                    newPelagem = false;
+                }
             }
-        }
 
-        if (newPelagem) {
-            Pelagem novaPelagem = new Pelagem();
-            novaPelagem.setNomePelagem(animal.getPelagem());
-            getDaoGenerico().save(novaPelagem);
+            if (newPelagem) {
+                Pelagem novaPelagem = new Pelagem();
+                novaPelagem.setNomePelagem(animal.getPelagem());
+                getDaoGenerico().save(novaPelagem);
+            }
         }
     }
     

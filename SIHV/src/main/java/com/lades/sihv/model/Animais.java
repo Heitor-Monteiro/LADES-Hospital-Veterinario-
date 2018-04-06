@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 16/12/2016 13:24:59 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -36,26 +36,25 @@ public class Animais  implements java.io.Serializable {
      private String raca;
      private String pelagem;
      private String sexoAnimal;
-     private Date dataNac;
+     private String idadeAnimal;
      private String escalaPeso;
      private double peso;
      private String rghv;
      private short rghvNum;
      private String categoriaAnimal;
      private Date cadDataHora;
-     private Set<Consulta> consultas = new HashSet<Consulta>(0);
+     private Set consultas = new HashSet(0);
 
     public Animais() {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String sexoAnimal, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
         this.nomeAnimal = nomeAnimal;
         this.raca = raca;
-        this.pelagem = pelagem;
         this.sexoAnimal = sexoAnimal;
         this.escalaPeso = escalaPeso;
         this.peso = peso;
@@ -64,7 +63,7 @@ public class Animais  implements java.io.Serializable {
         this.categoriaAnimal = categoriaAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, Date dataNac, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set<Consulta> consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -72,7 +71,7 @@ public class Animais  implements java.io.Serializable {
        this.raca = raca;
        this.pelagem = pelagem;
        this.sexoAnimal = sexoAnimal;
-       this.dataNac = dataNac;
+       this.idadeAnimal = idadeAnimal;
        this.escalaPeso = escalaPeso;
        this.peso = peso;
        this.rghv = rghv;
@@ -140,7 +139,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="pelagem", nullable=false, length=100)
+    @Column(name="pelagem", length=100)
     public String getPelagem() {
         return this.pelagem;
     }
@@ -159,14 +158,14 @@ public class Animais  implements java.io.Serializable {
         this.sexoAnimal = sexoAnimal;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="dataNac", length=10)
-    public Date getDataNac() {
-        return this.dataNac;
+    
+    @Column(name="idadeAnimal", length=100)
+    public String getIdadeAnimal() {
+        return this.idadeAnimal;
     }
     
-    public void setDataNac(Date dataNac) {
-        this.dataNac = dataNac;
+    public void setIdadeAnimal(String idadeAnimal) {
+        this.idadeAnimal = idadeAnimal;
     }
 
     
@@ -230,11 +229,11 @@ public class Animais  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="animais")
-    public Set<Consulta> getConsultas() {
+    public Set getConsultas() {
         return this.consultas;
     }
     
-    public void setConsultas(Set<Consulta> consultas) {
+    public void setConsultas(Set consultas) {
         this.consultas = consultas;
     }
 
