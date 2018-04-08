@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/01/2017 01:03:36 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/04/2018 01:57:03 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Anamnese" table="anamnese" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnamneseId">
@@ -15,6 +15,12 @@
         <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
+        <property name="escalaPeso" type="string">
+            <column name="escalaPeso" length="4" not-null="true" />
+        </property>
+        <property name="pesoCorp" type="double">
+            <column name="pesoCorp" precision="22" scale="0" not-null="true" />
+        </property>
         <property name="queixaPrincipal" type="string">
             <column name="queixaPrincipal" length="300" not-null="true" />
         </property>

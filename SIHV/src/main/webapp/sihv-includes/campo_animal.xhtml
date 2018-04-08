@@ -127,41 +127,6 @@
                          required="false" 
                          requiredMessage=""/>
             <p:message for="idade" />
-
-
-
-
-            <p:outputLabel value="Escala de peso:"
-                           for="escalaPeso"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:selectOneRadio id="escalaPeso"
-                              layout="responsive"
-                              columns="3"
-                              value="#{MBanimal.animal.escalaPeso}"
-                              required="true"
-                              requiredMessage="Escolha uma escala de peso!">
-                <f:selectItem itemLabel="g" itemValue="g" />
-                <f:selectItem itemLabel="kg" itemValue="kg" />
-            </p:selectOneRadio>
-            <p:message for="escalaPeso" />
-
-
-
-
-            <p:outputLabel value="Peso atual do animal:"
-                           for="pesoAnimal"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:inputText id="pesoAnimal"
-                         value="#{MBanimal.animal.peso}"
-                         title="Informe o peso atual do animal"
-                         maxlength="5"
-                         required="true"
-                         requiredMessage="Informe o peso atual do animal!"
-                         validatorMessage="Formato incorreto para peso!">
-                <f:validateDoubleRange minimum="0.001" maximum="15000" />
-            </p:inputText>
-            <p:message for="pesoAnimal" />
-
         </p:panelGrid>
     </div>
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 05/04/2018 16:40:00 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/04/2018 01:57:03 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Animais" table="animais" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnimaisId">
@@ -36,12 +36,6 @@
         </property>
         <property name="idadeAnimal" type="string">
             <column name="idadeAnimal" length="100" />
-        </property>
-        <property name="escalaPeso" type="string">
-            <column name="escalaPeso" length="6" not-null="true" />
-        </property>
-        <property name="peso" type="double">
-            <column name="peso" precision="22" scale="0" not-null="true" />
         </property>
         <property name="rghv" type="string">
             <column name="rghv" length="9" not-null="true" />

@@ -50,7 +50,7 @@ public class ListagemConsulta extends AbstractBean {
 
         search = "'%" + search + "%'";
         List<?> listaConsulta = getDaoGenerico().list("select c.pkConsulta, c.sistemasAfetados, c.dataConsulta, c.laudo, "
-                + "a.nomeAnimal, a.sexoAnimal, a.rghv, a.peso, a.categoriaAnimal, a.especie, "
+                + "a.nomeAnimal, a.sexoAnimal, a.rghv, a.categoriaAnimal, a.especie, "
                 + "puser.nome, user.crmvMatricula, "
                 + "pcli.nome, pcli.cpfCnpj, pcli.logra, pcli.bairro, pcli.cidade "
                 + "from Consulta c, Animais a, Pessoa puser, User user, Pessoa pcli, Cliente cli " + tipoCliente
@@ -74,7 +74,6 @@ public class ListagemConsulta extends AbstractBean {
             objbusca.getAnimais().setNomeAnimal((String) obj[4]);
             objbusca.getAnimais().setSexoAnimal((String) obj[5]);
             objbusca.getAnimais().setRghv((String) obj[6]);
-            objbusca.getAnimais().setPeso((double) obj[7]);
             objbusca.getAnimais().setCategoriaAnimal((String) obj[8]);
             objbusca.getAnimais().setEspecie((String) obj[9]);
             objbusca.getResidente().setNome((String) obj[10]);
