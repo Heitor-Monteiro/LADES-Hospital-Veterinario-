@@ -49,7 +49,7 @@
 
                             <div class="ui-fluid ui-g">
 
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                <div class="ui-g-12 ui-md-4 ui-lg-4">
                                     <p:commandButton value="Imprimir"
                                                      rendered="#{MBpessoa.objTools.showButtonPrint}"
                                                      disabled=""
@@ -59,16 +59,23 @@
                                     </p:commandButton>
                                 </div>
 
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:button value="Novo cadastro"
+                                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                    <p:button value="Cadastrar outro proprietário"
                                               rendered="#{MBpessoa.objTools.showButtonPrint}"
                                               outcome="/sihv-telas/cad-cliente"
                                               icon="fa fa-user-plus" />
                                 </div>
+                                
+                                <div class="ui-g-12 ui-md-4 ui-lg-4">
+                                    <p:button value="Cadastrar animal para proprietário"
+                                              rendered="#{MBpessoa.objTools.showButtonPrint}"
+                                              outcome="/sihv-telas/cad-animal-p"
+                                              icon="fa fa-user-plus" />
+                                </div>
 
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                <div class="ui-g-12 ui-md-4 ui-lg-4">
                                     <p:commandButton action="#{MBpessoa.cadastrarCliente()}"
-                                                     value="Salvar"
+                                                     value="Salvar cadastro"
                                                      icon="fa fa-save"
                                                      disabled="#{MBpessoa.objTools.showButtonPrint}"
                                                      update="growl, CadPessoaFinal">
@@ -77,12 +84,6 @@
                                         <p:ajax onstart="PF('statusDialog').show()"
                                                 onsuccess="PF('statusDialog').hide()" />
                                     </p:commandButton>
-                                </div>
-
-                                <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:button value="Sair" 
-                                              outcome="/index"
-                                              icon="fa fa-home" />
                                 </div>
                             </div>
                         </p:panel>
