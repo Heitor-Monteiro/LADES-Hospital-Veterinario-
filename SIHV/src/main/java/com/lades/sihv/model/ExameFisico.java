@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;

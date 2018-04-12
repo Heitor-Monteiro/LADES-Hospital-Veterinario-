@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 16/12/2016 13:24:59 by Hibernate Tools 4.3.1
+// Generated 08/04/2018 01:57:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -36,35 +36,30 @@ public class Animais  implements java.io.Serializable {
      private String raca;
      private String pelagem;
      private String sexoAnimal;
-     private Date dataNac;
-     private String escalaPeso;
-     private double peso;
+     private String idadeAnimal;
      private String rghv;
      private short rghvNum;
      private String categoriaAnimal;
      private Date cadDataHora;
-     private Set<Consulta> consultas = new HashSet<Consulta>(0);
+     private Set consultas = new HashSet(0);
 
     public Animais() {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String sexoAnimal, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
         this.nomeAnimal = nomeAnimal;
         this.raca = raca;
-        this.pelagem = pelagem;
         this.sexoAnimal = sexoAnimal;
-        this.escalaPeso = escalaPeso;
-        this.peso = peso;
         this.rghv = rghv;
         this.rghvNum = rghvNum;
         this.categoriaAnimal = categoriaAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, Date dataNac, String escalaPeso, double peso, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set<Consulta> consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -72,9 +67,7 @@ public class Animais  implements java.io.Serializable {
        this.raca = raca;
        this.pelagem = pelagem;
        this.sexoAnimal = sexoAnimal;
-       this.dataNac = dataNac;
-       this.escalaPeso = escalaPeso;
-       this.peso = peso;
+       this.idadeAnimal = idadeAnimal;
        this.rghv = rghv;
        this.rghvNum = rghvNum;
        this.categoriaAnimal = categoriaAnimal;
@@ -140,7 +133,7 @@ public class Animais  implements java.io.Serializable {
     }
 
     
-    @Column(name="pelagem", nullable=false, length=100)
+    @Column(name="pelagem", length=100)
     public String getPelagem() {
         return this.pelagem;
     }
@@ -159,34 +152,14 @@ public class Animais  implements java.io.Serializable {
         this.sexoAnimal = sexoAnimal;
     }
 
-    @Temporal(TemporalType.DATE)
-    @Column(name="dataNac", length=10)
-    public Date getDataNac() {
-        return this.dataNac;
+    
+    @Column(name="idadeAnimal", length=100)
+    public String getIdadeAnimal() {
+        return this.idadeAnimal;
     }
     
-    public void setDataNac(Date dataNac) {
-        this.dataNac = dataNac;
-    }
-
-    
-    @Column(name="escalaPeso", nullable=false, length=6)
-    public String getEscalaPeso() {
-        return this.escalaPeso;
-    }
-    
-    public void setEscalaPeso(String escalaPeso) {
-        this.escalaPeso = escalaPeso;
-    }
-
-    
-    @Column(name="peso", nullable=false, precision=22, scale=0)
-    public double getPeso() {
-        return this.peso;
-    }
-    
-    public void setPeso(double peso) {
-        this.peso = peso;
+    public void setIdadeAnimal(String idadeAnimal) {
+        this.idadeAnimal = idadeAnimal;
     }
 
     
@@ -230,11 +203,11 @@ public class Animais  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="animais")
-    public Set<Consulta> getConsultas() {
+    public Set getConsultas() {
         return this.consultas;
     }
     
-    public void setConsultas(Set<Consulta> consultas) {
+    public void setConsultas(Set consultas) {
         this.consultas = consultas;
     }
 

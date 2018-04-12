@@ -13,6 +13,39 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
 
+            <p:outputLabel value="Escala de peso:"
+                           for="Anamnese26"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+            <p:selectOneRadio id="Anamnese26"
+                              layout="responsive"
+                              columns="3"
+                              value="#{MBconsulta.formsExame.anamnese.escalaPeso}"
+                              required="true"
+                              requiredMessage="Escolha uma escala de peso!">
+                <f:selectItem itemLabel="g" itemValue="g" />
+                <f:selectItem itemLabel="kg" itemValue="kg" />
+            </p:selectOneRadio>
+            <p:message for="Anamnese26" />
+
+
+
+
+            <p:outputLabel value="Peso corporal do animal:"
+                           for="Anamnese27"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+            <p:inputText id="Anamnese27"
+                         value="#{MBconsulta.formsExame.anamnese.pesoCorp}"
+                         title="Informe o peso atual do animal"
+                         maxlength="5"
+                         required="true"
+                         requiredMessage="Informe o peso atual do animal!"
+                         validatorMessage="Formato incorreto para peso!">
+                <f:validateDoubleRange minimum="0.001" maximum="15000" />
+            </p:inputText>
+            <p:message for="Anamnese27" />
+            
+            
+            
             <p:outputLabel value="Queixa principal/Evolução:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese1" />

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -33,7 +33,7 @@ public class User  implements java.io.Serializable {
      private String userSenha;
      private String userTipo;
      private String crmvMatricula;
-     private Set<Consulta> consultas = new HashSet<Consulta>(0);
+     private Set consultas = new HashSet(0);
 
     public User() {
     }
@@ -47,7 +47,7 @@ public class User  implements java.io.Serializable {
         this.userTipo = userTipo;
         this.crmvMatricula = crmvMatricula;
     }
-    public User(UserId id, Pessoa pessoa, String userNick, String userSenha, String userTipo, String crmvMatricula, Set<Consulta> consultas) {
+    public User(UserId id, Pessoa pessoa, String userNick, String userSenha, String userTipo, String crmvMatricula, Set consultas) {
        this.id = id;
        this.pessoa = pessoa;
        this.userNick = userNick;
@@ -122,11 +122,11 @@ public class User  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="user")
-    public Set<Consulta> getConsultas() {
+    public Set getConsultas() {
         return this.consultas;
     }
     
-    public void setConsultas(Set<Consulta> consultas) {
+    public void setConsultas(Set consultas) {
         this.consultas = consultas;
     }
 

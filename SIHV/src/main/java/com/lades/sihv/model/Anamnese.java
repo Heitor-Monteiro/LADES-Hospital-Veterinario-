@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/01/2017 01:03:35 by Hibernate Tools 4.3.1
+// Generated 08/04/2018 01:57:02 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -27,6 +27,8 @@ public class Anamnese  implements java.io.Serializable {
 
      private AnamneseId id;
      private Consulta consulta;
+     private String escalaPeso;
+     private double pesoCorp;
      private String queixaPrincipal;
      private String jaFoiTratado;
      private String medicacaoDose;
@@ -57,9 +59,11 @@ public class Anamnese  implements java.io.Serializable {
     }
 
 	
-    public Anamnese(AnamneseId id, Consulta consulta, String queixaPrincipal, String jaFoiTratado, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String alimentacaoRacao, String vacinacao, String vermifugacao, String ectoparasitas, String acessoRua) {
+    public Anamnese(AnamneseId id, Consulta consulta, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String alimentacaoRacao, String vacinacao, String vermifugacao, String ectoparasitas, String acessoRua) {
         this.id = id;
         this.consulta = consulta;
+        this.escalaPeso = escalaPeso;
+        this.pesoCorp = pesoCorp;
         this.queixaPrincipal = queixaPrincipal;
         this.jaFoiTratado = jaFoiTratado;
         this.antecMorbido = antecMorbido;
@@ -71,9 +75,11 @@ public class Anamnese  implements java.io.Serializable {
         this.ectoparasitas = ectoparasitas;
         this.acessoRua = acessoRua;
     }
-    public Anamnese(AnamneseId id, Consulta consulta, String queixaPrincipal, String jaFoiTratado, String medicacaoDose, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String descriCaseira, String alimentacaoRacao, String descriRacao, String vacinacao, String sobreVacina, String origemVacina, String vermifugacao, String doseVermifugacao, Date dataVermifugacao, String ectoparasitas, String qualEctoparasitas, String controEctoparasitas, String qualProdutoUtiliza, String acessoRua, String descriHabitat, String contactantes, String descriContactantes, String mesmoProbleContacta, String contatoRoedor) {
+    public Anamnese(AnamneseId id, Consulta consulta, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String medicacaoDose, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String descriCaseira, String alimentacaoRacao, String descriRacao, String vacinacao, String sobreVacina, String origemVacina, String vermifugacao, String doseVermifugacao, Date dataVermifugacao, String ectoparasitas, String qualEctoparasitas, String controEctoparasitas, String qualProdutoUtiliza, String acessoRua, String descriHabitat, String contactantes, String descriContactantes, String mesmoProbleContacta, String contatoRoedor) {
        this.id = id;
        this.consulta = consulta;
+       this.escalaPeso = escalaPeso;
+       this.pesoCorp = pesoCorp;
        this.queixaPrincipal = queixaPrincipal;
        this.jaFoiTratado = jaFoiTratado;
        this.medicacaoDose = medicacaoDose;
@@ -123,6 +129,26 @@ public class Anamnese  implements java.io.Serializable {
     
     public void setConsulta(Consulta consulta) {
         this.consulta = consulta;
+    }
+
+    
+    @Column(name="escalaPeso", nullable=false, length=4)
+    public String getEscalaPeso() {
+        return this.escalaPeso;
+    }
+    
+    public void setEscalaPeso(String escalaPeso) {
+        this.escalaPeso = escalaPeso;
+    }
+
+    
+    @Column(name="pesoCorp", nullable=false, precision=22, scale=0)
+    public double getPesoCorp() {
+        return this.pesoCorp;
+    }
+    
+    public void setPesoCorp(double pesoCorp) {
+        this.pesoCorp = pesoCorp;
     }
 
     

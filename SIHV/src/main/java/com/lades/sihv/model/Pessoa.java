@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -41,11 +41,11 @@ public class Pessoa  implements java.io.Serializable {
      private Date cadDataHora;
      private String email;
      private Boolean exclusaoLogica;
-     private Set<Telefone> telefones = new HashSet<Telefone>(0);
-     private Set<Cliente> clientes = new HashSet<Cliente>(0);
-     private Set<Juridica> juridicas = new HashSet<Juridica>(0);
-     private Set<Fisica> fisicas = new HashSet<Fisica>(0);
-     private Set<User> users = new HashSet<User>(0);
+     private Set telefones = new HashSet(0);
+     private Set clientes = new HashSet(0);
+     private Set juridicas = new HashSet(0);
+     private Set fisicas = new HashSet(0);
+     private Set users = new HashSet(0);
 
     public Pessoa() {
     }
@@ -63,7 +63,7 @@ public class Pessoa  implements java.io.Serializable {
         this.cadDataHora = cadDataHora;
         this.email = email;
     }
-    public Pessoa(String cpfCnpj, String nome, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, String email, Boolean exclusaoLogica, Set<Telefone> telefones, Set<Cliente> clientes, Set<Juridica> juridicas, Set<Fisica> fisicas, Set<User> users) {
+    public Pessoa(String cpfCnpj, String nome, String logra, String casaNumero, String bairro, String cidade, String cep, String complemento, String uf, Date cadDataHora, String email, Boolean exclusaoLogica, Set telefones, Set clientes, Set juridicas, Set fisicas, Set users) {
        this.cpfCnpj = cpfCnpj;
        this.nome = nome;
        this.logra = logra;
@@ -216,47 +216,47 @@ public class Pessoa  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Telefone> getTelefones() {
+    public Set getTelefones() {
         return this.telefones;
     }
     
-    public void setTelefones(Set<Telefone> telefones) {
+    public void setTelefones(Set telefones) {
         this.telefones = telefones;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Cliente> getClientes() {
+    public Set getClientes() {
         return this.clientes;
     }
     
-    public void setClientes(Set<Cliente> clientes) {
+    public void setClientes(Set clientes) {
         this.clientes = clientes;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Juridica> getJuridicas() {
+    public Set getJuridicas() {
         return this.juridicas;
     }
     
-    public void setJuridicas(Set<Juridica> juridicas) {
+    public void setJuridicas(Set juridicas) {
         this.juridicas = juridicas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<Fisica> getFisicas() {
+    public Set getFisicas() {
         return this.fisicas;
     }
     
-    public void setFisicas(Set<Fisica> fisicas) {
+    public void setFisicas(Set fisicas) {
         this.fisicas = fisicas;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="pessoa")
-    public Set<User> getUsers() {
+    public Set getUsers() {
         return this.users;
     }
     
-    public void setUsers(Set<User> users) {
+    public void setUsers(Set users) {
         this.users = users;
     }
 

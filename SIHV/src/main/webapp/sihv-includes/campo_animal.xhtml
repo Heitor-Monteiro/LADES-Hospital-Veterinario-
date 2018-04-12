@@ -84,7 +84,7 @@
             <p:selectOneMenu id="pelagem"
                              value="#{MBanimal.animal.pelagem}"
                              title="Obs.: caso não tenha a pelagem desejada na lista, digite uma nova."
-                             required="true"
+                             required="false"
                              editable="true"
                              requiredMessage="Informe a pelagem do animal!">
                 <f:selectItems value="#{MBanimal.listaPelagem}" />           
@@ -120,52 +120,13 @@
             <p:outputLabel value="Data de nascimento:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="idade" />
-            <p:calendar id="idade" 
-                        value="#{MBanimal.animal.dataNac}"
-                        maxlength="10" 
-                        disabled="false" 
-                        title="" 
-                        required="false"  
-                        requiredMessage="" 
-                        locale="de"
-                        navigator="true"  
-                        pattern="yyyy-mm-dd" />
+            <p:inputText id="idade" 
+                         value="#{MBanimal.animal.idadeAnimal}" 
+                         title="Informe a idade do animal"
+                         maxlength="100"
+                         required="false" 
+                         requiredMessage=""/>
             <p:message for="idade" />
-
-
-
-
-            <p:outputLabel value="Escala de peso:"
-                           for="escalaPeso"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:selectOneRadio id="escalaPeso"
-                              layout="responsive"
-                              columns="3"
-                              value="#{MBanimal.animal.escalaPeso}"
-                              required="true"
-                              requiredMessage="Escolha uma escala de peso!">
-                <f:selectItem itemLabel="g" itemValue="g" />
-                <f:selectItem itemLabel="kg" itemValue="kg" />
-            </p:selectOneRadio>
-            <p:message for="escalaPeso" />
-
-
-
-
-            <p:outputLabel value="Peso atual do animal:"
-                           for="pesoAnimal"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:inputText id="pesoAnimal"
-                         value="#{MBanimal.animal.peso}"
-                         title="Informe o peso atual do animal"
-                         maxlength="5"
-                         required="true"
-                         requiredMessage="Informe o peso atual do animal!"
-                         validatorMessage="Formato incorreto para peso!">
-                <f:validateDoubleRange minimum="0.001" maximum="15000" />
-            </p:inputText>
-            <p:message for="pesoAnimal" />
-
         </p:panelGrid>
     </div>
 

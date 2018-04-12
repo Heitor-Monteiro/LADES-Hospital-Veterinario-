@@ -103,21 +103,8 @@
 
                                     <p:outputLabel value="Data de nascimento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBanimal.animal.dataNac}"
+                                    <p:outputLabel value="#{MBanimal.animal.idadeAnimal}"
                                                    styleClass="outputLabel"/>
-                                </p:panelGrid>
-
-                                <p:panelGrid columns="3"
-                                             layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-3, ui-grid-col-1, ui-grid-col-3">
-
-                                    <p:outputLabel value="Peso atual do animal:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBanimal.animal.escalaPeso}"
-                                                   styleClass="outputLabel" />
-                                    <p:outputLabel value="#{MBanimal.animal.peso}"
-                                                   styleClass="outputLabel" />
                                 </p:panelGrid>
                             </div>
 
@@ -133,7 +120,7 @@
                                 </div>
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                    <p:button value="Novo cadastro" 
+                                    <p:button value="Cadastrar outro animal" 
                                               rendered="#{MBanimal.objTools.showButtonPrint}"
                                               outcome="/sihv-telas/cad-animal-p"
                                               icon="fa fa-user-plus" />
@@ -141,7 +128,7 @@
 
                                 <div class="ui-g-12 ui-md-3 ui-lg-3">
                                     <p:commandButton action="#{MBanimal.cadastrarAnimal()}" 
-                                                     value="Salvar"
+                                                     value="Salvar cadastro"
                                                      icon="fa fa-save"
                                                      update="growl, CadAnimalFinal" 
                                                      disabled="#{MBanimal.objTools.showButtonPrint}">

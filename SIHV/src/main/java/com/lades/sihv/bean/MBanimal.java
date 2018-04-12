@@ -7,7 +7,6 @@ package com.lades.sihv.bean;
 
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.controller.animal.AnimalGerarRGHV;
-import com.lades.sihv.controller.animal.AnimalGetIdade;
 import com.lades.sihv.controller.animal.AnimalListaPelagem;
 import com.lades.sihv.controller.animal.AnimalCadastro;
 import java.util.List;
@@ -43,10 +42,6 @@ public class MBanimal extends AbstractBean {
     public void cadastrarAnimal() {
         boolean var = new AnimalCadastro().cadastrarANIMAL(animal);
         getObjTools().setShowButtonPrint(var);//Habilitando visibilidade do botão para impressão
-    }
-
-    private AnimalGetIdade ObjAnimalGetIdade() {
-        return new AnimalGetIdade();
     }
 
 //  Métodos GETs e SETs

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 27/02/2017 17:04:52 by Hibernate Tools 4.3.1
+// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -38,16 +38,16 @@ public class Consulta  implements java.io.Serializable {
      private String laudo;
      private String laudoConfirme;
      private BigDecimal valorConsulta;
-     private Set<SisDigestorio> sisDigestorios = new HashSet<SisDigestorio>(0);
-     private Set<SisUrinarioMamaria> sisUrinarioMamarias = new HashSet<SisUrinarioMamaria>(0);
-     private Set<ExameImage> exameImages = new HashSet<ExameImage>(0);
-     private Set<SisMuscEsque> sisMuscEsques = new HashSet<SisMuscEsque>(0);
-     private Set<ExameFisico> exameFisicos = new HashSet<ExameFisico>(0);
-     private Set<SisRespCardio> sisRespCardios = new HashSet<SisRespCardio>(0);
-     private Set<SisTegumentar> sisTegumentars = new HashSet<SisTegumentar>(0);
-     private Set<Anamnese> anamneses = new HashSet<Anamnese>(0);
-     private Set<SisOftalmico> sisOftalmicos = new HashSet<SisOftalmico>(0);
-     private Set<SisNeurologico> sisNeurologicos = new HashSet<SisNeurologico>(0);
+     private Set sisDigestorios = new HashSet(0);
+     private Set sisUrinarioMamarias = new HashSet(0);
+     private Set exameImages = new HashSet(0);
+     private Set sisMuscEsques = new HashSet(0);
+     private Set exameFisicos = new HashSet(0);
+     private Set sisRespCardios = new HashSet(0);
+     private Set sisTegumentars = new HashSet(0);
+     private Set anamneses = new HashSet(0);
+     private Set sisOftalmicos = new HashSet(0);
+     private Set sisNeurologicos = new HashSet(0);
 
     public Consulta() {
     }
@@ -59,7 +59,7 @@ public class Consulta  implements java.io.Serializable {
         this.dataConsulta = dataConsulta;
         this.valorConsulta = valorConsulta;
     }
-    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, Set<SisDigestorio> sisDigestorios, Set<SisUrinarioMamaria> sisUrinarioMamarias, Set<ExameImage> exameImages, Set<SisMuscEsque> sisMuscEsques, Set<ExameFisico> exameFisicos, Set<SisRespCardio> sisRespCardios, Set<SisTegumentar> sisTegumentars, Set<Anamnese> anamneses, Set<SisOftalmico> sisOftalmicos, Set<SisNeurologico> sisNeurologicos) {
+    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, Set sisDigestorios, Set sisUrinarioMamarias, Set exameImages, Set sisMuscEsques, Set exameFisicos, Set sisRespCardios, Set sisTegumentars, Set anamneses, Set sisOftalmicos, Set sisNeurologicos) {
        this.animais = animais;
        this.user = user;
        this.dataConsulta = dataConsulta;
@@ -167,92 +167,92 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisDigestorio> getSisDigestorios() {
+    public Set getSisDigestorios() {
         return this.sisDigestorios;
     }
     
-    public void setSisDigestorios(Set<SisDigestorio> sisDigestorios) {
+    public void setSisDigestorios(Set sisDigestorios) {
         this.sisDigestorios = sisDigestorios;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisUrinarioMamaria> getSisUrinarioMamarias() {
+    public Set getSisUrinarioMamarias() {
         return this.sisUrinarioMamarias;
     }
     
-    public void setSisUrinarioMamarias(Set<SisUrinarioMamaria> sisUrinarioMamarias) {
+    public void setSisUrinarioMamarias(Set sisUrinarioMamarias) {
         this.sisUrinarioMamarias = sisUrinarioMamarias;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<ExameImage> getExameImages() {
+    public Set getExameImages() {
         return this.exameImages;
     }
     
-    public void setExameImages(Set<ExameImage> exameImages) {
+    public void setExameImages(Set exameImages) {
         this.exameImages = exameImages;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisMuscEsque> getSisMuscEsques() {
+    public Set getSisMuscEsques() {
         return this.sisMuscEsques;
     }
     
-    public void setSisMuscEsques(Set<SisMuscEsque> sisMuscEsques) {
+    public void setSisMuscEsques(Set sisMuscEsques) {
         this.sisMuscEsques = sisMuscEsques;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<ExameFisico> getExameFisicos() {
+    public Set getExameFisicos() {
         return this.exameFisicos;
     }
     
-    public void setExameFisicos(Set<ExameFisico> exameFisicos) {
+    public void setExameFisicos(Set exameFisicos) {
         this.exameFisicos = exameFisicos;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisRespCardio> getSisRespCardios() {
+    public Set getSisRespCardios() {
         return this.sisRespCardios;
     }
     
-    public void setSisRespCardios(Set<SisRespCardio> sisRespCardios) {
+    public void setSisRespCardios(Set sisRespCardios) {
         this.sisRespCardios = sisRespCardios;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisTegumentar> getSisTegumentars() {
+    public Set getSisTegumentars() {
         return this.sisTegumentars;
     }
     
-    public void setSisTegumentars(Set<SisTegumentar> sisTegumentars) {
+    public void setSisTegumentars(Set sisTegumentars) {
         this.sisTegumentars = sisTegumentars;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<Anamnese> getAnamneses() {
+    public Set getAnamneses() {
         return this.anamneses;
     }
     
-    public void setAnamneses(Set<Anamnese> anamneses) {
+    public void setAnamneses(Set anamneses) {
         this.anamneses = anamneses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisOftalmico> getSisOftalmicos() {
+    public Set getSisOftalmicos() {
         return this.sisOftalmicos;
     }
     
-    public void setSisOftalmicos(Set<SisOftalmico> sisOftalmicos) {
+    public void setSisOftalmicos(Set sisOftalmicos) {
         this.sisOftalmicos = sisOftalmicos;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")
-    public Set<SisNeurologico> getSisNeurologicos() {
+    public Set getSisNeurologicos() {
         return this.sisNeurologicos;
     }
     
-    public void setSisNeurologicos(Set<SisNeurologico> sisNeurologicos) {
+    public void setSisNeurologicos(Set sisNeurologicos) {
         this.sisNeurologicos = sisNeurologicos;
     }
 
