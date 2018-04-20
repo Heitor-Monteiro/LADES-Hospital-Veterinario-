@@ -34,6 +34,10 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
         FisicaId fisicaId = new FisicaId();
         fisicaId.setFkPessoa(pessoa.getPkPessoa());
         fisica.setId(fisicaId);
+        if ("".equals(fisica.getRg())) {
+            fisica.setRg("naoInformado");
+            System.out.println("RG-não-informado===========================");
+        }
         getDaoGenerico().save(fisica);
     }
 
@@ -81,6 +85,11 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
         if ("".equals(pessoa.getEmail())) {
             pessoa.setEmail("naoInformado@naoInformado.com");
             System.out.println("email-não-informado===========================");
+        }
+        
+        if ("".equals(pessoa.getCep())) {
+            pessoa.setCep("naoInform");
+            System.out.println("CEP-não-informado===========================");
         }
     }
 

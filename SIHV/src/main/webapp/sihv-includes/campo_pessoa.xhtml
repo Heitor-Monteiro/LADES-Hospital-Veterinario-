@@ -73,7 +73,7 @@
                 value="#{MBpessoa.fisica.rg}" 
                 title="#{label_SIHV.CreatePessoaTitle_rg}" 
                 maxlength="15"
-                required="true" 
+                required="false" 
                 requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
             <p:message for="rg" rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
@@ -197,8 +197,9 @@
             <p:inputMask mask="99999-999"
                          id="cep"
                          value="#{MBpessoa.pessoa.cep}" 
-                         title="#{label_SIHV.CreatePessoaTitle_cep}" 
-                         required="true" 
+                         title="#{label_SIHV.CreatePessoaTitle_cep}"
+                         disabled="false"
+                         required="false" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}" />
             <p:message for="cep" />
 
