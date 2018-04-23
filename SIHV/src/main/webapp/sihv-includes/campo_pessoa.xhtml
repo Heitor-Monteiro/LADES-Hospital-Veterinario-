@@ -6,10 +6,10 @@
 
     <div class="ui-fluid">
         <p:panelGrid id="PessoaForm"
-                     columns="3"
+                     columns="4"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
 
 
             <p:outputLabel value="Pessoa física/jurídica:"
@@ -28,6 +28,8 @@
                 <p:ajax update="PessoaForm" />
             </p:selectOneRadio>
             <p:message for="TipoPessoa" rendered="#{MBpessoa.tipoPessoa}"/>
+            <p:outputLabel value=" "
+                           rendered="#{MBpessoa.tipoPessoa}"/>
 
 
             <p:outputLabel value="CPF:"
@@ -39,8 +41,18 @@
                          rendered="#{MBpessoa.mudancaCpfCnpj}"
                          value="#{MBpessoa.pessoa.cpfCnpj}" 
                          title="Ex.: 999.999.999-99" 
-                         required="true" 
+                         required="#{MBpessoa.cpfOpcional}" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cpf}" />
+            <p:selectBooleanButton id="cpfopcao" 
+                                   value="#{MBpessoa.cpfOpcional}" 
+                                   onLabel="Obrigatório" 
+                                   offLabel="Opcional" 
+                                   onIcon="ui-icon-check" 
+                                   offIcon="ui-icon-close" style="width:120px"
+                                   rendered="#{MBpessoa.mudancaCpfCnpj}" 
+                                   disabled="#{!MBpessoa.tipoPessoa}">
+                <p:ajax update="PessoaForm" />
+            </p:selectBooleanButton>
             <p:message for="cpf"
                        rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
@@ -57,6 +69,8 @@
                          title="Informe o CNPJ da empresa." 
                          required="true" 
                          requiredMessage="Informe o CNPJ!" />
+            <p:outputLabel value=""
+                           rendered="#{!MBpessoa.mudancaCpfCnpj}"/>
             <p:message for="cnpj"
                        rendered="#{!MBpessoa.mudancaCpfCnpj}" />
 
@@ -73,8 +87,18 @@
                 value="#{MBpessoa.fisica.rg}" 
                 title="#{label_SIHV.CreatePessoaTitle_rg}" 
                 maxlength="15"
-                required="false" 
+                required="#{MBpessoa.rgOpcional}" 
                 requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
+            <p:selectBooleanButton id="rgOpcao" 
+                                   value="#{MBpessoa.rgOpcional}" 
+                                   onLabel="Obrigatório" 
+                                   offLabel="Opcional" 
+                                   onIcon="ui-icon-check" 
+                                   offIcon="ui-icon-close" style="width:120px"
+                                   rendered="#{MBpessoa.mudancaCpfCnpj}"
+                                   disabled="#{!MBpessoa.tipoPessoa}">
+                <p:ajax update="PessoaForm" />
+            </p:selectBooleanButton>
             <p:message for="rg" rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
 
@@ -92,12 +116,15 @@
                          rendered="#{MBpessoa.mudancaCpfCnpj}"
                          required="true" 
                          requiredMessage="Informe seu nome!"/>
+            <p:outputLabel value=" "
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"/>
             <p:message for="nome"
                        rendered="#{MBpessoa.mudancaCpfCnpj}" />
-            
-            
-            
-            
+
+
+
+
+
             <p:outputLabel value="Razão social:"
                            rendered="#{!MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
@@ -109,14 +136,15 @@
                          rendered="#{!MBpessoa.mudancaCpfCnpj}"
                          required="true" 
                          requiredMessage="Informe o nome da empresa!"/>
-            <p:message for="razaoSocial"
-                       rendered="#{!MBpessoa.mudancaCpfCnpj}" />
             <p:tooltip for="razaoSocial"
                        rendered="#{!MBpessoa.mudancaCpfCnpj}"
                        position="top" />
-            
-            
-            
+            <p:message for="razaoSocial"
+                       rendered="#{!MBpessoa.mudancaCpfCnpj}" />
+
+
+
+
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_sexo}"
                            rendered="#{MBpessoa.mudancaCpfCnpj}"
@@ -132,15 +160,18 @@
                 <f:selectItem itemLabel="M" itemValue="M" />
                 <f:selectItem itemLabel="F" itemValue="F" />
             </p:selectOneRadio>
+            <p:outputLabel value=" "
+                           rendered="#{MBpessoa.mudancaCpfCnpj}"/>
             <p:message for="sexo" rendered="#{MBpessoa.mudancaCpfCnpj}"/>
+
 
         </p:panelGrid>
 
         <p:panelGrid id="PessoaForm2"
-                     columns="3"
+                     columns="4"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_logra}"
@@ -152,6 +183,7 @@
                          maxlength="100"
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_logra}"/>
+            <p:outputLabel value=" " />
             <p:message for="logra" />
 
 
@@ -164,6 +196,7 @@
                          maxlength="6"
                          required="true"
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_numeroCasa}" />
+            <p:outputLabel value=" " />
             <p:message for="numeroCasa" />
 
 
@@ -176,6 +209,7 @@
                          maxlength="100"
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_bairro}"/>
+            <p:outputLabel value=" " />
             <p:message for="bairro" />
 
 
@@ -188,6 +222,7 @@
                          maxlength="100"
                          required="true" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cidade}"/>
+            <p:outputLabel value=" " />
             <p:message for="cidade" />
 
 
@@ -199,8 +234,10 @@
                          value="#{MBpessoa.pessoa.cep}" 
                          title="#{label_SIHV.CreatePessoaTitle_cep}"
                          disabled="false"
-                         required="false" 
+                         rendered="true"
+                         required="#{!MBpessoa.tipoPessoa}" 
                          requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_cep}" />
+            <p:outputLabel value=" " />
             <p:message for="cep" />
 
 
@@ -211,6 +248,7 @@
                          maxlength="100"
                          required="false"
                          title="Endereço complementar"/>
+            <p:outputLabel value=" " />
             <p:message for="complemento" />
 
 
@@ -250,6 +288,7 @@
                 <f:selectItem itemLabel="SE" itemValue="SE" />
                 <f:selectItem itemLabel="TO" itemValue="TO" />
             </p:selectOneMenu>
+            <p:outputLabel value=" " />
             <p:message for="uf" />
 
             <p:outputLabel value="Endereço de email:"
@@ -280,7 +319,7 @@
                          required="false" 
                          validatorMessage="Formato de e-mail incorreto!" >
             </p:inputText>
-
+            <p:outputLabel value=" " />
             <p:message for="email_obr"/>
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
@@ -292,7 +331,9 @@
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="false"
                          />
+            <p:outputLabel value=" " />
             <p:message for="telefone"/>
+
             <p:outputLabel value="#{label_SIHV.celular_label}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="celular" />
@@ -302,6 +343,7 @@
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="true"
                          requiredMessage="#{label_SIHV.celular_requiredMsg}"/>
+            <p:outputLabel value=" " />
             <p:message for="celular" />
         </p:panelGrid>
     </div>

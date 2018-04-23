@@ -34,7 +34,8 @@ public class MBpessoa extends AbstractBean {
     private Telefone celular;
     private User user;
     private boolean mudancaCpfCnpj = true;
-
+    private boolean cpfOpcional = true;
+    private boolean rgOpcional = true;
     private String numCRMV1 = "";
     private String numCRMV2 = "";
     /*Os dois atributos serão utilizado para
@@ -108,10 +109,15 @@ public class MBpessoa extends AbstractBean {
         try {
             PessoaMetodosDeCadastro obj = ObjPessoaMetodosDeCadastro();
             obj.emailOpcional(pessoa);
-
+            obj.cepOpcional(pessoa);
             boolean checkCpfCnpj, existCpfCnpj;
-            if (mudancaCpfCnpj) {
+
+            if (mudancaCpfCnpj && !pessoa.getCpfCnpj().equals("")) {
                 checkCpfCnpj = ObjPessoaCheckCPF().checkCPF(pessoa);
+            } else if (pessoa.getCpfCnpj().equals("") && mudancaCpfCnpj) {
+                do {
+                    checkCpfCnpj = obj.cpfOpcional(pessoa, cpfOpcional);
+                } while (!ObjCheckExistCpfCnpj().checkExistCpfCnpj(pessoa, mudancaCpfCnpj));
             } else {
                 checkCpfCnpj = ObjPessoaCheckCNPJ().checkCNPJ(pessoa);
             }
@@ -246,5 +252,28 @@ public class MBpessoa extends AbstractBean {
 
     public void setMudancaCpfCnpj(boolean mudancaCpfCnpj) {
         this.mudancaCpfCnpj = mudancaCpfCnpj;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isCpfOpcional() {
+        return cpfOpcional;
+    }
+
+    public void setCpfOpcional(boolean cpfOpcional) {
+        if (cpfOpcional == false && rgOpcional == false) {
+            rgOpcional = true;
+        }
+        this.cpfOpcional = cpfOpcional;
+    }
+
+    public boolean isRgOpcional() {
+        return rgOpcional;
+    }
+
+    public void setRgOpcional(boolean rgOpcional) {
+        if (rgOpcional == false && cpfOpcional == false) {
+            cpfOpcional = true;
+        }
+        this.rgOpcional = rgOpcional;
     }
 }

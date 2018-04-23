@@ -17,6 +17,7 @@ import com.lades.sihv.model.User;
 import com.lades.sihv.model.UserId;
 import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.ClienteId;
+import java.util.Random;
 
 /**
  *
@@ -35,8 +36,8 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
         fisicaId.setFkPessoa(pessoa.getPkPessoa());
         fisica.setId(fisicaId);
         if ("".equals(fisica.getRg())) {
-            fisica.setRg("naoInformado");
-            System.out.println("RG-não-informado===========================");
+            fisica.setRg("Não Informado");
+            System.out.println("=========================== RG-não-informado");
         }
         getDaoGenerico().save(fisica);
     }
@@ -58,8 +59,6 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
             user.setCrmvMatricula(numCRMV1 + " " + numCRMV2);
         }
         getDaoGenerico().save(user);
-//        numCRMV1 = "";
-//        numCRMV2 = "";
     }
 
     public void cadastrarCliente(Pessoa pessoa) {
@@ -84,13 +83,28 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
     public void emailOpcional(Pessoa pessoa) {
         if ("".equals(pessoa.getEmail())) {
             pessoa.setEmail("naoInformado@naoInformado.com");
-            System.out.println("email-não-informado===========================");
+            System.out.println("=========================== email-não-informado");
         }
-        
+    }
+
+    public void cepOpcional(Pessoa pessoa) {
         if ("".equals(pessoa.getCep())) {
-            pessoa.setCep("naoInform");
-            System.out.println("CEP-não-informado===========================");
+            pessoa.setCep("NãoInform");
+            System.out.println("=========================== CEP-não-informado");
         }
+    }
+
+    public boolean cpfOpcional(Pessoa pessoa, boolean cpfOpcional) {
+        if ("".equals(pessoa.getCpfCnpj()) && cpfOpcional == false) {
+            Random random = new Random();
+            String var = ""+random.nextInt(9999999);
+            var = var + ""+random.nextInt(9999999);
+            System.out.println("=========================== "+"SIHV"+var);
+            pessoa.setCpfCnpj("SIHV"+var);
+            System.out.println("=========================== CPF-não-informado");
+        }
+
+        return !cpfOpcional;
     }
 
     private Security security() {
