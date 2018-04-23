@@ -16,6 +16,11 @@
 }
 
 
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
+     padding-bottom: 1%;
+} 
+
+
 @media (max-width: 640px) {
     .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
         border: none;
