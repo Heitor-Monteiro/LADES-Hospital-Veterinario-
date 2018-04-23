@@ -80,10 +80,12 @@
 
             <p:outputLabel value="Pelagem:"
                            for="pelagem"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="false"/>
             <p:selectOneMenu id="pelagem"
                              value="#{MBanimal.animal.pelagem}"
                              title="Obs.: caso não tenha a pelagem desejada na lista, digite uma nova."
+                             rendered="false"
                              required="false"
                              editable="true"
                              disabled="true"
@@ -92,7 +94,8 @@
             </p:selectOneMenu>
             <p:message for="pelagem" />
             <p:tooltip for="pelagem"
-                       position="top" />
+                       position="top"
+                       rendered="false"/>
         </p:panelGrid>
 
 
