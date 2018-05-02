@@ -32,12 +32,13 @@
                            rendered="#{MBpessoa.tipoPessoa}"/>
 
 
-            <p:outputLabel value="CPF:"
+            <p:outputLabel id="cpfLabel"
+                           value="CPF:"
                            rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="cpf" />                                
-            <p:inputMask mask="999.999.999-99"
-                         id="cpf"
+                           for="cpfInput"/>                                
+            <p:inputMask id="cpfInput"
+                         mask="999.999.999-99"
                          rendered="#{MBpessoa.mudancaCpfCnpj}"
                          value="#{MBpessoa.pessoa.cpfCnpj}" 
                          title="Ex.: 999.999.999-99" 
@@ -51,9 +52,10 @@
                                    offIcon="ui-icon-close" style="width:120px"
                                    rendered="#{MBpessoa.mudancaCpfCnpj}" 
                                    disabled="#{!MBpessoa.tipoPessoa}">
-                <p:ajax update="PessoaForm" />
+                <p:ajax update="cpfInput, cpfLabel, rgLabel, rgOpcao" />
             </p:selectBooleanButton>
-            <p:message for="cpf"
+            <p:message id="cpfMessager"
+                       for="cpfInput"
                        rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
 
@@ -77,18 +79,18 @@
 
 
 
-            <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_rg}"
+            <p:outputLabel id="rgLabel"
+                           value="#{label_SIHV.CreatePessoaLabel_rg}"
                            rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="rg" />                              
-            <p:inputText
-                id="rg"
-                rendered="#{MBpessoa.mudancaCpfCnpj}"
-                value="#{MBpessoa.fisica.rg}" 
-                title="#{label_SIHV.CreatePessoaTitle_rg}" 
-                maxlength="15"
-                required="#{MBpessoa.rgOpcional}" 
-                requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
+                           for="rgInput" />                              
+            <p:inputText id="rgInput"
+                         rendered="#{MBpessoa.mudancaCpfCnpj}"
+                         value="#{MBpessoa.fisica.rg}" 
+                         title="#{label_SIHV.CreatePessoaTitle_rg}" 
+                         maxlength="15"
+                         required="#{MBpessoa.rgOpcional}" 
+                         requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_rg}" />
             <p:selectBooleanButton id="rgOpcao" 
                                    value="#{MBpessoa.rgOpcional}" 
                                    onLabel="Obrigatório" 
@@ -97,9 +99,11 @@
                                    offIcon="ui-icon-close" style="width:120px"
                                    rendered="#{MBpessoa.mudancaCpfCnpj}"
                                    disabled="#{!MBpessoa.tipoPessoa}">
-                <p:ajax update="PessoaForm" />
+                <p:ajax update="rgInput, rgLabel, cpfLabel, cpfopcao" />
             </p:selectBooleanButton>
-            <p:message for="rg" rendered="#{MBpessoa.mudancaCpfCnpj}" />
+            <p:message id="rgMessager"
+                       for="rgInput"
+                       rendered="#{MBpessoa.mudancaCpfCnpj}" />
 
 
 
@@ -260,6 +264,7 @@
                              required="true"
                              requiredMessage="#{label_SIHV.CreatePessoaRequiredMessage_uf}">
                 <f:selectItem itemLabel="Selecione o estado" itemValue="" />
+                <f:selectItem itemLabel="PA" itemValue="PA" />
                 <f:selectItem itemLabel="AC" itemValue="AC" />
                 <f:selectItem itemLabel="AL" itemValue="AL" />
                 <f:selectItem itemLabel="AP" itemValue="AP" />
@@ -273,7 +278,6 @@
                 <f:selectItem itemLabel="MT" itemValue="MT" />
                 <f:selectItem itemLabel="MS" itemValue="MS" />
                 <f:selectItem itemLabel="MG" itemValue="MG" />
-                <f:selectItem itemLabel="PA" itemValue="PA" />
                 <f:selectItem itemLabel="PB" itemValue="PB" />
                 <f:selectItem itemLabel="PR" itemValue="PR" />
                 <f:selectItem itemLabel="PE" itemValue="PE" />
@@ -321,30 +325,102 @@
             </p:inputText>
             <p:outputLabel value=" " />
             <p:message for="email_obr"/>
+        </p:panelGrid>
+
+        <p:panelGrid id="PessoaForm3"
+                     columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="telefone" />
             <p:inputMask mask="(99) 9999-9999"
                          id="telefone"
-                         value="#{MBpessoa.telefone.numero}"
+                         value="#{MBpessoa.getTelefoneList(0).numero}"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="false"
                          />
             <p:outputLabel value=" " />
             <p:message for="telefone"/>
 
-            <p:outputLabel value="#{label_SIHV.celular_label}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="celular" />
-            <p:inputMask mask="(99) 99999-9999" 
-                         id="celular"
-                         value="#{MBpessoa.celular.numero}"
+
+            <p:outputLabel id="celularLabel"
+                           value="1ª Celular"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           for="celularInput" />
+            <p:inputMask id="celularInput"
+                         mask="(99) 99999-9999" 
+                         value="#{MBpessoa.getTelefoneList(1).numero}"
                          title="#{label_SIHV.CreateTelefoneTitle_numero}"
                          required="true"
                          requiredMessage="#{label_SIHV.celular_requiredMsg}"/>
-            <p:outputLabel value=" " />
-            <p:message for="celular" />
+            <p:selectBooleanCheckbox id="celularOpcao" 
+                                     itemLabel="2ª Celular"
+                                     style="color: #00B59B;font-weight: bold;font-size: 13px"
+                                     value="#{MBpessoa.viewTelefone2}">
+                <p:ajax update="PessoaForm4, PessoaForm5" />
+            </p:selectBooleanCheckbox>
+            <p:message id="celularMessager"
+                       for="celularInput" />
+        </p:panelGrid>
+
+
+        <p:panelGrid id="PessoaForm4"
+                     columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+
+            <p:outputLabel id="celular2Label"
+                           value="2ª Celular"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           rendered="#{MBpessoa.viewTelefone2}"
+                           for="celular2Input" />
+            <p:inputMask id="celular2Input"
+                         mask="(99) 99999-9999" 
+                         value="#{MBpessoa.getTelefoneList(2).numero}"
+                         title="#{label_SIHV.CreateTelefoneTitle_numero}"
+                         rendered="#{MBpessoa.viewTelefone2}"
+                         required="#{MBpessoa.viewTelefone2}"
+                         requiredMessage="#{label_SIHV.celular_requiredMsg}"/>
+            <p:selectBooleanCheckbox id="celular3Opcao"
+                                     itemLabel="3ª Celular"
+                                     rendered="#{MBpessoa.viewTelefone2}"
+                                     style="color: #00B59B;font-weight: bold;font-size: 13px"
+                                     value="#{MBpessoa.viewTelefone3}">
+                <p:ajax update="PessoaForm5" />
+            </p:selectBooleanCheckbox>
+            <p:message id="celular2Messager"
+                       rendered="#{MBpessoa.viewTelefone2}"
+                       for="celular2Input" />
+        </p:panelGrid>
+
+
+        <p:panelGrid id="PessoaForm5"
+                     columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+
+            <p:outputLabel id="celular3Label"
+                           value="3ª Celular"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBpessoa.viewTelefone3}"
+                           for="celular3Input" />
+            <p:inputMask id="celular3Input"
+                         mask="(99) 99999-9999" 
+                         value="#{MBpessoa.getTelefoneList(3).numero}"
+                         title="#{label_SIHV.CreateTelefoneTitle_numero}"
+                         rendered="#{MBpessoa.viewTelefone3}"
+                         required="#{MBpessoa.viewTelefone3}"
+                         requiredMessage="#{label_SIHV.celular_requiredMsg}"/>
+            <p:outputLabel value=" "
+                           rendered="#{MBpessoa.viewTelefone3}"/>
+            <p:message id="celular3Messager"
+                       rendered="#{MBpessoa.viewTelefone3}"
+                       for="celular3Input" />
         </p:panelGrid>
     </div>
 

@@ -17,6 +17,7 @@ import com.lades.sihv.model.User;
 import com.lades.sihv.model.UserId;
 import com.lades.sihv.model.Cliente;
 import com.lades.sihv.model.ClienteId;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -28,6 +29,8 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
     public void cadastrarPessoa(Pessoa pessoa) {
         pessoa.setExclusaoLogica(false);
         pessoa.setCadDataHora(getObjData());
+        emailOpcional(pessoa);
+        cepOpcional(pessoa);
         getDaoGenerico().save(pessoa);
     }
 
@@ -35,10 +38,7 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
         FisicaId fisicaId = new FisicaId();
         fisicaId.setFkPessoa(pessoa.getPkPessoa());
         fisica.setId(fisicaId);
-        if ("".equals(fisica.getRg())) {
-            fisica.setRg("Não Informado");
-            System.out.println("=========================== RG-não-informado");
-        }
+        rgOpcional(fisica);
         getDaoGenerico().save(fisica);
     }
 
@@ -71,40 +71,51 @@ public class PessoaMetodosDeCadastro extends AbstractBean {
 
     /*O método é utilizado para controlar
     a persistência das variáveis telefone e celular*/
-    public void cadastrarTelefones(Pessoa pessoa, Telefone telefone, Telefone celular) {
-        if (!"".equals(telefone.getNumero())) {
-            telefone.setPessoa(pessoa);
-            getDaoGenerico().save(telefone);
+    public void cadastrarTelefones(Pessoa pessoa, List<Telefone> telefoneList) {
+        try {
+            int index = 0;
+            for (Telefone telefone : telefoneList) {
+                System.out.println("BACK-END WARNING: phone " + index + " [ public void cadastrarTelefones() ]");
+                if (telefone != null) {
+                    if (!telefone.getNumero().equals("")) {
+                        telefone.setPessoa(pessoa);
+                        getDaoGenerico().save(telefone);
+                    }
+                }
+                index++;
+            }
+        } catch (Exception e) {
+            System.out.println("BACK-END WARNING: ERROR registering phone [ public void cadastrarTelefones() ]" + e.getMessage());
         }
-        celular.setPessoa(pessoa);
-        getDaoGenerico().save(celular);
     }
 
-    public void emailOpcional(Pessoa pessoa) {
+    private void emailOpcional(Pessoa pessoa) {
         if ("".equals(pessoa.getEmail())) {
             pessoa.setEmail("naoInformado@naoInformado.com");
-            System.out.println("=========================== email-não-informado");
+            System.out.println("BACK-END WARNING: Email not informed [ private void emailOpcional() ]");
         }
     }
 
-    public void cepOpcional(Pessoa pessoa) {
+    private void cepOpcional(Pessoa pessoa) {
         if ("".equals(pessoa.getCep())) {
             pessoa.setCep("NãoInform");
-            System.out.println("=========================== CEP-não-informado");
+            System.out.println("BACK-END WARNING: CEP not informed [ private void cepOpcional() ]");
         }
     }
 
-    public boolean cpfOpcional(Pessoa pessoa, boolean cpfOpcional) {
-        if ("".equals(pessoa.getCpfCnpj()) && cpfOpcional == false) {
-            Random random = new Random();
-            String var = ""+random.nextInt(9999999);
-            var = var + ""+random.nextInt(9999999);
-            System.out.println("=========================== "+"SIHV"+var);
-            pessoa.setCpfCnpj("SIHV"+var);
-            System.out.println("=========================== CPF-não-informado");
-        }
+    public void cpfRandom(Pessoa pessoa) {
+        Random random = new Random();
+        String var = "" + random.nextInt(9999999);
+        var = var + "" + random.nextInt(9999999);
+        pessoa.setCpfCnpj("SIHV" + var);
+        System.out.println("BACK-END WARNING: CPF not informed [ public void cpfRandom() ]: SIHV" + var);
+    }
 
-        return !cpfOpcional;
+    private void rgOpcional(Fisica fisica) {
+        if ("".equals(fisica.getRg())) {
+            fisica.setRg("Não Informado");
+            System.out.println("BACK-END WARNING: RG not informed [ private void rgOpcional() ]");
+        }
     }
 
     private Security security() {
