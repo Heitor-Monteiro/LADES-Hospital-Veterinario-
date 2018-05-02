@@ -29,78 +29,78 @@ public class PessoaCheckCNPJ extends AbstractBean {
                 || CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999")
                 || (CNPJ.length() != 14)) {
             var = false;
-        }
+        } else {
 
-        char dig13, dig14;
-        int sm, i, r, num, peso;
+            char dig13, dig14;
+            int sm, i, r, num, peso;
 
 // "try" - protege o código para eventuais erros de conversao de tipo (int)
-        try {
+            try {
 // Calculo do 1o. Digito Verificador
-            sm = 0;
-            peso = 2;
-            for (i = 11; i >= 0; i--) {
+                sm = 0;
+                peso = 2;
+                for (i = 11; i >= 0; i--) {
 // converte o i-ésimo caractere do CNPJ em um número:
 // por exemplo, transforma o caractere '0' no inteiro 0
 // (48 eh a posição de '0' na tabela ASCII)
-                num = (int) (CNPJ.charAt(i) - 48);
-                sm = sm + (num * peso);
-                peso = peso + 1;
-                if (peso == 10) {
-                    peso = 2;
+                    num = (int) (CNPJ.charAt(i) - 48);
+                    sm = sm + (num * peso);
+                    peso = peso + 1;
+                    if (peso == 10) {
+                        peso = 2;
+                    }
                 }
-            }
 
-            r = sm % 11;
-            if ((r == 0) || (r == 1)) {
-                dig13 = '0';
-            } else {
-                dig13 = (char) ((11 - r) + 48);
-            }
+                r = sm % 11;
+                if ((r == 0) || (r == 1)) {
+                    dig13 = '0';
+                } else {
+                    dig13 = (char) ((11 - r) + 48);
+                }
 
 // Calculo do 2o. Digito Verificador
-            sm = 0;
-            peso = 2;
-            for (i = 12; i >= 0; i--) {
-                num = (int) (CNPJ.charAt(i) - 48);
-                sm = sm + (num * peso);
-                peso = peso + 1;
-                if (peso == 10) {
-                    peso = 2;
+                sm = 0;
+                peso = 2;
+                for (i = 12; i >= 0; i--) {
+                    num = (int) (CNPJ.charAt(i) - 48);
+                    sm = sm + (num * peso);
+                    peso = peso + 1;
+                    if (peso == 10) {
+                        peso = 2;
+                    }
                 }
-            }
 
-            r = sm % 11;
-            if ((r == 0) || (r == 1)) {
-                dig14 = '0';
-            } else {
-                dig14 = (char) ((11 - r) + 48);
-            }
+                r = sm % 11;
+                if ((r == 0) || (r == 1)) {
+                    dig14 = '0';
+                } else {
+                    dig14 = (char) ((11 - r) + 48);
+                }
 
 // Verifica se os dígitos calculados conferem com os dígitos informados.
-            if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13))) {
-                var = true;
-            } else {
+                if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13))) {
+                    var = true;
+                } else {
+                    var = false;
+                }
+            } catch (InputMismatchException erro) {
                 var = false;
             }
-        } catch (InputMismatchException erro) {
-            var = false;
         }
-        
         return var;
     }
-    
+
     public boolean checkCNPJ(Pessoa pessoa) {
         boolean var;
         var = MetodoCheckCNPJ(pessoa.getCpfCnpj());
         if (var) {
             System.out.println("BACK-END WARNING: Método checkCNPJ [CNPJ "
-                    +"("+ pessoa.getCpfCnpj() +")"+" Válido:" + var + "]");
+                    + "(" + pessoa.getCpfCnpj() + ")" + " Válido:" + var + "]");
         } else {
             getObjMessage().warn("Erro ao efetuar cadastro!", "CNPJ Inválido!");
             pessoa.setCpfCnpj("");
             System.out.println("BACK-END WARNING: Método checkCNPJ [CNPJ "
-                    +"("+ pessoa.getCpfCnpj() +")"+" Válido:" + var + "]");
+                    + "(" + pessoa.getCpfCnpj() + ")" + " Válido:" + var + "]");
         }
         return var;
     }
