@@ -46,11 +46,20 @@
 
 
                     <p:tab id="Confirmacao" title="Confirmação">
-                        <p:panel id="CadAnimalFinal"
-                                 header="Dados cadastrais do animal">
+                        <p:panel id="CadAnimalFinal">
                             <div class="ui-fluid">
 
-                                <p:panelGrid columns="2"
+                                <p:panelGrid columns="1"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-12">
+                                    <p:outputLabel value="Dados do proprietário:"
+                                                   style="color: #5f666c; 
+                                                   font-family: Open Sans, Helvetica, Arial;
+                                                   font-weight: bold ;" />
+                                </p:panelGrid>
+                                
+                                <p:panelGrid columns="4"
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3">
@@ -64,32 +73,49 @@
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().cpfCnpj}"
                                                    styleClass="outputLabel" />
-                                    
+
                                     <p:outputLabel value="Logradouro do cliente:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().logra}"
                                                    styleClass="outputLabel" />
-                                    
+
                                     <p:outputLabel value="Número da residencia:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().casaNumero}"
                                                    styleClass="outputLabel" />
-                                    
+
                                     <p:outputLabel value="Bairro:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().bairro}"
                                                    styleClass="outputLabel" />
-                                    
+
                                     <p:outputLabel value="Cidade:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().cidade}"
                                                    styleClass="outputLabel" />
-                                    
+
                                     <p:outputLabel value="Complemento:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.variaveisDeSessao.objetoPessoa().complemento}"
                                                    styleClass="outputLabel" />
+                                </p:panelGrid>
 
+                                <p:separator></p:separator>
+
+                                <p:panelGrid columns="1"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-4">
+                                    <p:outputLabel value="Dados do animal:"
+                                                   style="color: #5f666c; 
+                                                   font-family: Open Sans, Helvetica, Arial;
+                                                   font-weight: bold ;" />
+                                </p:panelGrid>
+
+                                <p:panelGrid columns="4"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3">
                                     <p:outputLabel value="RGHV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.animal.rghv}"
@@ -114,16 +140,17 @@
 
 
                                     <p:outputLabel value="Pelagem:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                                                   rendered="false"/>
                                     <p:outputLabel value="#{MBanimal.animal.pelagem}"
-                                                   styleClass="outputLabel" />
+                                                   styleClass="outputLabel" 
+                                                   rendered="false"/>
 
 
                                     <p:outputLabel value="Sexo:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
                                     <p:outputLabel value="#{MBanimal.animal.sexoAnimal}"
                                                    styleClass="outputLabel" />
-
 
 
                                     <p:outputLabel value="Data de nascimento:"
@@ -170,8 +197,6 @@
                                               icon="fa fa-home" />
                                 </div>
                             </div>
-
-
                         </p:panel>
                     </p:tab>
 
