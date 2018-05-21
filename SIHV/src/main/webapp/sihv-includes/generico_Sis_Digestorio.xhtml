@@ -9,7 +9,8 @@
         <p:panelGrid columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3"
+                     rendered="true">
 
 
             <p:outputLabel value="Está se alimentando normalmente:"
@@ -18,7 +19,7 @@
             <p:selectOneRadio id="Digestorio1"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.estaSeAlimentando}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.estaSeAlimentando}"
                               required="true"
                               requiredMessage="Informe se o animal está alimentando normalmente!"
                               style="margin-bottom: 20px;" >
@@ -37,7 +38,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio2" />
             <p:inputTextarea id="Digestorio2" 
-                             value="#{MBconsulta.formsExame.sisDigestorio.descriNaoSeAlimeta}"
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.descriNaoSeAlimeta}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -57,7 +58,7 @@
             <p:selectOneRadio id="Digestorio3"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.vomito}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.vomito}"
                               required="true"
                               requiredMessage="Informe se o animal está vômitando!"
                               style="margin-bottom: 20px;" >
@@ -75,7 +76,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio4" />
             <p:inputText id="Digestorio4" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.aspectoVomito}"
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.aspectoVomito}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -90,7 +91,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio5" />
             <p:inputTextarea id="Digestorio5" 
-                             value="#{MBconsulta.formsExame.sisDigestorio.evoluVomito}"
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluVomito}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -107,7 +108,7 @@
             <p:selectOneRadio id="Digestorio6"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.regurgitacao}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.regurgitacao}"
                               required="true"
                               requiredMessage="Informe se está ocorrendo regurgitação!"
                               style="margin-bottom: 20px;" >
@@ -124,7 +125,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio7" />
             <p:inputText id="Digestorio7" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluRegurgitacao}"
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluRegurgitacao}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -142,7 +143,7 @@
             <p:selectOneRadio id="Digestorio8"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.diarreia}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.diarreia}"
                               required="true"
                               requiredMessage="Informe se está apresentanto diarreia!"
                               style="margin-bottom: 20px;" >
@@ -160,7 +161,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio9" />
             <p:inputText id="Digestorio9" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.aspectDiarreia}"
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.aspectDiarreia}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -175,7 +176,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio10" />
             <p:inputText id="Digestorio10" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluDiarreia}"
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDiarreia}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -191,7 +192,7 @@
             <p:selectOneRadio id="Digestorio11"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.disquesiaTenesmo}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.disquesiaTenesmo}"
                               required="true"
                               requiredMessage="Informe se está apresentanto Disquesia/Tenesmo!"
                               style="margin-bottom: 20px;" >
@@ -207,7 +208,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Digestorio12" />
             <p:inputText id="Digestorio12" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluDisquesiaTenesmo}"
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDisquesiaTenesmo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -224,7 +225,7 @@
             <p:selectOneRadio id="Digestorio13"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.sistemaAfetado}"
+                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.sistemaAfetado}"
                               required="true"
                               requiredMessage="Informe se o sistema foi afetado!"
                               style="margin-bottom: 20px;" >

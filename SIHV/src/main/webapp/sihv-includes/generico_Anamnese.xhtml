@@ -6,478 +6,723 @@
 
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
-                     id="Anamnese0"
+
+
+        <p:panelGrid id="AnamnesePanel1"
+                     columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-2, ui-grid-col-3, ui-grid-col-4" >
+
+
+            <p:outputLabel value="Peso corporal do animal:"
+                           for="Anamnese2Input"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;" />
+            <p:selectOneMenu id="Anamnese1Input"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.escalaPeso}"
+                             required="true"
+                             requiredMessage="Escolha uma escala de peso!"
+                             style="margin-bottom: 20px;">
+                <f:selectItem itemLabel="kg" itemValue="kg" />
+                <f:selectItem itemLabel="g" itemValue="g" />
+            </p:selectOneMenu>
+            
+            
+            
+            
+            <p:inputNumber id="Anamnese2Input" 
+                           value="#{MBconsulta.formsExame.controlAnamnese.anamnese.pesoCorp}"
+                           title="Informe o peso atual do animal"
+                           decimalSeparator=","
+                           thousandSeparator="."
+                           maxlength="7"
+                           maxValue="2000"
+                           decimalPlaces="3"
+                           required="true" 
+                           requiredMessage="Informe o peso atual do animal!"
+                           validatorMessage="Formato incorreto para peso!"
+                           style="margin-bottom: 20px;" />
+            
+            
+            <p:message id="Anamnese2Messager"
+                       for="Anamnese2Input" />
+        </p:panelGrid>
+
+
+        <p:panelGrid id="AnamnesePanel2"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
+
+            <p:outputLabel id="Anamnese3Label"
+                           value="Queixa principal/Evolução:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese3Input" />
+            <p:inputTextarea id="Anamnese3Input"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.queixaPrincipal}"
+                             required="true"
+                             requiredMessage="Informe a queixa principal!"
+                             style="margin-bottom: 20px;"
+                             maxlength="300" />
+            <p:message id="Anamnese3Messager"
+                       for="Anamnese3Input" />
+
+        </p:panelGrid>
+
+
+        <p:panelGrid id="AnamnesePanel3"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
+
+            <p:outputLabel id="Anamnese4Label"
+                           value="Já foi tratado:"
+                           rendered="true"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese4Input" />
+            <p:selectOneButton id="Anamnese4Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado}"
+                               required="true"
+                               requiredMessage="Informe se o animal já foi tratado!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese5Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese5Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+                <p:ajax update="AnamnesePanel3" />
+            </p:selectOneButton>
+            <p:message id="Anamnese4Messager"
+                       for="Anamnese4Input" />
+
+
+            <p:outputLabel id="Anamnese5Label"
+                           value="Medicação/dose:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado == 'Sim'}"
+                           for="Anamnese5Input" />
+            <p:inputTextarea id="Anamnese5Input"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.medicacaoDose}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado == 'Sim'}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado == 'Sim'}"
+                             requiredMessage="Informe o campo medicação/dose!"
+                             maxlength="1000"
+                             style="margin-bottom: 20px;" />
+            <p:message id="Anamnese5Messager"
+                       for="Anamnese5Input"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado == 'Sim'}"/>
+        </p:panelGrid>
+
+
+        <p:panelGrid id="AnamnesePanel-AntecMorb"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
 
-            <p:outputLabel value="Escala de peso:"
-                           for="Anamnese26"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:selectOneRadio id="Anamnese26"
-                              layout="responsive"
-                              columns="3"
-                              value="#{MBconsulta.formsExame.anamnese.escalaPeso}"
-                              required="true"
-                              requiredMessage="Escolha uma escala de peso!">
-                <f:selectItem itemLabel="g" itemValue="g" />
-                <f:selectItem itemLabel="kg" itemValue="kg" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese26" />
-
-
-
-
-            <p:outputLabel value="Peso corporal do animal:"
-                           for="Anamnese27"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:inputText id="Anamnese27"
-                         value="#{MBconsulta.formsExame.anamnese.pesoCorp}"
-                         title="Informe o peso atual do animal"
-                         maxlength="5"
-                         required="true"
-                         requiredMessage="Informe o peso atual do animal!"
-                         validatorMessage="Formato incorreto para peso!">
-                <f:validateDoubleRange minimum="0.001" maximum="15000" />
-            </p:inputText>
-            <p:message for="Anamnese27" />
-            
-            
-            
-            <p:outputLabel value="Queixa principal/Evolução:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese1" />
-            <p:inputTextarea id="Anamnese1"
-                             value="#{MBconsulta.formsExame.anamnese.queixaPrincipal}"
-                             required="true"
-                             requiredMessage="Informe a queixa principal!"
-                             style="margin-bottom: 20px;"
-                             maxlength="300" />
-            <p:message for="Anamnese1" />
-
-
-
-
-
-            <p:outputLabel value="Já foi tratado:"
+            <p:outputLabel id="AnamneseAntecMorb1Label"
+                           value="Antecedentes mórbidos:"
                            rendered="true"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese2" />
-            <p:selectOneRadio id="Anamnese2"
-                              rendered="true"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.anamnese.jaFoiTratado}"
-                              required="true"
-                              requiredMessage="Informe se o animal já foi tratado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-
-            </p:selectOneRadio>
-            <p:message for="Anamnese2" />
-
-
-
-
-
-            <p:outputLabel value="Medicação/dose:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese3" />
-            <p:inputTextarea id="Anamnese3"
-                             value="#{MBconsulta.formsExame.anamnese.medicacaoDose}"
-                             required="false"
-                             requiredMessage="Informe o campo medicação/dose!"
-                             style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese3" />
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="AnamneseAntecMorb1Input" />
+            <p:selectOneButton id="AnamneseAntecMorb1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                               required="true"
+                               requiredMessage="Informe antecedentes mórbidos!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="true">
+                    <p:effect type="bounce" event="load" for="AnamneseAntecMorb2Label"/>
+                    <p:effect type="bounce" event="load" for="AnamneseAntecMorb2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="AnamnesePanel-AntecMorb" />
+            </p:selectOneButton>
+            <p:message id="AnamneseAntecMorb1Messager"
+                       for="AnamneseAntecMorb1Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Antecedentes mórbidos:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese4" />
-            <p:inputTextarea id="Anamnese4"
-                             value="#{MBconsulta.formsExame.anamnese.antecMorbido}"
+            <p:outputLabel id="AnamneseAntecMorb2Label"
+                           value="Descrição de antecedentes mórbidos:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                           for="AnamneseAntecMorb2Input" />
+            <p:inputTextarea id="AnamneseAntecMorb2Input"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.antecMorbido}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
                              required="true"
-                             requiredMessage="Informe antecedentes mórbidos!"
+                             requiredMessage="Descreva antecedentes mórbidos!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese4" />
+                             maxlength="254" />
+            <p:message id="AnamneseAntecMorb2Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                       for="AnamneseAntecMorb2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel-histoFamiliar"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Histórico familiar:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese5" />
-            <p:inputTextarea id="Anamnese5" 
-                             value="#{MBconsulta.formsExame.anamnese.histoFamiliar}"
+            <p:outputLabel id="AnamnesehistoFamiliar1Label"
+                           value="Histórico familiar:"
+                           rendered="true"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="AnamnesehistoFamiliar1Input" />
+            <p:selectOneButton id="AnamnesehistoFamiliar1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                               required="true"
+                               requiredMessage="Informe o histórico familiar!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="true">
+                    <p:effect type="bounce" event="load" for="AnamnesehistoFamiliar2Label"/>
+                    <p:effect type="bounce" event="load" for="AnamnesehistoFamiliar2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota" />
+                <p:ajax update="AnamnesePanel-histoFamiliar" />
+            </p:selectOneButton>
+            <p:message id="AnamnesehistoFamiliar1Messager"
+                       for="AnamnesehistoFamiliar1Input" />
+
+
+            <p:outputLabel id="AnamnesehistoFamiliar2Label"
+                           value="Descrição do histórico familiar:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                           for="AnamnesehistoFamiliar2Input" />
+            <p:inputTextarea id="AnamnesehistoFamiliar2Input" 
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.histoFamiliar}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
                              required="true"
-                             requiredMessage="Informe o histórico familiar!" 
+                             requiredMessage="Descreva o histórico familiar!" 
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese5" />
+                             maxlength="254" />
+            <p:message id="AnamnesehistoFamiliar2Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                       for="AnamnesehistoFamiliar2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel5"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Alimentação (Dieta caseira):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese6" />
-            <p:selectOneRadio id="Anamnese6"
-                              value="#{MBconsulta.formsExame.anamnese.alimentacaoCaseira}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o tipo de alimentação!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:outputLabel id="Anamnese8Label"
+                           value="Alimentação (Dieta caseira):"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese8Input" />
+            <p:selectOneButton id="Anamnese8Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira}"
+                               required="true"
+                               requiredMessage="Informe o tipo de alimentação!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese9Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese9Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese6" />
+                <p:ajax update="AnamnesePanel5" />
+            </p:selectOneButton>
+            <p:message id="Anamnese8Messager"
+                       for="Anamnese8Input" />
 
 
-
-
-            <p:outputLabel value="Descrição da dieta caseira:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese7" />
-            <p:inputTextarea id="Anamnese7" 
-                             value="#{MBconsulta.formsExame.anamnese.descriCaseira}"
-                             required="false"
+            <p:outputLabel id="Anamnese9Label"
+                           value="Descrição da dieta caseira:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira == 'Sim'}"
+                           for="Anamnese9Input" />
+            <p:inputTextarea id="Anamnese9Input" 
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.descriCaseira}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira == 'Sim'}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira == 'Sim'}"
                              requiredMessage="Descreva a dieta caseira!" 
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese7" />
+                             maxlength="254" />
+            <p:message id="Anamnese9Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira == 'Sim'}"
+                       for="Anamnese9Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel6"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-
-            <p:outputLabel value="Alimentação (Ração):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese8" />
-            <p:selectOneRadio id="Anamnese8"
-                              value="#{MBconsulta.formsExame.anamnese.alimentacaoRacao}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o tipo de alimentação!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:outputLabel id="Anamnese10Label"
+                           value="Alimentação (Ração):"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese10Input" />
+            <p:selectOneButton id="Anamnese10Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao}"
+                               required="true"
+                               requiredMessage="Informe o tipo de alimentação!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese11Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese11Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese8" />
+                <p:ajax update="AnamnesePanel6" />
+            </p:selectOneButton>
+            <p:message id="Anamnese10Messager"
+                       for="Anamnese10Input" />
 
 
-
-
-            <p:outputLabel value="Descrição da dieta por ração:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese9" />
-            <p:inputTextarea id="Anamnese9" 
-                             value="#{MBconsulta.formsExame.anamnese.descriRacao}"
-                             required="false"
+            <p:outputLabel id="Anamnese11Label"
+                           value="Descrição da dieta por ração:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao == 'Sim'}"
+                           for="Anamnese11Input" />
+            <p:inputTextarea id="Anamnese11Input" 
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.descriRacao}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao == 'Sim'}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao == 'Sim'}"
                              requiredMessage="Descreva a dieta por ração!" 
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese9" />
+                             maxlength="254" />
+            <p:message id="Anamnese11Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao == 'Sim'}"
+                       for="Anamnese11Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel7"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-
-            <p:outputLabel value="Vacinação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese10" />
-            <p:selectManyCheckbox id="Anamnese10"
-                                  value="#{MBconsulta.formsExame.vacinacao}"
+            <p:outputLabel id="Anamnese12Label"
+                           value="Vacinação:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese12Input" />
+            <p:selectManyCheckbox id="Anamnese12Input"
+                                  value="#{MBconsulta.formsExame.controlAnamnese.vacinacao}"
                                   layout="responsive"
                                   columns="1"
                                   required="true"
                                   requiredMessage="Informe o tipo de vacina!"
                                   style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Anti-rábica" itemValue="Anti-rábica" />
-                <f:selectItem itemLabel="V8" itemValue="V8" />
-                <f:selectItem itemLabel="Outras" itemValue="Outras" />
+                <f:selectItem itemLabel="Múltiplas" itemValue="Múltiplas" />
+                <f:selectItem itemLabel="Outras" itemValue="Outras">
+                    <p:effect type="bounce" event="load" for="Anamnese13Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese13Input"/>
+                    <p:effect type="bounce" event="load" for="Anamnese14Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese14Input"/>
+                </f:selectItem>
+                <p:ajax update="AnamnesePanel7" />
             </p:selectManyCheckbox>
-            <p:message for="Anamnese10" />
-            
-            
-            
+            <p:message id="Anamnese12Messager"
+                       for="Anamnese12Input" />
 
 
-            <p:outputLabel value="Sobre a vacina:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese11" />
-            <p:inputTextarea id="Anamnese11" 
-                             value="#{MBconsulta.formsExame.anamnese.sobreVacina}"
-                             required="false"
+
+
+
+            <p:outputLabel id="Anamnese13Label"
+                           value="Sobre a vacina:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                           for="Anamnese13Input" />
+            <p:inputTextarea id="Anamnese13Input" 
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.sobreVacina}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
                              requiredMessage="Descreva a vacina!" 
                              style="margin-bottom: 20px;"
-                             maxlength="100" />
-            <p:message for="Anamnese11" />
+                             maxlength="254" />
+            <p:message id="Anamnese13Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                       for="Anamnese13Input" />
 
 
 
 
-            <p:outputLabel value="Origem da vacina:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese12" />
-            <p:selectOneRadio id="Anamnese12"
-                              value="#{MBconsulta.formsExame.anamnese.origemVacina}"
+            <p:outputLabel id="Anamnese14Label"
+                           value="Origem da vacina:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                           for="Anamnese14Input" />
+            <p:selectOneRadio id="Anamnese14Input"
+                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.origemVacina}"
                               layout="responsive"
                               columns="2"
-                              required="false"
+                              rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                              required="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
                               requiredMessage="Informe a origem da vacina!"
                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Nacional" itemValue="Nacional" />
                 <f:selectItem itemLabel="Importada" itemValue="Importada" />
             </p:selectOneRadio>
-            <p:message for="Anamnese12" />
+            <p:message id="Anamnese14Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
+                       for="Anamnese14Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel8"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-
-
-            <p:outputLabel value="Vermifugação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese13" />
-            <p:selectOneRadio id="Anamnese13"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.anamnese.vermifugacao}"
-                              required="true"
-                              requiredMessage="Informe a vermifugação!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:outputLabel id="Anamnese15Label"
+                           value="Vermifugação:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese15Input" />
+            <p:selectOneButton id="Anamnese15Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao}"
+                               required="true"
+                               requiredMessage="Informe a vermifugação!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese16Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese16Input"/>
+                    <p:effect type="bounce" event="load" for="Anamnese17Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese17Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese13" />
+                <p:ajax update="AnamnesePanel8" />
+            </p:selectOneButton>
+            <p:message id="Anamnese15Messager"
+                       for="Anamnese15Input" />
 
 
 
-            <p:outputLabel value="Qual/Dose vermifugação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese14" />
-            <p:inputText id="Anamnese14" 
-                         value="#{MBconsulta.formsExame.anamnese.doseVermifugacao}"
-                         required="false"
+            <p:outputLabel id="Anamnese16Label"
+                           value="Qual/Dose vermifugação:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
+                           for="Anamnese16Input" />
+            <p:inputText id="Anamnese16Input" 
+                         value="#{MBconsulta.formsExame.controlAnamnese.anamnese.doseVermifugacao}"
+                         rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
+                         required="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Anamnese14" />
+            <p:message id="Anamnese16Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
+                       for="Anamnese16Input" />
 
 
 
-            <p:outputLabel value="Data: aplicação de vermifugação"
-                           for="Anamnese15"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:calendar id="Anamnese15"
-                        value="#{MBconsulta.formsExame.anamnese.dataVermifugacao}"
+            <p:outputLabel id="Anamnese17Label"
+                           value="Data: aplicação de vermifugação"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
+                           for="Anamnese17Input"/>
+            <p:calendar id="Anamnese17Input"
+                        value="#{MBconsulta.formsExame.controlAnamnese.anamnese.dataVermifugacao}"
                         maxlength="10" 
                         disabled="false" 
-                        title="" 
+                        title=""
+                        rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
                         required="false"  
                         requiredMessage="" 
                         locale="de" navigator="true"  
                         pattern="yyyy-mm-dd" 
                         style="margin-bottom: 20px;" /> 
-            <p:message for="Anamnese15" /> 
+            <p:message id="Anamnese17Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
+                       for="Anamnese17Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel9"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Ectoparasitas:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese16" />
-            <p:selectOneRadio id="Anamnese16"
-                              value="#{MBconsulta.formsExame.anamnese.ectoparasitas}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo Ectoparasitas!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:outputLabel id="Anamnese18Label"
+                           value="Ectoparasitas:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese18Input" />
+            <p:selectOneButton id="Anamnese18Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas}"
+                               required="true"
+                               requiredMessage="Informe o campo Ectoparasitas!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese19Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese19Input"/>
+                    <p:effect type="bounce" event="load" for="Anamnese20Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese20Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese16" />
+                <p:ajax update="AnamnesePanel9, AnamnesePanel10" />
+            </p:selectOneButton>
+            <p:message id="Anamnese18Messager"
+                       for="Anamnese18Input" />
 
 
-
-
-
-            <p:outputLabel value="Qual ectoparasitas:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese17" />
-            <p:selectManyCheckbox id="Anamnese17"
-                                  value="#{MBconsulta.formsExame.qualEctoparasitas}"
+            <p:outputLabel id="Anamnese19Label"
+                           value="Qual ectoparasitas:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                           for="Anamnese19Input" />
+            <p:selectManyCheckbox id="Anamnese19Input"
+                                  value="#{MBconsulta.formsExame.controlAnamnese.qualEctoparasitas}"
                                   layout="responsive"
                                   columns="1"
-                                  required="false"
+                                  rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                                  required="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
                                   requiredMessage=""
                                   style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Ixodidiose (Carrapatos)" itemValue="Ixodidiose" />
                 <f:selectItem itemLabel="Puliciose (Pulgas)" itemValue="Puliciose" />
                 <f:selectItem itemLabel="Phthiraptera (Piolhos)" itemValue="Phthiraptera" />
             </p:selectManyCheckbox>
-            <p:message for="Anamnese17" />
-            
+            <p:message id="Anamnese19Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                       for="Anamnese19Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Controle de ectoparasitas:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese18" />
-            <p:selectOneRadio id="Anamnese18"
-                              value="#{MBconsulta.formsExame.anamnese.controEctoparasitas}"
-                              layout="responsive"
-                              columns="2"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="Anamnese20Label"
+                           value="Controle de ectoparasitas:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                           for="Anamnese20Input" />
+            <p:selectOneButton id="Anamnese20Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.controEctoparasitas}"
+                               rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                               required="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                               requiredMessage=""
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese18" />
+                <p:ajax update="AnamnesePanel10" />
+            </p:selectOneButton>
+            <p:message id="Anamnese20Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
+                       for="Anamnese20Input" />            
+        </p:panelGrid>
 
 
-            
-            
-            
-            
-            
+        <p:panelGrid id="AnamnesePanel10"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Qual produto utilizado:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese19" />
-            <p:inputText id="Anamnese19" 
-                         value="#{MBconsulta.formsExame.anamnese.qualProdutoUtiliza}"
+            <p:outputLabel id="Anamnese21Label"
+                           value="Qual produto utilizado:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                           for="Anamnese21Input" />
+            <p:inputText id="Anamnese21Input"
+                         value="#{MBconsulta.formsExame.controlAnamnese.anamnese.qualProdutoUtiliza}"
                          title="Produto utilizado no controle de ectoparasitas"
-                         required="false"
+                         rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                         required="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
-            <p:message for="Anamnese19" />
+                         maxlength="50">
+                <p:effect type="bounce" event="load" for="Anamnese21Label"/>
+                <p:effect type="bounce" event="load" for="Anamnese21Input"/>
+            </p:inputText>
+            <p:message id="Anamnese21Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                       for="Anamnese21Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel11"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Acesso à rua:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese20" />
-            <p:selectManyCheckbox id="Anamnese20"
-                                  value="#{MBconsulta.formsExame.acessoArua}"
-                                  layout="responsive"
-                                  columns="1"
-                                  required="true"
-                                  requiredMessage="Informe o acesso a rua!"
-                                  style="margin-bottom: 20px;" >
+            <p:outputLabel id="Anamnese22Label"
+                           value="Acesso à rua:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese22Input" />
+            <p:selectOneMenu id="Anamnese22Input"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.acessoRua}"
+                             required="true"
+                             requiredMessage="Informe o acesso a rua!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
                 <f:selectItem itemLabel="Sozinho" itemValue="Sozinho" />
                 <f:selectItem itemLabel="Acompanhado" itemValue="Acompanhado" />
-            </p:selectManyCheckbox>
-            <p:message for="Anamnese20" />
-            
-            
-            
-            
+                <f:selectItem itemLabel="Sozinho/Acompanhado" itemValue="Sozinho/Acompanhado" />
+            </p:selectOneMenu>
+            <p:message id="Anamnese22Messager"
+                       for="Anamnese22Input" />
 
 
-            <p:outputLabel value="Descrição do habitat:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese21" />
-            <p:inputTextarea id="Anamnese21"
+            <p:outputLabel id="Anamnese23Label"
+                           value="Descrição do habitat:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese23Input" />
+            <p:inputTextarea id="Anamnese23Input"
                              required="true"
                              requiredMessage="Descreva o habitat!"
-                             value="#{MBconsulta.formsExame.anamnese.descriHabitat}"
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.descriHabitat}"
                              title="Descreva o habitat em que o animal vive"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese21" />
+                             maxlength="254" />
+            <p:message id="Anamnese23Messager"
+                       for="Anamnese23Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="AnamnesePanel12"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-            <p:outputLabel value="Contactantes:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese22" />
-            <p:selectOneRadio id="Anamnese22"
-                              value="#{MBconsulta.formsExame.anamnese.contactantes}"
-                              layout="responsive"
-                              columns="2"
-                              required="false"
-                              requiredMessage="" 
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:outputLabel id="Anamnese24Label"
+                           value="Contactantes:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Anamnese24Input" />
+            <p:selectOneButton id="Anamnese24Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes}"
+                               required="true"
+                               requiredMessage="" 
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Anamnese25Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese25Input"/>
+                    <p:effect type="bounce" event="load" for="Anamnese26Label"/>
+                    <p:effect type="bounce" event="load" for="Anamnese26Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese22" />
+                <p:ajax update="AnamnesePanel12" />
+            </p:selectOneButton>
+            <p:message id="Anamnese24Messager"
+                       for="Anamnese24Input" />
 
 
-
-
-            <p:outputLabel value="Descrição dos contactantes:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese23" />
-            <p:inputTextarea id="Anamnese23" 
-                             value="#{MBconsulta.formsExame.anamnese.descriContactantes}"
+            <p:outputLabel id="Anamnese25Label"
+                           value="Descrição dos contactantes:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                           for="Anamnese25Input" />
+            <p:inputTextarea id="Anamnese25Input" 
+                             value="#{MBconsulta.formsExame.controlAnamnese.anamnese.descriContactantes}"
                              title="informado se o animal convive com outros bichos, exemplo, o animal convive com um gato e 5 cachorros"
-                             required="false"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
-            <p:message for="Anamnese23" />
+                             maxlength="254" />
+            <p:message id="Anamnese25Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                       for="Anamnese25Input" />
 
 
-
-
-
-            <p:outputLabel value="Mesmo problema em contactantes?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese24" />
-            <p:selectOneRadio id="Anamnese24"
-                              value="#{MBconsulta.formsExame.anamnese.mesmoProbleContacta}"
-                              layout="responsive"
-                              columns="2"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="Anamnese26Label"
+                           value="Mesmo problema em contactantes?"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                           for="Anamnese26Input" />
+            <p:selectOneButton id="Anamnese26Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.mesmoProbleContacta}"
+                               rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                               required="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                               requiredMessage=""
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese24" />
+            </p:selectOneButton>
+            <p:message id="Anamnese26Messager"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
+                       for="Anamnese26Input" />
+        </p:panelGrid>
 
+        <p:panelGrid id="AnamnesePanel13"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
-
-            <p:outputLabel value="Contato com roedores"
+            <p:outputLabel id="Anamnese27Label"
+                           value="Contato com roedores"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Anamnese25" />
-            <p:selectOneRadio id="Anamnese25"
-                              value="#{MBconsulta.formsExame.anamnese.contatoRoedor}"
-                              layout="responsive"
-                              columns="2"
-                              required="false"
-                              requiredMessage="">
+                           for="Anamnese27Input" />
+            <p:selectOneButton id="Anamnese27Input"
+                               value="#{MBconsulta.formsExame.controlAnamnese.anamnese.contatoRoedor}"
+                               required="true"
+                               requiredMessage="">
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Anamnese25" />
-
-
-
-
-
-            <p:commandButton type="reset"
-                             style="padding: 15px 0px 15px 0px;
-                             margin-top: 25px;"
-                             id="LimparCamposAnamne" 
-                             icon="fa fa-eraser" 
-                             value="Limpar campos" />
-
-        </p:panelGrid>    
+            </p:selectOneButton>
+            <p:message id="Anamnese27Messager"
+                       for="Anamnese27Input" />
+        </p:panelGrid>
     </div>
 
 
