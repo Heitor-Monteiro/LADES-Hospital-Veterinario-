@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
+// Generated 21/05/2018 11:38:42 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -196,7 +196,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="pulso", nullable=false, length=19)
+    @Column(name="pulso", nullable=false, length=48)
     public String getPulso() {
         return this.pulso;
     }
@@ -206,7 +206,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="estadoPulso", nullable=false, length=17)
+    @Column(name="estadoPulso", nullable=false, length=25)
     public String getEstadoPulso() {
         return this.estadoPulso;
     }

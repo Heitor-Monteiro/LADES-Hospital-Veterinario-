@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/04/2018 01:57:02 by Hibernate Tools 4.3.1
+// Generated 21/05/2018 11:38:42 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -172,7 +172,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="medicacaoDose", length=200)
+    @Column(name="medicacaoDose", length=1000)
     public String getMedicacaoDose() {
         return this.medicacaoDose;
     }
@@ -182,7 +182,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="antecMorbido", nullable=false, length=200)
+    @Column(name="antecMorbido", nullable=false, length=254)
     public String getAntecMorbido() {
         return this.antecMorbido;
     }
@@ -192,7 +192,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="histoFamiliar", nullable=false, length=200)
+    @Column(name="histoFamiliar", nullable=false, length=254)
     public String getHistoFamiliar() {
         return this.histoFamiliar;
     }
@@ -212,7 +212,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="descriCaseira", length=200)
+    @Column(name="descriCaseira", length=254)
     public String getDescriCaseira() {
         return this.descriCaseira;
     }
@@ -232,7 +232,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="descriRacao", length=200)
+    @Column(name="descriRacao", length=254)
     public String getDescriRacao() {
         return this.descriRacao;
     }
@@ -242,7 +242,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="vacinacao", nullable=false, length=22)
+    @Column(name="vacinacao", nullable=false, length=30)
     public String getVacinacao() {
         return this.vacinacao;
     }
@@ -252,7 +252,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="sobreVacina", length=100)
+    @Column(name="sobreVacina", length=254)
     public String getSobreVacina() {
         return this.sobreVacina;
     }
@@ -352,7 +352,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="descriHabitat", length=200)
+    @Column(name="descriHabitat", length=254)
     public String getDescriHabitat() {
         return this.descriHabitat;
     }
@@ -372,7 +372,7 @@ public class Anamnese  implements java.io.Serializable {
     }
 
     
-    @Column(name="descriContactantes", length=200)
+    @Column(name="descriContactantes", length=254)
     public String getDescriContactantes() {
         return this.descriContactantes;
     }
