@@ -5,32 +5,21 @@
  */
 package com.lades.sihv.classeMolde;
 
-import com.lades.sihv.controller.BeautyText;
-import com.lades.sihv.model.Anamnese;
-import com.lades.sihv.model.AnamneseId;
-import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Consulta;
-import com.lades.sihv.model.ExameFisico;
-import com.lades.sihv.model.ExameFisicoId;
-import com.lades.sihv.model.ExameImage;
-import com.lades.sihv.model.ExameImageId;
-import com.lades.sihv.model.SisDigestorio;
-import com.lades.sihv.model.SisDigestorioId;
-import com.lades.sihv.model.SisMuscEsque;
-import com.lades.sihv.model.SisMuscEsqueId;
-import com.lades.sihv.model.SisNeurologico;
-import com.lades.sihv.model.SisNeurologicoId;
-import com.lades.sihv.model.SisOftalmico;
-import com.lades.sihv.model.SisOftalmicoId;
-import com.lades.sihv.model.SisRespCardio;
-import com.lades.sihv.model.SisRespCardioId;
-import com.lades.sihv.model.SisTegumentar;
-import com.lades.sihv.model.SisTegumentarId;
-import com.lades.sihv.model.SisUrinarioMamaria;
-import com.lades.sihv.model.SisUrinarioMamariaId;
-import com.lades.sihv.model.User;
+import com.lades.sihv.controller.consulta.ViewSisExame;
+import com.lades.sihv.controller.consulta.ControllerConsulta;
+import com.lades.sihv.controller.consulta.ControllerAnamnese;
+import com.lades.sihv.controller.consulta.ControllerExameFisico;
+import com.lades.sihv.controller.consulta.ControllerSisDigestorio;
+import com.lades.sihv.controller.consulta.ControllerSisRespCardio;
+import com.lades.sihv.controller.consulta.ControllerSisUrinarioMamaria;
+import com.lades.sihv.controller.consulta.ControllerSisTegumentar;
+import com.lades.sihv.controller.consulta.ControllerSisNeurologico;
+import com.lades.sihv.controller.consulta.ControllerSisOftalmico;
+import com.lades.sihv.controller.consulta.ControllerSisMuscEsque;
+
 import java.io.Serializable;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -38,323 +27,139 @@ import java.util.Date;
  */
 public class FormsExames implements Serializable {
 
-    public Consulta consulta;
+    private ControllerConsulta controlConsulta;
+    private ControllerAnamnese controlAnamnese;
+    private ControllerExameFisico controlExameFisico;
+    private ControllerSisDigestorio controlSisDigestorio;
+    private ControllerSisRespCardio controlSisRespCardio;
+    private ControllerSisUrinarioMamaria controlSisUrinarioMamaria;
+    private ControllerSisTegumentar controleSisTegumentar;
+    private ControllerSisNeurologico controleSisNeurologico;
+    private ControllerSisOftalmico controleSisOftalmico;
+    private ControllerSisMuscEsque controleSisMuscEsque;
 
-    public Anamnese anamnese;
-    public AnamneseId anamneseId;
-    public String vacinacao[];
-    public String qualEctoparasitas[];
-    public String acessoArua[];
+    private final List<ViewSisExame> listViewExames = new ArrayList<>();
 
-    private SisDigestorio sisDigestorio;
-    private SisDigestorioId sisDigestorioId;
+    public boolean islistViewExames(int index) {
 
-    private SisRespCardio sisRespCardio;
-    private SisRespCardioId sisRespCardioId;
-
-    private SisUrinarioMamaria sisUrinarioMamaria;
-    private SisUrinarioMamariaId sisUrinarioMamariaId;
-
-    private SisTegumentar sisTegumentar;
-    private SisTegumentarId sisTegumentarId;
-
-    private SisNeurologico sisNeurologico;
-    private SisNeurologicoId sisNeurologicoId;
-
-    private SisOftalmico sisOftalmico;
-    private SisOftalmicoId sisOftalmicoId;
-
-    private SisMuscEsque sisMuscEsque;
-    private SisMuscEsqueId sisMuscEsqueId;
-
-    private ExameFisico exameFisico;
-    private ExameFisicoId exameFisicoId;
-
-    private ExameImage exameImageRaioX;
-    private ExameImageId exameImageRaioXId;
-
-    private ExameImage exameImageUltra;
-    private ExameImageId exameImageUltraId;
-
-    //------Métodos para Consulta-------------------------------------- 
-    public void prepareConsulta(Date date, Animais animal, User medicoVET) {
-        getConsulta().setDataConsulta(date);
-        consulta.setSistemasAfetados(sistemasAfetados());
-        consulta.setAnimais(animal);
-        consulta.setUser(medicoVET);
-    }
-
-    public Consulta getConsulta() {
-        if (consulta == null) {
-            consulta = new Consulta();
+        if (listViewExames.isEmpty()) {
+            listViewExames.add(index, new ViewSisExame());
+        } else if (listViewExames.size() < (index + 1)) {
+            listViewExames.add(index, new ViewSisExame());
         }
-        return consulta;
+
+        return listViewExames.get(index).isSystemVisionVariable();
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para Anamnese--------------------------------------
-    public void prepareAnamnese() {
-        BeautyText Stringer = new BeautyText();
-        anamneseId = new AnamneseId();
-        anamneseId.setConsultaFkConsulta(consulta.getPkConsulta());
-        anamnese.setId(anamneseId);
-        anamnese.setVacinacao(Stringer.concatenaSTRING(vacinacao));
-        anamnese.setQualEctoparasitas(Stringer.concatenaSTRING(qualEctoparasitas));
-        anamnese.setAcessoRua(Stringer.concatenaSTRING(acessoArua));
-    }
-
-    public Anamnese getAnamnese() {
-        if (anamnese == null) {
-            anamnese = new Anamnese();
+    public void teste(int index) {
+        if (listViewExames.isEmpty()) {
+            listViewExames.add(index, new ViewSisExame());
+        } else if (listViewExames.size() < (index + 1)) {
+            listViewExames.add(index, new ViewSisExame());
         }
-        return anamnese;
-    }
 
-    public void setAnamnese(Anamnese anamnese) {
-        this.anamnese = anamnese;
-    }
-
-    public String[] getVacinacao() {
-        return vacinacao;
-    }
-
-    public void setVacinacao(String[] vacinacao) {
-        this.vacinacao = vacinacao;
-    }
-
-    public String[] getQualEctoparasitas() {
-        return qualEctoparasitas;
-    }
-
-    public void setQualEctoparasitas(String[] qualEctoparasitas) {
-        this.qualEctoparasitas = qualEctoparasitas;
-    }
-
-    public String[] getAcessoArua() {
-        return acessoArua;
-    }
-
-    public void setAcessoArua(String[] acessoArua) {
-        this.acessoArua = acessoArua;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisDigestorio---------------------------------
-    public void prepareSisDigestorio() {
-        sisDigestorioId = new SisDigestorioId();
-        sisDigestorioId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisDigestorio.setId(sisDigestorioId);
-    }
-
-    public SisDigestorio getSisDigestorio() {
-        if (sisDigestorio == null) {
-            sisDigestorio = new SisDigestorio();
+        if (listViewExames.get(index).isSystemVisionVariable() == false) {
+            listViewExames.get(index).setSystemVisionVariable(true);
+        } else {
+            listViewExames.get(index).setSystemVisionVariable(false);
         }
-        return sisDigestorio;
     }
-
-    public void setSisDigestorio(SisDigestorio sisDigestorio) {
-        this.sisDigestorio = sisDigestorio;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisRespCardio---------------------------------
-    public void prepareSisRespCardio() {
-        sisRespCardioId = new SisRespCardioId();
-        sisRespCardioId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisRespCardio.setId(sisRespCardioId);
-    }
-
-    public SisRespCardio getSisRespCardio() {
-        if (sisRespCardio == null) {
-            sisRespCardio = new SisRespCardio();
-        }
-        return sisRespCardio;
-    }
-
-    public void setSisRespCardio(SisRespCardio sisRespCardio) {
-        this.sisRespCardio = sisRespCardio;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisUrinarioMamaria----------------------------
-    public void prepareSisUrinarioMamaria() {
-        sisUrinarioMamariaId = new SisUrinarioMamariaId();
-        sisUrinarioMamariaId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisUrinarioMamaria.setId(sisUrinarioMamariaId);
-    }
-
-    public SisUrinarioMamaria getSisUrinarioMamaria() {
-        if (sisUrinarioMamaria == null) {
-            sisUrinarioMamaria = new SisUrinarioMamaria();
-        }
-        return sisUrinarioMamaria;
-    }
-
-    public void setSisUrinarioMamaria(SisUrinarioMamaria sisUrinarioMamaria) {
-        this.sisUrinarioMamaria = sisUrinarioMamaria;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisTegumentar---------------------------------
-    public void prepareSisTegumentar() {
-        sisTegumentarId = new SisTegumentarId();
-        sisTegumentarId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisTegumentar.setId(sisTegumentarId);
-    }
-
-    public SisTegumentar getSisTegumentar() {
-        if (sisTegumentar == null) {
-            sisTegumentar = new SisTegumentar();
-        }
-        return sisTegumentar;
-    }
-
-    public void setSisTegumentar(SisTegumentar sisTegumentar) {
-        this.sisTegumentar = sisTegumentar;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisNeurologico--------------------------------
-    public void prepareSisNeurologico() {
-        sisNeurologicoId = new SisNeurologicoId();
-        sisNeurologicoId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisNeurologico.setId(sisNeurologicoId);
-    }
-
-    public SisNeurologico getSisNeurologico() {
-        if (sisNeurologico == null) {
-            sisNeurologico = new SisNeurologico();
-        }
-        return sisNeurologico;
-    }
-
-    public void setSisNeurologico(SisNeurologico sisNeurologico) {
-        this.sisNeurologico = sisNeurologico;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisOftalmico----------------------------------
-    public void prepareSisOftalmico() {
-        sisOftalmicoId = new SisOftalmicoId();
-        sisOftalmicoId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisOftalmico.setId(sisOftalmicoId);
-    }
-
-    public SisOftalmico getSisOftalmico() {
-        if (sisOftalmico == null) {
-            sisOftalmico = new SisOftalmico();
-        }
-        return sisOftalmico;
-    }
-
-    public void setSisOftalmico(SisOftalmico sisOftalmico) {
-        this.sisOftalmico = sisOftalmico;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para SisMuscEsque----------------------------------
-    public void prepareSisMuscEsque() {
-        sisMuscEsqueId = new SisMuscEsqueId();
-        sisMuscEsqueId.setConsultaFkConsulta(consulta.getPkConsulta());
-        sisMuscEsque.setId(sisMuscEsqueId);
-    }
-
-    public SisMuscEsque getSisMuscEsque() {
-        if (sisMuscEsque == null) {
-            sisMuscEsque = new SisMuscEsque();
-        }
-        return sisMuscEsque;
-    }
-
-    public void setSisMuscEsque(SisMuscEsque sisMuscEsque) {
-        this.sisMuscEsque = sisMuscEsque;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para ExameFisico-----------------------------------
-    public void prepareExameFisico() {
-        exameFisicoId = new ExameFisicoId();
-        exameFisicoId.setConsultaFkConsulta(consulta.getPkConsulta());
-        exameFisico.setId(exameFisicoId);
-    }
-
-    public ExameFisico getExameFisico() {
-        if (exameFisico == null) {
-            exameFisico = new ExameFisico();
-        }
-        return exameFisico;
-    }
-
-    public void setExameFisico(ExameFisico exameFisico) {
-        this.exameFisico = exameFisico;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para ExameImageRaioX-------------------------------
-    public void prepareExameImageRaioX(Date date, String codRaioX) {
-        exameImageRaioXId = new ExameImageId();
-        exameImageRaioXId.setConsultaFkConsulta(consulta.getPkConsulta());
-        exameImageRaioX.setId(exameImageRaioXId);
-        exameImageRaioX.setTipo("RAIOX");
-        exameImageRaioX.setDataExaImage(date);
-        exameImageRaioX.setStatus("Pendente");
-        exameImageRaioX.setCodExameImage(codRaioX);
-    }
-
-    public ExameImage getExameImageRaioX() {
-        if(exameImageRaioX == null){
-            exameImageRaioX = new ExameImage();
-        }
-        return exameImageRaioX;
-    }
-
-    public void setExameImageRaioX(ExameImage exameImageRaioX) {
-        this.exameImageRaioX = exameImageRaioX;
-    }
-    //-----------------------------------------------------------------
-
-    //------Métodos para ExameImageUltra-------------------------------
-    public void prepareExameImageUltra(Date date, String codUltrasson) {
-        exameImageUltraId = new ExameImageId();
-        exameImageUltraId.setConsultaFkConsulta(consulta.getPkConsulta());
-        exameImageUltra.setId(exameImageUltraId);
-        exameImageUltra.setTipo("ULTRASSOM");
-        exameImageUltra.setDataExaImage(date);
-        exameImageUltra.setStatus("Pendente");
-        exameImageUltra.setCodExameImage(codUltrasson);
-    }
-
-    public ExameImage getExameImageUltra() {
-        if(exameImageUltra == null){
-            exameImageUltra = new ExameImage();
-        }
-        return exameImageUltra;
-    }
-
-    public void setExameImageUltra(ExameImage exameImageUltra) {
-        this.exameImageUltra = exameImageUltra;
-    }
-    //-----------------------------------------------------------------
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     /*O método verifica quais sistema
     de anamnese foram afetados.*/
     public String sistemasAfetados() {
         String sisAfetados = "";
 
-        sisAfetados += ("Sim".equals(sisDigestorio.getSistemaAfetado())) ? "Sistema digestório e glândulas anexas, " : "";
-        sisAfetados += ("Sim".equals(sisRespCardio.getSistemaAfetado())) ? "Sistema respiratório e cardiovascular, " : "";
-        sisAfetados += ("Sim".equals(sisUrinarioMamaria.getSistemaAfetado())) ? "Sistema gênito-urinário e glândulas mamárias, " : "";
-        sisAfetados += ("Sim".equals(sisTegumentar.getSistemaAfetado())) ? "Sistema tegumentar, " : "";
-        sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado())) ? "Sistema neurológico, " : "";
-        sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado())) ? "Sistema oftálmico, " : "";
-        sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado())) ? "Sistema músculo-esquelético, " : "";
+//        sisAfetados += ("Sim".equals(sisDigestorio.getSistemaAfetado())) ? "Sistema digestório e glândulas anexas, " : "";
+//        sisAfetados += ("Sim".equals(sisRespCardio.getSistemaAfetado())) ? "Sistema respiratório e cardiovascular, " : "";
+//        sisAfetados += ("Sim".equals(sisUrinarioMamaria.getSistemaAfetado())) ? "Sistema gênito-urinário e glândulas mamárias, " : "";
+//        sisAfetados += ("Sim".equals(sisTegumentar.getSistemaAfetado())) ? "Sistema tegumentar, " : "";
+//        sisAfetados += ("Sim".equals(sisNeurologico.getSistemaAfetado())) ? "Sistema neurológico, " : "";
+//        sisAfetados += ("Sim".equals(sisOftalmico.getSistemaAfetado())) ? "Sistema oftálmico, " : "";
+//        sisAfetados += ("Sim".equals(sisMuscEsque.getSistemaAfetado())) ? "Sistema músculo-esquelético, " : "";
         sisAfetados += ("".equals(sisAfetados)) ? "Não houve sistemas afetados" : "";
 
         return sisAfetados;
+    }
+    
+//  GETs & SETs
+
+    public ControllerConsulta getControlConsulta() {
+        if (controlConsulta == null) {
+            controlConsulta = new ControllerConsulta();
+        }
+        return controlConsulta;
+    }
+    
+    public ControllerAnamnese getControlAnamnese() {
+        if (controlAnamnese == null) {
+            controlAnamnese = new ControllerAnamnese();
+        }
+        return controlAnamnese;
+    }
+
+    public ControllerExameFisico getControlExameFisico() {
+        if (controlExameFisico == null) {
+            controlExameFisico = new ControllerExameFisico();
+        }
+        return controlExameFisico;
+    }
+
+    public ControllerSisDigestorio getControlSisDigestorio() {
+        if (controlSisDigestorio == null) {
+            controlSisDigestorio = new ControllerSisDigestorio();
+        }
+        return controlSisDigestorio;
+    }
+
+    public ControllerSisRespCardio getControlSisRespCardio() {
+        return controlSisRespCardio;
+    }
+
+    public ControllerSisUrinarioMamaria getControlSisUrinarioMamaria() {
+        if (controlSisUrinarioMamaria == null) {
+            controlSisUrinarioMamaria = new ControllerSisUrinarioMamaria();
+        }
+        return controlSisUrinarioMamaria;
+    }
+
+    public ControllerSisTegumentar getControleSisTegumentar() {
+        if (controleSisTegumentar == null) {
+            controleSisTegumentar = new ControllerSisTegumentar();
+        }
+        return controleSisTegumentar;
+    }
+
+    public ControllerSisNeurologico getControleSisNeurologico() {
+        if (controleSisNeurologico == null) {
+            controleSisNeurologico = new ControllerSisNeurologico();
+        }
+        return controleSisNeurologico;
+    }
+
+    public ControllerSisOftalmico getControleSisOftalmico() {
+        if (controleSisOftalmico == null) {
+            controleSisOftalmico = new ControllerSisOftalmico();
+        }
+        return controleSisOftalmico;
+    }
+
+    public ControllerSisMuscEsque getControleSisMuscEsque() {
+        if (controleSisMuscEsque == null) {
+            controleSisMuscEsque = new ControllerSisMuscEsque();
+        }
+        return controleSisMuscEsque;
     }
 }
