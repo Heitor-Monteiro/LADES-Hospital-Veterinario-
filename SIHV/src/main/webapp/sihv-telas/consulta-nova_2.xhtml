@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title"  >
+            <h:outputText value="Nova consulta 2 BETA"></h:outputText>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <f:metadata>
+                
+            </f:metadata>
+
+            <h:form>
+                <p:growl id="growl" sticky="true" showDetail="true"/>
+
+                <p:wizard nextLabel="próximo"
+                          backLabel="voltar" 
+                          showNavBar="true" 
+                          showStepStatus="true">
+
+                    <p:tab id="etapa1" title="Dados do cliente" >
+                        <p:panel>
+                            <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="etapa2" title="Anamnese" >
+                        <p:panel>
+                            <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
+                        </p:panel>
+                    </p:tab>
+
+
+
+                    <p:tab id="etapa3" title="Exame físico geral" >
+                        <p:panel>
+                            <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
+                        </p:panel>
+                    </p:tab>
+
+                    <p:tab id="etapa4" title="Exame físico específico" >
+
+                        <p:fieldset legend="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS"
+
+                                    toggleable="true"
+                                    toggleSpeed="500">
+                            <p:ajax event="toggle" listener="#{MBconsulta.formsExame.teste(0)}" />
+
+<!--<p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />-->
+
+                            <!--<ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml"/>-->
+
+                        </p:fieldset>
+
+                        <!--
+                        <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema respiratório e cardiovascular" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema tegumentar" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema neurológico" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema oftálmico" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
+
+                        </p:panel>
+
+
+                        <p:panel header="Sistema músculo-esquelético" >
+
+                            <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
+
+                        </p:panel>
+                        -->
+
+                    </p:tab>
+
+                    <p:tab id="etapa5" title="Finalizar" >
+                        <p:panel id="CODconsulta">
+                            <div class="ui-fluid">
+                                <p:panelGrid columns="2"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3" >
+
+
+
+                                    <p:outputLabel value="Código de atendimento:"
+                                                   style="color: #555;
+                                                   font-weight: bold;
+                                                   font-size: 16px; " />
+                                    <p:outputLabel value="#{MBconsulta.maxCodConsulta}"
+                                                   style="color: #555;
+                                                   font-weight: bold;
+                                                   font-size: 16px; " />
+
+
+
+                                    <p:outputLabel value="Proprietário:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.nome}"
+                                                   style="color: #555;" />
+
+
+                                    <p:outputLabel value="CPF/CNPJ:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.cpfCnpj}"
+                                                   style="color: #555;" />
+
+
+
+                                    <p:outputLabel value="Nome do animal:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.nomeAnimal }"
+                                                   style="color: #555;" />
+
+
+
+                                    <p:outputLabel value="Espécie:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.especie}"
+                                                   style="color: #555;" />
+
+
+
+                                    <p:outputLabel value="Código do animal:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.rghv}"
+                                                   style="color: #555;" />
+
+
+
+
+                                    <p:outputLabel value="Data do atendimento:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.objData}"
+                                                   style="color: #555;" />
+
+
+
+
+
+                                    <p:outputLabel value="Valor da consulta:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                                                   for="valorConsult" />
+                                    <p:inputNumber id="valorConsult" 
+                                                   value="#{MBconsulta.formsExame.controlConsulta.consulta.valorConsulta}"
+                                                   decimalSeparator=","
+                                                   thousandSeparator="."
+                                                   maxlength="6"
+                                                   maxValue="9999"
+                                                   decimalPlaces="2"
+                                                   required="true" 
+                                                   requiredMessage="Informe o valor da consulta!"
+                                                   style="margin-bottom: 20px;" />
+                                </p:panelGrid>
+
+
+                                <p:panelGrid columns="2"
+                                             layout="grid"
+                                             style="margin-top: 30px"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
+
+
+
+                                    <p:outputLabel value="Confirmação do medico veterinário:"
+                                                   style="color: #00B59B; font-weight: bold ; font-size: 17px " />
+                                    <p:outputLabel value="" />
+
+
+
+
+                                    <p:outputLabel value="Nome do residente:"
+                                                   rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel value="#{MBconsulta.variaveisDeSessao.fullName}"
+                                                   rendered="#{MBconsulta.objTools.showButtonPrint}" />
+
+
+
+
+                                    <p:outputLabel value="Informe o CRMV:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:inputText id="ConfimMED1" 
+                                                 value="#{MBconsulta.confirmeCRMV}"
+                                                 title="Ex.: CRMV-PA 00000"
+                                                 required="true"
+                                                 requiredMessage="Informe o CRMV para concretiza a consulta!"
+                                                 maxlength="50"/>
+
+
+
+                                    <p:outputLabel value="Senha de acesso ao sistema:"
+                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:password id="ConfimMED2"
+                                                feedback="false"
+                                                inline="true"
+                                                value="#{MBconsulta.confirmeSENHA}"
+                                                title="Residente: digite a senha que você utiliza para acessar o sistema."
+                                                maxlength="100"
+                                                required="true" 
+                                                requiredMessage="Informe a senha de residente!" />
+
+
+
+                                </p:panelGrid>
+
+                                <div class="ui-g">
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:commandButton value="Imprimir"
+                                                         rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                                         type="button"
+                                                         icon="fa fa-print">
+                                            <p:printer target="CODconsulta" />
+                                        </p:commandButton>
+                                    </div>
+
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:button value="Nova consulta"
+                                                  rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                                  outcome="/sihv-telas/consulta-nova"
+                                                  icon="fa fa-user-plus" />
+                                    </div>
+
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:commandButton  action="#{MBconsulta.adicionarNovaConsulta()}"
+                                                          value="Salvar consulta"
+                                                          icon="fa fa-save"
+                                                          update="growl, CODconsulta" 
+                                                          disabled="#{MBconsulta.objTools.showButtonPrint}">
+                                            <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                            Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                            <p:ajax onstart="PF('statusDialog').show()"
+                                                    onsuccess="PF('statusDialog').hide()" />
+                                        </p:commandButton>
+                                    </div>
+
+                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
+                                        <p:button value="Sair" 
+                                                  outcome="/index"
+                                                  icon="fa fa-home" />
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </p:tab>
+
+                </p:wizard>
+
+
+
+
+                <p:dialog modal="true"
+                          resizable="false"
+                          header="Values"
+                          widgetVar="dlg"
+                          showEffect="fold">
+                    <p:panelGrid id="display"
+                                 columns="2"
+                                 columnClasses="label,value">
+                        <h:outputText value="German:" />
+                        <h:outputText >
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                    </p:panelGrid>
+                </p:dialog>
+            </h:form>
+            <div  style="height: 198px;" />
+        </ui:define>
+    </ui:composition>
+
+</html>
