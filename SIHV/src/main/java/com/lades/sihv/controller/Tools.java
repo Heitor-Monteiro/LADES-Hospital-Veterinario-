@@ -42,5 +42,17 @@ public class Tools implements Serializable{
         RequestContext.getCurrentInstance().execute("wiz.hideBackNav();");
     }
 
-    
+    private boolean wizardNavBar;
+
+    public boolean isWizardNavBar() {
+        return wizardNavBar;
+    }
+
+    public void enableWizardNavBar() {
+        wizardNavBar = true;
+    }
+
+    public void disableWizardNavBar() {
+        wizardNavBar = false;
+    }
 }

@@ -56,7 +56,7 @@ public class MBconsulta extends AbstractBean {
                         .ConfirmeConsulta(collectionClasses.getAnimais(),
                                  getVariaveisDeSessao().getDadosUSER());
 
-                getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
+//                getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
 //                getFormsExame().getControlSisDigestorio().ConfirmeSisDigestorio(consulta);
 //                getFormsExame().getControlSisRespCardio().ConfirmeSisRespCardio(consulta);
@@ -76,8 +76,10 @@ public class MBconsulta extends AbstractBean {
                 getObjMessage().info("Cosulta efetuada.", "Consulta realizada com sucesso.");
                 getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
                 getObjTools().setShowButtonPrint(true); //Habilitando visibilidade do botão para impressão
+                getObjTools().disableWizardNavBar();
             } catch (Exception e) {
                 getObjMessage().warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+                getObjTools().disableWizardNavBar();
             }
         }
     }

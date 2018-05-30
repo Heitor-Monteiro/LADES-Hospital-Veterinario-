@@ -30,6 +30,14 @@
 
 /*---------------- Prime Faces modificações na estilizações ----------------*/
 
+/*TabView*/
+.ui-tabs .ui-tabs-nav.ui-widget-header li a {
+    color: #5f666c!important;
+    font-weight: bold!important;
+    font-size: 1em!important;
+}
+/*TabView*/
+
 
 /*WIZARD*/
 .ui-state-highlight{

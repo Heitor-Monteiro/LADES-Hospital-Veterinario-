@@ -43,6 +43,7 @@ public class ControllerSisRespCardio extends AbstractBean {
     public SisRespCardio getSisRespCardio() {
         if (sisRespCardio == null) {
             sisRespCardio = new SisRespCardio();
+            sisRespCardio.setSistemaAfetado("Não");
         }
         return sisRespCardio;
     }

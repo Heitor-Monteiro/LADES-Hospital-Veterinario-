@@ -43,6 +43,7 @@ public class ControllerSisOftalmico extends AbstractBean {
     public SisOftalmico getSisOftalmico() {
         if (sisOftalmico == null) {
             sisOftalmico = new SisOftalmico();
+            sisOftalmico.setSistemaAfetado("Não");
         }
         return sisOftalmico;
     }

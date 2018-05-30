@@ -43,6 +43,7 @@ public class ControllerSisNeurologico extends AbstractBean {
     public SisNeurologico getSisNeurologico() {
         if (sisNeurologico == null) {
             sisNeurologico = new SisNeurologico();
+            sisNeurologico.setSistemaAfetado("Não");
         }
         return sisNeurologico;
     }

@@ -68,6 +68,25 @@ and open the template in the editor.
     padding: 4px 7px 4px 7px;
 }
 
+.floatingButton {
+    margin-top: 515px;
+    position: fixed;
+    z-index: 9998;
+}
+
+.floatingButtonStyle {
+    border-radius: 50%!important;
+    padding: 2px!important;
+    padding-bottom: 2px!important;
+    height: 50px!important;
+    width: 50px!important;
+    background: #009688!important;
+    color: #ffffff!important;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2)!important;
+}
+
+.floatingButtonStyle:hover {background-color: #007463!important;}
+
 #lattes:hover{
     background-color: #00B59B;
     color: #fff;
@@ -78,5 +97,14 @@ and open the template in the editor.
 @media(max-width: 960px){
     #dev{font-size: 17px;}
     #func{font-size: 11px;}
+    .floatingButton {
+        margin-left: 80%;
+    }
+}
+
+@media (min-width: 960px) {
+    .floatingButton {
+        margin-left: 93.2%;
+    }
 }
 /*--------Fim Sobre nós-----------*/

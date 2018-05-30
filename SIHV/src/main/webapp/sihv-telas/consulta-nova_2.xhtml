@@ -15,105 +15,487 @@
         <ui:define name="content">
 
             <f:metadata>
-                
+                <f:viewAction action="#{login.objTools.enableWizardNavBar()}" />
             </f:metadata>
 
             <h:form>
                 <p:growl id="growl" sticky="true" showDetail="true"/>
 
                 <p:wizard nextLabel="próximo"
-                          backLabel="voltar" 
-                          showNavBar="true" 
-                          showStepStatus="true">
+                          backLabel="voltar"
+                          showNavBar="false" 
+                          showStepStatus="true"
+                          widgetVar="wiz">
 
-                    <p:tab id="etapa1" title="Dados do cliente" >
-                        <p:panel>
+                    <p:tab id="etapa1" title="1" titletip="Dados do proprietário">
+                        <p:panel header="Dados do proprietário">
                             <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
                         </p:panel>
                     </p:tab>
 
 
-                    <p:tab id="etapa2" title="Anamnese" >
-                        <p:panel>
-                            <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
-                        </p:panel>
+                    <p:tab id="etapa2" title="2" titletip="Anamnese e Exame físico geral">
+                        <p:tabView>
+                            <p:tab title="Anamnese">
+                                <p:panel style="margin-top: -15px;
+                                         margin-left: -20px;
+                                         margin-right: -20px;
+                                         margin-bottom: -16px;">
+                                    <!--<ui:include src="/sihv-includes/generico_Anamnese.xhtml" />-->
+                                </p:panel>
+                            </p:tab>
+                            <p:tab title="Exame físico geral">
+                                <p:panel style="margin-top: -15px;
+                                         margin-left: -20px;
+                                         margin-right: -20px;
+                                         margin-bottom: -16px;">
+                                    <!--<ui:include src="/sihv-includes/generico_Fisico.xhtml" />-->
+                                </p:panel>
+                            </p:tab>
+                        </p:tabView>
                     </p:tab>
 
 
+                    <p:tab id="etapa3" title="3" titletip="Exame físico específico">
+                        <p:panel header="Exame físico específico">
 
-                    <p:tab id="etapa3" title="Exame físico geral" >
-                        <p:panel>
-                            <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
+                            <p:panel id="sisDigestorio-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisDigestorio-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisDigestorio1Label"
+                                                           value="Sistema digestório e glândulas anexas:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisDigestorio1Input"/>
+
+                                            <p:selectOneRadio id="sisDigestorio1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;" >
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisDigestorio-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisDigestorio1Messager"
+                                                       for="sisDigestorio1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisDigestorio-panelGrid2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisDigestorio-panelGrid2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisRespCardio-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisRespCardio-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisRespCardio1Label"
+                                                           value="Sistema respiratório e cardiovascular:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisRespCardio1Input"/>
+
+                                            <p:selectOneRadio id="sisRespCardio1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisRespCardio-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisRespCardio1Messager"
+                                                       for="sisRespCardio1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisRespCardio-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisRespCardio-panel2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisUrinarioMamaria-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisUrinarioMamaria-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisUrinarioMamaria1Label"
+                                                           value="Sistema gênito-urinário e glândulas mamárias:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisUrinarioMamaria1Input"/>
+
+                                            <p:selectOneRadio id="sisUrinarioMamaria1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisUrinarioMamaria-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisUrinarioMamaria1Messager"
+                                                       for="sisUrinarioMamaria1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisUrinarioMamaria-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisUrinarioMamaria-panel2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisTegumentar-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisTegumentar-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisTegumentar1Label"
+                                                           value="Sistema tegumentar:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisTegumentar1Input"/>
+
+                                            <p:selectOneRadio id="sisTegumentar1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisTegumentar-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisTegumentar1Messager"
+                                                       for="sisTegumentar1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisTegumentar-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisTegumentar-panel2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisNeurologico-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisNeurologico-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisNeurologico1Label"
+                                                           value="Sistema neurológico:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisNeurologico1Input"/>
+
+                                            <p:selectOneRadio id="sisNeurologico1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisNeurologico-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisNeurologico1Messager"
+                                                       for="sisNeurologico1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisNeurologico-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisNeurologico-panel2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisOftalmico-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisOftalmico-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisOftalmico1Label"
+                                                           value="Sistema oftálmico:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisOftalmico1Input"/>
+
+                                            <p:selectOneRadio id="sisOftalmico1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisOftalmico-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisOftalmico1Messager"
+                                                       for="sisOftalmico1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisOftalmico-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisOftalmico-panel2" />
+                                </p:panel>
+                            </p:panel>
+
+
+                            <p:panel id="sisMuscEsque-panel"
+                                     toggleable="true" 
+                                     collapsed="false"
+                                     toggleableHeader="false"
+                                     toggleSpeed="500"
+                                     closable="false"
+                                     closeSpeed="500"
+                                     style="margin-top: 10px;
+                                     background: none;
+                                     border: none;">
+
+
+                                <f:facet name="header">
+                                    <div class="ui-fluid">
+                                        <p:panelGrid id="sisMuscEsque-panelGrid1"
+                                                     columns="3"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                                                     style="margin-bottom: -30px;
+                                                     margin-top: -20px;" >
+
+                                            <p:outputLabel id="sisMuscEsque1Label"
+                                                           value="Sistema músculo-esquelético:"
+                                                           rendered="true"
+                                                           style="color: #5f666c;
+                                                           font-family: Open Sans, Helvetica, Arial;
+                                                           font-weight: bold;"
+                                                           for="sisMuscEsque1Input"/>
+
+                                            <p:selectOneRadio id="sisMuscEsque1Input"
+                                                              columns="2"
+                                                              rendered="true"
+                                                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.sistemaAfetado}"
+                                                              required="true"
+                                                              requiredMessage="Informe se houve alteração!"
+                                                              style="font-weight: normal;">
+                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
+                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
+                                                              itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisMuscEsque-panel"/>
+                                            </p:selectOneRadio>
+                                            <p:message id="sisMuscEsque1Messager"
+                                                       for="sisMuscEsque1Input" />
+                                        </p:panelGrid>
+                                    </div>
+                                </f:facet>
+
+
+                                <p:panel id="sisMuscEsque-panel2"
+                                         style="background: none;
+                                         margin-left: -38px;
+                                         margin-right: -38px;
+                                         border: none;"
+                                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.sistemaAfetado == 'Sim'}" >
+                                    <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
+                                    <p:effect type="shake" event="load" speed="200"
+                                              for="sisMuscEsque-panel2" />
+                                </p:panel>
+                            </p:panel>
+
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="etapa4" title="Exame físico específico" >
-
-                        <p:fieldset legend="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS"
-
-                                    toggleable="true"
-                                    toggleSpeed="500">
-                            <p:ajax event="toggle" listener="#{MBconsulta.formsExame.teste(0)}" />
-
-<!--<p:ajax event="toggle" listener="#{fieldsetView.handleToggle}" update="msgs" />-->
-
-                            <!--<ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml"/>-->
-
-                        </p:fieldset>
-
-                        <!--
-                        <p:panel header="SISTEMA DIGESTÓRIO E GLÂNDULAS ANEXAS" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema respiratório e cardiovascular" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema gênito-urinário e glândulas mamárias" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema tegumentar" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema neurológico" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema oftálmico" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
-
-                        </p:panel>
-
-
-                        <p:panel header="Sistema músculo-esquelético" >
-
-                            <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
-
-                        </p:panel>
-                        -->
-
-                    </p:tab>
-
-                    <p:tab id="etapa5" title="Finalizar" >
+                    <p:tab id="etapa5" title="Finalizar">
                         <p:panel id="CODconsulta">
                             <div class="ui-fluid">
                                 <p:panelGrid columns="2"

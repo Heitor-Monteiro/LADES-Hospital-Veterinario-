@@ -5,7 +5,6 @@
  */
 package com.lades.sihv.classeMolde;
 
-import com.lades.sihv.controller.consulta.ViewSisExame;
 import com.lades.sihv.controller.consulta.ControllerConsulta;
 import com.lades.sihv.controller.consulta.ControllerAnamnese;
 import com.lades.sihv.controller.consulta.ControllerExameFisico;
@@ -16,10 +15,7 @@ import com.lades.sihv.controller.consulta.ControllerSisTegumentar;
 import com.lades.sihv.controller.consulta.ControllerSisNeurologico;
 import com.lades.sihv.controller.consulta.ControllerSisOftalmico;
 import com.lades.sihv.controller.consulta.ControllerSisMuscEsque;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -38,45 +34,6 @@ public class FormsExames implements Serializable {
     private ControllerSisOftalmico controleSisOftalmico;
     private ControllerSisMuscEsque controleSisMuscEsque;
 
-    private final List<ViewSisExame> listViewExames = new ArrayList<>();
-
-    public boolean islistViewExames(int index) {
-
-        if (listViewExames.isEmpty()) {
-            listViewExames.add(index, new ViewSisExame());
-        } else if (listViewExames.size() < (index + 1)) {
-            listViewExames.add(index, new ViewSisExame());
-        }
-
-        return listViewExames.get(index).isSystemVisionVariable();
-    }
-
-    public void teste(int index) {
-        if (listViewExames.isEmpty()) {
-            listViewExames.add(index, new ViewSisExame());
-        } else if (listViewExames.size() < (index + 1)) {
-            listViewExames.add(index, new ViewSisExame());
-        }
-
-        if (listViewExames.get(index).isSystemVisionVariable() == false) {
-            listViewExames.get(index).setSystemVisionVariable(true);
-        } else {
-            listViewExames.get(index).setSystemVisionVariable(false);
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
     /*O método verifica quais sistema
     de anamnese foram afetados.*/
     public String sistemasAfetados() {
@@ -93,16 +50,15 @@ public class FormsExames implements Serializable {
 
         return sisAfetados;
     }
-    
-//  GETs & SETs
 
+//  GETs & SETs
     public ControllerConsulta getControlConsulta() {
         if (controlConsulta == null) {
             controlConsulta = new ControllerConsulta();
         }
         return controlConsulta;
     }
-    
+
     public ControllerAnamnese getControlAnamnese() {
         if (controlAnamnese == null) {
             controlAnamnese = new ControllerAnamnese();
@@ -125,6 +81,9 @@ public class FormsExames implements Serializable {
     }
 
     public ControllerSisRespCardio getControlSisRespCardio() {
+        if (controlSisRespCardio == null) {
+            controlSisRespCardio = new ControllerSisRespCardio();
+        }
         return controlSisRespCardio;
     }
 

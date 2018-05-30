@@ -28,10 +28,10 @@
                 <f:selectItem itemLabel="kg" itemValue="kg" />
                 <f:selectItem itemLabel="g" itemValue="g" />
             </p:selectOneMenu>
-            
-            
-            
-            
+
+
+
+
             <p:inputNumber id="Anamnese2Input" 
                            value="#{MBconsulta.formsExame.controlAnamnese.anamnese.pesoCorp}"
                            title="Informe o peso atual do animal"
@@ -44,8 +44,8 @@
                            requiredMessage="Informe o peso atual do animal!"
                            validatorMessage="Formato incorreto para peso!"
                            style="margin-bottom: 20px;" />
-            
-            
+
+
             <p:message id="Anamnese2Messager"
                        for="Anamnese2Input" />
         </p:panelGrid>
@@ -141,7 +141,7 @@
                            for="AnamneseAntecMorb1Input" />
             <p:selectOneButton id="AnamneseAntecMorb1Input"
                                rendered="true"
-                               value="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                               value="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
                                required="true"
                                requiredMessage="Informe antecedentes mórbidos!"
                                style="margin-bottom: 20px;" >
@@ -151,7 +151,8 @@
                 </f:selectItem>
                 <f:selectItem itemLabel="N.D.N." itemValue="false"
                               itemDescription="Nada digno de nota"/>
-                <p:ajax update="AnamnesePanel-AntecMorb" />
+                <p:ajax update="AnamnesePanel-AntecMorb"
+                        listener="#{MBconsulta.formsExame.controlAnamnese.methodViewAntecMorbido()}" />
             </p:selectOneButton>
             <p:message id="AnamneseAntecMorb1Messager"
                        for="AnamneseAntecMorb1Input" />
@@ -162,17 +163,17 @@
                            style="color: #007463;
                            font-family: Open Sans, Helvetica, Arial;
                            font-weight: bold;"
-                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
                            for="AnamneseAntecMorb2Input" />
             <p:inputTextarea id="AnamneseAntecMorb2Input"
                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.antecMorbido}"
-                             rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
-                             required="true"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
                              requiredMessage="Descreva antecedentes mórbidos!"
                              style="margin-bottom: 20px;"
                              maxlength="254" />
             <p:message id="AnamneseAntecMorb2Messager"
-                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewAntecMorbido}"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
                        for="AnamneseAntecMorb2Input" />
         </p:panelGrid>
 
@@ -192,7 +193,7 @@
                            for="AnamnesehistoFamiliar1Input" />
             <p:selectOneButton id="AnamnesehistoFamiliar1Input"
                                rendered="true"
-                               value="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                               value="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(1).viewVariableBoolean}"
                                required="true"
                                requiredMessage="Informe o histórico familiar!"
                                style="margin-bottom: 20px;" >
@@ -202,7 +203,8 @@
                 </f:selectItem>
                 <f:selectItem itemLabel="N.D.N." itemValue="false"
                               itemDescription="Nada digno de nota" />
-                <p:ajax update="AnamnesePanel-histoFamiliar" />
+                <p:ajax update="AnamnesePanel-histoFamiliar"
+                        listener="#{MBconsulta.formsExame.controlAnamnese.methodViewHistoFamiliar()}" />
             </p:selectOneButton>
             <p:message id="AnamnesehistoFamiliar1Messager"
                        for="AnamnesehistoFamiliar1Input" />
@@ -213,17 +215,17 @@
                            style="color: #007463;
                            font-family: Open Sans, Helvetica, Arial;
                            font-weight: bold;"
-                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(1).viewVariableBoolean}"
                            for="AnamnesehistoFamiliar2Input" />
             <p:inputTextarea id="AnamnesehistoFamiliar2Input" 
                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.histoFamiliar}"
-                             rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                             rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(1).viewVariableBoolean}"
                              required="true"
                              requiredMessage="Descreva o histórico familiar!" 
                              style="margin-bottom: 20px;"
                              maxlength="254" />
             <p:message id="AnamnesehistoFamiliar2Messager"
-                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewHistoFamiliar}"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(1).viewVariableBoolean}"
                        for="AnamnesehistoFamiliar2Input" />
         </p:panelGrid>
 
@@ -568,13 +570,13 @@
                            style="color: #007463;
                            font-family: Open Sans, Helvetica, Arial;
                            font-weight: bold;"
-                           rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                           rendered="#{MBconsulta.formsExame.controlAnamnese.isViewQualProdutoUtiliza(2)}"
                            for="Anamnese21Input" />
             <p:inputText id="Anamnese21Input"
                          value="#{MBconsulta.formsExame.controlAnamnese.anamnese.qualProdutoUtiliza}"
                          title="Produto utilizado no controle de ectoparasitas"
-                         rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
-                         required="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                         rendered="#{MBconsulta.formsExame.controlAnamnese.isViewQualProdutoUtiliza(2)}"
+                         required="#{MBconsulta.formsExame.controlAnamnese.isViewQualProdutoUtiliza(2)}"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
                          maxlength="50">
@@ -582,7 +584,7 @@
                 <p:effect type="bounce" event="load" for="Anamnese21Input"/>
             </p:inputText>
             <p:message id="Anamnese21Messager"
-                       rendered="#{MBconsulta.formsExame.controlAnamnese.viewQualProdutoUtiliza}"
+                       rendered="#{MBconsulta.formsExame.controlAnamnese.isViewQualProdutoUtiliza(2)}"
                        for="Anamnese21Input" />
         </p:panelGrid>
 

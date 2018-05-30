@@ -43,6 +43,7 @@ public class ControllerSisMuscEsque extends AbstractBean {
     public SisMuscEsque getSisMuscEsque() {
         if (sisMuscEsque == null) {
             sisMuscEsque = new SisMuscEsque();
+            sisMuscEsque.setSistemaAfetado("Não");
         }
         return sisMuscEsque;
     }

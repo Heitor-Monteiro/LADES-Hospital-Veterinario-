@@ -1,9 +1,9 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
@@ -12,13 +12,13 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
 
 
-            
-            
+
+
             <p:outputLabel value="Olhos/Pupila:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico1" />
             <p:selectOneMenu id="oftalmico1"
-                             value="#{MBconsulta.formsExame.sisOftalmico.olhosPupila}"
+                             value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.olhosPupila}"
                              required="true"
                              requiredMessage="Informe se o animal apresenta perda de visão!"
                              style="margin-bottom: 20px;" >
@@ -29,27 +29,27 @@
                 <f:selectItem itemLabel="Estrabismo" itemValue="Estrabismo" />
                 <f:selectItem itemLabel="Midríase" itemValue="Midríase" />
                 <f:selectItem itemLabel="Miose" itemValue="Miose" />
-                
-                
+
+
             </p:selectOneMenu>
             <p:message for="oftalmico1" />
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
             <p:outputLabel value="Secreção ocular:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico2" />
             <p:selectOneRadio id="oftalmico2"
-                              value="#{MBconsulta.formsExame.sisOftalmico.secreOcular}"
-                             layout="responsive"
-                             columns="2"
-                             required="true"
-                             requiredMessage="Informe se o animal apresenta secreção ocular!"
-                             style="margin-bottom: 20px;" >
+                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOcular}"
+                              layout="responsive"
+                              columns="2"
+                              required="true"
+                              requiredMessage="Informe se o animal apresenta secreção ocular!"
+                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
@@ -68,7 +68,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico3" />
             <p:selectOneRadio id="oftalmico3"
-                              value="#{MBconsulta.formsExame.sisOftalmico.secreOcularUniBi}"
+                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOcularUniBi}"
                               layout="responsive"
                               columns="1"
                               required="false"
@@ -91,7 +91,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico4" />
             <p:inputText id="oftalmico4" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.secreOculaTipo}"
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOculaTipo}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -107,7 +107,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico5" />
             <p:inputTextarea id="oftalmico5" 
-                             value="#{MBconsulta.formsExame.sisOftalmico.secreOculaEvolu}"
+                             value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOculaEvolu}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
@@ -127,7 +127,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico6" />
             <p:selectOneRadio id="oftalmico6"
-                              value="#{MBconsulta.formsExame.sisOftalmico.blefaroespasmo}"
+                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.blefaroespasmo}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -143,21 +143,21 @@
 
 
 
-            
-            
-            
-            
+
+
+
+
             <p:outputLabel value="Comentário(Blefaroespasmo):"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico7" />
             <p:inputText id="oftalmico7" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.blefaroComenta}"
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.blefaroComenta}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
                          maxlength="50" />
             <p:message for="oftalmico7" />
-            
+
 
 
 
@@ -169,7 +169,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico8" />
             <p:selectOneRadio id="oftalmico8"
-                              value="#{MBconsulta.formsExame.sisOftalmico.exoftalmia}"
+                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.exoftalmia}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -179,42 +179,42 @@
                 <f:selectItem itemLabel="Não" itemValue="Não" />
             </p:selectOneRadio>
             <p:message for="oftalmico8" />
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
             <p:outputLabel value="Comentário(Exoftalmia):"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico9" />
             <p:inputText id="oftalmico9" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.exoftalComenta}"
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.exoftalComenta}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
                          maxlength="50" />
             <p:message for="oftalmico9" />
 
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
+
+
+
             <p:outputLabel value="O sistema foi afetado?"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="oftalmico10" />
             <p:selectOneRadio id="oftalmico10"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisOftalmico.sistemaAfetado}"
+                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.sistemaAfetado}"
                               required="true"
                               requiredMessage="Informe se o sistema foi afetado!"
                               style="margin-bottom: 20px;" >
@@ -224,5 +224,5 @@
             <p:message for="oftalmico10" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>

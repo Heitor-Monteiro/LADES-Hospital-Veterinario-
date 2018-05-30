@@ -43,6 +43,7 @@ public class ControllerSisTegumentar extends AbstractBean {
     public SisTegumentar getSisTegumentar() {
         if (sisTegumentar == null) {
             sisTegumentar = new SisTegumentar();
+            sisTegumentar.setSistemaAfetado("Não");
         }
         return sisTegumentar;
     }

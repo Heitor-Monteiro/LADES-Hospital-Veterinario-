@@ -43,6 +43,7 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     public SisUrinarioMamaria getSisUrinarioMamaria() {
         if (sisUrinarioMamaria == null) {
             sisUrinarioMamaria = new SisUrinarioMamaria();
+            sisUrinarioMamaria.setSistemaAfetado("Não");
         }
         return sisUrinarioMamaria;
     }

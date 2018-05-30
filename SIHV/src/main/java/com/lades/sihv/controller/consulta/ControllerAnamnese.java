@@ -7,9 +7,12 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.BeautyText;
+import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.AnamneseId;
 import com.lades.sihv.model.Consulta;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -21,9 +24,7 @@ public class ControllerAnamnese extends AbstractBean {
     private AnamneseId anamneseId;
     private String vacinacao[] = null;
     private String qualEctoparasitas[];
-    private boolean ViewAntecMorbido;
-    private boolean ViewHistoFamiliar;
-    private boolean ViewQualProdutoUtiliza;
+    private final List<RenderedFields> listViewFields = new ArrayList();
 
     private void prepareAnamnese(Consulta consulta) {
         try {
@@ -54,6 +55,8 @@ public class ControllerAnamnese extends AbstractBean {
         if (anamnese == null) {
             anamnese = new Anamnese();
             anamnese.setJaFoiTratado("Não");
+            methodViewAntecMorbido();
+            methodViewHistoFamiliar();
             anamnese.setAlimentacaoCaseira("Não");
 //            anamnese.setAlimentacaoRacao("Não");
             anamnese.setVermifugacao("Não");
@@ -77,14 +80,10 @@ public class ControllerAnamnese extends AbstractBean {
     }
 
     public boolean getViewVacinacaoOutro() {
-        return AnamneseArray(vacinacao, "Outras");
-    }
-
-    private boolean AnamneseArray(String list[], String texto) {
         boolean var = false;
-        if (list != null) {
-            for (String obj : list) {
-                var = obj.equals(texto);
+        if (vacinacao != null) {
+            for (String obj : vacinacao) {
+                var = obj.equals("Outras");
             }
         }
         return var;
@@ -101,41 +100,40 @@ public class ControllerAnamnese extends AbstractBean {
         this.qualEctoparasitas = qualEctoparasitas;
     }
 
-    public boolean isViewAntecMorbido() {
-        if (ViewAntecMorbido) {
+    public RenderedFields getListViewFields(int index) {
+        if (listViewFields.isEmpty()) {
+            listViewFields.add(index, new RenderedFields());
+        } else if (listViewFields.size() < (index + 1)) {
+            listViewFields.add(index, new RenderedFields());
+        }
+        return listViewFields.get(index);
+    }
+
+    public void methodViewAntecMorbido() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
             anamnese.setAntecMorbido("");
         } else {
             anamnese.setAntecMorbido("Nada digno de nota.");
         }
-        return ViewAntecMorbido;
     }
 
-    public void setViewAntecMorbido(boolean ViewAntecMorbido) {
-        this.ViewAntecMorbido = ViewAntecMorbido;
-    }
-
-    public boolean isViewHistoFamiliar() {
-        if (ViewHistoFamiliar) {
+    public void methodViewHistoFamiliar() {
+        if (getListViewFields(1).isViewVariableBoolean()) {
             anamnese.setHistoFamiliar("");
         } else {
             anamnese.setHistoFamiliar("Nada digno de nota.");
         }
-        return ViewHistoFamiliar;
     }
 
-    public void setViewHistoFamiliar(boolean ViewHistoFamiliar) {
-        this.ViewHistoFamiliar = ViewHistoFamiliar;
-    }
-
-    public boolean isViewQualProdutoUtiliza() {
+    public boolean isViewQualProdutoUtiliza(int index) {
         if (anamnese.getEctoparasitas().equals("Sim")
                 && anamnese.getControEctoparasitas() != null) {
-            ViewQualProdutoUtiliza = anamnese.getControEctoparasitas().equals("Sim");
+            getListViewFields(index).setViewVariableBoolean(
+                    anamnese.getControEctoparasitas().equals("Sim"));
         } else {
-            ViewQualProdutoUtiliza = false;
+            getListViewFields(index).setViewVariableBoolean(false);
             anamnese.setControEctoparasitas("Não");
         }
-        return ViewQualProdutoUtiliza;
+        return getListViewFields(index).isViewVariableBoolean();
     }
-
 }

@@ -1,9 +1,9 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
@@ -17,7 +17,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque1" />
             <p:selectOneRadio id="MuscEsque1"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.claudicacao}"
+                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacao}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -41,7 +41,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque2" />
             <p:inputText id="MuscEsque2" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.claudicacaoEvolu}"
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacaoEvolu}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -66,7 +66,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque3" />
             <p:selectOneRadio id="MuscEsque3"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.fraturas}"
+                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturas}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -90,7 +90,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque4" />
             <p:inputText id="MuscEsque4" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.fraturasEvolu}"
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturasEvolu}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -113,7 +113,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque5" />
             <p:selectOneRadio id="MuscEsque5"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.atrofMusc}"
+                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMusc}"
                               layout="responsive"
                               columns="2"
                               required="true"
@@ -137,7 +137,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque6" />
             <p:inputText id="MuscEsque6" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.atrofMuscEvolu}"
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMuscEvolu}"
                          required="false"
                          requiredMessage=""
                          style="margin-bottom: 20px;"
@@ -146,19 +146,19 @@
 
 
 
-            
-            
-            
-            
-            
-            
+
+
+
+
+
+
             <p:outputLabel value="O sistema foi afetado?"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="MuscEsque7" />
             <p:selectOneRadio id="MuscEsque7"
                               layout="responsive"
                               columns="2"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.sistemaAfetado}"
+                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.sistemaAfetado}"
                               required="true"
                               requiredMessage="Informe se o sistema foi afetado!"
                               style="margin-bottom: 20px;" >
@@ -171,5 +171,5 @@
 
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>
