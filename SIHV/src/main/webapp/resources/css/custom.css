@@ -59,4 +59,8 @@
     color: #5f666c!important;
 }
 
+/*required field PrimeFaces*/
+.ui-outputlabel .ui-outputlabel-rfi {
+    color: #c0392b!important;
+}
 /*---------------- Prime Faces modificações na estilizações ----------------*/
