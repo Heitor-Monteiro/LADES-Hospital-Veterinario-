@@ -93,8 +93,7 @@
                                      class="floatingButtonStyle"
                                      icon="fa fa-chevron-right"
                                      rendered="#{login.objTools.wizardNavBar}"
-                                     onclick="PF('wiz').next();"
-                                     style="margin-bottom: 10px;"  />
+                                     onclick="PF('wiz').next();"/>
                     <p:tooltip id="wizardButtonMessager1"
                                for="wizardButtonRight"
                                value="Próximo"
@@ -108,6 +107,16 @@
                     <p:tooltip id="wizardButtonMessager2"
                                for="wizardButtonLeft"
                                value="Voltar"
+                               position="left" />
+                    
+                    <p:commandButton id="clearButton1"
+                                     class="floatingButtonStyle"
+                                     type="reset" 
+                                     icon="fa fa-eraser"
+                                     rendered="false"/>
+                    <p:tooltip id="clearButtonMessager1"
+                               for="clearButton1"
+                               value="Limpar campos"
                                position="left" />
                 </p:panelGrid>
             </h:form>
