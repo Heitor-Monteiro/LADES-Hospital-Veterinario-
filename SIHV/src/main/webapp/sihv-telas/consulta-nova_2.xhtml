@@ -26,7 +26,7 @@
                           showNavBar="false" 
                           showStepStatus="true"
                           widgetVar="wiz">
-
+<!--
                     <p:tab id="etapa1" title="1" titletip="Dados do proprietário">
                         <p:panel header="Dados do proprietário">
                             <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
@@ -41,7 +41,7 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <!--<ui:include src="/sihv-includes/generico_Anamnese.xhtml" />-->
+                                    <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
                                 </p:panel>
                             </p:tab>
                             <p:tab title="Exame físico geral">
@@ -49,12 +49,12 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <!--<ui:include src="/sihv-includes/generico_Fisico.xhtml" />-->
+                                    <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
                                 </p:panel>
                             </p:tab>
                         </p:tabView>
                     </p:tab>
-
+-->
 
                     <p:tab id="etapa3" title="3" titletip="Exame físico específico">
                         <p:panel header="Exame físico específico">
@@ -98,8 +98,9 @@
                                                               style="font-weight: normal;" >
                                                 <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
                                                 <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
-                                                <p:ajax update="sisDigestorio-panel"/>
+                                                    itemDescription="Nada digno de nota"/>
+                                                <p:ajax update="sisDigestorio-panel"
+                                                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewSisDigestorio()}"/>
                                             </p:selectOneRadio>
                                             <p:message id="sisDigestorio1Messager"
                                                        for="sisDigestorio1Input" />
@@ -113,7 +114,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisDigestorio-panelGrid2" />
