@@ -6,9 +6,12 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.SisNeurologico;
 import com.lades.sihv.model.SisNeurologicoId;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,7 @@ import com.lades.sihv.model.SisNeurologicoId;
 public class ControllerSisNeurologico extends AbstractBean {
     private SisNeurologico sisNeurologico;
     private SisNeurologicoId sisNeurologicoId;
+    private final List<RenderedFields> listViewFields = new ArrayList();
     
     private void prepareSisNeurologico(Consulta consulta) {
         sisNeurologicoId = new SisNeurologicoId();
@@ -50,5 +54,24 @@ public class ControllerSisNeurologico extends AbstractBean {
 
     public void setSisNeurologico(SisNeurologico sisNeurologico) {
         this.sisNeurologico = sisNeurologico;
+    }
+    
+    private RenderedFields getListViewFields(int index) {
+        if (listViewFields.isEmpty()) {
+            listViewFields.add(index, new RenderedFields());
+        } else if (listViewFields.size() < (index + 1)) {
+            listViewFields.add(index, new RenderedFields());
+        }
+        return listViewFields.get(index);
+    }
+
+    public RenderedFields getViewSisNeurologico() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
+            sisNeurologico.setSistemaAfetado("Sim");
+        } else {
+            sisNeurologico = new SisNeurologico();
+            sisNeurologico.setSistemaAfetado("Não");
+        }
+        return listViewFields.get(0);
     }
 }

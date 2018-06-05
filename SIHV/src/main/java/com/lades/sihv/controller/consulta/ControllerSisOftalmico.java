@@ -6,24 +6,29 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.SisOftalmico;
 import com.lades.sihv.model.SisOftalmicoId;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author thiberius
  */
 public class ControllerSisOftalmico extends AbstractBean {
+
     private SisOftalmico sisOftalmico;
     private SisOftalmicoId sisOftalmicoId;
-    
+    private final List<RenderedFields> listViewFields = new ArrayList();
+
     private void prepareSisOftalmico(Consulta consulta) {
         sisOftalmicoId = new SisOftalmicoId();
         sisOftalmicoId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisOftalmico.setId(sisOftalmicoId);
     }
-    
+
     public void ConfirmeSisOftalmico(Consulta consulta) {
         try {
             if (sisOftalmico.getSistemaAfetado().equals("Sim")) {
@@ -50,5 +55,24 @@ public class ControllerSisOftalmico extends AbstractBean {
 
     public void setSisOftalmico(SisOftalmico sisOftalmico) {
         this.sisOftalmico = sisOftalmico;
+    }
+
+    private RenderedFields getListViewFields(int index) {
+        if (listViewFields.isEmpty()) {
+            listViewFields.add(index, new RenderedFields());
+        } else if (listViewFields.size() < (index + 1)) {
+            listViewFields.add(index, new RenderedFields());
+        }
+        return listViewFields.get(index);
+    }
+
+    public RenderedFields getViewSisRespCardio() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
+            sisOftalmico.setSistemaAfetado("Sim");
+        } else {
+            sisOftalmico = new SisOftalmico();
+            sisOftalmico.setSistemaAfetado("Não");
+        }
+        return listViewFields.get(0);
     }
 }

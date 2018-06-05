@@ -56,8 +56,32 @@
                     </p:tab>
 -->
 
+
+
                     <p:tab id="etapa3" title="3" titletip="Exame físico específico">
                         <p:panel header="Exame físico específico">
+                            <f:facet name="actions">
+                                <p:outputLabel id="ajudaExameFisicoEspec"
+                                               class="fa fa-question-circle"
+                                               style="color: #5f666c;
+                                               font-family: Open Sans, Helvetica, Arial;
+                                               font-weight: bold;
+                                               cursor: help;"/>
+                                <p:tooltip for="ajudaExameFisicoEspec"
+                                           position="left"
+                                           style="width: 250px;">
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:outputLabel value="Clique no botão para demarcar o exame físico especifico como ALTERADO."/>
+                                        </div>
+                                    </div>
+                                    <div class="ui-g">
+                                        <div class="ui-g-12">
+                                            <p:outputLabel value="Nada digno de nota (N.D.N.)"/>
+                                        </div>
+                                    </div>
+                                </p:tooltip>
+                            </f:facet>
 
                             <p:panel id="sisDigestorio-panel"
                                      toggleable="true" 
@@ -80,7 +104,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisDigestorio1Label"
                                                            value="Sistema digestório e glândulas anexas:"
                                                            rendered="true"
@@ -88,20 +111,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisDigestorio1Input"/>
-
-                                            <p:selectOneRadio id="sisDigestorio1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;" >
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                    itemDescription="Nada digno de nota"/>
-                                                <p:ajax update="sisDigestorio-panel"
-                                                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewSisDigestorio()}"/>
-                                            </p:selectOneRadio>
+                                            <p:selectBooleanButton id="sisDigestorio1Input"
+                                                                   value="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
+                                                <p:ajax update="sisDigestorio-panel"/>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisDigestorio1Messager"
                                                        for="sisDigestorio1Input" />
                                         </p:panelGrid>
@@ -114,7 +136,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio}" >
+                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisDigestorio-panelGrid2" />
@@ -143,7 +165,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisRespCardio1Label"
                                                            value="Sistema respiratório e cardiovascular:"
                                                            rendered="true"
@@ -151,19 +172,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisRespCardio1Input"/>
-
-                                            <p:selectOneRadio id="sisRespCardio1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisRespCardio1Input"
+                                                                   value="#{MBconsulta.formsExame.controlSisRespCardio.viewSisRespCardio.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisRespCardio-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisRespCardio1Messager"
                                                        for="sisRespCardio1Input" />
                                         </p:panelGrid>
@@ -176,7 +197,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSisRespCardio.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisRespCardio-panel2" />
@@ -205,7 +226,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisUrinarioMamaria1Label"
                                                            value="Sistema gênito-urinário e glândulas mamárias:"
                                                            rendered="true"
@@ -213,19 +233,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisUrinarioMamaria1Input"/>
-
-                                            <p:selectOneRadio id="sisUrinarioMamaria1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisUrinarioMamaria1Input"
+                                                                   value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSisUrinarioMamaria.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisUrinarioMamaria-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisUrinarioMamaria1Messager"
                                                        for="sisUrinarioMamaria1Input" />
                                         </p:panelGrid>
@@ -238,7 +258,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSisUrinarioMamaria.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisUrinarioMamaria-panel2" />
@@ -267,7 +287,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisTegumentar1Label"
                                                            value="Sistema tegumentar:"
                                                            rendered="true"
@@ -275,19 +294,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisTegumentar1Input"/>
-
-                                            <p:selectOneRadio id="sisTegumentar1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisTegumentar1Input"
+                                                                   value="#{MBconsulta.formsExame.controleSisTegumentar.viewSisTegumentar.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisTegumentar-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisTegumentar1Messager"
                                                        for="sisTegumentar1Input" />
                                         </p:panelGrid>
@@ -300,7 +319,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSisTegumentar.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisTegumentar-panel2" />
@@ -329,7 +348,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisNeurologico1Label"
                                                            value="Sistema neurológico:"
                                                            rendered="true"
@@ -337,19 +355,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisNeurologico1Input"/>
-
-                                            <p:selectOneRadio id="sisNeurologico1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisNeurologico1Input"
+                                                                   value="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisNeurologico-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisNeurologico1Messager"
                                                        for="sisNeurologico1Input" />
                                         </p:panelGrid>
@@ -362,7 +380,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisNeurologico-panel2" />
@@ -391,7 +409,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisOftalmico1Label"
                                                            value="Sistema oftálmico:"
                                                            rendered="true"
@@ -399,19 +416,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisOftalmico1Input"/>
-
-                                            <p:selectOneRadio id="sisOftalmico1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisOftalmico1Input"
+                                                                   value="#{MBconsulta.formsExame.controleSisOftalmico.viewSisRespCardio.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisOftalmico-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisOftalmico1Messager"
                                                        for="sisOftalmico1Input" />
                                         </p:panelGrid>
@@ -424,7 +441,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSisRespCardio.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisOftalmico-panel2" />
@@ -453,7 +470,6 @@
                                                      columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
                                                      style="margin-bottom: -30px;
                                                      margin-top: -20px;" >
-
                                             <p:outputLabel id="sisMuscEsque1Label"
                                                            value="Sistema músculo-esquelético:"
                                                            rendered="true"
@@ -461,19 +477,19 @@
                                                            font-family: Open Sans, Helvetica, Arial;
                                                            font-weight: bold;"
                                                            for="sisMuscEsque1Input"/>
-
-                                            <p:selectOneRadio id="sisMuscEsque1Input"
-                                                              columns="2"
-                                                              rendered="true"
-                                                              value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.sistemaAfetado}"
-                                                              required="true"
-                                                              requiredMessage="Informe se houve alteração!"
-                                                              style="font-weight: normal;">
-                                                <f:selectItem itemLabel="Alterado" itemValue="Sim"/>
-                                                <f:selectItem itemLabel="N.D.N." itemValue="Não"
-                                                              itemDescription="Nada digno de nota"/>
+                                            <p:selectBooleanButton id="sisMuscEsque1Input"
+                                                                   value="#{MBconsulta.formsExame.controleSisMuscEsque.viewSisMuscEsque.viewVariableBoolean}"
+                                                                   rendered="true"
+                                                                   required="false"
+                                                                   requiredMessage="Informe se houve alteração!"
+                                                                   onLabel="Alterado"
+                                                                   offLabel="N.D.N."
+                                                                   offIcon="fa fa-toggle-off"
+                                                                   onIcon="fa fa-toggle-on"
+                                                                   style="width:100px;
+                                                                   color: #5f666c;">
                                                 <p:ajax update="sisMuscEsque-panel"/>
-                                            </p:selectOneRadio>
+                                            </p:selectBooleanButton>
                                             <p:message id="sisMuscEsque1Messager"
                                                        for="sisMuscEsque1Input" />
                                         </p:panelGrid>
@@ -486,7 +502,7 @@
                                          margin-left: -38px;
                                          margin-right: -38px;
                                          border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.sistemaAfetado == 'Sim'}" >
+                                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewSisMuscEsque.viewVariableBoolean}" >
                                     <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
                                     <p:effect type="shake" event="load" speed="200"
                                               for="sisMuscEsque-panel2" />

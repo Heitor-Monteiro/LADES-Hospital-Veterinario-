@@ -6,9 +6,12 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.SisTegumentar;
 import com.lades.sihv.model.SisTegumentarId;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +20,7 @@ import com.lades.sihv.model.SisTegumentarId;
 public class ControllerSisTegumentar extends AbstractBean {
     private SisTegumentar sisTegumentar;
     private SisTegumentarId sisTegumentarId;
+    private final List<RenderedFields> listViewFields = new ArrayList();
     
     private void prepareSisTegumentar(Consulta consulta) {
         sisTegumentarId = new SisTegumentarId();
@@ -50,5 +54,24 @@ public class ControllerSisTegumentar extends AbstractBean {
 
     public void setSisTegumentar(SisTegumentar sisTegumentar) {
         this.sisTegumentar = sisTegumentar;
+    }
+    
+    private RenderedFields getListViewFields(int index) {
+        if (listViewFields.isEmpty()) {
+            listViewFields.add(index, new RenderedFields());
+        } else if (listViewFields.size() < (index + 1)) {
+            listViewFields.add(index, new RenderedFields());
+        }
+        return listViewFields.get(index);
+    }
+
+    public RenderedFields getViewSisTegumentar() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
+            sisTegumentar.setSistemaAfetado("Sim");
+        } else {
+            sisTegumentar = new SisTegumentar();
+            sisTegumentar.setSistemaAfetado("Não");
+        }
+        return listViewFields.get(0);
     }
 }

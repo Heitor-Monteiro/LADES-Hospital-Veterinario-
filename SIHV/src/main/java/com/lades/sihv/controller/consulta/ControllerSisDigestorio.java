@@ -66,20 +66,17 @@ public class ControllerSisDigestorio extends AbstractBean {
         return listViewFields.get(index);
     }
 
-    public boolean isViewSisDigestorio() {
-        return getListViewFields(0).isViewVariableBoolean();
-    }
-
-    public void methodViewSisDigestorio() {
-        if (sisDigestorio.getSistemaAfetado() != null) {
-            if (sisDigestorio.getSistemaAfetado().equals("Sim")) {
-                listViewFields.get(0).setViewVariableBoolean(true);
-            } else {
-                sisDigestorio = new SisDigestorio();
-                sisDigestorio.setSistemaAfetado("Não");
-                listViewFields.get(0).setViewVariableBoolean(false);
+    public RenderedFields getViewSisDigestorio() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
+            sisDigestorio.setSistemaAfetado("Sim");
+        } else {
+            sisDigestorio = new SisDigestorio();
+            sisDigestorio.setSistemaAfetado("Não");
+            for (RenderedFields listViewField : listViewFields) {
+                listViewField.setViewVariableBoolean(false);
             }
         }
+        return listViewFields.get(0);
     }
 
     public boolean isViewDescriNaoSeAlimeta() {
@@ -131,7 +128,7 @@ public class ControllerSisDigestorio extends AbstractBean {
             }
         }
     }
-    
+
     public boolean isViewAspectEvoluDiarreia() {
         return getListViewFields(4).isViewVariableBoolean();
     }
@@ -149,7 +146,7 @@ public class ControllerSisDigestorio extends AbstractBean {
             }
         }
     }
-    
+
     public boolean isViewEvoluDisquesiaTenesmo() {
         return getListViewFields(5).isViewVariableBoolean();
     }

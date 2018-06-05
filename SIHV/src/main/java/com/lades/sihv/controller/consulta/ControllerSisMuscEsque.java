@@ -6,24 +6,29 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.SisMuscEsque;
 import com.lades.sihv.model.SisMuscEsqueId;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author thiberius
  */
 public class ControllerSisMuscEsque extends AbstractBean {
+
     private SisMuscEsque sisMuscEsque;
     private SisMuscEsqueId sisMuscEsqueId;
-    
+    private final List<RenderedFields> listViewFields = new ArrayList();
+
     private void prepareSisMuscEsque(Consulta consulta) {
         sisMuscEsqueId = new SisMuscEsqueId();
         sisMuscEsqueId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisMuscEsque.setId(sisMuscEsqueId);
     }
-    
+
     public void ConfirmeSisMuscEsque(Consulta consulta) {
         try {
             if (sisMuscEsque.getSistemaAfetado().equals("Sim")) {
@@ -50,5 +55,24 @@ public class ControllerSisMuscEsque extends AbstractBean {
 
     public void setSisMuscEsque(SisMuscEsque sisMuscEsque) {
         this.sisMuscEsque = sisMuscEsque;
+    }
+
+    private RenderedFields getListViewFields(int index) {
+        if (listViewFields.isEmpty()) {
+            listViewFields.add(index, new RenderedFields());
+        } else if (listViewFields.size() < (index + 1)) {
+            listViewFields.add(index, new RenderedFields());
+        }
+        return listViewFields.get(index);
+    }
+
+    public RenderedFields getViewSisMuscEsque() {
+        if (getListViewFields(0).isViewVariableBoolean()) {
+            sisMuscEsque.setSistemaAfetado("Sim");
+        } else {
+            sisMuscEsque = new SisMuscEsque();
+            sisMuscEsque.setSistemaAfetado("Não");
+        }
+        return listViewFields.get(0);
     }
 }
