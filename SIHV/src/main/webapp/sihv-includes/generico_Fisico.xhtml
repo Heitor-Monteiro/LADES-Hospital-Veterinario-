@@ -469,7 +469,8 @@
                 </f:selectItem>
                 <f:selectItem itemLabel="N.D.N." itemValue="false"
                               itemDescription="Nada digno de nota"/>
-                <p:ajax update="ExaFisicPanel-PelePelos" />
+                <p:ajax update="ExaFisicPanel-PelePelos"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewPelePelos()}" />
             </p:selectOneButton>
             <p:message id="FisicoPelePelos1Messager"
                        for="FisicoPelePelos1Input" />
