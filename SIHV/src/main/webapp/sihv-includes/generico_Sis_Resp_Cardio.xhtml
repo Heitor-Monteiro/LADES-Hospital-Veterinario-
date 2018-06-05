@@ -1,385 +1,462 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3" layout="grid"
+        <p:panelGrid id="sisRespCardioTosse-panel"
+                     columns="3"
+                     layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-
-            <p:outputLabel value="Tosse:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato1" />
-            <p:selectOneRadio id="respirato1"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosse}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta tosse!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Tosse1Label"
+                           value="Tosse:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Tosse1Input" />
+            <p:selectOneButton id="Tosse1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosse}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta tosse!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Tosse2Label"/>
+                    <p:effect type="bounce" event="load" for="Tosse2Input"/>
+                    <p:effect type="bounce" event="load" for="Tosse3Label"/>
+                    <p:effect type="bounce" event="load" for="Tosse3Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato1" />
+                <p:ajax update="sisRespCardioTosse-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewProdutEvoluTosse()}" />
+            </p:selectOneButton>
+            <p:message id="Tosse1Messager"
+                       for="Tosse1Input" />
 
 
-
-            <p:outputLabel value="Tosse é produtiva?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato2" />
-            <p:selectOneRadio id="respirato2"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosseProdutiva}"
-                              layout="responsive"
-                              columns="1"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="Tosse2Label"
+                           value="Tosse é produtiva?"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                           for="Tosse2Input" />
+            <p:selectOneButton id="Tosse2Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosseProdutiva}"
+                               rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                               required="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                               requiredMessage="Informe se a tosse é produtiva!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Produtiva" itemValue="Produtiva" />
                 <f:selectItem itemLabel="Não produtiva" itemValue="Não produtiva" />
-            </p:selectOneRadio>
-            <p:message for="respirato2" />
+            </p:selectOneButton>
+            <p:message id="Tosse2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                       for="Tosse2Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Tosse (Frequência/Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato3" />
-            <p:inputTextarea id="respirato3" 
+            <p:outputLabel id="Tosse3Label"
+                           value="Tosse (Frequência/Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                           for="Tosse3Input" />
+            <p:inputTextarea id="Tosse3Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosseEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                             requiredMessage="Informe frequência/evolução da tosse!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato3" />
+            <p:message id="Tosse3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
+                       for="Tosse3Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="sisRespCardioEspirro-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Espirro1Label"
+                           value="Espirro:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Espirro1Input" />
+            <p:selectOneButton id="Espirro1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.espirro}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta espirro"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Espirro2Label"/>
+                    <p:effect type="bounce" event="load" for="Espirro2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="Não" itemValue="Não"/>
+                <p:ajax update="sisRespCardioEspirro-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewEspirroEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Espirro1Messager"
+                       for="Espirro1Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Espirro:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato4" />
-            <p:selectOneRadio id="respirato4"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.espirro}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta espirro"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato4" />
-
-
-
-
-            <p:outputLabel value="Espirro (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato5" />
-            <p:inputTextarea id="respirato5" 
+            <p:outputLabel id="Espirro2Label"
+                           value="Espirro (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
+                           for="Espirro2Input" />
+            <p:inputTextarea id="Espirro2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.espirroEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
+                             requiredMessage="Descreva espirro (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato5" />
+            <p:message id="Espirro2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
+                       for="Espirro2Input" />
+        </p:panelGrid>
 
 
-
-
-            <p:outputLabel value="Secreção nasal:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato6" />
-            <p:selectOneRadio id="respirato6"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secrecaoNasal}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta secresão nasal!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisRespCardioSecreNasal-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="SecreNasal1Label"
+                           value="Secreção nasal:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="SecreNasal1Input" />
+            <p:selectOneButton id="SecreNasal1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secrecaoNasal}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta secresão nasal!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="SecreNasal2Label"/>
+                    <p:effect type="bounce" event="load" for="SecreNasal2Input"/>
+                    <p:effect type="bounce" event="load" for="SecreNasal3Label"/>
+                    <p:effect type="bounce" event="load" for="SecreNasal3Input"/>
+                    <p:effect type="bounce" event="load" for="SecreNasal4Label"/>
+                    <p:effect type="bounce" event="load" for="SecreNasal4Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato6" />
+                <p:ajax update="sisRespCardioSecreNasal-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewSecreNasal()}" />
+            </p:selectOneButton>
+            <p:message id="SecreNasal1Messager"
+                       for="SecreNasal1Input" />
 
 
-
-
-
-            <p:outputLabel value="Secreção nasal (uni ou bilateral):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato7" />
-            <p:selectOneRadio id="respirato7"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secreNasalUniBilateral}"
-                              layout="responsive"
-                              columns="1"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="SecreNasal2Label"
+                           value="Secreção nasal (uni ou bilateral):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                           for="SecreNasal2Input" />
+            <p:selectOneMenu id="SecreNasal2Input"
+                             value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secreNasalUniBilateral}"
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                             requiredMessage=" Informe se secreção nasal é uni ou bilateral!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
                 <f:selectItem itemLabel="Unilateral(esquerdo)" itemValue="Unilateral(esquerdo)" />
                 <f:selectItem itemLabel="Unilateral(direito)" itemValue="Unilateral(direito)" />
                 <f:selectItem itemLabel="Bilateral" itemValue="Bilateral" />
-            </p:selectOneRadio>
-            <p:message for="respirato7" />
+            </p:selectOneMenu>
+            <p:message id="SecreNasal2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                       for="SecreNasal2Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Secreção nasal (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato8" />
-            <p:inputText id="respirato8" 
+            <p:outputLabel id="SecreNasal3Label"
+                           value="Secreção nasal (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                           for="SecreNasal3Input" />
+            <p:inputText id="SecreNasal3Input" 
                          value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secreNasalTipo}"
-                         required="false"
-                         requiredMessage=""
+                         rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                         required="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                         requiredMessage="Descreva o tipo de secreção nasal!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="respirato8" />
+            <p:message id="SecreNasal3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                       for="SecreNasal3Input" />
 
 
-
-
-            <p:outputLabel value="Secreção nasal (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato9" />
-            <p:inputTextarea id="respirato9" 
+            <p:outputLabel id="SecreNasal4Label"
+                           value="Secreção nasal (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                           for="SecreNasal4Input" />
+            <p:inputTextarea id="SecreNasal4Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secreNasalEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                             requiredMessage="Descreva secreção nasal (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato9" />
+            <p:message id="SecreNasal4Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
+                       for="SecreNasal4Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="sisRespCardioDispTaquip-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="DispTaquip1Label"
+                           value="Dispneia/Taquipnéia:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="DispTaquip1Input" />
+            <p:selectOneButton id="DispTaquip1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.dispneiaTaquipneia}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta dispneia/taquipnéia!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="DispTaquip2Label"/>
+                    <p:effect type="bounce" event="load" for="DispTaquip2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="Não" itemValue="Não"/>
+                <p:ajax update="sisRespCardioDispTaquip-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewDispTaquip()}" />
+            </p:selectOneButton>
+            <p:message id="DispTaquip1Messager"
+                       for="DispTaquip1Input" />
 
 
-
-
-            <p:outputLabel value="Dispneia/Taquipnéia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato10" />
-            <p:selectOneRadio id="respirato10"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.dispneiaTaquipneia}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta dispneia/taquipnéia!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato10" />
-
-
-
-
-
-
-            <p:outputLabel value="Dispneia/Taquipnéia (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato11" />
-            <p:inputTextarea id="respirato11" 
+            <p:outputLabel id="DispTaquip2Label"
+                           value="Dispneia/Taquipnéia (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
+                           for="DispTaquip2Input" />
+            <p:inputTextarea id="DispTaquip2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.dispnTaquipEvolu}"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;"
-                         maxlength="200" />
-            <p:message for="respirato11" />
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
+                             requiredMessage="Descreva dispneia/taquipnéia (Evolução)!"
+                             style="margin-bottom: 20px;"
+                             maxlength="200" />
+            <p:message id="DispTaquip2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
+                       for="DispTaquip2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Cianose:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato12" />
-            <p:selectOneRadio id="respirato12"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cianose}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta cianose!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisRespCardioCianose-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Cianose1Label"
+                           value="Cianose:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Cianose1Input" />
+            <p:selectOneButton id="Cianose1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cianose}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta cianose!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Cianose2Label"/>
+                    <p:effect type="bounce" event="load" for="Cianose2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato12" />
+                <p:ajax update="sisRespCardioCianose-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewCianoseEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Cianose1Messager"
+                       for="Cianose1Input" />
 
-            
-            
-            
-            
-            
-            <p:outputLabel value="Cianose (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato14" />
-            <p:inputTextarea id="respirato14" 
+
+            <p:outputLabel id="Cianose2Label"
+                           value="Cianose (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
+                           for="Cianose2Input" />
+            <p:inputTextarea id="Cianose2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cianoseEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
+                             requiredMessage="Descreva cianose (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato14" />
+            <p:message id="Cianose2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
+                       for="Cianose2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Cansaço fácil:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato15" />
-            <p:selectOneRadio id="respirato15"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cansacoFacil}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta cansaço fácil!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisRespCardioCansaFacil-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="CansaFacil1Label"
+                           value="Cansaço fácil:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="CansaFacil1Input" />
+            <p:selectOneButton id="CansaFacil1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cansacoFacil}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta cansaço fácil!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="CansaFacil2Label"/>
+                    <p:effect type="bounce" event="load" for="CansaFacil2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato15" />
+                <p:ajax update="sisRespCardioCansaFacil-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewCansaFacilEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="CansaFacil1Messager"
+                       for="CansaFacil1Input" />
 
 
-
-
-
-
-
-            <p:outputLabel value="Cansaço fácil (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato16" />
-            <p:inputTextarea id="respirato16" 
+            <p:outputLabel id="CansaFacil2Label"
+                           value="Cansaço fácil (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
+                           for="CansaFacil2Input" />
+            <p:inputTextarea id="CansaFacil2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cansaFacilEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
+                             requiredMessage="Descreva cansaço fácil (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato16" />
+            <p:message id="CansaFacil2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
+                       for="CansaFacil2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-            <p:outputLabel value="Síncope:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato17" />
-            <p:selectOneRadio id="respirato17"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sincope}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta síncope!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisRespCardioSincope-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Sincope1Label"
+                           value="Síncope:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Sincope1Input" />
+            <p:selectOneButton id="Sincope1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sincope}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta síncope!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Sincope2Label"/>
+                    <p:effect type="bounce" event="load" for="Sincope2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato17" />
+                <p:ajax update="sisRespCardioSincope-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewSincopeEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Sincope1Messager"
+                       for="Sincope1Input" />
 
 
-
-
-
-
-
-            <p:outputLabel value="Síncope (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato18" />
-            <p:inputTextarea id="respirato18" 
+            <p:outputLabel id="Sincope2Label"
+                           value="Síncope (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
+                           for="Sincope2Input" />
+            <p:inputTextarea id="Sincope2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sincopeEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
+                             requiredMessage="Descreva síncope (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato18" />
+            <p:message id="Sincope2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
+                       for="Sincope2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-            <p:outputLabel value="Emagrecimento:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato19" />
-            <p:selectOneRadio id="respirato19"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.emagrecimento}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta emagrecimento!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisRespCardioEmagrec-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Emagrec1Label"
+                           value="Emagrecimento:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Emagrec1Input" />
+            <p:selectOneButton id="Emagrec1Input"
+                               value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.emagrecimento}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta emagrecimento!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Sincope2Label"/>
+                    <p:effect type="bounce" event="load" for="Sincope2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato19" />
+                <p:ajax update="sisRespCardioEmagrec-panel"
+                        listener="#{MBconsulta.formsExame.controlSisRespCardio.methodViewEmagrecEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Emagrec1Messager"
+                       for="Emagrec1Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Emagrecimento (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato20" />
-            <p:inputTextarea id="respirato20" 
+            <p:outputLabel id="Emagrec2Label"
+                           value="Emagrecimento (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
+                           for="Emagrec2Input" />
+            <p:inputTextarea id="Emagrec2Input" 
                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.emagrecEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
+                             requiredMessage="Descreva emagrecimento (Evolução)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="respirato20" />
-
-
-
-
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="respirato21" />
-            <p:selectOneRadio id="respirato21"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="respirato21" />
-            
-            
-            
-            
+            <p:message id="Emagrec2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
+                       for="Emagrec2Input" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>
