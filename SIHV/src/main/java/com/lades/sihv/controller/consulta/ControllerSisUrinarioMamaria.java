@@ -6,6 +6,7 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.SisUrinarioMamaria;
@@ -18,25 +19,49 @@ import java.util.List;
  * @author thiberius
  */
 public class ControllerSisUrinarioMamaria extends AbstractBean {
+
     private SisUrinarioMamaria sisUrinarioMamaria;
     private SisUrinarioMamariaId sisUrinarioMamariaId;
     private final List<RenderedFields> listViewFields = new ArrayList();
-    
+    private final String ndnMasculino = "Nada digno de nota devido o animal ser do gênero masculino";
+    private final String ndn = "Nada digno de nota.";
+
     private void prepareSisUrinarioMamaria(Consulta consulta) {
         sisUrinarioMamariaId = new SisUrinarioMamariaId();
         sisUrinarioMamariaId.setConsultaFkConsulta(consulta.getPkConsulta());
         sisUrinarioMamaria.setId(sisUrinarioMamariaId);
     }
-    
+
     public void ConfirmeSisUrinarioMamaria(Consulta consulta) {
         try {
-            if (sisUrinarioMamaria.getSistemaAfetado().equals("Sim")) {
-                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisUrinarioMamaria() ]");
-                prepareSisUrinarioMamaria(consulta);
-                getDaoGenerico().save(getSisUrinarioMamaria());
+            if (sisUrinarioMamaria.getSistemaAfetado().equals("Não")) {
+                System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisUrinarioMamaria() ]");
+                sisUrinarioMamaria.setIngestHidrica("Normal");
+                sisUrinarioMamaria.setIngestHidricaEvolu(ndn);
+                sisUrinarioMamaria.setEstadoUrina("Normal");
+                sisUrinarioMamaria.setUrina("N.D.N.");
+                sisUrinarioMamaria.setUrinaAspecto(ndn);
+                sisUrinarioMamaria.setUrinaEvolu(ndn);
+                sisUrinarioMamaria.setSecreVagiPeni("Não");
+                sisUrinarioMamaria.setSecreVagiPeniTipo(ndn);
+                sisUrinarioMamaria.setSecreVagiPeniEvolu(ndn);
+                sisUrinarioMamaria.setCastrado("Não");
+                if (!isViewFemea()) {
+                    sisUrinarioMamaria.setUltimoCio(ndnMasculino);
+                    sisUrinarioMamaria.setPrenhe(ndnMasculino);
+                    sisUrinarioMamaria.setPrenheDescricao(ndnMasculino);
+                    sisUrinarioMamaria.setUltimoParto(ndnMasculino);
+                } else {
+                    sisUrinarioMamaria.setUltimoCio(ndn);
+                    sisUrinarioMamaria.setPrenhe("Não");
+                    sisUrinarioMamaria.setPrenheDescricao(ndn);
+                    sisUrinarioMamaria.setUltimoParto(ndn);
+                }
             } else {
-                System.out.println("BACK-END WARNING: NOT CONFIRMED [ public void ConfirmeSisUrinarioMamaria() ]");
+                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisUrinarioMamaria() ]");
             }
+            prepareSisUrinarioMamaria(consulta);
+            getDaoGenerico().save(getSisUrinarioMamaria());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisUrinarioMamaria() ]"
                     + e.getMessage());
@@ -55,14 +80,21 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     public void setSisUrinarioMamaria(SisUrinarioMamaria sisUrinarioMamaria) {
         this.sisUrinarioMamaria = sisUrinarioMamaria;
     }
-    
+
     private RenderedFields getListViewFields(int index) {
         if (listViewFields.isEmpty()) {
             listViewFields.add(index, new RenderedFields());
-        } else if (listViewFields.size() < (index + 1)) {
+        } else if ((listViewFields.size() - index) == 0) {
             listViewFields.add(index, new RenderedFields());
         }
         return listViewFields.get(index);
+    }
+
+    private void startIndexListViewFields() {
+        for (int index = 0; index <= 5; index++) {
+            listViewFields.add(index, new RenderedFields());
+            listViewFields.get(index).setViewVariableBoolean(false);
+        }
     }
 
     public RenderedFields getViewSisUrinarioMamaria() {
@@ -71,7 +103,109 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
         } else {
             sisUrinarioMamaria = new SisUrinarioMamaria();
             sisUrinarioMamaria.setSistemaAfetado("Não");
+            startIndexListViewFields();
         }
         return listViewFields.get(0);
+    }
+
+    public boolean isViewIngestHidricaEvolu() {
+        return getListViewFields(1).isViewVariableBoolean();
+    }
+
+    public void methodViewIngestHidricaEvolu() {
+        if (sisUrinarioMamaria.getIngestHidrica() != null) {
+            if (!sisUrinarioMamaria.getIngestHidrica().equals("Normal")) {
+                sisUrinarioMamaria.setIngestHidricaEvolu("");
+                listViewFields.get(1).setViewVariableBoolean(true);
+            } else {
+                sisUrinarioMamaria.setIngestHidricaEvolu(ndn);
+                listViewFields.get(1).setViewVariableBoolean(false);
+            }
+        }
+    }
+
+    public boolean isViewEstadoUrina() {
+        return getListViewFields(2).isViewVariableBoolean();
+    }
+
+    public void methodViewEstadoUrina() {
+        if (sisUrinarioMamaria.getEstadoUrina() != null) {
+            if (sisUrinarioMamaria.getEstadoUrina().equals("Alterado")) {
+                sisUrinarioMamaria.setUrina("");
+                sisUrinarioMamaria.setUrinaAspecto("");
+                sisUrinarioMamaria.setUrinaEvolu("");
+                listViewFields.get(2).setViewVariableBoolean(true);
+            } else {
+                sisUrinarioMamaria.setUrina("N.D.N.");
+                sisUrinarioMamaria.setUrinaAspecto(ndn);
+                sisUrinarioMamaria.setUrinaEvolu(ndn);
+                listViewFields.get(2).setViewVariableBoolean(false);
+            }
+        }
+    }
+
+    private boolean isViewFemea() {
+        CollectionClasses obj = (CollectionClasses) getVariaveisDeSessao().getObjetoTemp();
+        getListViewFields(3).setViewVariableBoolean(false);
+        if (obj.getAnimais().getSexoAnimal().equals("F")) {
+            listViewFields.get(3).setViewVariableBoolean(true);
+        }
+        return listViewFields.get(3).isViewVariableBoolean();
+    }
+
+    public boolean isViewUltimoCio() {
+        if (!isViewFemea()) {
+            sisUrinarioMamaria.setUltimoCio(ndnMasculino);
+        }
+        return isViewFemea();
+    }
+
+    public boolean isViewPrenhe() {
+        if (!isViewFemea()) {
+            sisUrinarioMamaria.setPrenhe(ndnMasculino);
+            sisUrinarioMamaria.setPrenheDescricao(ndnMasculino);
+        }
+        return isViewFemea();
+    }
+
+    public boolean isViewPrenheDescricao() {
+        return getListViewFields(4).isViewVariableBoolean();
+    }
+
+    public void methodViewPrenheDescricao() {
+        if (sisUrinarioMamaria.getPrenhe() != null) {
+            if (sisUrinarioMamaria.getPrenhe().equals("Sim")) {
+                sisUrinarioMamaria.setPrenheDescricao("");
+                listViewFields.get(4).setViewVariableBoolean(true);
+            } else {
+                sisUrinarioMamaria.setPrenheDescricao(ndn);
+                listViewFields.get(4).setViewVariableBoolean(false);
+            }
+        }
+    }
+
+    public boolean isViewUltimoParto() {
+        if (!isViewFemea()) {
+            sisUrinarioMamaria.setUltimoParto(ndnMasculino);
+        }
+        return isViewFemea();
+    }
+
+    public boolean isViewSecreVagiPeni() {
+        return getListViewFields(5).isViewVariableBoolean();
+    }
+
+    public void methodViewSecreVagiPeni() {
+        if (sisUrinarioMamaria.getSecreVagiPeni() != null) {
+            if (sisUrinarioMamaria.getSecreVagiPeni().equals("Sim")) {
+                sisUrinarioMamaria.setSecreVagiPeniTipo("");
+                sisUrinarioMamaria.setSecreVagiPeniEvolu("");
+                listViewFields.get(5).setViewVariableBoolean(true);
+            } else {
+                sisUrinarioMamaria.setSecreVagiPeniTipo(ndn);
+                sisUrinarioMamaria.setSecreVagiPeniEvolu(ndn);
+                listViewFields.get(5).setViewVariableBoolean(false);
+            }
+        }
     }
 }

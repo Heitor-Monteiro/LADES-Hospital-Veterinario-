@@ -63,4 +63,11 @@
 .ui-outputlabel .ui-outputlabel-rfi {
     color: #c0392b!important;
 }
+
+/*selectBooleanButton*/
+.buttonAffectedSystem {
+    width:100px!important;
+    color: #5f666c!important;
+    font-size: 13px!important;
+}
 /*---------------- Prime Faces modificações na estilizações ----------------*/

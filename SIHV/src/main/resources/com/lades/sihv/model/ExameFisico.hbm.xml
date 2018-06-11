@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/05/2018 11:38:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/06/2018 16:05:40 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -46,7 +46,7 @@
             <column name="estadoPulso" length="25" not-null="true" />
         </property>
         <property name="hidratacao" type="string">
-            <column name="hidratacao" length="96" not-null="true" />
+            <column name="hidratacao" length="94" not-null="true" />
         </property>
         <property name="palpaAbdom" type="string">
             <column name="palpaAbdom" length="200" not-null="true" />

@@ -26,7 +26,7 @@
                           showNavBar="false" 
                           showStepStatus="true"
                           widgetVar="wiz">
-<!--
+
                     <p:tab id="etapa1" title="1" titletip="Dados do proprietário">
                         <p:panel header="Dados do proprietário">
                             <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
@@ -41,7 +41,7 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
+                                    <!--<ui:include src="/sihv-includes/generico_Anamnese.xhtml" />-->
                                 </p:panel>
                             </p:tab>
                             <p:tab title="Exame físico geral">
@@ -49,12 +49,12 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
+                                    <!--<ui:include src="/sihv-includes/generico_Fisico.xhtml" />-->
                                 </p:panel>
                             </p:tab>
                         </p:tabView>
                     </p:tab>
--->
+
 
 
 
@@ -62,25 +62,17 @@
                         <p:panel header="Exame físico específico">
                             <f:facet name="actions">
                                 <p:outputLabel id="ajudaExameFisicoEspec"
-                                               class="fa fa-question-circle"
-                                               style="color: #5f666c;
+                                               value="?"
+                                               style="color: #c0392b;
                                                font-family: Open Sans, Helvetica, Arial;
                                                font-weight: bold;
-                                               cursor: help;"/>
+                                               font-size: 18px;
+                                               cursor: help;
+                                               border: #c0392b;"/>
                                 <p:tooltip for="ajudaExameFisicoEspec"
+                                           value="Clique no botão N.D.N. (Nada Digno de Nota) para alterar o status do formulário para Alterado ou vice-versa"
                                            position="left"
-                                           style="width: 250px;">
-                                    <div class="ui-g">
-                                        <div class="ui-g-12">
-                                            <p:outputLabel value="Clique no botão para demarcar o exame físico especifico como ALTERADO."/>
-                                        </div>
-                                    </div>
-                                    <div class="ui-g">
-                                        <div class="ui-g-12">
-                                            <p:outputLabel value="Nada digno de nota (N.D.N.)"/>
-                                        </div>
-                                    </div>
-                                </p:tooltip>
+                                           style="width: 250px;"/>
                             </f:facet>
 
                             <p:panel id="sisDigestorio-panel"
@@ -88,6 +80,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -112,16 +105,16 @@
                                                            font-weight: bold;"
                                                            for="sisDigestorio1Input"/>
                                             <p:selectBooleanButton id="sisDigestorio1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
+                                                                   onIcon="fa fa-toggle-on ">
                                                 <p:ajax update="sisDigestorio-panel"/>
                                             </p:selectBooleanButton>
                                             <p:message id="sisDigestorio1Messager"
@@ -149,6 +142,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -173,10 +167,12 @@
                                                            font-weight: bold;"
                                                            for="sisRespCardio1Input"/>
                                             <p:selectBooleanButton id="sisRespCardio1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controlSisRespCardio.viewSisRespCardio.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
@@ -210,6 +206,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -234,10 +231,12 @@
                                                            font-weight: bold;"
                                                            for="sisUrinarioMamaria1Input"/>
                                             <p:selectBooleanButton id="sisUrinarioMamaria1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSisUrinarioMamaria.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
@@ -271,6 +270,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -295,10 +295,12 @@
                                                            font-weight: bold;"
                                                            for="sisTegumentar1Input"/>
                                             <p:selectBooleanButton id="sisTegumentar1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controleSisTegumentar.viewSisTegumentar.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
@@ -332,6 +334,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -356,10 +359,12 @@
                                                            font-weight: bold;"
                                                            for="sisNeurologico1Input"/>
                                             <p:selectBooleanButton id="sisNeurologico1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
@@ -393,6 +398,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -417,10 +423,12 @@
                                                            font-weight: bold;"
                                                            for="sisOftalmico1Input"/>
                                             <p:selectBooleanButton id="sisOftalmico1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controleSisOftalmico.viewSisRespCardio.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"
@@ -454,6 +462,7 @@
                                      collapsed="false"
                                      toggleableHeader="false"
                                      toggleSpeed="500"
+                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
                                      closable="false"
                                      closeSpeed="500"
                                      style="margin-top: 10px;
@@ -478,10 +487,12 @@
                                                            font-weight: bold;"
                                                            for="sisMuscEsque1Input"/>
                                             <p:selectBooleanButton id="sisMuscEsque1Input"
+                                                                   class="buttonAffectedSystem"
                                                                    value="#{MBconsulta.formsExame.controleSisMuscEsque.viewSisMuscEsque.viewVariableBoolean}"
                                                                    rendered="true"
                                                                    required="false"
                                                                    requiredMessage="Informe se houve alteração!"
+                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
                                                                    onLabel="Alterado"
                                                                    offLabel="N.D.N."
                                                                    offIcon="fa fa-toggle-off"

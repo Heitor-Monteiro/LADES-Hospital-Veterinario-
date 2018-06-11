@@ -1,84 +1,103 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisUrinMamarIngestHidrica-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-
-            <p:outputLabel value="Ingestão hídrica:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu1" />
-            <p:selectOneRadio id="UrianGlandu1"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ingestHidrica}"
-                              layout="responsive"
-                              columns="1"
-                              required="true"
-                              requiredMessage="Informe ingestão hídrica!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Normal" itemValue="Normal" />
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="IngestHidrica1Label"
+                           value="Ingestão hídrica:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="IngestHidrica1Input" />
+            <p:selectOneButton id="IngestHidrica1Input"
+                               value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ingestHidrica}"
+                               required="true"
+                               requiredMessage="Informe ingestão hídrica!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Normal" itemValue="Normal">
+                    <p:effect type="bounce" event="load" for="IngestHidrica2Label"/>
+                    <p:effect type="bounce" event="load" for="IngestHidrica2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Hipodipsia" itemValue="Hipodipsia" />
                 <f:selectItem itemLabel="Polidipsia" itemValue="Polidipsia" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu1" />
-            
+                <p:ajax update="sisUrinMamarIngestHidrica-panel"
+                        listener="#{MBconsulta.formsExame.controlSisUrinarioMamaria.methodViewIngestHidricaEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="IngestHidrica1Messager"
+                       for="IngestHidrica1Input" />
 
 
-
-
-
-            <p:outputLabel value="Ingestão hídrica (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu2" />
-            <p:inputTextarea id="UrianGlandu2" 
+            <p:outputLabel id="IngestHidrica2Label"
+                           value="Ingestão hídrica (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewIngestHidricaEvolu}"
+                           for="IngestHidrica2Input" />
+            <p:inputTextarea id="IngestHidrica2Input" 
                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ingestHidricaEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewIngestHidricaEvolu}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewIngestHidricaEvolu}"
+                             requiredMessage="Descreva a evolução de ingestão hídrica!"
                              maxlength="200"
                              style="margin-bottom: 20px;" />
-            <p:message for="UrianGlandu2" />
+            <p:message id="IngestHidrica2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewIngestHidricaEvolu}"
+                       for="IngestHidrica2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Estado da urina:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu3" />
-            <p:selectOneRadio id="UrianGlandu3"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.estadoUrina}"
-                              layout="responsive"
-                              columns="1"
-                              required="true"
-                              requiredMessage="Informe o estado da urina!"
-                              style="margin-bottom: 20px;" >
+        <p:panelGrid id="sisUrinMamarEstadoUrina-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="EstadoUrina1Label"
+                           value="Estado da urina:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="EstadoUrina1Input" />
+            <p:selectOneButton id="EstadoUrina1Input"
+                               value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.estadoUrina}"
+                               required="true"
+                               requiredMessage="Informe o estado da urina!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Normal" itemValue="Normal" />
-                <f:selectItem itemLabel="Alterado" itemValue="Alterado" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu3" />
-            
+                <f:selectItem itemLabel="Alterado" itemValue="Alterado">
+                    <p:effect type="bounce" event="load" for="EstadoUrina2Label"/>
+                    <p:effect type="bounce" event="load" for="EstadoUrina2Input"/>
+                    <p:effect type="bounce" event="load" for="EstadoUrina3Label"/>
+                    <p:effect type="bounce" event="load" for="EstadoUrina3Input"/>
+                    <p:effect type="bounce" event="load" for="EstadoUrina4Label"/>
+                    <p:effect type="bounce" event="load" for="EstadoUrina4Input"/>
+                </f:selectItem>
+                <p:ajax update="sisUrinMamarEstadoUrina-panel"
+                        listener="#{MBconsulta.formsExame.controlSisUrinarioMamaria.methodViewEstadoUrina()}" />
+            </p:selectOneButton>
+            <p:message id="EstadoUrina1Messager"
+                       for="EstadoUrina1Input" />
 
-            
-            
-            
-            
-            <p:outputLabel value="Urina:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu4" />
-            <p:selectOneMenu id="UrianGlandu4"
+
+            <p:outputLabel id="EstadoUrina2Label"
+                           value="Urina:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                           for="EstadoUrina2Input" />
+            <p:selectOneMenu id="EstadoUrina2Input"
                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.urina}"
-                             required="true"
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
                              requiredMessage="Informe o estado da urina!"
                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Selecione" itemValue="" />
@@ -88,198 +107,245 @@
                 <f:selectItem itemLabel="Incontinência" itemValue="Incontinência" />
                 <f:selectItem itemLabel="Iscúria" itemValue="Iscúria" />
             </p:selectOneMenu>
-            <p:message for="UrianGlandu4" />
-            
-            
-            
-            
-            
+            <p:message id="EstadoUrina2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                       for="EstadoUrina2Input" />
 
 
-            <p:outputLabel value="Urina (aspecto/cor/odor):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu5" />
-            <p:inputTextarea id="UrianGlandu5" 
+            <p:outputLabel id="EstadoUrina3Label"
+                           value="Urina (aspecto/cor/odor):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                           for="EstadoUrina3Input" />
+            <p:inputTextarea id="EstadoUrina3Input" 
                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.urinaAspecto}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                             requiredMessage="Informe o campo urina (aspecto/cor/odor)!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="UrianGlandu5" />
+            <p:message id="EstadoUrina3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                       for="EstadoUrina3Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Urina (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu6" />
-            <p:inputTextarea id="UrianGlandu6" 
+            <p:outputLabel id="EstadoUrina4Label"
+                           value="Urina (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                           for="EstadoUrina4Input" />
+            <p:inputTextarea id="EstadoUrina4Input" 
                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.urinaEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                             requiredMessage="Descreva o campo evolução da urina!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="UrianGlandu6" />
+            <p:message id="EstadoUrina4Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewEstadoUrina}"
+                       for="EstadoUrina4Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="sisUrinMamarUltimoCio-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4"
+                     rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoCio}">        
+            <p:outputLabel id="UltimoCio1Label"
+                           value="Último cio:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoCio}"
+                           for="UltimoCio1Input" />
+            <p:inputTextarea id="UltimoCio1Input" 
+                             value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ultimoCio}"
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoCio}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoCio}"
+                             requiredMessage="Descreva o campo Último cio!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
+            <p:message id="UltimoCio1Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoCio}"
+                       for="UltimoCio1Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-            <p:outputLabel value="Último cio:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu7" />
-            <p:calendar id="UrianGlandu7" 
-                        value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ultimoCio}"
-                        maxlength="10" 
-                        disabled="false" 
-                        title="" 
-                        required="false"  
-                        requiredMessage="" 
-                        locale="de"
-                        navigator="true"  
-                        pattern="yyyy-mm-dd" /> 
-            <p:message for="UrianGlandu7" />
-            <p:outputLabel /><p:outputLabel /><p:outputLabel />
-            
-            
-            <p:outputLabel value="Prenhe:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu13" />
-            <p:selectOneRadio id="UrianGlandu13"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.prenhe}"
-                              layout="responsive"
-                              columns="2"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisUrinMamarPrenheDescricao-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4"
+                     rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenhe}" >
+            <p:outputLabel id="PrenheDescricao1Label"
+                           value="Prenhe:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenhe}"
+                           for="PrenheDescricao1Input" />
+            <p:selectOneButton id="PrenheDescricao1Input"
+                               value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.prenhe}"
+                               rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenhe}"
+                               required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenhe}"
+                               requiredMessage=""
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="PrenheDescricao2Label"/>
+                    <p:effect type="bounce" event="load" for="PrenheDescricao2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu13" />
-
-            <p:outputLabel value="Último parto:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu8" />
-            <p:calendar id="UrianGlandu8"
-                        value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ultimoParto}"
-                        maxlength="10" 
-                        disabled="false" 
-                        title="" 
-                        required="false"  
-                        requiredMessage="" 
-                        locale="de"
-                        navigator="true"  
-                        pattern="yyyy-mm-dd" />
-            <p:message for="UrianGlandu8" />
-            <p:outputLabel /><p:outputLabel /><p:outputLabel />
+                <p:ajax update="sisUrinMamarPrenheDescricao-panel"
+                        listener="#{MBconsulta.formsExame.controlSisUrinarioMamaria.methodViewPrenheDescricao()}" />
+            </p:selectOneButton>
+            <p:message id="PrenheDescricao1Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenhe}"
+                       for="PrenheDescricao1Input" />
 
 
-            
-            
+            <p:outputLabel id="PrenheDescricao2Label"
+                           value="Descreva a prenhes:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenheDescricao}"
+                           for="PrenheDescricao2Input" />
+            <p:inputTextarea id="PrenheDescricao2Input" 
+                             value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.prenheDescricao}"
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenheDescricao}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenheDescricao}"
+                             requiredMessage="Descreva a prenhes!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
+            <p:message id="PrenheDescricao2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewPrenheDescricao}"
+                       for="PrenheDescricao2Input" />
+        </p:panelGrid>
 
 
-            
-            <p:outputLabel value="Secreção vaginal/peniana:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu9" />
-            <p:selectOneRadio id="UrianGlandu9"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.secreVagiPeni}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta secresão vaginal/peniana!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisUrinMamarUltimoParto-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4"
+                     rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoParto}">
+            <p:outputLabel id="UltimoParto1Label"
+                           value="Último parto:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoParto}"
+                           for="UltimoParto1Input" />
+            <p:inputTextarea id="UltimoParto1Input" 
+                             value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.ultimoParto}"
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoParto}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoParto}"
+                             requiredMessage="Descreva o campo último parto!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
+            <p:message id="UltimoParto1Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewUltimoParto}"
+                       for="UltimoParto1Input" />
+        </p:panelGrid>
+
+
+        <p:panelGrid id="sisUrinMamarSecreVagiPeni-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4">
+            <p:outputLabel id="SecreVagiPeni1Label"
+                           value="Secreção vaginal/peniana:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="SecreVagiPeni1Input" />
+            <p:selectOneButton id="SecreVagiPeni1Input"
+                               value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.secreVagiPeni}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta secresão vaginal/peniana!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="SecreVagiPeni2Label"/>
+                    <p:effect type="bounce" event="load" for="SecreVagiPeni2Input"/>
+                    <p:effect type="bounce" event="load" for="SecreVagiPeni3Label"/>
+                    <p:effect type="bounce" event="load" for="SecreVagiPeni3Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu9" />
+                <p:ajax update="sisUrinMamarSecreVagiPeni-panel"
+                        listener="#{MBconsulta.formsExame.controlSisUrinarioMamaria.methodViewSecreVagiPeni()}" />
+            </p:selectOneButton>
+            <p:message id="SecreVagiPeni1Messager"
+                       for="SecreVagiPeni1Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Secreção vaginal/peniana (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu10" />
-            <p:inputText id="UrianGlandu10" 
+            <p:outputLabel id="SecreVagiPeni2Label"
+                           value="Secreção vaginal/peniana (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                           for="SecreVagiPeni2Input" />
+            <p:inputText id="SecreVagiPeni2Input" 
                          value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.secreVagiPeniTipo}"
-                         required="false"
-                         requiredMessage=""
+                         rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                         required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                         requiredMessage="Informe o tipo de secreção vaginal/peniana!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="UrianGlandu10" />
+            <p:message id="SecreVagiPeni2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                       for="SecreVagiPeni2Input" />
 
 
-
-
-
-
-
-
-
-            <p:outputLabel value="Secreção vaginal/peniana (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu11" />
-            <p:inputTextarea id="UrianGlandu11" 
+            <p:outputLabel id="SecreVagiPeni3Label"
+                           value="Secreção vaginal/peniana (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                           for="SecreVagiPeni3Input" />
+            <p:inputTextarea id="SecreVagiPeni3Input" 
                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.secreVagiPeniEvolu}"
-                             required="false"
-                             requiredMessage=""
+                             rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                             required="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                             requiredMessage="Descreva a evolução da secreção vaginal/peniana!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="UrianGlandu11" />
+            <p:message id="SecreVagiPeni3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSecreVagiPeni}"
+                       for="SecreVagiPeni3Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-            <p:outputLabel value="Castrado:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu12" />
-            <p:selectOneRadio id="UrianGlandu12"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.castrado}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal é castrado!"
-                              style="margin-bottom: 20px;" >
+        <p:panelGrid id="sisUrinMamarCastrado-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4">
+            <p:outputLabel id="Castrado1Label"
+                           value="Castrado:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Castrado1Input" />
+            <p:selectOneButton id="Castrado1Input"
+                               value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.castrado}"
+                               required="true"
+                               requiredMessage="Informe se o animal é castrado!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu12" />
-                
-            
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="UrianGlandu14" />
-            <p:selectOneRadio id="UrianGlandu14"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.sisUrinarioMamaria.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="UrianGlandu14" />
-
+            </p:selectOneButton>
+            <p:message id="Castrado1Messager"
+                       for="Castrado1Input" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>
