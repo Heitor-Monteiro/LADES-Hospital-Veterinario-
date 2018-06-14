@@ -22,6 +22,7 @@ public class ControllerSisRespCardio extends AbstractBean {
     private SisRespCardio sisRespCardio;
     private SisRespCardioId sisRespCardioId;
     private final List<RenderedFields> listViewFields = new ArrayList();
+    private final String ndn = "Nada digno de nota.";
 
     private void prepareSisRespCardio(Consulta consulta) {
         sisRespCardioId = new SisRespCardioId();
@@ -31,13 +32,32 @@ public class ControllerSisRespCardio extends AbstractBean {
 
     public void ConfirmeSisRespCardio(Consulta consulta) {
         try {
-            if (sisRespCardio.getSistemaAfetado().equals("Sim")) {
-                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisRespCardio() ]");
-                prepareSisRespCardio(consulta);
-                getDaoGenerico().save(getSisRespCardio());
+            if (sisRespCardio.getSistemaAfetado().equals("Não")) {
+                System.out.println("BACK-END WARNING: N.D.N [ public void ConfirmeSisRespCardio() ]");
+                sisRespCardio.setTosse("Não");
+                sisRespCardio.setTosseProdutiva("N.D.N.");
+                sisRespCardio.setTosseEvolu(ndn);
+                sisRespCardio.setEspirro("Não");
+                sisRespCardio.setEspirroEvolu(ndn);
+                sisRespCardio.setSecrecaoNasal("Não");
+                sisRespCardio.setSecreNasalUniBilateral("N.D.N.");
+                sisRespCardio.setSecreNasalTipo(ndn);
+                sisRespCardio.setSecreNasalEvolu(ndn);
+                sisRespCardio.setDispneiaTaquipneia("Não");
+                sisRespCardio.setDispnTaquipEvolu(ndn);
+                sisRespCardio.setCianose("Não");
+                sisRespCardio.setCianoseEvolu(ndn);
+                sisRespCardio.setCansacoFacil("Não");
+                sisRespCardio.setCansaFacilEvolu(ndn);
+                sisRespCardio.setSincope("Não");
+                sisRespCardio.setSincopeEvolu(ndn);
+                sisRespCardio.setEmagrecimento("Não");
+                sisRespCardio.setEmagrecEvolu(ndn);
             } else {
-                System.out.println("BACK-END WARNING: NOT CONFIRMED [ public void ConfirmeSisRespCardio() ]");
+                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisRespCardio() ]");
             }
+            prepareSisRespCardio(consulta);
+            getDaoGenerico().save(getSisRespCardio());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisRespCardio() ]"
                     + e.getMessage());
@@ -60,10 +80,17 @@ public class ControllerSisRespCardio extends AbstractBean {
     private RenderedFields getListViewFields(int index) {
         if (listViewFields.isEmpty()) {
             listViewFields.add(index, new RenderedFields());
-        } else if (listViewFields.size() < (index + 1)) {
+        } else if ((listViewFields.size() - index) == 0) {
             listViewFields.add(index, new RenderedFields());
         }
         return listViewFields.get(index);
+    }
+
+    private void startIndexListViewFields() {
+        for (int index = 0; index <= 8; index++) {
+            listViewFields.add(index, new RenderedFields());
+            listViewFields.get(index).setViewVariableBoolean(false);
+        }
     }
 
     public RenderedFields getViewSisRespCardio() {
@@ -72,9 +99,7 @@ public class ControllerSisRespCardio extends AbstractBean {
         } else {
             sisRespCardio = new SisRespCardio();
             sisRespCardio.setSistemaAfetado("Não");
-            for (RenderedFields listViewField : listViewFields) {
-                listViewField.setViewVariableBoolean(false);
-            }
+            startIndexListViewFields();
         }
         return listViewFields.get(0);
     }
@@ -89,7 +114,8 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setTosseEvolu("");
                 listViewFields.get(1).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setTosseEvolu("Nada digno de nota.");
+                sisRespCardio.setTosseProdutiva("N.D.N.");
+                sisRespCardio.setTosseEvolu(ndn);
                 listViewFields.get(1).setViewVariableBoolean(false);
             }
         }
@@ -105,7 +131,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setEspirroEvolu("");
                 listViewFields.get(2).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setEspirroEvolu("Nada digno de nota.");
+                sisRespCardio.setEspirroEvolu(ndn);
                 listViewFields.get(2).setViewVariableBoolean(false);
             }
         }
@@ -123,9 +149,9 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setSecreNasalEvolu("");
                 listViewFields.get(3).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setSecreNasalUniBilateral("");
-                sisRespCardio.setSecreNasalTipo("Nada digno de nota.");
-                sisRespCardio.setSecreNasalEvolu("Nada digno de nota.");
+                sisRespCardio.setSecreNasalUniBilateral("N.D.N.");
+                sisRespCardio.setSecreNasalTipo(ndn);
+                sisRespCardio.setSecreNasalEvolu(ndn);
                 listViewFields.get(3).setViewVariableBoolean(false);
             }
         }
@@ -141,7 +167,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setDispnTaquipEvolu("");
                 listViewFields.get(4).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setDispnTaquipEvolu("Nada digno de nota.");
+                sisRespCardio.setDispnTaquipEvolu(ndn);
                 listViewFields.get(4).setViewVariableBoolean(false);
             }
         }
@@ -157,7 +183,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setCianoseEvolu("");
                 listViewFields.get(5).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setCianoseEvolu("Nada digno de nota.");
+                sisRespCardio.setCianoseEvolu(ndn);
                 listViewFields.get(5).setViewVariableBoolean(false);
             }
         }
@@ -173,7 +199,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setCansaFacilEvolu("");
                 listViewFields.get(6).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setCansaFacilEvolu("Nada digno de nota.");
+                sisRespCardio.setCansaFacilEvolu(ndn);
                 listViewFields.get(6).setViewVariableBoolean(false);
             }
         }
@@ -189,7 +215,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setSincopeEvolu("");
                 listViewFields.get(7).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setSincopeEvolu("Nada digno de nota.");
+                sisRespCardio.setSincopeEvolu(ndn);
                 listViewFields.get(7).setViewVariableBoolean(false);
             }
         }
@@ -205,7 +231,7 @@ public class ControllerSisRespCardio extends AbstractBean {
                 sisRespCardio.setEmagrecEvolu("");
                 listViewFields.get(8).setViewVariableBoolean(true);
             } else {
-                sisRespCardio.setEmagrecEvolu("Nada digno de nota.");
+                sisRespCardio.setEmagrecEvolu(ndn);
                 listViewFields.get(8).setViewVariableBoolean(false);
             }
         }

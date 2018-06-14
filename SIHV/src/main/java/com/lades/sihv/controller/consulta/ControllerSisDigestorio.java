@@ -22,6 +22,7 @@ public class ControllerSisDigestorio extends AbstractBean {
     private SisDigestorio sisDigestorio;
     private SisDigestorioId sisDigestorioId;
     private final List<RenderedFields> listViewFields = new ArrayList();
+    private final String ndn = "Nada digno de nota.";
 
     private void prepareSisDigestorio(Consulta consulta) {
         sisDigestorioId = new SisDigestorioId();
@@ -31,13 +32,25 @@ public class ControllerSisDigestorio extends AbstractBean {
 
     public void ConfirmeSisDigestorio(Consulta consulta) {
         try {
-            if (sisDigestorio.getSistemaAfetado().equals("Sim")) {
-                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisDigestorio() ]");
-                prepareSisDigestorio(consulta);
-                getDaoGenerico().save(getSisDigestorio());
+            if (sisDigestorio.getSistemaAfetado().equals("Não")) {
+                System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisDigestorio() ]");
+                sisDigestorio.setEstaSeAlimentando("Sim");
+                sisDigestorio.setDescriNaoSeAlimeta(ndn);
+                sisDigestorio.setVomito("Não");
+                sisDigestorio.setAspectoVomito(ndn);
+                sisDigestorio.setEvoluVomito(ndn);
+                sisDigestorio.setRegurgitacao("Não");
+                sisDigestorio.setEvoluRegurgitacao(ndn);
+                sisDigestorio.setDiarreia("Não");
+                sisDigestorio.setAspectDiarreia(ndn);
+                sisDigestorio.setEvoluDiarreia(ndn);
+                sisDigestorio.setDisquesiaTenesmo("Não");
+                sisDigestorio.setEvoluDisquesiaTenesmo(ndn);
             } else {
-                System.out.println("BACK-END WARNING: NOT CONFIRMED [ public void ConfirmeSisDigestorio() ]");
+                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisDigestorio() ]");
             }
+            prepareSisDigestorio(consulta);
+            getDaoGenerico().save(getSisDigestorio());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisDigestorio() ]"
                     + e.getMessage());
@@ -60,10 +73,17 @@ public class ControllerSisDigestorio extends AbstractBean {
     private RenderedFields getListViewFields(int index) {
         if (listViewFields.isEmpty()) {
             listViewFields.add(index, new RenderedFields());
-        } else if (listViewFields.size() < (index + 1)) {
+        } else if ((listViewFields.size() - index) == 0) {
             listViewFields.add(index, new RenderedFields());
         }
         return listViewFields.get(index);
+    }
+
+    private void startIndexListViewFields() {
+        for (int index = 0; index <= 5; index++) {
+            listViewFields.add(index, new RenderedFields());
+            listViewFields.get(index).setViewVariableBoolean(false);
+        }
     }
 
     public RenderedFields getViewSisDigestorio() {
@@ -72,9 +92,7 @@ public class ControllerSisDigestorio extends AbstractBean {
         } else {
             sisDigestorio = new SisDigestorio();
             sisDigestorio.setSistemaAfetado("Não");
-            for (RenderedFields listViewField : listViewFields) {
-                listViewField.setViewVariableBoolean(false);
-            }
+            startIndexListViewFields();
         }
         return listViewFields.get(0);
     }
@@ -89,7 +107,7 @@ public class ControllerSisDigestorio extends AbstractBean {
                 sisDigestorio.setDescriNaoSeAlimeta("");
                 listViewFields.get(1).setViewVariableBoolean(true);
             } else {
-                sisDigestorio.setDescriNaoSeAlimeta("Nada digno de nota.");
+                sisDigestorio.setDescriNaoSeAlimeta(ndn);
                 listViewFields.get(1).setViewVariableBoolean(false);
             }
         }
@@ -106,8 +124,8 @@ public class ControllerSisDigestorio extends AbstractBean {
                 sisDigestorio.setEvoluVomito("");
                 listViewFields.get(2).setViewVariableBoolean(true);
             } else {
-                sisDigestorio.setAspectoVomito("Nada digno de nota.");
-                sisDigestorio.setEvoluVomito("Nada digno de nota.");
+                sisDigestorio.setAspectoVomito(ndn);
+                sisDigestorio.setEvoluVomito(ndn);
                 listViewFields.get(2).setViewVariableBoolean(false);
             }
         }
@@ -123,7 +141,7 @@ public class ControllerSisDigestorio extends AbstractBean {
                 sisDigestorio.setEvoluRegurgitacao("");
                 listViewFields.get(3).setViewVariableBoolean(true);
             } else {
-                sisDigestorio.setEvoluRegurgitacao("Nada digno de nota.");
+                sisDigestorio.setEvoluRegurgitacao(ndn);
                 listViewFields.get(3).setViewVariableBoolean(false);
             }
         }
@@ -140,8 +158,8 @@ public class ControllerSisDigestorio extends AbstractBean {
                 sisDigestorio.setEvoluDiarreia("");
                 listViewFields.get(4).setViewVariableBoolean(true);
             } else {
-                sisDigestorio.setAspectDiarreia("Nada digno de nota.");
-                sisDigestorio.setEvoluDiarreia("Nada digno de nota.");
+                sisDigestorio.setAspectDiarreia(ndn);
+                sisDigestorio.setEvoluDiarreia(ndn);
                 listViewFields.get(4).setViewVariableBoolean(false);
             }
         }
@@ -157,7 +175,7 @@ public class ControllerSisDigestorio extends AbstractBean {
                 sisDigestorio.setEvoluDisquesiaTenesmo("");
                 listViewFields.get(5).setViewVariableBoolean(true);
             } else {
-                sisDigestorio.setEvoluDisquesiaTenesmo("Nada digno de nota.");
+                sisDigestorio.setEvoluDisquesiaTenesmo(ndn);
                 listViewFields.get(5).setViewVariableBoolean(false);
             }
         }

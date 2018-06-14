@@ -1,21 +1,20 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisTegumentarEvoluLocaliLesao-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Início/evolução da lesão:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Tegumentar1" />
             <p:inputTextarea id="Tegumentar1" 
                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.evoluLesao}"
@@ -26,13 +25,10 @@
             <p:message for="Tegumentar1" />
 
 
-
-
-
-
-
             <p:outputLabel value="Localização e características das lesões:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Tegumentar2" />
             <p:inputTextarea id="Tegumentar2" 
                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.localiLesao}"
@@ -41,192 +37,198 @@
                              style="margin-bottom: 20px;"
                              maxlength="200" />
             <p:message for="Tegumentar2" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Prurido cutâneo:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar3" />
-            <p:selectOneRadio id="Tegumentar3"
-                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoCutaneo}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo prurido cutâneo!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisTegumentarPruridoCutaneo-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="PruridoCutaneo1Label"
+                           value="Prurido cutâneo:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="PruridoCutaneo1Input" />
+            <p:selectOneButton id="PruridoCutaneo1Input"
+                               value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoCutaneo}"
+                               required="true"
+                               requiredMessage="Informe o campo prurido cutâneo!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="PruridoCutaneo2Label"/>
+                    <p:effect type="bounce" event="load" for="PruridoCutaneo2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Tegumentar3" />
+                <p:ajax update="sisTegumentarPruridoCutaneo-panel"
+                        listener="#{MBconsulta.formsExame.controleSisTegumentar.methodViewPruridoCutaneoEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="PruridoCutaneo1Messager"
+                       for="PruridoCutaneo1Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Prurido cutâneo (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar4" />
-            <p:inputText id="Tegumentar4" 
+            <p:outputLabel id="PruridoCutaneo2Label"
+                           value="Prurido cutâneo (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
+                           for="PruridoCutaneo2Input" />
+            <p:inputText id="PruridoCutaneo2Input" 
                          value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoCutaneoEvolu}"
-                         required="false"
-                         requiredMessage=""
+                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
+                         required="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
+                         requiredMessage="Informe a evolução de Prurido cutâneo!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Tegumentar4" />
+            <p:message id="PruridoCutaneo2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
+                       for="PruridoCutaneo2Input" />
+        </p:panelGrid>
 
 
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="Prurido otológico:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar5" />
-            <p:selectOneRadio id="Tegumentar5"
-                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoOtolog}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo prurido otológico!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisTegumentarPruridoOtolog-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="PruridoOtolog1Label"
+                           value="Prurido otológico:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="PruridoOtolog1Input" />
+            <p:selectOneButton id="PruridoOtolog1Input"
+                               value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoOtolog}"
+                               required="true"
+                               requiredMessage="Informe o campo prurido otológico!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="PruridoOtolog2Label"/>
+                    <p:effect type="bounce" event="load" for="PruridoOtolog2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Tegumentar5" />
+                <p:ajax update="sisTegumentarPruridoOtolog-panel"
+                        listener="#{MBconsulta.formsExame.controleSisTegumentar.methodViewPruridoOtologEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="PruridoOtolog1Messager"
+                       for="PruridoOtolog1Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Prurido otológico (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar6" />
-            <p:inputText id="Tegumentar6" 
+            <p:outputLabel id="PruridoOtolog2Label"
+                           value="Prurido otológico (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
+                           for="PruridoOtolog2Input" />
+            <p:inputText id="PruridoOtolog2Input" 
                          value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoOtologEvolu}"
-                         required="false"
-                         requiredMessage=""
+                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
+                         required="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
+                         requiredMessage="Informe a evolução de Prurido otológico!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Tegumentar6" />
-            
+            <p:message id="PruridoOtolog2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
+                       for="PruridoOtolog2Input" />
+        </p:panelGrid>
 
 
-
-
-
-            <p:outputLabel value="Secreção otológica:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar7" />
-            <p:selectOneRadio id="Tegumentar7"
-                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.secreOtolog}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo secreção otológica!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisTegumentarSecreOtolog-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="SecreOtolog1Label"
+                           value="Secreção otológica:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="SecreOtolog1Input" />
+            <p:selectOneButton id="SecreOtolog1Input"
+                               value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.secreOtolog}"
+                               required="true"
+                               requiredMessage="Informe o campo secreção otológica!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="SecreOtolog2Label"/>
+                    <p:effect type="bounce" event="load" for="SecreOtolog2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Tegumentar7" />
+                <p:ajax update="sisTegumentarSecreOtolog-panel"
+                        listener="#{MBconsulta.formsExame.controleSisTegumentar.methodViewSecreOtologEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="SecreOtolog1Messager"
+                       for="SecreOtolog1Input" />
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Secreção otológica (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar8" />
-            <p:inputText id="Tegumentar8" 
+            <p:outputLabel id="SecreOtolog2Label"
+                           value="Secreção otológica (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
+                           for="SecreOtolog2Input" />
+            <p:inputText id="SecreOtolog2Input" 
                          value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.secreOtologEvolu}"
-                         required="false"
-                         requiredMessage=""
+                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
+                         required="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
+                         requiredMessage="Informe a evolução da Secreção otológica!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Tegumentar8" />
+            <p:message id="SecreOtolog2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
+                       for="SecreOtolog2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Frequência de banhos:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar9" />
-            <p:inputText id="Tegumentar9" 
+        <p:panelGrid id="sisTegumentarFrequeBanhos-panel"
+                     columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="FrequeBanhos1Label"
+                           value="Frequência de banhos:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="FrequeBanhos1Input" />
+            <p:inputText id="FrequeBanhos1Input" 
                          value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.frequeBanhos}"
                          required="true"
                          requiredMessage="Informe a frequência de banhos"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
-            <p:message for="Tegumentar9" />
+                         maxlength="50">
+            </p:inputText>
+            <p:message id="FrequeBanhos1Messager"
+                       for="FrequeBanhos1Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-            <p:outputLabel value="Produto utilizado no banho:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar10" />
-            <p:inputText id="Tegumentar10" 
-                         value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.produUtilBanho}"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;"
-                         maxlength="50" />
-            <p:message for="Tegumentar10" />
-
-
-            
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Tegumentar11" />
-            <p:selectOneRadio id="Tegumentar11"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Tegumentar11" />
-
+        <p:panelGrid id="sisTegumentarProduUtilBanho-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="ProduUtilBanho1Label"
+                           value="Produto utilizado no banho:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="true"
+                           for="ProduUtilBanho1Input" />
+            <p:inputTextarea id="ProduUtilBanho1Input" 
+                             value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.produUtilBanho}"
+                             rendered="true"
+                             required="false"
+                             requiredMessage=""
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
+            <p:message id="ProduUtilBanho1Messager"
+                       rendered="true"
+                       for="ProduUtilBanho1Input" />
         </p:panelGrid>    
     </div>
-    
 </ui:component>

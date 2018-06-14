@@ -78,7 +78,7 @@ public class ControllerExameFisico extends AbstractBean {
     public RenderedFields getListViewFields(int index) {
         if (listViewFields.isEmpty()) {
             listViewFields.add(index, new RenderedFields());
-        } else if (listViewFields.size() < (index + 1)) {
+        } else if ((listViewFields.size() - index) == 0) {
             listViewFields.add(index, new RenderedFields());
         }
         return listViewFields.get(index);

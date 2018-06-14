@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/06/2018 10:50:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisRespCardio" table="sisRespCardio" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisRespCardioId">
@@ -19,7 +19,7 @@
             <column name="tosse" length="7" not-null="true" />
         </property>
         <property name="tosseProdutiva" type="string">
-            <column name="tosseProdutiva" length="23" />
+            <column name="tosseProdutiva" length="30" />
         </property>
         <property name="tosseEvolu" type="string">
             <column name="tosseEvolu" length="200" />
@@ -34,7 +34,7 @@
             <column name="secrecaoNasal" length="7" not-null="true" />
         </property>
         <property name="secreNasalUniBilateral" type="string">
-            <column name="secreNasalUniBilateral" length="50" />
+            <column name="secreNasalUniBilateral" length="57" />
         </property>
         <property name="secreNasalTipo" type="string">
             <column name="secreNasalTipo" length="50" />
