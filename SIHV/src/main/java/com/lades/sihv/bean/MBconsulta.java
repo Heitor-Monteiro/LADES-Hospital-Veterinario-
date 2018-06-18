@@ -56,15 +56,15 @@ public class MBconsulta extends AbstractBean {
                         .ConfirmeConsulta(collectionClasses.getAnimais(),
                                  getVariaveisDeSessao().getDadosUSER());
 
-//                getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
+                getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
-//                getFormsExame().getControlSisDigestorio().ConfirmeSisDigestorio(consulta);
-//                getFormsExame().getControlSisRespCardio().ConfirmeSisRespCardio(consulta);
-//                getFormsExame().getControlSisUrinarioMamaria().ConfirmeSisUrinarioMamaria(consulta);
-//                getFormsExame().getControleSisTegumentar().ConfirmeSisTegumentar(consulta);
-//                getFormsExame().getControleSisNeurologico().ConfirmeSisNeurologico(consulta);
-//                getFormsExame().getControleSisOftalmico().ConfirmeSisOftalmico(consulta);
-//                getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
+                getFormsExame().getControlSisDigestorio().ConfirmeSisDigestorio(consulta);
+                getFormsExame().getControlSisRespCardio().ConfirmeSisRespCardio(consulta);
+                getFormsExame().getControlSisUrinarioMamaria().ConfirmeSisUrinarioMamaria(consulta);
+                getFormsExame().getControleSisTegumentar().ConfirmeSisTegumentar(consulta);
+                getFormsExame().getControleSisNeurologico().ConfirmeSisNeurologico(consulta);
+                getFormsExame().getControleSisOftalmico().ConfirmeSisOftalmico(consulta);
+                getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
                 if (confirmeRAIOX == true) {
 //                    getFormsExame().prepareExameImageRaioX(getObjData(), codRaioX);
 //                    getDaoGenerico().save(getFormsExame().getExameImageRaioX());

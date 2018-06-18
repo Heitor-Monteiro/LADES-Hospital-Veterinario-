@@ -146,22 +146,13 @@
                 </p:link>
             </div>
         </div>
-
+        
         <p:link class="itemMenu"
                 rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
                 outcome="/sihv-telas/consulta-nova" >
             <i class="fa fa-stethoscope"
                style="margin: 0px 18px 0px 0px;"></i>
             <p:outputLabel value="Nova consulta"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
-        
-        <p:link class="itemMenu"
-                rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
-                outcome="/sihv-telas/consulta-nova_2" >
-            <i class="fa fa-stethoscope"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Nova consulta 2 BETA"
                            style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
         </p:link>
         

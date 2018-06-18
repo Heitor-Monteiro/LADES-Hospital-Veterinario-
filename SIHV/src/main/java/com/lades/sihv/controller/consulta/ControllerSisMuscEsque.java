@@ -22,6 +22,7 @@ public class ControllerSisMuscEsque extends AbstractBean {
     private SisMuscEsque sisMuscEsque;
     private SisMuscEsqueId sisMuscEsqueId;
     private final List<RenderedFields> listViewFields = new ArrayList();
+    private final String ndn = "Nada digno de nota.";
 
     private void prepareSisMuscEsque(Consulta consulta) {
         sisMuscEsqueId = new SisMuscEsqueId();
@@ -31,13 +32,19 @@ public class ControllerSisMuscEsque extends AbstractBean {
 
     public void ConfirmeSisMuscEsque(Consulta consulta) {
         try {
-            if (sisMuscEsque.getSistemaAfetado().equals("Sim")) {
-                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisMuscEsque() ]");
-                prepareSisMuscEsque(consulta);
-                getDaoGenerico().save(getSisMuscEsque());
+            if (sisMuscEsque.getSistemaAfetado().equals("Não")) {
+                System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisMuscEsque() ]");
+                sisMuscEsque.setClaudicacao("Não");
+                sisMuscEsque.setClaudicacaoEvolu(ndn);
+                sisMuscEsque.setFraturas("Não");
+                sisMuscEsque.setFraturasEvolu(ndn);
+                sisMuscEsque.setAtrofMusc("Não");
+                sisMuscEsque.setAtrofMuscEvolu(ndn);
             } else {
-                System.out.println("BACK-END WARNING: NOT CONFIRMED [ public void ConfirmeSisMuscEsque() ]");
+                System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisMuscEsque() ]");
             }
+            prepareSisMuscEsque(consulta);
+            getDaoGenerico().save(getSisMuscEsque());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisMuscEsque() ]"
                     + e.getMessage());
@@ -66,13 +73,69 @@ public class ControllerSisMuscEsque extends AbstractBean {
         return listViewFields.get(index);
     }
 
+    private void startIndexListViewFields() {
+        for (int index = 0; index <= 3; index++) {
+            listViewFields.add(index, new RenderedFields());
+            listViewFields.get(index).setViewVariableBoolean(false);
+        }
+    }
+
     public RenderedFields getViewSisMuscEsque() {
         if (getListViewFields(0).isViewVariableBoolean()) {
             sisMuscEsque.setSistemaAfetado("Sim");
         } else {
             sisMuscEsque = new SisMuscEsque();
             sisMuscEsque.setSistemaAfetado("Não");
+            startIndexListViewFields();
         }
         return listViewFields.get(0);
+    }
+
+    public boolean isViewClaudicacao() {
+        return getListViewFields(1).isViewVariableBoolean();
+    }
+
+    public void methodViewClaudicacao() {
+        if (sisMuscEsque.getClaudicacao() != null) {
+            if (sisMuscEsque.getClaudicacao().equals("Sim")) {
+                sisMuscEsque.setClaudicacaoEvolu("");
+                listViewFields.get(1).setViewVariableBoolean(true);
+            } else {
+                sisMuscEsque.setClaudicacaoEvolu(ndn);
+                listViewFields.get(1).setViewVariableBoolean(false);
+            }
+        }
+    }
+
+    public boolean isViewFraturas() {
+        return getListViewFields(2).isViewVariableBoolean();
+    }
+
+    public void methodViewFraturas() {
+        if (sisMuscEsque.getFraturas() != null) {
+            if (sisMuscEsque.getFraturas().equals("Sim")) {
+                sisMuscEsque.setFraturasEvolu("");
+                listViewFields.get(2).setViewVariableBoolean(true);
+            } else {
+                sisMuscEsque.setFraturasEvolu(ndn);
+                listViewFields.get(2).setViewVariableBoolean(false);
+            }
+        }
+    }
+
+    public boolean isViewAtrofMusc() {
+        return getListViewFields(3).isViewVariableBoolean();
+    }
+
+    public void methodViewAtrofMusc() {
+        if (sisMuscEsque.getAtrofMusc() != null) {
+            if (sisMuscEsque.getAtrofMusc().equals("Sim")) {
+                sisMuscEsque.setAtrofMuscEvolu("");
+                listViewFields.get(3).setViewVariableBoolean(true);
+            } else {
+                sisMuscEsque.setAtrofMuscEvolu(ndn);
+                listViewFields.get(3).setViewVariableBoolean(false);
+            }
+        }
     }
 }
