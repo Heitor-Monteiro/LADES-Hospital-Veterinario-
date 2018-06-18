@@ -14,11 +14,12 @@ import java.util.List;
  * @author thiberius
  */
 public class MaxCodigoConsulta extends AbstractBean {
-    
+
+    private int maxCodConsulta = 0;
+
     /*O método é utilizado para saber qual
     será o próximo código de uma nova consulta.*/
-    public int maxConsultaCod() {
-        int maxCodConsulta;
+    public void maxExamCode() {
         List<?> list;
         list = getDaoGenerico().list("select c.pkConsulta from Consulta c where c.pkConsulta=1");
         if (list.size() > 0) {
@@ -27,6 +28,9 @@ public class MaxCodigoConsulta extends AbstractBean {
         } else {
             maxCodConsulta = 1;
         }
+    }
+
+    public int getMaxCodConsulta() {
         return maxCodConsulta;
     }
 }

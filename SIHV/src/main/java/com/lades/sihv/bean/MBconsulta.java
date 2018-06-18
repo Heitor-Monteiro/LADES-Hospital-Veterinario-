@@ -32,6 +32,7 @@ public class MBconsulta extends AbstractBean {
     private String confirmeSENHA;
     private CollectionClasses collectionClasses;
     private FormsExames formsExame;
+    private MaxCodigoConsulta objMaxCodigoConsulta;
     private boolean confirmeRAIOX = false;
     private boolean confirmeUltrasson = false;
     private String codRaioX;
@@ -54,7 +55,7 @@ public class MBconsulta extends AbstractBean {
                 Consulta consulta = getFormsExame()
                         .getControlConsulta()
                         .ConfirmeConsulta(collectionClasses.getAnimais(),
-                                 getVariaveisDeSessao().getDadosUSER());
+                                getVariaveisDeSessao().getDadosUSER());
 
                 getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
@@ -181,8 +182,15 @@ public class MBconsulta extends AbstractBean {
 
     /*Método GET para exibir código demostrativos
     ao finalizar uma nova consulta.*/
+    public MaxCodigoConsulta getObjMaxCodigoConsulta() {
+        if (objMaxCodigoConsulta == null) {
+            objMaxCodigoConsulta = new MaxCodigoConsulta();
+        }
+        return objMaxCodigoConsulta;
+    }
+
     public int getMaxCodConsulta() {
-        return new MaxCodigoConsulta().maxConsultaCod();
+        return getObjMaxCodigoConsulta().getMaxCodConsulta();
     }
     //------------------------------------------------------------------
 }
