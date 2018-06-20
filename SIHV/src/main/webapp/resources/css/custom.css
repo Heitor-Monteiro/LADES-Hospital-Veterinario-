@@ -16,6 +16,11 @@
 }
 
 
+.ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
+     padding-bottom: 1%;
+} 
+
+
 @media (max-width: 640px) {
     .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row {
         border: none;
@@ -24,6 +29,14 @@
 
 
 /*---------------- Prime Faces modificações na estilizações ----------------*/
+
+/*TabView*/
+.ui-tabs .ui-tabs-nav.ui-widget-header li a {
+    color: #5f666c!important;
+    font-weight: bold!important;
+    font-size: 1em!important;
+}
+/*TabView*/
 
 
 /*WIZARD*/
@@ -46,4 +59,15 @@
     color: #5f666c!important;
 }
 
+/*required field PrimeFaces*/
+.ui-outputlabel .ui-outputlabel-rfi {
+    color: #c0392b!important;
+}
+
+/*selectBooleanButton*/
+.buttonAffectedSystem {
+    width:100px!important;
+    color: #5f666c!important;
+    font-size: 13px!important;
+}
 /*---------------- Prime Faces modificações na estilizações ----------------*/

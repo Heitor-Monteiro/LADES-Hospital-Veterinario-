@@ -11,9 +11,11 @@ import com.lades.sihv.controller.consulta.ConfirmarMedicoVeterinario;
 import com.lades.sihv.controller.consulta.VisualizarConsulta;
 import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.classeMolde.CollectionClasses;
+import com.lades.sihv.model.Consulta;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -30,11 +32,17 @@ public class MBconsulta extends AbstractBean {
     private String confirmeSENHA;
     private CollectionClasses collectionClasses;
     private FormsExames formsExame;
+    private MaxCodigoConsulta objMaxCodigoConsulta;
     private boolean confirmeRAIOX = false;
     private boolean confirmeUltrasson = false;
     private String codRaioX;
     private String codUltrasson;
     private int numCodImage;
+
+    @PostConstruct
+    public void init() {
+
+    }
 
     /*Método utilizado para salvar uma nova consulta.
     Obs.: a consulta será salva caso tenha confirmação 
@@ -44,41 +52,35 @@ public class MBconsulta extends AbstractBean {
         boolean var = new ConfirmarMedicoVeterinario().confirmaMEDICO(confirmeSENHA, confirmeCRMV);
         if (var) {
             try {
-                getFormsExame().prepareConsulta(getObjData(), collectionClasses.getAnimais(),
-                        getVariaveisDeSessao().getDadosUSER());
-                getDaoGenerico().save(getFormsExame().getConsulta());
+                Consulta consulta = getFormsExame()
+                        .getControlConsulta()
+                        .ConfirmeConsulta(collectionClasses.getAnimais(),
+                                getVariaveisDeSessao().getDadosUSER());
 
-                getFormsExame().prepareAnamnese();
-                getFormsExame().prepareSisDigestorio();
-                getFormsExame().prepareSisRespCardio();
-                getFormsExame().prepareSisUrinarioMamaria();
-                getFormsExame().prepareSisTegumentar();
-                getFormsExame().prepareSisNeurologico();
-                getFormsExame().prepareSisOftalmico();
-                getFormsExame().prepareSisMuscEsque();
-                getFormsExame().prepareExameFisico();
-                getDaoGenerico().save(getFormsExame().getAnamnese());
-                getDaoGenerico().save(getFormsExame().getSisDigestorio());
-                getDaoGenerico().save(getFormsExame().getSisRespCardio());
-                getDaoGenerico().save(getFormsExame().getSisUrinarioMamaria());
-                getDaoGenerico().save(getFormsExame().getSisTegumentar());
-                getDaoGenerico().save(getFormsExame().getSisNeurologico());
-                getDaoGenerico().save(getFormsExame().getSisOftalmico());
-                getDaoGenerico().save(getFormsExame().getSisMuscEsque());
-                getDaoGenerico().save(getFormsExame().getExameFisico());
+                getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
+                getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
+                getFormsExame().getControlSisDigestorio().ConfirmeSisDigestorio(consulta);
+                getFormsExame().getControlSisRespCardio().ConfirmeSisRespCardio(consulta);
+                getFormsExame().getControlSisUrinarioMamaria().ConfirmeSisUrinarioMamaria(consulta);
+                getFormsExame().getControleSisTegumentar().ConfirmeSisTegumentar(consulta);
+                getFormsExame().getControleSisNeurologico().ConfirmeSisNeurologico(consulta);
+                getFormsExame().getControleSisOftalmico().ConfirmeSisOftalmico(consulta);
+                getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
                 if (confirmeRAIOX == true) {
-                    getFormsExame().prepareExameImageRaioX(getObjData(), codRaioX);
-                    getDaoGenerico().save(getFormsExame().getExameImageRaioX());
+//                    getFormsExame().prepareExameImageRaioX(getObjData(), codRaioX);
+//                    getDaoGenerico().save(getFormsExame().getExameImageRaioX());
                 }
                 if (confirmeUltrasson == true) {
-                    getFormsExame().prepareExameImageUltra(getObjData(), codUltrasson);
-                    getDaoGenerico().save(getFormsExame().getExameImageUltra());
+//                    getFormsExame().prepareExameImageUltra(getObjData(), codUltrasson);
+//                    getDaoGenerico().save(getFormsExame().getExameImageUltra());
                 }
                 getObjMessage().info("Cosulta efetuada.", "Consulta realizada com sucesso.");
                 getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
                 getObjTools().setShowButtonPrint(true); //Habilitando visibilidade do botão para impressão
+                getObjTools().disableWizardNavBar();
             } catch (Exception e) {
                 getObjMessage().warn("Erro ao efetuar cadastro!", "Verifique os dados e tente novamente!");
+                getObjTools().disableWizardNavBar();
             }
         }
     }
@@ -141,7 +143,7 @@ public class MBconsulta extends AbstractBean {
 
     public void setConfirmeRAIOX(boolean confirmeRAIOX) {
         this.confirmeRAIOX = confirmeRAIOX;
-        new CodExameImagem().gerarCodExameImagem(this.confirmeRAIOX, 
+        new CodExameImagem().gerarCodExameImagem(this.confirmeRAIOX,
                 confirmeUltrasson, numCodImage, codRaioX, codUltrasson);
     }
 
@@ -151,7 +153,7 @@ public class MBconsulta extends AbstractBean {
 
     public void setConfirmeUltrasson(boolean confirmeUltrasson) {
         this.confirmeUltrasson = confirmeUltrasson;
-        new CodExameImagem().gerarCodExameImagem(confirmeRAIOX, 
+        new CodExameImagem().gerarCodExameImagem(confirmeRAIOX,
                 this.confirmeUltrasson, numCodImage, codRaioX, codUltrasson);
     }
 
@@ -178,14 +180,17 @@ public class MBconsulta extends AbstractBean {
         return formsExame;
     }
 
-    public void setFormsExame(FormsExames formsExame) {
-        this.formsExame = formsExame;
-    }
-
     /*Método GET para exibir código demostrativos
     ao finalizar uma nova consulta.*/
+    public MaxCodigoConsulta getObjMaxCodigoConsulta() {
+        if (objMaxCodigoConsulta == null) {
+            objMaxCodigoConsulta = new MaxCodigoConsulta();
+        }
+        return objMaxCodigoConsulta;
+    }
+
     public int getMaxCodConsulta() {
-        return new MaxCodigoConsulta().maxConsultaCod();
+        return getObjMaxCodigoConsulta().getMaxCodConsulta();
     }
     //------------------------------------------------------------------
 }

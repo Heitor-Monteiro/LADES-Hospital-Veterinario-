@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 15/06/2018 11:17:09 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -158,7 +158,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="paralisiaEspFla", length=17)
+    @Column(name="paralisiaEspFla", length=24)
     public String getParalisiaEspFla() {
         return this.paralisiaEspFla;
     }

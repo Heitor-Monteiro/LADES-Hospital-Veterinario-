@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 15/06/2018 17:09:53 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -108,7 +108,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOcularUniBi", length=50)
+    @Column(name="secreOcularUniBi", length=57)
     public String getSecreOcularUniBi() {
         return this.secreOcularUniBi;
     }

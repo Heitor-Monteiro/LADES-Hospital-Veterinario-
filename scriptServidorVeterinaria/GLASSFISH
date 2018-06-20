@@ -1,0 +1,20 @@
+#!/bin/bash
+
+case "$1" in
+	start)
+		echo "--- Iniciando servidor Glassfish ---"
+		/opt/glassfish4/bin/asadmin start-domain
+	;;
+	restart)
+		echo "--- Reiniciando servidor Glassfish ---"
+		/opt/glassfish4/bin/asadmin restart-domain
+	;;
+	stop)
+		echo "--- Parando servidor Glassfish ---"
+		/opt/glassfish4/bin/asadmin stop-domain
+	;;
+	*)
+		echo "Utilize uma das opcoes $0 {start|stop|restart}"
+	;;
+esac
+exit 0;

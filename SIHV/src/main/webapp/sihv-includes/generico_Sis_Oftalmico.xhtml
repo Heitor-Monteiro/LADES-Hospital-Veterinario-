@@ -1,24 +1,24 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisOftalmicoOlhosPupila-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-            
-            
-            <p:outputLabel value="Olhos/Pupila:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico1" />
-            <p:selectOneMenu id="oftalmico1"
-                             value="#{MBconsulta.formsExame.sisOftalmico.olhosPupila}"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="OlhosPupila1Label"
+                           value="Olhos/Pupila:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="OlhosPupila1Input" />
+            <p:selectOneMenu id="OlhosPupila1Input"
+                             value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.olhosPupila}"
                              required="true"
                              requiredMessage="Informe se o animal apresenta perda de visão!"
                              style="margin-bottom: 20px;" >
@@ -29,200 +29,200 @@
                 <f:selectItem itemLabel="Estrabismo" itemValue="Estrabismo" />
                 <f:selectItem itemLabel="Midríase" itemValue="Midríase" />
                 <f:selectItem itemLabel="Miose" itemValue="Miose" />
-                
-                
             </p:selectOneMenu>
-            <p:message for="oftalmico1" />
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="Secreção ocular:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico2" />
-            <p:selectOneRadio id="oftalmico2"
-                              value="#{MBconsulta.formsExame.sisOftalmico.secreOcular}"
-                             layout="responsive"
-                             columns="2"
-                             required="true"
-                             requiredMessage="Informe se o animal apresenta secreção ocular!"
-                             style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+            <p:message id="OlhosPupila1Messager"
+                       for="OlhosPupila1Input" />
+        </p:panelGrid>
+
+
+        <p:panelGrid id="sisOftalmicoSecreOcular-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="SecreOcular1Label"
+                           value="Secreção ocular:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="SecreOcular1Input" />
+            <p:selectOneButton id="SecreOcular1Input"
+                               value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOcular}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta secreção ocular!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="SecreOcular2Label"/>
+                    <p:effect type="bounce" event="load" for="SecreOcular2Input"/>
+                    <p:effect type="bounce" event="load" for="SecreOcular3Label"/>
+                    <p:effect type="bounce" event="load" for="SecreOcular3Input"/>
+                    <p:effect type="bounce" event="load" for="SecreOcular4Label"/>
+                    <p:effect type="bounce" event="load" for="SecreOcular4Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="oftalmico2" />
+                <p:ajax update="sisOftalmicoSecreOcular-panel"
+                        listener="#{MBconsulta.formsExame.controleSisOftalmico.methodViewSecreOcular()}" />
+            </p:selectOneButton>
+            <p:message id="SecreOcular1Messager"
+                       for="SecreOcular1Input" />
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Secreção ocular:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico3" />
-            <p:selectOneRadio id="oftalmico3"
-                              value="#{MBconsulta.formsExame.sisOftalmico.secreOcularUniBi}"
-                              layout="responsive"
-                              columns="1"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="SecreOcular2Label"
+                           value="Secreção ocular Uni/Bilateral:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                           for="SecreOcular2Input" />
+            <p:selectOneMenu id="SecreOcular2Input"
+                             value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOcularUniBi}"
+                             rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                             required="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                             requiredMessage="Informe o campo secreção ocular Uni/Bilateral!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
                 <f:selectItem itemLabel="Unilateral(esquerdo)" itemValue="Unilateral(esquerdo)" />
                 <f:selectItem itemLabel="Unilateral(direito)" itemValue="Unilateral(direito)" />
                 <f:selectItem itemLabel="Bilateral" itemValue="Bilateral" />
-            </p:selectOneRadio>
-            <p:message for="oftalmico3" />
+            </p:selectOneMenu>
+            <p:message id="SecreOcular2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                       for="SecreOcular2Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Secreção ocular (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico4" />
-            <p:inputText id="oftalmico4" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.secreOculaTipo}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="SecreOcular3Label"
+                           value="Secreção ocular (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                           for="SecreOcular3Input" />
+            <p:inputText id="SecreOcular3Input" 
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOculaTipo}"
+                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                         required="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                         requiredMessage="Informe o tipo de secreção ocular!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="oftalmico4" />
+            <p:message id="SecreOcular3Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                       for="SecreOcular3Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Secreção ocular (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico5" />
-            <p:inputTextarea id="oftalmico5" 
-                             value="#{MBconsulta.formsExame.sisOftalmico.secreOculaEvolu}"
-                             required="false"
-                             requiredMessage=""
+            <p:outputLabel id="SecreOcular4Label"
+                           value="Secreção ocular (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                           for="SecreOcular4Input" />
+            <p:inputTextarea id="SecreOcular4Input" 
+                             value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOculaEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                             required="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                             requiredMessage="Descreva a evolução da secreção ocular!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="oftalmico5" />
+            <p:message id="SecreOcular4Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
+                       for="SecreOcular4Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Blefaroespasmo:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico6" />
-            <p:selectOneRadio id="oftalmico6"
-                              value="#{MBconsulta.formsExame.sisOftalmico.blefaroespasmo}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo Blefaroespasmo!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisOftalmicoBlefaroespasmo-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Blefaroespasmo1Label"
+                           value="Blefaroespasmo:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Blefaroespasmo1Input" />
+            <p:selectOneButton id="Blefaroespasmo1Input"
+                               value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.blefaroespasmo}"
+                               required="true"
+                               requiredMessage="Informe o campo Blefaroespasmo!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Blefaroespasmo2Label"/>
+                    <p:effect type="bounce" event="load" for="Blefaroespasmo2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="oftalmico6" />
+                <p:ajax update="sisOftalmicoBlefaroespasmo-panel"
+                        listener="#{MBconsulta.formsExame.controleSisOftalmico.methodViewBlefaroespasmo()}" />
+            </p:selectOneButton>
+            <p:message id="Blefaroespasmo1Messager"
+                       for="Blefaroespasmo1Input" />
 
 
-
-
-
-
-            
-            
-            
-            
-            <p:outputLabel value="Comentário(Blefaroespasmo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico7" />
-            <p:inputText id="oftalmico7" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.blefaroComenta}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Blefaroespasmo2Label"
+                           value="Comentário (Blefaroespasmo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
+                           for="Blefaroespasmo2Input" />
+            <p:inputText id="Blefaroespasmo2Input" 
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.blefaroComenta}"
+                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
+                         required="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
+                         requiredMessage="Informe o comentário para Blefaroespasmo!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="oftalmico7" />
-            
+            <p:message id="Blefaroespasmo2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
+                       for="Blefaroespasmo2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-            <p:outputLabel value="Exoftalmia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico8" />
-            <p:selectOneRadio id="oftalmico8"
-                              value="#{MBconsulta.formsExame.sisOftalmico.exoftalmia}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo exoftalmia!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisOftalmicoExoftalmia-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Exoftalmia1Label"
+                           value="Exoftalmia:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Exoftalmia1Input" />
+            <p:selectOneButton id="Exoftalmia1Input"
+                               value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.exoftalmia}"
+                               required="true"
+                               requiredMessage="Informe o campo exoftalmia!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Exoftalmia2Label"/>
+                    <p:effect type="bounce" event="load" for="Exoftalmia2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="oftalmico8" />
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="Comentário(Exoftalmia):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico9" />
-            <p:inputText id="oftalmico9" 
-                         value="#{MBconsulta.formsExame.sisOftalmico.exoftalComenta}"
-                         required="false"
-                         requiredMessage=""
+                <p:ajax update="sisOftalmicoExoftalmia-panel"
+                        listener="#{MBconsulta.formsExame.controleSisOftalmico.methodViewExoftalmia()}" />
+            </p:selectOneButton>
+            <p:message id="Exoftalmia1Messager"
+                       for="Exoftalmia1Input" />
+
+
+            <p:outputLabel id="Exoftalmia2Label"
+                           value="Comentário (Exoftalmia):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
+                           for="Exoftalmia2Input" />
+            <p:inputText id="Exoftalmia2Input" 
+                         value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.exoftalComenta}"
+                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
+                         required="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
+                         requiredMessage="Informe o comentário para Exoftalmia!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="oftalmico9" />
-
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="oftalmico10" />
-            <p:selectOneRadio id="oftalmico10"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisOftalmico.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="oftalmico10" />
+            <p:message id="Exoftalmia2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
+                       for="Exoftalmia2Input" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>

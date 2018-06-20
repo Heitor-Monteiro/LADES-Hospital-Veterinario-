@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 15/06/2018 17:09:56 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisOftalmico" table="sisOftalmico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisOftalmicoId">
@@ -22,7 +22,7 @@
             <column name="secreOcular" length="7" not-null="true" />
         </property>
         <property name="secreOcularUniBi" type="string">
-            <column name="secreOcularUniBi" length="50" />
+            <column name="secreOcularUniBi" length="57" />
         </property>
         <property name="secreOculaTipo" type="string">
             <column name="secreOculaTipo" length="50" />

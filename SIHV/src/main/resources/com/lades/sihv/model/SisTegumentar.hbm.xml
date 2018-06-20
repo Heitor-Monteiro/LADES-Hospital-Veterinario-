@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 14/06/2018 10:50:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisTegumentar" table="sisTegumentar" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisTegumentarId">
@@ -43,7 +43,7 @@
             <column name="frequeBanhos" length="50" not-null="true" />
         </property>
         <property name="produUtilBanho" type="string">
-            <column name="produUtilBanho" length="50" />
+            <column name="produUtilBanho" length="254" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

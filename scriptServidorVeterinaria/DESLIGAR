@@ -7,10 +7,10 @@
 #em idioma local a palavra “DESLIGAR”
 #em caixa alta.
 
-echo "Makvet-script ----> Parando servidor Glassfish !!!";
+echo "--- Parando servidor Glassfish ---";
 /opt/glassfish4/bin/asadmin stop-domain;
 
-echo "Makvet-script ----> Desligando computador makvet !!!";
+echo "--- Desligando computador serverHOVET ---";
 shutdown -h now;
 
 exit 0;

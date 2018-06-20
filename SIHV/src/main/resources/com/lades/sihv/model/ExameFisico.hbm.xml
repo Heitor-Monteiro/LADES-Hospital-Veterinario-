@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/06/2018 16:05:40 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -40,13 +40,13 @@
             <column name="mucosaOcular" length="55" not-null="true" />
         </property>
         <property name="pulso" type="string">
-            <column name="pulso" length="19" not-null="true" />
+            <column name="pulso" length="48" not-null="true" />
         </property>
         <property name="estadoPulso" type="string">
-            <column name="estadoPulso" length="17" not-null="true" />
+            <column name="estadoPulso" length="25" not-null="true" />
         </property>
         <property name="hidratacao" type="string">
-            <column name="hidratacao" length="96" not-null="true" />
+            <column name="hidratacao" length="94" not-null="true" />
         </property>
         <property name="palpaAbdom" type="string">
             <column name="palpaAbdom" length="200" not-null="true" />
@@ -64,7 +64,7 @@
             <column name="pelePelos" length="200" not-null="true" />
         </property>
         <property name="inforAdiciona" type="string">
-            <column name="inforAdiciona" length="200" />
+            <column name="inforAdiciona" length="900" />
         </property>
         <property name="diagDifer" type="string">
             <column name="diagDifer" length="500" />

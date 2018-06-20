@@ -19,6 +19,8 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
 
             <p:outputLabel value="#{MBpessoa.pessoa.nome}" styleClass="outputLabel" />
+            
+            
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_cpf}"
                            rendered="#{MBpessoa.mudancaCpfCnpj}"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
@@ -65,8 +67,11 @@
 
 
             <p:outputLabel value="Complemento"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MBpessoa.pessoa.complemento}" styleClass="outputLabel" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBpessoa.pessoa.complemento != ''}" />
+            <p:outputLabel value="#{MBpessoa.pessoa.complemento}" 
+                           styleClass="outputLabel"
+                           rendered="#{MBpessoa.pessoa.complemento != ''}" />
 
 
             <p:outputLabel value="#{label_SIHV.CreatePessoaLabel_uf}"
@@ -75,16 +80,32 @@
 
 
             <p:outputLabel value="#{label_SIHV.CreateTelefoneLabel_numero}"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MBpessoa.telefone.numero}" styleClass="outputLabel" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBpessoa.getTelefoneList(0).numero != ''}" />
+            <p:outputLabel value="#{MBpessoa.getTelefoneList(0).numero}"
+                           styleClass="outputLabel"
+                           rendered="#{MBpessoa.getTelefoneList(0).numero != ''}" />
 
-            <p:outputLabel value="#{label_SIHV.celular_label}"
+            <p:outputLabel value="1ª Celular"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-            <p:outputLabel value="#{MBpessoa.celular.numero}" styleClass="outputLabel" />
+            <p:outputLabel value="#{MBpessoa.getTelefoneList(1).numero}" styleClass="outputLabel" />
+            
+            <p:outputLabel value="2ª Celular"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBpessoa.viewTelefone2}"/>
+            <p:outputLabel value="#{MBpessoa.getTelefoneList(2).numero}" 
+                           styleClass="outputLabel"
+                           rendered="#{MBpessoa.viewTelefone2}"/>
+            
+            <p:outputLabel value="3ª Celular"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBpessoa.viewTelefone3}"/>
+            <p:outputLabel value="#{MBpessoa.getTelefoneList(3).numero}" 
+                           styleClass="outputLabel"
+                           rendered="#{MBpessoa.viewTelefone3}"/>
 
             <p:outputLabel value="E-mail:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"/>
             <p:outputLabel value="#{MBpessoa.pessoa.email}" styleClass="outputLabel"
                            />
 

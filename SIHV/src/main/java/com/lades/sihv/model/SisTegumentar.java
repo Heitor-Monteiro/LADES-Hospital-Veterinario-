@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 14/06/2018 10:50:51 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -182,7 +182,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="produUtilBanho", length=50)
+    @Column(name="produUtilBanho", length=254)
     public String getProduUtilBanho() {
         return this.produUtilBanho;
     }

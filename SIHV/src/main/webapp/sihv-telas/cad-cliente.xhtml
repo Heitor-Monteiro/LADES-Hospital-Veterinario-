@@ -9,7 +9,7 @@
     <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title">
-            <h:outputText value="Cadastrar cliente"></h:outputText>
+            <h:outputText value="Cadastrar proprietário"></h:outputText>
         </ui:define>
 
         <ui:define name="content">
@@ -25,7 +25,7 @@
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar" >
 
-                    <p:tab id="DadosCliente" title="Dados do cliente" >
+                    <p:tab id="DadosProprietario" title="Dados do proprietário" >
                         <p:panel id="CadPessoa">
 
                             <ui:include src="/sihv-includes/campo_pessoa.xhtml" />

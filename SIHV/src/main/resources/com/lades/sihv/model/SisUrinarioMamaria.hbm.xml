@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 08/06/2018 16:05:40 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisUrinarioMamaria" table="sisUrinarioMamaria" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisUrinarioMamariaId">
@@ -25,7 +25,7 @@
             <column name="estadoUrina" length="15" not-null="true" />
         </property>
         <property name="urina" type="string">
-            <column name="urina" length="46" not-null="true" />
+            <column name="urina" length="53" not-null="true" />
         </property>
         <property name="urinaAspecto" type="string">
             <column name="urinaAspecto" length="200" />
@@ -33,14 +33,17 @@
         <property name="urinaEvolu" type="string">
             <column name="urinaEvolu" length="200" />
         </property>
-        <property name="ultimoCio" type="date">
-            <column name="ultimoCio" length="10" />
+        <property name="ultimoCio" type="string">
+            <column name="ultimoCio" length="254" />
         </property>
         <property name="prenhe" type="string">
-            <column name="prenhe" length="7" not-null="true" />
+            <column name="prenhe" length="66" not-null="true" />
         </property>
-        <property name="ultimoParto" type="date">
-            <column name="ultimoParto" length="10" />
+        <property name="prenheDescricao" type="string">
+            <column name="prenheDescricao" length="254" />
+        </property>
+        <property name="ultimoParto" type="string">
+            <column name="ultimoParto" length="254" />
         </property>
         <property name="secreVagiPeni" type="string">
             <column name="secreVagiPeni" length="7" not-null="true" />

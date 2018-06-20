@@ -1,239 +1,293 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisDigestAliment-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
-
-            <p:outputLabel value="Está se alimentando normalmente:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio1" />
-            <p:selectOneRadio id="Digestorio1"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.estaSeAlimentando}"
-                              required="true"
-                              requiredMessage="Informe se o animal está alimentando normalmente!"
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="Aliment1Label"
+                           value="Está se alimentando normalmente:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Aliment1Input" />
+            <p:selectOneButton id="Aliment1Input"
+                               value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.estaSeAlimentando}"
+                               required="true"
+                               requiredMessage="Informe se o animal está alimentando normalmente!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-                
-            </p:selectOneRadio>
-            <p:message for="Digestorio1" />
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="Animal não se alimenta, descreva:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio2" />
-            <p:inputTextarea id="Digestorio2" 
-                             value="#{MBconsulta.formsExame.sisDigestorio.descriNaoSeAlimeta}"
-                             required="false"
-                             requiredMessage=""
+                <f:selectItem itemLabel="Não" itemValue="Não">
+                    <p:effect type="bounce" event="load" for="Aliment2Label"/>
+                    <p:effect type="bounce" event="load" for="Aliment2Input"/>
+                </f:selectItem>
+                <p:ajax update="sisDigestAliment-panel"
+                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewDescriNaoSeAlimeta()}" />
+            </p:selectOneButton>
+            <p:message id="Aliment1Messager"
+                       for="Aliment1Input" />
+
+
+            <p:outputLabel id="Aliment2Label"
+                           value="Animal não se alimenta, descreva:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
+                           for="Aliment2Input" />
+            <p:inputTextarea id="Aliment2Input" 
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.descriNaoSeAlimeta}"
+                             rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
+                             required="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
+                             requiredMessage="descreva o estado alimentar do animal!"
                              style="margin-bottom: 20px;"
                              maxlength="200"/>
-            <p:message for="Digestorio2" />
-            
-            
-            
-            
-            
+            <p:message id="Aliment2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
+                       for="Aliment2Input" />
+        </p:panelGrid>
 
 
-           
-            <p:outputLabel value="Vômito:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio3" />
-            <p:selectOneRadio id="Digestorio3"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.vomito}"
-                              required="true"
-                              requiredMessage="Informe se o animal está vômitando!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Digestorio3" />
+        <p:panelGrid id="sisDigestVomito-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+
+            <p:outputLabel id="Vomito1Label"
+                           value="Vômito:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold ;"
+                           for="Vomito1Input" />
+            <p:selectOneButton id="Vomito1Input"
+                               value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.vomito}"
+                               required="true"
+                               requiredMessage="Informe se o animal está vômitando!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Vomito2Label"/>
+                    <p:effect type="bounce" event="load" for="Vomito2Input"/>
+                    <p:effect type="bounce" event="load" for="Vomito3Label"/>
+                    <p:effect type="bounce" event="load" for="Vomito3Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="Não" itemValue="Não"/>
+                <p:ajax update="sisDigestVomito-panel"
+                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewAspectoEvoluVomito()}" />
+            </p:selectOneButton>
+            <p:message id="Vomito1Messager"
+                       for="Vomito1Input" />
 
 
-
-
-            
-            
-            <p:outputLabel value="Aspecto do vômito:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio4" />
-            <p:inputText id="Digestorio4" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.aspectoVomito}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Vomito2Label"
+                           value="Aspecto do vômito:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                           for="Vomito2Input" />
+            <p:inputText id="Vomito2Input" 
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.aspectoVomito}"
+                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                         requiredMessage="Informe o aspecto do vômito!"
                          style="margin-bottom: 20px;"
                          maxlength="100" />
-            <p:message for="Digestorio4" />
+            <p:message id="Vomito2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                       for="Vomito2Input" />
 
-            
-            
-            
-            
-            <p:outputLabel value="Evolução do vômito:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio5" />
-            <p:inputTextarea id="Digestorio5" 
-                             value="#{MBconsulta.formsExame.sisDigestorio.evoluVomito}"
-                             required="false"
-                             requiredMessage=""
+
+            <p:outputLabel id="Vomito3Label"
+                           value="Evolução do vômito:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                           for="Vomito3Input" />
+            <p:inputTextarea id="Vomito3Input" 
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluVomito}"
+                             rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                             required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                             requiredMessage="Informe evolução do vômito!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="Digestorio5" />
+            <p:message id="Vomito3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
+                       for="Vomito3Input" />
+        </p:panelGrid>
 
 
-
-
-
-            <p:outputLabel value="Regurgitação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio6" />
-            <p:selectOneRadio id="Digestorio6"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.regurgitacao}"
-                              required="true"
-                              requiredMessage="Informe se está ocorrendo regurgitação!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisDigestRegurg-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Regurg1Label"
+                           value="Regurgitação:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Regurg1Input" />
+            <p:selectOneButton id="Regurg1Input"
+                               value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.regurgitacao}"
+                               required="true"
+                               requiredMessage="Informe se está ocorrendo regurgitação!"
+                               style="margin-bottom: 20px;">
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Regurg2Label"/>
+                    <p:effect type="bounce" event="load" for="Regurg2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Digestorio6" />
+                <p:ajax update="sisDigestRegurg-panel"
+                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewEvoluRegurgitacao()}"/>
+            </p:selectOneButton>
+            <p:message id="Regurg1Messager"
+                       for="Regurg1Input" />
 
 
-
-
-
-            <p:outputLabel value="Evolução da regurgitação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio7" />
-            <p:inputText id="Digestorio7" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluRegurgitacao}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Regurg2Label"
+                           value="Evolução da regurgitação:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
+                           for="Regurg2Input" />
+            <p:inputText id="Regurg2Input" 
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluRegurgitacao}"
+                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
+                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
+                         requiredMessage="Descreva a Evolução da regurgitação!"
                          style="margin-bottom: 20px;"
                          maxlength="200" />
-            <p:message for="Digestorio7" />
+            <p:message id="Regurg2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
+                       for="Regurg2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-            <p:outputLabel value="Diarreia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio8" />
-            <p:selectOneRadio id="Digestorio8"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.diarreia}"
-                              required="true"
-                              requiredMessage="Informe se está apresentanto diarreia!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisDigestDiarreia-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Diarreia1Label"
+                           value="Diarreia:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Diarreia1Input" />
+            <p:selectOneButton id="Diarreia1Input"
+                               value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.diarreia}"
+                               required="true"
+                               requiredMessage="Informe se está apresentanto diarreia!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Diarreia2Label"/>
+                    <p:effect type="bounce" event="load" for="Diarreia2Input"/>
+                    <p:effect type="bounce" event="load" for="Diarreia3Label"/>
+                    <p:effect type="bounce" event="load" for="Diarreia3Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Digestorio8" />
+                <p:ajax update="sisDigestDiarreia-panel"
+                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewAspectEvoluDiarreia()}"/>
+            </p:selectOneButton>
+            <p:message id="Diarreia1Messager"
+                       for="Diarreia1Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Aspecto da diarreia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio9" />
-            <p:inputText id="Digestorio9" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.aspectDiarreia}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Diarreia2Label"
+                           value="Aspecto da diarreia:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                           for="Diarreia2Input" />
+            <p:inputText id="Diarreia2Input" 
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.aspectDiarreia}"
+                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                         requiredMessage="Descreva o Aspecto da diarreia!"
                          style="margin-bottom: 20px;"
                          maxlength="100" />
-            <p:message for="Digestorio9" />
+            <p:message id="Diarreia2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                       for="Diarreia2Input" />
 
 
-
-
-
-            <p:outputLabel value="Evolução da diarreia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio10" />
-            <p:inputText id="Digestorio10" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluDiarreia}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Diarreia3Label"
+                           value="Evolução da diarreia:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                           for="Diarreia3Input" />
+            <p:inputText id="Diarreia3Input" 
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDiarreia}"
+                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                         requiredMessage="Descreva a Evolução da diarreia!"
                          style="margin-bottom: 20px;"
                          maxlength="100" />
-            <p:message for="Digestorio10" />
+            <p:message id="Diarreia3Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                       for="Diarreia3Input" />
+        </p:panelGrid>
 
 
-
-
-            <p:outputLabel value="Disquesia/Tenesmo:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio11" />
-            <p:selectOneRadio id="Digestorio11"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.disquesiaTenesmo}"
-                              required="true"
-                              requiredMessage="Informe se está apresentanto Disquesia/Tenesmo!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisDigestDisqTenes-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="DisqTenes1Label"
+                           value="Disquesia/Tenesmo:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="DisqTenes1Input" />
+            <p:selectOneButton id="DisqTenes1Input"
+                               value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.disquesiaTenesmo}"
+                               required="true"
+                               requiredMessage="Informe se está apresentanto Disquesia/Tenesmo!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="DisqTenes2Label"/>
+                    <p:effect type="bounce" event="load" for="DisqTenes2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Digestorio11" />
+                <p:ajax update="sisDigestDisqTenes-panel"
+                        listener="#{MBconsulta.formsExame.controlSisDigestorio.methodViewEvoluDisquesiaTenesmo()}"/>
+            </p:selectOneButton>
+            <p:message id="DisqTenes1Messager"
+                       for="DisqTenes1Input" />
 
 
-
-
-            <p:outputLabel value="Evolução (Disquesia/Tenesmo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio12" />
-            <p:inputText id="Digestorio12" 
-                         value="#{MBconsulta.formsExame.sisDigestorio.evoluDisquesiaTenesmo}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="DisqTenes2Label"
+                           value="Evolução (Disquesia/Tenesmo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                           for="DisqTenes2Input" />
+            <p:inputText id="DisqTenes2Input" 
+                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDisquesiaTenesmo}"
+                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                         requiredMessage="Descreva o campo Evolução (Disquesia/Tenesmo)!"
                          style="margin-bottom: 20px;"
                          maxlength="100" />
-            <p:message for="Digestorio12" />
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Digestorio13" />
-            <p:selectOneRadio id="Digestorio13"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisDigestorio.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Digestorio13" />
-            
+            <p:message id="DisqTenes2Messager"
+                       rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                       for="DisqTenes2Input" />
         </p:panelGrid>
     </div>
-    
+
 </ui:component>

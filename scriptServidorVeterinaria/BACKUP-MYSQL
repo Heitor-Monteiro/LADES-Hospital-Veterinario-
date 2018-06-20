@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#O script sh será utilizado para criar
+#o arquivo de backup do banco de dados “bd_sihv”.
+
+if [ "$1" != "" ];then
+  echo "--- Iniciando backup de banco de dados SIHV ---";
+
+
+
+
+  # A sessão identifica o caminho apropriado para o usuário
+  caminho=$"/home/"$USER
+  if [ "$USER" == "root" ];then
+    caminho=$"/root"
+  fi
+  # -------------------------------------------------------
+
+
+
+
+  # Identificando e excluindo backups antigos.
+  arquivo=$(ls "$caminho" | grep "BACKUP-MySQL");
+  if [ "$arquivo" == "BACKUP-MySQL" ];then
+    rm -r "$caminho"/"BACKUP-MySQL";
+    mkdir "$caminho"/"BACKUP-MySQL";
+  else
+    mkdir "$caminho"/"BACKUP-MySQL";
+  fi
+  # -------------------------------------------------------
+
+
+
+
+  # Criando o arquivo de backup.
+  data=$(date);
+  mysqldump -u root -p"$1" bd_sihv > "$caminho/BACKUP-MySQL"/"backupSihv-($data).sql";
+  echo "--- Fim de backup ---";
+  # -------------------------------------------------------
+else
+  echo "!!! Digite a senha de acesso ao MySQL, exemplo: $0 {SENHA} !!!"
+fi
+
+exit 0;

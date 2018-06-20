@@ -1,24 +1,23 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisNeurologicoNeuro-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Consciência:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Neuro1" />
             <p:selectOneMenu id="Neuro1"
-                             value="#{MBconsulta.formsExame.sisNeurologico.consciencia}"
+                             value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.consciencia}"
                              required="true"
                              requiredMessage="Informe o estado de consciência!"
                              style="margin-bottom: 20px;" >
@@ -29,19 +28,15 @@
                 <f:selectItem itemLabel="Coma" itemValue="Coma" />
             </p:selectOneMenu>
             <p:message for="Neuro1" />
-            
-
-
-
-
-
 
 
             <p:outputLabel value="Comportamento:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Neuro2" />
             <p:selectOneMenu id="Neuro2"
-                             value="#{MBconsulta.formsExame.sisNeurologico.comportamento}"
+                             value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.comportamento}"
                              required="true"
                              requiredMessage="Informe o comportamento!"
                              style="margin-bottom: 20px;" >
@@ -51,265 +46,261 @@
                 <f:selectItem itemLabel="Agressividade" itemValue="Agressividade" />
             </p:selectOneMenu>
             <p:message for="Neuro2" />
-            
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Ataxia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro3" />
-            <p:selectOneRadio id="Neuro3"
-                              value="#{MBconsulta.formsExame.sisNeurologico.ataxia}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe o campo Ataxia!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisNeurologicoAtaxia-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Ataxia1Label"
+                           value="Ataxia:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Ataxia1Input" />
+            <p:selectOneButton id="Ataxia1Input"
+                               value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.ataxia}"
+                               required="true"
+                               requiredMessage="Informe o campo Ataxia!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Ataxia2Label"/>
+                    <p:effect type="bounce" event="load" for="Ataxia2Input"/>
+                    <p:effect type="bounce" event="load" for="Ataxia3Label"/>
+                    <p:effect type="bounce" event="load" for="Ataxia3Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Neuro3" />
+                <p:ajax update="sisNeurologicoAtaxia-panel"
+                        listener="#{MBconsulta.formsExame.controleSisNeurologico.methodViewAtaxiaTipoEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Ataxia1Messager"
+                       for="Ataxia1Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Ataxia (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro4" />
-            <p:inputText id="Neuro4" 
-                         value="#{MBconsulta.formsExame.sisNeurologico.ataxiaTipo}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Ataxia2Label"
+                           value="Ataxia (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                           for="Ataxia2Input" />
+            <p:inputText id="Ataxia2Input" 
+                         value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.ataxiaTipo}"
+                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                         required="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                         requiredMessage="Informe o tipo da Ataxia!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Neuro4" />
+            <p:message id="Ataxia2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                       for="Ataxia2Input" />
 
 
-
-
-
-
-            <p:outputLabel value="Ataxia (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro5" />
-            <p:inputTextarea id="Neuro5" 
-                             value="#{MBconsulta.formsExame.sisNeurologico.ataxiaEvolu}"
-                             required="false"
-                             requiredMessage=""
+            <p:outputLabel id="Ataxia3Label"
+                           value="Ataxia (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                           for="Ataxia3Input" />
+            <p:inputTextarea id="Ataxia3Input" 
+                             value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.ataxiaEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                             required="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                             requiredMessage="Descreva a evolução da Ataxia!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="Neuro5" />
+            <p:message id="Ataxia3Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
+                       for="Ataxia3Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Paresia/Paralisia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro6" />
-            <p:selectOneRadio id="Neuro6"
-                              value="#{MBconsulta.formsExame.sisNeurologico.paralisia}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta Paresia/Paralisia!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisNeurologicoParalisia-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Paralisia1Label"
+                           value="Paresia/Paralisia:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Paralisia1Input" />
+            <p:selectOneButton id="Paralisia1Input"
+                               value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.paralisia}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta Paresia/Paralisia!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Paralisia2Label"/>
+                    <p:effect type="bounce" event="load" for="Paralisia2Input"/>
+                    <p:effect type="bounce" event="load" for="Paralisia3Label"/>
+                    <p:effect type="bounce" event="load" for="Paralisia3Input"/>
+                    <p:effect type="bounce" event="load" for="Paralisia4Label"/>
+                    <p:effect type="bounce" event="load" for="Paralisia4Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Neuro6" />
+                <p:ajax update="sisNeurologicoParalisia-panel"
+                        listener="#{MBconsulta.formsExame.controleSisNeurologico.methodViewParalisia()}" />
+            </p:selectOneButton>
+            <p:message id="Paralisia1Messager"
+                       for="Paralisia1Input" />
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Paresia/Paralisia:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro7" />
-            <p:selectOneRadio id="Neuro7"
-                              value="#{MBconsulta.formsExame.sisNeurologico.paralisiaEspFla}"
-                              layout="responsive"
-                              columns="1"
-                              required="false"
-                              requiredMessage=""
-                              style="margin-bottom: 20px;" >
+            <p:outputLabel id="Paralisia2Label"
+                           value="Paresia/Paralisia:"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                           for="Paralisia2Input" />
+            <p:selectOneButton id="Paralisia2Input"
+                               value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.paralisiaEspFla}"
+                               rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                               required="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                               requiredMessage="Informe o campo Paresia/Paralisia!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Espástica" itemValue="Espástica" />
                 <f:selectItem itemLabel="Flácida" itemValue="Flácida" />
-            </p:selectOneRadio>
-            <p:message for="Neuro7" />
-            
+            </p:selectOneButton>
+            <p:message id="Paralisia2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                       for="Paralisia2Input" />
 
 
-
-
-
-
-
-
-
-            <p:outputLabel value="Paresia/Paralisia (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro8" />
-            <p:inputText id="Neuro8" 
-                         value="#{MBconsulta.formsExame.sisNeurologico.paralisiaTipo}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Paralisia3Label"
+                           value="Paresia/Paralisia (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                           for="Paralisia3Input" />
+            <p:inputText id="Paralisia3Input" 
+                         value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.paralisiaTipo}"
+                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                         required="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                         requiredMessage="Descreva o tipo de Paresia/Paralisia!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Neuro8" />
+            <p:message id="Paralisia3Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                       for="Paralisia3Input" />
 
 
-
-
-
-
-
-
-
-            <p:outputLabel value="Paresia/Paralisia (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro9" />
-            <p:inputTextarea id="Neuro9" 
-                             value="#{MBconsulta.formsExame.sisNeurologico.paralisiaEvolu}"
-                             required="false"
-                             requiredMessage=""
+            <p:outputLabel id="Paralisia4Label"
+                           value="Paresia/Paralisia (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                           for="Paralisia4Input" />
+            <p:inputTextarea id="Paralisia4Input" 
+                             value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.paralisiaEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                             required="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                             requiredMessage="Descreva a evolução de Paresia/Paralisia!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="Neuro9" />
+            <p:message id="Paralisia4Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
+                       for="Paralisia4Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Convulsão:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro10" />
-            <p:selectOneRadio id="Neuro10"
-                              value="#{MBconsulta.formsExame.sisNeurologico.convulsao}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta convulsão!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisNeurologicoConvulsao-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Convulsao1Label"
+                           value="Convulsão:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Convulsao1Input" />
+            <p:selectOneButton id="Convulsao1Input"
+                               value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.convulsao}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta convulsão!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Convulsao2Label"/>
+                    <p:effect type="bounce" event="load" for="Convulsao2Input"/>
+                    <p:effect type="bounce" event="load" for="Convulsao3Label"/>
+                    <p:effect type="bounce" event="load" for="Convulsao3Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Neuro10" />
+                <p:ajax update="sisNeurologicoConvulsao-panel"
+                        listener="#{MBconsulta.formsExame.controleSisNeurologico.methodViewConvulsaoTipoEvolu()}" />
+            </p:selectOneButton>
+            <p:message id="Convulsao1Messager"
+                       for="Convulsao1Input" />
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Convulsão (Tipo):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro11" />
-            <p:inputText id="Neuro11" 
-                         value="#{MBconsulta.formsExame.sisNeurologico.convulsaoTipo}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Convulsao2Label"
+                           value="Convulsão (Tipo):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                           for="Convulsao2Input" />
+            <p:inputText id="Convulsao2Input" 
+                         value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.convulsaoTipo}"
+                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                         required="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                         requiredMessage="Descreva o tipo de Convulsão!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="Neuro11" />
+            <p:message id="Convulsao2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                       for="Convulsao2Input" />
 
 
-
-
-
-
-
-
-
-            <p:outputLabel value="Convulsão (Evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro12" />
-            <p:inputTextarea id="Neuro12" 
-                             value="#{MBconsulta.formsExame.sisNeurologico.convulsaoEvolu}"
-                             required="false"
-                             requiredMessage=""
+            <p:outputLabel id="Convulsao3Label"
+                           value="Convulsão (Evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                           for="Convulsao3Input" />
+            <p:inputTextarea id="Convulsao3Input" 
+                             value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.convulsaoEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                             required="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                             requiredMessage="Descreva a evolução da Convulsão!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="Neuro12" />
+            <p:message id="Convulsao3Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
+                       for="Convulsao3Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-            <p:outputLabel value="Audição:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro13" />
-            <p:selectOneRadio id="Neuro13"
-                              value="#{MBconsulta.formsExame.sisNeurologico.audicao}"
-                              layout="responsive"
-                              columns="1"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta perda auditiva!"
-                              style="margin-bottom: 20px;" >
+        <p:panelGrid id="sisNeurologicoAudicao-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Audicao1Label"
+                           value="Audição:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Audicao1Input" />
+            <p:selectOneButton id="Audicao1Input"
+                               value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.audicao}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta perda auditiva!"
+                               style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Normal" itemValue="Normal" />
                 <f:selectItem itemLabel="Perda auditiva" itemValue="Perda auditiva" />
-            </p:selectOneRadio>
-            <p:message for="Neuro13" />
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="Neuro14" />
-            <p:selectOneRadio id="Neuro14"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisNeurologico.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="Neuro14" />
-
+            </p:selectOneButton>
+            <p:message id="Audicao1Messager"
+                       for="Audicao1Input" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>

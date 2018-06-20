@@ -16,6 +16,8 @@ import com.lades.sihv.model.Juridica;
 import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.Telefone;
 import com.lades.sihv.model.User;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
@@ -30,11 +32,13 @@ public class MBpessoa extends AbstractBean {
     private Pessoa pessoa;
     private Fisica fisica;
     private Juridica juridica;
-    private Telefone telefone;
-    private Telefone celular;
+    private final List<Telefone> telefoneList = new ArrayList<>();
+    private boolean viewTelefone2;
+    private boolean viewTelefone3;
     private User user;
     private boolean mudancaCpfCnpj = true;
-
+    private boolean cpfOpcional = true;
+    private boolean rgOpcional = true;
     private String numCRMV1 = "";
     private String numCRMV2 = "";
     /*Os dois atributos serão utilizado para
@@ -93,7 +97,7 @@ public class MBpessoa extends AbstractBean {
             PessoaMetodosDeCadastro obj = ObjPessoaMetodosDeCadastro();
             obj.cadastrarPessoa(pessoa);
             obj.cadastrarPessoaFisica(pessoa, fisica);
-            obj.cadastrarTelefones(pessoa, telefone, celular);
+            obj.cadastrarTelefones(pessoa, telefoneList);
             obj.cadastrarUser(pessoa, user, numCRMV1, numCRMV2);
             getObjMessage().info("Cadastro efetuado!", mensageTIPO + " cadastrado com sucesso.");
             getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
@@ -107,20 +111,26 @@ public class MBpessoa extends AbstractBean {
     public void cadastrarCliente() {
         try {
             PessoaMetodosDeCadastro obj = ObjPessoaMetodosDeCadastro();
-            obj.emailOpcional(pessoa);
-
-            boolean checkCpfCnpj, existCpfCnpj;
-            if (mudancaCpfCnpj) {
+            boolean checkCpfCnpj, existCpfCnpj, emptyCpfCnpj;
+            emptyCpfCnpj = pessoa.getCpfCnpj().isEmpty();
+            
+            if (mudancaCpfCnpj && emptyCpfCnpj && !cpfOpcional) {
+                do {
+                    obj.cpfRandom(pessoa);
+                    checkCpfCnpj = ObjCheckExistCpfCnpj().checkExistCpfCnpj(pessoa, mudancaCpfCnpj);
+                } while (!checkCpfCnpj);
+            } else if (mudancaCpfCnpj) {
                 checkCpfCnpj = ObjPessoaCheckCPF().checkCPF(pessoa);
             } else {
                 checkCpfCnpj = ObjPessoaCheckCNPJ().checkCNPJ(pessoa);
             }
+
             existCpfCnpj = ObjCheckExistCpfCnpj().checkExistCpfCnpj(pessoa, mudancaCpfCnpj);
 
             if (checkCpfCnpj && existCpfCnpj) {
                 ObjPessoaPadraoCaracter().padraoCaracter(pessoa);
                 obj.cadastrarPessoa(pessoa);
-                obj.cadastrarTelefones(pessoa, telefone, celular);
+                obj.cadastrarTelefones(pessoa, telefoneList);
                 obj.cadastrarCliente(pessoa);
                 if (mudancaCpfCnpj) {
                     obj.cadastrarPessoaFisica(pessoa, fisica);
@@ -196,18 +206,13 @@ public class MBpessoa extends AbstractBean {
         this.juridica = juridica;
     }
 
-    public Telefone getTelefone() {
-        if (telefone == null) {
-            telefone = new Telefone();
+    public Telefone getTelefoneList(int index) {
+        if (telefoneList.isEmpty()) {
+            telefoneList.add(index, new Telefone());
+        } else if (telefoneList.size() < (index+1)) {
+            telefoneList.add(index, new Telefone());
         }
-        return telefone;
-    }
-
-    public Telefone getCelular() {
-        if (celular == null) {
-            celular = new Telefone();
-        }
-        return celular;
+        return telefoneList.get(index);
     }
 
     public User getUser() {
@@ -246,5 +251,48 @@ public class MBpessoa extends AbstractBean {
 
     public void setMudancaCpfCnpj(boolean mudancaCpfCnpj) {
         this.mudancaCpfCnpj = mudancaCpfCnpj;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isCpfOpcional() {
+        return cpfOpcional;
+    }
+
+    public void setCpfOpcional(boolean cpfOpcional) {
+        if (cpfOpcional == false && rgOpcional == false) {
+            rgOpcional = true;
+        }
+        this.cpfOpcional = cpfOpcional;
+    }
+
+    public boolean isRgOpcional() {
+        return rgOpcional;
+    }
+
+    public void setRgOpcional(boolean rgOpcional) {
+        if (rgOpcional == false && cpfOpcional == false) {
+            cpfOpcional = true;
+        }
+        this.rgOpcional = rgOpcional;
+    }
+
+    //-----------------------------------------------------------------------
+    public boolean isViewTelefone2() {
+        return viewTelefone2;
+    }
+
+    public void setViewTelefone2(boolean viewTelefone2) {
+        this.viewTelefone2 = viewTelefone2;
+    }
+
+    public boolean isViewTelefone3() {
+        if (viewTelefone2 == false) {
+            viewTelefone3 = false;
+        }
+        return viewTelefone3;
+    }
+
+    public void setViewTelefone3(boolean viewTelefone3) {
+        this.viewTelefone3 = viewTelefone3;
     }
 }

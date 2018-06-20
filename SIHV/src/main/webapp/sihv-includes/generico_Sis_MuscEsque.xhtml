@@ -1,175 +1,153 @@
 <ui:component xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-        xmlns:p="http://primefaces.org/ui" 
-        xmlns:h="http://xmlns.jcp.org/jsf/html" 
-        xmlns:f="http://xmlns.jcp.org/jsf/core">
-	
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="sisMuscEsqueClaudicacao-panel"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-            <p:outputLabel value="Claudicação:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque1" />
-            <p:selectOneRadio id="MuscEsque1"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.claudicacao}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta claudicação!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Claudicacao1Label"
+                           value="Claudicação:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Claudicacao1Input" />
+            <p:selectOneButton id="Claudicacao1Input"
+                               value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacao}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta claudicação!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Claudicacao2Label"/>
+                    <p:effect type="bounce" event="load" for="Claudicacao2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="MuscEsque1" />
+                <p:ajax update="sisMuscEsqueClaudicacao-panel"
+                        listener="#{MBconsulta.formsExame.controleSisMuscEsque.methodViewClaudicacao()}" />
+            </p:selectOneButton>
+            <p:message id="Claudicacao1Messager"
+                       for="Claudicacao1Input" />
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Claudicação (membro afetado/ evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque2" />
-            <p:inputText id="MuscEsque2" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.claudicacaoEvolu}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Claudicacao2Label"
+                           value="Claudicação (membro afetado/ evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                           for="Claudicacao2Input" />
+            <p:inputText id="Claudicacao2Input" 
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacaoEvolu}"
+                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                         requiredMessage="Descreva a evolução ou o membro afetado pela Claudicação!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="MuscEsque2" />
+            <p:message id="Claudicacao2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                       for="Claudicacao2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Fraturas:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque3" />
-            <p:selectOneRadio id="MuscEsque3"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.fraturas}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta fraturas!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisMuscEsqueFraturas-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="Fraturas1Label"
+                           value="Fraturas:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="Fraturas1Input" />
+            <p:selectOneButton id="Fraturas1Input"
+                               value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturas}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta fraturas!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="Fraturas2Label"/>
+                    <p:effect type="bounce" event="load" for="Fraturas2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="MuscEsque3" />
+                <p:ajax update="sisMuscEsqueFraturas-panel"
+                        listener="#{MBconsulta.formsExame.controleSisMuscEsque.methodViewFraturas()}" />
+            </p:selectOneButton>
+            <p:message id="Fraturas1Messager"
+                       for="Fraturas1Input" />
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Fraturas (membro afetado/ evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque4" />
-            <p:inputText id="MuscEsque4" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.fraturasEvolu}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="Fraturas2Label"
+                           value="Fraturas (membro afetado/ evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                           for="Fraturas2Input" />
+            <p:inputText id="Fraturas2Input" 
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturasEvolu}"
+                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                         requiredMessage="Descreva a evolução de membros afetados pelas fraturas!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="MuscEsque4" />
+            <p:message id="Fraturas2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                       for="Fraturas2Input" />
+        </p:panelGrid>
 
 
-
-
-
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Atrofia muscular:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque5" />
-            <p:selectOneRadio id="MuscEsque5"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.atrofMusc}"
-                              layout="responsive"
-                              columns="2"
-                              required="true"
-                              requiredMessage="Informe se o animal apresenta atrofia muscular!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
+        <p:panelGrid id="sisMuscEsqueAtrofMusc-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="AtrofMusc1Label"
+                           value="Atrofia muscular:"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           for="AtrofMusc1Input" />
+            <p:selectOneButton id="AtrofMusc1Input"
+                               value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMusc}"
+                               required="true"
+                               requiredMessage="Informe se o animal apresenta atrofia muscular!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="AtrofMusc2Label"/>
+                    <p:effect type="bounce" event="load" for="AtrofMusc2Input"/>
+                </f:selectItem>
                 <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="MuscEsque5" />
+                <p:ajax update="sisMuscEsqueAtrofMusc-panel"
+                        listener="#{MBconsulta.formsExame.controleSisMuscEsque.methodViewAtrofMusc()}" />
+            </p:selectOneButton>
+            <p:message id="AtrofMusc1Messager"
+                       for="AtrofMusc1Input" />
 
 
-
-
-
-
-
-
-
-
-            <p:outputLabel value="Atrofia muscular (membro afetado/ evolução):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque6" />
-            <p:inputText id="MuscEsque6" 
-                         value="#{MBconsulta.formsExame.sisMuscEsque.atrofMuscEvolu}"
-                         required="false"
-                         requiredMessage=""
+            <p:outputLabel id="AtrofMusc2Label"
+                           value="Atrofia muscular (membro afetado/ evolução):"
+                           style="color: #007463;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
+                           rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                           for="AtrofMusc2Input" />
+            <p:inputText id="AtrofMusc2Input" 
+                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMuscEvolu}"
+                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                         requiredMessage="Descreva a evolução de membros afetados pela atrofia muscular!"
                          style="margin-bottom: 20px;"
                          maxlength="50" />
-            <p:message for="MuscEsque6" />
-
-
-
-            
-            
-            
-            
-            
-            
-            <p:outputLabel value="O sistema foi afetado?"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="MuscEsque7" />
-            <p:selectOneRadio id="MuscEsque7"
-                              layout="responsive"
-                              columns="2"
-                              value="#{MBconsulta.formsExame.sisMuscEsque.sistemaAfetado}"
-                              required="true"
-                              requiredMessage="Informe se o sistema foi afetado!"
-                              style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Sim" itemValue="Sim" />
-                <f:selectItem itemLabel="Não" itemValue="Não" />
-            </p:selectOneRadio>
-            <p:message for="MuscEsque7" />
-
-
-
+            <p:message id="AtrofMusc2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                       for="AtrofMusc2Input" />
         </p:panelGrid>    
     </div>
-    
+
 </ui:component>

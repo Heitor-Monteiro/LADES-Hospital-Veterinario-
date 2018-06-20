@@ -20,25 +20,25 @@ public class ListagemPessoa extends AbstractBean {
     public List<Pessoa> listBySearchPESSOA(String searchMode, String search) {
         search = "'%" + search + "%'";
 
-        String tipoCliente = "";
+        String TypeClient = "";
         String joinTipoCli = "";
         switch (searchMode) {
             case "cpf":
                 //pesquisa pessoa(cpf) fisica
                 searchMode = "p.cpfCnpj";
-                tipoCliente = ", Fisica t";
+                TypeClient = ", Fisica t";
                 joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "rg":
                 //pesquisa pessoa(rg) fisica
                 searchMode = "t." + searchMode;
-                tipoCliente = ", Fisica t";
+                TypeClient = ", Fisica t";
                 joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "cnpj":
                 //pesquisa pessoa(cnpj) juridica
                 searchMode = "p.cpfCnpj";
-                tipoCliente = ", Juridica t";
+                TypeClient = ", Juridica t";
                 joinTipoCli = "p.pkPessoa = t.id.fkPessoa and";
                 break;
             case "nome":
@@ -50,16 +50,13 @@ public class ListagemPessoa extends AbstractBean {
                 break;
         }
 
-        List<?> listaPessoa = getDaoGenerico().list("SELECT p.pkPessoa, p.nome, p.cpfCnpj from Pessoa p, Cliente c" + tipoCliente + " where " + joinTipoCli + " p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and " + searchMode + " like " + search);
-        List<Pessoa> retornaPessoa = new ArrayList<>();
-        for (Object[] obj : (List<Object[]>) listaPessoa) {
-            Pessoa newPessoa = new Pessoa();
-            newPessoa.setPkPessoa((int) obj[0]);
-            newPessoa.setNome((String) obj[1]);
-            newPessoa.setCpfCnpj((String) obj[2]);
-            retornaPessoa.add(newPessoa);
-        }
+        List<Pessoa> listarPessoa = (List<Pessoa>) 
+                getDaoGenerico().list("SELECT p from Pessoa p, Cliente c" 
+                        + TypeClient + " where " + joinTipoCli 
+                        + " p.pkPessoa=c.id.fkPessoa and p.exclusaoLogica=0 and " 
+                        + searchMode + " like " + search);
+        
         System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<Pessoa> listBySearchPESSOA(String searchMode, String search) ]");
-        return retornaPessoa;
+        return listarPessoa;
     }
 }

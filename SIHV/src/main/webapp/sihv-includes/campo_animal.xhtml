@@ -80,20 +80,23 @@
 
             <p:outputLabel value="Pelagem:"
                            for="pelagem"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="false"/>
             <p:selectOneMenu id="pelagem"
                              value="#{MBanimal.animal.pelagem}"
                              title="Obs.: caso não tenha a pelagem desejada na lista, digite uma nova."
+                             rendered="false"
                              required="false"
                              editable="true"
+                             disabled="true"
                              requiredMessage="Informe a pelagem do animal!">
                 <f:selectItems value="#{MBanimal.listaPelagem}" />           
             </p:selectOneMenu>
             <p:message for="pelagem" />
             <p:tooltip for="pelagem"
-                       position="top" />
+                       position="top"
+                       rendered="false"/>
         </p:panelGrid>
-
 
 
         <p:panelGrid columns="3"
@@ -117,7 +120,7 @@
             <p:message for="sexoAnimal" />
 
 
-            <p:outputLabel value="Data de nascimento:"
+            <p:outputLabel value="Idade do animal:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="idade" />
             <p:inputText id="idade" 

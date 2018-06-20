@@ -6,17 +6,18 @@
 
 
     <div class="ui-fluid">
-        <p:panelGrid columns="3"
+        <p:panelGrid id="ExameFisicoPanel1"
+                     columns="3"
                      layout="grid"
                      styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4">
 
             <p:outputLabel value="FC(bpm):"
                            title="FC(Frequência Cardíaca) bpm(batimentos por minuto)"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico1" />
             <p:inputNumber id="fisico1" 
-                           value="#{MBconsulta.formsExame.exameFisico.fcBpm}"
+                           value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.fcBpm}"
                            title="Frequência cardíaca"
                            maxlength="4"
                            maxValue="9999"
@@ -34,7 +35,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico2" />
             <p:inputNumber id="fisico2" 
-                           value="#{MBconsulta.formsExame.exameFisico.frMpm}"
+                           value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.frMpm}"
                            title="Frequência respiratória"
                            maxlength="3"
                            maxValue="999"
@@ -52,9 +53,10 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico3" />
             <p:inputNumber id="fisico3" 
-                           value="#{MBconsulta.formsExame.exameFisico.termpeReta}"
+                           value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.termpeReta}"
                            decimalSeparator=","
                            thousandSeparator="."
+                           symbol=" Cº" symbolPosition="s" 
                            maxlength="4"
                            maxValue="999"
                            decimalPlaces="1"
@@ -72,7 +74,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico4" />
             <p:inputNumber id="fisico4" 
-                           value="#{MBconsulta.formsExame.exameFisico.tpc}"
+                           value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.tpc}"
                            title="Tempo de preenchimento capilar"
                            maxlength="3"
                            maxValue="999"
@@ -90,7 +92,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico5" />
             <p:selectOneMenu id="fisico5"
-                             value="#{MBconsulta.formsExame.exameFisico.estadoNutric}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.estadoNutric}"
                              required="true"
                              requiredMessage="Informe o estado nutricional!"
                              style="margin-bottom: 20px;" >
@@ -109,7 +111,7 @@
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico6" />
             <p:selectOneMenu id="fisico6"
-                             value="#{MBconsulta.formsExame.exameFisico.mucosaOral}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.mucosaOral}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa oral!"
                              style="margin-bottom: 20px;" >
@@ -122,14 +124,19 @@
                 <f:selectItem itemLabel="Ictéricas" itemValue="Ictéricas" />
             </p:selectOneMenu>
             <p:message for="fisico6" />
+        </p:panelGrid>
 
 
-
+        <p:panelGrid id="ExameFisicoPanel2"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Mucosa vaginal/peniana:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico7" />
             <p:selectOneMenu id="fisico7"
-                             value="#{MBconsulta.formsExame.exameFisico.mucosVagPeni}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.mucosVagPeni}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa Vaginal/Peniana!"
                              style="margin-bottom: 20px;" >
@@ -142,14 +149,19 @@
                 <f:selectItem itemLabel="Ictéricas" itemValue="Ictéricas" />
             </p:selectOneMenu>
             <p:message for="fisico7" />
+        </p:panelGrid>
 
 
-
+        <p:panelGrid id="ExameFisicoPanel3"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Mucosa ocular:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico8" />
             <p:selectOneMenu id="fisico8"
-                             value="#{MBconsulta.formsExame.exameFisico.mucosaOcular}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.mucosaOcular}"
                              required="true"
                              requiredMessage="Informe o estado da mucosa ocular!"
                              style="margin-bottom: 20px;" >
@@ -162,178 +174,342 @@
                 <f:selectItem itemLabel="Ictéricas" itemValue="Ictéricas" />
             </p:selectOneMenu>
             <p:message for="fisico8" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExameFisicoPanel4"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Pulso:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico9" />
             <p:selectOneRadio id="fisico9"
-                              value="#{MBconsulta.formsExame.exameFisico.pulso}"
+                              value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.pulso}"
                               layout="responsive"
-                              columns="1"
+                              columns="2"
                               required="true"
                               requiredMessage="Informe o estado do pulso!"
                               style="margin-bottom: 20px;" >
-                <f:selectItem itemLabel="Fraco" itemValue="Fraco" />
-                <f:selectItem itemLabel="Forte" itemValue="Forte" />
+                <f:selectItem itemLabel="Normocinético" itemValue="Normocinético"
+                              itemDescription="Pulso normal" />
+                <f:selectItem itemLabel="Hipocinético" itemValue="Hipocinético"
+                              itemDescription="Pulso fraco" />
+                <f:selectItem itemLabel="Hipercinético" itemValue="Hipercinético"
+                              itemDescription="Pulso forte" />
                 <f:selectItem itemLabel="Ausente" itemValue="Ausente" />
+                <p:ajax update="ExameFisicoPanel5" />
             </p:selectOneRadio>
             <p:message for="fisico9" />
+        </p:panelGrid>
 
 
-
-
-
+        <p:panelGrid id="ExameFisicoPanel5"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel value="Estado do pulso:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.viewEstadoPulso}"
                            for="fisico10" />
-            <p:selectOneRadio id="fisico10"
-                              value="#{MBconsulta.formsExame.exameFisico.estadoPulso}"
-                              layout="responsive"
-                              columns="1"
-                              required="true"
-                              requiredMessage="Informe o estado do pulso!"
-                              style="margin-bottom: 20px;">
+            <p:selectOneButton id="fisico10"
+                               value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.estadoPulso}"
+                               rendered="#{MBconsulta.formsExame.controlExameFisico.viewEstadoPulso}"
+                               required="true"
+                               requiredMessage="Informe o estado do pulso!"
+                               style="margin-bottom: 20px;">
                 <f:selectItem itemLabel="Regular" itemValue="Regular" />
                 <f:selectItem itemLabel="Irregular" itemValue="Irregular" />
-            </p:selectOneRadio>
-            <p:message for="fisico10" />
+            </p:selectOneButton>
+            <p:message for="fisico10"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.viewEstadoPulso}"/>
+        </p:panelGrid>
 
 
-
+        <p:panelGrid id="ExameFisicoPanel6"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
             <p:outputLabel value="Hidratação:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico11" />
             <p:selectOneMenu id="fisico11"
-                             value="#{MBconsulta.formsExame.exameFisico.hidratacao}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.hidratacao}"
                              required="true"
                              requiredMessage="Informe o estado da hidratação!"
                              style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Selecione" itemValue="" />
                 <f:selectItem itemLabel="Hidratado" itemValue="Hidratado" />
-                <f:selectItem itemLabel="4-6% de desidratação" itemValue="4-6% de desidratação" />
-                <f:selectItem itemLabel="6-8% de desidratação" itemValue="6-8% de desidratação" />
-                <f:selectItem itemLabel="8-10% de desidratação" itemValue="8-10% de desidratação" />
-                <f:selectItem itemLabel="10-12% de desidratação" itemValue="10-12% de desidratação" />
+                <f:selectItem itemLabel="4-6% de desidratação" itemValue="4-6% de desidratação"
+                              itemDescription="Sinais perda sutil da elasticidade da pele" />
+                <f:selectItem itemLabel="6-8% de desidratação" itemValue="6-8% de desidratação"
+                              itemDescription="Sinais clínicos: Turgor cutâneo reduzido; Olhos podem estar fundos nas órbitas; Tempo de enchimento capilar levemente prolongado; Mucosas possivelmente ressecadas."/>
+                <f:selectItem itemLabel="8-10% de desidratação" itemValue="8-10% de desidratação"
+                              itemDescription="Sinais clínicos: Turgor cutâneo reduzido gravemente; TPC aumentado; Retração do globo ocular; Mucosas possivelmente ressecadas; Prováveis sinais de choque."/>
+                <f:selectItem itemLabel=">12% de desidratação" itemValue=">12% de desidratação"
+                              itemDescription="Sinais clínicos de choque e morte iminente."/>
             </p:selectOneMenu>
             <p:message for="fisico11" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExaFisicPanel-palpaAbdom"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
-
-            <p:outputLabel value="Palpação abdominal:"
+            <p:outputLabel id="FisicoPalpaAbdom1Label"
+                           value="Palpação abdominal:"
+                           rendered="true"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico12" />
-            <p:inputTextarea id="fisico12"
-                             value="#{MBconsulta.formsExame.exameFisico.palpaAbdom}"
-                             required="true"
-                             requiredMessage="Informe a palpação abdominal!"
+                           for="FisicoPalpaAbdom1Input" />
+            <p:selectOneButton id="FisicoPalpaAbdom1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(0).viewVariableBoolean}"
+                               required="true"
+                               requiredMessage="Informe a palpação abdominal!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Alterado" itemValue="true">
+                    <p:effect type="bounce" event="load" for="FisicoPalpaAbdom2Label"/>
+                    <p:effect type="bounce" event="load" for="FisicoPalpaAbdom2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="ExaFisicPanel-palpaAbdom"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewPalpaAbdom()}" />
+            </p:selectOneButton>
+            <p:message id="FisicoPalpaAbdom1Messager"
+                       for="FisicoPalpaAbdom1Input" />
+
+
+            <p:outputLabel id="FisicoPalpaAbdom2Label"
+                           value="Descreva palpação abdominal:"
+                           style="color: #007463; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(0).viewVariableBoolean}"
+                           for="FisicoPalpaAbdom2Input" />
+            <p:inputTextarea id="FisicoPalpaAbdom2Input"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.palpaAbdom}"
+                             rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(0).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(0).viewVariableBoolean}"
+                             requiredMessage="Descreva palpação abdominal!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="fisico12" />
+            <p:message id="FisicoPalpaAbdom2Messager"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(0).viewVariableBoolean}"
+                       for="FisicoPalpaAbdom2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExaFisicPanel-auscuCardiaca"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+
+            <p:outputLabel id="FisicoAuscuCardiaca1Label"
+                           value="Auscultação cardíaca:"
+                           rendered="true"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           for="FisicoAuscuCardiaca1Input" />
+            <p:selectOneButton id="FisicoAuscuCardiaca1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(1).viewVariableBoolean}"
+                               required="true"
+                               requiredMessage="Informe a auscultação cardíaca!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Alterado" itemValue="true">
+                    <p:effect type="bounce" event="load" for="FisicoAuscuCardiaca2Label"/>
+                    <p:effect type="bounce" event="load" for="FisicoAuscuCardiaca2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="ExaFisicPanel-auscuCardiaca"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewAuscuCardiaca()}"/>
+            </p:selectOneButton>
+            <p:message id="FisicoAuscuCardiaca1Messager"
+                       for="FisicoAuscuCardiaca1Input" />
 
 
-            <p:outputLabel value="Auscultação cardíaca:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico13" />
-            <p:inputTextarea id="fisico13"
-                             value="#{MBconsulta.formsExame.exameFisico.auscuCardiaca}"
-                             required="true"
-                             requiredMessage="Informe a auscultação cardíaca!"
+            <p:outputLabel id="FisicoAuscuCardiaca2Label"
+                           value="Descreva auscultação cardíaca:"
+                           style="color: #007463; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(1).viewVariableBoolean}"
+                           for="FisicoAuscuCardiaca2Input" />
+            <p:inputTextarea id="FisicoAuscuCardiaca2Input"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.auscuCardiaca}"
+                             rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(1).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(1).viewVariableBoolean}"
+                             requiredMessage="Descreva auscultação cardíaca!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="fisico13" />
+            <p:message id="FisicoAuscuCardiaca2Messager"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(1).viewVariableBoolean}"
+                       for="FisicoAuscuCardiaca2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExaFisicPanel-auscuPulmona"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
+            <p:outputLabel id="FisicoAuscuPulmona1Label"
+                           value="Auscultação pulmonar:"
+                           rendered="true"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           for="FisicoAuscuPulmona1Input" />
+            <p:selectOneButton id="FisicoAuscuPulmona1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(2).viewVariableBoolean}"
+                               required="true"
+                               requiredMessage="Informe a auscultação pulmonar!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Alterado" itemValue="true">
+                    <p:effect type="bounce" event="load" for="FisicoAuscuPulmona2Label"/>
+                    <p:effect type="bounce" event="load" for="FisicoAuscuPulmona2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="ExaFisicPanel-auscuPulmona"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewAuscuPulmona()}"/>
+            </p:selectOneButton>
+            <p:message id="FisicoAuscuPulmona1Messager"
+                       for="FisicoAuscuPulmona1Input" />
 
-            <p:outputLabel value="Auscultação pulmonar:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico14" />
-            <p:inputTextarea id="fisico14"
-                             value="#{MBconsulta.formsExame.exameFisico.auscuPulmona}"
-                             required="true"
-                             requiredMessage="Informe a auscultação pulmonar!"
+            <p:outputLabel id="FisicoAuscuPulmona2Label"
+                           value="Descreva a auscultação pulmonar:"
+                           style="color: #007463; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(2).viewVariableBoolean}"
+                           for="FisicoAuscuPulmona2Input" />
+            <p:inputTextarea id="FisicoAuscuPulmona2Input"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.auscuPulmona}"
+                             rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(2).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(2).viewVariableBoolean}"
+                             requiredMessage="Descreva a auscultação pulmonar!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="fisico14" />
+            <p:message id="FisicoAuscuPulmona2Messager"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(2).viewVariableBoolean}"
+                       for="FisicoAuscuPulmona2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExaFisicPanel-linfonodos"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+
+            <p:outputLabel id="FisicoLinfonodos1Label"
+                           value="Linfonodos:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           for="FisicoLinfonodos1Input" />
+            <p:selectOneButton id="FisicoLinfonodos1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(3).viewVariableBoolean}"
+                               required="true"
+                               requiredMessage="Informe os linfonodos!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Alterado" itemValue="true">
+                    <p:effect type="bounce" event="load" for="FisicoLinfonodos2Label"/>
+                    <p:effect type="bounce" event="load" for="FisicoLinfonodos2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="ExaFisicPanel-linfonodos"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewLinfonodos()}"/>
+            </p:selectOneButton>
+            <p:message id="FisicoLinfonodos1Messager"
+                       for="FisicoLinfonodos1Input" />
 
 
-            <p:outputLabel value="Linfonodos:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico15" />
-            <p:inputTextarea id="fisico15"
-                             value="#{MBconsulta.formsExame.exameFisico.linfonodos}"
-                             required="true"
-                             requiredMessage="Informe o linfonodos!"
+            <p:outputLabel id="FisicoLinfonodos2Label"
+                           value="Descreva linfonodos:"
+                           style="color: #007463; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(3).viewVariableBoolean}"
+                           for="FisicoLinfonodos2Input" />
+            <p:inputTextarea id="FisicoLinfonodos2Input"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.linfonodos}"
+                             rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(3).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(3).viewVariableBoolean}"
+                             requiredMessage="Descreva os linfonodos!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="fisico15" />
+            <p:message id="FisicoLinfonodos2Messager"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(3).viewVariableBoolean}"
+                       for="FisicoLinfonodos2Input" />
+        </p:panelGrid>
 
 
+        <p:panelGrid id="ExaFisicPanel-PelePelos"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+
+            <p:outputLabel id="FisicoPelePelos1Label"
+                           value="Pele/pelos:"
+                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold;"
+                           for="FisicoPelePelos1Input" />
+            <p:selectOneButton id="FisicoPelePelos1Input"
+                               rendered="true"
+                               value="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(4).viewVariableBoolean}"
+                               required="true"
+                               requiredMessage="Informe o estado de pele/pelos!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Alterado" itemValue="true">
+                    <p:effect type="bounce" event="load" for="FisicoPelePelos2Label"/>
+                    <p:effect type="bounce" event="load" for="FisicoPelePelos2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="N.D.N." itemValue="false"
+                              itemDescription="Nada digno de nota"/>
+                <p:ajax update="ExaFisicPanel-PelePelos"
+                        listener="#{MBconsulta.formsExame.controlExameFisico.methodViewPelePelos()}" />
+            </p:selectOneButton>
+            <p:message id="FisicoPelePelos1Messager"
+                       for="FisicoPelePelos1Input" />
 
 
-            <p:outputLabel value="Pele/pelos:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico16" />
-            <p:inputTextarea id="fisico16"
-                             value="#{MBconsulta.formsExame.exameFisico.pelePelos}"
-                             required="true"
-                             requiredMessage="Informe o estado de pele/pelos!"
+            <p:outputLabel id="FisicoPelePelos2Label"
+                           value="Descreva pele/pelos:"
+                           style="color: #007463; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(4).viewVariableBoolean}"
+                           for="FisicoPelePelos2Input" />
+            <p:inputTextarea id="FisicoPelePelos2Input"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.pelePelos}"
+                             rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(4).viewVariableBoolean}"
+                             required="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(4).viewVariableBoolean}"
+                             requiredMessage="Descreva o estado de pele/pelos!"
                              style="margin-bottom: 20px;"
                              maxlength="200" />
-            <p:message for="fisico16" />
+            <p:message id="FisicoPelePelos2Messager"
+                       rendered="#{MBconsulta.formsExame.controlExameFisico.getListViewFields(4).viewVariableBoolean}"
+                       for="FisicoPelePelos2Input" />
+        </p:panelGrid>
 
 
-
-
+        <p:panelGrid id="ExaFisicPanelInforAdiciona"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
 
             <p:outputLabel value="Informações adicionais:"
                            style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="fisico17" />
             <p:inputTextarea id="fisico17"
-                         value="#{MBconsulta.formsExame.exameFisico.inforAdiciona}"
-                         required="false"
-                         requiredMessage=""
-                         style="margin-bottom: 20px;"
-                         maxlength="900" />
-            <p:message for="fisico17" />
-
-
-
-
-
-            <p:outputLabel value="Diagnósticos diferenciais:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
-                           for="fisico18" />
-            <p:inputTextarea id="fisico18"
-                             value="#{MBconsulta.formsExame.exameFisico.diagDifer}"
+                             value="#{MBconsulta.formsExame.controlExameFisico.exameFisico.inforAdiciona}"
                              required="false"
                              requiredMessage=""
                              style="margin-bottom: 20px;"
-                             maxlength="500" />
-            <p:message for="fisico18" />
-        </p:panelGrid>
-
-
-
-        <p:panelGrid columns="3" layout="grid"
-                     styleClass="panelgrid-noborder"
-                     columnClasses="ui-grid-col-3, ui-grid-col-4" >
-
-            <p:outputLabel />      
-            <p:commandButton type="reset"
-                             style="padding: 15px 0px 15px 0px;
-                             margin-top: 25px;"
-                             id="LimparCamposFisico" 
-                             icon="fa fa-eraser" 
-                             value="Limpar cadastro" />
-
+                             maxlength="900" />
+            <p:message for="fisico17" />
         </p:panelGrid>
     </div>
 
