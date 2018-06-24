@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/01/2017 01:03:35 by Hibernate Tools 4.3.1
+// Generated 24/06/2018 11:35:04 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -32,24 +32,25 @@ public class ExameImage  implements java.io.Serializable {
      private Integer qtdChapas;
      private String laudo;
      private String tipo;
-     private Date dataExaImage;
-     private String status;
-     private String codExameImage;
+     private String statusExamImage;
+     private String examImageCod;
+     private Date atendimentoData;
+     private Date solicitacaoData;
 
     public ExameImage() {
     }
 
 	
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String tipo, Date dataExaImage, String status, String codExameImage) {
+    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String tipo, String statusExamImage, String examImageCod, Date solicitacaoData) {
         this.id = id;
         this.consulta = consulta;
         this.regiExami = regiExami;
         this.tipo = tipo;
-        this.dataExaImage = dataExaImage;
-        this.status = status;
-        this.codExameImage = codExameImage;
+        this.statusExamImage = statusExamImage;
+        this.examImageCod = examImageCod;
+        this.solicitacaoData = solicitacaoData;
     }
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String posicao, Integer qtdChapas, String laudo, String tipo, Date dataExaImage, String status, String codExameImage) {
+    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String posicao, Integer qtdChapas, String laudo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
        this.id = id;
        this.consulta = consulta;
        this.regiExami = regiExami;
@@ -57,9 +58,10 @@ public class ExameImage  implements java.io.Serializable {
        this.qtdChapas = qtdChapas;
        this.laudo = laudo;
        this.tipo = tipo;
-       this.dataExaImage = dataExaImage;
-       this.status = status;
-       this.codExameImage = codExameImage;
+       this.statusExamImage = statusExamImage;
+       this.examImageCod = examImageCod;
+       this.atendimentoData = atendimentoData;
+       this.solicitacaoData = solicitacaoData;
     }
    
      @EmbeddedId
@@ -87,7 +89,7 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
-    @Column(name="regiExami", nullable=false, length=200)
+    @Column(name="regiExami", nullable=false, length=254)
     public String getRegiExami() {
         return this.regiExami;
     }
@@ -117,7 +119,7 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
-    @Column(name="laudo", length=200)
+    @Column(name="laudo", length=254)
     public String getLaudo() {
         return this.laudo;
     }
@@ -136,34 +138,44 @@ public class ExameImage  implements java.io.Serializable {
         this.tipo = tipo;
     }
 
+    
+    @Column(name="statusExamImage", nullable=false, length=17)
+    public String getStatusExamImage() {
+        return this.statusExamImage;
+    }
+    
+    public void setStatusExamImage(String statusExamImage) {
+        this.statusExamImage = statusExamImage;
+    }
+
+    
+    @Column(name="examImageCod", nullable=false, length=100)
+    public String getExamImageCod() {
+        return this.examImageCod;
+    }
+    
+    public void setExamImageCod(String examImageCod) {
+        this.examImageCod = examImageCod;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataExaImage", nullable=false, length=19)
-    public Date getDataExaImage() {
-        return this.dataExaImage;
+    @Column(name="atendimentoData", length=19)
+    public Date getAtendimentoData() {
+        return this.atendimentoData;
     }
     
-    public void setDataExaImage(Date dataExaImage) {
-        this.dataExaImage = dataExaImage;
-    }
-
-    
-    @Column(name="status", nullable=false, length=17)
-    public String getStatus() {
-        return this.status;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAtendimentoData(Date atendimentoData) {
+        this.atendimentoData = atendimentoData;
     }
 
-    
-    @Column(name="codExameImage", nullable=false, length=8)
-    public String getCodExameImage() {
-        return this.codExameImage;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="solicitacaoData", nullable=false, length=19)
+    public Date getSolicitacaoData() {
+        return this.solicitacaoData;
     }
     
-    public void setCodExameImage(String codExameImage) {
-        this.codExameImage = codExameImage;
+    public void setSolicitacaoData(Date solicitacaoData) {
+        this.solicitacaoData = solicitacaoData;
     }
 
 

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 09/01/2017 01:03:36 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24/06/2018 11:35:06 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameImage" table="exameImage" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameImageId">
@@ -16,7 +16,7 @@
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="regiExami" type="string">
-            <column name="regiExami" length="200" not-null="true" />
+            <column name="regiExami" length="254" not-null="true" />
         </property>
         <property name="posicao" type="string">
             <column name="posicao" length="50" />
@@ -25,19 +25,22 @@
             <column name="qtdChapas" />
         </property>
         <property name="laudo" type="string">
-            <column name="laudo" length="200" />
+            <column name="laudo" length="254" />
         </property>
         <property name="tipo" type="string">
             <column name="tipo" length="15" not-null="true" />
         </property>
-        <property name="dataExaImage" type="timestamp">
-            <column name="dataExaImage" length="19" not-null="true" />
+        <property name="statusExamImage" type="string">
+            <column name="statusExamImage" length="17" not-null="true" />
         </property>
-        <property name="status" type="string">
-            <column name="status" length="17" not-null="true" />
+        <property name="examImageCod" type="string">
+            <column name="examImageCod" length="100" not-null="true" />
         </property>
-        <property name="codExameImage" type="string">
-            <column name="codExameImage" length="8" not-null="true" />
+        <property name="atendimentoData" type="timestamp">
+            <column name="atendimentoData" length="19" />
+        </property>
+        <property name="solicitacaoData" type="timestamp">
+            <column name="solicitacaoData" length="19" not-null="true" />
         </property>
     </class>
 </hibernate-mapping>

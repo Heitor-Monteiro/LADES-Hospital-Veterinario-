@@ -2,7 +2,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
@@ -16,7 +16,7 @@
 
             <f:metadata>
                 <f:viewAction action="#{login.objTools.enableWizardNavBar()}" />
-                <f:viewAction action="#{MBconsulta.objMaxCodigoConsulta.maxExamCode()}" />
+                <f:viewAction action="#{MBconsulta.formsExame.controlConsulta.generateMaxExamCode()}" />
             </f:metadata>
 
             <h:form>
@@ -24,7 +24,7 @@
 
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar"
-                          showNavBar="false" 
+                          showNavBar="false"
                           showStepStatus="true"
                           widgetVar="wiz">
 
@@ -42,7 +42,7 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
+                                    <!--<ui:include src="/sihv-includes/generico_Anamnese.xhtml" />-->
                                 </p:panel>
                             </p:tab>
                             <p:tab title="Exame físico geral">
@@ -50,13 +50,11 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
+                                    <!--<ui:include src="/sihv-includes/generico_Fisico.xhtml" />-->
                                 </p:panel>
                             </p:tab>
                         </p:tabView>
                     </p:tab>
-
-
 
 
                     <p:tab id="etapa3" title="3" titletip="Exame físico específico">
@@ -76,450 +74,22 @@
                                            style="width: 250px;"/>
                             </f:facet>
 
-                            <p:panel id="sisDigestorio-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
+                            <ui:include src="/sihv-includes/toggleable_SisDigestorio.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisRespCardio.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisUrinarioMamaria.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisTegumentar.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisNeurologico.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisOftalmico.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_SisMuscEsque.xhtml" />
+                        </p:panel>
+                    </p:tab>
 
+                    <p:tab id="etapa4" title="4" titletip="Exames complementares">
+                        <p:panel header="Exames complementares">
 
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisDigestorio-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisDigestorio1Label"
-                                                           value="Sistema digestório e glândulas anexas:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisDigestorio1Input"/>
-                                            <p:selectBooleanButton id="sisDigestorio1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on ">
-                                                <p:ajax update="sisDigestorio-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisDigestorio1Messager"
-                                                       for="sisDigestorio1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisDigestorio-panelGrid2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewSisDigestorio.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Digestorio.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisDigestorio-panelGrid2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisRespCardio-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisRespCardio-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisRespCardio1Label"
-                                                           value="Sistema respiratório e cardiovascular:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisRespCardio1Input"/>
-                                            <p:selectBooleanButton id="sisRespCardio1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controlSisRespCardio.viewSisRespCardio.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisRespCardio-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisRespCardio1Messager"
-                                                       for="sisRespCardio1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisRespCardio-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSisRespCardio.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Resp_Cardio.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisRespCardio-panel2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisUrinarioMamaria-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisUrinarioMamaria-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisUrinarioMamaria1Label"
-                                                           value="Sistema gênito-urinário e glândulas mamárias:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisUrinarioMamaria1Input"/>
-                                            <p:selectBooleanButton id="sisUrinarioMamaria1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSisUrinarioMamaria.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisUrinarioMamaria-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisUrinarioMamaria1Messager"
-                                                       for="sisUrinarioMamaria1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisUrinarioMamaria-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controlSisUrinarioMamaria.viewSisUrinarioMamaria.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Urinario_Mamaria.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisUrinarioMamaria-panel2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisTegumentar-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisTegumentar-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisTegumentar1Label"
-                                                           value="Sistema tegumentar:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisTegumentar1Input"/>
-                                            <p:selectBooleanButton id="sisTegumentar1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controleSisTegumentar.viewSisTegumentar.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisTegumentar-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisTegumentar1Messager"
-                                                       for="sisTegumentar1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisTegumentar-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSisTegumentar.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Tegumentar.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisTegumentar-panel2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisNeurologico-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisNeurologico-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisNeurologico1Label"
-                                                           value="Sistema neurológico:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisNeurologico1Input"/>
-                                            <p:selectBooleanButton id="sisNeurologico1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisNeurologico-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisNeurologico1Messager"
-                                                       for="sisNeurologico1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisNeurologico-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisNeurologico-panel2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisOftalmico-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisOftalmico-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisOftalmico1Label"
-                                                           value="Sistema oftálmico:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisOftalmico1Input"/>
-                                            <p:selectBooleanButton id="sisOftalmico1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controleSisOftalmico.viewSisRespCardio.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisOftalmico-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisOftalmico1Messager"
-                                                       for="sisOftalmico1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisOftalmico-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSisRespCardio.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_Oftalmico.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisOftalmico-panel2" />
-                                </p:panel>
-                            </p:panel>
-
-
-                            <p:panel id="sisMuscEsque-panel"
-                                     toggleable="true" 
-                                     collapsed="false"
-                                     toggleableHeader="false"
-                                     toggleSpeed="500"
-                                     toggleTitle="Clique para Ocultar ou Mostrar o formulário"
-                                     closable="false"
-                                     closeSpeed="500"
-                                     style="margin-top: 10px;
-                                     background: none;
-                                     border: none;">
-
-
-                                <f:facet name="header">
-                                    <div class="ui-fluid">
-                                        <p:panelGrid id="sisMuscEsque-panelGrid1"
-                                                     columns="3"
-                                                     layout="grid"
-                                                     styleClass="panelgrid-noborder"
-                                                     columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
-                                                     style="margin-bottom: -30px;
-                                                     margin-top: -20px;" >
-                                            <p:outputLabel id="sisMuscEsque1Label"
-                                                           value="Sistema músculo-esquelético:"
-                                                           rendered="true"
-                                                           style="color: #5f666c;
-                                                           font-family: Open Sans, Helvetica, Arial;
-                                                           font-weight: bold;"
-                                                           for="sisMuscEsque1Input"/>
-                                            <p:selectBooleanButton id="sisMuscEsque1Input"
-                                                                   class="buttonAffectedSystem"
-                                                                   value="#{MBconsulta.formsExame.controleSisMuscEsque.viewSisMuscEsque.viewVariableBoolean}"
-                                                                   rendered="true"
-                                                                   required="false"
-                                                                   requiredMessage="Informe se houve alteração!"
-                                                                   title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                                   onLabel="Alterado"
-                                                                   offLabel="N.D.N."
-                                                                   offIcon="fa fa-toggle-off"
-                                                                   onIcon="fa fa-toggle-on"
-                                                                   style="width:100px;
-                                                                   color: #5f666c;">
-                                                <p:ajax update="sisMuscEsque-panel"/>
-                                            </p:selectBooleanButton>
-                                            <p:message id="sisMuscEsque1Messager"
-                                                       for="sisMuscEsque1Input" />
-                                        </p:panelGrid>
-                                    </div>
-                                </f:facet>
-
-
-                                <p:panel id="sisMuscEsque-panel2"
-                                         style="background: none;
-                                         margin-left: -38px;
-                                         margin-right: -38px;
-                                         border: none;"
-                                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewSisMuscEsque.viewVariableBoolean}" >
-                                    <ui:include src="/sihv-includes/generico_Sis_MuscEsque.xhtml" />
-                                    <p:effect type="shake" event="load" speed="200"
-                                              for="sisMuscEsque-panel2" />
-                                </p:panel>
-                            </p:panel>
+                            <ui:include src="/sihv-includes/toggleable_ExamXray.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_ExamUltrasound.xhtml" />
+                            <ui:include src="/sihv-includes/toggleable_ExamLaboratory.xhtml" />
 
                         </p:panel>
                     </p:tab>
@@ -538,7 +108,7 @@
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
-                                    <p:outputLabel value="#{MBconsulta.objMaxCodigoConsulta.maxCodConsulta}"
+                                    <p:outputLabel value="#{MBconsulta.formsExame.controlConsulta.codNewConsulta}"
                                                    style="color: #555;
                                                    font-weight: bold;
                                                    font-size: 16px; " />
@@ -592,14 +162,14 @@
                                     <p:outputLabel value="Valor da consulta:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                                                    for="valorConsult" />
-                                    <p:inputNumber id="valorConsult" 
+                                    <p:inputNumber id="valorConsult"
                                                    value="#{MBconsulta.formsExame.controlConsulta.consulta.valorConsulta}"
                                                    decimalSeparator=","
                                                    thousandSeparator="."
                                                    maxlength="6"
                                                    maxValue="9999"
                                                    decimalPlaces="2"
-                                                   required="true" 
+                                                   required="true"
                                                    requiredMessage="Informe o valor da consulta!"
                                                    style="margin-bottom: 20px;" />
                                 </p:panelGrid>
@@ -631,7 +201,7 @@
 
                                     <p:outputLabel value="Informe o CRMV:"
                                                    style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:inputText id="ConfimMED1" 
+                                    <p:inputText id="ConfimMED1"
                                                  value="#{MBconsulta.confirmeCRMV}"
                                                  title="Ex.: CRMV-PA 00000"
                                                  required="true"
@@ -648,7 +218,7 @@
                                                 value="#{MBconsulta.confirmeSENHA}"
                                                 title="Residente: digite a senha que você utiliza para acessar o sistema."
                                                 maxlength="100"
-                                                required="true" 
+                                                required="true"
                                                 requiredMessage="Informe a senha de residente!" />
 
 
@@ -676,9 +246,9 @@
                                         <p:commandButton  action="#{MBconsulta.adicionarNovaConsulta()}"
                                                           value="Salvar consulta"
                                                           icon="fa fa-save"
-                                                          update="growl, CODconsulta" 
+                                                          update="growl, CODconsulta"
                                                           disabled="#{MBconsulta.objTools.showButtonPrint}">
-                                            <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                            <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout
                                             Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
                                             <p:ajax onstart="PF('statusDialog').show()"
                                                     onsuccess="PF('statusDialog').hide()" />
@@ -686,7 +256,7 @@
                                     </div>
 
                                     <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:button value="Sair" 
+                                        <p:button value="Sair"
                                                   outcome="/index"
                                                   icon="fa fa-home" />
                                     </div>

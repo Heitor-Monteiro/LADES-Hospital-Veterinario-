@@ -5,8 +5,6 @@
  */
 package com.lades.sihv.bean;
 
-import com.lades.sihv.controller.consulta.MaxCodigoConsulta;
-import com.lades.sihv.controller.consulta.CodExameImagem;
 import com.lades.sihv.controller.consulta.ConfirmarMedicoVeterinario;
 import com.lades.sihv.controller.consulta.VisualizarConsulta;
 import com.lades.sihv.classeMolde.FormsExames;
@@ -32,12 +30,6 @@ public class MBconsulta extends AbstractBean {
     private String confirmeSENHA;
     private CollectionClasses collectionClasses;
     private FormsExames formsExame;
-    private MaxCodigoConsulta objMaxCodigoConsulta;
-    private boolean confirmeRAIOX = false;
-    private boolean confirmeUltrasson = false;
-    private String codRaioX;
-    private String codUltrasson;
-    private int numCodImage;
 
     @PostConstruct
     public void init() {
@@ -56,7 +48,6 @@ public class MBconsulta extends AbstractBean {
                         .getControlConsulta()
                         .ConfirmeConsulta(collectionClasses.getAnimais(),
                                 getVariaveisDeSessao().getDadosUSER());
-
                 getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
                 getFormsExame().getControlSisDigestorio().ConfirmeSisDigestorio(consulta);
@@ -66,14 +57,8 @@ public class MBconsulta extends AbstractBean {
                 getFormsExame().getControleSisNeurologico().ConfirmeSisNeurologico(consulta);
                 getFormsExame().getControleSisOftalmico().ConfirmeSisOftalmico(consulta);
                 getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
-                if (confirmeRAIOX == true) {
-//                    getFormsExame().prepareExameImageRaioX(getObjData(), codRaioX);
-//                    getDaoGenerico().save(getFormsExame().getExameImageRaioX());
-                }
-                if (confirmeUltrasson == true) {
-//                    getFormsExame().prepareExameImageUltra(getObjData(), codUltrasson);
-//                    getDaoGenerico().save(getFormsExame().getExameImageUltra());
-                }
+                getFormsExame().getControleExaImage().ConfirmeExamXray(consulta);
+                getFormsExame().getControleExaImage().ConfirmeExamUltrasound(consulta);
                 getObjMessage().info("Cosulta efetuada.", "Consulta realizada com sucesso.");
                 getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
                 getObjTools().setShowButtonPrint(true); //Habilitando visibilidade do botão para impressão
@@ -83,10 +68,6 @@ public class MBconsulta extends AbstractBean {
                 getObjTools().disableWizardNavBar();
             }
         }
-    }
-
-    public void maxExameImagem() {
-        numCodImage = new CodExameImagem().maxExameImagem();
     }
 
     /*O método direciona o usuário para uma
@@ -118,45 +99,6 @@ public class MBconsulta extends AbstractBean {
         this.confirmeSENHA = confirmeSENHA;
     }
     //-----------------------------------------------------
-
-    //GETs e SETs para código de exames por imagens
-    public String getCodRaioX() {
-        return codRaioX;
-    }
-
-    public void setCodRaioX(String codRaioX) {
-        this.codRaioX = codRaioX;
-    }
-
-    public String getCodUltrasson() {
-        return codUltrasson;
-    }
-
-    public void setCodUltrasson(String codUltrasson) {
-        this.codUltrasson = codUltrasson;
-    }
-    //------------------------------------------------------------------
-
-    public boolean isConfirmeRAIOX() {
-        return confirmeRAIOX;
-    }
-
-    public void setConfirmeRAIOX(boolean confirmeRAIOX) {
-        this.confirmeRAIOX = confirmeRAIOX;
-        new CodExameImagem().gerarCodExameImagem(this.confirmeRAIOX,
-                confirmeUltrasson, numCodImage, codRaioX, codUltrasson);
-    }
-
-    public boolean isConfirmeUltrasson() {
-        return confirmeUltrasson;
-    }
-
-    public void setConfirmeUltrasson(boolean confirmeUltrasson) {
-        this.confirmeUltrasson = confirmeUltrasson;
-        new CodExameImagem().gerarCodExameImagem(confirmeRAIOX,
-                this.confirmeUltrasson, numCodImage, codRaioX, codUltrasson);
-    }
-
     public CollectionClasses getCollectionClasses() {
         try {
             if (collectionClasses == null) {
@@ -178,19 +120,6 @@ public class MBconsulta extends AbstractBean {
             formsExame = new FormsExames();
         }
         return formsExame;
-    }
-
-    /*Método GET para exibir código demostrativos
-    ao finalizar uma nova consulta.*/
-    public MaxCodigoConsulta getObjMaxCodigoConsulta() {
-        if (objMaxCodigoConsulta == null) {
-            objMaxCodigoConsulta = new MaxCodigoConsulta();
-        }
-        return objMaxCodigoConsulta;
-    }
-
-    public int getMaxCodConsulta() {
-        return getObjMaxCodigoConsulta().getMaxCodConsulta();
     }
     //------------------------------------------------------------------
 }
