@@ -82,45 +82,8 @@
             </div>
         </div>
 
-        <div class="floatingButton" >
-            <h:form>
-                <p:panelGrid id="floatingButton-PanelGrid"
-                             columns="1"
-                             layout="grid"
-                             styleClass="panelgrid-noborder"
-                             columnClasses="ui-grid-col-3" >
-                    <p:commandButton id="wizardButtonRight"
-                                     class="floatingButtonStyle"
-                                     icon="fa fa-chevron-right"
-                                     rendered="#{login.objTools.wizardNavBar}"
-                                     onclick="PF('wiz').next();"/>
-                    <p:tooltip id="wizardButtonMessager1"
-                               for="wizardButtonRight"
-                               value="Próximo"
-                               position="left" />
+        <ui:include src="/sihv-includes/wizardNavButtons.xhtml" />
 
-                    <p:commandButton id="wizardButtonLeft"
-                                     class="floatingButtonStyle"
-                                     icon="fa fa-chevron-left"
-                                     rendered="#{login.objTools.wizardNavBar}"
-                                     onclick="PF('wiz').back();"/>
-                    <p:tooltip id="wizardButtonMessager2"
-                               for="wizardButtonLeft"
-                               value="Voltar"
-                               position="left" />
-                    
-                    <p:commandButton id="clearButton1"
-                                     class="floatingButtonStyle"
-                                     type="reset" 
-                                     icon="fa fa-eraser"
-                                     rendered="false"/>
-                    <p:tooltip id="clearButtonMessager1"
-                               for="clearButton1"
-                               value="Limpar campos"
-                               position="left" />
-                </p:panelGrid>
-            </h:form>
-        </div>
     </h:head>
 
     <h:body>

@@ -15,7 +15,7 @@
         <ui:define name="content">
 
             <f:metadata>
-                <f:viewAction action="#{login.objTools.enableWizardNavBar()}" />
+                <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
                 <f:viewAction action="#{MBconsulta.formsExame.controlConsulta.generateMaxExamCode()}" />
             </f:metadata>
 
@@ -24,7 +24,7 @@
 
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar"
-                          showNavBar="false"
+                          showNavBar="true"
                           showStepStatus="true"
                           widgetVar="wiz">
 
@@ -42,7 +42,7 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <!--<ui:include src="/sihv-includes/generico_Anamnese.xhtml" />-->
+                                    <ui:include src="/sihv-includes/generico_Anamnese.xhtml" />
                                 </p:panel>
                             </p:tab>
                             <p:tab title="Exame físico geral">
@@ -50,7 +50,7 @@
                                          margin-left: -20px;
                                          margin-right: -20px;
                                          margin-bottom: -16px;">
-                                    <!--<ui:include src="/sihv-includes/generico_Fisico.xhtml" />-->
+                                    <ui:include src="/sihv-includes/generico_Fisico.xhtml" />
                                 </p:panel>
                             </p:tab>
                         </p:tabView>

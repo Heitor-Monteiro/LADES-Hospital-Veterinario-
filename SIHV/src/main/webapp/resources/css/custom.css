@@ -17,7 +17,7 @@
 
 
 .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
-     padding-bottom: 1%;
+    padding-bottom: 1%;
 } 
 
 
@@ -70,4 +70,20 @@
     color: #5f666c!important;
     font-size: 13px!important;
 }
+
+/*outputLabel para formulários do sistema SIHV*/
+.outputLabel-SIHV {
+    color: #00B59B!important;
+    font-weight: bold!important;
+    font-family: Open Sans, Helvetica, Arial !important;
+    float: right;
+}
+
+@media (max-width: 640px) {
+    .outputLabel-SIHV {
+        float: none;
+    }
+}
+/*outputLabel para formulários do sistema SIHV*/
+
 /*---------------- Prime Faces modificações na estilizações ----------------*/

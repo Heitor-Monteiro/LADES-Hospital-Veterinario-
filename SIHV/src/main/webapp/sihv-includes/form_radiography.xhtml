@@ -1,0 +1,242 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        @media (max-width: 640px) {
+            .divNotUsed {
+                display: none;
+            }
+        }
+    </style>
+
+    <div class="ui-fluid">
+
+        <p:panel header="Dados do animal" 
+                 style="border: none;
+                 background: none;" />
+
+        <p:panelGrid columns="4"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3"
+                     style="margin-bottom: 20px;"  >
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="RGHV do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.rghv}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Gênero do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.sexoAnimal}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Nome do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.nomeAnimal}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Idade do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.idadeAnimal}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Espécie:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.especie}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Raça do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.animais.raca}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Peso do animal:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controlAnamnese.anamnese.escalaPeso} 
+                           #{MBxrayPending.selectXrayPending.formsExams.controlAnamnese.anamnese.pesoCorp}" />
+        </p:panelGrid>
+
+
+        <p:panel header="Radiografia - Número: #{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.examImageCod}" 
+                 style="border: none;
+                 background: none;" />
+
+        <p:panelGrid columns="2"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-9" >
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Residente que solicitou:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.residente.nome}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Suspeita clínica:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.suspicionClinical}" />
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Região:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.regiExami}" />
+        </p:panelGrid>
+
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Sub Região:"
+                           for="subRegion-Input"/>
+            <p:inputTextarea id="subRegion-Input"
+                             class="LADES-default-Text"
+                             value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.subRegion}" 
+                             title=""
+                             maxlength="254"
+                             disabled="#{MBxrayPending.xrayRecordingComplete.viewVariableBoolean}"
+                             rendered="true"
+                             required="true" 
+                             requiredMessage="Informe o campo sub região!" />
+            <p:message id="subRegion-message"
+                       for="subRegion-Input"
+                       rendered="true"/>
+        </p:panelGrid>
+
+        <p:panelGrid columns="2"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-9" >
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Posições:" />
+
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.posicao}" />
+        </p:panelGrid>
+
+
+        <p:panelGrid columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Quantidade de projeções:"
+                           for="qtdChapas-Input"/>
+            <p:inputNumber id="qtdChapas-Input"
+                           class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.qtdChapas}"
+                           title=""
+                           minValue="1"
+                           maxValue="100"
+                           maxlength="3"
+                           decimalPlaces="0"
+                           disabled="#{MBxrayPending.xrayRecordingComplete.viewVariableBoolean}"
+                           rendered="true"
+                           required="true" 
+                           requiredMessage="Informe a quantidade de projeções!" />
+            <p:message id="qtdChapas-message"
+                       for="qtdChapas-Input"
+                       rendered="true"/>
+
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Técnica dose:"
+                           for="doseTechnique-Input"/>
+            <p:inputTextarea id="doseTechnique-Input"
+                             class="LADES-default-Text"
+                             value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.doseTechnique}" 
+                             title=""
+                             maxlength="254"
+                             disabled="#{MBxrayPending.xrayRecordingComplete.viewVariableBoolean}"
+                             rendered="true"
+                             required="true" 
+                             requiredMessage="Informe a técnica dose utilizada!">
+            </p:inputTextarea>
+            <p:message id="doseTechnique-message"
+                       for="doseTechnique-Input"
+                       rendered="true"/>
+
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Número de estudos:"
+                           for="numberStudies-Input"/>
+            <p:inputNumber id="numberStudies-Input"
+                           class="LADES-default-Text"
+                           value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.numberStudies}" 
+                           title=""
+                           minValue="1"
+                           maxValue="100"
+                           maxlength="3"
+                           decimalPlaces="0"
+                           disabled="#{MBxrayPending.xrayRecordingComplete.viewVariableBoolean}"
+                           rendered="true"
+                           required="true" 
+                           requiredMessage="Informe o número de estudos!" />
+            <p:message id="numberStudies-message"
+                       for="numberStudies-Input"
+                       rendered="true"/>
+
+
+            <p:outputLabel class="outputLabel-SIHV"
+                           value="Informações adicionais:"
+                           for="AdditionalInfo-Input"/>
+            <p:inputTextarea id="AdditionalInfo-Input"
+                             class="LADES-default-Text"
+                             value="#{MBxrayPending.selectXrayPending.formsExams.controleExaImage.examImageXray.additionalInfo}" 
+                             title=""
+                             maxlength="254"
+                             disabled="#{MBxrayPending.xrayRecordingComplete.viewVariableBoolean}"
+                             rendered="true"
+                             required="false" 
+                             requiredMessage=""/>
+            <p:message id="AdditionalInfo-message"
+                       for="AdditionalInfo-Input"
+                       rendered="true"/>
+        </p:panelGrid>
+
+        <div class="ui-fluid ui-g" >
+            <div class="ui-g-12 ui-md-3 ui-lg-3 divNotUsed">
+            </div>
+
+            <div class="ui-g-12 ui-md-3 ui-lg-3 divNotUsed">
+            </div>
+
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <p:button value="Cadastrar outro raio-x" 
+                          rendered="#{MBxrayPending.viewButtonNewXray.viewVariableBoolean}"
+                          outcome="/sihv-telas/new-xray"
+                          icon="fa fa-user-plus" />
+            </div>
+
+            <div class="ui-g-12 ui-md-3 ui-lg-3">
+                <p:commandButton action="#{MBxrayPending.updateDataXray()}"
+                                 rendered="true"
+                                 disabled="#{MBxrayPending.viewButtonNewXray.viewVariableBoolean}"
+                                 value="Salvar radiografia"
+                                 icon="fa fa-save" 
+                                 update="growl,dataRadiography-panel">
+                    <p:ajax update="@([id$=:floatingButton-PanelGrid])"
+                            onstart="PF('statusDialog').show()"
+                            onsuccess="PF('statusDialog').hide()" />
+                </p:commandButton>
+            </div>
+        </div>
+    </div>
+
+
+
+
+</ui:component>

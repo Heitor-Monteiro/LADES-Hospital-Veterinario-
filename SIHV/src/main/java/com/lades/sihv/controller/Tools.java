@@ -14,15 +14,15 @@ import org.primefaces.context.RequestContext;
  *
  * @author thiberius
  */
-public class Tools implements Serializable{
-    
+public class Tools implements Serializable {
+
     //A variável controla a visibilidade do botão para imprimir o formulário
     private boolean showButtonPrint = false;
-    
-    public void setRestShowButtonPrint(){
+
+    public void setRestShowButtonPrint() {
         this.showButtonPrint = false;
     }
-    
+
     public boolean isShowButtonPrint() {
         return showButtonPrint;
     }
@@ -31,14 +31,19 @@ public class Tools implements Serializable{
         this.showButtonPrint = showButtonPrint;
     }
     //----------------------------------------------------------------------
-    
+
     //Método para redirecionar para outra pagina.
     public void redirecionar(String url) throws IOException {
-        FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect(url);
+        } catch (IOException e) {
+            System.out.println("BACK-END WARNING: Erro ao redirecionar navegação! [ public void redirecionar(String url) ]"
+                    + e.getMessage());
+        }
     }
-    
+
     //Bloqueio do botão back do Wizard PrimeFAces
-    public void blockBackWizad(){
+    public void blockBackWizad() {
         RequestContext.getCurrentInstance().execute("wiz.hideBackNav();");
     }
 

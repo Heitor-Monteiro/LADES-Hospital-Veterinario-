@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 24/06/2018 11:35:04 by Hibernate Tools 4.3.1
+// Generated 09/07/2018 10:08:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,9 +28,14 @@ public class ExameImage  implements java.io.Serializable {
      private ExameImageId id;
      private Consulta consulta;
      private String regiExami;
+     private String subRegion;
      private String posicao;
-     private Integer qtdChapas;
+     private String suspicionClinical;
      private String laudo;
+     private Integer qtdChapas;
+     private String doseTechnique;
+     private Integer numberStudies;
+     private String additionalInfo;
      private String tipo;
      private String statusExamImage;
      private String examImageCod;
@@ -50,13 +55,18 @@ public class ExameImage  implements java.io.Serializable {
         this.examImageCod = examImageCod;
         this.solicitacaoData = solicitacaoData;
     }
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String posicao, Integer qtdChapas, String laudo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
+    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String subRegion, String posicao, String suspicionClinical, String laudo, Integer qtdChapas, String doseTechnique, Integer numberStudies, String additionalInfo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
        this.id = id;
        this.consulta = consulta;
        this.regiExami = regiExami;
+       this.subRegion = subRegion;
        this.posicao = posicao;
-       this.qtdChapas = qtdChapas;
+       this.suspicionClinical = suspicionClinical;
        this.laudo = laudo;
+       this.qtdChapas = qtdChapas;
+       this.doseTechnique = doseTechnique;
+       this.numberStudies = numberStudies;
+       this.additionalInfo = additionalInfo;
        this.tipo = tipo;
        this.statusExamImage = statusExamImage;
        this.examImageCod = examImageCod;
@@ -99,6 +109,16 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
+    @Column(name="subRegion", length=254)
+    public String getSubRegion() {
+        return this.subRegion;
+    }
+    
+    public void setSubRegion(String subRegion) {
+        this.subRegion = subRegion;
+    }
+
+    
     @Column(name="posicao", length=50)
     public String getPosicao() {
         return this.posicao;
@@ -106,6 +126,26 @@ public class ExameImage  implements java.io.Serializable {
     
     public void setPosicao(String posicao) {
         this.posicao = posicao;
+    }
+
+    
+    @Column(name="suspicionClinical", length=254)
+    public String getSuspicionClinical() {
+        return this.suspicionClinical;
+    }
+    
+    public void setSuspicionClinical(String suspicionClinical) {
+        this.suspicionClinical = suspicionClinical;
+    }
+
+    
+    @Column(name="laudo", length=254)
+    public String getLaudo() {
+        return this.laudo;
+    }
+    
+    public void setLaudo(String laudo) {
+        this.laudo = laudo;
     }
 
     
@@ -119,13 +159,33 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
-    @Column(name="laudo", length=254)
-    public String getLaudo() {
-        return this.laudo;
+    @Column(name="doseTechnique", length=254)
+    public String getDoseTechnique() {
+        return this.doseTechnique;
     }
     
-    public void setLaudo(String laudo) {
-        this.laudo = laudo;
+    public void setDoseTechnique(String doseTechnique) {
+        this.doseTechnique = doseTechnique;
+    }
+
+    
+    @Column(name="numberStudies")
+    public Integer getNumberStudies() {
+        return this.numberStudies;
+    }
+    
+    public void setNumberStudies(Integer numberStudies) {
+        this.numberStudies = numberStudies;
+    }
+
+    
+    @Column(name="additionalInfo", length=254)
+    public String getAdditionalInfo() {
+        return this.additionalInfo;
+    }
+    
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 
     

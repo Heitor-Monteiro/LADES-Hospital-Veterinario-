@@ -26,7 +26,7 @@ public class ControllerExaImage extends AbstractBean {
     private ListRenderedFields objListRendFieldsUltra;
     private String codRaioX;
     private String codUltrasson;
-    private int numCodImage;
+    private int numCodImage = 0;
     private final String ndn = "Nada digno de nota.";
 
     private void ConfirmeExamImage(Consulta consulta,
@@ -62,14 +62,15 @@ public class ControllerExaImage extends AbstractBean {
 
     /*O método é utilizar para saber o
     maior código de um exame por imagem.*/
-    public int maxExameImagem() {
+    public void maxExameImagem() {
         numCodImage = 0;
-        List<?> list;
-        list = getDaoGenerico().list("select e.id.pkExameImage from ExameImage e where e.id.pkExameImage=1");
-        if (list.size() > 0) {
-            numCodImage = (int) getDaoGenerico().list("select max(e.id.pkExameImage) from ExameImage e").get(0);
+        if (numCodImage == 0) {
+            List<?> list;
+            list = getDaoGenerico().list("select e.id.pkExameImage from ExameImage e where e.id.pkExameImage=1");
+            if (list.size() > 0) {
+                numCodImage = (int) getDaoGenerico().list("select max(e.id.pkExameImage) from ExameImage e").get(0);
+            }
         }
-        return numCodImage;
     }
 
     /*O método é utilizar para gera o código de
@@ -99,6 +100,7 @@ public class ControllerExaImage extends AbstractBean {
 //  GETs & SETs
     public RenderedFields getViewExamXray() {
         if (getObjListRendFieldsXray().getListViewFields(0).isViewVariableBoolean()) {
+            maxExameImagem();
             gerarCodExameImagem(true, getObjListRendFieldsUltra().getListViewFields(0).isViewVariableBoolean());
         } else {
             examImageXray = new ExameImage();
@@ -109,6 +111,7 @@ public class ControllerExaImage extends AbstractBean {
 
     public RenderedFields getViewExamUltrasound() {
         if (getObjListRendFieldsUltra().getListViewFields(0).isViewVariableBoolean()) {
+            maxExameImagem();
             gerarCodExameImagem(getObjListRendFieldsXray().getListViewFields(0).isViewVariableBoolean(), true);
         } else {
             examImageUltrasound = new ExameImage();
@@ -120,7 +123,6 @@ public class ControllerExaImage extends AbstractBean {
     public ExameImage getExamImageXray() {
         if (examImageXray == null) {
             examImageXray = new ExameImage();
-            numCodImage = maxExameImagem();
         }
         return examImageXray;
     }
@@ -132,7 +134,6 @@ public class ControllerExaImage extends AbstractBean {
     public ExameImage getExamImageUltrasound() {
         if (examImageUltrasound == null) {
             examImageUltrasound = new ExameImage();
-            numCodImage = maxExameImagem();
         }
         return examImageUltrasound;
     }

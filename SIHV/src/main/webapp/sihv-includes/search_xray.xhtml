@@ -1,0 +1,155 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <style>
+        .cellTextCenter{
+            text-align: center;
+        }
+
+        .cellAtendido {
+            color: #449C47;
+        }
+
+        .cellPendente {
+            color: #D64030;
+        }
+
+        .cellTextShadow {
+            font-weight: bold;
+            text-shadow: 1px 0px 0px white, 
+                -1px 0px 0px white, 
+                0px 1px 0px white, 
+                0px -1px 0px white;
+        }
+    </style>
+    <f:metadata>
+        <!--<f:viewAction action="" />-->
+    </f:metadata>
+    <div class="ui-fluid">
+        <h:form>
+            <p:panelGrid id="searchXrayPending-panelGrid"
+                         columns="3"
+                         layout="grid"
+                         style="margin: 10px 0px 15px;"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" > 
+
+                <p:outputLabel class="outputLabel-SIHV"
+                               value="Tipo de pesquisa:"
+                               for="TipoPesquisa" />
+                <p:selectOneMenu id="TipoPesquisa"
+                                 class="LADES-default-Text"
+                                 value="#{MBxrayPending.objVarSearch.itemSearch}"
+                                 required="true"
+                                 requiredMessage="Escolha um tipo de pesquisa!">
+                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                    <f:selectItem itemLabel="Pendentes" itemValue="Pendentes" />
+                    <f:selectItem itemLabel="Data de Solicitação" itemValue="solicitacaoData" />
+                    <f:selectItem itemLabel="Nome do proprietário" itemValue="nome" />
+                    <f:selectItem itemLabel="Nome do animal" itemValue="nomeAnimal" />
+                    <p:ajax update="search, ValorPesquisa"
+                            listener="#{MBxrayPending.xRayItemSearch()}"/>
+                </p:selectOneMenu>
+                <p:message for="TipoPesquisa" />
+
+            </p:panelGrid>
+
+
+            <p:panelGrid id="search"
+                         columns="3"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-4, ui-grid-col-3, ui-grid-col-4"
+                         style="margin-bottom: 20px;" >
+
+
+                <p:inputText id="ValorPesquisa"
+                             value="#{MBxrayPending.objVarSearch.textSearch}" 
+                             title="#{MBxrayPending.objVarSearch.searchTip}"
+                             maxlength="#{MBxrayPending.objVarSearch.maxLength}"
+                             disabled="#{!MBxrayPending.viewInputTextSearch.viewVariableBoolean}"
+                             required="#{MBxrayPending.viewInputTextSearch.viewVariableBoolean}" 
+                             requiredMessage="Informe o valor de pesquisa!">
+                </p:inputText>
+
+
+                <p:commandButton class="LADES-default-Text"
+                                 actionListener="#{MBxrayPending.searchXrayPending()}"
+                                 value="Pesquisar" 
+                                 disabled="false"
+                                 icon="fa fa-search"
+                                 rendered="true">
+                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                    <p:ajax update="@([id$=:resultXrayPending-panelGrid])"
+                            onstart="PF('statusDialog').show()"
+                            onsuccess="PF('statusDialog').hide()" />
+                </p:commandButton>
+                <p:message for="ValorPesquisa" />
+            </p:panelGrid>
+
+        </h:form>
+
+
+        <p:panelGrid id="resultXrayPending-panelGrid"
+                     class=""
+                     columns="1"
+                     layout="grid"
+                     style="margin: 10px 0px 15px;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-12" >
+
+            <p:dataTable id="PessoasBuscada"
+                         var="xray"
+                         rendered="#{MBxrayPending.objVarSearch.showTable.viewVariableBoolean}"
+                         value="#{MBxrayPending.listXrayExams}"
+                         paginator="true"
+                         rows="10"
+                         reflow="true"
+                         selectionMode="single"
+                         selection="#{MBxrayPending.selectXrayPending}"
+                         rowKey="#{xray.formsExams.controleExaImage.examImageXray.id.pkExameImage}"
+                         resizableColumns="true"
+                         resizeMode="expand">
+
+                <f:facet name="header">
+                    Requisições encontradas
+                </f:facet>
+
+                <p:column class="cellTextCenter"
+                          headerText="RGHV"
+                          width="100">
+                    <h:outputText value="#{xray.animais.rghv}" />
+                </p:column>
+
+                <p:column headerText="Animal"
+                          width="120">
+                    <h:outputText value="#{xray.animais.nomeAnimal}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="Espécie"
+                          width="120">
+                    <h:outputText value="#{xray.animais.especie}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="Solicitação"
+                          width="200">
+                    <h:outputText value="#{xray.formsExams.controleExaImage.examImageXray.solicitacaoData}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="Status"
+                          width="80">
+                    <h:outputText class="cellPendente cellTextShadow"
+                                  value="#{xray.formsExams.controleExaImage.examImageXray.statusExamImage}" />
+                </p:column>
+
+            </p:dataTable>
+
+        </p:panelGrid>
+    </div>
+</ui:component>
