@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/06/2018 16:05:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisUrinarioMamaria" table="sisUrinarioMamaria" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisUrinarioMamariaId">
@@ -19,7 +19,7 @@
             <column name="ingestHidrica" length="28" not-null="true" />
         </property>
         <property name="ingestHidricaEvolu" type="string">
-            <column name="ingestHidricaEvolu" length="200" />
+            <column name="ingestHidricaEvolu" length="254" />
         </property>
         <property name="estadoUrina" type="string">
             <column name="estadoUrina" length="15" not-null="true" />
@@ -28,19 +28,19 @@
             <column name="urina" length="53" not-null="true" />
         </property>
         <property name="urinaAspecto" type="string">
-            <column name="urinaAspecto" length="200" />
+            <column name="urinaAspecto" length="254" />
         </property>
         <property name="urinaEvolu" type="string">
-            <column name="urinaEvolu" length="200" />
+            <column name="urinaEvolu" length="254" />
         </property>
         <property name="ultimoCio" type="string">
             <column name="ultimoCio" length="254" />
         </property>
-        <property name="prenhe" type="string">
-            <column name="prenhe" length="66" not-null="true" />
+        <property name="prenhez" type="string">
+            <column name="prenhez" length="66" not-null="true" />
         </property>
-        <property name="prenheDescricao" type="string">
-            <column name="prenheDescricao" length="254" />
+        <property name="prenhezDescricao" type="string">
+            <column name="prenhezDescricao" length="254" />
         </property>
         <property name="ultimoParto" type="string">
             <column name="ultimoParto" length="254" />
@@ -49,10 +49,10 @@
             <column name="secreVagiPeni" length="7" not-null="true" />
         </property>
         <property name="secreVagiPeniTipo" type="string">
-            <column name="secreVagiPeniTipo" length="50" />
+            <column name="secreVagiPeniTipo" length="100" />
         </property>
         <property name="secreVagiPeniEvolu" type="string">
-            <column name="secreVagiPeniEvolu" length="200" />
+            <column name="secreVagiPeniEvolu" length="254" />
         </property>
         <property name="castrado" type="string">
             <column name="castrado" length="7" not-null="true" />

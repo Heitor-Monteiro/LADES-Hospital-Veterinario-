@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 15/06/2018 11:17:09 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -128,7 +128,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="ataxiaTipo", length=50)
+    @Column(name="ataxiaTipo", length=100)
     public String getAtaxiaTipo() {
         return this.ataxiaTipo;
     }
@@ -138,7 +138,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="ataxiaEvolu", length=200)
+    @Column(name="ataxiaEvolu", length=254)
     public String getAtaxiaEvolu() {
         return this.ataxiaEvolu;
     }
@@ -168,7 +168,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="paralisiaTipo", length=50)
+    @Column(name="paralisiaTipo", length=100)
     public String getParalisiaTipo() {
         return this.paralisiaTipo;
     }
@@ -178,7 +178,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="paralisiaEvolu", length=200)
+    @Column(name="paralisiaEvolu", length=254)
     public String getParalisiaEvolu() {
         return this.paralisiaEvolu;
     }
@@ -198,7 +198,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="convulsaoTipo", length=50)
+    @Column(name="convulsaoTipo", length=100)
     public String getConvulsaoTipo() {
         return this.convulsaoTipo;
     }
@@ -208,7 +208,7 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
     
-    @Column(name="convulsaoEvolu", length=200)
+    @Column(name="convulsaoEvolu", length=254)
     public String getConvulsaoEvolu() {
         return this.convulsaoEvolu;
     }

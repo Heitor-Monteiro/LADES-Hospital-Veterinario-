@@ -11,10 +11,8 @@
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
-            <p:outputLabel value="Consciência:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Consciência:"
                            for="Neuro1" />
             <p:selectOneMenu id="Neuro1"
                              value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.consciencia}"
@@ -30,10 +28,8 @@
             <p:message for="Neuro1" />
 
 
-            <p:outputLabel value="Comportamento:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Comportamento:"
                            for="Neuro2" />
             <p:selectOneMenu id="Neuro2"
                              value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.comportamento}"
@@ -55,10 +51,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Ataxia1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Ataxia:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Ataxia1Input" />
             <p:selectOneButton id="Ataxia1Input"
                                value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.ataxia}"
@@ -80,10 +74,8 @@
 
 
             <p:outputLabel id="Ataxia2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Ataxia (Tipo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                            for="Ataxia2Input" />
             <p:inputText id="Ataxia2Input" 
@@ -92,17 +84,15 @@
                          required="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                          requiredMessage="Informe o tipo da Ataxia!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="Ataxia2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                        for="Ataxia2Input" />
 
 
             <p:outputLabel id="Ataxia3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Ataxia (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                            for="Ataxia3Input" />
             <p:inputTextarea id="Ataxia3Input" 
@@ -111,7 +101,7 @@
                              required="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                              requiredMessage="Descreva a evolução da Ataxia!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Ataxia3Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewAtaxiaTipoEvolu}"
                        for="Ataxia3Input" />
@@ -124,10 +114,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Paralisia1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Paresia/Paralisia:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Paralisia1Input" />
             <p:selectOneButton id="Paralisia1Input"
                                value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.paralisia}"
@@ -151,10 +139,8 @@
 
 
             <p:outputLabel id="Paralisia2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Paresia/Paralisia:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                            for="Paralisia2Input" />
             <p:selectOneButton id="Paralisia2Input"
@@ -172,10 +158,8 @@
 
 
             <p:outputLabel id="Paralisia3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Paresia/Paralisia (Tipo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                            for="Paralisia3Input" />
             <p:inputText id="Paralisia3Input" 
@@ -184,17 +168,15 @@
                          required="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                          requiredMessage="Descreva o tipo de Paresia/Paralisia!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="Paralisia3Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                        for="Paralisia3Input" />
 
 
             <p:outputLabel id="Paralisia4Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Paresia/Paralisia (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                            for="Paralisia4Input" />
             <p:inputTextarea id="Paralisia4Input" 
@@ -203,7 +185,7 @@
                              required="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                              requiredMessage="Descreva a evolução de Paresia/Paralisia!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Paralisia4Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewParalisia}"
                        for="Paralisia4Input" />
@@ -216,10 +198,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Convulsao1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Convulsão:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Convulsao1Input" />
             <p:selectOneButton id="Convulsao1Input"
                                value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.convulsao}"
@@ -241,10 +221,8 @@
 
 
             <p:outputLabel id="Convulsao2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Convulsão (Tipo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                            for="Convulsao2Input" />
             <p:inputText id="Convulsao2Input" 
@@ -253,17 +231,15 @@
                          required="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                          requiredMessage="Descreva o tipo de Convulsão!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="Convulsao2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                        for="Convulsao2Input" />
 
 
             <p:outputLabel id="Convulsao3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Convulsão (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                            for="Convulsao3Input" />
             <p:inputTextarea id="Convulsao3Input" 
@@ -272,7 +248,7 @@
                              required="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                              requiredMessage="Descreva a evolução da Convulsão!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Convulsao3Messager"
                        rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewConvulsaoTipoEvolu}"
                        for="Convulsao3Input" />
@@ -285,10 +261,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Audicao1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Audição:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Audicao1Input" />
             <p:selectOneButton id="Audicao1Input"
                                value="#{MBconsulta.formsExame.controleSisNeurologico.sisNeurologico.audicao}"

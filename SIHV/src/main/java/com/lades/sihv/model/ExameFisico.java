@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/06/2018 16:05:39 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -226,7 +226,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="palpaAbdom", nullable=false, length=200)
+    @Column(name="palpaAbdom", nullable=false, length=254)
     public String getPalpaAbdom() {
         return this.palpaAbdom;
     }
@@ -236,7 +236,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="auscuCardiaca", nullable=false, length=200)
+    @Column(name="auscuCardiaca", nullable=false, length=254)
     public String getAuscuCardiaca() {
         return this.auscuCardiaca;
     }
@@ -246,7 +246,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="auscuPulmona", nullable=false, length=200)
+    @Column(name="auscuPulmona", nullable=false, length=254)
     public String getAuscuPulmona() {
         return this.auscuPulmona;
     }
@@ -256,7 +256,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="linfonodos", nullable=false, length=200)
+    @Column(name="linfonodos", nullable=false, length=254)
     public String getLinfonodos() {
         return this.linfonodos;
     }
@@ -266,7 +266,7 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
     
-    @Column(name="pelePelos", nullable=false, length=200)
+    @Column(name="pelePelos", nullable=false, length=254)
     public String getPelePelos() {
         return this.pelePelos;
     }

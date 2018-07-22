@@ -72,17 +72,19 @@
 }
 
 /*outputLabel para formulários do sistema SIHV*/
+.ui-outputlabel {font-family: Open Sans, Helvetica, Arial !important;}
+
 .outputLabel-SIHV {
-    color: #00B59B!important;
     font-weight: bold!important;
-    font-family: Open Sans, Helvetica, Arial !important;
-    float: right;
+/*    float: right;*/
 }
 
+.colorPri {color: #00B59B!important;}
+
+.colorSub {color: #007463!important;}
+
 @media (max-width: 640px) {
-    .outputLabel-SIHV {
-        float: none;
-    }
+/*    .outputLabel-SIHV {float: none;}*/
 }
 /*outputLabel para formulários do sistema SIHV*/
 

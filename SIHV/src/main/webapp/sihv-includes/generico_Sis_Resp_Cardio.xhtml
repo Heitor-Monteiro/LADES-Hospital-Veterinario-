@@ -12,10 +12,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Tosse1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Tosse:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Tosse1Input" />
             <p:selectOneButton id="Tosse1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.tosse}"
@@ -37,10 +35,8 @@
 
 
             <p:outputLabel id="Tosse2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Tosse é produtiva?"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
                            for="Tosse2Input" />
             <p:selectOneButton id="Tosse2Input"
@@ -58,10 +54,8 @@
 
 
             <p:outputLabel id="Tosse3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Tosse (Frequência/Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
                            for="Tosse3Input" />
             <p:inputTextarea id="Tosse3Input" 
@@ -70,7 +64,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
                              requiredMessage="Informe frequência/evolução da tosse!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Tosse3Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewProdutEvoluTosse}"
                        for="Tosse3Input" />
@@ -83,10 +77,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Espirro1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Espirro:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Espirro1Input" />
             <p:selectOneButton id="Espirro1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.espirro}"
@@ -106,10 +98,8 @@
 
 
             <p:outputLabel id="Espirro2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Espirro (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
                            for="Espirro2Input" />
             <p:inputTextarea id="Espirro2Input" 
@@ -118,7 +108,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
                              requiredMessage="Descreva espirro (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Espirro2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEspirroEvolu}"
                        for="Espirro2Input" />
@@ -131,10 +121,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="SecreNasal1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Secreção nasal:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="SecreNasal1Input" />
             <p:selectOneButton id="SecreNasal1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.secrecaoNasal}"
@@ -158,10 +146,8 @@
 
 
             <p:outputLabel id="SecreNasal2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção nasal (uni ou bilateral):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                            for="SecreNasal2Input" />
             <p:selectOneMenu id="SecreNasal2Input"
@@ -181,10 +167,8 @@
 
 
             <p:outputLabel id="SecreNasal3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção nasal (Tipo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                            for="SecreNasal3Input" />
             <p:inputText id="SecreNasal3Input" 
@@ -193,17 +177,15 @@
                          required="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                          requiredMessage="Descreva o tipo de secreção nasal!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="SecreNasal3Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                        for="SecreNasal3Input" />
 
 
             <p:outputLabel id="SecreNasal4Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção nasal (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                            for="SecreNasal4Input" />
             <p:inputTextarea id="SecreNasal4Input" 
@@ -212,7 +194,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                              requiredMessage="Descreva secreção nasal (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="SecreNasal4Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSecreNasal}"
                        for="SecreNasal4Input" />
@@ -225,10 +207,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="DispTaquip1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Dispneia/Taquipnéia:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="DispTaquip1Input" />
             <p:selectOneButton id="DispTaquip1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.dispneiaTaquipneia}"
@@ -248,10 +228,8 @@
 
 
             <p:outputLabel id="DispTaquip2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Dispneia/Taquipnéia (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
                            for="DispTaquip2Input" />
             <p:inputTextarea id="DispTaquip2Input" 
@@ -260,7 +238,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
                              requiredMessage="Descreva dispneia/taquipnéia (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="DispTaquip2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewDispTaquip}"
                        for="DispTaquip2Input" />
@@ -273,10 +251,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Cianose1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Cianose:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Cianose1Input" />
             <p:selectOneButton id="Cianose1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cianose}"
@@ -296,10 +272,8 @@
 
 
             <p:outputLabel id="Cianose2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Cianose (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
                            for="Cianose2Input" />
             <p:inputTextarea id="Cianose2Input" 
@@ -308,7 +282,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
                              requiredMessage="Descreva cianose (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Cianose2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCianoseEvolu}"
                        for="Cianose2Input" />
@@ -321,10 +295,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="CansaFacil1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Cansaço fácil:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="CansaFacil1Input" />
             <p:selectOneButton id="CansaFacil1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.cansacoFacil}"
@@ -344,10 +316,8 @@
 
 
             <p:outputLabel id="CansaFacil2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Cansaço fácil (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
                            for="CansaFacil2Input" />
             <p:inputTextarea id="CansaFacil2Input" 
@@ -356,7 +326,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
                              requiredMessage="Descreva cansaço fácil (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="CansaFacil2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewCansaFacilEvolu}"
                        for="CansaFacil2Input" />
@@ -369,10 +339,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Sincope1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Síncope:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Sincope1Input" />
             <p:selectOneButton id="Sincope1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.sincope}"
@@ -392,10 +360,8 @@
 
 
             <p:outputLabel id="Sincope2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Síncope (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
                            for="Sincope2Input" />
             <p:inputTextarea id="Sincope2Input" 
@@ -404,7 +370,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
                              requiredMessage="Descreva síncope (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Sincope2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewSincopeEvolu}"
                        for="Sincope2Input" />
@@ -417,10 +383,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Emagrec1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Emagrecimento:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Emagrec1Input" />
             <p:selectOneButton id="Emagrec1Input"
                                value="#{MBconsulta.formsExame.controlSisRespCardio.sisRespCardio.emagrecimento}"
@@ -440,10 +404,8 @@
 
 
             <p:outputLabel id="Emagrec2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Emagrecimento (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
                            for="Emagrec2Input" />
             <p:inputTextarea id="Emagrec2Input" 
@@ -452,7 +414,7 @@
                              required="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
                              requiredMessage="Descreva emagrecimento (Evolução)!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Emagrec2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisRespCardio.viewEmagrecEvolu}"
                        for="Emagrec2Input" />

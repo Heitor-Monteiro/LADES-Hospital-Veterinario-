@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 15/06/2018 17:09:56 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisOftalmico" table="sisOftalmico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisOftalmicoId">
@@ -25,22 +25,22 @@
             <column name="secreOcularUniBi" length="57" />
         </property>
         <property name="secreOculaTipo" type="string">
-            <column name="secreOculaTipo" length="50" />
+            <column name="secreOculaTipo" length="100" />
         </property>
         <property name="secreOculaEvolu" type="string">
-            <column name="secreOculaEvolu" length="200" />
+            <column name="secreOculaEvolu" length="254" />
         </property>
         <property name="blefaroespasmo" type="string">
             <column name="blefaroespasmo" length="7" not-null="true" />
         </property>
         <property name="blefaroComenta" type="string">
-            <column name="blefaroComenta" length="50" />
+            <column name="blefaroComenta" length="100" />
         </property>
         <property name="exoftalmia" type="string">
             <column name="exoftalmia" length="7" not-null="true" />
         </property>
         <property name="exoftalComenta" type="string">
-            <column name="exoftalComenta" length="50" />
+            <column name="exoftalComenta" length="100" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

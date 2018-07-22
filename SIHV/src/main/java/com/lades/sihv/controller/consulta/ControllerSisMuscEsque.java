@@ -40,6 +40,7 @@ public class ControllerSisMuscEsque extends AbstractBean {
                 sisMuscEsque.setFraturasEvolu(ndn);
                 sisMuscEsque.setAtrofMusc("Não");
                 sisMuscEsque.setAtrofMuscEvolu(ndn);
+                sisMuscEsque.setPosturaAnimal("Normal");
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisMuscEsque() ]");
             }

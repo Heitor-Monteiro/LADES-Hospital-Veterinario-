@@ -12,10 +12,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Claudicacao1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Claudicação:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Claudicacao1Input" />
             <p:selectOneButton id="Claudicacao1Input"
                                value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacao}"
@@ -35,19 +33,17 @@
 
 
             <p:outputLabel id="Claudicacao2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Claudicação (membro afetado/ evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
                            for="Claudicacao2Input" />
-            <p:inputText id="Claudicacao2Input" 
-                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacaoEvolu}"
-                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
-                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
-                         requiredMessage="Descreva a evolução ou o membro afetado pela Claudicação!"
-                         style="margin-bottom: 20px;"
-                         maxlength="50" />
+            <p:inputTextarea id="Claudicacao2Input" 
+                             value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.claudicacaoEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                             required="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
+                             requiredMessage="Descreva a evolução ou o membro afetado pela Claudicação!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
             <p:message id="Claudicacao2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewClaudicacao}"
                        for="Claudicacao2Input" />
@@ -60,10 +56,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Fraturas1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Fraturas:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Fraturas1Input" />
             <p:selectOneButton id="Fraturas1Input"
                                value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturas}"
@@ -83,19 +77,17 @@
 
 
             <p:outputLabel id="Fraturas2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Fraturas (membro afetado/ evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
                            for="Fraturas2Input" />
-            <p:inputText id="Fraturas2Input" 
-                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturasEvolu}"
-                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
-                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
-                         requiredMessage="Descreva a evolução de membros afetados pelas fraturas!"
-                         style="margin-bottom: 20px;"
-                         maxlength="50" />
+            <p:inputTextarea id="Fraturas2Input" 
+                             value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.fraturasEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                             required="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
+                             requiredMessage="Descreva a evolução de membros afetados pelas fraturas!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
             <p:message id="Fraturas2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewFraturas}"
                        for="Fraturas2Input" />
@@ -108,10 +100,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="AtrofMusc1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Atrofia muscular:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="AtrofMusc1Input" />
             <p:selectOneButton id="AtrofMusc1Input"
                                value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMusc}"
@@ -131,23 +121,49 @@
 
 
             <p:outputLabel id="AtrofMusc2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Atrofia muscular (membro afetado/ evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
                            for="AtrofMusc2Input" />
-            <p:inputText id="AtrofMusc2Input" 
-                         value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMuscEvolu}"
-                         rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
-                         required="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
-                         requiredMessage="Descreva a evolução de membros afetados pela atrofia muscular!"
-                         style="margin-bottom: 20px;"
-                         maxlength="50" />
+            <p:inputTextarea id="AtrofMusc2Input" 
+                             value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.atrofMuscEvolu}"
+                             rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                             required="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
+                             requiredMessage="Descreva a evolução de membros afetados pela atrofia muscular!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
             <p:message id="AtrofMusc2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisMuscEsque.viewAtrofMusc}"
                        for="AtrofMusc2Input" />
-        </p:panelGrid>    
+        </p:panelGrid>
+
+
+        <p:panelGrid id="sisMuscEsquePostAnimal-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel id="PostAnimal1Label"
+                           class="outputLabel-SIHV colorPri"
+                           value="Postura do animal:"
+                           for="PostAnimal1Input" />
+            <p:selectOneMenu id="PostAnimal1Input"
+                             value="#{MBconsulta.formsExame.controleSisMuscEsque.sisMuscEsque.posturaAnimal}"
+                             required="true"
+                             requiredMessage="Informe a postura do animal!"
+                             style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Selecione" itemValue="" />
+                <f:selectItem itemLabel="Normal" itemValue="Normal" />
+                <f:selectItem itemLabel="Decúbito" itemValue="Decúbito" />
+                <f:selectItem itemLabel="Sentado" itemValue="Sentado" />
+                <f:selectItem itemLabel="Sentado LD" itemValue="Sentado LD" />
+                <f:selectItem itemLabel="Sentado LE" itemValue="Sentado LE" />
+                <f:selectItem itemLabel="Apoio parcial" itemValue="Apoio parcial" />
+                <f:selectItem itemLabel="I.funcional" itemValue="I.funcional" />
+            </p:selectOneMenu>
+            <p:message id="PostAnimal1Messager"
+                       for="PostAnimal1Input" />
+        </p:panelGrid>
     </div>
 
 </ui:component>

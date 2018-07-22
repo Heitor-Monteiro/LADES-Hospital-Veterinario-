@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/06/2018 16:05:40 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -49,19 +49,19 @@
             <column name="hidratacao" length="94" not-null="true" />
         </property>
         <property name="palpaAbdom" type="string">
-            <column name="palpaAbdom" length="200" not-null="true" />
+            <column name="palpaAbdom" length="254" not-null="true" />
         </property>
         <property name="auscuCardiaca" type="string">
-            <column name="auscuCardiaca" length="200" not-null="true" />
+            <column name="auscuCardiaca" length="254" not-null="true" />
         </property>
         <property name="auscuPulmona" type="string">
-            <column name="auscuPulmona" length="200" not-null="true" />
+            <column name="auscuPulmona" length="254" not-null="true" />
         </property>
         <property name="linfonodos" type="string">
-            <column name="linfonodos" length="200" not-null="true" />
+            <column name="linfonodos" length="254" not-null="true" />
         </property>
         <property name="pelePelos" type="string">
-            <column name="pelePelos" length="200" not-null="true" />
+            <column name="pelePelos" length="254" not-null="true" />
         </property>
         <property name="inforAdiciona" type="string">
             <column name="inforAdiciona" length="900" />

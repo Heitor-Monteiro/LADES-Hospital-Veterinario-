@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/06/2018 10:50:53 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisTegumentar" table="sisTegumentar" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisTegumentarId">
@@ -16,34 +16,40 @@
             <column name="consulta_FK_consulta" not-null="true" />
         </many-to-one>
         <property name="evoluLesao" type="string">
-            <column name="evoluLesao" length="200" not-null="true" />
+            <column name="evoluLesao" length="254" not-null="true" />
         </property>
         <property name="localiLesao" type="string">
-            <column name="localiLesao" length="200" not-null="true" />
+            <column name="localiLesao" length="254" not-null="true" />
         </property>
         <property name="pruridoCutaneo" type="string">
             <column name="pruridoCutaneo" length="7" not-null="true" />
         </property>
         <property name="pruridoCutaneoEvolu" type="string">
-            <column name="pruridoCutaneoEvolu" length="50" />
+            <column name="pruridoCutaneoEvolu" length="100" />
         </property>
         <property name="pruridoOtolog" type="string">
             <column name="pruridoOtolog" length="7" not-null="true" />
         </property>
         <property name="pruridoOtologEvolu" type="string">
-            <column name="pruridoOtologEvolu" length="50" />
+            <column name="pruridoOtologEvolu" length="100" />
         </property>
         <property name="secreOtolog" type="string">
             <column name="secreOtolog" length="7" not-null="true" />
         </property>
         <property name="secreOtologEvolu" type="string">
-            <column name="secreOtologEvolu" length="50" />
+            <column name="secreOtologEvolu" length="100" />
         </property>
         <property name="frequeBanhos" type="string">
-            <column name="frequeBanhos" length="50" not-null="true" />
+            <column name="frequeBanhos" length="100" not-null="true" />
         </property>
         <property name="produUtilBanho" type="string">
             <column name="produUtilBanho" length="254" />
+        </property>
+        <property name="preTratamen" type="string">
+            <column name="preTratamen" length="7" not-null="true" />
+        </property>
+        <property name="preTratamenDescri" type="string">
+            <column name="preTratamenDescri" length="254" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

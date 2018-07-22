@@ -11,31 +11,27 @@
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
-            <p:outputLabel value="Início/evolução da lesão:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Início/evolução da lesão:"
                            for="Tegumentar1" />
             <p:inputTextarea id="Tegumentar1" 
                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.evoluLesao}"
                              required="true"
                              requiredMessage="Informe o campo:(Início/evolução da lesão)"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message for="Tegumentar1" />
 
 
-            <p:outputLabel value="Localização e características das lesões:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Localização e características das lesões:"
                            for="Tegumentar2" />
             <p:inputTextarea id="Tegumentar2" 
                              value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.localiLesao}"
                              required="true"
                              requiredMessage="Informe a localização e características das lesões!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message for="Tegumentar2" />
         </p:panelGrid>
 
@@ -46,10 +42,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="PruridoCutaneo1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Prurido cutâneo:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="PruridoCutaneo1Input" />
             <p:selectOneButton id="PruridoCutaneo1Input"
                                value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoCutaneo}"
@@ -69,10 +63,8 @@
 
 
             <p:outputLabel id="PruridoCutaneo2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Prurido cutâneo (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
                            for="PruridoCutaneo2Input" />
             <p:inputText id="PruridoCutaneo2Input" 
@@ -81,7 +73,7 @@
                          required="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
                          requiredMessage="Informe a evolução de Prurido cutâneo!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="PruridoCutaneo2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoCutaneoEvolu}"
                        for="PruridoCutaneo2Input" />
@@ -94,10 +86,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="PruridoOtolog1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Prurido otológico:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="PruridoOtolog1Input" />
             <p:selectOneButton id="PruridoOtolog1Input"
                                value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.pruridoOtolog}"
@@ -117,10 +107,8 @@
 
 
             <p:outputLabel id="PruridoOtolog2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Prurido otológico (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
                            for="PruridoOtolog2Input" />
             <p:inputText id="PruridoOtolog2Input" 
@@ -129,7 +117,7 @@
                          required="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
                          requiredMessage="Informe a evolução de Prurido otológico!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="PruridoOtolog2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPruridoOtologEvolu}"
                        for="PruridoOtolog2Input" />
@@ -142,10 +130,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="SecreOtolog1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Secreção otológica:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="SecreOtolog1Input" />
             <p:selectOneButton id="SecreOtolog1Input"
                                value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.secreOtolog}"
@@ -165,10 +151,8 @@
 
 
             <p:outputLabel id="SecreOtolog2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção otológica (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
                            for="SecreOtolog2Input" />
             <p:inputText id="SecreOtolog2Input" 
@@ -177,7 +161,7 @@
                          required="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
                          requiredMessage="Informe a evolução da Secreção otológica!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="SecreOtolog2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewSecreOtologEvolu}"
                        for="SecreOtolog2Input" />
@@ -190,17 +174,15 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="FrequeBanhos1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Frequência de banhos:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="FrequeBanhos1Input" />
             <p:inputText id="FrequeBanhos1Input" 
                          value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.frequeBanhos}"
                          required="true"
                          requiredMessage="Informe a frequência de banhos"
                          style="margin-bottom: 20px;"
-                         maxlength="50">
+                         maxlength="100">
             </p:inputText>
             <p:message id="FrequeBanhos1Messager"
                        for="FrequeBanhos1Input" />
@@ -213,10 +195,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="ProduUtilBanho1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Produto utilizado no banho:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="true"
                            for="ProduUtilBanho1Input" />
             <p:inputTextarea id="ProduUtilBanho1Input" 
@@ -229,6 +209,50 @@
             <p:message id="ProduUtilBanho1Messager"
                        rendered="true"
                        for="ProduUtilBanho1Input" />
-        </p:panelGrid>    
+        </p:panelGrid>
+
+        <p:panelGrid id="sisTegumentarPreTratam-panel"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+
+            <p:outputLabel id="preTratamen1Label"
+                           class="outputLabel-SIHV colorPri"
+                           value="Houve tratamento prévio:"
+                           for="preTratamen1Input" />
+            <p:selectOneButton id="preTratamen1Input"
+                               value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.preTratamen}"
+                               required="true"
+                               requiredMessage="Informe se ocorreu tratamento prévio!"
+                               style="margin-bottom: 20px;" >
+                <f:selectItem itemLabel="Sim" itemValue="Sim">
+                    <p:effect type="bounce" event="load" for="preTratamen2Label"/>
+                    <p:effect type="bounce" event="load" for="preTratamen2Input"/>
+                </f:selectItem>
+                <f:selectItem itemLabel="Não" itemValue="Não" />
+                <p:ajax update="sisTegumentarPreTratam-panel"
+                        listener="#{MBconsulta.formsExame.controleSisTegumentar.methodViewPreTratamenDescri()}" />
+            </p:selectOneButton>
+            <p:message id="preTratamen1Messager"
+                       for="preTratamen1Input" />
+
+            <p:outputLabel id="preTratamen2Label"
+                           class="outputLabel-SIHV colorSub"
+                           value="Descrição do tratamento prévio utilizado:"
+                           rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPreTratamenDescri}"
+                           for="preTratamen2Input" />
+            <p:inputTextarea id="preTratamen2Input" 
+                             value="#{MBconsulta.formsExame.controleSisTegumentar.sisTegumentar.preTratamenDescri}"
+                             rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPreTratamenDescri}"
+                             required="#{MBconsulta.formsExame.controleSisTegumentar.viewPreTratamenDescri}"
+                             requiredMessage="Descreva o tratamento prévio utilizado!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
+            <p:message id="preTratamen2Messager"
+                       rendered="#{MBconsulta.formsExame.controleSisTegumentar.viewPreTratamenDescri}"
+                       for="preTratamen2Input" />
+
+        </p:panelGrid>
     </div>
 </ui:component>

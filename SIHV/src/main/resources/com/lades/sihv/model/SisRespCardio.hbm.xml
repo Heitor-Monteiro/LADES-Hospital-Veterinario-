@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/06/2018 10:50:53 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisRespCardio" table="sisRespCardio" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisRespCardioId">
@@ -22,13 +22,13 @@
             <column name="tosseProdutiva" length="30" />
         </property>
         <property name="tosseEvolu" type="string">
-            <column name="tosseEvolu" length="200" />
+            <column name="tosseEvolu" length="254" />
         </property>
         <property name="espirro" type="string">
             <column name="espirro" length="7" not-null="true" />
         </property>
         <property name="espirroEvolu" type="string">
-            <column name="espirroEvolu" length="200" />
+            <column name="espirroEvolu" length="254" />
         </property>
         <property name="secrecaoNasal" type="string">
             <column name="secrecaoNasal" length="7" not-null="true" />
@@ -37,40 +37,40 @@
             <column name="secreNasalUniBilateral" length="57" />
         </property>
         <property name="secreNasalTipo" type="string">
-            <column name="secreNasalTipo" length="50" />
+            <column name="secreNasalTipo" length="100" />
         </property>
         <property name="secreNasalEvolu" type="string">
-            <column name="secreNasalEvolu" length="200" />
+            <column name="secreNasalEvolu" length="254" />
         </property>
         <property name="dispneiaTaquipneia" type="string">
             <column name="dispneiaTaquipneia" length="7" not-null="true" />
         </property>
         <property name="dispnTaquipEvolu" type="string">
-            <column name="dispnTaquipEvolu" length="200" />
+            <column name="dispnTaquipEvolu" length="254" />
         </property>
         <property name="cianose" type="string">
             <column name="cianose" length="7" not-null="true" />
         </property>
         <property name="cianoseEvolu" type="string">
-            <column name="cianoseEvolu" length="200" />
+            <column name="cianoseEvolu" length="254" />
         </property>
         <property name="cansacoFacil" type="string">
             <column name="cansacoFacil" length="7" not-null="true" />
         </property>
         <property name="cansaFacilEvolu" type="string">
-            <column name="cansaFacilEvolu" length="200" />
+            <column name="cansaFacilEvolu" length="254" />
         </property>
         <property name="sincope" type="string">
             <column name="sincope" length="7" not-null="true" />
         </property>
         <property name="sincopeEvolu" type="string">
-            <column name="sincopeEvolu" length="200" />
+            <column name="sincopeEvolu" length="254" />
         </property>
         <property name="emagrecimento" type="string">
             <column name="emagrecimento" length="7" not-null="true" />
         </property>
         <property name="emagrecEvolu" type="string">
-            <column name="emagrecEvolu" length="200" />
+            <column name="emagrecEvolu" length="254" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

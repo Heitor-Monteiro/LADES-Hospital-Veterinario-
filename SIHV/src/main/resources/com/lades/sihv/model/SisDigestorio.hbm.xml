@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisDigestorio" table="sisDigestorio" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisDigestorioId">
@@ -19,7 +19,7 @@
             <column name="estaSeAlimentando" length="7" not-null="true" />
         </property>
         <property name="descriNaoSeAlimeta" type="string">
-            <column name="descriNaoSeAlimeta" length="200" />
+            <column name="descriNaoSeAlimeta" length="254" />
         </property>
         <property name="vomito" type="string">
             <column name="vomito" length="7" not-null="true" />
@@ -28,13 +28,13 @@
             <column name="aspectoVomito" length="100" />
         </property>
         <property name="evoluVomito" type="string">
-            <column name="evoluVomito" length="200" />
+            <column name="evoluVomito" length="254" />
         </property>
         <property name="regurgitacao" type="string">
             <column name="regurgitacao" length="7" not-null="true" />
         </property>
         <property name="evoluRegurgitacao" type="string">
-            <column name="evoluRegurgitacao" length="200" />
+            <column name="evoluRegurgitacao" length="254" />
         </property>
         <property name="diarreia" type="string">
             <column name="diarreia" length="7" not-null="true" />
@@ -43,13 +43,13 @@
             <column name="aspectDiarreia" length="100" />
         </property>
         <property name="evoluDiarreia" type="string">
-            <column name="evoluDiarreia" length="100" />
+            <column name="evoluDiarreia" length="254" />
         </property>
         <property name="disquesiaTenesmo" type="string">
             <column name="disquesiaTenesmo" length="7" not-null="true" />
         </property>
         <property name="evoluDisquesiaTenesmo" type="string">
-            <column name="evoluDisquesiaTenesmo" length="100" />
+            <column name="evoluDisquesiaTenesmo" length="254" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

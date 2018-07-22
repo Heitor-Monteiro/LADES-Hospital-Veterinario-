@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 14/12/2016 15:34:51 by Hibernate Tools 4.3.1 -->
+<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.SisMuscEsque" table="sisMuscEsque" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.SisMuscEsqueId">
@@ -19,19 +19,22 @@
             <column name="claudicacao" length="7" not-null="true" />
         </property>
         <property name="claudicacaoEvolu" type="string">
-            <column name="claudicacaoEvolu" length="50" />
+            <column name="claudicacaoEvolu" length="254" />
         </property>
         <property name="fraturas" type="string">
             <column name="fraturas" length="7" not-null="true" />
         </property>
         <property name="fraturasEvolu" type="string">
-            <column name="fraturasEvolu" length="50" />
+            <column name="fraturasEvolu" length="254" />
         </property>
         <property name="atrofMusc" type="string">
             <column name="atrofMusc" length="7" not-null="true" />
         </property>
         <property name="atrofMuscEvolu" type="string">
-            <column name="atrofMuscEvolu" length="50" />
+            <column name="atrofMuscEvolu" length="254" />
+        </property>
+        <property name="posturaAnimal" type="string">
+            <column name="posturaAnimal" length="71" not-null="true" />
         </property>
         <property name="sistemaAfetado" type="string">
             <column name="sistemaAfetado" length="7" not-null="true" />

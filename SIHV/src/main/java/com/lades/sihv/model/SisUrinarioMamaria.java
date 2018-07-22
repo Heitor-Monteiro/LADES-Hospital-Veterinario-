@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/06/2018 16:05:39 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -31,8 +31,8 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
      private String urinaAspecto;
      private String urinaEvolu;
      private String ultimoCio;
-     private String prenhe;
-     private String prenheDescricao;
+     private String prenhez;
+     private String prenhezDescricao;
      private String ultimoParto;
      private String secreVagiPeni;
      private String secreVagiPeniTipo;
@@ -44,18 +44,18 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
 	
-    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String estadoUrina, String urina, String prenhe, String secreVagiPeni, String castrado, String sistemaAfetado) {
+    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String estadoUrina, String urina, String prenhez, String secreVagiPeni, String castrado, String sistemaAfetado) {
         this.id = id;
         this.consulta = consulta;
         this.ingestHidrica = ingestHidrica;
         this.estadoUrina = estadoUrina;
         this.urina = urina;
-        this.prenhe = prenhe;
+        this.prenhez = prenhez;
         this.secreVagiPeni = secreVagiPeni;
         this.castrado = castrado;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String ingestHidricaEvolu, String estadoUrina, String urina, String urinaAspecto, String urinaEvolu, String ultimoCio, String prenhe, String prenheDescricao, String ultimoParto, String secreVagiPeni, String secreVagiPeniTipo, String secreVagiPeniEvolu, String castrado, String sistemaAfetado) {
+    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String ingestHidricaEvolu, String estadoUrina, String urina, String urinaAspecto, String urinaEvolu, String ultimoCio, String prenhez, String prenhezDescricao, String ultimoParto, String secreVagiPeni, String secreVagiPeniTipo, String secreVagiPeniEvolu, String castrado, String sistemaAfetado) {
        this.id = id;
        this.consulta = consulta;
        this.ingestHidrica = ingestHidrica;
@@ -65,8 +65,8 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
        this.urinaAspecto = urinaAspecto;
        this.urinaEvolu = urinaEvolu;
        this.ultimoCio = ultimoCio;
-       this.prenhe = prenhe;
-       this.prenheDescricao = prenheDescricao;
+       this.prenhez = prenhez;
+       this.prenhezDescricao = prenhezDescricao;
        this.ultimoParto = ultimoParto;
        this.secreVagiPeni = secreVagiPeni;
        this.secreVagiPeniTipo = secreVagiPeniTipo;
@@ -110,7 +110,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="ingestHidricaEvolu", length=200)
+    @Column(name="ingestHidricaEvolu", length=254)
     public String getIngestHidricaEvolu() {
         return this.ingestHidricaEvolu;
     }
@@ -140,7 +140,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="urinaAspecto", length=200)
+    @Column(name="urinaAspecto", length=254)
     public String getUrinaAspecto() {
         return this.urinaAspecto;
     }
@@ -150,7 +150,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="urinaEvolu", length=200)
+    @Column(name="urinaEvolu", length=254)
     public String getUrinaEvolu() {
         return this.urinaEvolu;
     }
@@ -170,23 +170,23 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="prenhe", nullable=false, length=66)
-    public String getPrenhe() {
-        return this.prenhe;
+    @Column(name="prenhez", nullable=false, length=66)
+    public String getPrenhez() {
+        return this.prenhez;
     }
     
-    public void setPrenhe(String prenhe) {
-        this.prenhe = prenhe;
+    public void setPrenhez(String prenhez) {
+        this.prenhez = prenhez;
     }
 
     
-    @Column(name="prenheDescricao", length=254)
-    public String getPrenheDescricao() {
-        return this.prenheDescricao;
+    @Column(name="prenhezDescricao", length=254)
+    public String getPrenhezDescricao() {
+        return this.prenhezDescricao;
     }
     
-    public void setPrenheDescricao(String prenheDescricao) {
-        this.prenheDescricao = prenheDescricao;
+    public void setPrenhezDescricao(String prenhezDescricao) {
+        this.prenhezDescricao = prenhezDescricao;
     }
 
     
@@ -210,7 +210,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreVagiPeniTipo", length=50)
+    @Column(name="secreVagiPeniTipo", length=100)
     public String getSecreVagiPeniTipo() {
         return this.secreVagiPeniTipo;
     }
@@ -220,7 +220,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreVagiPeniEvolu", length=200)
+    @Column(name="secreVagiPeniEvolu", length=254)
     public String getSecreVagiPeniEvolu() {
         return this.secreVagiPeniEvolu;
     }

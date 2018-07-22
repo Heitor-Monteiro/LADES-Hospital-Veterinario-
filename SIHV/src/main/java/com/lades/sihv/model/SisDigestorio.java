@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -105,7 +105,7 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
     
-    @Column(name="descriNaoSeAlimeta", length=200)
+    @Column(name="descriNaoSeAlimeta", length=254)
     public String getDescriNaoSeAlimeta() {
         return this.descriNaoSeAlimeta;
     }
@@ -135,7 +135,7 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
     
-    @Column(name="evoluVomito", length=200)
+    @Column(name="evoluVomito", length=254)
     public String getEvoluVomito() {
         return this.evoluVomito;
     }
@@ -155,7 +155,7 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
     
-    @Column(name="evoluRegurgitacao", length=200)
+    @Column(name="evoluRegurgitacao", length=254)
     public String getEvoluRegurgitacao() {
         return this.evoluRegurgitacao;
     }
@@ -185,7 +185,7 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
     
-    @Column(name="evoluDiarreia", length=100)
+    @Column(name="evoluDiarreia", length=254)
     public String getEvoluDiarreia() {
         return this.evoluDiarreia;
     }
@@ -205,7 +205,7 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
     
-    @Column(name="evoluDisquesiaTenesmo", length=100)
+    @Column(name="evoluDisquesiaTenesmo", length=254)
     public String getEvoluDisquesiaTenesmo() {
         return this.evoluDisquesiaTenesmo;
     }
