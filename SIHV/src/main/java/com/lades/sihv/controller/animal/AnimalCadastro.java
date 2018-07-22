@@ -28,6 +28,7 @@ public class AnimalCadastro extends AbstractBean {
             animalID.setClienteFkCliente(Integer.parseInt(clientePK));
             animal.setId(animalID);
             animal.setCadDataHora(getObjData());
+            animal.setObitoAnimal(false);
             ObjAnimalListaPelagem().verificaNovaPelagem(animal);
             getDaoGenerico().save(animal);
             getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces

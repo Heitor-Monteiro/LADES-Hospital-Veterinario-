@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 08/04/2018 01:57:02 by Hibernate Tools 4.3.1
+// Generated 22/07/2018 11:29:26 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -40,6 +40,7 @@ public class Animais  implements java.io.Serializable {
      private String rghv;
      private short rghvNum;
      private String categoriaAnimal;
+     private boolean obitoAnimal;
      private Date cadDataHora;
      private Set consultas = new HashSet(0);
 
@@ -47,7 +48,7 @@ public class Animais  implements java.io.Serializable {
     }
 
 	
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String sexoAnimal, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String sexoAnimal, String rghv, short rghvNum, String categoriaAnimal, boolean obitoAnimal, Date cadDataHora) {
         this.id = id;
         this.cliente = cliente;
         this.especie = especie;
@@ -57,9 +58,10 @@ public class Animais  implements java.io.Serializable {
         this.rghv = rghv;
         this.rghvNum = rghvNum;
         this.categoriaAnimal = categoriaAnimal;
+        this.obitoAnimal = obitoAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String rghv, short rghvNum, String categoriaAnimal, Date cadDataHora, Set consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String rghv, short rghvNum, String categoriaAnimal, boolean obitoAnimal, Date cadDataHora, Set consultas) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -71,6 +73,7 @@ public class Animais  implements java.io.Serializable {
        this.rghv = rghv;
        this.rghvNum = rghvNum;
        this.categoriaAnimal = categoriaAnimal;
+       this.obitoAnimal = obitoAnimal;
        this.cadDataHora = cadDataHora;
        this.consultas = consultas;
     }
@@ -190,6 +193,16 @@ public class Animais  implements java.io.Serializable {
     
     public void setCategoriaAnimal(String categoriaAnimal) {
         this.categoriaAnimal = categoriaAnimal;
+    }
+
+    
+    @Column(name="obitoAnimal", nullable=false)
+    public boolean isObitoAnimal() {
+        return this.obitoAnimal;
+    }
+    
+    public void setObitoAnimal(boolean obitoAnimal) {
+        this.obitoAnimal = obitoAnimal;
     }
 
     @Temporal(TemporalType.TIMESTAMP)
