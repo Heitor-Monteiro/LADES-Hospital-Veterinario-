@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 27/02/2017 17:04:54 by Hibernate Tools 4.3.1 -->
+<!-- Generated 24/07/2018 09:39:52 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Consulta" table="consulta" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkConsulta" type="java.lang.Integer">
@@ -17,9 +17,6 @@
             <column name="user_PK_user" not-null="true" />
             <column name="user_FK_pessoa" not-null="true" />
         </many-to-one>
-        <property name="dataConsulta" type="timestamp">
-            <column name="dataConsulta" length="19" not-null="true" />
-        </property>
         <property name="sistemasAfetados" type="string">
             <column name="sistemasAfetados" length="500" />
         </property>
@@ -31,6 +28,18 @@
         </property>
         <property name="valorConsulta" type="big_decimal">
             <column name="valorConsulta" precision="6" not-null="true" />
+        </property>
+        <property name="diagPresuntivo" type="string">
+            <column name="diagPresuntivo" length="254" not-null="true" />
+        </property>
+        <property name="diagDiferencial" type="string">
+            <column name="diagDiferencial" length="254" not-null="true" />
+        </property>
+        <property name="diagDefinitivo" type="string">
+            <column name="diagDefinitivo" length="254" />
+        </property>
+        <property name="dataConsulta" type="timestamp">
+            <column name="dataConsulta" length="19" not-null="true" />
         </property>
         <set name="sisDigestorios" table="sisDigestorio" inverse="true" lazy="true" fetch="select">
             <key>

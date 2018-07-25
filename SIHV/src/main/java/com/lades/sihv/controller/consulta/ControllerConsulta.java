@@ -9,6 +9,8 @@ import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.User;
+import com.lades.sihv.controller.ListRenderedFields;
+import com.lades.sihv.controller.RenderedFields;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ public class ControllerConsulta extends AbstractBean {
 
     private Consulta consulta;
     private int codNewConsulta = 0;
+    private final ListRenderedFields listViewFields = new ListRenderedFields(3);
 
     private void prepareConsulta(Animais animal, User medicoVET) {
         getConsulta().setDataConsulta(getObjData());
@@ -49,6 +52,39 @@ public class ControllerConsulta extends AbstractBean {
         } else {
             codNewConsulta = 1;
         }
+    }
+
+    private String methodDiagnosis(int index, String typeDiagnosis) {
+        if (listViewFields.getListViewFields(index).isViewVariableBoolean()) {
+            typeDiagnosis = "Diagnósticos " + typeDiagnosis + " inconclusivo.";
+        } else {
+            typeDiagnosis = "";
+        }
+        return typeDiagnosis;
+    }
+
+    public RenderedFields getStatusDiagPresuntivo() {
+        return listViewFields.getListViewFields(0);
+    }
+
+    public void methodDiagPresuntivo() {
+        getConsulta().setDiagPresuntivo(methodDiagnosis(0, "presuntivo"));
+    }
+
+    public RenderedFields getStatusDiagDiferencial() {
+        return listViewFields.getListViewFields(1);
+    }
+
+    public void methodDiagDiferencial() {
+        getConsulta().setDiagDiferencial(methodDiagnosis(1, "diferencial"));
+    }
+
+    public RenderedFields getStatusDiagDefinitivo() {
+        return listViewFields.getListViewFields(2);
+    }
+
+    public void methodDiagDefinitivo() {
+        getConsulta().setDiagDefinitivo(methodDiagnosis(2, "definitivo"));
     }
 
     //GETs & SETs
