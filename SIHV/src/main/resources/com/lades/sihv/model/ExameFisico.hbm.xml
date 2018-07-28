@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 18/07/2018 22:27:47 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/07/2018 22:28:27 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ExameFisico" table="exameFisico" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.ExameFisicoId">
@@ -65,9 +65,6 @@
         </property>
         <property name="inforAdiciona" type="string">
             <column name="inforAdiciona" length="900" />
-        </property>
-        <property name="diagDifer" type="string">
-            <column name="diagDifer" length="500" />
         </property>
     </class>
 </hibernate-mapping>

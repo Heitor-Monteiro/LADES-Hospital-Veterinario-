@@ -19,9 +19,15 @@ gerenciar um item na tela que precise de rendered*/
 public class ListClasses extends AbstractBean {
 
     private final List<Object> listClasses = new ArrayList();
-    private final Object typeClasse;
+    private Object typeClasse;
     private int indexMax = 0;
     
+    
+    public ListClasses (){}
+    
+    public  ListClasses (Object typeClasse){
+        this.typeClasse = typeClasse;
+    }
     
     public ListClasses (int indexMax, Object typeClasse){
         this.indexMax = indexMax;

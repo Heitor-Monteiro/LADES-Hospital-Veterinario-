@@ -5,17 +5,17 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.controller.consulta.ControllerExaImage;
+//import com.lades.sihv.controller.consulta.ControllerExaImage;
 
 /**
  *
  * @author thiberius
  */
-public class TesteGerarCodExamImage {
-
+//public class TesteGerarCodExamImage {
+//
 //    public static void main(String[] args) {
 //        ControllerExaImage obj = new ControllerExaImage();
 //        
 //        System.out.println(obj.maxExameImagem());
 //    }
-}
+//}

@@ -5,14 +5,14 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.controller.consulta.ControllerConsulta;
+//import com.lades.sihv.controller.consulta.ControllerConsulta;
 
 /**
  *
  * @author thiberius
  */
-public class TesteMaxCodConsulta {
-    
+//public class TesteMaxCodConsulta {
+//    
 //    public static void main (String[] args) {
 //        int maxCodConsulta = 0;
 //        ControllerConsulta obj = new ControllerConsulta();
@@ -23,4 +23,4 @@ public class TesteMaxCodConsulta {
 //        
 //        System.out.println("------------"+maxCodConsulta);
 //    }
-}
+//}

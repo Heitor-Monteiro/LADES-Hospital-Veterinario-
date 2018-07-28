@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/07/2018 22:28:26 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -42,7 +42,6 @@ public class ExameFisico  implements java.io.Serializable {
      private String linfonodos;
      private String pelePelos;
      private String inforAdiciona;
-     private String diagDifer;
 
     public ExameFisico() {
     }
@@ -68,7 +67,7 @@ public class ExameFisico  implements java.io.Serializable {
         this.linfonodos = linfonodos;
         this.pelePelos = pelePelos;
     }
-    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, String inforAdiciona, String diagDifer) {
+    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, String inforAdiciona) {
        this.id = id;
        this.consulta = consulta;
        this.fcBpm = fcBpm;
@@ -88,7 +87,6 @@ public class ExameFisico  implements java.io.Serializable {
        this.linfonodos = linfonodos;
        this.pelePelos = pelePelos;
        this.inforAdiciona = inforAdiciona;
-       this.diagDifer = diagDifer;
     }
    
      @EmbeddedId
@@ -283,16 +281,6 @@ public class ExameFisico  implements java.io.Serializable {
     
     public void setInforAdiciona(String inforAdiciona) {
         this.inforAdiciona = inforAdiciona;
-    }
-
-    
-    @Column(name="diagDifer", length=500)
-    public String getDiagDifer() {
-        return this.diagDifer;
-    }
-    
-    public void setDiagDifer(String diagDifer) {
-        this.diagDifer = diagDifer;
     }
 
 

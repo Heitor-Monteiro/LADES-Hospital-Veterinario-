@@ -5,14 +5,14 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.controller.animal.AnimalGerarRGHV;
-import com.lades.sihv.model.Animais;
+//import com.lades.sihv.controller.animal.AnimalGerarRGHV;
+//import com.lades.sihv.model.Animais;
 
 /**
  *
  * @author thiberius
  */
-public class TesteGerarRGHV {
+//public class TesteGerarRGHV {
 //    public static void main (String [] args) {
 //        Animais animal = new Animais();
 //        AnimalGerarRGHV gerarRGHV = new AnimalGerarRGHV();
@@ -20,4 +20,4 @@ public class TesteGerarRGHV {
 //        animal.setCategoriaAnimal("P");
 //        gerarRGHV.gerarRGHV(animal);
 //    }
-}
+//}
