@@ -15,6 +15,8 @@ import com.lades.sihv.controller.consulta.ControllerSisTegumentar;
 import com.lades.sihv.controller.consulta.ControllerSisNeurologico;
 import com.lades.sihv.controller.consulta.ControllerSisOftalmico;
 import com.lades.sihv.controller.consulta.ControllerSisMuscEsque;
+import com.lades.sihv.controller.consulta.ControllerExamLaboratory;
+import com.lades.sihv.controller.consulta.ControllerExaImage;
 import java.io.Serializable;
 
 /**
@@ -33,6 +35,8 @@ public class FormsExames implements Serializable {
     private ControllerSisNeurologico controleSisNeurologico;
     private ControllerSisOftalmico controleSisOftalmico;
     private ControllerSisMuscEsque controleSisMuscEsque;
+    private ControllerExamLaboratory controleExamLaboratory;
+    private ControllerExaImage controleExaImage;
 
     /*O método verifica quais sistema
     de anamnese foram afetados.*/
@@ -120,5 +124,19 @@ public class FormsExames implements Serializable {
             controleSisMuscEsque = new ControllerSisMuscEsque();
         }
         return controleSisMuscEsque;
+    }
+
+    public ControllerExamLaboratory getControleExamLaboratory() {
+        if (controleExamLaboratory == null) {
+            controleExamLaboratory = new ControllerExamLaboratory();
+        }
+        return controleExamLaboratory;
+    }
+
+    public ControllerExaImage getControleExaImage() {
+        if (controleExaImage == null) {
+            controleExaImage = new ControllerExaImage();
+        }
+        return controleExaImage;
     }
 }

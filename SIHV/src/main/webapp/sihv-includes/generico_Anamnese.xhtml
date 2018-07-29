@@ -15,11 +15,9 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-2, ui-grid-col-3, ui-grid-col-4" >
 
 
-            <p:outputLabel value="Peso corporal do animal:"
-                           for="Anamnese2Input"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;" />
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Peso corporal do animal:"
+                           for="Anamnese2Input" />
             <p:selectOneMenu id="Anamnese1Input"
                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.escalaPeso}"
                              required="true"
@@ -58,10 +56,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese3Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Queixa principal/Evolução:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese3Input" />
             <p:inputTextarea id="Anamnese3Input"
                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.queixaPrincipal}"
@@ -82,11 +78,9 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese4Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Já foi tratado:"
                            rendered="true"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese4Input" />
             <p:selectOneButton id="Anamnese4Input"
                                rendered="true"
@@ -106,10 +100,8 @@
 
 
             <p:outputLabel id="Anamnese5Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Medicação/dose:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.jaFoiTratado == 'Sim'}"
                            for="Anamnese5Input" />
             <p:inputTextarea id="Anamnese5Input"
@@ -133,11 +125,9 @@
 
 
             <p:outputLabel id="AnamneseAntecMorb1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Antecedentes mórbidos:"
                            rendered="true"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="AnamneseAntecMorb1Input" />
             <p:selectOneButton id="AnamneseAntecMorb1Input"
                                rendered="true"
@@ -159,10 +149,8 @@
 
 
             <p:outputLabel id="AnamneseAntecMorb2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Descrição de antecedentes mórbidos:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(0).viewVariableBoolean}"
                            for="AnamneseAntecMorb2Input" />
             <p:inputTextarea id="AnamneseAntecMorb2Input"
@@ -185,11 +173,9 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="AnamnesehistoFamiliar1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Histórico familiar:"
                            rendered="true"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="AnamnesehistoFamiliar1Input" />
             <p:selectOneButton id="AnamnesehistoFamiliar1Input"
                                rendered="true"
@@ -211,10 +197,8 @@
 
 
             <p:outputLabel id="AnamnesehistoFamiliar2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Descrição do histórico familiar:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.getListViewFields(1).viewVariableBoolean}"
                            for="AnamnesehistoFamiliar2Input" />
             <p:inputTextarea id="AnamnesehistoFamiliar2Input" 
@@ -237,10 +221,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese8Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Alimentação (Dieta caseira):"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese8Input" />
             <p:selectOneButton id="Anamnese8Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira}"
@@ -259,10 +241,8 @@
 
 
             <p:outputLabel id="Anamnese9Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Descrição da dieta caseira:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoCaseira == 'Sim'}"
                            for="Anamnese9Input" />
             <p:inputTextarea id="Anamnese9Input" 
@@ -285,10 +265,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese10Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Alimentação (Ração):"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese10Input" />
             <p:selectOneButton id="Anamnese10Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao}"
@@ -307,10 +285,8 @@
 
 
             <p:outputLabel id="Anamnese11Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Descrição da dieta por ração:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.alimentacaoRacao == 'Sim'}"
                            for="Anamnese11Input" />
             <p:inputTextarea id="Anamnese11Input" 
@@ -333,10 +309,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese12Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Vacinação:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese12Input" />
             <p:selectManyCheckbox id="Anamnese12Input"
                                   value="#{MBconsulta.formsExame.controlAnamnese.vacinacao}"
@@ -363,10 +337,8 @@
 
 
             <p:outputLabel id="Anamnese13Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Sobre a vacina:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
                            for="Anamnese13Input" />
             <p:inputTextarea id="Anamnese13Input" 
@@ -384,10 +356,8 @@
 
 
             <p:outputLabel id="Anamnese14Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Origem da vacina:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.viewVacinacaoOutro}"
                            for="Anamnese14Input" />
             <p:selectOneRadio id="Anamnese14Input"
@@ -414,10 +384,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese15Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Vermifugação:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese15Input" />
             <p:selectOneButton id="Anamnese15Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao}"
@@ -439,10 +407,8 @@
 
 
             <p:outputLabel id="Anamnese16Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Qual/Dose vermifugação:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
                            for="Anamnese16Input" />
             <p:inputText id="Anamnese16Input" 
@@ -459,10 +425,8 @@
 
 
             <p:outputLabel id="Anamnese17Label"
-                           value="Data: aplicação de vermifugação"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
+                           class="outputLabel-SIHV colorSub"
+                           value="Data:aplicação de vermifugação"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.vermifugacao == 'Sim'}"
                            for="Anamnese17Input"/>
             <p:calendar id="Anamnese17Input"
@@ -489,10 +453,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese18Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Ectoparasitas:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese18Input" />
             <p:selectOneButton id="Anamnese18Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas}"
@@ -513,10 +475,8 @@
 
 
             <p:outputLabel id="Anamnese19Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Qual ectoparasitas:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
                            for="Anamnese19Input" />
             <p:selectManyCheckbox id="Anamnese19Input"
@@ -537,10 +497,8 @@
 
 
             <p:outputLabel id="Anamnese20Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Controle de ectoparasitas:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.ectoparasitas == 'Sim'}"
                            for="Anamnese20Input" />
             <p:selectOneButton id="Anamnese20Input"
@@ -566,10 +524,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese21Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Qual produto utilizado:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.isViewQualProdutoUtiliza(2)}"
                            for="Anamnese21Input" />
             <p:inputText id="Anamnese21Input"
@@ -596,10 +552,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese22Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Acesso à rua:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese22Input" />
             <p:selectOneMenu id="Anamnese22Input"
                              value="#{MBconsulta.formsExame.controlAnamnese.anamnese.acessoRua}"
@@ -610,17 +564,15 @@
                 <f:selectItem itemLabel="Não" itemValue="Não" />
                 <f:selectItem itemLabel="Sozinho" itemValue="Sozinho" />
                 <f:selectItem itemLabel="Acompanhado" itemValue="Acompanhado" />
-                <f:selectItem itemLabel="Sozinho/Acompanhado" itemValue="Sozinho/Acompanhado" />
+                <f:selectItem itemLabel="Sozinho/Acompanhado" itemValue="Sozinho, Acompanhado" />
             </p:selectOneMenu>
             <p:message id="Anamnese22Messager"
                        for="Anamnese22Input" />
 
 
             <p:outputLabel id="Anamnese23Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Descrição do habitat:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese23Input" />
             <p:inputTextarea id="Anamnese23Input"
                              required="true"
@@ -641,10 +593,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese24Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Contactantes:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Anamnese24Input" />
             <p:selectOneButton id="Anamnese24Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes}"
@@ -665,10 +615,8 @@
 
 
             <p:outputLabel id="Anamnese25Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Descrição dos contactantes:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
                            for="Anamnese25Input" />
             <p:inputTextarea id="Anamnese25Input" 
@@ -676,7 +624,7 @@
                              title="informado se o animal convive com outros bichos, exemplo, o animal convive com um gato e 5 cachorros"
                              rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
                              required="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
-                             requiredMessage=""
+                             requiredMessage="Descreva os contactantes!"
                              style="margin-bottom: 20px;"
                              maxlength="254" />
             <p:message id="Anamnese25Messager"
@@ -685,17 +633,15 @@
 
 
             <p:outputLabel id="Anamnese26Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Mesmo problema em contactantes?"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
                            for="Anamnese26Input" />
             <p:selectOneButton id="Anamnese26Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.mesmoProbleContacta}"
                                rendered="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
                                required="#{MBconsulta.formsExame.controlAnamnese.anamnese.contactantes == 'Sim'}"
-                               requiredMessage=""
+                               requiredMessage="Contactantes apresentam o mesmo problema?"
                                style="margin-bottom: 20px;" >
                 <f:selectItem itemLabel="Sim" itemValue="Sim" />
                 <f:selectItem itemLabel="Não" itemValue="Não" />
@@ -712,8 +658,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-5, ui-grid-col-4" >
 
             <p:outputLabel id="Anamnese27Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Contato com roedores"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
                            for="Anamnese27Input" />
             <p:selectOneButton id="Anamnese27Input"
                                value="#{MBconsulta.formsExame.controlAnamnese.anamnese.contatoRoedor}"

@@ -1,0 +1,145 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        .inconclusiveButton {
+            float: right!important;
+            width: 106px!important;
+            font-size: 12px!important;
+            margin-bottom: 13px!important;
+        }
+
+        .marginTextArea {margin-bottom: -20px;}
+        .diagMessage {margin-top: -70px!important;}
+
+        @media (max-width: 640px) {
+            .marginTextArea {margin-bottom: -31px;}
+            .diagMessage {margin-top: 23px!important;}
+        }
+    </style>
+
+    <div class="ui-fluid">
+
+        <p:panelGrid id="diagPresuntivo-panelGrid"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Diagnósticos presuntivo:"
+                           for="diagPresuntivo-Input"/>
+            <p:inputTextarea id="diagPresuntivo-Input"
+                             class="LADES-default-Text marginTextArea"
+                             value="#{MBconsulta.formsExame.controlConsulta.consulta.diagPresuntivo}"
+                             title=""
+                             maxlength="254"
+                             disabled="#{MBconsulta.formsExame.controlConsulta.statusDiagPresuntivo.viewVariableBoolean}"
+                             rendered="true"
+                             required="true" 
+                             requiredMessage="Descreva o diagnósticos presuntivo!"/>
+            <p:outputLabel value=""/>
+
+            <p:outputLabel value=""/>
+            <p:selectBooleanButton class="inconclusiveButton LADES-default-Text"
+                                   value="#{MBconsulta.formsExame.controlConsulta.statusDiagPresuntivo.viewVariableBoolean}"
+                                   rendered="true"
+                                   required="false"
+                                   onLabel="Inconclusivo"
+                                   offLabel="Conclusivo"
+                                   offIcon="fa fa-toggle-off"
+                                   onIcon="fa fa-toggle-on">
+                <p:ajax update="diagPresuntivo-panelGrid"
+                        listener="#{MBconsulta.formsExame.controlConsulta.methodDiagPresuntivo()}"/>
+            </p:selectBooleanButton>
+            <p:message id="diagPresuntivo-message"
+                       class="diagMessage"
+                       for="diagPresuntivo-Input"
+                       rendered="true"/>
+
+        </p:panelGrid>
+
+        <p:panelGrid id="diagDiferencial-panelGrid"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Diagnósticos diferencial:"
+                           for="diagDiferencial-Input"/>
+            <p:inputTextarea id="diagDiferencial-Input"
+                             class="LADES-default-Text marginTextArea"
+                             value="#{MBconsulta.formsExame.controlConsulta.consulta.diagDiferencial}"
+                             title=""
+                             maxlength="254"
+                             disabled="#{MBconsulta.formsExame.controlConsulta.statusDiagDiferencial.viewVariableBoolean}"
+                             rendered="true"
+                             required="true" 
+                             requiredMessage="Descreva o diagnósticos diferencial!" />
+            <p:outputLabel value=""/>
+
+            <p:outputLabel value=""/>
+            <p:selectBooleanButton class="inconclusiveButton LADES-default-Text"
+                                   value="#{MBconsulta.formsExame.controlConsulta.statusDiagDiferencial.viewVariableBoolean}"
+                                   rendered="true"
+                                   required="false"
+                                   onLabel="Inconclusivo"
+                                   offLabel="Conclusivo"
+                                   offIcon="fa fa-toggle-off"
+                                   onIcon="fa fa-toggle-on">
+                <p:ajax update="diagDiferencial-panelGrid"
+                        listener="#{MBconsulta.formsExame.controlConsulta.methodDiagDiferencial()}"/>
+            </p:selectBooleanButton>
+            <p:message id="diagDiferencial-message"
+                       class="diagMessage"
+                       for="diagDiferencial-Input"
+                       rendered="true"/>
+        </p:panelGrid>
+
+        <p:panelGrid id="diagDefinitivo-panelGrid"
+                     columns="3"
+                     layout="grid"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Diagnósticos definitivo:"
+                           for="diagDefinitivo-Input"/>
+            <p:inputTextarea id="diagDefinitivo-Input"
+                             class="LADES-default-Text marginTextArea"
+                             value="#{MBconsulta.formsExame.controlConsulta.consulta.diagDefinitivo}" 
+                             title=""
+                             maxlength="254"
+                             disabled="false"
+                             rendered="#{!MBconsulta.formsExame.controlConsulta.statusDiagDefinitivo.viewVariableBoolean}"
+                             required="false" 
+                             requiredMessage="Descreva o diagnósticos definitivo!" />
+            <p:inputTextarea class="LADES-default-Text marginTextArea"
+                             value="Diagnósticos definitivo inconclusivo."
+                             maxlength="254"
+                             disabled="#{MBconsulta.formsExame.controlConsulta.statusDiagDefinitivo.viewVariableBoolean}"
+                             rendered="#{MBconsulta.formsExame.controlConsulta.statusDiagDefinitivo.viewVariableBoolean}"
+                             required="false" />
+            <p:outputLabel value=""/>
+
+            <p:outputLabel value=""/>
+            <p:selectBooleanButton class="inconclusiveButton LADES-default-Text"
+                                   value="#{MBconsulta.formsExame.controlConsulta.statusDiagDefinitivo.viewVariableBoolean}"
+                                   rendered="true"
+                                   required="false"
+                                   onLabel="Inconclusivo"
+                                   offLabel="Conclusivo"
+                                   offIcon="fa fa-toggle-off"
+                                   onIcon="fa fa-toggle-on">
+                <p:ajax update="diagDefinitivo-panelGrid"
+                        listener="#{MBconsulta.formsExame.controlConsulta.methodDiagDefinitivo()}"/>
+            </p:selectBooleanButton>
+            <p:message id="diagDefinitivo-message"
+                       class="diagMessage"
+                       for="diagDefinitivo-Input"
+                       rendered="true"/>
+        </p:panelGrid>
+
+    </div>
+</ui:component>

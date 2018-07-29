@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/01/2017 01:03:35 by Hibernate Tools 4.3.1
+// Generated 09/07/2018 10:08:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -28,38 +28,50 @@ public class ExameImage  implements java.io.Serializable {
      private ExameImageId id;
      private Consulta consulta;
      private String regiExami;
+     private String subRegion;
      private String posicao;
-     private Integer qtdChapas;
+     private String suspicionClinical;
      private String laudo;
+     private Integer qtdChapas;
+     private String doseTechnique;
+     private Integer numberStudies;
+     private String additionalInfo;
      private String tipo;
-     private Date dataExaImage;
-     private String status;
-     private String codExameImage;
+     private String statusExamImage;
+     private String examImageCod;
+     private Date atendimentoData;
+     private Date solicitacaoData;
 
     public ExameImage() {
     }
 
 	
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String tipo, Date dataExaImage, String status, String codExameImage) {
+    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String tipo, String statusExamImage, String examImageCod, Date solicitacaoData) {
         this.id = id;
         this.consulta = consulta;
         this.regiExami = regiExami;
         this.tipo = tipo;
-        this.dataExaImage = dataExaImage;
-        this.status = status;
-        this.codExameImage = codExameImage;
+        this.statusExamImage = statusExamImage;
+        this.examImageCod = examImageCod;
+        this.solicitacaoData = solicitacaoData;
     }
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String posicao, Integer qtdChapas, String laudo, String tipo, Date dataExaImage, String status, String codExameImage) {
+    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String subRegion, String posicao, String suspicionClinical, String laudo, Integer qtdChapas, String doseTechnique, Integer numberStudies, String additionalInfo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
        this.id = id;
        this.consulta = consulta;
        this.regiExami = regiExami;
+       this.subRegion = subRegion;
        this.posicao = posicao;
-       this.qtdChapas = qtdChapas;
+       this.suspicionClinical = suspicionClinical;
        this.laudo = laudo;
+       this.qtdChapas = qtdChapas;
+       this.doseTechnique = doseTechnique;
+       this.numberStudies = numberStudies;
+       this.additionalInfo = additionalInfo;
        this.tipo = tipo;
-       this.dataExaImage = dataExaImage;
-       this.status = status;
-       this.codExameImage = codExameImage;
+       this.statusExamImage = statusExamImage;
+       this.examImageCod = examImageCod;
+       this.atendimentoData = atendimentoData;
+       this.solicitacaoData = solicitacaoData;
     }
    
      @EmbeddedId
@@ -87,13 +99,23 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
-    @Column(name="regiExami", nullable=false, length=200)
+    @Column(name="regiExami", nullable=false, length=254)
     public String getRegiExami() {
         return this.regiExami;
     }
     
     public void setRegiExami(String regiExami) {
         this.regiExami = regiExami;
+    }
+
+    
+    @Column(name="subRegion", length=254)
+    public String getSubRegion() {
+        return this.subRegion;
+    }
+    
+    public void setSubRegion(String subRegion) {
+        this.subRegion = subRegion;
     }
 
     
@@ -107,6 +129,26 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
+    @Column(name="suspicionClinical", length=254)
+    public String getSuspicionClinical() {
+        return this.suspicionClinical;
+    }
+    
+    public void setSuspicionClinical(String suspicionClinical) {
+        this.suspicionClinical = suspicionClinical;
+    }
+
+    
+    @Column(name="laudo", length=254)
+    public String getLaudo() {
+        return this.laudo;
+    }
+    
+    public void setLaudo(String laudo) {
+        this.laudo = laudo;
+    }
+
+    
     @Column(name="qtdChapas")
     public Integer getQtdChapas() {
         return this.qtdChapas;
@@ -117,13 +159,33 @@ public class ExameImage  implements java.io.Serializable {
     }
 
     
-    @Column(name="laudo", length=200)
-    public String getLaudo() {
-        return this.laudo;
+    @Column(name="doseTechnique", length=254)
+    public String getDoseTechnique() {
+        return this.doseTechnique;
     }
     
-    public void setLaudo(String laudo) {
-        this.laudo = laudo;
+    public void setDoseTechnique(String doseTechnique) {
+        this.doseTechnique = doseTechnique;
+    }
+
+    
+    @Column(name="numberStudies")
+    public Integer getNumberStudies() {
+        return this.numberStudies;
+    }
+    
+    public void setNumberStudies(Integer numberStudies) {
+        this.numberStudies = numberStudies;
+    }
+
+    
+    @Column(name="additionalInfo", length=254)
+    public String getAdditionalInfo() {
+        return this.additionalInfo;
+    }
+    
+    public void setAdditionalInfo(String additionalInfo) {
+        this.additionalInfo = additionalInfo;
     }
 
     
@@ -136,34 +198,44 @@ public class ExameImage  implements java.io.Serializable {
         this.tipo = tipo;
     }
 
+    
+    @Column(name="statusExamImage", nullable=false, length=17)
+    public String getStatusExamImage() {
+        return this.statusExamImage;
+    }
+    
+    public void setStatusExamImage(String statusExamImage) {
+        this.statusExamImage = statusExamImage;
+    }
+
+    
+    @Column(name="examImageCod", nullable=false, length=100)
+    public String getExamImageCod() {
+        return this.examImageCod;
+    }
+    
+    public void setExamImageCod(String examImageCod) {
+        this.examImageCod = examImageCod;
+    }
+
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataExaImage", nullable=false, length=19)
-    public Date getDataExaImage() {
-        return this.dataExaImage;
+    @Column(name="atendimentoData", length=19)
+    public Date getAtendimentoData() {
+        return this.atendimentoData;
     }
     
-    public void setDataExaImage(Date dataExaImage) {
-        this.dataExaImage = dataExaImage;
-    }
-
-    
-    @Column(name="status", nullable=false, length=17)
-    public String getStatus() {
-        return this.status;
-    }
-    
-    public void setStatus(String status) {
-        this.status = status;
+    public void setAtendimentoData(Date atendimentoData) {
+        this.atendimentoData = atendimentoData;
     }
 
-    
-    @Column(name="codExameImage", nullable=false, length=8)
-    public String getCodExameImage() {
-        return this.codExameImage;
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="solicitacaoData", nullable=false, length=19)
+    public Date getSolicitacaoData() {
+        return this.solicitacaoData;
     }
     
-    public void setCodExameImage(String codExameImage) {
-        this.codExameImage = codExameImage;
+    public void setSolicitacaoData(Date solicitacaoData) {
+        this.solicitacaoData = solicitacaoData;
     }
 
 

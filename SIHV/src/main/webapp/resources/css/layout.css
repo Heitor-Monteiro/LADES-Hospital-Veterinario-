@@ -17,6 +17,11 @@ body {
     background-color: #f0f0f0;
 }
 
+.LADES-default-Text {
+    color: #5f666c!important;
+    font-family: Open Sans, Helvetica, Arial !important;
+}
+
 a {
     color: #00B59B;
     text-decoration: none;
@@ -117,7 +122,7 @@ nav .menu-toggle {
     transform: rotate(180deg);
 }
 
-nav .menu-toggle:hover{
+nav .menu-toggle:hover {
     transition: margin-left 0.5s;
     font-weight: bold;
 }
@@ -191,13 +196,13 @@ nav .menu-toggle:hover{
     }
 }
 .footer {
-  position: relative;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  padding: 1rem;
-  background-color: #e1e1e1;
-  text-align: center;
-  border-radius: 4px;
-  margin-top: 30px;
+    position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: #e1e1e1;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: 30px;
 }

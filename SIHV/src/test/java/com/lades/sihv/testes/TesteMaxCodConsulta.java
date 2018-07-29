@@ -5,20 +5,22 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.controller.consulta.MaxCodigoConsulta;
+//import com.lades.sihv.controller.consulta.ControllerConsulta;
 
 /**
  *
  * @author thiberius
  */
-public class TesteMaxCodConsulta {
-    
+//public class TesteMaxCodConsulta {
+//    
 //    public static void main (String[] args) {
 //        int maxCodConsulta = 0;
-//        MaxCodigoConsulta obj = new MaxCodigoConsulta();
+//        ControllerConsulta obj = new ControllerConsulta();
 //        
-//        maxCodConsulta = obj.maxConsultaCod();
+//        obj.generateMaxExamCode();
+//        
+//        maxCodConsulta = obj.getCodNewConsulta();
 //        
 //        System.out.println("------------"+maxCodConsulta);
 //    }
-}
+//}

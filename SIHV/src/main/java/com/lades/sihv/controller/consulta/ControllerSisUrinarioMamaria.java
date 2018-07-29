@@ -48,13 +48,13 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
                 sisUrinarioMamaria.setCastrado("Não");
                 if (!isViewFemea()) {
                     sisUrinarioMamaria.setUltimoCio(ndnMasculino);
-                    sisUrinarioMamaria.setPrenhe(ndnMasculino);
-                    sisUrinarioMamaria.setPrenheDescricao(ndnMasculino);
+                    sisUrinarioMamaria.setPrenhez(ndnMasculino);
+                    sisUrinarioMamaria.setPrenhezDescricao(ndnMasculino);
                     sisUrinarioMamaria.setUltimoParto(ndnMasculino);
                 } else {
                     sisUrinarioMamaria.setUltimoCio(ndn);
-                    sisUrinarioMamaria.setPrenhe("Não");
-                    sisUrinarioMamaria.setPrenheDescricao(ndn);
+                    sisUrinarioMamaria.setPrenhez("Não");
+                    sisUrinarioMamaria.setPrenhezDescricao(ndn);
                     sisUrinarioMamaria.setUltimoParto(ndn);
                 }
             } else {
@@ -162,8 +162,8 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
 
     public boolean isViewPrenhe() {
         if (!isViewFemea()) {
-            sisUrinarioMamaria.setPrenhe(ndnMasculino);
-            sisUrinarioMamaria.setPrenheDescricao(ndnMasculino);
+            sisUrinarioMamaria.setPrenhez(ndnMasculino);
+            sisUrinarioMamaria.setPrenhezDescricao(ndnMasculino);
         }
         return isViewFemea();
     }
@@ -173,12 +173,12 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     }
 
     public void methodViewPrenheDescricao() {
-        if (sisUrinarioMamaria.getPrenhe() != null) {
-            if (sisUrinarioMamaria.getPrenhe().equals("Sim")) {
-                sisUrinarioMamaria.setPrenheDescricao("");
+        if (sisUrinarioMamaria.getPrenhez() != null) {
+            if (sisUrinarioMamaria.getPrenhez().equals("Sim")) {
+                sisUrinarioMamaria.setPrenhezDescricao("");
                 listViewFields.get(4).setViewVariableBoolean(true);
             } else {
-                sisUrinarioMamaria.setPrenheDescricao(ndn);
+                sisUrinarioMamaria.setPrenhezDescricao(ndn);
                 listViewFields.get(4).setViewVariableBoolean(false);
             }
         }

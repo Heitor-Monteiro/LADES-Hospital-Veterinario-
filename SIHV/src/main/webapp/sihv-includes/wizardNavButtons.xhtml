@@ -1,0 +1,55 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:outputStylesheet library="css" name="button-floating.css" />
+
+    <div class="fixed-action-btn" >
+        <h:form>
+            <p:panelGrid id="floatingButton-PanelGrid"
+                         class="btn-floating btn-large"
+                         columns="1"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-3" >
+                <p:commandButton id="wizardButtonRight"
+                                 class="floatingButtonStyle"
+                                 icon="fa fa-chevron-right"
+                                 rendered="#{login.variaveisDeSessao.wizardBtnNext}"
+                                 onclick="PF('wiz').next();"
+                                 update="floatingButton-PanelGrid"/>
+                <p:tooltip id="wizardButtonMessager1"
+                           for="wizardButtonRight"
+                           value="Próximo"
+                           rendered="#{login.variaveisDeSessao.wizardBtnBack}"
+                           position="left" />
+
+                <p:commandButton id="wizardButtonLeft"
+                                 class="floatingButtonStyle"
+                                 icon="fa fa-chevron-left"
+                                 rendered="#{login.variaveisDeSessao.wizardBtnBack}"
+                                 onclick="PF('wiz').back();"
+                                 update="floatingButton-PanelGrid" />
+                <p:tooltip id="wizardButtonMessager2"
+                           for="wizardButtonLeft"
+                           value="Voltar"
+                           rendered="#{login.variaveisDeSessao.wizardBtnBack}"
+                           position="left" />
+
+                <p:commandButton id="clearButton1"
+                                 class="floatingButtonStyle"
+                                 type="reset" 
+                                 icon="fa fa-eraser"
+                                 rendered="false"/>
+                <p:tooltip id="clearButtonMessager1"
+                           for="clearButton1"
+                           value="Limpar campos"
+                           rendered="false"
+                           position="left" />
+            </p:panelGrid>
+        </h:form>
+    </div>
+
+</ui:component>

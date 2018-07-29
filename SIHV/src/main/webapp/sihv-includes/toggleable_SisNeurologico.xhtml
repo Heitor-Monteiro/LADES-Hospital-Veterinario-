@@ -1,0 +1,71 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <p:panel id="sisNeurologico-panel"
+             toggleable="true"
+             collapsed="false"
+             toggleableHeader="false"
+             toggleSpeed="500"
+             toggleTitle="Clique para Ocultar ou Mostrar o formulário"
+             closable="false"
+             closeSpeed="500"
+             style="margin-top: 10px;
+             background: none;
+             border: none;">
+
+
+        <f:facet name="header">
+            <div class="ui-fluid">
+                <p:panelGrid id="sisNeurologico-panelGrid1"
+                             columns="3"
+                             layout="grid"
+                             styleClass="panelgrid-noborder"
+                             columnClasses="ui-grid-col-5, ui-grid-col-3, ui-grid-col-3"
+                             style="margin-bottom: -30px;
+                             margin-top: -20px;" >
+                    <p:outputLabel id="sisNeurologico1Label"
+                                   value="Sistema neurológico:"
+                                   rendered="true"
+                                   style="color: #5f666c;
+                                   font-family: Open Sans, Helvetica, Arial;
+                                   font-weight: bold;"
+                                   for="sisNeurologico1Input"/>
+                    <p:selectBooleanButton id="sisNeurologico1Input"
+                                           class="buttonAffectedSystem"
+                                           value="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}"
+                                           rendered="true"
+                                           required="false"
+                                           requiredMessage="Informe se houve alteração!"
+                                           title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
+                                           onLabel="Alterado"
+                                           offLabel="N.D.N."
+                                           offIcon="fa fa-toggle-off"
+                                           onIcon="fa fa-toggle-on"
+                                           style="width:100px;
+                                           color: #5f666c;">
+                        <p:ajax update="sisNeurologico-panel"/>
+                    </p:selectBooleanButton>
+                    <p:message id="sisNeurologico1Messager"
+                               for="sisNeurologico1Input" />
+                </p:panelGrid>
+            </div>
+        </f:facet>
+
+
+        <p:panel id="sisNeurologico-panel2"
+                 style="background: none;
+                 margin-left: -38px;
+                 margin-right: -38px;
+                 border: none;"
+                 rendered="#{MBconsulta.formsExame.controleSisNeurologico.viewSisNeurologico.viewVariableBoolean}" >
+            <ui:include src="/sihv-includes/generico_Sis_Neurologico.xhtml" />
+            <p:effect type="shake" event="load" speed="200"
+                      for="sisNeurologico-panel2" />
+        </p:panel>
+    </p:panel>
+
+</ui:component>

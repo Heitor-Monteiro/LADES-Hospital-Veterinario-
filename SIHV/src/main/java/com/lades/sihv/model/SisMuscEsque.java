@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -30,21 +30,23 @@ public class SisMuscEsque  implements java.io.Serializable {
      private String fraturasEvolu;
      private String atrofMusc;
      private String atrofMuscEvolu;
+     private String posturaAnimal;
      private String sistemaAfetado;
 
     public SisMuscEsque() {
     }
 
 	
-    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String fraturas, String atrofMusc, String sistemaAfetado) {
+    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String fraturas, String atrofMusc, String posturaAnimal, String sistemaAfetado) {
         this.id = id;
         this.consulta = consulta;
         this.claudicacao = claudicacao;
         this.fraturas = fraturas;
         this.atrofMusc = atrofMusc;
+        this.posturaAnimal = posturaAnimal;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String claudicacaoEvolu, String fraturas, String fraturasEvolu, String atrofMusc, String atrofMuscEvolu, String sistemaAfetado) {
+    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String claudicacaoEvolu, String fraturas, String fraturasEvolu, String atrofMusc, String atrofMuscEvolu, String posturaAnimal, String sistemaAfetado) {
        this.id = id;
        this.consulta = consulta;
        this.claudicacao = claudicacao;
@@ -53,6 +55,7 @@ public class SisMuscEsque  implements java.io.Serializable {
        this.fraturasEvolu = fraturasEvolu;
        this.atrofMusc = atrofMusc;
        this.atrofMuscEvolu = atrofMuscEvolu;
+       this.posturaAnimal = posturaAnimal;
        this.sistemaAfetado = sistemaAfetado;
     }
    
@@ -91,7 +94,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="claudicacaoEvolu", length=50)
+    @Column(name="claudicacaoEvolu", length=254)
     public String getClaudicacaoEvolu() {
         return this.claudicacaoEvolu;
     }
@@ -111,7 +114,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="fraturasEvolu", length=50)
+    @Column(name="fraturasEvolu", length=254)
     public String getFraturasEvolu() {
         return this.fraturasEvolu;
     }
@@ -131,13 +134,23 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
     
-    @Column(name="atrofMuscEvolu", length=50)
+    @Column(name="atrofMuscEvolu", length=254)
     public String getAtrofMuscEvolu() {
         return this.atrofMuscEvolu;
     }
     
     public void setAtrofMuscEvolu(String atrofMuscEvolu) {
         this.atrofMuscEvolu = atrofMuscEvolu;
+    }
+
+    
+    @Column(name="posturaAnimal", nullable=false, length=71)
+    public String getPosturaAnimal() {
+        return this.posturaAnimal;
+    }
+    
+    public void setPosturaAnimal(String posturaAnimal) {
+        this.posturaAnimal = posturaAnimal;
     }
 
     

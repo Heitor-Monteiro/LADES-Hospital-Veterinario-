@@ -4,8 +4,9 @@
               xmlns:h="http://xmlns.jcp.org/jsf/html" >
 
     <style>
+        .pointerCursor{cursor: pointer;}
+
         .itemMenu{
-            cursor: pointer;
             display: block;
             padding: 5px 0px 5px 0px;
         }
@@ -28,7 +29,7 @@
         .icoMenu2.is-rotacao {
             transform: rotate(45deg);
         }
-        
+
         .icoHover:hover{font-weight: bold;}
     </style>
 
@@ -40,19 +41,21 @@
 
 
         <div id="userNameNik2"
-             style="font-size: 15px; background: #00B59B;height: 73px;">
+             style="font-size: 15px;
+             background: #00B59B;
+             height: 73px;">
 
             <i class="fa fa-user"
                style="margin: 30px 20px 20px 15px;
                color: #fff;" ></i>
 
-               <p:outputLabel value="#{login.variaveisDeSessao.username}"
+            <p:outputLabel value="#{login.variaveisDeSessao.username}"
                            style="color: #fff;
                            margin-right: 10px;" />
 
             <p:button value="Sair"
                       outcome="/login"
-                      icon="fa fa-sign-out"
+                      icon="fa fa-sign-out-alt"
                       style="font-family: Open Sans, Helvetica, Arial;
                       border-radius: 3px;
                       max-width: 400px;
@@ -60,127 +63,124 @@
                       background: #008471" />
         </div>
 
+        <div class="pointerCursor">
 
+            <p:link class="itemMenu"
+                    style="margin-top: 20px;"
+                    rendered="true"
+                    outcome="/index.xhtml" >
+                <i class="fa fa-home"
+                   style="margin: 0px 18px 0px 0px;"></i>
+                <p:outputLabel value="Início" />
+            </p:link>
 
-        <p:link class="itemMenu"
-                style="margin-top: 20px;"
-                rendered="true"
-                outcome="/index.xhtml" >
-            <i class="fa fa-home"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Início"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
+            <div class="w3-accordion">
+                <p:outputLabel rendered="true">
+                    <a class="itemMenu" onclick="myAccFunc()" href="#">
+                        <i class="fa fa-pencil-alt"></i>
+                        <p:outputLabel value="Cadastro"
+                                       style="margin: 0px 0px 0px 18px;" />
+                        <i class="fa fa-plus icoMenu1 icoHover"
+                           style="float: right;margin: 4px 13px 0px 0px;" />
+                    </a>
+                </p:outputLabel>
+                <div id="demoAcc" class="w3-accordion-content w3-SIHV-bright  w3-card-4 ">
 
-        <div class="w3-accordion">
-            <p:outputLabel rendered="true">
-                <a class="itemMenu" onclick="myAccFunc()" href="#">
-                    <i class="fa fa-pencil"></i>
-                    <p:outputLabel value="Cadastro"
-                                   style="font-family: Open Sans, Helvetica, Arial;margin: 0px 0px 0px 18px;
-                                   cursor: pointer;" />
-                    <i class="fa fa-plus icoMenu1 icoHover"
-                       style="float: right;margin: 4px 13px 0px 0px;" />
-                </a>
-            </p:outputLabel>
-            <div id="demoAcc" class="w3-accordion-content w3-SIHV-bright  w3-card-4 ">
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/cad-cliente" >
+                        <i class="fa fa-user"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Cadastrar proprietário" />
+                    </p:link>
 
-                <p:link class="itemMenu itemMenuText"
-                        rendered="true"
-                        outcome="/sihv-telas/cad-cliente" >
-                    <i class="fa fa-user"
-                       style="margin: 0px 15px 0px 15px;"></i>
-                    <p:outputLabel value="Cadastrar proprietário"
-                                   style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-                </p:link>
-
-                <p:link class="itemMenu itemMenuText"
-                        rendered="true"
-                        outcome="/sihv-telas/cad-animal-p" >
-                    <i class="fa fa-paw"
-                       style="margin: 0px 15px 0px 15px;"></i>
-                    <p:outputLabel value="Cadastrar animal pequeno"
-                                   style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-                </p:link>
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/cad-animal-p" >
+                        <i class="fa fa-paw"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Cadastrar animal pequeno" />
+                    </p:link>
+                </div>
             </div>
-        </div>
 
-        <div class="w3-accordion">
-            <p:outputLabel rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}">
-                <a class="itemMenu" onclick="myDropFunc()" href="#">
-                    <i class="fa fa-user-secret"></i> 
-                    <p:outputLabel value="Usuário do sistema"
-                                   style="font-family: Open Sans, Helvetica, Arial;margin: 0px 0px 0px 18px;
-                                   cursor: pointer;" />
-                    <i class="fa fa-plus icoMenu2 icoHover"
-                       style="float: right;margin: 4px 13px 0px 0px;" />
-                </a>
-            </p:outputLabel>
-            <div id="demoDrop" class="w3-accordion-content w3-SIHV-bright w3-card-4">
+            <div class="w3-accordion">
+                <p:outputLabel rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}">
+                    <a class="itemMenu" onclick="myDropFunc()" href="#">
+                        <i class="fa fa-user-secret"></i> 
+                        <p:outputLabel value="Usuário do sistema"
+                                       style="margin: 0px 0px 0px 18px;" />
+                        <i class="fa fa-plus icoMenu2 icoHover"
+                           style="float: right;margin: 4px 13px 0px 0px;" />
+                    </a>
+                </p:outputLabel>
+                <div id="demoDrop" class="w3-accordion-content w3-SIHV-bright w3-card-4">
 
-                <p:link class="itemMenu itemMenuText"
-                        rendered="true"
-                        outcome="/sihv-telas/cad-user-medico" >
-                    <i class="fa fa-user-md"
-                       style="margin: 0px 15px 0px 15px;"></i>
-                    <p:outputLabel value="Novo residente"
-                                   style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-                </p:link>
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/cad-user-medico" >
+                        <i class="fa fa-user-md"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Novo residente" />
+                    </p:link>
 
-                <p:link class="itemMenu itemMenuText"
-                        rendered="true"
-                        outcome="/sihv-telas/cad-user-aluno" >
-                    <i class="fa fa-user"
-                       style="margin: 0px 15px 0px 15px;"></i>
-                    <p:outputLabel value="Novo recepcionista"
-                                   style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-                </p:link>
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/cad-user-aluno" >
+                        <i class="fa fa-user"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Novo recepcionista" />
+                    </p:link>
 
-                <p:link class="itemMenu itemMenuText"
-                        rendered="true"
-                        outcome="/sihv-telas/cad-user-tecnico" >
-                    <i class="fa fa-user"
-                       style="margin: 0px 15px 0px 15px;"></i>
-                    <p:outputLabel value="Novo funcionário/técnico"
-                                   style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-                </p:link>
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/cad-user-tecnico" >
+                        <i class="fa fa-user"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Novo funcionário/técnico" />
+                    </p:link>
+                </div>
             </div>
+
+            <p:link class="itemMenu"
+                    rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
+                    outcome="/sihv-telas/consulta-nova" >
+                <i class="fa fa-stethoscope"
+                   style="margin: 0px 18px 0px 0px;"></i>
+                <p:outputLabel value="Nova consulta" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="true"
+                    outcome="/sihv-telas/new-xray" >
+                <i class="fa fa-x-ray"
+                   style="margin: 0px 10px 0px 0px;"></i>
+                <p:outputLabel value=" Radiografias pendentes" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="true"
+                    outcome="/sihv-telas/advanced-search" >
+                <i class="fa fa-search"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Buscar clientes" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="false"
+                    outcome="/sihv-telas/consulta-pesquisar" >
+                <i class="fa fa-search"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Buscar consultas" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="true"
+                    outcome="/sobrenos" >
+                <i class="fa fa-question-circle"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Sobre o SIHV" />
+            </p:link>
         </div>
-        
-        <p:link class="itemMenu"
-                rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
-                outcome="/sihv-telas/consulta-nova" >
-            <i class="fa fa-stethoscope"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Nova consulta"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
-        
-        <p:link class="itemMenu"
-                rendered="true"
-                outcome="/sihv-telas/advanced-search" >
-            <i class="fa fa-search"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Buscar clientes"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
-
-        <p:link class="itemMenu"
-                rendered="false"
-                outcome="/sihv-telas/consulta-pesquisar" >
-            <i class="fa fa-search"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Buscar consultas"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
-
-        <p:link class="itemMenu"
-                rendered="true"
-                outcome="/sobrenos" >
-            <i class="fa fa-question-circle"
-               style="margin: 0px 18px 0px 0px;"></i>
-            <p:outputLabel value="Sobre o SIHV"
-                           style="font-family: Open Sans, Helvetica, Arial;cursor: pointer;" />
-        </p:link>
     </nav>
 </ui:component>

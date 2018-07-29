@@ -17,7 +17,7 @@
 
 
 .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
-     padding-bottom: 1%;
+    padding-bottom: 1%;
 } 
 
 
@@ -70,4 +70,22 @@
     color: #5f666c!important;
     font-size: 13px!important;
 }
+
+/*outputLabel para formulários do sistema SIHV*/
+.ui-outputlabel {font-family: Open Sans, Helvetica, Arial !important;}
+
+.outputLabel-SIHV {
+    font-weight: bold!important;
+/*    float: right;*/
+}
+
+.colorPri {color: #00B59B!important;}
+
+.colorSub {color: #007463!important;}
+
+@media (max-width: 640px) {
+/*    .outputLabel-SIHV {float: none;}*/
+}
+/*outputLabel para formulários do sistema SIHV*/
+
 /*---------------- Prime Faces modificações na estilizações ----------------*/

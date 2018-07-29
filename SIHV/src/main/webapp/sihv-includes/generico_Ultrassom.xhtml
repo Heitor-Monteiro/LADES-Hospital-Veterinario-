@@ -7,29 +7,27 @@
 
     <div class="ui-fluid">
         <p:panelGrid columns="3"
-                     rendered="#{MBconsulta.confirmeUltrasson}"
                      layout="grid"
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
             <p:outputLabel value="Código US:"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Ultrassom0" />
             <p:outputLabel id="Ultrassom0"
-                           value="#{MBconsulta.codUltrasson}"
+                           value="#{MBconsulta.formsExame.controleExaImage.codUltrasson}"
                            style="margin-bottom: 20px;" />
             <p:message for="Ultrassom0" />
 
 
-
-
             <p:outputLabel value="Região examinada (US):"
-                           style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+                           style="color: #00B59B;
+                           font-family: Open Sans, Helvetica, Arial;
+                           font-weight: bold;"
                            for="Ultrassom1" />
             <p:inputTextarea id="Ultrassom1" 
-                             value="#{MBconsulta.formsExame.exameImageUltra.regiExami}"
+                             value="#{MBconsulta.formsExame.controleExaImage.examImageUltrasound.regiExami}"
                              maxlength="200"
                              required="true"
                              requiredMessage="Informe a região examinada!"
@@ -38,7 +36,4 @@
 
         </p:panelGrid>    
     </div>
-
-
-
 </ui:component>

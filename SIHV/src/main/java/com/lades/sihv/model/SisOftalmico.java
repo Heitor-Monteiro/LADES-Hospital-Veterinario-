@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 15/06/2018 17:09:53 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -118,7 +118,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOculaTipo", length=50)
+    @Column(name="secreOculaTipo", length=100)
     public String getSecreOculaTipo() {
         return this.secreOculaTipo;
     }
@@ -128,7 +128,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOculaEvolu", length=200)
+    @Column(name="secreOculaEvolu", length=254)
     public String getSecreOculaEvolu() {
         return this.secreOculaEvolu;
     }
@@ -148,7 +148,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="blefaroComenta", length=50)
+    @Column(name="blefaroComenta", length=100)
     public String getBlefaroComenta() {
         return this.blefaroComenta;
     }
@@ -168,7 +168,7 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
     
-    @Column(name="exoftalComenta", length=50)
+    @Column(name="exoftalComenta", length=100)
     public String getExoftalComenta() {
         return this.exoftalComenta;
     }

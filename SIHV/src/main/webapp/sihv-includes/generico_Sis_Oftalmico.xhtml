@@ -12,10 +12,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="OlhosPupila1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Olhos/Pupila:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="OlhosPupila1Input" />
             <p:selectOneMenu id="OlhosPupila1Input"
                              value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.olhosPupila}"
@@ -41,10 +39,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="SecreOcular1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Secreção ocular:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="SecreOcular1Input" />
             <p:selectOneButton id="SecreOcular1Input"
                                value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.secreOcular}"
@@ -68,10 +64,8 @@
 
 
             <p:outputLabel id="SecreOcular2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção ocular Uni/Bilateral:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                            for="SecreOcular2Input" />
             <p:selectOneMenu id="SecreOcular2Input"
@@ -91,10 +85,8 @@
 
 
             <p:outputLabel id="SecreOcular3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção ocular (Tipo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                            for="SecreOcular3Input" />
             <p:inputText id="SecreOcular3Input" 
@@ -103,17 +95,15 @@
                          required="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                          requiredMessage="Informe o tipo de secreção ocular!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="SecreOcular3Messager"
                        rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                        for="SecreOcular3Input" />
 
 
             <p:outputLabel id="SecreOcular4Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Secreção ocular (Evolução):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                            for="SecreOcular4Input" />
             <p:inputTextarea id="SecreOcular4Input" 
@@ -122,7 +112,7 @@
                              required="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                              requiredMessage="Descreva a evolução da secreção ocular!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="SecreOcular4Messager"
                        rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewSecreOcular}"
                        for="SecreOcular4Input" />
@@ -135,10 +125,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Blefaroespasmo1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Blefaroespasmo:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Blefaroespasmo1Input" />
             <p:selectOneButton id="Blefaroespasmo1Input"
                                value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.blefaroespasmo}"
@@ -158,10 +146,8 @@
 
 
             <p:outputLabel id="Blefaroespasmo2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Comentário (Blefaroespasmo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
                            for="Blefaroespasmo2Input" />
             <p:inputText id="Blefaroespasmo2Input" 
@@ -170,7 +156,7 @@
                          required="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
                          requiredMessage="Informe o comentário para Blefaroespasmo!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="Blefaroespasmo2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewBlefaroespasmo}"
                        for="Blefaroespasmo2Input" />
@@ -183,10 +169,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Exoftalmia1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Exoftalmia:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Exoftalmia1Input" />
             <p:selectOneButton id="Exoftalmia1Input"
                                value="#{MBconsulta.formsExame.controleSisOftalmico.sisOftalmico.exoftalmia}"
@@ -206,10 +190,8 @@
 
 
             <p:outputLabel id="Exoftalmia2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Comentário (Exoftalmia):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
                            for="Exoftalmia2Input" />
             <p:inputText id="Exoftalmia2Input" 
@@ -218,7 +200,7 @@
                          required="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
                          requiredMessage="Informe o comentário para Exoftalmia!"
                          style="margin-bottom: 20px;"
-                         maxlength="50" />
+                         maxlength="100" />
             <p:message id="Exoftalmia2Messager"
                        rendered="#{MBconsulta.formsExame.controleSisOftalmico.viewExoftalmia}"
                        for="Exoftalmia2Input" />

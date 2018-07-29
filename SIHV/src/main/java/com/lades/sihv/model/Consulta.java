@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 05/04/2018 16:39:59 by Hibernate Tools 4.3.1
+// Generated 24/07/2018 09:39:50 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -33,11 +33,14 @@ public class Consulta  implements java.io.Serializable {
      private Integer pkConsulta;
      private Animais animais;
      private User user;
-     private Date dataConsulta;
      private String sistemasAfetados;
      private String laudo;
      private String laudoConfirme;
      private BigDecimal valorConsulta;
+     private String diagPresuntivo;
+     private String diagDiferencial;
+     private String diagDefinitivo;
+     private Date dataConsulta;
      private Set sisDigestorios = new HashSet(0);
      private Set sisUrinarioMamarias = new HashSet(0);
      private Set exameImages = new HashSet(0);
@@ -53,20 +56,25 @@ public class Consulta  implements java.io.Serializable {
     }
 
 	
-    public Consulta(Animais animais, User user, Date dataConsulta, BigDecimal valorConsulta) {
+    public Consulta(Animais animais, User user, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, Date dataConsulta) {
         this.animais = animais;
         this.user = user;
-        this.dataConsulta = dataConsulta;
         this.valorConsulta = valorConsulta;
+        this.diagPresuntivo = diagPresuntivo;
+        this.diagDiferencial = diagDiferencial;
+        this.dataConsulta = dataConsulta;
     }
-    public Consulta(Animais animais, User user, Date dataConsulta, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, Set sisDigestorios, Set sisUrinarioMamarias, Set exameImages, Set sisMuscEsques, Set exameFisicos, Set sisRespCardios, Set sisTegumentars, Set anamneses, Set sisOftalmicos, Set sisNeurologicos) {
+    public Consulta(Animais animais, User user, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, String diagDefinitivo, Date dataConsulta, Set sisDigestorios, Set sisUrinarioMamarias, Set exameImages, Set sisMuscEsques, Set exameFisicos, Set sisRespCardios, Set sisTegumentars, Set anamneses, Set sisOftalmicos, Set sisNeurologicos) {
        this.animais = animais;
        this.user = user;
-       this.dataConsulta = dataConsulta;
        this.sistemasAfetados = sistemasAfetados;
        this.laudo = laudo;
        this.laudoConfirme = laudoConfirme;
        this.valorConsulta = valorConsulta;
+       this.diagPresuntivo = diagPresuntivo;
+       this.diagDiferencial = diagDiferencial;
+       this.diagDefinitivo = diagDefinitivo;
+       this.dataConsulta = dataConsulta;
        this.sisDigestorios = sisDigestorios;
        this.sisUrinarioMamarias = sisUrinarioMamarias;
        this.exameImages = exameImages;
@@ -116,16 +124,6 @@ public class Consulta  implements java.io.Serializable {
         this.user = user;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="dataConsulta", nullable=false, length=19)
-    public Date getDataConsulta() {
-        return this.dataConsulta;
-    }
-    
-    public void setDataConsulta(Date dataConsulta) {
-        this.dataConsulta = dataConsulta;
-    }
-
     
     @Column(name="sistemasAfetados", length=500)
     public String getSistemasAfetados() {
@@ -164,6 +162,46 @@ public class Consulta  implements java.io.Serializable {
     
     public void setValorConsulta(BigDecimal valorConsulta) {
         this.valorConsulta = valorConsulta;
+    }
+
+    
+    @Column(name="diagPresuntivo", nullable=false, length=254)
+    public String getDiagPresuntivo() {
+        return this.diagPresuntivo;
+    }
+    
+    public void setDiagPresuntivo(String diagPresuntivo) {
+        this.diagPresuntivo = diagPresuntivo;
+    }
+
+    
+    @Column(name="diagDiferencial", nullable=false, length=254)
+    public String getDiagDiferencial() {
+        return this.diagDiferencial;
+    }
+    
+    public void setDiagDiferencial(String diagDiferencial) {
+        this.diagDiferencial = diagDiferencial;
+    }
+
+    
+    @Column(name="diagDefinitivo", length=254)
+    public String getDiagDefinitivo() {
+        return this.diagDefinitivo;
+    }
+    
+    public void setDiagDefinitivo(String diagDefinitivo) {
+        this.diagDefinitivo = diagDefinitivo;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dataConsulta", nullable=false, length=19)
+    public Date getDataConsulta() {
+        return this.dataConsulta;
+    }
+    
+    public void setDataConsulta(Date dataConsulta) {
+        this.dataConsulta = dataConsulta;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="consulta")

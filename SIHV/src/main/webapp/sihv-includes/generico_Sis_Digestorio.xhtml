@@ -13,10 +13,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
             <p:outputLabel id="Aliment1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Está se alimentando normalmente:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Aliment1Input" />
             <p:selectOneButton id="Aliment1Input"
                                value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.estaSeAlimentando}"
@@ -36,10 +34,8 @@
 
 
             <p:outputLabel id="Aliment2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Animal não se alimenta, descreva:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
                            for="Aliment2Input" />
             <p:inputTextarea id="Aliment2Input" 
@@ -48,7 +44,7 @@
                              required="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
                              requiredMessage="descreva o estado alimentar do animal!"
                              style="margin-bottom: 20px;"
-                             maxlength="200"/>
+                             maxlength="254"/>
             <p:message id="Aliment2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewDescriNaoSeAlimeta}"
                        for="Aliment2Input" />
@@ -62,10 +58,8 @@
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
 
             <p:outputLabel id="Vomito1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Vômito:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold ;"
                            for="Vomito1Input" />
             <p:selectOneButton id="Vomito1Input"
                                value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.vomito}"
@@ -87,10 +81,8 @@
 
 
             <p:outputLabel id="Vomito2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Aspecto do vômito:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
                            for="Vomito2Input" />
             <p:inputText id="Vomito2Input" 
@@ -106,10 +98,8 @@
 
 
             <p:outputLabel id="Vomito3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Evolução do vômito:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
                            for="Vomito3Input" />
             <p:inputTextarea id="Vomito3Input" 
@@ -118,7 +108,7 @@
                              required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
                              requiredMessage="Informe evolução do vômito!"
                              style="margin-bottom: 20px;"
-                             maxlength="200" />
+                             maxlength="254" />
             <p:message id="Vomito3Messager"
                        rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectoEvoluVomito}"
                        for="Vomito3Input" />
@@ -131,10 +121,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Regurg1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Regurgitação:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Regurg1Input" />
             <p:selectOneButton id="Regurg1Input"
                                value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.regurgitacao}"
@@ -154,10 +142,8 @@
 
 
             <p:outputLabel id="Regurg2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Evolução da regurgitação:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
                            for="Regurg2Input" />
             <p:inputText id="Regurg2Input" 
@@ -166,7 +152,7 @@
                          required="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
                          requiredMessage="Descreva a Evolução da regurgitação!"
                          style="margin-bottom: 20px;"
-                         maxlength="200" />
+                         maxlength="254" />
             <p:message id="Regurg2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluRegurgitacao}"
                        for="Regurg2Input" />
@@ -179,10 +165,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="Diarreia1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Diarreia:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="Diarreia1Input" />
             <p:selectOneButton id="Diarreia1Input"
                                value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.diarreia}"
@@ -204,10 +188,8 @@
 
 
             <p:outputLabel id="Diarreia2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Aspecto da diarreia:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
                            for="Diarreia2Input" />
             <p:inputText id="Diarreia2Input" 
@@ -223,19 +205,17 @@
 
 
             <p:outputLabel id="Diarreia3Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Evolução da diarreia:"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
                            for="Diarreia3Input" />
-            <p:inputText id="Diarreia3Input" 
-                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDiarreia}"
-                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
-                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
-                         requiredMessage="Descreva a Evolução da diarreia!"
-                         style="margin-bottom: 20px;"
-                         maxlength="100" />
+            <p:inputTextarea id="Diarreia3Input" 
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDiarreia}"
+                             rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                             required="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
+                             requiredMessage="Descreva a Evolução da diarreia!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
             <p:message id="Diarreia3Messager"
                        rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewAspectEvoluDiarreia}"
                        for="Diarreia3Input" />
@@ -248,10 +228,8 @@
                      styleClass="panelgrid-noborder"
                      columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-4" >
             <p:outputLabel id="DisqTenes1Label"
+                           class="outputLabel-SIHV colorPri"
                            value="Disquesia/Tenesmo:"
-                           style="color: #00B59B;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            for="DisqTenes1Input" />
             <p:selectOneButton id="DisqTenes1Input"
                                value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.disquesiaTenesmo}"
@@ -271,19 +249,17 @@
 
 
             <p:outputLabel id="DisqTenes2Label"
+                           class="outputLabel-SIHV colorSub"
                            value="Evolução (Disquesia/Tenesmo):"
-                           style="color: #007463;
-                           font-family: Open Sans, Helvetica, Arial;
-                           font-weight: bold;"
                            rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
                            for="DisqTenes2Input" />
-            <p:inputText id="DisqTenes2Input" 
-                         value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDisquesiaTenesmo}"
-                         rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
-                         required="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
-                         requiredMessage="Descreva o campo Evolução (Disquesia/Tenesmo)!"
-                         style="margin-bottom: 20px;"
-                         maxlength="100" />
+            <p:inputTextarea id="DisqTenes2Input" 
+                             value="#{MBconsulta.formsExame.controlSisDigestorio.sisDigestorio.evoluDisquesiaTenesmo}"
+                             rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                             required="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
+                             requiredMessage="Descreva o campo Evolução (Disquesia/Tenesmo)!"
+                             style="margin-bottom: 20px;"
+                             maxlength="254" />
             <p:message id="DisqTenes2Messager"
                        rendered="#{MBconsulta.formsExame.controlSisDigestorio.viewEvoluDisquesiaTenesmo}"
                        for="DisqTenes2Input" />

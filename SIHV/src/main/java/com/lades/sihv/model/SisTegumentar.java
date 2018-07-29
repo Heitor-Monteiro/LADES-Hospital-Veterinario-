@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/06/2018 10:50:51 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -34,13 +34,15 @@ public class SisTegumentar  implements java.io.Serializable {
      private String secreOtologEvolu;
      private String frequeBanhos;
      private String produUtilBanho;
+     private String preTratamen;
+     private String preTratamenDescri;
      private String sistemaAfetado;
 
     public SisTegumentar() {
     }
 
 	
-    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoOtolog, String secreOtolog, String frequeBanhos, String sistemaAfetado) {
+    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoOtolog, String secreOtolog, String frequeBanhos, String preTratamen, String sistemaAfetado) {
         this.id = id;
         this.consulta = consulta;
         this.evoluLesao = evoluLesao;
@@ -49,9 +51,10 @@ public class SisTegumentar  implements java.io.Serializable {
         this.pruridoOtolog = pruridoOtolog;
         this.secreOtolog = secreOtolog;
         this.frequeBanhos = frequeBanhos;
+        this.preTratamen = preTratamen;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoCutaneoEvolu, String pruridoOtolog, String pruridoOtologEvolu, String secreOtolog, String secreOtologEvolu, String frequeBanhos, String produUtilBanho, String sistemaAfetado) {
+    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoCutaneoEvolu, String pruridoOtolog, String pruridoOtologEvolu, String secreOtolog, String secreOtologEvolu, String frequeBanhos, String produUtilBanho, String preTratamen, String preTratamenDescri, String sistemaAfetado) {
        this.id = id;
        this.consulta = consulta;
        this.evoluLesao = evoluLesao;
@@ -64,6 +67,8 @@ public class SisTegumentar  implements java.io.Serializable {
        this.secreOtologEvolu = secreOtologEvolu;
        this.frequeBanhos = frequeBanhos;
        this.produUtilBanho = produUtilBanho;
+       this.preTratamen = preTratamen;
+       this.preTratamenDescri = preTratamenDescri;
        this.sistemaAfetado = sistemaAfetado;
     }
    
@@ -92,7 +97,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="evoluLesao", nullable=false, length=200)
+    @Column(name="evoluLesao", nullable=false, length=254)
     public String getEvoluLesao() {
         return this.evoluLesao;
     }
@@ -102,7 +107,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="localiLesao", nullable=false, length=200)
+    @Column(name="localiLesao", nullable=false, length=254)
     public String getLocaliLesao() {
         return this.localiLesao;
     }
@@ -122,7 +127,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="pruridoCutaneoEvolu", length=50)
+    @Column(name="pruridoCutaneoEvolu", length=100)
     public String getPruridoCutaneoEvolu() {
         return this.pruridoCutaneoEvolu;
     }
@@ -142,7 +147,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="pruridoOtologEvolu", length=50)
+    @Column(name="pruridoOtologEvolu", length=100)
     public String getPruridoOtologEvolu() {
         return this.pruridoOtologEvolu;
     }
@@ -162,7 +167,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreOtologEvolu", length=50)
+    @Column(name="secreOtologEvolu", length=100)
     public String getSecreOtologEvolu() {
         return this.secreOtologEvolu;
     }
@@ -172,7 +177,7 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
     
-    @Column(name="frequeBanhos", nullable=false, length=50)
+    @Column(name="frequeBanhos", nullable=false, length=100)
     public String getFrequeBanhos() {
         return this.frequeBanhos;
     }
@@ -189,6 +194,26 @@ public class SisTegumentar  implements java.io.Serializable {
     
     public void setProduUtilBanho(String produUtilBanho) {
         this.produUtilBanho = produUtilBanho;
+    }
+
+    
+    @Column(name="preTratamen", nullable=false, length=7)
+    public String getPreTratamen() {
+        return this.preTratamen;
+    }
+    
+    public void setPreTratamen(String preTratamen) {
+        this.preTratamen = preTratamen;
+    }
+
+    
+    @Column(name="preTratamenDescri", length=254)
+    public String getPreTratamenDescri() {
+        return this.preTratamenDescri;
+    }
+    
+    public void setPreTratamenDescri(String preTratamenDescri) {
+        this.preTratamenDescri = preTratamenDescri;
     }
 
     

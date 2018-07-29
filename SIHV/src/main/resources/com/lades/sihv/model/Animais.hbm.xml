@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 08/04/2018 01:57:03 by Hibernate Tools 4.3.1 -->
+<!-- Generated 22/07/2018 11:29:27 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Animais" table="animais" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnimaisId">
@@ -45,6 +45,9 @@
         </property>
         <property name="categoriaAnimal" type="string">
             <column name="categoriaAnimal" length="5" not-null="true" />
+        </property>
+        <property name="obitoAnimal" type="boolean">
+            <column name="obitoAnimal" not-null="true" />
         </property>
         <property name="cadDataHora" type="timestamp">
             <column name="cadDataHora" length="19" not-null="true" />

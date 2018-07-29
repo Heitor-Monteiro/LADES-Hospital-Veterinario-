@@ -5,19 +5,19 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.bean.MBconsulta;
-import com.lades.sihv.classeMolde.CollectionClasses;
+//import com.lades.sihv.bean.MBconsulta;
+//import com.lades.sihv.classeMolde.CollectionClasses;
 
 /**
  *
  * @author thiberius
  */
-public class TesteMBconsulta {
+//public class TesteMBconsulta {
 //    public static void main(String[] args) {
-////        MBconsulta obj = new MBconsulta();
-////        CollectionClasses x;
-////        
-////        x = obj.getCollectionClasses();
+//        MBconsulta obj = new MBconsulta();
+//        CollectionClasses x;
+//        
+//        x = obj.getCollectionClasses();
 //        
 //    }
-}
+//}

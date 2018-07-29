@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/06/2018 10:50:51 by Hibernate Tools 4.3.1
+// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -132,7 +132,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="tosseEvolu", length=200)
+    @Column(name="tosseEvolu", length=254)
     public String getTosseEvolu() {
         return this.tosseEvolu;
     }
@@ -152,7 +152,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="espirroEvolu", length=200)
+    @Column(name="espirroEvolu", length=254)
     public String getEspirroEvolu() {
         return this.espirroEvolu;
     }
@@ -182,7 +182,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreNasalTipo", length=50)
+    @Column(name="secreNasalTipo", length=100)
     public String getSecreNasalTipo() {
         return this.secreNasalTipo;
     }
@@ -192,7 +192,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="secreNasalEvolu", length=200)
+    @Column(name="secreNasalEvolu", length=254)
     public String getSecreNasalEvolu() {
         return this.secreNasalEvolu;
     }
@@ -212,7 +212,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="dispnTaquipEvolu", length=200)
+    @Column(name="dispnTaquipEvolu", length=254)
     public String getDispnTaquipEvolu() {
         return this.dispnTaquipEvolu;
     }
@@ -232,7 +232,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="cianoseEvolu", length=200)
+    @Column(name="cianoseEvolu", length=254)
     public String getCianoseEvolu() {
         return this.cianoseEvolu;
     }
@@ -252,7 +252,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="cansaFacilEvolu", length=200)
+    @Column(name="cansaFacilEvolu", length=254)
     public String getCansaFacilEvolu() {
         return this.cansaFacilEvolu;
     }
@@ -272,7 +272,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="sincopeEvolu", length=200)
+    @Column(name="sincopeEvolu", length=254)
     public String getSincopeEvolu() {
         return this.sincopeEvolu;
     }
@@ -292,7 +292,7 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
     
-    @Column(name="emagrecEvolu", length=200)
+    @Column(name="emagrecEvolu", length=254)
     public String getEmagrecEvolu() {
         return this.emagrecEvolu;
     }

@@ -5,13 +5,13 @@
  */
 package com.lades.sihv.testes;
 
-import com.lades.sihv.bean.MBpessoa;
+//import com.lades.sihv.bean.MBpessoa;
 
 /**
  *
  * @author thiberius
  */
-public class TesteMBpessoa {
+//public class TesteMBpessoa {
 //    public static void main (String[] args){
 //        MBpessoa objMBpessoa = new MBpessoa();
 //        
@@ -19,4 +19,4 @@ public class TesteMBpessoa {
 //        
 //        System.out.println(objMBpessoa.getTipoPessoa());
 //    }
-}
+//}

@@ -41,6 +41,44 @@ public class VariaveisDeSessao {
     }
 
 //---------------------------------------------------------------------------------------
+    private ListRenderedFields wizardButtons;
+
+    public void startWizardButtons() {
+        wizardButtons = new ListRenderedFields(2);
+        SessionUtils.getSession().setAttribute("wizardButtons", wizardButtons);
+    }
+
+    public boolean getWizardBtnNext() {
+        if (wizardButtons == null) {
+            wizardButtons = new ListRenderedFields(2);
+            startWizardButtons();
+        }
+        ListRenderedFields var = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
+        return var.getListViewFields(0).isViewVariableBoolean();
+    }
+    
+    public void enableBtnNextWizard() {
+        wizardButtons = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
+        wizardButtons.getListViewFields(0).setViewVariableBoolean(true);
+        SessionUtils.getSession().setAttribute("wizardButtons", wizardButtons);
+    }
+
+    public boolean getWizardBtnBack() {
+        if (wizardButtons == null) {
+            wizardButtons = new ListRenderedFields(2);
+            startWizardButtons();
+        }
+        ListRenderedFields var = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
+        return var.getListViewFields(1).isViewVariableBoolean();
+    }
+    
+    public void enableBtnBackWizard() {
+        wizardButtons = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
+        wizardButtons.getListViewFields(1).setViewVariableBoolean(true);
+        SessionUtils.getSession().setAttribute("wizardButtons", wizardButtons);
+    }
+
+//---------------------------------------------------------------------------------------
     public void setDadosUSER(Object objUser) {
         SessionUtils.getSession().setAttribute("dadosUser", objUser);
     }
@@ -49,7 +87,7 @@ public class VariaveisDeSessao {
         return (User) SessionUtils.getSession().getAttribute("dadosUser");
     }
 
-    public void setDadosPESSOA(Object objPessoa) {       
+    public void setDadosPESSOA(Object objPessoa) {
         Pessoa obj = (Pessoa) objPessoa;
         SessionUtils.getSession().setAttribute("username", new BeautyText().fistNLast(obj.getNome()));
         SessionUtils.getSession().setAttribute("dadosPessoa", objPessoa);

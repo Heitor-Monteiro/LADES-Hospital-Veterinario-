@@ -11,6 +11,7 @@ import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.User;
 import com.lades.sihv.model.Fisica;
 import com.lades.sihv.model.Juridica;
+import com.lades.sihv.controller.ListClasses;
 import java.io.Serializable;
 
 /**
@@ -18,6 +19,7 @@ import java.io.Serializable;
  * @author thiberius
  */
 public class CollectionClasses implements Serializable {
+
     private Pessoa residente;
     private Pessoa proprietario;
     private Fisica pessoaFisica;
@@ -25,28 +27,12 @@ public class CollectionClasses implements Serializable {
     private User user;
     private Animais animais;
     private Consulta consulta;
+    private ListClasses examList;
+    private FormsExames formsExams;
 
-    
-//    public void geraObj(){
-//        residente = new Pessoa();
-//        proprietario = new Pessoa();
-//        user = new User();
-//        animais = new Animais();
-//        consulta = new Consulta();
-//    }
-
-//    public void gerarObjNovaConsulta(){
-//        animais = new Animais();
-//        proprietario = new Pessoa();
-//    }
-    
-//    public void gerarObjPessoaFisica(){
-//        pessoaFisica = new Fisica();
-//    }
-    
     public Animais getAnimais() {
-        if(animais == null){
-            animais  =  new Animais();
+        if (animais == null) {
+            animais = new Animais();
         }
         return animais;
     }
@@ -56,7 +42,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Consulta getConsulta() {
-        if(consulta == null){
+        if (consulta == null) {
             consulta = new Consulta();
         }
         return consulta;
@@ -67,7 +53,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public User getUser() {
-        if(user == null){
+        if (user == null) {
             user = new User();
         }
         return user;
@@ -78,7 +64,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Pessoa getResidente() {
-        if(residente == null){
+        if (residente == null) {
             residente = new Pessoa();
         }
         return residente;
@@ -89,7 +75,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Pessoa getProprietario() {
-        if(proprietario == null){
+        if (proprietario == null) {
             proprietario = new Pessoa();
         }
         return proprietario;
@@ -100,7 +86,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Fisica getPessoaFisica() {
-        if(pessoaFisica == null){
+        if (pessoaFisica == null) {
             pessoaFisica = new Fisica();
         }
         return pessoaFisica;
@@ -111,7 +97,7 @@ public class CollectionClasses implements Serializable {
     }
 
     public Juridica getPessoaJuridica() {
-        if(pessoaJuridica == null){
+        if (pessoaJuridica == null) {
             pessoaJuridica = new Juridica();
         }
         return pessoaJuridica;
@@ -120,4 +106,19 @@ public class CollectionClasses implements Serializable {
     public void setPessoaJuridica(Juridica pessoaJuridica) {
         this.pessoaJuridica = pessoaJuridica;
     }
+
+    public ListClasses getExamList(int index) {
+        if (examList == null) {
+            examList = new ListClasses(index, new FormsExames());
+        }
+        return examList;
+    }
+
+    public FormsExames getFormsExams() {
+        if (formsExams == null) {
+            formsExams = new FormsExames();
+        }
+        return formsExams;
+    }
+
 }
