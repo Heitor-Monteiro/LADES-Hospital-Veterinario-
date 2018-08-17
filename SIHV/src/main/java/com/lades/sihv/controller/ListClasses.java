@@ -19,19 +19,19 @@ gerenciar um item na tela que precise de rendered*/
 public class ListClasses extends AbstractBean {
 
     private final List<Object> listClasses = new ArrayList();
-    private Object typeClasse;
+    private TypeClasses typeClasse;
     private int indexMax = 0;
     
     
     public ListClasses (){}
     
     public  ListClasses (Object typeClasse){
-        this.typeClasse = typeClasse;
+        this.typeClasse = new TypeClasses(typeClasse);
     }
     
     public ListClasses (int indexMax, Object typeClasse){
         this.indexMax = indexMax;
-        this.typeClasse = typeClasse;
+        this.typeClasse = new TypeClasses(typeClasse);
     }
     
     public Object getItemListClasses(int index) {
@@ -52,6 +52,4 @@ public class ListClasses extends AbstractBean {
     public void setIndexMax(int indexMax) {
         this.indexMax = indexMax;
     }
-    
-    
 }

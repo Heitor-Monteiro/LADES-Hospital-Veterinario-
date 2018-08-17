@@ -46,7 +46,7 @@ public class MBconsulta extends AbstractBean {
             try {
                 Consulta consulta = getFormsExame()
                         .getControlConsulta()
-                        .ConfirmeConsulta(collectionClasses.getAnimais(),
+                        .ConfirmeConsulta(collectionClasses.getSchedule(),
                                 getVariaveisDeSessao().getDadosUSER());
                 getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);

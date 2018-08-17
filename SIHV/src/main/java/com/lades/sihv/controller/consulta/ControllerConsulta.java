@@ -11,6 +11,7 @@ import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.User;
 import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.RenderedFields;
+import com.lades.sihv.model.Scheduling;
 import java.util.List;
 
 /**
@@ -23,16 +24,16 @@ public class ControllerConsulta extends AbstractBean {
     private int codNewConsulta = 0;
     private final ListRenderedFields listViewFields = new ListRenderedFields(3);
 
-    private void prepareConsulta(Animais animal, User medicoVET) {
+    private void prepareConsulta(Scheduling scheduling, User medicoVET) {
         getConsulta().setDataConsulta(getObjData());
 //          consulta.setSistemasAfetados(sistemasAfetados());
-        consulta.setAnimais(animal);
+        consulta.setScheduling(scheduling);
         consulta.setUser(medicoVET);
     }
 
-    public Consulta ConfirmeConsulta(Animais animal, User medicoVET) {
+    public Consulta ConfirmeConsulta(Scheduling scheduling, User medicoVET) {
         try {
-            prepareConsulta(animal, medicoVET);
+            prepareConsulta(scheduling, medicoVET);
             getDaoGenerico().save(consulta);
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public Consulta ConfirmeConsulta() ] "

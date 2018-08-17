@@ -76,7 +76,7 @@
 
 .outputLabel-SIHV {
     font-weight: bold!important;
-/*    float: right;*/
+    /*    float: right;*/
 }
 
 .colorPri {color: #00B59B!important;}
@@ -84,8 +84,11 @@
 .colorSub {color: #007463!important;}
 
 @media (max-width: 640px) {
-/*    .outputLabel-SIHV {float: none;}*/
+    /*    .outputLabel-SIHV {float: none;}*/
 }
 /*outputLabel para formulários do sistema SIHV*/
 
+.fc-view {
+    z-index: 0!important;
+}
 /*---------------- Prime Faces modificações na estilizações ----------------*/

@@ -18,7 +18,7 @@ gerenciar um item na tela que precise de rendered*/
 public class VariablesSearch extends AbstractBean {
 
     private String textSearch, itemSearch,
-            searchMask, searchTip;
+            searchMask, searchTip, placeholderField;
     private int maxLength;
     private RenderedFields showTable;
     private List<?> objectsReturned;
@@ -103,4 +103,14 @@ public class VariablesSearch extends AbstractBean {
         }
         return showTable;
     }
+
+    public String getPlaceholderField() {
+        return placeholderField;
+    }
+
+    public void setPlaceholderField(String placeholderField) {
+        this.placeholderField = placeholderField;
+    }
+    
+    
 }

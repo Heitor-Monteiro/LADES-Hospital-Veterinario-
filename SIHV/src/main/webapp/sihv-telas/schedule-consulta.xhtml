@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+
+        <ui:define name="title"  >
+            <i class="fa fa-calendar-alt">
+                <h:outputText value=" Agendar consulta"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+            <f:metadata>
+                <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
+            </f:metadata>
+
+            <h:form>
+                <p:growl id="messages"
+                         sticky="true"
+                         showDetail="true"/>
+
+                <p:schedule id="schedule"
+                            class="testeteste"
+                            value="#{MBscheduleConsulta.geneScheduling.eventModel}"
+                            widgetVar="myschedule"
+                            clientTimeZone="local"
+                            timeZone="GMT-3">
+
+                    <!-- adcionar novo evento no calendario -->
+                    <p:ajax event="dateSelect"
+                            listener="#{MBscheduleConsulta.onDateSelect}"
+                            update="eventDialog1-Panel,eventDialog2-Panel,eventDialog3-Panel"
+                            oncomplete="PF('eventDialog').show();" />
+
+                    <p:ajax event="eventSelect"
+                            listener="#{MBscheduleConsulta.onEventSelect}"
+                            update="eventDialog1-Panel,eventDialog2-Panel,eventDialog3-Panel"
+                            oncomplete="PF('eventDialog').show();" />
+
+                    <!--
+                    <p:ajax event="eventMove"
+                            listener="#{MBscheduleConsulta.geneScheduling.onEventMove}"
+                            update="messages" />
+
+                    <p:ajax event="eventResize"
+                            listener="#{MBscheduleConsulta.geneScheduling.onEventResize}"
+                            update="messages" />-->
+
+                </p:schedule>
+
+                <p:dialog widgetVar="eventDialog"
+                          header="Agendar consulta"
+                          showEffect="clip"
+                          hideEffect="clip"
+                          focus="registerClient-Input" >
+
+                    <p:panel id="eventDialog1-Panel"
+                             style="margin: -11px -15px -17px -15px;
+                             padding: 0px 0px 0px 0px;
+                             background: none;
+                             border: none;" >
+                        <div class="ui-fluid">
+                            <p:panelGrid id="registerClient-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Consulta:"
+                                               rendered="#{MBscheduleConsulta.viewIfReturn.viewVariableBoolean}" />
+                                <p:outputLabel value="#{MBscheduleConsulta.schedule.typeService}"
+                                               rendered="#{MBscheduleConsulta.viewIfReturn.viewVariableBoolean}" />
+
+                                <p:outputLabel id="registerClient-Label"
+                                               class="outputLabel-SIHV colorPri"
+                                               value="Registro do cliente:"
+                                               for="registerClient-Input" />
+                                <p:selectOneMenu id="registerClient-Input"
+                                                 value="#{MBscheduleConsulta.schedule.registerClient}"
+                                                 disabled="#{MBscheduleConsulta.viewFieldStatusToChangeClientRegistered.viewVariableBoolean}"
+                                                 required="true"
+                                                 rendered="true">
+                                    <f:selectItem itemLabel="Selecione" itemValue="" />
+                                    <f:selectItem itemLabel="Novo" itemValue="Novo" />
+                                    <f:selectItem itemLabel="Cadastrado" itemValue="Cadastrado"/>
+                                    <p:ajax update="itemSearch-PanelGrid,newSchedule-panelGrid"
+                                            listener="#{MBscheduleConsulta.actionsClientRegisteredORnew()}"/>
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+
+                            <p:panelGrid id="dateSchedule-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Data do agendamento:"
+                                               for="schedulingDate-Input"  />
+                                <p:calendar id="schedulingDate-Input"
+                                            value="#{MBscheduleConsulta.geneScheduling.event.startDate}"
+                                            required="true"
+                                            pattern="dd/MM/yyyy"
+                                            locale="pt_BR"
+                                            timeZone="GMT-3" />
+
+
+                                <p:outputLabel id="scheduleTime-Label"
+                                               class="outputLabel-SIHV colorPri"
+                                               value="Hora do agendamento:"
+                                               for="scheduleTime-Input" />
+                                <p:selectOneMenu id="scheduleTime-Input"
+                                                 value="#{MBscheduleConsulta.timeConsulta}"
+                                                 required="true"
+                                                 rendered="true">
+                                    <f:selectItem itemLabel=" --:-- -- " itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="08:00 AM" itemValue="08:00" />
+                                    <f:selectItem itemLabel="09:00 AM" itemValue="09:00" />
+                                    <f:selectItem itemLabel="10:00 AM" itemValue="10:00" />
+                                </p:selectOneMenu>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               rendered="false"
+                                               value="Dia todo:"
+                                               for="allDay"/>
+                                <h:selectBooleanCheckbox id="allDay"
+                                                         rendered="false"
+                                                         value="#{MBscheduleConsulta.geneScheduling.event.allDay}" />
+                            </p:panelGrid>
+
+                            <p:panelGrid id="itemSearch-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:outputLabel id="itemSearch-Label"
+                                               class="outputLabel-SIHV colorPri"
+                                               value="Dados do cliente"
+                                               rendered="#{MBscheduleConsulta.viewClientSearchOptions.viewVariableBoolean}"
+                                               for="itemSearch-Input" />
+                                <p:selectOneMenu id="itemSearch-Input"
+                                                 value="#{MBscheduleConsulta.variablesSearch.itemSearch}"
+                                                 required="#{MBscheduleConsulta.viewClientSearchOptions.viewVariableBoolean}"
+                                                 rendered="#{MBscheduleConsulta.viewClientSearchOptions.viewVariableBoolean}">
+                                    <f:selectItem itemLabel="Selecione" itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="CPF" itemValue="CPF" />
+                                    <f:selectItem itemLabel="CNPJ" itemValue="CNPJ" />
+                                    <f:selectItem itemLabel="RG" itemValue="RG" />
+                                    <f:selectItem itemLabel="RGHV" itemValue="RGHV" />
+                                    <p:ajax update="eventDialog2-Panel, eventDialog3-Panel" 
+                                            listener="#{MBscheduleConsulta.methodViewFieldsCPFandRGorRGHV()}" />
+                                </p:selectOneMenu>
+
+                                <p:outputLabel id="itemSearch2-Label"
+                                               class="outputLabel-SIHV colorPri"
+                                               value="Agendar outro animal:"
+                                               rendered="#{MBscheduleConsulta.viewScheduleOtherClient.viewVariableBoolean}"
+                                               for="itemSearch2-Input" />
+                                <p:selectOneButton id="itemSearch2-Input"
+                                                   value="#{MBscheduleConsulta.viewClientSearchOptions.viewVariableBoolean}"
+                                                   required="#{MBscheduleConsulta.viewScheduleOtherClient.viewVariableBoolean}"
+                                                   rendered="#{MBscheduleConsulta.viewScheduleOtherClient.viewVariableBoolean}">
+                                    <f:selectItem itemLabel="Não" itemValue="false" />
+                                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                                    <p:ajax update="itemSearch-PanelGrid"
+                                            listener="#{MBscheduleConsulta.toggleFields()}"/>
+                                </p:selectOneButton>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+
+                    <p:panel id="eventDialog2-Panel"
+                             style="margin: -11px -15px -17px -15px;
+                             padding: 0px 0px 0px 0px;
+                             background: none;
+                             border: none;" >
+                        <div class="ui-g ui-fluid" >
+                            <div class="ui-g-12 ui-md-12">
+                                <div class="ui-inputgroup">
+                                    <p:inputMask
+                                        id="searchID-Input"
+                                        mask="#{MBscheduleConsulta.variablesSearch.searchMask}"
+                                        value="#{MBscheduleConsulta.variablesSearch.textSearch}" 
+                                        placeholder="#{MBscheduleConsulta.variablesSearch.placeholderField}"
+                                        maxlength="#{MBscheduleConsulta.variablesSearch.maxLength}"
+                                        rendered="#{MBscheduleConsulta.viewFieldsCPForRG.viewVariableBoolean}"
+                                        required="#{MBscheduleConsulta.viewFieldsCPForRG.viewVariableBoolean}" 
+                                        requiredMessage="Informe o valor de pesquisa!"/>
+                                    <p:commandButton id="searchID-Button"
+                                                     icon="fa fa-search" 
+                                                     styleClass="white-button"
+                                                     update="messages,eventDialog3-Panel"
+                                                     actionListener="#{MBscheduleConsulta.listingOfAnimalsAndProprietary()}"
+                                                     rendered="#{MBscheduleConsulta.viewFieldsCPForRG.viewVariableBoolean}" />  
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ui-g ui-fluid" style="margin-top: -14px;">
+                            <div class="ui-g-3 ui-md-3 ui-lg-3">
+                                <p:inputMask
+                                    id="rghvP1-Input"
+                                    mask="9999P"
+                                    value="#{MBscheduleConsulta.num}" 
+                                    title="Exemplo: 2016P"
+                                    placeholder="2016P"
+                                    rendered="#{MBscheduleConsulta.viewFieldsRGHVanimal.viewVariableBoolean}"
+                                    required="#{MBscheduleConsulta.viewFieldsRGHVanimal.viewVariableBoolean}" 
+                                    requiredMessage="Informe o ano de cadastro da RGHV!"/>
+                            </div>
+                            <div class="ui-g-9 ui-md-9 ui-lg-9">
+                                <div class="ui-inputgroup">
+                                    <p:inputText
+                                        id="search2ID-Input"
+                                        value="#{MBscheduleConsulta.variablesSearch.textSearch}"
+                                        maxlength="100"
+                                        placeholder="0056"
+                                        rendered="#{MBscheduleConsulta.viewFieldsRGHVanimal.viewVariableBoolean}"
+                                        required="#{MBscheduleConsulta.viewFieldsRGHVanimal.viewVariableBoolean}" 
+                                        requiredMessage="Informe o valor de pesquisa!"/>
+                                    <p:commandButton id="search2ID-Button"
+                                                     icon="fa fa-search" 
+                                                     styleClass="white-button"
+                                                     update="messages,eventDialog3-Panel"
+                                                     actionListener="#{MBscheduleConsulta.listingOfAnimalsAndProprietary()}"
+                                                     rendered="#{MBscheduleConsulta.viewFieldsRGHVanimal.viewVariableBoolean}" />  
+                                </div>
+                            </div>
+                        </div>
+                    </p:panel>
+
+                    <p:panel id="eventDialog3-Panel"
+                             style="margin: -11px -15px -17px -15px;
+                             padding: 0px 0px 0px 0px;
+                             background: none;
+                             border: none;" >
+                        <div class="ui-fluid">
+                            <p:panelGrid id="selectAnimal-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Nome do proprietário:"
+                                               rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}" />
+                                <p:outputLabel id="proprietaryName2-input"
+                                               value="#{MBscheduleConsulta.proprietaryName}"
+                                               rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}" />
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Telefone do proprietário:"
+                                               rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}" />
+                                <p:outputLabel id="proprietaryTelephone-input"
+                                               value="#{MBscheduleConsulta.lists.listPhones}"
+                                               rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}" />
+
+
+                                <p:outputLabel id="selectAnimal-Label"
+                                               class="outputLabel-SIHV colorPri"
+                                               value="Selecione o animal:"
+                                               rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}"
+                                               for="selectAnimal-Input" />
+                                <p:selectOneMenu id="selectAnimal-Input"
+                                                 value="#{MBscheduleConsulta.animalSelect}"
+                                                 converter="animalConverter"
+                                                 required="false"
+                                                 rendered="#{MBscheduleConsulta.viewFieldsAnimalSetect.viewVariableBoolean}">
+                                    <f:selectItem itemLabel=" --- " itemValue="" noSelectionOption="true"/>
+                                    <f:selectItems value="#{MBscheduleConsulta.lists.listAnimal}" var="animal"
+                                                   itemLabel="#{animal.rghv} - #{animal.nomeAnimal}" itemValue="#{animal}" />
+                                </p:selectOneMenu>
+                            </p:panelGrid>
+
+                            <p:panelGrid id="newSchedule-panelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Nome do proprietário:"
+                                               for="proprietaryName-input"
+                                               rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}" />
+                                <p:inputText id="proprietaryName-input"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryName}"
+                                             placeholder="Nome do proprietário"
+                                             required="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}"
+                                             rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}" />
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Nome do animal:"
+                                               for="animalName-input"
+                                               rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}" />
+                                <p:inputText id="animalName-input"
+                                             value="#{MBscheduleConsulta.geneScheduling.event.title}"
+                                             placeholder="Nome do animal"
+                                             required="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}"
+                                             rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}"/>
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Telefone:"
+                                               for="proprietaryPhones-input" 
+                                               rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}" />
+                                <p:inputText id="proprietaryPhones-input"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryPhones}"
+                                             required="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}"
+                                             rendered="#{MBscheduleConsulta.viewFieldsNewClient.viewVariableBoolean}" />
+                            </p:panelGrid>
+
+                            <p:panelGrid id="scheduleButtons-panelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:commandButton id="cancelButton"
+                                                 value="Cancelar"
+                                                 icon="fa fa-calendar-times"
+                                                 actionListener="#{MBscheduleConsulta.cancelEvent}"
+                                                 update="messages,itemSearch-PanelGrid"
+                                                 oncomplete="PF('myschedule').update();PF('eventDialog').hide();"
+                                                 rendered="#{MBscheduleConsulta.viewCancelButton}"/>
+
+                                <p:commandButton id="addButton1"
+                                                 value="#{MBscheduleConsulta.textButtonSchedule}"
+                                                 icon="fa fa-calendar-check"
+                                                 actionListener="#{MBscheduleConsulta.addEvent}"
+                                                 rendered="#{!MBscheduleConsulta.viewChangeAddButton.viewVariableBoolean}"
+                                                 update="messages,eventDialog1-Panel,eventDialog2-Panel,eventDialog3-Panel"
+                                                 oncomplete="PF('myschedule').update();PF('eventDialog').hide();" />
+
+                                <p:splitButton id="addButton2"
+                                               value="Atualizar"
+                                               icon="fa fa-calendar-check"
+                                               actionListener="#{MBscheduleConsulta.addEvent}"
+                                               rendered="#{MBscheduleConsulta.viewChangeAddButton.viewVariableBoolean}"
+                                               update="messages,eventDialog1-Panel,eventDialog2-Panel,eventDialog3-Panel"
+                                               oncomplete="PF('myschedule').update();PF('eventDialog').hide();">
+                                    <p:menuitem value="Cadastrar cliente"
+                                                disabled="true"
+                                                outcome="/index.xhtml"
+                                                icon="fa fa-save" />
+                                </p:splitButton>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </p:dialog> 
+
+            </h:form>
+            <div  style="height: 198px;" />
+        </ui:define>
+    </ui:composition>
+
+</html>

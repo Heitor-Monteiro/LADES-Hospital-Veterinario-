@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 22/07/2018 11:29:26 by Hibernate Tools 4.3.1
+// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -42,7 +42,7 @@ public class Animais  implements java.io.Serializable {
      private String categoriaAnimal;
      private boolean obitoAnimal;
      private Date cadDataHora;
-     private Set consultas = new HashSet(0);
+     private Set schedulings = new HashSet(0);
 
     public Animais() {
     }
@@ -61,7 +61,7 @@ public class Animais  implements java.io.Serializable {
         this.obitoAnimal = obitoAnimal;
         this.cadDataHora = cadDataHora;
     }
-    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String rghv, short rghvNum, String categoriaAnimal, boolean obitoAnimal, Date cadDataHora, Set consultas) {
+    public Animais(AnimaisId id, Cliente cliente, String especie, String nomeAnimal, String raca, String pelagem, String sexoAnimal, String idadeAnimal, String rghv, short rghvNum, String categoriaAnimal, boolean obitoAnimal, Date cadDataHora, Set schedulings) {
        this.id = id;
        this.cliente = cliente;
        this.especie = especie;
@@ -75,7 +75,7 @@ public class Animais  implements java.io.Serializable {
        this.categoriaAnimal = categoriaAnimal;
        this.obitoAnimal = obitoAnimal;
        this.cadDataHora = cadDataHora;
-       this.consultas = consultas;
+       this.schedulings = schedulings;
     }
    
      @EmbeddedId
@@ -83,8 +83,8 @@ public class Animais  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkAnimal", column=@Column(name="PK_animal", nullable=false) ), 
-        @AttributeOverride(name="clienteFkCliente", column=@Column(name="cliente_FK_cliente", nullable=false) ), 
-        @AttributeOverride(name="clienteFkPessoa", column=@Column(name="cliente_FK_pessoa", nullable=false) ) } )
+        @AttributeOverride(name="fkCliente", column=@Column(name="FK_cliente", nullable=false) ), 
+        @AttributeOverride(name="fkPessoa", column=@Column(name="FK_pessoa", nullable=false) ) } )
     public AnimaisId getId() {
         return this.id;
     }
@@ -95,8 +95,8 @@ public class Animais  implements java.io.Serializable {
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="cliente_FK_cliente", referencedColumnName="PK_cliente", nullable=false, insertable=false, updatable=false), 
-        @JoinColumn(name="cliente_FK_pessoa", referencedColumnName="FK_pessoa", nullable=false, insertable=false, updatable=false) } )
+        @JoinColumn(name="FK_cliente", referencedColumnName="PK_cliente", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="FK_pessoa", referencedColumnName="FK_pessoa", nullable=false, insertable=false, updatable=false) } )
     public Cliente getCliente() {
         return this.cliente;
     }
@@ -216,12 +216,12 @@ public class Animais  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="animais")
-    public Set getConsultas() {
-        return this.consultas;
+    public Set getSchedulings() {
+        return this.schedulings;
     }
     
-    public void setConsultas(Set consultas) {
-        this.consultas = consultas;
+    public void setSchedulings(Set schedulings) {
+        this.schedulings = schedulings;
     }
 
 

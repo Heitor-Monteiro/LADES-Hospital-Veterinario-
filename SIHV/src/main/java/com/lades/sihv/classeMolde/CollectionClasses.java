@@ -11,6 +11,7 @@ import com.lades.sihv.model.Pessoa;
 import com.lades.sihv.model.User;
 import com.lades.sihv.model.Fisica;
 import com.lades.sihv.model.Juridica;
+import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.controller.ListClasses;
 import java.io.Serializable;
 
@@ -20,12 +21,14 @@ import java.io.Serializable;
  */
 public class CollectionClasses implements Serializable {
 
-    private Pessoa residente;
+    private Scheduling schedule;
     private Pessoa proprietario;
+    private Animais animais;
+    private Pessoa residente;
     private Fisica pessoaFisica;
     private Juridica pessoaJuridica;
     private User user;
-    private Animais animais;
+    
     private Consulta consulta;
     private ListClasses examList;
     private FormsExames formsExams;
@@ -121,4 +124,11 @@ public class CollectionClasses implements Serializable {
         return formsExams;
     }
 
+    public Scheduling getSchedule() {
+        return schedule;
+    }
+
+    public void setSchedule(Scheduling schedule) {
+        this.schedule = schedule;
+    }
 }

@@ -41,25 +41,27 @@ Contributor(s):
 -->
 <hibernate-reverse-engineering>
   <schema-selection match-catalog="bd_sihv"/>
-  <table-filter match-name="animais"/>
-  <table-filter match-name="sisMuscEsque"/>
-  <table-filter match-name="sisRespCardio"/>
-  <table-filter match-name="especie"/>
-  <table-filter match-name="raca"/>
-  <table-filter match-name="user"/>
-  <table-filter match-name="sisUrinarioMamaria"/>
   <table-filter match-name="anamnese"/>
   <table-filter match-name="telefone"/>
-  <table-filter match-name="sisNeurologico"/>
   <table-filter match-name="fisica"/>
-  <table-filter match-name="sisTegumentar"/>
-  <table-filter match-name="exameFisico"/>
-  <table-filter match-name="sisOftalmico"/>
-  <table-filter match-name="juridica"/>
   <table-filter match-name="consulta"/>
-  <table-filter match-name="pessoa"/>
-  <table-filter match-name="pelagem"/>
-  <table-filter match-name="sisDigestorio"/>
-  <table-filter match-name="cliente"/>
   <table-filter match-name="exameImage"/>
+  <table-filter match-name="sisOftalmico"/>
+  <table-filter match-name="sisMuscEsque"/>
+  <table-filter match-name="juridica"/>
+  <table-filter match-name="user"/>
+  <table-filter match-name="races"/>
+  <table-filter match-name="sisDigestorio"/>
+  <table-filter match-name="sisTegumentar"/>
+  <table-filter match-name="species"/>
+  <table-filter match-name="animais"/>
+  <table-filter match-name="pessoa"/>
+  <table-filter match-name="sisUrinarioMamaria"/>
+  <table-filter match-name="sisRespCardio"/>
+  <table-filter match-name="exameFisico"/>
+  <table-filter match-name="cliente"/>
+  <table-filter match-name="scheduling"/>
+  <table-filter match-name="animalPhoto"/>
+  <table-filter match-name="temporaryClientData"/>
+  <table-filter match-name="sisNeurologico"/>
 </hibernate-reverse-engineering>

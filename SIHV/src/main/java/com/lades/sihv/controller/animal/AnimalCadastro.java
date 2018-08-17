@@ -24,12 +24,12 @@ public class AnimalCadastro extends AbstractBean {
         try {
             String clientePK = getPkCliente();
             AnimaisId animalID = new AnimaisId();
-            animalID.setClienteFkPessoa(pessoa.getPkPessoa());
-            animalID.setClienteFkCliente(Integer.parseInt(clientePK));
+            animalID.setFkPessoa(pessoa.getPkPessoa());
+            animalID.setFkCliente(Integer.parseInt(clientePK));
             animal.setId(animalID);
             animal.setCadDataHora(getObjData());
             animal.setObitoAnimal(false);
-            ObjAnimalListaPelagem().verificaNovaPelagem(animal);
+//            ObjAnimalListaPelagem().verificaNovaPelagem(animal);
             getDaoGenerico().save(animal);
             getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
             getObjMessage().info("Cadastro efetuado!", "Animal cadastrado com sucesso.");

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Scheduling" table="scheduling" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkSchedule" type="java.lang.Integer">
+            <column name="Pk_schedule" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="animais" class="com.lades.sihv.model.Animais" fetch="select">
+            <column name="FK_animal" />
+            <column name="FK_cliente" />
+            <column name="FK_pessoa" />
+        </many-to-one>
+        <property name="typeService" type="string">
+            <column name="typeService" length="21" not-null="true" />
+        </property>
+        <property name="statusService" type="string">
+            <column name="statusService" length="37" not-null="true" />
+        </property>
+        <property name="registerClient" type="string">
+            <column name="registerClient" length="15" not-null="true" />
+        </property>
+        <property name="schedulingDate" type="timestamp">
+            <column name="schedulingDate" length="19" not-null="true" />
+        </property>
+        <set name="consultas" table="consulta" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_schedule" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Consulta" />
+        </set>
+        <set name="temporaryClientDatas" table="temporaryClientData" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_schedule" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.TemporaryClientData" />
+        </set>
+    </class>
+</hibernate-mapping>

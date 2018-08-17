@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 24/07/2018 09:39:50 by Hibernate Tools 4.3.1
+// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -31,7 +31,7 @@ public class Consulta  implements java.io.Serializable {
 
 
      private Integer pkConsulta;
-     private Animais animais;
+     private Scheduling scheduling;
      private User user;
      private String sistemasAfetados;
      private String laudo;
@@ -56,16 +56,16 @@ public class Consulta  implements java.io.Serializable {
     }
 
 	
-    public Consulta(Animais animais, User user, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, Date dataConsulta) {
-        this.animais = animais;
+    public Consulta(Scheduling scheduling, User user, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, Date dataConsulta) {
+        this.scheduling = scheduling;
         this.user = user;
         this.valorConsulta = valorConsulta;
         this.diagPresuntivo = diagPresuntivo;
         this.diagDiferencial = diagDiferencial;
         this.dataConsulta = dataConsulta;
     }
-    public Consulta(Animais animais, User user, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, String diagDefinitivo, Date dataConsulta, Set sisDigestorios, Set sisUrinarioMamarias, Set exameImages, Set sisMuscEsques, Set exameFisicos, Set sisRespCardios, Set sisTegumentars, Set anamneses, Set sisOftalmicos, Set sisNeurologicos) {
-       this.animais = animais;
+    public Consulta(Scheduling scheduling, User user, String sistemasAfetados, String laudo, String laudoConfirme, BigDecimal valorConsulta, String diagPresuntivo, String diagDiferencial, String diagDefinitivo, Date dataConsulta, Set sisDigestorios, Set sisUrinarioMamarias, Set exameImages, Set sisMuscEsques, Set exameFisicos, Set sisRespCardios, Set sisTegumentars, Set anamneses, Set sisOftalmicos, Set sisNeurologicos) {
+       this.scheduling = scheduling;
        this.user = user;
        this.sistemasAfetados = sistemasAfetados;
        this.laudo = laudo;
@@ -100,22 +100,19 @@ public class Consulta  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( { 
-        @JoinColumn(name="animais_FK_animal", referencedColumnName="PK_animal", nullable=false), 
-        @JoinColumn(name="animais_cliente_FK_cliente", referencedColumnName="cliente_FK_cliente", nullable=false), 
-        @JoinColumn(name="animais_cliente_FK_pessoa", referencedColumnName="cliente_FK_pessoa", nullable=false) } )
-    public Animais getAnimais() {
-        return this.animais;
+    @JoinColumn(name="FK_schedule", nullable=false)
+    public Scheduling getScheduling() {
+        return this.scheduling;
     }
     
-    public void setAnimais(Animais animais) {
-        this.animais = animais;
+    public void setScheduling(Scheduling scheduling) {
+        this.scheduling = scheduling;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="user_PK_user", referencedColumnName="PK_user", nullable=false), 
-        @JoinColumn(name="user_FK_pessoa", referencedColumnName="FK_pessoa", nullable=false) } )
+        @JoinColumn(name="FK_user", referencedColumnName="PK_user", nullable=false), 
+        @JoinColumn(name="FK_pessoa", referencedColumnName="FK_pessoa", nullable=false) } )
     public User getUser() {
         return this.user;
     }

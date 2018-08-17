@@ -1,21 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 24/07/2018 09:39:52 by Hibernate Tools 4.3.1 -->
+<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Consulta" table="consulta" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkConsulta" type="java.lang.Integer">
             <column name="PK_consulta" />
             <generator class="identity" />
         </id>
-        <many-to-one name="animais" class="com.lades.sihv.model.Animais" fetch="select">
-            <column name="animais_FK_animal" not-null="true" />
-            <column name="animais_cliente_FK_cliente" not-null="true" />
-            <column name="animais_cliente_FK_pessoa" not-null="true" />
+        <many-to-one name="scheduling" class="com.lades.sihv.model.Scheduling" fetch="select">
+            <column name="FK_schedule" not-null="true" />
         </many-to-one>
         <many-to-one name="user" class="com.lades.sihv.model.User" fetch="select">
-            <column name="user_PK_user" not-null="true" />
-            <column name="user_FK_pessoa" not-null="true" />
+            <column name="FK_user" not-null="true" />
+            <column name="FK_pessoa" not-null="true" />
         </many-to-one>
         <property name="sistemasAfetados" type="string">
             <column name="sistemasAfetados" length="500" />

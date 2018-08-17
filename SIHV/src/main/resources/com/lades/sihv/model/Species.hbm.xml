@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Species" table="species" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkSpecies" type="java.lang.Integer">
+            <column name="PK_species" />
+            <generator class="identity" />
+        </id>
+        <property name="nameSpecies" type="string">
+            <column name="nameSpecies" length="100" not-null="true" />
+        </property>
+        <property name="dataSpeciesRegister" type="timestamp">
+            <column name="dataSpeciesRegister" length="19" not-null="true" />
+        </property>
+        <set name="raceses" table="races" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FK_species" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Races" />
+        </set>
+    </class>
+</hibernate-mapping>

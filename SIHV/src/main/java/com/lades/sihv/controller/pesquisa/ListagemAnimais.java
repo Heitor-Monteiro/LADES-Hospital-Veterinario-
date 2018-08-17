@@ -62,8 +62,8 @@ public class ListagemAnimais extends AbstractBean {
             AnimaisId idAnimal = new AnimaisId();
 
             idAnimal.setPkAnimal((int) obj[0]);
-            idAnimal.setClienteFkCliente((int) obj[1]);
-            idAnimal.setClienteFkPessoa((int) obj[2]);
+            idAnimal.setFkCliente((int) obj[1]);
+            idAnimal.setFkPessoa((int) obj[2]);
 
             newAnimal.getAnimais().setId(idAnimal);
             newAnimal.getAnimais().setNomeAnimal((String) obj[3]);

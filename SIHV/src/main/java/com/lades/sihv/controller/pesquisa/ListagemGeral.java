@@ -148,7 +148,7 @@ public class ListagemGeral extends AbstractBean {
                     CollectionClasses objCollection = new CollectionClasses();
                     objCollection.setAnimais(animal);
 
-                    List<?> listProprietario = (List<?>) getDaoGenerico().list("select p.nome, p.cpfCnpj from Pessoa p where p.pkPessoa = " + animal.getId().getClienteFkPessoa());
+                    List<?> listProprietario = (List<?>) getDaoGenerico().list("select p.nome, p.cpfCnpj from Pessoa p where p.pkPessoa = " + animal.getId().getFkPessoa());
                     for (Object[] obj : (List<Object[]>) listProprietario) {
                         objCollection.getProprietario().setNome(""+obj[0]);
                         objCollection.getProprietario().setCpfCnpj(""+obj[1]);

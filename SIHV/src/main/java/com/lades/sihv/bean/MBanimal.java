@@ -26,7 +26,7 @@ public class MBanimal extends AbstractBean {
     public void prepararAnimalPequeno() {
         getAnimal().setCategoriaAnimal("P");
         gerarRghvDeAnimal();
-        animalListaPelagem();
+//        animalListaPelagem();
     }
 
     private void gerarRghvDeAnimal() {

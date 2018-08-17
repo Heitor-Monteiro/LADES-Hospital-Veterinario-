@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,16 +13,16 @@ public class AnimaisId  implements java.io.Serializable {
 
 
      private int pkAnimal;
-     private int clienteFkCliente;
-     private int clienteFkPessoa;
+     private int fkCliente;
+     private int fkPessoa;
 
     public AnimaisId() {
     }
 
-    public AnimaisId(int pkAnimal, int clienteFkCliente, int clienteFkPessoa) {
+    public AnimaisId(int pkAnimal, int fkCliente, int fkPessoa) {
        this.pkAnimal = pkAnimal;
-       this.clienteFkCliente = clienteFkCliente;
-       this.clienteFkPessoa = clienteFkPessoa;
+       this.fkCliente = fkCliente;
+       this.fkPessoa = fkPessoa;
     }
    
 
@@ -37,23 +37,23 @@ public class AnimaisId  implements java.io.Serializable {
     }
 
 
-    @Column(name="cliente_FK_cliente", nullable=false)
-    public int getClienteFkCliente() {
-        return this.clienteFkCliente;
+    @Column(name="FK_cliente", nullable=false)
+    public int getFkCliente() {
+        return this.fkCliente;
     }
     
-    public void setClienteFkCliente(int clienteFkCliente) {
-        this.clienteFkCliente = clienteFkCliente;
+    public void setFkCliente(int fkCliente) {
+        this.fkCliente = fkCliente;
     }
 
 
-    @Column(name="cliente_FK_pessoa", nullable=false)
-    public int getClienteFkPessoa() {
-        return this.clienteFkPessoa;
+    @Column(name="FK_pessoa", nullable=false)
+    public int getFkPessoa() {
+        return this.fkPessoa;
     }
     
-    public void setClienteFkPessoa(int clienteFkPessoa) {
-        this.clienteFkPessoa = clienteFkPessoa;
+    public void setFkPessoa(int fkPessoa) {
+        this.fkPessoa = fkPessoa;
     }
 
 
@@ -64,16 +64,16 @@ public class AnimaisId  implements java.io.Serializable {
 		 AnimaisId castOther = ( AnimaisId ) other; 
          
 		 return (this.getPkAnimal()==castOther.getPkAnimal())
- && (this.getClienteFkCliente()==castOther.getClienteFkCliente())
- && (this.getClienteFkPessoa()==castOther.getClienteFkPessoa());
+ && (this.getFkCliente()==castOther.getFkCliente())
+ && (this.getFkPessoa()==castOther.getFkPessoa());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkAnimal();
-         result = 37 * result + this.getClienteFkCliente();
-         result = 37 * result + this.getClienteFkPessoa();
+         result = 37 * result + this.getFkCliente();
+         result = 37 * result + this.getFkPessoa();
          return result;
    }   
 

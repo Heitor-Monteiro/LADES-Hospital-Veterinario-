@@ -7,7 +7,7 @@ package com.lades.sihv.controller.animal;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Pelagem;
+//import com.lades.sihv.model.Pelagem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +37,9 @@ public class AnimalListaPelagem extends AbstractBean {
             }
 
             if (newPelagem) {
-                Pelagem novaPelagem = new Pelagem();
-                novaPelagem.setNomePelagem(animal.getPelagem());
-                getDaoGenerico().save(novaPelagem);
+//                Pelagem novaPelagem = new Pelagem();
+//                novaPelagem.setNomePelagem(animal.getPelagem());
+//                getDaoGenerico().save(novaPelagem);
             }
         }
     }
