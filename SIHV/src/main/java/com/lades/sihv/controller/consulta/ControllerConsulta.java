@@ -6,7 +6,6 @@
 package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.model.Animais;
 import com.lades.sihv.model.Consulta;
 import com.lades.sihv.model.User;
 import com.lades.sihv.controller.ListRenderedFields;
@@ -22,8 +21,13 @@ public class ControllerConsulta extends AbstractBean {
 
     private Consulta consulta;
     private int codNewConsulta = 0;
-    private final ListRenderedFields listViewFields = new ListRenderedFields(3);
+    private final ListRenderedFields listViewFields;
 
+    public ControllerConsulta() {
+        listViewFields = new ListRenderedFields(3);
+        listViewFields.startIndexListViewFields();
+    }
+    
     private void prepareConsulta(Scheduling scheduling, User medicoVET) {
         getConsulta().setDataConsulta(getObjData());
 //          consulta.setSistemasAfetados(sistemasAfetados());
