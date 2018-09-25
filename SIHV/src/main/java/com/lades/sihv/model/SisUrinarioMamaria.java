@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
 
 
      private SisUrinarioMamariaId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String ingestHidrica;
      private String ingestHidricaEvolu;
      private String estadoUrina;
@@ -44,9 +44,9 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
 	
-    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String estadoUrina, String urina, String prenhez, String secreVagiPeni, String castrado, String sistemaAfetado) {
+    public SisUrinarioMamaria(SisUrinarioMamariaId id, VetConsultation vetConsultation, String ingestHidrica, String estadoUrina, String urina, String prenhez, String secreVagiPeni, String castrado, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.ingestHidrica = ingestHidrica;
         this.estadoUrina = estadoUrina;
         this.urina = urina;
@@ -55,9 +55,9 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
         this.castrado = castrado;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisUrinarioMamaria(SisUrinarioMamariaId id, Consulta consulta, String ingestHidrica, String ingestHidricaEvolu, String estadoUrina, String urina, String urinaAspecto, String urinaEvolu, String ultimoCio, String prenhez, String prenhezDescricao, String ultimoParto, String secreVagiPeni, String secreVagiPeniTipo, String secreVagiPeniEvolu, String castrado, String sistemaAfetado) {
+    public SisUrinarioMamaria(SisUrinarioMamariaId id, VetConsultation vetConsultation, String ingestHidrica, String ingestHidricaEvolu, String estadoUrina, String urina, String urinaAspecto, String urinaEvolu, String ultimoCio, String prenhez, String prenhezDescricao, String ultimoParto, String secreVagiPeni, String secreVagiPeniTipo, String secreVagiPeniEvolu, String castrado, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.ingestHidrica = ingestHidrica;
        this.ingestHidricaEvolu = ingestHidricaEvolu;
        this.estadoUrina = estadoUrina;
@@ -80,7 +80,7 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisUrinarioMamaria", column=@Column(name="PK_sisUrinarioMamaria", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisUrinarioMamariaId getId() {
         return this.id;
     }
@@ -90,13 +90,13 @@ public class SisUrinarioMamaria  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

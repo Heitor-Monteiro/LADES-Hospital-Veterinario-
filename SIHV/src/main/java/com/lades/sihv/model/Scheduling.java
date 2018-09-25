@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,9 +12,9 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -30,32 +30,29 @@ public class Scheduling  implements java.io.Serializable {
 
 
      private Integer pkSchedule;
-     private Animais animais;
+     private OwnersHasAnimals ownersHasAnimals;
      private String typeService;
      private String statusService;
-     private String registerClient;
      private Date schedulingDate;
-     private Set consultas = new HashSet(0);
-     private Set temporaryClientDatas = new HashSet(0);
+     private Set vetConsultations = new HashSet(0);
+     private NewAnimalAndOwner newAnimalAndOwner;
 
     public Scheduling() {
     }
 
 	
-    public Scheduling(String typeService, String statusService, String registerClient, Date schedulingDate) {
+    public Scheduling(String typeService, String statusService, Date schedulingDate) {
         this.typeService = typeService;
         this.statusService = statusService;
-        this.registerClient = registerClient;
         this.schedulingDate = schedulingDate;
     }
-    public Scheduling(Animais animais, String typeService, String statusService, String registerClient, Date schedulingDate, Set consultas, Set temporaryClientDatas) {
-       this.animais = animais;
+    public Scheduling(OwnersHasAnimals ownersHasAnimals, String typeService, String statusService, Date schedulingDate, Set vetConsultations, NewAnimalAndOwner newAnimalAndOwner) {
+       this.ownersHasAnimals = ownersHasAnimals;
        this.typeService = typeService;
        this.statusService = statusService;
-       this.registerClient = registerClient;
        this.schedulingDate = schedulingDate;
-       this.consultas = consultas;
-       this.temporaryClientDatas = temporaryClientDatas;
+       this.vetConsultations = vetConsultations;
+       this.newAnimalAndOwner = newAnimalAndOwner;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -71,16 +68,13 @@ public class Scheduling  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumns( { 
-        @JoinColumn(name="FK_animal", referencedColumnName="PK_animal"), 
-        @JoinColumn(name="FK_cliente", referencedColumnName="FK_cliente"), 
-        @JoinColumn(name="FK_pessoa", referencedColumnName="FK_pessoa") } )
-    public Animais getAnimais() {
-        return this.animais;
+    @JoinColumn(name="ownersHasAnimals_PK_ownersHasAnimals")
+    public OwnersHasAnimals getOwnersHasAnimals() {
+        return this.ownersHasAnimals;
     }
     
-    public void setAnimais(Animais animais) {
-        this.animais = animais;
+    public void setOwnersHasAnimals(OwnersHasAnimals ownersHasAnimals) {
+        this.ownersHasAnimals = ownersHasAnimals;
     }
 
     
@@ -103,16 +97,6 @@ public class Scheduling  implements java.io.Serializable {
         this.statusService = statusService;
     }
 
-    
-    @Column(name="registerClient", nullable=false, length=15)
-    public String getRegisterClient() {
-        return this.registerClient;
-    }
-    
-    public void setRegisterClient(String registerClient) {
-        this.registerClient = registerClient;
-    }
-
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name="schedulingDate", nullable=false, length=19)
     public Date getSchedulingDate() {
@@ -124,21 +108,21 @@ public class Scheduling  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="scheduling")
-    public Set getConsultas() {
-        return this.consultas;
+    public Set getVetConsultations() {
+        return this.vetConsultations;
     }
     
-    public void setConsultas(Set consultas) {
-        this.consultas = consultas;
+    public void setVetConsultations(Set vetConsultations) {
+        this.vetConsultations = vetConsultations;
     }
 
-@OneToMany(fetch=FetchType.LAZY, mappedBy="scheduling")
-    public Set getTemporaryClientDatas() {
-        return this.temporaryClientDatas;
+@OneToOne(fetch=FetchType.LAZY, mappedBy="scheduling")
+    public NewAnimalAndOwner getNewAnimalAndOwner() {
+        return this.newAnimalAndOwner;
     }
     
-    public void setTemporaryClientDatas(Set temporaryClientDatas) {
-        this.temporaryClientDatas = temporaryClientDatas;
+    public void setNewAnimalAndOwner(NewAnimalAndOwner newAnimalAndOwner) {
+        this.newAnimalAndOwner = newAnimalAndOwner;
     }
 
 

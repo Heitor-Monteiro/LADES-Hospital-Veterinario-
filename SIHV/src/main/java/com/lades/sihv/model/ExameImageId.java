@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,14 +13,14 @@ public class ExameImageId  implements java.io.Serializable {
 
 
      private int pkExameImage;
-     private int consultaFkConsulta;
+     private int vetConsultationPkVetConsultation;
 
     public ExameImageId() {
     }
 
-    public ExameImageId(int pkExameImage, int consultaFkConsulta) {
+    public ExameImageId(int pkExameImage, int vetConsultationPkVetConsultation) {
        this.pkExameImage = pkExameImage;
-       this.consultaFkConsulta = consultaFkConsulta;
+       this.vetConsultationPkVetConsultation = vetConsultationPkVetConsultation;
     }
    
 
@@ -35,13 +35,13 @@ public class ExameImageId  implements java.io.Serializable {
     }
 
 
-    @Column(name="consulta_FK_consulta", nullable=false)
-    public int getConsultaFkConsulta() {
-        return this.consultaFkConsulta;
+    @Column(name="vetConsultation_PK_vetConsultation", nullable=false)
+    public int getVetConsultationPkVetConsultation() {
+        return this.vetConsultationPkVetConsultation;
     }
     
-    public void setConsultaFkConsulta(int consultaFkConsulta) {
-        this.consultaFkConsulta = consultaFkConsulta;
+    public void setVetConsultationPkVetConsultation(int vetConsultationPkVetConsultation) {
+        this.vetConsultationPkVetConsultation = vetConsultationPkVetConsultation;
     }
 
 
@@ -52,14 +52,14 @@ public class ExameImageId  implements java.io.Serializable {
 		 ExameImageId castOther = ( ExameImageId ) other; 
          
 		 return (this.getPkExameImage()==castOther.getPkExameImage())
- && (this.getConsultaFkConsulta()==castOther.getConsultaFkConsulta());
+ && (this.getVetConsultationPkVetConsultation()==castOther.getVetConsultationPkVetConsultation());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkExameImage();
-         result = 37 * result + this.getConsultaFkConsulta();
+         result = 37 * result + this.getVetConsultationPkVetConsultation();
          return result;
    }   
 

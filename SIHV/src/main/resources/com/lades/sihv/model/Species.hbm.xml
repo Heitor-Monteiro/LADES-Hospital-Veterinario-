@@ -1,13 +1,20 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Species" table="species" catalog="bd_sihv" optimistic-lock="version">
-        <id name="pkSpecies" type="java.lang.Integer">
-            <column name="PK_species" />
-            <generator class="identity" />
-        </id>
+        <composite-id name="id" class="com.lades.sihv.model.SpeciesId">
+            <key-property name="pkSpecies" type="int">
+                <column name="PK_species" />
+            </key-property>
+            <key-property name="classAnimalPkClassAnimal" type="int">
+                <column name="classAnimal_PK_classAnimal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="classAnimal" class="com.lades.sihv.model.ClassAnimal" update="false" insert="false" fetch="select">
+            <column name="classAnimal_PK_classAnimal" not-null="true" />
+        </many-to-one>
         <property name="nameSpecies" type="string">
             <column name="nameSpecies" length="100" not-null="true" />
         </property>
@@ -16,7 +23,8 @@
         </property>
         <set name="raceses" table="races" inverse="true" lazy="true" fetch="select">
             <key>
-                <column name="FK_species" not-null="true" />
+                <column name="species_PK_species" not-null="true" />
+                <column name="species_classAnimal_PK_classAnimal" not-null="true" />
             </key>
             <one-to-many class="com.lades.sihv.model.Races" />
         </set>

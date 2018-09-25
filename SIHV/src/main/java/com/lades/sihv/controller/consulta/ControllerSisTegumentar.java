@@ -8,7 +8,7 @@ package com.lades.sihv.controller.consulta;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.ListRenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisTegumentar;
 import com.lades.sihv.model.SisTegumentarId;
 
@@ -22,13 +22,13 @@ public class ControllerSisTegumentar extends AbstractBean {
     private final ListRenderedFields listViewFields = new ListRenderedFields(4);
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisTegumentar(Consulta consulta) {
+    private void prepareSisTegumentar(VetConsultation consultation) {
         SisTegumentarId sisTegumentarId = new SisTegumentarId();
-        sisTegumentarId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisTegumentarId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisTegumentar.setId(sisTegumentarId);
     }
 
-    public void ConfirmeSisTegumentar(Consulta consulta) {
+    public void ConfirmeSisTegumentar(VetConsultation consultation) {
         try {
             if (sisTegumentar.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisTegumentar() ]");
@@ -47,7 +47,7 @@ public class ControllerSisTegumentar extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisTegumentar() ]");
             }
-            prepareSisTegumentar(consulta);
+            prepareSisTegumentar(consultation);
             getDaoGenerico().save(getSisTegumentar());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisTegumentar() ]"

@@ -6,8 +6,6 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.bean.AbstractBean;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -20,7 +18,7 @@ public class TypeClasses extends AbstractBean {
 
     private Object typeClasse;
     
-    public TypeClasses (){}
+    private TypeClasses (){}
     
     public  TypeClasses (Object typeClasse){
         this.typeClasse = typeClasse;

@@ -1,0 +1,530 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title">
+            <i class="fa fa-link">
+                <h:outputText value=" Vincular proprietário e animal"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <f:metadata>
+
+            </f:metadata>
+
+
+            <h:form>
+                <p:growl id="growl" 
+                         sticky="false"
+                         showDetail="true" 
+                         life="15000" />
+
+                <p:wizard showStepStatus="false"
+                          nextLabel="próximo"
+                          backLabel="voltar" >
+
+                    <p:tab id="DadosProprietario"
+                           title="1" >
+                        <p:panel id="searchPerson"
+                                 header="Dados iniciais do proprietário">
+                            <div class="ui-fluid">
+                                <p:panelGrid id="searchOwnerData"
+                                             columns="4"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+
+
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Pessoa física/jurídica:"
+                                                   rendered="true"
+                                                   for="typePerson-Input" />
+                                    <p:selectOneButton id="typePerson-Input"
+                                                       rendered="true"
+                                                       value="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                       required="true"
+                                                       requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
+                                        <f:selectItem itemLabel="CPF/RG" itemValue="true" />
+                                        <f:selectItem itemLabel="CNPJ" itemValue="false" />
+                                        <p:ajax update="searchOwnerData" />
+                                    </p:selectOneButton>
+                                    <p:message for="typePerson-Input"
+                                               rendered="true"/>
+                                    <p:outputLabel value=" "
+                                                   rendered="true"/>
+
+
+
+
+
+                                    <p:outputLabel id="cpf-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="CPF:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                   for="cpf-Input"/>                                
+                                    <p:inputMask id="cpf-Input"
+                                                 mask="999.999.999-99"
+                                                 rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                 value="#{MBlinkOwnerAndAnimal.varPerson.objCpf.cpf}" 
+                                                 autoClear="false"
+                                                 title="Ex.: 999.999.999-99" 
+                                                 required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
+                                                 requiredMessage="Informe o campo CPF!">
+                                        <p:ajax event="keyup"
+                                                update="growl,rg-Input,selectUF1-Input,rg-Opcao"
+                                                listener="#{MBlinkOwnerAndAnimal.verifyPersonDocument()}"
+                                                delay="1000" />
+                                    </p:inputMask>
+                                    <p:selectBooleanButton id="cpf-opcao" 
+                                                           value="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
+                                                           onLabel="Obrigatório" 
+                                                           offLabel="Opcional" 
+                                                           onIcon="ui-icon-check" 
+                                                           offIcon="ui-icon-close"
+                                                           style="width:120px"
+                                                           rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" 
+                                                           disabled="false">
+                                        <p:ajax update="cpf-Input, cpf-Label, rg-Input, rg-Label, rg-Opcao, selectUF1-Label, selectUF1-Input"
+                                                listener="#{MBlinkOwnerAndAnimal.intercalateCpfRg.methodCPF()}"/>
+                                    </p:selectBooleanButton>
+                                    <p:message id="cpf-Messager"
+                                               for="cpf-Input"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+
+
+
+
+
+                                    <p:outputLabel id="selectUF1-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="UF:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                   for="selectUF1-Input" />                             
+                                    <p:selectOneMenu id="selectUF1-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.addressControl.var.selectUF}"
+                                                     converter="federationUnityConverter"
+                                                     disabled="false"
+                                                     rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                     required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}"
+                                                     requiredMessage="selecione uma opção UF!">
+                                        <f:selectItem itemLabel="Selecione o estado" itemValue="" />
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listUF}" var="uf"
+                                                       itemLabel="#{uf.uf} - #{uf.fullName}" itemValue="#{uf}" />
+                                        <p:ajax update="rg-Input, rg-Opcao,city-panelGrid, neighborhood-panelGrid, street-panelGrid"
+                                                listener="#{MBlinkOwnerAndAnimal.addressControl.enableListCitys()}"/>
+                                    </p:selectOneMenu>
+                                    <p:outputLabel value=" "
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+                                    <p:message for="selectUF1-Input"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+
+
+
+
+
+                                    <p:outputLabel id="rg-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="RG:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                   for="rg-Input" />                              
+                                    <p:inputText id="rg-Input"
+                                                 value="#{MBlinkOwnerAndAnimal.varPerson.objRg.rg}" 
+                                                 maxlength="15"
+                                                 disabled="#{MBlinkOwnerAndAnimal.addressControl.var.confirmSelectUF}"
+                                                 rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                 required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}" 
+                                                 requiredMessage="Informe o campo RG!">
+                                        <p:ajax event="keyup"
+                                                update="growl,cpf-Input"
+                                                listener="#{MBlinkOwnerAndAnimal.verifyPersonDocument()}"
+                                                delay="1000" />
+                                    </p:inputText>
+                                    <p:selectBooleanButton id="rg-Opcao" 
+                                                           value="#{MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}" 
+                                                           onLabel="Obrigatório" 
+                                                           offLabel="Opcional" 
+                                                           onIcon="ui-icon-check" 
+                                                           offIcon="ui-icon-close"
+                                                           style="width:120px"
+                                                           rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                           disabled="false">
+                                        <p:ajax update="rg-Input, rg-Label, cpf-Input, cpf-Label, cpf-opcao, selectUF1-Label, selectUF1-Input"
+                                                listener="#{MBlinkOwnerAndAnimal.intercalateCpfRg.methodRG()}"/>
+                                    </p:selectBooleanButton>
+                                    <p:message id="rg-Messager"
+                                               for="rg-Input"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="CNPJ:"
+                                                   rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                   for="cnpj-Input" />                                
+                                    <p:inputMask id="cnpj-Input"
+                                                 mask="99.999.999/9999-99"
+                                                 rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                 value="" 
+                                                 title="Informe o CNPJ da empresa." 
+                                                 required="true" 
+                                                 requiredMessage="Informe o CNPJ!" />
+                                    <p:outputLabel value=""
+                                                   rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+                                    <p:message for="cnpj-Input"
+                                               rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+
+
+                                </p:panelGrid>
+                            </div>
+                        </p:panel>
+                    </p:tab>
+
+
+                    <p:tab id="registerOwner-tab"
+                           title="2"
+                           rendered="true"  >
+                        <div class="ui-fluid">
+                            <p:panel header="Cadastrar proprietário">
+                                <p:panelGrid id="initialDataForms-panelGrid"
+                                             columns="2"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3"
+                                             rendered="#{MBlinkOwnerAndAnimal.viewFormsOwner.viewVariableBoolean}">
+
+                                    <p:outputLabel id="cpf2-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="CPF:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="#{MBlinkOwnerAndAnimal.varPerson.objCpf.cpf}"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+
+                                    <p:outputLabel id="rg2-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="RG:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />   
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="#{MBlinkOwnerAndAnimal.varPerson.objRg.rg}"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" /> 
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="CNPJ:"
+                                                   rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />   
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value=""
+                                                   rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />  
+                                </p:panelGrid>
+
+                                <p:panelGrid id="formPerson-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Nome:"
+                                                   rendered="true"
+                                                   for="namePerson-Input" />
+                                    <p:inputText id="namePerson-Input" 
+                                                 value="#{MBlinkOwnerAndAnimal.varPerson.person.namePerson}" 
+                                                 title="#{label_SIHV.CreatePessoaTitle_nome}"
+                                                 maxlength="100"
+                                                 rendered="true"
+                                                 required="true" 
+                                                 requiredMessage="Informe o campo nome!"/>
+                                    <p:message for="namePerson-Input"
+                                               rendered="true" />
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Sexo:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                   for="gender-Input" />
+                                    <p:selectOneRadio id="gender-Input"
+                                                      columns="2"
+                                                      layout="responsive"
+                                                      value="#{MBlinkOwnerAndAnimal.varPerson.physicalPerson.gender}"
+                                                      rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
+                                                      required="true"
+                                                      requiredMessage="Informe o campo sexo!">
+                                        <f:selectItem itemLabel="M" itemValue="M" />
+                                        <f:selectItem itemLabel="F" itemValue="F" />
+                                    </p:selectOneRadio>
+                                    <p:message for="gender-Input"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="UF:"
+                                                   for="selectUF-Input" />                             
+                                    <p:selectOneMenu id="selectUF-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.addressControl.var.selectUF}"
+                                                     converter="federationUnityConverter"
+                                                     disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                     required="true"
+                                                     requiredMessage="selecione uma opção UF!">
+                                        <f:selectItem itemLabel="Selecione o estado" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listUF}" var="uf"
+                                                       itemLabel="#{uf.uf} - #{uf.fullName}" itemValue="#{uf}" />
+                                        <p:ajax update="city-panelGrid, neighborhood-panelGrid, street-panelGrid"
+                                                listener="#{MBlinkOwnerAndAnimal.addressControl.enableListCitys()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="selectUF-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="city-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Cidade:"
+                                                   for="selectCity-Input" />
+                                    <p:selectOneMenu id="selectCity-Input"
+                                                     class="LADES-default-Text"
+                                                     value="#{MBlinkOwnerAndAnimal.addressControl.var.selectCity}"
+                                                     placeholder="Selecione uma cidade"
+                                                     editable="true"
+                                                     filter="true"
+                                                     filterMatchMode="startsWith"
+                                                     disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                     required="true"
+                                                     requiredMessage="selecione uma opção de Cidade!">
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listCity}" var="city"
+                                                       itemLabel="#{city}" itemValue="#{city}" />
+                                        <p:ajax update="growl, neighborhood-panelGrid, street-panelGrid" 
+                                                listener="#{MBlinkOwnerAndAnimal.addressControl.enableListNeighborhood()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="selectCity-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="neighborhood-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Bairro:"
+                                                   for="selectNeighborhood-Input" />
+                                    <p:selectOneMenu id="selectNeighborhood-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.addressControl.var.selectNeighborhood}"
+                                                     placeholder="Selecione o bairro"
+                                                     editable="true"
+                                                     filter="true"
+                                                     filterMatchMode="startsWith"
+                                                     disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                     required="true"
+                                                     requiredMessage="selecione uma opção de Bairro!">
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listNeighborhood}" var="neighborhood"
+                                                       itemLabel="#{neighborhood}" itemValue="#{neighborhood}" />
+                                        <p:ajax update="growl, street-panelGrid" 
+                                                listener="#{MBlinkOwnerAndAnimal.addressControl.enableListStreet()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="selectNeighborhood-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="street-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Rua:"
+                                                   for="selectStreet-Input" />
+                                    <p:selectOneMenu id="selectStreet-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.addressControl.var.selectStreet}"
+                                                     placeholder="Selecione a rua"
+                                                     editable="true"
+                                                     filter="true"
+                                                     filterMatchMode="startsWith"
+                                                     disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                     required="true"
+                                                     requiredMessage="selecione uma opção de Rua!">
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listStreet}" var="street"
+                                                       itemLabel="#{street}" itemValue="#{street}" />
+                                        <p:ajax update="growl" 
+                                                listener="#{MBlinkOwnerAndAnimal.addressControl.finalizeAddressSelection()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="selectStreet-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="house-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="CEP:"
+                                                   for="numberCep-Input" />
+                                    <p:inputMask id="numberCep-Input"
+                                                 mask="99999-999"
+                                                 value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep}" 
+                                                 disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                 rendered="true"
+                                                 required="false" 
+                                                 requiredMessage="Informe o campo CEP!" />
+                                    <p:message for="numberCep-Input" />
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Numero da casa:"
+                                                   for="numberHouse-Input" />
+                                    <p:inputText id="numberHouse-Input"
+                                                 value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberHouse}"
+                                                 maxlength="9"
+                                                 disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                 required="true"
+                                                 requiredMessage="Informe o número da casa!" />
+                                    <p:message for="numberHouse-Input" />
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Complemento:" />
+                                    <p:inputText id="complement-Input"
+                                                 value="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement}"
+                                                 maxlength="100"
+                                                 disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
+                                                 required="false"
+                                                 title="Endereço complementar"/>
+                                    <p:message for="complement-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="email-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Endereço de email:"
+                                                   rendered="true"
+                                                   for="email-Input" />
+                                    <p:inputText id="email-Input" 
+                                                 value="#{MBlinkOwnerAndAnimal.varPerson.person.email}" 
+                                                 title="Ex.: usuario@email.com"
+                                                 maxlength="100"
+                                                 rendered="true"
+                                                 required="false" >
+                                    </p:inputText>
+                                    <p:message for="email-Input"/>
+                                </p:panelGrid>
+
+                                <p:panelGrid id="phone1-PanelGrid"
+                                             columns="4"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+                                    <p:outputLabel id="phone1-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="1ª Celular:"
+                                                   for="phone1-Input" />
+                                    <p:inputMask id="phone1-Input"
+                                                 mask="(99) 99999-9999" 
+                                                 value="#{MBlinkOwnerAndAnimal.phonesControl.phone1.numberPhone}"
+                                                 required="true"
+                                                 requiredMessage="Informe o campo 1ª Celular!"/>
+                                    <p:selectBooleanCheckbox id="phone2-Opcao" 
+                                                             class="outputLabel-SIHV colorPri"
+                                                             style="font-size: 13px"
+                                                             itemLabel="2ª Celular"
+                                                             value="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}">
+                                        <p:ajax update="phone2-PanelGrid, phone3-PanelGrid" />
+                                    </p:selectBooleanCheckbox>
+                                    <p:message id="phone1-Messager"
+                                               for="phone1-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="phone2-PanelGrid"
+                                             columns="4"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+                                    <p:outputLabel id="phone2-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="2ª Celular:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"
+                                                   for="phone2-Input" />
+                                    <p:inputMask id="phone2-Input"
+                                                 mask="(99) 99999-9999" 
+                                                 value="#{MBlinkOwnerAndAnimal.phonesControl.phone2.numberPhone}"
+                                                 rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"
+                                                 required="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"
+                                                 requiredMessage="Informe o campo 2ª Celular!"/>
+                                    <p:selectBooleanCheckbox id="phone3-Opcao"
+                                                             class="outputLabel-SIHV colorPri"
+                                                             style="font-size: 13px"
+                                                             itemLabel="3ª Celular"
+                                                             rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"
+                                                             value="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}">
+                                        <p:ajax update="phone3-PanelGrid" />
+                                    </p:selectBooleanCheckbox>
+                                    <p:message id="phone2-Messager"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"
+                                               for="phone2-Input" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="phone3-PanelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel id="phone3-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="3ª Celular:"
+                                                   rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}"
+                                                   for="phone3-Input" />
+                                    <p:inputMask id="phone3-Input"
+                                                 mask="(99) 99999-9999" 
+                                                 value="#{MBlinkOwnerAndAnimal.phonesControl.phone3.numberPhone}"
+                                                 rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}"
+                                                 required="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}"
+                                                 requiredMessage="Informe o campo 3ª Celular!"/>
+                                    <p:message id="phone3-Messager"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}"
+                                               for="phone3-Input" />
+                                </p:panelGrid>
+
+                            </p:panel>
+                        </div>
+                    </p:tab>
+
+                    <p:tab id="teste-tab"
+                           title="3"
+                           rendered="true"  >
+                        <p:panel header="Finalizar Processo">
+
+                            <p:panelGrid id="testehchbdcbh"
+                                         columns="3"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+                                <p:commandButton action="#{MBlinkOwnerAndAnimal.salvarTeste()}"
+                                                 value="Salvar cadastro"
+                                                 icon="fa fa-save"
+                                                 update="growl">
+                                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                    <p:ajax onstart="PF('statusDialog').show()"
+                                            onsuccess="PF('statusDialog').hide()" />
+                                </p:commandButton>
+
+
+                            </p:panelGrid>
+
+                        </p:panel>
+                    </p:tab>
+
+
+                </p:wizard>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

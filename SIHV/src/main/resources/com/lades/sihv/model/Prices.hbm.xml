@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Prices" table="prices" catalog="bd_sihv" optimistic-lock="version">
+        <id name="proceduresPkProcedure" type="int">
+            <column name="procedures_PK_procedure" />
+            <generator class="foreign">
+                <param name="property">procedures</param>
+            </generator>
+        </id>
+        <many-to-one name="category" class="com.lades.sihv.model.Category" fetch="select">
+            <column name="category_PK_category" />
+        </many-to-one>
+        <one-to-one name="procedures" class="com.lades.sihv.model.Procedures" constrained="true"></one-to-one>
+        <property name="price" type="big_decimal">
+            <column name="price" precision="6" not-null="true" />
+        </property>
+        <property name="dosage" type="string">
+            <column name="dosage" length="9" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

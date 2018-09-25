@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisRespCardio  implements java.io.Serializable {
 
 
      private SisRespCardioId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String tosse;
      private String tosseProdutiva;
      private String tosseEvolu;
@@ -49,9 +49,9 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
 	
-    public SisRespCardio(SisRespCardioId id, Consulta consulta, String tosse, String espirro, String secrecaoNasal, String dispneiaTaquipneia, String cianose, String cansacoFacil, String sincope, String emagrecimento, String sistemaAfetado) {
+    public SisRespCardio(SisRespCardioId id, VetConsultation vetConsultation, String tosse, String espirro, String secrecaoNasal, String dispneiaTaquipneia, String cianose, String cansacoFacil, String sincope, String emagrecimento, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.tosse = tosse;
         this.espirro = espirro;
         this.secrecaoNasal = secrecaoNasal;
@@ -62,9 +62,9 @@ public class SisRespCardio  implements java.io.Serializable {
         this.emagrecimento = emagrecimento;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisRespCardio(SisRespCardioId id, Consulta consulta, String tosse, String tosseProdutiva, String tosseEvolu, String espirro, String espirroEvolu, String secrecaoNasal, String secreNasalUniBilateral, String secreNasalTipo, String secreNasalEvolu, String dispneiaTaquipneia, String dispnTaquipEvolu, String cianose, String cianoseEvolu, String cansacoFacil, String cansaFacilEvolu, String sincope, String sincopeEvolu, String emagrecimento, String emagrecEvolu, String sistemaAfetado) {
+    public SisRespCardio(SisRespCardioId id, VetConsultation vetConsultation, String tosse, String tosseProdutiva, String tosseEvolu, String espirro, String espirroEvolu, String secrecaoNasal, String secreNasalUniBilateral, String secreNasalTipo, String secreNasalEvolu, String dispneiaTaquipneia, String dispnTaquipEvolu, String cianose, String cianoseEvolu, String cansacoFacil, String cansaFacilEvolu, String sincope, String sincopeEvolu, String emagrecimento, String emagrecEvolu, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.tosse = tosse;
        this.tosseProdutiva = tosseProdutiva;
        this.tosseEvolu = tosseEvolu;
@@ -92,7 +92,7 @@ public class SisRespCardio  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisRespCardio", column=@Column(name="PK_sisRespCardio", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisRespCardioId getId() {
         return this.id;
     }
@@ -102,13 +102,13 @@ public class SisRespCardio  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

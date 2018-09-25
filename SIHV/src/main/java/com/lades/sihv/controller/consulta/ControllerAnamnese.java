@@ -10,7 +10,7 @@ import com.lades.sihv.controller.BeautyText;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.AnamneseId;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,11 +26,11 @@ public class ControllerAnamnese extends AbstractBean {
     private String qualEctoparasitas[];
     private final List<RenderedFields> listViewFields = new ArrayList();
 
-    private void prepareAnamnese(Consulta consulta) {
+    private void prepareAnamnese(VetConsultation consultation) {
         try {
             BeautyText Stringer = new BeautyText();
             anamneseId = new AnamneseId();
-            anamneseId.setConsultaFkConsulta(consulta.getPkConsulta());
+            anamneseId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
             anamnese.setId(anamneseId);
             anamnese.setVacinacao(Stringer.concatenaSTRING(vacinacao));
             anamnese.setQualEctoparasitas(Stringer.concatenaSTRING(qualEctoparasitas));
@@ -41,7 +41,7 @@ public class ControllerAnamnese extends AbstractBean {
         }
     }
 
-    public void ConfirmeAnamnese(Consulta consulta) {
+    public void ConfirmeAnamnese(VetConsultation consulta) {
         try {
             prepareAnamnese(consulta);
             getDaoGenerico().save(anamnese);

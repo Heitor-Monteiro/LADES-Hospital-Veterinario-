@@ -7,7 +7,7 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisMuscEsque;
 import com.lades.sihv.model.SisMuscEsqueId;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class ControllerSisMuscEsque extends AbstractBean {
     private final List<RenderedFields> listViewFields = new ArrayList();
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisMuscEsque(Consulta consulta) {
+    private void prepareSisMuscEsque(VetConsultation consultation) {
         sisMuscEsqueId = new SisMuscEsqueId();
-        sisMuscEsqueId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisMuscEsqueId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisMuscEsque.setId(sisMuscEsqueId);
     }
 
-    public void ConfirmeSisMuscEsque(Consulta consulta) {
+    public void ConfirmeSisMuscEsque(VetConsultation consultation) {
         try {
             if (sisMuscEsque.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisMuscEsque() ]");
@@ -44,7 +44,7 @@ public class ControllerSisMuscEsque extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisMuscEsque() ]");
             }
-            prepareSisMuscEsque(consulta);
+            prepareSisMuscEsque(consultation);
             getDaoGenerico().save(getSisMuscEsque());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisMuscEsque() ]"

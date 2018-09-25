@@ -5,12 +5,12 @@
  */
 package com.lades.sihv.classeMolde;
 
-import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Consulta;
-import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.model.User;
-import com.lades.sihv.model.Fisica;
-import com.lades.sihv.model.Juridica;
+import com.lades.sihv.model.Animals;
+import com.lades.sihv.model.VetConsultation;
+import com.lades.sihv.model.People;
+import com.lades.sihv.model.Users;
+import com.lades.sihv.model.PhysicalPerson;
+import com.lades.sihv.model.LegalPerson;
 import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.controller.ListClasses;
 import java.io.Serializable;
@@ -22,92 +22,92 @@ import java.io.Serializable;
 public class CollectionClasses implements Serializable {
 
     private Scheduling schedule;
-    private Pessoa proprietario;
-    private Animais animais;
-    private Pessoa residente;
-    private Fisica pessoaFisica;
-    private Juridica pessoaJuridica;
-    private User user;
-    
-    private Consulta consulta;
+    private People personOwner;
+    private Animals animal;
+    private People personResident;
+    private PhysicalPerson physicalPerson;
+    private LegalPerson legalPerson;
+    private Users user;
+
+    private VetConsultation consultation;
     private ListClasses examList;
     private FormsExames formsExams;
 
-    public Animais getAnimais() {
-        if (animais == null) {
-            animais = new Animais();
+    public Animals getAnimal() {
+        if (animal == null) {
+            animal = new Animals();
         }
-        return animais;
+        return animal;
     }
 
-    public void setAnimais(Animais animais) {
-        this.animais = animais;
+    public void setAnimais(Animals animal) {
+        this.animal = animal;
     }
 
-    public Consulta getConsulta() {
-        if (consulta == null) {
-            consulta = new Consulta();
+    public VetConsultation getVetConsultation() {
+        if (consultation == null) {
+            consultation = new VetConsultation();
         }
-        return consulta;
+        return consultation;
     }
 
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation consultation) {
+        this.consultation = consultation;
     }
 
-    public User getUser() {
+    public Users getUsers() {
         if (user == null) {
-            user = new User();
+            user = new Users();
         }
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
-    public Pessoa getResidente() {
-        if (residente == null) {
-            residente = new Pessoa();
+    public People getPersonResident() {
+        if (personResident == null) {
+            personResident = new People();
         }
-        return residente;
+        return personResident;
     }
 
-    public void setResidente(Pessoa residente) {
-        this.residente = residente;
+    public void setPersonResident(People personResident) {
+        this.personResident = personResident;
     }
 
-    public Pessoa getProprietario() {
-        if (proprietario == null) {
-            proprietario = new Pessoa();
+    public People getPersonOwner() {
+        if (personOwner == null) {
+            personOwner = new People();
         }
-        return proprietario;
+        return personOwner;
     }
 
-    public void setProprietario(Pessoa proprietario) {
-        this.proprietario = proprietario;
+    public void setProprietario(People personOwner) {
+        this.personOwner = personOwner;
     }
 
-    public Fisica getPessoaFisica() {
-        if (pessoaFisica == null) {
-            pessoaFisica = new Fisica();
+    public PhysicalPerson getPhysicalPerson() {
+        if (physicalPerson == null) {
+            physicalPerson = new PhysicalPerson();
         }
-        return pessoaFisica;
+        return physicalPerson;
     }
 
-    public void setPessoaFisica(Fisica pessoaFisica) {
-        this.pessoaFisica = pessoaFisica;
+    public void setPessoaFisica(PhysicalPerson physicalPerson) {
+        this.physicalPerson = physicalPerson;
     }
 
-    public Juridica getPessoaJuridica() {
-        if (pessoaJuridica == null) {
-            pessoaJuridica = new Juridica();
+    public LegalPerson getPessoaJuridica() {
+        if (legalPerson == null) {
+            legalPerson = new LegalPerson();
         }
-        return pessoaJuridica;
+        return legalPerson;
     }
 
-    public void setPessoaJuridica(Juridica pessoaJuridica) {
-        this.pessoaJuridica = pessoaJuridica;
+    public void setPessoaJuridica(LegalPerson legalPerson) {
+        this.legalPerson = legalPerson;
     }
 
     public ListClasses getExamList(int index) {

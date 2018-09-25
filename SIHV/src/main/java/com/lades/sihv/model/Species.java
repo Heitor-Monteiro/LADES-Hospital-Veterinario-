@@ -1,16 +1,18 @@
 package com.lades.sihv.model;
-// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -26,7 +28,8 @@ import javax.persistence.TemporalType;
 public class Species  implements java.io.Serializable {
 
 
-     private Integer pkSpecies;
+     private SpeciesId id;
+     private ClassAnimal classAnimal;
      private String nameSpecies;
      private Date dataSpeciesRegister;
      private Set raceses = new HashSet(0);
@@ -35,26 +38,42 @@ public class Species  implements java.io.Serializable {
     }
 
 	
-    public Species(String nameSpecies, Date dataSpeciesRegister) {
+    public Species(SpeciesId id, ClassAnimal classAnimal, String nameSpecies, Date dataSpeciesRegister) {
+        this.id = id;
+        this.classAnimal = classAnimal;
         this.nameSpecies = nameSpecies;
         this.dataSpeciesRegister = dataSpeciesRegister;
     }
-    public Species(String nameSpecies, Date dataSpeciesRegister, Set raceses) {
+    public Species(SpeciesId id, ClassAnimal classAnimal, String nameSpecies, Date dataSpeciesRegister, Set raceses) {
+       this.id = id;
+       this.classAnimal = classAnimal;
        this.nameSpecies = nameSpecies;
        this.dataSpeciesRegister = dataSpeciesRegister;
        this.raceses = raceses;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @EmbeddedId
 
     
-    @Column(name="PK_species", unique=true, nullable=false)
-    public Integer getPkSpecies() {
-        return this.pkSpecies;
+    @AttributeOverrides( {
+        @AttributeOverride(name="pkSpecies", column=@Column(name="PK_species", nullable=false) ), 
+        @AttributeOverride(name="classAnimalPkClassAnimal", column=@Column(name="classAnimal_PK_classAnimal", nullable=false) ) } )
+    public SpeciesId getId() {
+        return this.id;
     }
     
-    public void setPkSpecies(Integer pkSpecies) {
-        this.pkSpecies = pkSpecies;
+    public void setId(SpeciesId id) {
+        this.id = id;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="classAnimal_PK_classAnimal", nullable=false, insertable=false, updatable=false)
+    public ClassAnimal getClassAnimal() {
+        return this.classAnimal;
+    }
+    
+    public void setClassAnimal(ClassAnimal classAnimal) {
+        this.classAnimal = classAnimal;
     }
 
     

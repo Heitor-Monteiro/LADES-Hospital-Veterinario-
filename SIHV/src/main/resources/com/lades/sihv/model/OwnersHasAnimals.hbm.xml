@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.OwnersHasAnimals" table="ownersHasAnimals" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkOwnersHasAnimals" type="java.lang.Integer">
+            <column name="PK_ownersHasAnimals" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="animals" class="com.lades.sihv.model.Animals" fetch="select">
+            <column name="animals_PK_animal" not-null="true" />
+        </many-to-one>
+        <many-to-one name="owners" class="com.lades.sihv.model.Owners" fetch="select">
+            <column name="owners_PK_owner" not-null="true" />
+        </many-to-one>
+        <set name="vetConsultations" table="vetConsultation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ownersHasAnimals_PK_ownersHasAnimals" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.VetConsultation" />
+        </set>
+        <set name="schedulings" table="scheduling" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ownersHasAnimals_PK_ownersHasAnimals" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Scheduling" />
+        </set>
+    </class>
+</hibernate-mapping>

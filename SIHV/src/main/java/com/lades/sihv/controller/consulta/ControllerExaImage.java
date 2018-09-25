@@ -8,7 +8,7 @@ package com.lades.sihv.controller.consulta;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.ListRenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.ExameImage;
 import com.lades.sihv.model.ExameImageId;
 import java.util.Calendar;
@@ -29,7 +29,7 @@ public class ControllerExaImage extends AbstractBean {
     private int numCodImage = 0;
     private final String ndn = "Nada digno de nota.";
 
-    private void ConfirmeExamImage(Consulta consulta,
+    private void ConfirmeExamImage(VetConsultation consultation,
             String typeExamImage,
             ExameImage examImage,
             ListRenderedFields list,
@@ -38,7 +38,7 @@ public class ControllerExaImage extends AbstractBean {
             if (list.getListViewFields(0).isViewVariableBoolean()) {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeExam" + typeExamImage + "() ]");
                 ExameImageId examImageID = new ExameImageId();
-                examImageID.setConsultaFkConsulta(consulta.getPkConsulta());
+                examImageID.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
                 examImage.setId(examImageID);
                 examImage.setTipo(typeExamImage);
                 examImage.setStatusExamImage("Pendente");
@@ -52,12 +52,12 @@ public class ControllerExaImage extends AbstractBean {
         }
     }
 
-    public void ConfirmeExamXray(Consulta consulta) {
-        ConfirmeExamImage(consulta, "RaioX", examImageXray, objListRendFieldsXray, codRaioX);
+    public void ConfirmeExamXray(VetConsultation consultation) {
+        ConfirmeExamImage(consultation, "RaioX", examImageXray, objListRendFieldsXray, codRaioX);
     }
 
-    public void ConfirmeExamUltrasound(Consulta consulta) {
-        ConfirmeExamImage(consulta, "Ultrassom", examImageUltrasound, objListRendFieldsUltra, codUltrasson);
+    public void ConfirmeExamUltrasound(VetConsultation consultation) {
+        ConfirmeExamImage(consultation, "Ultrassom", examImageUltrasound, objListRendFieldsUltra, codUltrasson);
     }
 
     /*O método é utilizar para saber o

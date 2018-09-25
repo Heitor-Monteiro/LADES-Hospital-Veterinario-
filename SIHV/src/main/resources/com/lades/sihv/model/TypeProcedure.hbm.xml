@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.TypeProcedure" table="typeProcedure" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkTypeProcedure" type="java.lang.Integer">
+            <column name="PK_typeProcedure" />
+            <generator class="identity" />
+        </id>
+        <property name="nameTypeProced" type="string">
+            <column name="nameTypeProced" length="100" not-null="true" />
+        </property>
+        <set name="procedureses" table="procedures" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="typeProcedure_PK_typeProcedure" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Procedures" />
+        </set>
+    </class>
+</hibernate-mapping>

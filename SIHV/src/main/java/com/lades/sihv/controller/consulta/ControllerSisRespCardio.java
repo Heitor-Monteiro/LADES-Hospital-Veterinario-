@@ -7,7 +7,7 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisRespCardio;
 import com.lades.sihv.model.SisRespCardioId;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class ControllerSisRespCardio extends AbstractBean {
     private final List<RenderedFields> listViewFields = new ArrayList();
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisRespCardio(Consulta consulta) {
+    private void prepareSisRespCardio(VetConsultation consultation) {
         sisRespCardioId = new SisRespCardioId();
-        sisRespCardioId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisRespCardioId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisRespCardio.setId(sisRespCardioId);
     }
 
-    public void ConfirmeSisRespCardio(Consulta consulta) {
+    public void ConfirmeSisRespCardio(VetConsultation consultation) {
         try {
             if (sisRespCardio.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N [ public void ConfirmeSisRespCardio() ]");
@@ -56,7 +56,7 @@ public class ControllerSisRespCardio extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisRespCardio() ]");
             }
-            prepareSisRespCardio(consulta);
+            prepareSisRespCardio(consultation);
             getDaoGenerico().save(getSisRespCardio());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisRespCardio() ]"

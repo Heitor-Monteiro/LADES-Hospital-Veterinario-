@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.People" table="people" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkPerson" type="java.lang.Integer">
+            <column name="PK_person" />
+            <generator class="identity" />
+        </id>
+        <property name="namePerson" type="string">
+            <column name="namePerson" length="100" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="logicalExclusion" type="boolean">
+            <column name="logicalExclusion" not-null="true" />
+        </property>
+        <property name="registrationDate" type="timestamp">
+            <column name="registrationDate" length="19" not-null="true" />
+        </property>
+        <set name="userses" table="users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_people" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Users" />
+        </set>
+        <set name="houseses" table="houses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Houses" />
+        </set>
+        <set name="ownerses" table="owners" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Owners" />
+        </set>
+        <set name="legalPersons" table="legalPerson" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.LegalPerson" />
+        </set>
+        <set name="physicalPersons" table="physicalPerson" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.PhysicalPerson" />
+        </set>
+        <set name="phoneses" table="phones" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Phones" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -8,7 +8,7 @@ package com.lades.sihv.controller.consulta;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisUrinarioMamaria;
 import com.lades.sihv.model.SisUrinarioMamariaId;
 import java.util.ArrayList;

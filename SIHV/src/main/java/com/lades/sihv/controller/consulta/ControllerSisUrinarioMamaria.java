@@ -8,7 +8,7 @@ package com.lades.sihv.controller.consulta;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisUrinarioMamaria;
 import com.lades.sihv.model.SisUrinarioMamariaId;
 import java.util.ArrayList;
@@ -26,13 +26,13 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     private final String ndnMasculino = "Nada digno de nota devido o animal ser do gênero masculino";
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisUrinarioMamaria(Consulta consulta) {
+    private void prepareSisUrinarioMamaria(VetConsultation consultation) {
         sisUrinarioMamariaId = new SisUrinarioMamariaId();
-        sisUrinarioMamariaId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisUrinarioMamariaId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisUrinarioMamaria.setId(sisUrinarioMamariaId);
     }
 
-    public void ConfirmeSisUrinarioMamaria(Consulta consulta) {
+    public void ConfirmeSisUrinarioMamaria(VetConsultation consultation) {
         try {
             if (sisUrinarioMamaria.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisUrinarioMamaria() ]");
@@ -60,7 +60,7 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisUrinarioMamaria() ]");
             }
-            prepareSisUrinarioMamaria(consulta);
+            prepareSisUrinarioMamaria(consultation);
             getDaoGenerico().save(getSisUrinarioMamaria());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisUrinarioMamaria() ]"
@@ -147,7 +147,7 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     private boolean isViewFemea() {
         CollectionClasses obj = (CollectionClasses) getVariaveisDeSessao().getObjetoTemp();
         getListViewFields(3).setViewVariableBoolean(false);
-        if (obj.getAnimais().getSexoAnimal().equals("F")) {
+        if (obj.getAnimal().getGenderAnimal().equals("F")) {
             listViewFields.get(3).setViewVariableBoolean(true);
         }
         return listViewFields.get(3).isViewVariableBoolean();

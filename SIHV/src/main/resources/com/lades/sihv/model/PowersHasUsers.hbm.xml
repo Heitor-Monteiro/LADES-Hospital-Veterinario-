@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.PowersHasUsers" table="powers_has_users" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkPowersHasUsers" type="java.lang.Integer">
+            <column name="PK_powersHasUsers" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="powers" class="com.lades.sihv.model.Powers" fetch="select">
+            <column name="powers_PK_power" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="com.lades.sihv.model.Users" fetch="select">
+            <column name="users_PK_user" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

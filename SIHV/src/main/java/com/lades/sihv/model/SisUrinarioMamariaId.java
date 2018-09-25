@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 14/12/2016 15:34:50 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,14 +13,14 @@ public class SisUrinarioMamariaId  implements java.io.Serializable {
 
 
      private int pkSisUrinarioMamaria;
-     private int consultaFkConsulta;
+     private int vetConsultationPkVetConsultation;
 
     public SisUrinarioMamariaId() {
     }
 
-    public SisUrinarioMamariaId(int pkSisUrinarioMamaria, int consultaFkConsulta) {
+    public SisUrinarioMamariaId(int pkSisUrinarioMamaria, int vetConsultationPkVetConsultation) {
        this.pkSisUrinarioMamaria = pkSisUrinarioMamaria;
-       this.consultaFkConsulta = consultaFkConsulta;
+       this.vetConsultationPkVetConsultation = vetConsultationPkVetConsultation;
     }
    
 
@@ -35,13 +35,13 @@ public class SisUrinarioMamariaId  implements java.io.Serializable {
     }
 
 
-    @Column(name="consulta_FK_consulta", nullable=false)
-    public int getConsultaFkConsulta() {
-        return this.consultaFkConsulta;
+    @Column(name="vetConsultation_PK_vetConsultation", nullable=false)
+    public int getVetConsultationPkVetConsultation() {
+        return this.vetConsultationPkVetConsultation;
     }
     
-    public void setConsultaFkConsulta(int consultaFkConsulta) {
-        this.consultaFkConsulta = consultaFkConsulta;
+    public void setVetConsultationPkVetConsultation(int vetConsultationPkVetConsultation) {
+        this.vetConsultationPkVetConsultation = vetConsultationPkVetConsultation;
     }
 
 
@@ -52,14 +52,14 @@ public class SisUrinarioMamariaId  implements java.io.Serializable {
 		 SisUrinarioMamariaId castOther = ( SisUrinarioMamariaId ) other; 
          
 		 return (this.getPkSisUrinarioMamaria()==castOther.getPkSisUrinarioMamaria())
- && (this.getConsultaFkConsulta()==castOther.getConsultaFkConsulta());
+ && (this.getVetConsultationPkVetConsultation()==castOther.getVetConsultationPkVetConsultation());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkSisUrinarioMamaria();
-         result = 37 * result + this.getConsultaFkConsulta();
+         result = 37 * result + this.getVetConsultationPkVetConsultation();
          return result;
    }   
 

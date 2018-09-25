@@ -7,7 +7,7 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.ExameFisico;
 import com.lades.sihv.model.ExameFisicoId;
 import java.util.ArrayList;
@@ -23,13 +23,13 @@ public class ControllerExameFisico extends AbstractBean {
     private ExameFisicoId exameFisicoId;
     private final List<RenderedFields> listViewFields = new ArrayList();
 
-    private void prepareExameFisico(Consulta consulta) {
+    private void prepareExameFisico(VetConsultation consultation) {
         exameFisicoId = new ExameFisicoId();
-        exameFisicoId.setConsultaFkConsulta(consulta.getPkConsulta());
+        exameFisicoId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         exameFisico.setId(exameFisicoId);
     }
 
-    public void ConfirmeExameFisico(Consulta consulta) {
+    public void ConfirmeExameFisico(VetConsultation consulta) {
         try {
             prepareExameFisico(consulta);
             getDaoGenerico().save(exameFisico);

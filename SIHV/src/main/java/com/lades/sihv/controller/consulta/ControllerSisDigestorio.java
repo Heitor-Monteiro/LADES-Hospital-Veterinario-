@@ -7,7 +7,7 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisDigestorio;
 import com.lades.sihv.model.SisDigestorioId;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class ControllerSisDigestorio extends AbstractBean {
     private final List<RenderedFields> listViewFields = new ArrayList();
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisDigestorio(Consulta consulta) {
+    private void prepareSisDigestorio(VetConsultation consultation) {
         sisDigestorioId = new SisDigestorioId();
-        sisDigestorioId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisDigestorioId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisDigestorio.setId(sisDigestorioId);
     }
 
-    public void ConfirmeSisDigestorio(Consulta consulta) {
+    public void ConfirmeSisDigestorio(VetConsultation consultation) {
         try {
             if (sisDigestorio.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N. [ public void ConfirmeSisDigestorio() ]");
@@ -49,7 +49,7 @@ public class ControllerSisDigestorio extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisDigestorio() ]");
             }
-            prepareSisDigestorio(consulta);
+            prepareSisDigestorio(consultation);
             getDaoGenerico().save(getSisDigestorio());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisDigestorio() ]"

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Races" table="races" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkRaces" type="java.lang.Integer">
@@ -9,7 +9,8 @@
             <generator class="identity" />
         </id>
         <many-to-one name="species" class="com.lades.sihv.model.Species" fetch="select">
-            <column name="FK_species" not-null="true" />
+            <column name="species_PK_species" not-null="true" />
+            <column name="species_classAnimal_PK_classAnimal" not-null="true" />
         </many-to-one>
         <property name="nameRaces" type="string">
             <column name="nameRaces" length="100" not-null="true" />

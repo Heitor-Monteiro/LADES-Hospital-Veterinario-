@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 21/05/2018 11:38:42 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class Anamnese  implements java.io.Serializable {
 
 
      private AnamneseId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String escalaPeso;
      private double pesoCorp;
      private String queixaPrincipal;
@@ -59,9 +59,9 @@ public class Anamnese  implements java.io.Serializable {
     }
 
 	
-    public Anamnese(AnamneseId id, Consulta consulta, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String alimentacaoRacao, String vacinacao, String vermifugacao, String ectoparasitas, String acessoRua) {
+    public Anamnese(AnamneseId id, VetConsultation vetConsultation, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String alimentacaoRacao, String vacinacao, String vermifugacao, String ectoparasitas, String acessoRua) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.escalaPeso = escalaPeso;
         this.pesoCorp = pesoCorp;
         this.queixaPrincipal = queixaPrincipal;
@@ -75,9 +75,9 @@ public class Anamnese  implements java.io.Serializable {
         this.ectoparasitas = ectoparasitas;
         this.acessoRua = acessoRua;
     }
-    public Anamnese(AnamneseId id, Consulta consulta, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String medicacaoDose, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String descriCaseira, String alimentacaoRacao, String descriRacao, String vacinacao, String sobreVacina, String origemVacina, String vermifugacao, String doseVermifugacao, Date dataVermifugacao, String ectoparasitas, String qualEctoparasitas, String controEctoparasitas, String qualProdutoUtiliza, String acessoRua, String descriHabitat, String contactantes, String descriContactantes, String mesmoProbleContacta, String contatoRoedor) {
+    public Anamnese(AnamneseId id, VetConsultation vetConsultation, String escalaPeso, double pesoCorp, String queixaPrincipal, String jaFoiTratado, String medicacaoDose, String antecMorbido, String histoFamiliar, String alimentacaoCaseira, String descriCaseira, String alimentacaoRacao, String descriRacao, String vacinacao, String sobreVacina, String origemVacina, String vermifugacao, String doseVermifugacao, Date dataVermifugacao, String ectoparasitas, String qualEctoparasitas, String controEctoparasitas, String qualProdutoUtiliza, String acessoRua, String descriHabitat, String contactantes, String descriContactantes, String mesmoProbleContacta, String contatoRoedor) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.escalaPeso = escalaPeso;
        this.pesoCorp = pesoCorp;
        this.queixaPrincipal = queixaPrincipal;
@@ -112,7 +112,7 @@ public class Anamnese  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkAnamnese", column=@Column(name="PK_anamnese", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public AnamneseId getId() {
         return this.id;
     }
@@ -122,13 +122,13 @@ public class Anamnese  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

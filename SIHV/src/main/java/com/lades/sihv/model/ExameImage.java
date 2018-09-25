@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 09/07/2018 10:08:32 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -26,7 +26,7 @@ public class ExameImage  implements java.io.Serializable {
 
 
      private ExameImageId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String regiExami;
      private String subRegion;
      private String posicao;
@@ -46,18 +46,18 @@ public class ExameImage  implements java.io.Serializable {
     }
 
 	
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String tipo, String statusExamImage, String examImageCod, Date solicitacaoData) {
+    public ExameImage(ExameImageId id, VetConsultation vetConsultation, String regiExami, String tipo, String statusExamImage, String examImageCod, Date solicitacaoData) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.regiExami = regiExami;
         this.tipo = tipo;
         this.statusExamImage = statusExamImage;
         this.examImageCod = examImageCod;
         this.solicitacaoData = solicitacaoData;
     }
-    public ExameImage(ExameImageId id, Consulta consulta, String regiExami, String subRegion, String posicao, String suspicionClinical, String laudo, Integer qtdChapas, String doseTechnique, Integer numberStudies, String additionalInfo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
+    public ExameImage(ExameImageId id, VetConsultation vetConsultation, String regiExami, String subRegion, String posicao, String suspicionClinical, String laudo, Integer qtdChapas, String doseTechnique, Integer numberStudies, String additionalInfo, String tipo, String statusExamImage, String examImageCod, Date atendimentoData, Date solicitacaoData) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.regiExami = regiExami;
        this.subRegion = subRegion;
        this.posicao = posicao;
@@ -79,7 +79,7 @@ public class ExameImage  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkExameImage", column=@Column(name="PK_exameImage", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public ExameImageId getId() {
         return this.id;
     }
@@ -89,13 +89,13 @@ public class ExameImage  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

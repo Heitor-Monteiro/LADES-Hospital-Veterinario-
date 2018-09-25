@@ -1,12 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 01/08/2018 11:44:15 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.AnimalPhoto" table="animalPhoto" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkAnimalPhoto" type="java.lang.Integer">
             <column name="PK_animalPhoto" />
             <generator class="identity" />
         </id>
+        <many-to-one name="animals" class="com.lades.sihv.model.Animals" fetch="select">
+            <column name="animals_PK_animal" not-null="true" />
+        </many-to-one>
     </class>
 </hibernate-mapping>

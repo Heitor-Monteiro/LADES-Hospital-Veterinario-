@@ -7,7 +7,7 @@ package com.lades.sihv.controller.consulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.SisOftalmico;
 import com.lades.sihv.model.SisOftalmicoId;
 import java.util.ArrayList;
@@ -24,13 +24,13 @@ public class ControllerSisOftalmico extends AbstractBean {
     private final List<RenderedFields> listViewFields = new ArrayList();
     private final String ndn = "Nada digno de nota.";
 
-    private void prepareSisOftalmico(Consulta consulta) {
+    private void prepareSisOftalmico(VetConsultation consultation) {
         sisOftalmicoId = new SisOftalmicoId();
-        sisOftalmicoId.setConsultaFkConsulta(consulta.getPkConsulta());
+        sisOftalmicoId.setVetConsultationPkVetConsultation(consultation.getPkVetConsultation());
         sisOftalmico.setId(sisOftalmicoId);
     }
 
-    public void ConfirmeSisOftalmico(Consulta consulta) {
+    public void ConfirmeSisOftalmico(VetConsultation consultation) {
         try {
             if (sisOftalmico.getSistemaAfetado().equals("Não")) {
                 System.out.println("BACK-END WARNING: N.D.N [ public void ConfirmeSisOftalmico() ]");
@@ -46,7 +46,7 @@ public class ControllerSisOftalmico extends AbstractBean {
             } else {
                 System.out.println("BACK-END WARNING: CONFIRMED [ public void ConfirmeSisOftalmico() ]");
             }
-            prepareSisOftalmico(consulta);
+            prepareSisOftalmico(consultation);
             getDaoGenerico().save(getSisOftalmico());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public void ConfirmeSisOftalmico() ]"

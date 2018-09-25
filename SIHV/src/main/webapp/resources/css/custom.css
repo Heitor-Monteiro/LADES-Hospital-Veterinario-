@@ -64,6 +64,11 @@
     color: #c0392b!important;
 }
 
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #ED4635!important;
+    color: #c0392b!important;
+}
+
 /*selectBooleanButton*/
 .buttonAffectedSystem {
     width:100px!important;

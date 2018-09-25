@@ -6,15 +6,16 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.DAO.SessionUtils;
-import com.lades.sihv.model.Animais;
-import com.lades.sihv.model.Pessoa;
-import com.lades.sihv.model.User;
+import com.lades.sihv.model.Animals;
+import com.lades.sihv.model.People;
+import com.lades.sihv.model.Users;
+import java.io.Serializable;
 
 /**
  *
  * @author thiberius
  */
-public class VariaveisDeSessao {
+public class VariaveisDeSessao implements Serializable {
 
     public Object getObjetoTemp() {
         return (Object) SessionUtils.getSession().getAttribute("objetoTemporario");
@@ -24,12 +25,12 @@ public class VariaveisDeSessao {
         SessionUtils.getSession().setAttribute("objetoTemporario", objeto);
     }
 
-    public Pessoa objetoPessoa() {
-        return (Pessoa) SessionUtils.getSession().getAttribute("objetoTemporario");
+    public People objetoPessoa() {
+        return (People) SessionUtils.getSession().getAttribute("objetoTemporario");
     }
 
-    public Animais objetoAnimal() {
-        return (Animais) SessionUtils.getSession().getAttribute("objetoTemporario");
+    public Animals objetoAnimal() {
+        return (Animals) SessionUtils.getSession().getAttribute("objetoTemporario");
     }
 
     public Object getFerramentaTemp() {
@@ -56,7 +57,7 @@ public class VariaveisDeSessao {
         ListRenderedFields var = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
         return var.getListViewFields(0).isViewVariableBoolean();
     }
-    
+
     public void enableBtnNextWizard() {
         wizardButtons = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
         wizardButtons.getListViewFields(0).setViewVariableBoolean(true);
@@ -71,7 +72,7 @@ public class VariaveisDeSessao {
         ListRenderedFields var = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
         return var.getListViewFields(1).isViewVariableBoolean();
     }
-    
+
     public void enableBtnBackWizard() {
         wizardButtons = (ListRenderedFields) SessionUtils.getSession().getAttribute("wizardButtons");
         wizardButtons.getListViewFields(1).setViewVariableBoolean(true);
@@ -83,18 +84,18 @@ public class VariaveisDeSessao {
         SessionUtils.getSession().setAttribute("dadosUser", objUser);
     }
 
-    public User getDadosUSER() {
-        return (User) SessionUtils.getSession().getAttribute("dadosUser");
+    public Users getDadosUSER() {
+        return (Users) SessionUtils.getSession().getAttribute("dadosUser");
     }
 
     public void setDadosPESSOA(Object objPessoa) {
-        Pessoa obj = (Pessoa) objPessoa;
-        SessionUtils.getSession().setAttribute("username", new BeautyText().fistNLast(obj.getNome()));
+        People obj = (People) objPessoa;
+        SessionUtils.getSession().setAttribute("username", new BeautyText().fistNLast(obj.getNamePerson()));
         SessionUtils.getSession().setAttribute("dadosPessoa", objPessoa);
     }
 
-    private Pessoa getDadosPESSOA() {
-        return (Pessoa) SessionUtils.getSession().getAttribute("dadosPessoa");
+    private People getDadosPESSOA() {
+        return (People) SessionUtils.getSession().getAttribute("dadosPessoa");
     }
 
     public String getUsername() {
@@ -102,26 +103,26 @@ public class VariaveisDeSessao {
     }
 
     public String getUserTipo() {
-        return (String) getDadosUSER().getUserTipo();
+        return (String) getDadosUSER().getUserProfile();
     }
 
-    public String getCpfCnpj() {
-        return (String) getDadosPESSOA().getCpfCnpj();
-    }
+//    public String getCpfCnpj() {
+//        return (String) getDadosPESSOA().getCpfCnpj();
+//    }
 
     public String getFullName() {
-        return (String) getDadosPESSOA().getNome();
+        return (String) getDadosPESSOA().getNamePerson();
     }
 
     public int getPkPessoa() {
-        return (int) getDadosPESSOA().getPkPessoa();
+        return (int) getDadosPESSOA().getPkPerson();
     }
 
     public String getCrmvMatricula() {
-        return (String) getDadosUSER().getCrmvMatricula();
+        return (String) getDadosUSER().getRegistrationNumber();
     }
 
     public String getSenhaUser() {
-        return (String) getDadosUSER().getUserSenha();
+        return (String) getDadosUSER().getPassword();
     }
 }

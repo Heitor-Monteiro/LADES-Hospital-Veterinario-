@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisMuscEsque  implements java.io.Serializable {
 
 
      private SisMuscEsqueId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String claudicacao;
      private String claudicacaoEvolu;
      private String fraturas;
@@ -37,18 +37,18 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
 	
-    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String fraturas, String atrofMusc, String posturaAnimal, String sistemaAfetado) {
+    public SisMuscEsque(SisMuscEsqueId id, VetConsultation vetConsultation, String claudicacao, String fraturas, String atrofMusc, String posturaAnimal, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.claudicacao = claudicacao;
         this.fraturas = fraturas;
         this.atrofMusc = atrofMusc;
         this.posturaAnimal = posturaAnimal;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisMuscEsque(SisMuscEsqueId id, Consulta consulta, String claudicacao, String claudicacaoEvolu, String fraturas, String fraturasEvolu, String atrofMusc, String atrofMuscEvolu, String posturaAnimal, String sistemaAfetado) {
+    public SisMuscEsque(SisMuscEsqueId id, VetConsultation vetConsultation, String claudicacao, String claudicacaoEvolu, String fraturas, String fraturasEvolu, String atrofMusc, String atrofMuscEvolu, String posturaAnimal, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.claudicacao = claudicacao;
        this.claudicacaoEvolu = claudicacaoEvolu;
        this.fraturas = fraturas;
@@ -64,7 +64,7 @@ public class SisMuscEsque  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisMuscEsque", column=@Column(name="PK_sisMuscEsque", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisMuscEsqueId getId() {
         return this.id;
     }
@@ -74,13 +74,13 @@ public class SisMuscEsque  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

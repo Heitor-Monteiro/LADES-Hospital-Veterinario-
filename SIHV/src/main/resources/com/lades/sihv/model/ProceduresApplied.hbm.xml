@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.ProceduresApplied" table="proceduresApplied" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.ProceduresAppliedId">
+            <key-property name="proceduresPkProcedure" type="int">
+                <column name="procedures_PK_procedure" />
+            </key-property>
+            <key-property name="vetConsultationPkVetConsultation" type="int">
+                <column name="vetConsultation_PK_vetConsultation" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="procedures" class="com.lades.sihv.model.Procedures" update="false" insert="false" fetch="select">
+            <column name="procedures_PK_procedure" not-null="true" />
+        </many-to-one>
+        <many-to-one name="vetConsultation" class="com.lades.sihv.model.VetConsultation" update="false" insert="false" fetch="select">
+            <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+        </many-to-one>
+        <property name="applicationDate" type="timestamp">
+            <column name="applicationDate" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

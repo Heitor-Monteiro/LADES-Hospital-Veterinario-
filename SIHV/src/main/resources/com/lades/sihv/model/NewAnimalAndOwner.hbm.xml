@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.NewAnimalAndOwner" table="newAnimalAndOwner" catalog="bd_sihv" optimistic-lock="version">
+        <id name="schedulingPkSchedule" type="int">
+            <column name="scheduling_Pk_schedule" />
+            <generator class="foreign">
+                <param name="property">scheduling</param>
+            </generator>
+        </id>
+        <one-to-one name="scheduling" class="com.lades.sihv.model.Scheduling" constrained="true"></one-to-one>
+        <property name="proprietaryName" type="string">
+            <column name="proprietaryName" length="100" not-null="true" />
+        </property>
+        <property name="animalName" type="string">
+            <column name="animalName" length="70" not-null="true" />
+        </property>
+        <property name="proprietaryPhone1" type="string">
+            <column name="proprietaryPhone1" length="15" not-null="true" />
+        </property>
+        <property name="proprietaryPhone2" type="string">
+            <column name="proprietaryPhone2" length="15" />
+        </property>
+        <property name="proprietaryPhone3" type="string">
+            <column name="proprietaryPhone3" length="15" />
+        </property>
+    </class>
+</hibernate-mapping>

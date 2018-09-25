@@ -1,12 +1,15 @@
 package com.lades.sihv.model;
-// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 /**
@@ -20,10 +23,14 @@ public class AnimalPhoto  implements java.io.Serializable {
 
 
      private Integer pkAnimalPhoto;
+     private Animals animals;
 
     public AnimalPhoto() {
     }
 
+    public AnimalPhoto(Animals animals) {
+       this.animals = animals;
+    }
    
      @Id @GeneratedValue(strategy=IDENTITY)
 
@@ -35,6 +42,16 @@ public class AnimalPhoto  implements java.io.Serializable {
     
     public void setPkAnimalPhoto(Integer pkAnimalPhoto) {
         this.pkAnimalPhoto = pkAnimalPhoto;
+    }
+
+@ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="animals_PK_animal", nullable=false)
+    public Animals getAnimals() {
+        return this.animals;
+    }
+    
+    public void setAnimals(Animals animals) {
+        this.animals = animals;
     }
 
 

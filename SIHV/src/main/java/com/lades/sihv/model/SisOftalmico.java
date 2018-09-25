@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisOftalmico  implements java.io.Serializable {
 
 
      private SisOftalmicoId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String olhosPupila;
      private String secreOcular;
      private String secreOcularUniBi;
@@ -39,18 +39,18 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
 	
-    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhosPupila, String secreOcular, String blefaroespasmo, String exoftalmia, String sistemaAfetado) {
+    public SisOftalmico(SisOftalmicoId id, VetConsultation vetConsultation, String olhosPupila, String secreOcular, String blefaroespasmo, String exoftalmia, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.olhosPupila = olhosPupila;
         this.secreOcular = secreOcular;
         this.blefaroespasmo = blefaroespasmo;
         this.exoftalmia = exoftalmia;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisOftalmico(SisOftalmicoId id, Consulta consulta, String olhosPupila, String secreOcular, String secreOcularUniBi, String secreOculaTipo, String secreOculaEvolu, String blefaroespasmo, String blefaroComenta, String exoftalmia, String exoftalComenta, String sistemaAfetado) {
+    public SisOftalmico(SisOftalmicoId id, VetConsultation vetConsultation, String olhosPupila, String secreOcular, String secreOcularUniBi, String secreOculaTipo, String secreOculaEvolu, String blefaroespasmo, String blefaroComenta, String exoftalmia, String exoftalComenta, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.olhosPupila = olhosPupila;
        this.secreOcular = secreOcular;
        this.secreOcularUniBi = secreOcularUniBi;
@@ -68,7 +68,7 @@ public class SisOftalmico  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisOftalmico", column=@Column(name="PK_sisOftalmico", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisOftalmicoId getId() {
         return this.id;
     }
@@ -78,13 +78,13 @@ public class SisOftalmico  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

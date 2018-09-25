@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 01/08/2018 11:44:13 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -52,7 +53,9 @@ public class Races  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="FK_species", nullable=false)
+    @JoinColumns( { 
+        @JoinColumn(name="species_PK_species", referencedColumnName="PK_species", nullable=false), 
+        @JoinColumn(name="species_classAnimal_PK_classAnimal", referencedColumnName="classAnimal_PK_classAnimal", nullable=false) } )
     public Species getSpecies() {
         return this.species;
     }

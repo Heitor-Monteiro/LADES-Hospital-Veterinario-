@@ -34,13 +34,13 @@ public class ListClasses extends AbstractBean {
         this.typeClasse = new TypeClasses(typeClasse);
     }
     
-    public Object getItemListClasses(int index) {
+    public TypeClasses getItemListClasses(int index) {
         if (listClasses.isEmpty()) {
             listClasses.add(index, typeClasse);
         } else if ((listClasses.size() - index) == 0) {
             listClasses.add(index, typeClasse);
         }
-        return listClasses.get(index);
+        return (TypeClasses) listClasses.get(index);
     }
     
     public void startIndexListViewFields() {
