@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Users" table="users" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkUser" type="java.lang.Integer">
@@ -18,7 +18,10 @@
             <column name="password" length="100" not-null="true" />
         </property>
         <property name="userProfile" type="string">
-            <column name="userProfile" length="34" not-null="true" />
+            <column name="userProfile" length="40" not-null="true" />
+        </property>
+        <property name="userFunction" type="string">
+            <column name="userFunction" length="69" not-null="true" />
         </property>
         <property name="registrationNumber" type="string">
             <column name="registrationNumber" length="50" not-null="true" unique="true" />

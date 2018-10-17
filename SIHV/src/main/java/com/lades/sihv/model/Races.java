@@ -1,17 +1,20 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,36 +29,53 @@ import javax.persistence.TemporalType;
 public class Races  implements java.io.Serializable {
 
 
-     private Integer pkRaces;
+     private RacesId id;
      private Species species;
      private String nameRaces;
      private Date dataRaceRegister;
+     private Set smallAnimals = new HashSet(0);
 
     public Races() {
     }
 
-    public Races(Species species, String nameRaces, Date dataRaceRegister) {
+	
+    public Races(RacesId id, Species species, String nameRaces, Date dataRaceRegister) {
+        this.id = id;
+        this.species = species;
+        this.nameRaces = nameRaces;
+        this.dataRaceRegister = dataRaceRegister;
+    }
+    public Races(RacesId id, Species species, String nameRaces, Date dataRaceRegister, Set smallAnimals) {
+       this.id = id;
        this.species = species;
        this.nameRaces = nameRaces;
        this.dataRaceRegister = dataRaceRegister;
+       this.smallAnimals = smallAnimals;
     }
    
-     @Id @GeneratedValue(strategy=IDENTITY)
+     @EmbeddedId
 
     
-    @Column(name="PK_races", unique=true, nullable=false)
-    public Integer getPkRaces() {
-        return this.pkRaces;
+    @AttributeOverrides( {
+        @AttributeOverride(name="pkRaces", column=@Column(name="PK_races", nullable=false) ), 
+        @AttributeOverride(name="speciesPkSpecies", column=@Column(name="species_PK_species", nullable=false) ), 
+        @AttributeOverride(name="speciesGenrePkGenre", column=@Column(name="species_genre_PK_genre", nullable=false) ), 
+        @AttributeOverride(name="speciesGenreOrderPkOrder", column=@Column(name="species_genre_order_PK_order", nullable=false) ), 
+        @AttributeOverride(name="speciesGenreOrderClassAnimalPkClassAnimal", column=@Column(name="species_genre_order_classAnimal_PK_classAnimal", nullable=false) ) } )
+    public RacesId getId() {
+        return this.id;
     }
     
-    public void setPkRaces(Integer pkRaces) {
-        this.pkRaces = pkRaces;
+    public void setId(RacesId id) {
+        this.id = id;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="species_PK_species", referencedColumnName="PK_species", nullable=false), 
-        @JoinColumn(name="species_classAnimal_PK_classAnimal", referencedColumnName="classAnimal_PK_classAnimal", nullable=false) } )
+        @JoinColumn(name="species_PK_species", referencedColumnName="PK_species", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="species_genre_PK_genre", referencedColumnName="genre_PK_genre", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="species_genre_order_PK_order", referencedColumnName="genre_order_PK_order", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="species_genre_order_classAnimal_PK_classAnimal", referencedColumnName="genre_order_classAnimal_PK_classAnimal", nullable=false, insertable=false, updatable=false) } )
     public Species getSpecies() {
         return this.species;
     }
@@ -82,6 +102,15 @@ public class Races  implements java.io.Serializable {
     
     public void setDataRaceRegister(Date dataRaceRegister) {
         this.dataRaceRegister = dataRaceRegister;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="races")
+    public Set getSmallAnimals() {
+        return this.smallAnimals;
+    }
+    
+    public void setSmallAnimals(Set smallAnimals) {
+        this.smallAnimals = smallAnimals;
     }
 
 

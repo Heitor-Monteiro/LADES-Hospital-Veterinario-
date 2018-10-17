@@ -1,16 +1,13 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Animals" table="animals" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkAnimal" type="java.lang.Integer">
             <column name="PK_animal" />
             <generator class="identity" />
         </id>
-        <many-to-one name="classAnimal" class="com.lades.sihv.model.ClassAnimal" fetch="select">
-            <column name="classAnimal_PK_classAnimal" not-null="true" />
-        </many-to-one>
         <property name="animalName" type="string">
             <column name="animalName" length="70" not-null="true" />
         </property>
@@ -19,12 +16,6 @@
         </property>
         <property name="animalAge" type="string">
             <column name="animalAge" length="100" not-null="true" />
-        </property>
-        <property name="rghv" type="string">
-            <column name="rghv" length="100" not-null="true" />
-        </property>
-        <property name="categoryAnimal" type="string">
-            <column name="categoryAnimal" length="5" not-null="true" />
         </property>
         <property name="deathAnimal" type="boolean">
             <column name="deathAnimal" not-null="true" />
@@ -43,6 +34,12 @@
                 <column name="animals_PK_animal" not-null="true" />
             </key>
             <one-to-many class="com.lades.sihv.model.AnimalPhoto" />
+        </set>
+        <set name="smallAnimals" table="smallAnimal" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="animals_PK_animal" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SmallAnimal" />
         </set>
     </class>
 </hibernate-mapping>

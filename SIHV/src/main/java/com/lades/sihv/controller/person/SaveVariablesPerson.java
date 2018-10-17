@@ -6,9 +6,9 @@
 package com.lades.sihv.controller.person;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.model.CpfId;
+import com.lades.sihv.controller.BeautyText;
+import com.lades.sihv.model.PhysicalPerson;
 import com.lades.sihv.model.PhysicalPersonId;
-import com.lades.sihv.model.RgId;
 
 /**
  *
@@ -18,6 +18,8 @@ public class SaveVariablesPerson extends AbstractBean {
 
     public void savePerson(VariablesPerson varPerson) {
         try {
+            varPerson.getPerson().setNamePerson(new BeautyText()
+                    .Captalizador(varPerson.getPerson().getNamePerson()));
             varPerson.getPerson().setLogicalExclusion(false);
             varPerson.getPerson().setRegistrationDate(getObjData());
             getDaoGenerico().save(varPerson.getPerson());
@@ -33,6 +35,10 @@ public class SaveVariablesPerson extends AbstractBean {
             id.setPeoplePkPerson(varPerson.getPerson().getPkPerson());
             varPerson.getPhysicalPerson().setId(id);
             getDaoGenerico().save(varPerson.getPhysicalPerson());
+            PhysicalPerson tempPhysicalPerson = (PhysicalPerson) getDaoGenerico().list("select f from PhysicalPerson f \n"
+                    + "where \n"
+                    + "f.id.pkPhysicalPerson=(select  max(f.id.pkPhysicalPerson) from PhysicalPerson f) ").get(0);
+            varPerson.setPhysicalPerson(tempPhysicalPerson);
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERRO  public void savePhysicalPerson():" + e);
             getObjMessage().error("Erro detectado!", "public void savePhysicalPerson():" + e);
@@ -41,10 +47,7 @@ public class SaveVariablesPerson extends AbstractBean {
 
     public void saveCPF(VariablesPerson varPerson) {
         try {
-            CpfId cpfId = new CpfId();
-            cpfId.setPhysicalPersonPkPhysicalPerson(varPerson.getPhysicalPerson().getId().getPkPhysicalPerson());
-            cpfId.setPhysicalPersonPeoplePkPerson(varPerson.getPhysicalPerson().getId().getPeoplePkPerson());
-            varPerson.getObjCpf().setId(cpfId);
+            varPerson.getObjCpf().setPhysicalPerson(varPerson.getPhysicalPerson());
             getDaoGenerico().save(varPerson.getObjCpf());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERRO  public void saveCPF():" + e);
@@ -54,14 +57,21 @@ public class SaveVariablesPerson extends AbstractBean {
 
     public void saveRG(VariablesPerson varPerson) {
         try {
-            RgId rgId = new RgId();
-            rgId.setPhysicalPersonPkPhysicalPerson(varPerson.getPhysicalPerson().getId().getPkPhysicalPerson());
-            rgId.setPhysicalPersonPeoplePkPerson(varPerson.getPhysicalPerson().getId().getPeoplePkPerson());
-            varPerson.getObjRg().setId(rgId);
+            varPerson.getObjRg().setPhysicalPerson(varPerson.getPhysicalPerson());
             getDaoGenerico().save(varPerson.getObjRg());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERRO  public void saveRG():" + e);
             getObjMessage().error("Erro detectado!", "public void saveRG():" + e);
+        }
+    }
+
+    public void saveOwners(VariablesPerson varPerson) {
+        try {
+            varPerson.getOwner().setPeople(varPerson.getPerson());
+            getDaoGenerico().save(varPerson.getOwner());
+        } catch (Exception e) {
+            System.out.println("BACK-END WARNING: ERRO  public void saveOwners():" + e);
+            getObjMessage().error("Erro detectado!", "public void saveOwners():" + e);
         }
     }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.SmallAnimal" table="smallAnimal" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkSmallAnimal" type="java.lang.Integer">
+            <column name="PK_smallAnimal" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="animals" class="com.lades.sihv.model.Animals" fetch="select">
+            <column name="animals_PK_animal" not-null="true" />
+        </many-to-one>
+        <many-to-one name="races" class="com.lades.sihv.model.Races" fetch="select">
+            <column name="races_PK_races" not-null="true" />
+            <column name="races_species_PK_species" not-null="true" />
+            <column name="races_species_genre_PK_genre" not-null="true" />
+            <column name="races_species_genre_order_PK_order" not-null="true" />
+            <column name="races_species_genre_order_classAnimal_PK_classAnimal" not-null="true" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

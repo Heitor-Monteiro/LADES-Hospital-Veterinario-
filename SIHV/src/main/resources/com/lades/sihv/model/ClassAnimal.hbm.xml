@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.ClassAnimal" table="classAnimal" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkClassAnimal" type="java.lang.Integer">
@@ -11,17 +11,11 @@
         <property name="nameClass" type="string">
             <column name="nameClass" length="100" not-null="true" />
         </property>
-        <set name="animalses" table="animals" inverse="true" lazy="true" fetch="select">
+        <set name="orders" table="order" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="classAnimal_PK_classAnimal" not-null="true" />
             </key>
-            <one-to-many class="com.lades.sihv.model.Animals" />
-        </set>
-        <set name="specieses" table="species" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="classAnimal_PK_classAnimal" not-null="true" />
-            </key>
-            <one-to-many class="com.lades.sihv.model.Species" />
+            <one-to-many class="com.lades.sihv.model.Order" />
         </set>
     </class>
 </hibernate-mapping>

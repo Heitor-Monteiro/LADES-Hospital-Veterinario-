@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -25,8 +25,7 @@ public class ClassAnimal  implements java.io.Serializable {
 
      private Integer pkClassAnimal;
      private String nameClass;
-     private Set animalses = new HashSet(0);
-     private Set specieses = new HashSet(0);
+     private Set orders = new HashSet(0);
 
     public ClassAnimal() {
     }
@@ -35,10 +34,9 @@ public class ClassAnimal  implements java.io.Serializable {
     public ClassAnimal(String nameClass) {
         this.nameClass = nameClass;
     }
-    public ClassAnimal(String nameClass, Set animalses, Set specieses) {
+    public ClassAnimal(String nameClass, Set orders) {
        this.nameClass = nameClass;
-       this.animalses = animalses;
-       this.specieses = specieses;
+       this.orders = orders;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -64,21 +62,12 @@ public class ClassAnimal  implements java.io.Serializable {
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="classAnimal")
-    public Set getAnimalses() {
-        return this.animalses;
+    public Set getOrders() {
+        return this.orders;
     }
     
-    public void setAnimalses(Set animalses) {
-        this.animalses = animalses;
-    }
-
-@OneToMany(fetch=FetchType.LAZY, mappedBy="classAnimal")
-    public Set getSpecieses() {
-        return this.specieses;
-    }
-    
-    public void setSpecieses(Set specieses) {
-        this.specieses = specieses;
+    public void setOrders(Set orders) {
+        this.orders = orders;
     }
 
 

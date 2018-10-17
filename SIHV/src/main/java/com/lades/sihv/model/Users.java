@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import java.util.HashSet;
@@ -32,6 +32,7 @@ public class Users  implements java.io.Serializable {
      private String userName;
      private String password;
      private String userProfile;
+     private String userFunction;
      private String registrationNumber;
      private Set powersHasUserses = new HashSet(0);
      private Set vetConsultations = new HashSet(0);
@@ -41,18 +42,20 @@ public class Users  implements java.io.Serializable {
     }
 
 	
-    public Users(People people, String userName, String password, String userProfile, String registrationNumber) {
+    public Users(People people, String userName, String password, String userProfile, String userFunction, String registrationNumber) {
         this.people = people;
         this.userName = userName;
         this.password = password;
         this.userProfile = userProfile;
+        this.userFunction = userFunction;
         this.registrationNumber = registrationNumber;
     }
-    public Users(People people, String userName, String password, String userProfile, String registrationNumber, Set powersHasUserses, Set vetConsultations, Set logBookHasUserses) {
+    public Users(People people, String userName, String password, String userProfile, String userFunction, String registrationNumber, Set powersHasUserses, Set vetConsultations, Set logBookHasUserses) {
        this.people = people;
        this.userName = userName;
        this.password = password;
        this.userProfile = userProfile;
+       this.userFunction = userFunction;
        this.registrationNumber = registrationNumber;
        this.powersHasUserses = powersHasUserses;
        this.vetConsultations = vetConsultations;
@@ -102,13 +105,23 @@ public class Users  implements java.io.Serializable {
     }
 
     
-    @Column(name="userProfile", nullable=false, length=34)
+    @Column(name="userProfile", nullable=false, length=40)
     public String getUserProfile() {
         return this.userProfile;
     }
     
     public void setUserProfile(String userProfile) {
         this.userProfile = userProfile;
+    }
+
+    
+    @Column(name="userFunction", nullable=false, length=69)
+    public String getUserFunction() {
+        return this.userFunction;
+    }
+    
+    public void setUserFunction(String userFunction) {
+        this.userFunction = userFunction;
     }
 
     

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -12,6 +12,7 @@ import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -29,7 +30,7 @@ public class Species  implements java.io.Serializable {
 
 
      private SpeciesId id;
-     private ClassAnimal classAnimal;
+     private Genre genre;
      private String nameSpecies;
      private Date dataSpeciesRegister;
      private Set raceses = new HashSet(0);
@@ -38,15 +39,15 @@ public class Species  implements java.io.Serializable {
     }
 
 	
-    public Species(SpeciesId id, ClassAnimal classAnimal, String nameSpecies, Date dataSpeciesRegister) {
+    public Species(SpeciesId id, Genre genre, String nameSpecies, Date dataSpeciesRegister) {
         this.id = id;
-        this.classAnimal = classAnimal;
+        this.genre = genre;
         this.nameSpecies = nameSpecies;
         this.dataSpeciesRegister = dataSpeciesRegister;
     }
-    public Species(SpeciesId id, ClassAnimal classAnimal, String nameSpecies, Date dataSpeciesRegister, Set raceses) {
+    public Species(SpeciesId id, Genre genre, String nameSpecies, Date dataSpeciesRegister, Set raceses) {
        this.id = id;
-       this.classAnimal = classAnimal;
+       this.genre = genre;
        this.nameSpecies = nameSpecies;
        this.dataSpeciesRegister = dataSpeciesRegister;
        this.raceses = raceses;
@@ -57,7 +58,9 @@ public class Species  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSpecies", column=@Column(name="PK_species", nullable=false) ), 
-        @AttributeOverride(name="classAnimalPkClassAnimal", column=@Column(name="classAnimal_PK_classAnimal", nullable=false) ) } )
+        @AttributeOverride(name="genrePkGenre", column=@Column(name="genre_PK_genre", nullable=false) ), 
+        @AttributeOverride(name="genreOrderPkOrder", column=@Column(name="genre_order_PK_order", nullable=false) ), 
+        @AttributeOverride(name="genreOrderClassAnimalPkClassAnimal", column=@Column(name="genre_order_classAnimal_PK_classAnimal", nullable=false) ) } )
     public SpeciesId getId() {
         return this.id;
     }
@@ -67,13 +70,16 @@ public class Species  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="classAnimal_PK_classAnimal", nullable=false, insertable=false, updatable=false)
-    public ClassAnimal getClassAnimal() {
-        return this.classAnimal;
+    @JoinColumns( { 
+        @JoinColumn(name="genre_PK_genre", referencedColumnName="PK_genre", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="genre_order_PK_order", referencedColumnName="order_PK_order", nullable=false, insertable=false, updatable=false), 
+        @JoinColumn(name="genre_order_classAnimal_PK_classAnimal", referencedColumnName="order_classAnimal_PK_classAnimal", nullable=false, insertable=false, updatable=false) } )
+    public Genre getGenre() {
+        return this.genre;
     }
     
-    public void setClassAnimal(ClassAnimal classAnimal) {
-        this.classAnimal = classAnimal;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     

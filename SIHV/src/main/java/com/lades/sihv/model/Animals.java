@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -29,42 +27,35 @@ public class Animals  implements java.io.Serializable {
 
 
      private Integer pkAnimal;
-     private ClassAnimal classAnimal;
      private String animalName;
      private String genderAnimal;
      private String animalAge;
-     private String rghv;
-     private String categoryAnimal;
      private boolean deathAnimal;
      private Date registrationDate;
      private Set ownersHasAnimalses = new HashSet(0);
      private Set animalPhotos = new HashSet(0);
+     private Set smallAnimals = new HashSet(0);
 
     public Animals() {
     }
 
 	
-    public Animals(ClassAnimal classAnimal, String animalName, String genderAnimal, String animalAge, String rghv, String categoryAnimal, boolean deathAnimal, Date registrationDate) {
-        this.classAnimal = classAnimal;
+    public Animals(String animalName, String genderAnimal, String animalAge, boolean deathAnimal, Date registrationDate) {
         this.animalName = animalName;
         this.genderAnimal = genderAnimal;
         this.animalAge = animalAge;
-        this.rghv = rghv;
-        this.categoryAnimal = categoryAnimal;
         this.deathAnimal = deathAnimal;
         this.registrationDate = registrationDate;
     }
-    public Animals(ClassAnimal classAnimal, String animalName, String genderAnimal, String animalAge, String rghv, String categoryAnimal, boolean deathAnimal, Date registrationDate, Set ownersHasAnimalses, Set animalPhotos) {
-       this.classAnimal = classAnimal;
+    public Animals(String animalName, String genderAnimal, String animalAge, boolean deathAnimal, Date registrationDate, Set ownersHasAnimalses, Set animalPhotos, Set smallAnimals) {
        this.animalName = animalName;
        this.genderAnimal = genderAnimal;
        this.animalAge = animalAge;
-       this.rghv = rghv;
-       this.categoryAnimal = categoryAnimal;
        this.deathAnimal = deathAnimal;
        this.registrationDate = registrationDate;
        this.ownersHasAnimalses = ownersHasAnimalses;
        this.animalPhotos = animalPhotos;
+       this.smallAnimals = smallAnimals;
     }
    
      @Id @GeneratedValue(strategy=IDENTITY)
@@ -77,16 +68,6 @@ public class Animals  implements java.io.Serializable {
     
     public void setPkAnimal(Integer pkAnimal) {
         this.pkAnimal = pkAnimal;
-    }
-
-@ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="classAnimal_PK_classAnimal", nullable=false)
-    public ClassAnimal getClassAnimal() {
-        return this.classAnimal;
-    }
-    
-    public void setClassAnimal(ClassAnimal classAnimal) {
-        this.classAnimal = classAnimal;
     }
 
     
@@ -117,26 +98,6 @@ public class Animals  implements java.io.Serializable {
     
     public void setAnimalAge(String animalAge) {
         this.animalAge = animalAge;
-    }
-
-    
-    @Column(name="rghv", nullable=false, length=100)
-    public String getRghv() {
-        return this.rghv;
-    }
-    
-    public void setRghv(String rghv) {
-        this.rghv = rghv;
-    }
-
-    
-    @Column(name="categoryAnimal", nullable=false, length=5)
-    public String getCategoryAnimal() {
-        return this.categoryAnimal;
-    }
-    
-    public void setCategoryAnimal(String categoryAnimal) {
-        this.categoryAnimal = categoryAnimal;
     }
 
     
@@ -175,6 +136,15 @@ public class Animals  implements java.io.Serializable {
     
     public void setAnimalPhotos(Set animalPhotos) {
         this.animalPhotos = animalPhotos;
+    }
+
+@OneToMany(fetch=FetchType.LAZY, mappedBy="animals")
+    public Set getSmallAnimals() {
+        return this.smallAnimals;
+    }
+    
+    public void setSmallAnimals(Set smallAnimals) {
+        this.smallAnimals = smallAnimals;
     }
 
 

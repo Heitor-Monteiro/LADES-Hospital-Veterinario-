@@ -5,31 +5,17 @@
  */
 package com.lades.sihv.bean;
 
-import com.lades.sihv.controller.person.PessoaCheckExistLogin;
-import com.lades.sihv.controller.person.PessoaCheckExistCpfCnpj;
-import com.lades.sihv.controller.person.PessoaCheckCPF;
-import com.lades.sihv.controller.person.PessoaCheckCNPJ;
-import com.lades.sihv.controller.person.PessoaPadraoCaracter;
 import com.lades.sihv.controller.person.IntercalateCpfRg;
-import java.util.ArrayList;
 import java.util.List;
-import com.lades.sihv.model.People;
-import com.lades.sihv.model.PhysicalPerson;
-import com.lades.sihv.model.PhysicalPersonId;
-import com.lades.sihv.model.Cpf;
-import com.lades.sihv.model.CpfId;
-import com.lades.sihv.model.Rg;
-import com.lades.sihv.model.RgId;
-import com.lades.sihv.model.LegalPerson;
-import com.lades.sihv.model.Owners;
-import com.lades.sihv.model.Animals;
 import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.address.AddressControl;
+import com.lades.sihv.controller.animal.AnimalControl;
 import com.lades.sihv.controller.person.PhonesControl;
 import com.lades.sihv.controller.person.SaveVariablesPerson;
 import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.controller.person.VerifyPersonDocument;
+import com.lades.sihv.controller.scheduleConsulta.ConfirmOwnerPresence;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import com.lades.sihv.model.Scheduling;
 import javax.annotation.PostConstruct;
@@ -50,7 +36,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
 
     public AddressControl addressControl;
     private PhonesControl phonesControl;
-    private Animals animal;
+    private AnimalControl animalControl;
 
     private ListRenderedFields listRenderedFields;
 
@@ -66,7 +52,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
         intercalateCpfRg = new IntercalateCpfRg();
         verifyPersonDocument = new VerifyPersonDocument();
         //----------------------------------------------------------------------
-        animal = new Animals();
+        animalControl = new AnimalControl();
         listRenderedFields = new ListRenderedFields(3);
         listRenderedFields.startIndexListViewFields();
         addressControl = new AddressControl();
@@ -79,17 +65,22 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
         schedule = (Scheduling) list.get(0);
         tempCliData = (NewAnimalAndOwner) list.get(1);
         varPerson.getPerson().setNamePerson(tempCliData.getProprietaryName());
-        animal.setAnimalName(tempCliData.getAnimalName());
+        animalControl.getVarAnimal().getAnimal().setAnimalName(tempCliData.getAnimalName());
         phonesControl.coletarPhoneTemp(tempCliData);
     }
 
     public void verifyPersonDocument() {
         if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
             //PhysicalPerson
-
-            boolean teste = false;
-            teste = verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
-
+            boolean newPerson = verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
+            if (!newPerson) {
+                animalControl.methodSmallAnimalSpecies();
+                animalControl.methodSearchRegisteredAnimal(varPerson.getPerson());
+            } else {
+                animalControl.getVarAnimal().getStatusNewAnimal().setViewVariableBoolean(true);
+                animalControl.getGenerateRghv().methodNewRghvAnimal(animalControl.getVarAnimal(), "P");
+                animalControl.methodSmallAnimalSpecies();
+            }
         } else {
             // LegalPerson
         }
@@ -101,20 +92,35 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
         SaveVariablesPerson savePerson = new SaveVariablesPerson();
 
         if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
-            savePerson.savePerson(varPerson);
-            savePerson.savePhysicalPerson(varPerson);
-            addressControl.saveAddress(varPerson.getPerson());
 
-            
-            if (verifyPersonDocument.isCheckCPF()) {
+            if (verifyPersonDocument.isNewPerson()) {
+                savePerson.savePerson(varPerson);
+                savePerson.savePhysicalPerson(varPerson);
+                phonesControl.savePhones(varPerson.getPerson());
+                addressControl.saveAddress(varPerson.getPerson());
+                savePerson.saveOwners(varPerson);
+            }
+
+            if (verifyPersonDocument.isCheckCPF()
+                    && verifyPersonDocument.isNewCPF()) {
                 savePerson.saveCPF(varPerson);
             }
 
-            if (verifyPersonDocument.isCheckRG()) {
+            if (verifyPersonDocument.isCheckRG()
+                    && verifyPersonDocument.isNewRG()) {
                 savePerson.saveRG(varPerson);
             }
-            
-            getObjMessage().info("Os dados foram salvos", "");
+
+            if (animalControl.getVarAnimal().getStatusNewAnimal().isViewVariableBoolean()) {
+                animalControl.saveNewSmallAnimal();
+                animalControl.saveOwnersHasAnimals(varPerson);
+            }
+
+            new ConfirmOwnerPresence()
+                    .methodConfirmOwnerPresence(schedule,
+                             tempCliData, varPerson, phonesControl,
+                             animalControl.getVarAnimal());
+            getObjMessage().info("Animal confirmado para consulta", "");
         } else {
 
         }
@@ -147,6 +153,10 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
 
     private void confirmViewFormsOwner(boolean var) {
         listRenderedFields.getListViewFields(1).setViewVariableBoolean(var);
+    }
+
+    public AnimalControl getAnimalControl() {
+        return animalControl;
     }
 
 }

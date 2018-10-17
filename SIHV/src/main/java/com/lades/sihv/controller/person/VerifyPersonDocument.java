@@ -13,7 +13,6 @@ import com.lades.sihv.model.FederationUnity;
 import com.lades.sihv.model.Owners;
 import com.lades.sihv.model.PhysicalPerson;
 import com.lades.sihv.model.Rg;
-import com.lades.sihv.model.Users;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -25,23 +24,25 @@ import java.util.Objects;
 public class VerifyPersonDocument extends AbstractBean {
 
     private List<?> listSearchPerson = new ArrayList<>();
-    private boolean statusPerson = false;
+    private boolean newPerson = false;
+    private boolean newRG = false;
+    private boolean newCPF = false;
     private boolean checkCPF = false;
     private boolean checkRG = false;
     private boolean checkCNPJ = false;
 
     private String returnHqlCPF(Cpf objCpf) {
         return " and \n"
-                + "( f.id.peoplePkPerson=c.id.physicalPersonPeoplePkPerson and \n"
-                + "f.id.pkPhysicalPerson=c.id.physicalPersonPkPhysicalPerson and \n"
+                + "( f.id.peoplePkPerson=c.physicalPerson.id.peoplePkPerson and \n" //OK----------------
+                + "f.id.pkPhysicalPerson=c.physicalPerson.id.pkPhysicalPerson and \n" //OK----------------
                 + "c.cpf='" + objCpf.getCpf() + "' )";
     }
 
     private String returnHqlRG(Rg objRg, FederationUnity selectUF) {
         return " and \n"
-                + "( f.id.peoplePkPerson=r.id.physicalPersonPeoplePkPerson and \n"
-                + "f.id.pkPhysicalPerson=r.id.physicalPersonPkPhysicalPerson and \n"
-                + "r.rg='" + objRg.getRg() + "' ) and \n"
+                + "( f.id.peoplePkPerson=r.physicalPerson.id.peoplePkPerson and \n" //OK----------------
+                + "f.id.pkPhysicalPerson=r.physicalPerson.id.pkPhysicalPerson and \n" //OK----------------
+                + "r.rg='" + objRg.getRg() + "' ) and \n" //OK----------------
                 + "(uf.pkFederationUnity='" + selectUF.getPkFederationUnity() + "' and \n"
                 + "uf.pkFederationUnity=cy.federationUnity.pkFederationUnity and \n"
                 + "cy.pkCity=n.id.cityPkCity and \n"
@@ -53,9 +54,9 @@ public class VerifyPersonDocument extends AbstractBean {
     private People checkForCPF(Cpf objCpf) {
         List<People> list = getDaoGenerico().list("select p from People p, PhysicalPerson f, Cpf c \n"
                 + "where \n"
-                + "p.pkPerson=f.id.peoplePkPerson and \n"
-                + "f.id.pkPhysicalPerson=c.id.physicalPersonPkPhysicalPerson and \n"
-                + "f.id.peoplePkPerson=c.id.physicalPersonPeoplePkPerson and \n"
+                + "p.pkPerson=f.id.peoplePkPerson and \n" //OK----------------
+                + "f.id.pkPhysicalPerson=c.physicalPerson.id.pkPhysicalPerson and \n" //OK----------------
+                + "f.id.peoplePkPerson=c.physicalPerson.id.peoplePkPerson and \n" //OK----------------
                 + "c.cpf='" + objCpf.getCpf() + "' ");
         if (list.isEmpty()) {
             return new People();
@@ -67,9 +68,9 @@ public class VerifyPersonDocument extends AbstractBean {
     private People checkForRG(Rg objRg) {
         List<People> list = getDaoGenerico().list("select p from People p, PhysicalPerson f, Rg r \n"
                 + "where \n"
-                + "p.pkPerson=f.id.peoplePkPerson and \n"
-                + "f.id.pkPhysicalPerson=r.id.physicalPersonPkPhysicalPerson and \n"
-                + "f.id.peoplePkPerson=r.id.physicalPersonPeoplePkPerson and \n"
+                + "p.pkPerson=f.id.peoplePkPerson and \n" //OK----------------
+                + "f.id.pkPhysicalPerson=r.physicalPerson.id.pkPhysicalPerson and \n" //OK----------------
+                + "f.id.peoplePkPerson=r.physicalPerson.id.peoplePkPerson and \n" //OK----------------
                 + "r.rg='" + objRg.getRg() + "' ");
         if (list.isEmpty()) {
             return new People();
@@ -91,21 +92,21 @@ public class VerifyPersonDocument extends AbstractBean {
             hqlRG = returnHqlRG(varPerson.getObjRg(), addressControl.getVar().getSelectUF());
             hql = "select p, f" + objReturn + " from People p, PhysicalPerson f " + entitys
                     + "where \n"
-                    + "p.pkPerson=f.id.peoplePkPerson" + hqlCPF + hqlRG;
+                    + "p.pkPerson=f.id.peoplePkPerson" + hqlCPF + hqlRG; //OK----------------
         } else if (checkCPF) {
             objReturn = ", c";
             entitys += ", Cpf c \n";
             hqlCPF = returnHqlCPF(varPerson.getObjCpf());
             hql = "select p, f" + objReturn + " from People p, PhysicalPerson f " + entitys
                     + "where \n"
-                    + "p.pkPerson=f.id.peoplePkPerson" + hqlCPF;
+                    + "p.pkPerson=f.id.peoplePkPerson" + hqlCPF; //OK----------------
         } else if (checkRG) {
             objReturn = ", r";
             entitys += ", Rg r, FederationUnity uf, City cy, Neighborhood n, Address a, Houses h \n";
             hqlRG = returnHqlRG(varPerson.getObjRg(), addressControl.getVar().getSelectUF());
             hql = "select p, f" + objReturn + " from People p, PhysicalPerson f " + entitys
                     + "where \n"
-                    + "p.pkPerson=f.id.peoplePkPerson" + hqlRG;
+                    + "p.pkPerson=f.id.peoplePkPerson" + hqlRG; //OK----------------
         }
         return hql;
     }
@@ -113,9 +114,9 @@ public class VerifyPersonDocument extends AbstractBean {
     private List<?> searchRgOrCpfUsingPerson(People person, String CpfOrRg) {
         return getDaoGenerico().list("select x from People p, PhysicalPerson f, " + CpfOrRg + " x \n"
                 + "where \n"
-                + "p.pkPerson=f.id.peoplePkPerson and \n"
-                + "f.id.pkPhysicalPerson=x.id.physicalPersonPkPhysicalPerson and \n"
-                + "f.id.peoplePkPerson=x.id.physicalPersonPeoplePkPerson and \n"
+                + "p.pkPerson=f.id.peoplePkPerson and \n" //OK----------------
+                + "f.id.pkPhysicalPerson=x.physicalPerson.id.pkPhysicalPerson and \n" //OK----------------
+                + "f.id.peoplePkPerson=x.physicalPerson.id.peoplePkPerson and \n" //OK----------------
                 + "p.pkPerson='" + person.getPkPerson() + "' ");
     }
 
@@ -131,17 +132,17 @@ public class VerifyPersonDocument extends AbstractBean {
                             varPerson.getPerson().getNamePerson() + " está sem RG no sistema.");
                 }
             } else {
-                varPerson.setObjRg(new Rg());
+//                varPerson.setObjRg(new Rg());
             }
         } catch (Exception e) {
             getObjMessage().error("BACK-END WARNING: ERRO private void completeRgPossible():", e.getMessage());
-            System.out.println("BACK-END WARNING: ERRO private void completeRgPossible(): " + e);
+            System.out.println("►►►►►►►►►►►►► ERRO private void completeRgPossible(): " + e);
         }
     }
 
-    private void completeCpfPossible(boolean checkList, VariablesPerson varPerson) {
+    private void completeCpfPossible(boolean checkPerson, VariablesPerson varPerson) {
         try {
-            if (checkList) {
+            if (checkPerson) {
                 List<Cpf> list = (List<Cpf>) searchRgOrCpfUsingPerson(varPerson.getPerson(), "Cpf");
                 if (!list.isEmpty()) {
                     varPerson.setObjCpf(list.get(0));
@@ -151,12 +152,21 @@ public class VerifyPersonDocument extends AbstractBean {
                             varPerson.getPerson().getNamePerson() + " está sem CPF no sistema.");
                 }
             } else {
-                varPerson.setObjCpf(new Cpf());
+//                varPerson.setObjCpf(new Cpf());
             }
         } catch (Exception e) {
             getObjMessage().error("BACK-END WARNING: ERRO private void completeCpfPossible():", e.getMessage());
-            System.out.println("BACK-END WARNING: ERRO private void completeCpfPossible(): " + e);
+            System.out.println("►►►►►►►►►►►►► ERRO private void completeCpfPossible(): " + e);
         }
+    }
+
+    private void searchForOwner(VariablesPerson varPerson) {
+        List<Owners> listOwner = getDaoGenerico().list("select o from People p, Owners o \n"
+                + "where \n"
+                + "p.pkPerson=o.people.pkPerson and \n"
+                + "p.logicalExclusion='0' and\n"
+                + "o.people.pkPerson='" + varPerson.getPerson().getPkPerson() + "'");
+        varPerson.setOwner(listOwner.get(0));
     }
 
     private List<?> collectListValues(VariablesPerson varPerson,
@@ -181,6 +191,8 @@ public class VerifyPersonDocument extends AbstractBean {
                             varPerson.setObjRg((Rg) object[2]);
                         }
                     }
+                    searchForOwner(varPerson);
+                    newPerson = false;
                     if (checkCPF && checkRG) {
                         getObjMessage().info("Registro encontrado", varPerson.getPerson().getNamePerson());
                     }
@@ -194,48 +206,72 @@ public class VerifyPersonDocument extends AbstractBean {
 
                 if (personCPF.getPkPerson() != null
                         && personRG.getPkPerson() != null) {
-
+                    newPerson = false;
+                    newCPF = false;
+                    newRG = false;
                     if (!Objects.equals(personCPF.getPkPerson(), personRG.getPkPerson())) {
                         getObjMessage().warn("Individuos diferentes!", "Utilize documentos que pertensa a somente um indivíduo");
                         getObjMessage().warn("O CPF " + varPerson.getObjCpf().getCpf(), "Pertence a " + personCPF.getNamePerson());
                         getObjMessage().warn("O RG " + varPerson.getObjRg().getRg(), "Pertence a " + personRG.getNamePerson());
-
                     } else {
                         getObjMessage().warn("Novo evento identificado! %",
                                 "Contacte o analista de sistemas para informar o ocorrido.");
                     }
                 } else if (personCPF.getPkPerson() != null) {
+                    newPerson = false;
                     List<Rg> listRg = (List<Rg>) searchRgOrCpfUsingPerson(personCPF, "Rg");
+                    varPerson.setPerson(personCPF);
                     if (!listRg.isEmpty()) {
                         getObjMessage().warn("Dados incorretos!",
                                 personCPF.getNamePerson() + " com nº CPF "
                                 + varPerson.getObjCpf().getCpf()
                                 + ", já possui o RG " + listRg.get(0).getRg() + " registrado.");
+                        varPerson.setObjRg(listRg.get(0));
                     } else {
                         getObjMessage().info("Novo documento identificado!",
                                 "O RG " + varPerson.getObjRg().getRg()
                                 + " será adicionado ao registro de "
                                 + varPerson.getPerson().getNamePerson());
+                        searchForOwner(varPerson);
+                        newRG = true;
                     }
                 } else if (personRG.getPkPerson() != null) {
+                    newPerson = false;
                     List<Cpf> listCpf = (List<Cpf>) searchRgOrCpfUsingPerson(personRG, "Cpf");
+                    varPerson.setPerson(personRG);
                     if (!listCpf.isEmpty()) {
                         getObjMessage().warn("Dados incorretos!",
                                 personRG.getNamePerson() + " com nº RG "
                                 + varPerson.getObjRg().getRg()
                                 + ", já possui o CPF " + listCpf.get(0).getCpf() + " registrado.");
+                        varPerson.setObjCpf(listCpf.get(0));
                     } else {
-                        getObjMessage().info("Novo cadastro identificado! %", "");
+                        getObjMessage().info("Novo documento identificado!",
+                                "O CPF " + varPerson.getObjCpf().getCpf()
+                                + " será adicionado ao registro de "
+                                + varPerson.getPerson().getNamePerson());
+                        searchForOwner(varPerson);
+                        newCPF = true;
                     }
                 } else {
                     getObjMessage().info("Novo cadastro identificado! #", "");
+                    newPerson = true;
+                    newCPF = true;
+                    newRG = true;
                 }
             } else {
                 getObjMessage().info("Novo cadastro identificado! @", "");
+                newPerson = true;
+                if (checkCPF) {
+                    newCPF = true;
+                } else if (checkRG) {
+                    newRG = true;
+                }
+
             }
         } catch (Exception e) {
             getObjMessage().error("BACK-END WARNING: ERRO private void collectListValues():", e.getMessage());
-            System.out.println("BACK-END WARNING: ERRO private void collectListValues(): " + e);
+            System.out.println("►►►►►►►►►►►►► ERRO private void collectListValues(): " + e);
         }
         return list;
     }
@@ -243,6 +279,9 @@ public class VerifyPersonDocument extends AbstractBean {
     public boolean checkDocumentPhysicalPerson(VariablesPerson varPerson, AddressControl addressControl) {
         listSearchPerson.clear();
         String hql = "";
+        newPerson = false;
+        newCPF = false;
+        newRG = false;
         checkCPF = false;
         int lengthCPF = 0;
         lengthCPF = varPerson.getObjCpf().getCpf().length();
@@ -252,27 +291,28 @@ public class VerifyPersonDocument extends AbstractBean {
                 varPerson.getObjCpf().setCpf("");
                 varPerson.getObjRg().setRg("");
                 addressControl.getVar().setSelectUF(new FederationUnity());
-            } 
+            }
         }
         checkRG = !varPerson.getObjRg().getRg().isEmpty();
         hql = buildHQL(checkCPF, checkRG, varPerson, addressControl);
         if (checkCPF && checkRG) {
             listSearchPerson = collectListValues(varPerson, checkCPF, checkRG, hql);
-            addressControl.startAddressControl(listSearchPerson.isEmpty(), varPerson.getPerson());
+            addressControl.startAddressControl(newPerson, varPerson.getPerson());
         } else if (checkCPF) {
             listSearchPerson = collectListValues(varPerson, checkCPF, checkRG, hql);
             completeRgPossible(!listSearchPerson.isEmpty(), varPerson);
-            addressControl.startAddressControl(listSearchPerson.isEmpty(), varPerson.getPerson());
+            addressControl.startAddressControl(newPerson, varPerson.getPerson());
         } else if (checkRG && lengthCPF == 0) {
             listSearchPerson = collectListValues(varPerson, checkCPF, checkRG, hql);
-            completeCpfPossible(!listSearchPerson.isEmpty(), varPerson);
-            addressControl.startAddressControl(listSearchPerson.isEmpty(), varPerson.getPerson());
+            completeCpfPossible(!newPerson, varPerson);
+            addressControl.startAddressControl(newPerson, varPerson.getPerson());
         }
-        return statusPerson;
+        return newPerson;
     }
 
-    public boolean checkDocumentLegalPerson() {
-        return statusPerson;
+    //GETs & SETs---------------------------------------------------------------
+    public boolean isNewPerson() {
+        return newPerson;
     }
 
     public boolean isCheckCPF() {
@@ -281,6 +321,14 @@ public class VerifyPersonDocument extends AbstractBean {
 
     public boolean isCheckRG() {
         return checkRG;
+    }
+
+    public boolean isNewRG() {
+        return newRG;
+    }
+
+    public boolean isNewCPF() {
+        return newCPF;
     }
 
 }

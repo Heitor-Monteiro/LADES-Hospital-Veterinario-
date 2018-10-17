@@ -81,9 +81,9 @@
                                                  required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
                                                  requiredMessage="Informe o campo CPF!">
                                         <p:ajax event="keyup"
-                                                update="growl,rg-Input,selectUF1-Input,rg-Opcao"
+                                                update="growl,rg-Input,selectUF1-Input,rg-Opcao,cpf-Input"
                                                 listener="#{MBlinkOwnerAndAnimal.verifyPersonDocument()}"
-                                                delay="1000" />
+                                                delay="3000" />
                                     </p:inputMask>
                                     <p:selectBooleanButton id="cpf-opcao" 
                                                            value="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
@@ -145,7 +145,7 @@
                                                  required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}" 
                                                  requiredMessage="Informe o campo RG!">
                                         <p:ajax event="keyup"
-                                                update="growl,cpf-Input"
+                                                update="growl,cpf-Input,rg-Input"
                                                 listener="#{MBlinkOwnerAndAnimal.verifyPersonDocument()}"
                                                 delay="1000" />
                                     </p:inputText>
@@ -200,7 +200,7 @@
                                              layout="grid"
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3"
-                                             rendered="#{MBlinkOwnerAndAnimal.viewFormsOwner.viewVariableBoolean}">
+                                             rendered="true">
 
                                     <p:outputLabel id="cpf2-Label"
                                                    class="outputLabel-SIHV colorPri"
@@ -494,10 +494,368 @@
                         </div>
                     </p:tab>
 
-                    <p:tab id="teste-tab"
+                    <p:tab id="animalForm"
                            title="3"
+                           rendered="true">
+                        <div class="ui-fluid">
+                            <p:panel id="dataAnimals-panel"
+                                     header="Dados do animal"
+                                     rendered="true">
+
+                                <p:panelGrid id="newAnimal-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-2, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:outputLabel id="statusNewAnimal-Label"
+                                                   class="outputLabel-SIHV colorPri"
+                                                   value="Novo animal:"
+                                                   rendered="true"/>
+                                    <p:selectBooleanButton id="statusNewAnimal-Input"
+                                                           class=""
+                                                           value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.statusNewAnimal.viewVariableBoolean}"
+                                                           rendered="true"
+                                                           required="false"
+                                                           requiredMessage=""
+                                                           title=""
+                                                           onLabel="Sim"
+                                                           offLabel="Não"
+                                                           offIcon="fa fa-toggle-off"
+                                                           onIcon="fa fa-toggle-on"
+                                                           style="width:100px;
+                                                           color: #5f666c;">
+                                        <p:ajax update="dataAnimals-panel"
+                                                listener="#{MBlinkOwnerAndAnimal.animalControl.newSmallAnimalForRegisteredOwner()}"/>
+                                    </p:selectBooleanButton>
+                                </p:panelGrid>
+
+                                <p:panelGrid id="listAnimals-panelGrid"
+                                             class=""
+                                             columns="1"
+                                             layout="grid"
+                                             style="margin: 10px 0px 15px;"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-12" >
+
+                                    <p:dataTable id="PessoasBuscada"
+                                                 var="animal"
+                                                 rendered="#{!MBlinkOwnerAndAnimal.animalControl.varAnimal.statusNewAnimal.viewVariableBoolean}"
+                                                 value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.tempListAnimals}"
+                                                 paginator="true"
+                                                 rows="10"
+                                                 reflow="true"
+                                                 selectionMode="single"
+                                                 selection="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTempListAnimals}"
+                                                 rowKey="#{animal}"
+                                                 resizableColumns="true"
+                                                 resizeMode="expand">
+
+                                        <f:facet name="header">
+                                            Animais encontrados
+                                        </f:facet>
+
+                                        <p:column class="cellTextCenter"
+                                                  headerText="RGHV"
+                                                  width="100">
+                                            <h:outputText value="#{animal.tempRGHV}" />
+                                        </p:column>
+
+                                        <p:column headerText="Animal"
+                                                  width="120">
+                                            <h:outputText value="#{animal.animals.animalName}" />
+                                        </p:column>
+
+                                        <p:column class="cellTextCenter"
+                                                  headerText="Espécie"
+                                                  width="120">
+                                            <h:outputText value="#{animal.specie.nameSpecies}" />
+                                        </p:column>
+
+                                        <p:column class="cellTextCenter"
+                                                  headerText="Raça"
+                                                  width="120">
+                                            <h:outputText value="#{animal.race.nameRaces}" />
+                                        </p:column>
+
+                                    </p:dataTable>
+
+                                </p:panelGrid>
+
+                                <p:panelGrid id="formAnimal-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3"
+                                             rendered="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.statusNewAnimal.viewVariableBoolean}" >
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="RGHV:"
+                                                   rendered="true" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.tempRGHV}"
+                                                   rendered="true" />
+                                    <p:outputLabel value=" " />
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Nome do animal:"
+                                                   rendered="true"
+                                                   for="animalName-Input" />
+                                    <p:inputText id="animalName-Input" 
+                                                 value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalName}" 
+                                                 maxlength="70"
+                                                 rendered="true"
+                                                 required="true" 
+                                                 requiredMessage="Informe o campo nome do animal!"/>
+                                    <p:message for="animalName-Input"
+                                               rendered="true" />
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Sexo:" 
+                                                   for="genderAnimal-Input" />                                
+                                    <p:selectOneButton id="genderAnimal-Input" 
+                                                       value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.genderAnimal}"
+                                                       required="true"
+                                                       requiredMessage="Informe o sexo do animal!">
+                                        <f:selectItem itemLabel="M" itemValue="M" />
+                                        <f:selectItem itemLabel="F" itemValue="F" />
+                                    </p:selectOneButton>
+                                    <p:message for="genderAnimal-Input" />
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Idade do animal:"
+                                                   for="idade" />
+                                    <p:inputText id="idade" 
+                                                 value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalAge}" 
+                                                 title="Quanto tempo o proprietário possui o animal?"
+                                                 maxlength="100"
+                                                 required="true" 
+                                                 requiredMessage="Informe quanto tempo o proprietário possui o animal!"/>
+                                    <p:message for="idade" />
+                                </p:panelGrid>
+
+                                <p:panelGrid id="species-panelGrid"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3"
+                                             rendered="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.statusNewAnimal.viewVariableBoolean}">
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Espécie:"
+                                                   for="species-Input" />                             
+                                    <p:selectOneMenu id="species-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTextSpecies}"
+                                                     disabled="false"
+                                                     required="true"
+                                                     requiredMessage="selecione uma espécie!">
+                                        <f:selectItem itemLabel="Selecione a Espécie" itemValue="" noSelectionOption="true" />
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.listTextSpecies}" var="species"
+                                                       itemLabel="#{species}" itemValue="#{species}" />
+                                        <p:ajax update="selectTextRaces-Input" 
+                                                listener="#{MBlinkOwnerAndAnimal.animalControl.methodSearchForPossibleRaces()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="species-Input" />
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Raça:"
+                                                   for="selectTextRaces-Input" />
+                                    <p:selectOneMenu id="selectTextRaces-Input"
+                                                     value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTextRaces}"
+                                                     placeholder="Selecione uma raça"
+                                                     editable="true"
+                                                     filter="true"
+                                                     filterMatchMode="startsWith"
+                                                     disabled="false"
+                                                     required="true"
+                                                     requiredMessage="selecione uma raça para o animal!">
+                                        <f:selectItems value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.listTextRaces}" var="races"
+                                                       itemLabel="#{races}" itemValue="#{races}" />
+                                        <p:ajax update="growl,selectTextRaces-Input" 
+                                                listener="#{MBlinkOwnerAndAnimal.animalControl.methodCheckBreeds()}"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="selectNeighborhood-Input" />
+                                </p:panelGrid>
+                            </p:panel>
+                        </div>
+                    </p:tab>
+
+
+                    <p:tab id="teste-tab"
+                           title="4"
                            rendered="true"  >
-                        <p:panel header="Finalizar Processo">
+                        <p:panel>
+
+                            <p:panel header="Dados do Proprietário" 
+                                     style="border: none;
+                                     background: none;" />
+
+
+                            <p:panelGrid id="viewPerson-panelGrid"
+                                         columns="4"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="CPF:"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.objCpf.cpf}"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="RG:"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"/>   
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.objRg.rg}"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" /> 
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="CNPJ:"
+                                               rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />   
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="??????"
+                                               rendered="#{!MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Nome:" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.person.namePerson}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Sexo:"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.physicalPerson.gender}"
+                                               rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="UF:" />                             
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.selectUF.uf}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Cidade:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.selectCity}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Bairro:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.selectNeighborhood}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Rua:" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.selectStreet}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="CEP:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Numero da casa:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberHouse}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Complemento:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Endereço de email:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.person.email}" />
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="1ª Celular:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.phonesControl.phone1.numberPhone}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="2ª Celular:"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.phonesControl.phone2.numberPhone}"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone2}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="3ª Celular:"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.phonesControl.phone3.numberPhone}"
+                                               rendered="#{MBlinkOwnerAndAnimal.phonesControl.viewPhone3}"/>
+
+                            </p:panelGrid>
+
+
+                            <p:panel header="Dados do animal" 
+                                     style="border: none;
+                                     background: none;" />
+
+
+                            <p:panelGrid id="viewAnimal-panelGrid"
+                                         columns="4"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="RGHV:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.tempRGHV}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Nome do animal:" />
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalName}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Sexo:" />                                
+                                <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.genderAnimal}" />
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Idade do animal:" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalAge}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Especie:" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectObjSpecies.nameSpecies}"/>
+
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Raça:" />
+                                <p:outputLabel class="LADES-default-Text" 
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectObjRaces.nameRaces}"/>
+                            </p:panelGrid>
 
                             <p:panelGrid id="testehchbdcbh"
                                          columns="3"
@@ -506,15 +864,14 @@
                                          columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
 
                                 <p:commandButton action="#{MBlinkOwnerAndAnimal.salvarTeste()}"
-                                                 value="Salvar cadastro"
-                                                 icon="fa fa-save"
+                                                 value="Confirmar consulta"
+                                                 icon="fa fa-check"
                                                  update="growl">
                                     <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
                                     Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
                                     <p:ajax onstart="PF('statusDialog').show()"
                                             onsuccess="PF('statusDialog').hide()" />
                                 </p:commandButton>
-
 
                             </p:panelGrid>
 

@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.Column;
@@ -13,14 +13,18 @@ public class SpeciesId  implements java.io.Serializable {
 
 
      private int pkSpecies;
-     private int classAnimalPkClassAnimal;
+     private int genrePkGenre;
+     private int genreOrderPkOrder;
+     private int genreOrderClassAnimalPkClassAnimal;
 
     public SpeciesId() {
     }
 
-    public SpeciesId(int pkSpecies, int classAnimalPkClassAnimal) {
+    public SpeciesId(int pkSpecies, int genrePkGenre, int genreOrderPkOrder, int genreOrderClassAnimalPkClassAnimal) {
        this.pkSpecies = pkSpecies;
-       this.classAnimalPkClassAnimal = classAnimalPkClassAnimal;
+       this.genrePkGenre = genrePkGenre;
+       this.genreOrderPkOrder = genreOrderPkOrder;
+       this.genreOrderClassAnimalPkClassAnimal = genreOrderClassAnimalPkClassAnimal;
     }
    
 
@@ -35,13 +39,33 @@ public class SpeciesId  implements java.io.Serializable {
     }
 
 
-    @Column(name="classAnimal_PK_classAnimal", nullable=false)
-    public int getClassAnimalPkClassAnimal() {
-        return this.classAnimalPkClassAnimal;
+    @Column(name="genre_PK_genre", nullable=false)
+    public int getGenrePkGenre() {
+        return this.genrePkGenre;
     }
     
-    public void setClassAnimalPkClassAnimal(int classAnimalPkClassAnimal) {
-        this.classAnimalPkClassAnimal = classAnimalPkClassAnimal;
+    public void setGenrePkGenre(int genrePkGenre) {
+        this.genrePkGenre = genrePkGenre;
+    }
+
+
+    @Column(name="genre_order_PK_order", nullable=false)
+    public int getGenreOrderPkOrder() {
+        return this.genreOrderPkOrder;
+    }
+    
+    public void setGenreOrderPkOrder(int genreOrderPkOrder) {
+        this.genreOrderPkOrder = genreOrderPkOrder;
+    }
+
+
+    @Column(name="genre_order_classAnimal_PK_classAnimal", nullable=false)
+    public int getGenreOrderClassAnimalPkClassAnimal() {
+        return this.genreOrderClassAnimalPkClassAnimal;
+    }
+    
+    public void setGenreOrderClassAnimalPkClassAnimal(int genreOrderClassAnimalPkClassAnimal) {
+        this.genreOrderClassAnimalPkClassAnimal = genreOrderClassAnimalPkClassAnimal;
     }
 
 
@@ -52,14 +76,18 @@ public class SpeciesId  implements java.io.Serializable {
 		 SpeciesId castOther = ( SpeciesId ) other; 
          
 		 return (this.getPkSpecies()==castOther.getPkSpecies())
- && (this.getClassAnimalPkClassAnimal()==castOther.getClassAnimalPkClassAnimal());
+ && (this.getGenrePkGenre()==castOther.getGenrePkGenre())
+ && (this.getGenreOrderPkOrder()==castOther.getGenreOrderPkOrder())
+ && (this.getGenreOrderClassAnimalPkClassAnimal()==castOther.getGenreOrderClassAnimalPkClassAnimal());
    }
    
    public int hashCode() {
          int result = 17;
          
          result = 37 * result + this.getPkSpecies();
-         result = 37 * result + this.getClassAnimalPkClassAnimal();
+         result = 37 * result + this.getGenrePkGenre();
+         result = 37 * result + this.getGenreOrderPkOrder();
+         result = 37 * result + this.getGenreOrderClassAnimalPkClassAnimal();
          return result;
    }   
 

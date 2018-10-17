@@ -1,13 +1,13 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 04/10/2018 16:09:37 by Hibernate Tools 4.3.1
 
 
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
@@ -25,38 +25,34 @@ import javax.persistence.UniqueConstraint;
 public class Cpf  implements java.io.Serializable {
 
 
-     private CpfId id;
+     private Integer pkCpf;
      private PhysicalPerson physicalPerson;
      private String cpf;
 
     public Cpf() {
     }
 
-    public Cpf(CpfId id, PhysicalPerson physicalPerson, String cpf) {
-       this.id = id;
+    public Cpf(PhysicalPerson physicalPerson, String cpf) {
        this.physicalPerson = physicalPerson;
        this.cpf = cpf;
     }
    
-     @EmbeddedId
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="pkCpf", column=@Column(name="PK_cpf", nullable=false) ), 
-        @AttributeOverride(name="physicalPersonPkPhysicalPerson", column=@Column(name="physicalPerson_PK_physicalPerson", nullable=false) ), 
-        @AttributeOverride(name="physicalPersonPeoplePkPerson", column=@Column(name="physicalPerson_people_PK_person", nullable=false) ) } )
-    public CpfId getId() {
-        return this.id;
+    @Column(name="PK_cpf", unique=true, nullable=false)
+    public Integer getPkCpf() {
+        return this.pkCpf;
     }
     
-    public void setId(CpfId id) {
-        this.id = id;
+    public void setPkCpf(Integer pkCpf) {
+        this.pkCpf = pkCpf;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumns( { 
-        @JoinColumn(name="physicalPerson_PK_physicalPerson", referencedColumnName="PK_physicalPerson", nullable=false, insertable=false, updatable=false), 
-        @JoinColumn(name="physicalPerson_people_PK_person", referencedColumnName="people_PK_person", nullable=false, insertable=false, updatable=false) } )
+        @JoinColumn(name="physicalPerson_PK_physicalPerson", referencedColumnName="PK_physicalPerson", nullable=false), 
+        @JoinColumn(name="physicalPerson_people_PK_person", referencedColumnName="people_PK_person", nullable=false) } )
     public PhysicalPerson getPhysicalPerson() {
         return this.physicalPerson;
     }
