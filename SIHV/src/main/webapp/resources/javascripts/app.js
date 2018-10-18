@@ -56,3 +56,17 @@ function myDropFunc() {
     $('.icoMenu2').toggleClass('is-rotacao');
         event.preventDefault();
 }
+
+function menu3() {
+    var x = document.getElementById("menu33");
+    if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+        x.previousElementSibling.className += " w3-green";
+    } else {
+        x.className = x.className.replace(" w3-show", "");
+        x.previousElementSibling.className =
+                x.previousElementSibling.className.replace(" w3-green", "");
+    }
+    $('.icoMenu3').toggleClass('is-rotacao');
+        event.preventDefault();
+}
