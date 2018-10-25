@@ -109,7 +109,7 @@
             </div>
 
             <div class="w3-accordion">
-                <p:outputLabel rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}">
+                <p:outputLabel rendered="true">
                     <a class="itemMenu" onclick="myDropFunc()" href="#">
                         <i class="fa fa-user-secret"></i> 
                         <p:outputLabel value="Usuário do sistema"
@@ -122,32 +122,16 @@
 
                     <p:link class="itemMenu itemMenuText"
                             rendered="true"
-                            outcome="/sihv-telas/cad-user-medico" >
+                            outcome="/sihv-telas/registerUser" >
                         <i class="fa fa-user-md"
                            style="margin: 0px 15px 0px 15px;"></i>
-                        <p:outputLabel value="Novo residente" />
-                    </p:link>
-
-                    <p:link class="itemMenu itemMenuText"
-                            rendered="true"
-                            outcome="/sihv-telas/cad-user-aluno" >
-                        <i class="fa fa-user"
-                           style="margin: 0px 15px 0px 15px;"></i>
-                        <p:outputLabel value="Novo recepcionista" />
-                    </p:link>
-
-                    <p:link class="itemMenu itemMenuText"
-                            rendered="true"
-                            outcome="/sihv-telas/cad-user-tecnico" >
-                        <i class="fa fa-user"
-                           style="margin: 0px 15px 0px 15px;"></i>
-                        <p:outputLabel value="Novo funcionário/técnico" />
+                        <p:outputLabel value="Novo usuário" />
                     </p:link>
                 </div>
             </div>
 
             <p:link class="itemMenu"
-                    rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}"
+                    rendered="true"
                     outcome="/sihv-telas/consulta-nova" >
                 <i class="fa fa-stethoscope"
                    style="margin: 0px 18px 0px 0px;"></i>
