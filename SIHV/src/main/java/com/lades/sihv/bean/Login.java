@@ -59,13 +59,19 @@ public class Login extends AbstractBean {
         if (valid != -1) {
             getVariaveisDeSessao().setDadosPESSOA((Object) getDaoGenerico().list("select p from People p where p.pkPerson=" + valid).get(0));
             getVariaveisDeSessao().setDadosUSER((Object) getDaoGenerico().list("select u from People p, Users u where p.pkPerson=" + valid + " and u.people.pkPerson=" + valid + "").get(0));
+            getVariaveisDeSessao().setPowersUSER((List<Object>) getDaoGenerico().list("select pw from \n"
+                    + "People p, Users u, PowersHasUsers h, Powers pw \n"
+                    + "where \n"
+                    + "p.pkPerson='" + valid + "' and \n"
+                    + "p.pkPerson=u.people.pkPerson and \n"
+                    + "u.pkUser=h.users.pkUser and \n"
+                    + "h.powers.pkPower=pw.pkPower "));
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
-            System.out.println("BACK-END WARNING: TipoUser=" + getVariaveisDeSessao().getUserTipo());
-//            System.out.println("BACK-END WARNING: cpfCnpj=" + getVariaveisDeSessao().getCpfCnpj());
-            System.out.println("BACK-END WARNING: pkPessoa=" + getVariaveisDeSessao().getPkPessoa());
-            System.out.println("BACK-END WARNING: crmvMatricula=" + getVariaveisDeSessao().getCrmvMatricula());
-            System.out.println("BACK-END WARNING: userSenha=" + getVariaveisDeSessao().getSenhaUser());
+            System.out.println("►►►►►►►►►►►►► User name: " + getVariaveisDeSessao().getUsername());
+            System.out.println("►►►►►►►►►►►►► User work position: " + getVariaveisDeSessao().getUserTipo());
+            System.out.println("►►►►►►►►►►►►► User registration: " + getVariaveisDeSessao().getCrmvMatricula());
+            System.out.println("►►►►►►►►►►►►► Encrypted password: " + getVariaveisDeSessao().getSenhaUser());
+            System.out.println("►►►►►►►►►►►►► Number of powers granted to the User: " + getVariaveisDeSessao().getPowersUSER().size());
             return "index";
         } else {
             getObjMessage().warn("Nome de usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");

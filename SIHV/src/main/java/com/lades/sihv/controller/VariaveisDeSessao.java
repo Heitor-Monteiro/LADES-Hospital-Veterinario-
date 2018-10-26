@@ -8,8 +8,10 @@ package com.lades.sihv.controller;
 import com.lades.sihv.DAO.SessionUtils;
 import com.lades.sihv.model.Animals;
 import com.lades.sihv.model.People;
+import com.lades.sihv.model.Powers;
 import com.lades.sihv.model.Users;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -106,10 +108,19 @@ public class VariaveisDeSessao implements Serializable {
         return (String) getDadosUSER().getUserProfile();
     }
 
+    //-Variables POWERS USER----------------------------------------------------
+    public void setPowersUSER(List<Object> listPowers) {
+        SessionUtils.getSession().setAttribute("powersUSER", listPowers);
+    }
+
+    public List<Powers> getPowersUSER() {
+        return (List<Powers>) SessionUtils.getSession().getAttribute("powersUSER");
+    }
+    //--------------------------------------------------------------------------
+
 //    public String getCpfCnpj() {
 //        return (String) getDadosPESSOA().getCpfCnpj();
 //    }
-
     public String getFullName() {
         return (String) getDadosPESSOA().getNamePerson();
     }

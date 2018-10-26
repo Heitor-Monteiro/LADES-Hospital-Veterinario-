@@ -62,7 +62,9 @@ public class DeterminePowersAccordingToFunctionUser {
                     }
                     break;
                 case "radiologista":
-                    System.out.println("►►►►►►►►►►►►► !!! precisa delegar poderes ao radiologista !!!");
+                    selectPower.add(listPowers.get(8));
+                        System.out.println("►►►►►►►►►►►►► "
+                                + listPowers.get(8).getDescriptionPower());
                     break;
             }
         } catch (Exception e) {

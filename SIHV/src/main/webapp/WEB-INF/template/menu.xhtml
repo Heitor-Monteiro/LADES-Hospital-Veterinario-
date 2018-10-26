@@ -29,7 +29,7 @@
         .icoMenu2.is-rotacao {
             transform: rotate(45deg);
         }
-        
+
         .icoMenu3.is-rotacao {
             transform: rotate(45deg);
         }
@@ -91,7 +91,7 @@
                 <div id="demoAcc" class="w3-accordion-content w3-SIHV-bright  w3-card-4 ">
 
                     <p:link class="itemMenu itemMenuText"
-                            rendered="true"
+                            rendered="#{login.objSeekUserPowers.viewRegisterOwner}"
                             outcome="/sihv-telas/cad-cliente" >
                         <i class="fa fa-user"
                            style="margin: 0px 15px 0px 15px;"></i>
@@ -99,7 +99,7 @@
                     </p:link>
 
                     <p:link class="itemMenu itemMenuText"
-                            rendered="true"
+                            rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}"
                             outcome="/sihv-telas/cad-animal-p" >
                         <i class="fa fa-paw"
                            style="margin: 0px 15px 0px 15px;"></i>
@@ -109,9 +109,9 @@
             </div>
 
             <div class="w3-accordion">
-                <p:outputLabel rendered="true">
+                <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterUser}">
                     <a class="itemMenu" onclick="myDropFunc()" href="#">
-                        <i class="fa fa-user-secret"></i> 
+                        <i class="fa fa-user-tie"></i> 
                         <p:outputLabel value="Usuário do sistema"
                                        style="margin: 0px 0px 0px 18px;" />
                         <i class="fa fa-plus icoMenu2 icoHover"
@@ -121,9 +121,9 @@
                 <div id="demoDrop" class="w3-accordion-content w3-SIHV-bright w3-card-4">
 
                     <p:link class="itemMenu itemMenuText"
-                            rendered="true"
+                            rendered="#{login.objSeekUserPowers.viewRegisterUser}"
                             outcome="/sihv-telas/registerUser" >
-                        <i class="fa fa-user-md"
+                        <i class="fa fa-user-plus"
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Novo usuário" />
                     </p:link>
@@ -131,7 +131,7 @@
             </div>
 
             <p:link class="itemMenu"
-                    rendered="true"
+                    rendered="#{login.objSeekUserPowers.viewMakeConsultations}"
                     outcome="/sihv-telas/consulta-nova" >
                 <i class="fa fa-stethoscope"
                    style="margin: 0px 18px 0px 0px;"></i>
@@ -139,15 +139,15 @@
             </p:link>
 
             <p:link class="itemMenu"
-                    rendered="true"
+                    rendered="#{login.objSeekUserPowers.viewPendingRadiographs}"
                     outcome="/sihv-telas/new-xray" >
                 <i class="fa fa-x-ray"
                    style="margin: 0px 10px 0px 0px;"></i>
                 <p:outputLabel value=" Radiografias pendentes" />
             </p:link>
-            
+
             <div class="w3-accordion">
-                <p:outputLabel rendered="true">
+                <p:outputLabel rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}">
                     <a class="itemMenu" onclick="menu3()" href="#">
                         <i class="fa fa-calendar-alt"></i>
                         <p:outputLabel value="Agenda"
@@ -173,7 +173,7 @@
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Agendamentos cancelados" />
                     </p:link>
-                    
+
                     <p:link class="itemMenu itemMenuText"
                             rendered="true"
                             outcome="/sihv-telas/schedulesConfirmed" >
