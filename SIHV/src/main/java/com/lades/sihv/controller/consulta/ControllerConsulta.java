@@ -10,6 +10,7 @@ import com.lades.sihv.model.VetConsultation;
 import com.lades.sihv.model.Users;
 import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.RenderedFields;
+import com.lades.sihv.model.OwnersHasAnimals;
 import com.lades.sihv.model.Scheduling;
 import java.util.List;
 
@@ -30,16 +31,16 @@ public class ControllerConsulta extends AbstractBean {
         listViewFields.startIndexListViewFields();
     }
 
-    private void prepareConsulta(Scheduling scheduling, Users residente) {
+    private void prepareConsulta(Scheduling scheduling, OwnersHasAnimals ownersHasAnimals, Users residente) {
         consultation.setApplicationDate(getObjData());
-//          consulta.setSistemasAfetados(sistemasAfetados());
         consultation.setScheduling(scheduling);
+        consultation.setOwnersHasAnimals(ownersHasAnimals);
         consultation.setUsers(residente);
     }
 
-    public VetConsultation ConfirmeConsulta(Scheduling scheduling, Users residente) {
+    public VetConsultation ConfirmeConsulta(SchedulesConfirmedForConsultation selectScheduleConfirmed, Users residente) {
         try {
-            prepareConsulta(scheduling, residente);
+            prepareConsulta(selectScheduleConfirmed.getSchedule(), selectScheduleConfirmed.getOwnersHasAnimals(), residente);
             getDaoGenerico().save(consultation);
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERROR [ public Consulta ConfirmeConsulta() ] "

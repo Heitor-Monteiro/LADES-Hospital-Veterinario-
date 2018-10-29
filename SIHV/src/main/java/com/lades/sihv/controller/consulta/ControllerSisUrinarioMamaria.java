@@ -145,7 +145,7 @@ public class ControllerSisUrinarioMamaria extends AbstractBean {
     }
 
     private boolean isViewFemea() {
-        CollectionClasses obj = (CollectionClasses) getVariaveisDeSessao().getObjetoTemp();
+        SchedulesConfirmedForConsultation obj = (SchedulesConfirmedForConsultation) getVariaveisDeSessao().getObjetoTemp();
         getListViewFields(3).setViewVariableBoolean(false);
         if (obj.getAnimal().getGenderAnimal().equals("F")) {
             listViewFields.get(3).setViewVariableBoolean(true);

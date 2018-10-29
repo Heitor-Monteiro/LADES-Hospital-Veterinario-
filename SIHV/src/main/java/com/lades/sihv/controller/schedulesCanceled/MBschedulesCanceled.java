@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.bean;
+package com.lades.sihv.controller.schedulesCanceled;
 
-import com.lades.sihv.controller.schedulesCanceled.TempListSchedulesCanceled;
+import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;

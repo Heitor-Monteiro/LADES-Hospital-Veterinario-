@@ -24,7 +24,7 @@ public class ConfirmOwnerPresence extends AbstractBean {
             PhonesControl phonesControl,
             VariablesAnimal varAnimal) {
         try {
-            schedule.setStatusService("efetivado(a)");
+            schedule.setStatusService("confirmado(a)");
             schedule.setOwnersHasAnimals(varAnimal.getOwnersHasAnimals());
             getDaoGenerico().update(schedule);
             //----------------------------------------------------------------------

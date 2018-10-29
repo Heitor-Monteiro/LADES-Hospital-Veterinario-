@@ -16,7 +16,6 @@
 
             <f:metadata>
                 <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
-                <f:viewAction action="#{MBconsulta.formsExame.controlConsulta.generateMaxExamCode()}" />
             </f:metadata>
 
             <h:form>
@@ -29,13 +28,13 @@
                           widgetVar="wiz">
 
                     <p:tab id="etapa1" title="1" titletip="Dados do proprietário">
-                        <p:panel header="Dados do proprietário">
-                            <ui:include src="/sihv-includes/pesquisa_AnimalCliente.xhtml" />
+                        <p:panel header="Agendamentos confirmados para consulta">
+                            <ui:include src="/sihv-includes/selectOwnerAndSmallAnimalConfirmed.xhtml" />
                         </p:panel>
                     </p:tab>
 
 
-                    <p:tab id="etapa2" title="2" titletip="Anamnese e Exame físico geral">
+                    <p:tab id="etapa2" title="2" titletip="Anamnese e Exame físico geral" rendered="true">
                         <p:tabView>
                             <p:tab title="Anamnese">
                                 <p:panel style="margin-top: -15px;
@@ -57,7 +56,7 @@
                     </p:tab>
 
 
-                    <p:tab id="etapa3" title="3" titletip="Exame físico específico">
+                    <p:tab id="etapa3" title="3" titletip="Exame físico específico" rendered="true">
                         <p:panel header="Exame físico específico">
                             <f:facet name="actions">
                                 <p:outputLabel id="ajudaExameFisicoEspec"
@@ -84,7 +83,7 @@
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="etapa4" title="4" titletip="Exames complementares">
+                    <p:tab id="etapa4" title="4" titletip="Exames complementares" rendered="true">
                         <p:panel header="Exames complementares">
 
                             <ui:include src="/sihv-includes/toggleable_ExamXray.xhtml" />
@@ -93,8 +92,8 @@
 
                         </p:panel>
                     </p:tab>
-                    
-                    <p:tab id="etapa5" title="5" titletip="Diagnósticos diferenciais">
+
+                    <p:tab id="etapa5" title="5" titletip="Diagnósticos diferenciais" rendered="true">
                         <p:panel header="Diagnósticos diferenciais">
                             <ui:include src="/sihv-includes/form_differential_Diagnostics.xhtml" />
                         </p:panel>
@@ -121,55 +120,56 @@
 
 
 
-                                    <p:outputLabel value="Proprietário:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.nome}"
-                                                   style="color: #555;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Proprietário:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.proprietaryName}" />
 
 
-                                    <p:outputLabel value="CPF/CNPJ:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.collectionClasses.proprietario.cpfCnpj}"
-                                                   style="color: #555;" />
-
-
-
-                                    <p:outputLabel value="Nome do animal:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.nomeAnimal }"
-                                                   style="color: #555;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="CPF/CNPJ:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.selectScheduleConfirmed.cpf}" />
 
 
 
-                                    <p:outputLabel value="Espécie:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.especie}"
-                                                   style="color: #555;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Nome do animal:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.animalName}" />
 
 
 
-                                    <p:outputLabel value="Código do animal:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.collectionClasses.animais.rghv}"
-                                                   style="color: #555;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Espécie:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="????????" />
 
 
 
-
-                                    <p:outputLabel value="Data do atendimento:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.objData}"
-                                                   style="color: #555;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Código do animal:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.selectScheduleConfirmed.rghv}" />
 
 
 
 
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Data do atendimento:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.objData}" />
 
-                                    <p:outputLabel value="Valor da consulta:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;"
+
+
+
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Valor da consulta:"
                                                    for="valorConsult" />
                                     <p:inputNumber id="valorConsult"
-                                                   value="#{MBconsulta.formsExame.controlConsulta.consulta.valorConsulta}"
+                                                   class="LADES-default-Text"
+                                                   value="#{MBconsulta.formsExame.controlConsulta.consultation.totalCostConsultation}"
                                                    decimalSeparator=","
                                                    thousandSeparator="."
                                                    maxlength="6"
@@ -189,24 +189,26 @@
 
 
 
-                                    <p:outputLabel value="Confirmação do medico veterinário:"
-                                                   style="color: #00B59B; font-weight: bold ; font-size: 17px " />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Confirmação do medico veterinário:"
+                                                   style="font-size: 17px " />
                                     <p:outputLabel value="" />
 
 
 
 
-                                    <p:outputLabel value="Nome do residente:"
-                                                   rendered="#{MBconsulta.objTools.showButtonPrint}"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
-                                    <p:outputLabel value="#{MBconsulta.variaveisDeSessao.fullName}"
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Nome do residente:"
+                                                   rendered="#{MBconsulta.objTools.showButtonPrint}" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{MBconsulta.variaveisDeSessao.fullName}"
                                                    rendered="#{MBconsulta.objTools.showButtonPrint}" />
 
 
 
 
-                                    <p:outputLabel value="Informe o CRMV:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Informe o CRMV:" />
                                     <p:inputText id="ConfimMED1"
                                                  value="#{MBconsulta.confirmeCRMV}"
                                                  title="Ex.: CRMV-PA 00000"
@@ -216,8 +218,8 @@
 
 
 
-                                    <p:outputLabel value="Senha de acesso ao sistema:"
-                                                   style="color: #00B59B; font-family: Open Sans, Helvetica, Arial;font-weight: bold ;" />
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Senha de acesso ao sistema:" />
                                     <p:password id="ConfimMED2"
                                                 feedback="false"
                                                 inline="true"

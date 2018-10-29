@@ -3,79 +3,57 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller.schedulesConfirmed;
+package com.lades.sihv.controller.consulta;
 
-import com.lades.sihv.bean.*;
+import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.animal.CollectAnimalRghv;
 import com.lades.sihv.model.Animals;
 import com.lades.sihv.model.NewAnimalAndOwner;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import com.lades.sihv.model.OwnersHasAnimals;
 import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.model.SmallAnimal;
+import java.util.ArrayList;
+import java.util.List;
 
-//@author thiberius
-@ManagedBean(name = "MBschedulesConfirmed")
-@ViewScoped
-
-public class MBschedulesConfirmed extends AbstractBean {
-
-    private DateFormat formatUS;
-    private Date dateInitial;
-    private Date dateEnd;
-    private List<TempListSchedulesConfirmed> tempListSchedulesConfirmed;
-    private CollectAnimalRghv collectAnimalRghv;
-
-    @PostConstruct
-    public void init() {
-        System.out.println("►►►►►►►►►►►►► MBschedulesConfirmed initiated");
-        tempListSchedulesConfirmed = new ArrayList<>();
-        formatUS = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-        collectAnimalRghv = new CollectAnimalRghv();
-    }
-
-    public void searchForConfirmedSchedules() {
+/**
+ *
+ * @author thiberius
+ */
+public class SearchForConfirmedSchedules extends AbstractBean {
+    
+    public void searchForConfirmedSchedules(List<SchedulesConfirmedForConsultation> schedulesConfirmedForConsultation) {
         try {
-            tempListSchedulesConfirmed.clear();
-            List<?> list = getDaoGenerico().list("select s, n from Scheduling s, NewAnimalAndOwner n \n"
+            schedulesConfirmedForConsultation.clear();
+            List<?> list = getDaoGenerico().list("select s, n, h from Scheduling s, NewAnimalAndOwner n, OwnersHasAnimals h \n"
                     + "where \n"
                     + "s.pkSchedule=n.scheduling.pkSchedule and \n"
                     + "s.statusService = 'confirmado(a)' and \n"
-                    + "s.ownersHasAnimals.pkOwnersHasAnimals!='null' and \n"
-                    + "s.schedulingDate>='" + formatUS.format(dateInitial) + "' and \n"
-                    + "s.schedulingDate<='" + formatUS.format(dateEnd) + "' ");
+                    + "s.ownersHasAnimals.pkOwnersHasAnimals=h.pkOwnersHasAnimals ");
             if (list.size() > 0) {
                 for (Object[] object : (List<Object[]>) list) {
-                    TempListSchedulesConfirmed obj = new TempListSchedulesConfirmed();
+                    SchedulesConfirmedForConsultation obj = new SchedulesConfirmedForConsultation();
                     obj.setSchedule((Scheduling) object[0]);
                     obj.setNewAnimalAndOwner((NewAnimalAndOwner) object[1]);
-                    tempListSchedulesConfirmed.add(obj);
+                    obj.setOwnersHasAnimals((OwnersHasAnimals) object[2]);
+                    schedulesConfirmedForConsultation.add(obj);
                 }
-
-                for (TempListSchedulesConfirmed obj : tempListSchedulesConfirmed) {
+                
+                for (SchedulesConfirmedForConsultation obj : schedulesConfirmedForConsultation) {
                     obj.setCpf(listCpfRg("cpf", "Cpf", obj.getSchedule().getOwnersHasAnimals().getPkOwnersHasAnimals()));
                     obj.setRg(listCpfRg("rg", "Rg", obj.getSchedule().getOwnersHasAnimals().getPkOwnersHasAnimals()));
-                    obj.setRghv(insertRGHVtheAnimal(obj.getSchedule().getOwnersHasAnimals().getPkOwnersHasAnimals()));
+                    List<Object> tempList = insertRGHVtheAnimal(obj.getSchedule().getOwnersHasAnimals().getPkOwnersHasAnimals());
+                    obj.setAnimal((Animals)tempList.get(0));
+                    obj.setRghv((String) tempList.get(1));
                 }
-
-                getObjMessage().info("Itens encontrados!",
-                        "Agendas confirmadas no período estipulado: "
-                        + tempListSchedulesConfirmed.size());
             } else {
-                getObjMessage().info("Não a agendas confirmadas no período estipulado", "");
+                getObjMessage().info("Não a agendamentos confirmados para consulta", "");
             }
-
+            
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void searchForConfirmedSchedules():" + e);
         }
     }
-
+    
     private String listCpfRg(String varCpfRg, String entityCpfRg, int pkOwnersHasAnimals) {
         String var = "Não consta";
         List<?> listCpfRg = getDaoGenerico().list("select x." + varCpfRg
@@ -95,9 +73,10 @@ public class MBschedulesConfirmed extends AbstractBean {
         }
         return var;
     }
-
-    private String insertRGHVtheAnimal(int pkOwnersHasAnimals) {
+    
+    private List<Object> insertRGHVtheAnimal(int pkOwnersHasAnimals) {
         String rghv = "";
+        List<Object> tempList = new ArrayList<>();
         List<?> list = getDaoGenerico().list("select a, s from OwnersHasAnimals h ,Animals a, SmallAnimal s \n"
                 + "where \n"
                 + "h.pkOwnersHasAnimals='" + pkOwnersHasAnimals + "' and \n"
@@ -107,39 +86,16 @@ public class MBschedulesConfirmed extends AbstractBean {
             if (list.size() == 1) {
                 for (Object[] object : (List<Object[]>) list) {
                     Animals animal = (Animals) object[0];
+                    tempList.add(0, object[0]);
                     SmallAnimal smallAnimal = (SmallAnimal) object[1];
-                    rghv = collectAnimalRghv.methodCollectAnimalRghv(smallAnimal.getPkSmallAnimal(), "P", animal);
+                    rghv = new CollectAnimalRghv().methodCollectAnimalRghv(smallAnimal.getPkSmallAnimal(), "P", animal);
+                    tempList.add(1, rghv);
                 }
             } else {
                 System.out.println("►►►►►►►►►►►►► ERRO public void insertRGHVtheAnimal(): list " + list.size());
             }
         }
-        return rghv;
+        return tempList;
     }
-
-    //-GETs e SETs--------------------------------------------------------------
-    public Date getDateInitial() {
-        return dateInitial;
-    }
-
-    public void setDateInitial(Date dateInitial) {
-        this.dateInitial = dateInitial;
-    }
-
-    public Date getDateEnd() {
-        return dateEnd;
-    }
-
-    public void setDateEnd(Date dateEnd) {
-        this.dateEnd = dateEnd;
-    }
-
-    public List<TempListSchedulesConfirmed> getTempListSchedulesConfirmed() {
-        return tempListSchedulesConfirmed;
-    }
-
-    public boolean isViewTableSchedulesConfirmed() {
-        return !tempListSchedulesConfirmed.isEmpty();
-    }
-
+    
 }
