@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.classeMolde;
+package com.lades.sihv.controller.NewConsultation;
 
 import com.lades.sihv.model.Animals;
 import com.lades.sihv.model.VetConsultation;
@@ -13,6 +13,9 @@ import com.lades.sihv.model.PhysicalPerson;
 import com.lades.sihv.model.LegalPerson;
 import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.controller.ListClasses;
+import com.lades.sihv.model.Races;
+import com.lades.sihv.model.SmallAnimal;
+import com.lades.sihv.model.Species;
 import java.io.Serializable;
 
 /**
@@ -23,7 +26,13 @@ public class CollectionClasses implements Serializable {
 
     private Scheduling schedule;
     private People personOwner;
+    //--------------------------------------------------------------------------
     private Animals animal;
+    private String rghv;
+    private SmallAnimal smallAnimal;
+    private Races breed;
+    private Species specie;
+    //--------------------------------------------------------------------------
     private People personResident;
     private PhysicalPerson physicalPerson;
     private LegalPerson legalPerson;
@@ -33,6 +42,7 @@ public class CollectionClasses implements Serializable {
     private ListClasses examList;
     private FormsExames formsExams;
 
+    // GETs & SETs -------------------------------------------------------------
     public Animals getAnimal() {
         if (animal == null) {
             animal = new Animals();
@@ -44,6 +54,42 @@ public class CollectionClasses implements Serializable {
         this.animal = animal;
     }
 
+    public String getRghv() {
+        if (rghv.isEmpty()) {
+            rghv = "";
+        }
+        return rghv;
+    }
+
+    public void setRghv(String rghv) {
+        this.rghv = rghv;
+    }
+
+    public SmallAnimal getSmallAnimal() {
+        return smallAnimal;
+    }
+
+    public void setSmallAnimal(SmallAnimal smallAnimal) {
+        this.smallAnimal = smallAnimal;
+    }
+
+    public Races getBreed() {
+        return breed;
+    }
+
+    public void setBreed(Races breed) {
+        this.breed = breed;
+    }
+
+    public Species getSpecie() {
+        return specie;
+    }
+
+    public void setSpecie(Species specie) {
+        this.specie = specie;
+    }
+
+    //--------------------------------------------------------------------------
     public VetConsultation getVetConsultation() {
         if (consultation == null) {
             consultation = new VetConsultation();

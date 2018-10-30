@@ -6,7 +6,7 @@
 package com.lades.sihv.controller.pesquisa;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.classeMolde.CollectionClasses;
+import com.lades.sihv.controller.NewConsultation.CollectionClasses;
 import com.lades.sihv.controller.BeautyText;
 //import com.lades.sihv.model.Animais;
 //import com.lades.sihv.model.Fisica;

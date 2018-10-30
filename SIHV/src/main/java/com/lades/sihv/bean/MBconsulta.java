@@ -5,12 +5,12 @@
  */
 package com.lades.sihv.bean;
 
-import com.lades.sihv.controller.consulta.ConfirmarMedicoVeterinario;
-import com.lades.sihv.controller.consulta.VisualizarConsulta;
-import com.lades.sihv.classeMolde.FormsExames;
-import com.lades.sihv.classeMolde.CollectionClasses;
-import com.lades.sihv.controller.consulta.SchedulesConfirmedForConsultation;
-import com.lades.sihv.controller.consulta.SearchForConfirmedSchedules;
+import com.lades.sihv.controller.NewConsultation.ConfirmarMedicoVeterinario;
+import com.lades.sihv.controller.NewConsultation.VisualizarConsulta;
+import com.lades.sihv.controller.NewConsultation.FormsExames;
+import com.lades.sihv.controller.NewConsultation.CollectionClasses;
+import com.lades.sihv.controller.NewConsultation.SchedulesConfirmedForConsultation;
+import com.lades.sihv.controller.NewConsultation.SearchForConfirmedSchedules;
 import com.lades.sihv.model.VetConsultation;
 import java.io.IOException;
 import java.util.ArrayList;

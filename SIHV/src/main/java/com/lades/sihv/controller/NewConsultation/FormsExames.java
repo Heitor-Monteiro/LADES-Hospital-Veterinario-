@@ -3,20 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.classeMolde;
+package com.lades.sihv.controller.NewConsultation;
 
-import com.lades.sihv.controller.consulta.ControllerConsulta;
-import com.lades.sihv.controller.consulta.ControllerAnamnese;
-import com.lades.sihv.controller.consulta.ControllerExameFisico;
-import com.lades.sihv.controller.consulta.ControllerSisDigestorio;
-import com.lades.sihv.controller.consulta.ControllerSisRespCardio;
-import com.lades.sihv.controller.consulta.ControllerSisUrinarioMamaria;
-import com.lades.sihv.controller.consulta.ControllerSisTegumentar;
-import com.lades.sihv.controller.consulta.ControllerSisNeurologico;
-import com.lades.sihv.controller.consulta.ControllerSisOftalmico;
-import com.lades.sihv.controller.consulta.ControllerSisMuscEsque;
-import com.lades.sihv.controller.consulta.ControllerExamLaboratory;
-import com.lades.sihv.controller.consulta.ControllerExaImage;
 import java.io.Serializable;
 
 /**

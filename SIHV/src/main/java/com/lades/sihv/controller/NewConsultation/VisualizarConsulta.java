@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller.consulta;
+package com.lades.sihv.controller.NewConsultation;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.classeMolde.FormsExames;
 import com.lades.sihv.model.Anamnese;
 import com.lades.sihv.model.ExameFisico;
 import com.lades.sihv.model.SisDigestorio;

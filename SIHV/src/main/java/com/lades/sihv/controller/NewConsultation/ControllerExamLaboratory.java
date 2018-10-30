@@ -3,14 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lades.sihv.controller.consulta;
+package com.lades.sihv.controller.NewConsultation;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.classeMolde.CollectionClasses;
 import com.lades.sihv.controller.RenderedFields;
-import com.lades.sihv.model.VetConsultation;
-import com.lades.sihv.model.SisUrinarioMamaria;
-import com.lades.sihv.model.SisUrinarioMamariaId;
 import java.util.ArrayList;
 import java.util.List;
 
