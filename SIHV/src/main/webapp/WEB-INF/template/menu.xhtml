@@ -80,7 +80,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="true">
-                    <a class="itemMenu" onclick="myAccFunc()" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('demoAcc','icoMenu1')" href="#">
                         <i class="fa fa-pencil-alt"></i>
                         <p:outputLabel value="Cadastro"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -110,7 +110,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterUser}">
-                    <a class="itemMenu" onclick="myDropFunc()" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('demoDrop','icoMenu2')" href="#">
                         <i class="fa fa-user-tie"></i> 
                         <p:outputLabel value="Usuário do sistema"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -148,7 +148,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}">
-                    <a class="itemMenu" onclick="menu3()" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('menu33','icoMenu3')" href="#">
                         <i class="fa fa-calendar-alt"></i>
                         <p:outputLabel value="Agenda"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -181,6 +181,32 @@
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Agendamentos confirmados" />
                     </p:link>
+                </div>
+            </div>
+            
+            <div class="w3-accordion">
+                <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}">
+                    <a class="itemMenu" onclick="dropdownMenu('menuProcedure','icoMenuProcedure')" href="#">
+                        <i class="fas fa-clipboard-list"></i>
+                        <p:outputLabel value="procedimento do HV"
+                                       style="margin: 0px 0px 0px 18px;" />
+                        <i class="fa fa-plus icoMenuProcedure icoHover"
+                           style="float: right;margin: 4px 13px 0px 0px;" />
+                    </a>
+                </p:outputLabel>
+                <div id="menuProcedure" class="w3-accordion-content w3-SIHV-bright  w3-card-4 ">
+
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/editProcedureCategory" >
+                        <i class="fa fa-pencil-alt"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Editar categoria" />
+                    </p:link>
+
+                    
+
+                    
                 </div>
             </div>
 

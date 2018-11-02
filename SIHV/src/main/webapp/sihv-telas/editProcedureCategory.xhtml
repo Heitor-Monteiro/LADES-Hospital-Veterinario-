@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title">
+            <i class="fa fa-pencil-alt">
+                <h:outputText value=" Editar categoria"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <f:metadata>
+            </f:metadata>
+
+
+            <h:form id="form">
+                <p:growl id="growl" 
+                         sticky="false"
+                         autoUpdate="false"
+                         showDetail="true" 
+                         life="5000"  />
+
+                <p:panel id="editFormCategory" 
+                         header="Lista de categorías">
+                    <div class="ui-fluid ui-g">
+                        <div class="ui-g-12 ui-md-12 ui-lg-12">
+                            <p:dataTable id="listCategory"
+                                         var="category"
+                                         value="#{MBeditCategory.listCategory}"
+                                         reflow="true"
+                                         paginator="false"
+                                         editable="true"
+                                         style="margin-bottom:20px;margin-top: 20px;">
+
+                                <p:ajax event="rowEdit" listener="#{MBeditCategory.onRowEdit}" update=":form:growl" />
+                                <p:ajax event="rowEditCancel" listener="#{MBeditCategory.onRowCancel}" update=":form:growl" />
+
+                                <p:column headerText="Abreviação" width="100">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{category.abbreviation}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{category.abbreviation}" style="width:100%" maxlength="2"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Descrição">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{category.description}" /></f:facet>
+                                        <f:facet name="input"><p:inputText value="#{category.description}" style="width:100%" maxlength="100"/></f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Status" width="200">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <p:selectBooleanButton value="#{category.logicalExclusion}"
+                                                                   disabled="true" style="width: 180px;" 
+                                                                   onLabel="Desabilitado" offLabel="Habilitado" 
+                                                                   onIcon="fa fa-ban" offIcon="fa fa-check-circle"/>
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:selectBooleanButton value="#{category.logicalExclusion}"
+                                                                   disabled="false" style="width: 180px;"
+                                                                   onLabel="Desabilitado" offLabel="Habilitado" 
+                                                                   onIcon="fa fa-ban" offIcon="fa fa-check-circle"/>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column headerText="Data do registros"
+                                          width="180">
+                                    <p:cellEditor>
+                                        <f:facet name="output">
+                                            <h:outputText value="#{category.dateOfFirstRegistration}" />
+                                        </f:facet>
+                                        <f:facet name="input">
+                                            <p:inputText 
+                                                value="#{category.dateOfFirstRegistration}" 
+                                                disabled="true" style="width:100%" />
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>
+
+                                <p:column width="80">
+                                    <p:rowEditor />
+                                </p:column>
+                            </p:dataTable>
+                        </div>
+
+
+                        <div class="ui-g-12 ui-md-3 ui-lg-3">
+                            <p:commandButton value="Adicionar item"
+                                             action="#{MBeditCategory.newPreparationItem()}"
+                                             style="width: 180px;"
+                                             icon="fa fa-plus"
+                                             rendered="true"
+                                             onclick="PF('addCategoryForm').show()" />
+                        </div>
+
+
+                        <p:dialog id="addCategory-dialog"
+                                  header="Nova categoria"
+                                  modal="true"
+                                  resizable="false"
+                                  widgetVar="addCategoryForm"
+                                  showEffect="fold">
+
+                            <p:panelGrid id="addCategoryForm"
+                                         columns="1"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-12" >
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Abreviação:"
+                                               for="abbreviation-Input"/>
+                                <p:inputText id="abbreviation-Input"
+                                             class="LADES-default-Text"
+                                             value="#{MBeditCategory.newCategory.abbreviation}" 
+                                             maxlength="2"
+                                             disabled="false"
+                                             rendered="true"
+                                             required="true" 
+                                             requiredMessage="Informe o campo abreviação!" />
+                                <p:message id="abbreviation-message"
+                                           for="abbreviation-Input"
+                                           rendered="true"/>
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Descrição:"
+                                               for="description-Input"/>
+                                <p:inputTextarea id="description-Input"
+                                                 class="LADES-default-Text"
+                                                 value="#{MBeditCategory.newCategory.description}" 
+                                                 maxlength="100"
+                                                 disabled="false"
+                                                 rendered="true"
+                                                 required="true" 
+                                                 requiredMessage="Informe o campo descrição!" />
+                                <p:message id="description-message"
+                                           for="description-Input"
+                                           rendered="true"/>
+
+
+                                <p:commandButton value="Salvar"
+                                                 action="#{MBeditCategory.onRowAdd()}"
+                                                 icon="fa fa-save" 
+                                                 rendered="true"
+                                                 update="growl,listCategory,addCategoryForm"/>
+                            </p:panelGrid>
+                        </p:dialog>
+                    </div>
+                </p:panel>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<!-- Generated 02/11/2018 14:22:33 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Scheduling" table="scheduling" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkSchedule" type="java.lang.Integer">
@@ -15,7 +15,7 @@
             <column name="typeService" length="21" not-null="true" />
         </property>
         <property name="statusService" type="string">
-            <column name="statusService" length="37" not-null="true" />
+            <column name="statusService" length="51" not-null="true" />
         </property>
         <property name="schedulingDate" type="timestamp">
             <column name="schedulingDate" length="19" not-null="true" />

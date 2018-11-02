@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 02/11/2018 14:22:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -88,7 +88,7 @@ public class Scheduling  implements java.io.Serializable {
     }
 
     
-    @Column(name="statusService", nullable=false, length=37)
+    @Column(name="statusService", nullable=false, length=51)
     public String getStatusService() {
         return this.statusService;
     }

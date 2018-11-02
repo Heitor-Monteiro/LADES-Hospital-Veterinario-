@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 02/11/2018 14:22:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -29,22 +29,28 @@ public class Category  implements java.io.Serializable {
      private Integer pkCategory;
      private String abbreviation;
      private String description;
-     private Date applicationDate;
+     private boolean logicalExclusion;
+     private Date dateOfLastModification;
+     private Date dateOfFirstRegistration;
      private Set priceses = new HashSet(0);
 
     public Category() {
     }
 
 	
-    public Category(String abbreviation, String description, Date applicationDate) {
+    public Category(String abbreviation, String description, boolean logicalExclusion, Date dateOfLastModification, Date dateOfFirstRegistration) {
         this.abbreviation = abbreviation;
         this.description = description;
-        this.applicationDate = applicationDate;
+        this.logicalExclusion = logicalExclusion;
+        this.dateOfLastModification = dateOfLastModification;
+        this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
-    public Category(String abbreviation, String description, Date applicationDate, Set priceses) {
+    public Category(String abbreviation, String description, boolean logicalExclusion, Date dateOfLastModification, Date dateOfFirstRegistration, Set priceses) {
        this.abbreviation = abbreviation;
        this.description = description;
-       this.applicationDate = applicationDate;
+       this.logicalExclusion = logicalExclusion;
+       this.dateOfLastModification = dateOfLastModification;
+       this.dateOfFirstRegistration = dateOfFirstRegistration;
        this.priceses = priceses;
     }
    
@@ -80,14 +86,34 @@ public class Category  implements java.io.Serializable {
         this.description = description;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="applicationDate", nullable=false, length=19)
-    public Date getApplicationDate() {
-        return this.applicationDate;
+    
+    @Column(name="logicalExclusion", nullable=false)
+    public boolean isLogicalExclusion() {
+        return this.logicalExclusion;
     }
     
-    public void setApplicationDate(Date applicationDate) {
-        this.applicationDate = applicationDate;
+    public void setLogicalExclusion(boolean logicalExclusion) {
+        this.logicalExclusion = logicalExclusion;
+    }
+
+    @Temporal(TemporalType.DATE)
+    @Column(name="dateOfLastModification", nullable=false, length=10)
+    public Date getDateOfLastModification() {
+        return this.dateOfLastModification;
+    }
+    
+    public void setDateOfLastModification(Date dateOfLastModification) {
+        this.dateOfLastModification = dateOfLastModification;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dateOfFirstRegistration", nullable=false, length=19)
+    public Date getDateOfFirstRegistration() {
+        return this.dateOfFirstRegistration;
+    }
+    
+    public void setDateOfFirstRegistration(Date dateOfFirstRegistration) {
+        this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="category")

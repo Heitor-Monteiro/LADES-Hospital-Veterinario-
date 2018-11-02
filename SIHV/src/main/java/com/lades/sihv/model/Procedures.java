@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 02/11/2018 14:22:32 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -33,7 +33,8 @@ public class Procedures  implements java.io.Serializable {
      private TypeProcedure typeProcedure;
      private String nameProcedure;
      private boolean disableProcedure;
-     private Date applicationDate;
+     private Date dateOfLastModification;
+     private Date dateOfFirstRegistration;
      private Prices prices;
      private Set proceduresApplieds = new HashSet(0);
 
@@ -41,17 +42,19 @@ public class Procedures  implements java.io.Serializable {
     }
 
 	
-    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date applicationDate) {
+    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date dateOfLastModification, Date dateOfFirstRegistration) {
         this.typeProcedure = typeProcedure;
         this.nameProcedure = nameProcedure;
         this.disableProcedure = disableProcedure;
-        this.applicationDate = applicationDate;
+        this.dateOfLastModification = dateOfLastModification;
+        this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
-    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date applicationDate, Prices prices, Set proceduresApplieds) {
+    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date dateOfLastModification, Date dateOfFirstRegistration, Prices prices, Set proceduresApplieds) {
        this.typeProcedure = typeProcedure;
        this.nameProcedure = nameProcedure;
        this.disableProcedure = disableProcedure;
-       this.applicationDate = applicationDate;
+       this.dateOfLastModification = dateOfLastModification;
+       this.dateOfFirstRegistration = dateOfFirstRegistration;
        this.prices = prices;
        this.proceduresApplieds = proceduresApplieds;
     }
@@ -98,14 +101,24 @@ public class Procedures  implements java.io.Serializable {
         this.disableProcedure = disableProcedure;
     }
 
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="applicationDate", nullable=false, length=19)
-    public Date getApplicationDate() {
-        return this.applicationDate;
+    @Temporal(TemporalType.DATE)
+    @Column(name="dateOfLastModification", nullable=false, length=10)
+    public Date getDateOfLastModification() {
+        return this.dateOfLastModification;
     }
     
-    public void setApplicationDate(Date applicationDate) {
-        this.applicationDate = applicationDate;
+    public void setDateOfLastModification(Date dateOfLastModification) {
+        this.dateOfLastModification = dateOfLastModification;
+    }
+
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name="dateOfFirstRegistration", nullable=false, length=19)
+    public Date getDateOfFirstRegistration() {
+        return this.dateOfFirstRegistration;
+    }
+    
+    public void setDateOfFirstRegistration(Date dateOfFirstRegistration) {
+        this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
 
 @OneToOne(fetch=FetchType.LAZY, mappedBy="procedures")
