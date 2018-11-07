@@ -97,3 +97,9 @@
     z-index: 0!important;
 }
 /*---------------- Prime Faces modificações na estilizações ----------------*/
+
+@media (max-width: 640px) {
+    .divNotUsed {
+        display: none;
+    }
+}

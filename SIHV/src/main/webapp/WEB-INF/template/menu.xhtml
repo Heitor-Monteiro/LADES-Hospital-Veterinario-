@@ -187,7 +187,7 @@
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}">
                     <a class="itemMenu" onclick="dropdownMenu('menuProcedure','icoMenuProcedure')" href="#">
-                        <i class="fas fa-clipboard-list"></i>
+                        <i class="fas fa-notes-medical"></i>
                         <p:outputLabel value="procedimento do HV"
                                        style="margin: 0px 0px 0px 18px;" />
                         <i class="fa fa-plus icoMenuProcedure icoHover"
@@ -201,12 +201,16 @@
                             outcome="/sihv-telas/editProcedureCategory" >
                         <i class="fa fa-pencil-alt"
                            style="margin: 0px 15px 0px 15px;"></i>
-                        <p:outputLabel value="Editar categoria" />
+                        <p:outputLabel value="Editar suas categorias" />
                     </p:link>
-
                     
-
-                    
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/editAndNewProcedure" >
+                        <i class="fas fa-clipboard-list"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                           <p:outputLabel value="Registrar ou editar &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;procedimentos" />
+                    </p:link>            
                 </div>
             </div>
 

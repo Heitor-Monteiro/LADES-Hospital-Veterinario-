@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 02/11/2018 14:22:32 by Hibernate Tools 4.3.1
+// Generated 05/11/2018 17:29:53 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -14,7 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -35,7 +34,7 @@ public class Procedures  implements java.io.Serializable {
      private boolean disableProcedure;
      private Date dateOfLastModification;
      private Date dateOfFirstRegistration;
-     private Prices prices;
+     private Set priceses = new HashSet(0);
      private Set proceduresApplieds = new HashSet(0);
 
     public Procedures() {
@@ -49,13 +48,13 @@ public class Procedures  implements java.io.Serializable {
         this.dateOfLastModification = dateOfLastModification;
         this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
-    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date dateOfLastModification, Date dateOfFirstRegistration, Prices prices, Set proceduresApplieds) {
+    public Procedures(TypeProcedure typeProcedure, String nameProcedure, boolean disableProcedure, Date dateOfLastModification, Date dateOfFirstRegistration, Set priceses, Set proceduresApplieds) {
        this.typeProcedure = typeProcedure;
        this.nameProcedure = nameProcedure;
        this.disableProcedure = disableProcedure;
        this.dateOfLastModification = dateOfLastModification;
        this.dateOfFirstRegistration = dateOfFirstRegistration;
-       this.prices = prices;
+       this.priceses = priceses;
        this.proceduresApplieds = proceduresApplieds;
     }
    
@@ -121,13 +120,13 @@ public class Procedures  implements java.io.Serializable {
         this.dateOfFirstRegistration = dateOfFirstRegistration;
     }
 
-@OneToOne(fetch=FetchType.LAZY, mappedBy="procedures")
-    public Prices getPrices() {
-        return this.prices;
+@OneToMany(fetch=FetchType.LAZY, mappedBy="procedures")
+    public Set getPriceses() {
+        return this.priceses;
     }
     
-    public void setPrices(Prices prices) {
-        this.prices = prices;
+    public void setPriceses(Set priceses) {
+        this.priceses = priceses;
     }
 
 @OneToMany(fetch=FetchType.LAZY, mappedBy="procedures")

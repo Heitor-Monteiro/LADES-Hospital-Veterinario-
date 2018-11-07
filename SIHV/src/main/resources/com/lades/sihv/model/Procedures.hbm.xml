@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 02/11/2018 14:22:33 by Hibernate Tools 4.3.1 -->
+<!-- Generated 05/11/2018 17:29:55 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Procedures" table="procedures" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkProcedure" type="java.lang.Integer">
@@ -23,7 +23,12 @@
         <property name="dateOfFirstRegistration" type="timestamp">
             <column name="dateOfFirstRegistration" length="19" not-null="true" />
         </property>
-        <one-to-one name="prices" class="com.lades.sihv.model.Prices"></one-to-one>
+        <set name="priceses" table="prices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="procedures_PK_procedure" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Prices" />
+        </set>
         <set name="proceduresApplieds" table="proceduresApplied" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="procedures_PK_procedure" not-null="true" />
