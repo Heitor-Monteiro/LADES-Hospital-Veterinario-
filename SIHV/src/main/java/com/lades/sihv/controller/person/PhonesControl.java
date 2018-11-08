@@ -17,12 +17,12 @@ import java.util.List;
  * @author thiberius
  */
 public class PhonesControl extends AbstractBean {
-    
+
     private Phones phone1;
     private Phones phone2;
     private Phones phone3;
     private final ListRenderedFields listRenderedFields;
-    
+
     public PhonesControl() {
         phone1 = new Phones();
         phone2 = new Phones();
@@ -30,13 +30,13 @@ public class PhonesControl extends AbstractBean {
         listRenderedFields = new ListRenderedFields(3);
         listRenderedFields.startIndexListViewFields();
     }
-    
+
     public void searchPhones(People person) {
         List<Phones> listPhones = getDaoGenerico().list("select phone from Phones phone, People p\n"
                 + "where \n"
                 + "p.pkPerson=phone.people.pkPerson and \n"
                 + "p.pkPerson='" + person.getPkPerson() + "' ");
-        
+
         if (!listPhones.isEmpty()) {
             if (listPhones.size() <= 3) {
                 phone1 = (Phones) (((listPhones.size() - 3) == 0) ? listPhones.get(0) : new Phones());
@@ -44,21 +44,25 @@ public class PhonesControl extends AbstractBean {
                 phone3 = (Phones) (((listPhones.size() - 1) == 2) ? listPhones.get(2) : new Phones());
             }
         }
-        
+
     }
-    
+
     public void coletarPhoneTemp(NewAnimalAndOwner tempCliData) {
         phone1.setNumberPhone(tempCliData.getProprietaryPhone1());
-        setViewPhone2(!tempCliData.getProprietaryPhone2().isEmpty());
-        if (isViewPhone2()) {
-            phone2.setNumberPhone(tempCliData.getProprietaryPhone2());
+        if (tempCliData.getProprietaryPhone2() != null) {
+            setViewPhone2(!tempCliData.getProprietaryPhone2().isEmpty());
+            if (isViewPhone2()) {
+                phone2.setNumberPhone(tempCliData.getProprietaryPhone2());
+            }
         }
-        setViewPhone3(!tempCliData.getProprietaryPhone3().isEmpty());
-        if (isViewPhone3()) {
-            phone3.setNumberPhone(tempCliData.getProprietaryPhone3());
+        if (tempCliData.getProprietaryPhone3() != null) {
+            setViewPhone3(!tempCliData.getProprietaryPhone3().isEmpty());
+            if (isViewPhone3()) {
+                phone3.setNumberPhone(tempCliData.getProprietaryPhone3());
+            }
         }
     }
-    
+
     public void savePhones(People person) {
         phone1.setPeople(person);
         getDaoGenerico().save(phone1);
@@ -76,23 +80,23 @@ public class PhonesControl extends AbstractBean {
     public Phones getPhone1() {
         return phone1;
     }
-    
+
     public void setPhone1(Phones phone1) {
         this.phone1 = phone1;
     }
-    
+
     public Phones getPhone2() {
         return phone2;
     }
-    
+
     public void setPhone2(Phones phone2) {
         this.phone2 = phone2;
     }
-    
+
     public Phones getPhone3() {
         return phone3;
     }
-    
+
     public void setPhone3(Phones phone3) {
         this.phone3 = phone3;
     }
@@ -101,18 +105,18 @@ public class PhonesControl extends AbstractBean {
     public boolean isViewPhone2() {
         return listRenderedFields.getListViewFields(0).isViewVariableBoolean();
     }
-    
+
     public void setViewPhone2(boolean viewPhone2) {
         listRenderedFields.getListViewFields(0).setViewVariableBoolean(viewPhone2);
     }
-    
+
     public boolean isViewPhone3() {
         if (!listRenderedFields.getListViewFields(0).isViewVariableBoolean()) {
             listRenderedFields.getListViewFields(1).setViewVariableBoolean(false);
         }
         return listRenderedFields.getListViewFields(1).isViewVariableBoolean();
     }
-    
+
     public void setViewPhone3(boolean viewPhone3) {
         listRenderedFields.getListViewFields(1).setViewVariableBoolean(viewPhone3);
     }

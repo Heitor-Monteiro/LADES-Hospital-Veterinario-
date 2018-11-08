@@ -22,6 +22,7 @@ import java.util.List;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
 import javax.faces.event.ActionEvent;
+import org.primefaces.context.RequestContext;
 
 //@author thiberius
 @ManagedBean(name = "MBscheduleConsulta")
@@ -45,7 +46,7 @@ public class MBscheduleConsulta extends AbstractBean {
         tempCliData = new NewAnimalAndOwner();
         lists = new ListsForConsultaScheduling();
         lists.popularEventModel(geneScheduling);
-        listRenderedFields = new ListRenderedFields(2);
+        listRenderedFields = new ListRenderedFields(3);
         textButtonSchedule = "Agendar";
     }
 
@@ -60,6 +61,7 @@ public class MBscheduleConsulta extends AbstractBean {
             getDaoGenerico().save(schedule);
             getDaoGenerico().save(tempCliData);
             getObjMessage().info("Agendamento salvo!", "Consulta marcada com sucesso");
+            RequestContext.getCurrentInstance().execute("PF('eventDialog').hide();");
         } else {
             System.out.println("public void addEvent(ActionEvent actionEvent): !!! UPDATE STARTED !!!");
             schedule.setSchedulingDate(geneScheduling.getEvent().getStartDate());
@@ -67,6 +69,7 @@ public class MBscheduleConsulta extends AbstractBean {
             getDaoGenerico().update(schedule);
             getDaoGenerico().update(tempCliData);
             getObjMessage().info("Agendamento atualizado!", "Atualização efetivada com sucesso");
+            RequestContext.getCurrentInstance().execute("PF('eventDialog').hide();");
         }
         lists.popularListSchedule();
         lists.popularListEventID(geneScheduling);
@@ -85,6 +88,8 @@ public class MBscheduleConsulta extends AbstractBean {
 
     public void onDateSelect(SelectEvent selectEvent) {
         System.out.println("BACK-END WARNING: public void onDateSelect(SelectEvent selectEvent)");
+        listRenderedFields.getListViewFields(1).setViewVariableBoolean(false);
+        listRenderedFields.getListViewFields(2).setViewVariableBoolean(false);
         setViewClientPresence(false);
         textButtonSchedule = "Agendar";
         timeConsultation = "";
@@ -108,6 +113,8 @@ public class MBscheduleConsulta extends AbstractBean {
                     i = lists.getListEventID().size();
                 }
             }
+            disableProprietaryPhone2();
+            disableProprietaryPhone3();
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERRO public void onEventSelect(): " + e);
         }
@@ -170,5 +177,32 @@ public class MBscheduleConsulta extends AbstractBean {
 
     public boolean getCustomerLinkedBlockForm() {
         return schedule.getOwnersHasAnimals() != null;
+    }
+
+    // disable ProprietaryPhone 2 and 3 ----------------------------------------
+    public void disableProprietaryPhone2() {
+        String phone2 = tempCliData.getProprietaryPhone1().replace("_", "");
+        if (phone2.length() == 15) {
+            listRenderedFields.getListViewFields(1).setViewVariableBoolean(true);
+        } else {
+            listRenderedFields.getListViewFields(1).setViewVariableBoolean(false);
+        }
+    }
+
+    public RenderedFields getUseProprietaryPhone2() {
+        return listRenderedFields.getListViewFields(1);
+    }
+
+    public void disableProprietaryPhone3() {
+        String phone3 = tempCliData.getProprietaryPhone2().replace("_", "");
+        if (phone3.length() == 15) {
+            listRenderedFields.getListViewFields(2).setViewVariableBoolean(true);
+        } else {
+            listRenderedFields.getListViewFields(2).setViewVariableBoolean(false);
+        }
+    }
+
+    public RenderedFields getUseProprietaryPhone3() {
+        return listRenderedFields.getListViewFields(2);
     }
 }

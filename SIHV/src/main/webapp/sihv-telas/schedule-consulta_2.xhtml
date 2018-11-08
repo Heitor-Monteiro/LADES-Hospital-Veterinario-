@@ -189,21 +189,29 @@
                                              disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
                                              required="true"
                                              requiredMessage="É necessário um numero de telefone!"
-                                             rendered="true" />
+                                             rendered="true">
+                                    <p:ajax event="keyup"
+                                            listener="#{MBscheduleConsulta.disableProprietaryPhone2()}"
+                                            update="proprietaryPhones2-input" />
+                                </p:inputMask>
 
                                 <p:inputMask id="proprietaryPhones2-input"
                                              mask="(99) 99999-9999"
                                              placeholder="2ª Telefone"
                                              value="#{MBscheduleConsulta.tempCliData.proprietaryPhone2}"
-                                             disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                             disabled="#{!MBscheduleConsulta.useProprietaryPhone2.viewVariableBoolean}"
                                              required="false"
-                                             rendered="true" />
+                                             rendered="true">
+                                    <p:ajax event="keyup"
+                                            listener="#{MBscheduleConsulta.disableProprietaryPhone3()}"
+                                            update="proprietaryPhones3-input" />
+                                </p:inputMask>
 
                                 <p:inputMask id="proprietaryPhones3-input"
                                              mask="(99) 99999-9999"
                                              placeholder="3ª Telefone"
                                              value="#{MBscheduleConsulta.tempCliData.proprietaryPhone3}"
-                                             disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                             disabled="#{!MBscheduleConsulta.useProprietaryPhone3.viewVariableBoolean}"
                                              required="false"
                                              rendered="true" />
                             </p:panelGrid>
@@ -228,20 +236,20 @@
                                                  actionListener="#{MBscheduleConsulta.addEvent}"
                                                  rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}"
                                                  update="messages,eventDialog1-Panel,eventDialog3-Panel"
-                                                 oncomplete="PF('myschedule').update();" />
+                                                 oncomplete="PF('myschedule').update();"/>
 
 
                                 <p:splitButton id="addButton2"
                                                value="Atualizar"
-                                               icon="fa fa-calendar-check"
+                                               icon="fa fa-sync-alt"
                                                actionListener="#{MBscheduleConsulta.addEvent}"
                                                rendered="#{MBscheduleConsulta.viewInterleaveAddButton}"
                                                update="messages,eventDialog1-Panel,eventDialog3-Panel"
                                                oncomplete="PF('myschedule').update();PF('eventDialog').hide();">
-                                    <p:menuitem value="Vincular cliente"
+                                    <p:menuitem value="Confirmar presença do cliente &#160;&#160;"
                                                 disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
                                                 actionListener="#{MBscheduleConsulta.buttonToLinkOwnerAndAnimal()}"
-                                                icon="fa fa-link" />
+                                                icon="fa fa-calendar-check" />
                                 </p:splitButton>
 
                             </p:panelGrid>
