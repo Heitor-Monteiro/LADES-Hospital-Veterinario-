@@ -10,6 +10,7 @@ import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import com.lades.sihv.model.People;
 import com.lades.sihv.model.Phones;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -36,16 +37,46 @@ public class PhonesControl extends AbstractBean {
                 + "where \n"
                 + "p.pkPerson=phone.people.pkPerson and \n"
                 + "p.pkPerson='" + person.getPkPerson() + "' ");
-
         if (!listPhones.isEmpty()) {
             if (listPhones.size() <= 3) {
-                phone1 = (Phones) (((listPhones.size() - 3) == 0) ? listPhones.get(0) : new Phones());
-                phone2 = (Phones) (((listPhones.size() - 2) == 1) ? listPhones.get(1) : new Phones());
-                phone3 = (Phones) (((listPhones.size() - 1) == 2) ? listPhones.get(2) : new Phones());
+                switch (listPhones.size()) {
+                    case 1:
+                        phone1 = (Phones) listPhones.get(0);
+                        break;
+                    case 2:
+                        phone1 = (Phones) listPhones.get(0);
+                        phone2 = (Phones) listPhones.get(1);
+                        break;
+                    default:
+                        phone1 = (Phones) listPhones.get(0);
+                        phone2 = (Phones) listPhones.get(1);
+                        phone3 = (Phones) listPhones.get(2);
+                        break;
+                }
             }
         }
 
     }
+
+//    public void identifyPhoneExist(People person, NewAnimalAndOwner tempCliData) {
+//        searchPhones(person);
+//        List<Phones> listPhones = new ArrayList<>();
+//        List<String> tempPhones = new ArrayList<>();
+//        listPhones.add(phone1);
+//        listPhones.add(phone2);
+//        listPhones.add(phone3);
+//        tempPhones.add(tempCliData.getProprietaryPhone1());
+//        tempPhones.add(tempCliData.getProprietaryPhone2());
+//        tempPhones.add(tempCliData.getProprietaryPhone3());
+//        
+//        for (Phones phone : listPhones) {
+//            for (String tempPhone : tempPhones) {
+//                if (phone.getNumberPhone().equals(tempPhone)) {
+//                    
+//                }
+//            }
+//        }
+//    }
 
     public void coletarPhoneTemp(NewAnimalAndOwner tempCliData) {
         phone1.setNumberPhone(tempCliData.getProprietaryPhone1());

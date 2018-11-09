@@ -55,6 +55,9 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
         animalControl = new AnimalControl();
         listRenderedFields = new ListRenderedFields(3);
         listRenderedFields.startIndexListViewFields();
+        //------------ Apagar linha quando check CNPJ for adaptado--------------
+        listRenderedFields.getListViewFields(0).setViewVariableBoolean(true);
+        //----------------------------------------------------------------------
         addressControl = new AddressControl();
         addressControl.loadLists();
         loadData();
@@ -76,6 +79,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
             if (!newPerson) {
                 animalControl.methodSmallAnimalSpecies();
                 animalControl.methodSearchRegisteredAnimal(varPerson.getPerson());
+//                phonesControl.searchPhones(varPerson.getPerson());
             } else {
                 animalControl.getVarAnimal().getStatusNewAnimal().setViewVariableBoolean(true);
                 animalControl.getGenerateRghv().methodNewRghvAnimal(animalControl.getVarAnimal(), "P");
@@ -120,6 +124,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
                     .methodConfirmOwnerPresence(schedule,
                              tempCliData, varPerson, phonesControl,
                              animalControl.getVarAnimal());
+            listRenderedFields.getListViewFields(1).setViewVariableBoolean(true);
             getObjMessage().info("Animal confirmado para consulta", "");
         } else {
 
@@ -146,13 +151,9 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
     public IntercalateCpfRg getIntercalateCpfRg() {
         return intercalateCpfRg;
     }
-
-    public RenderedFields getViewFormsOwner() {
+    
+    public RenderedFields getIntercalateSaveButtonsAndReturnToCalendar() {
         return listRenderedFields.getListViewFields(1);
-    }
-
-    private void confirmViewFormsOwner(boolean var) {
-        listRenderedFields.getListViewFields(1).setViewVariableBoolean(var);
     }
 
     public AnimalControl getAnimalControl() {

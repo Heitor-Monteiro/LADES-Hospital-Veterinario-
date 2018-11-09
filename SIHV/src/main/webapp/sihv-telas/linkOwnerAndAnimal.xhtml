@@ -9,8 +9,8 @@
     <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title">
-            <i class="fa fa-link">
-                <h:outputText value=" Vincular proprietário e animal"></h:outputText>
+            <i class="fa fa-calendar-check">
+                <h:outputText value=" Confirmar presença do proprietário e animal"></h:outputText>
             </i>
         </ui:define>
 
@@ -55,7 +55,7 @@
                                                        required="true"
                                                        requiredMessage="Escolha o tipo de pessoa(física/jurídica)!">
                                         <f:selectItem itemLabel="CPF/RG" itemValue="true" />
-                                        <f:selectItem itemLabel="CNPJ" itemValue="false" />
+                                        <!--<f:selectItem itemLabel="CNPJ" itemValue="false" />-->
                                         <p:ajax update="searchOwnerData" />
                                     </p:selectOneButton>
                                     <p:message for="typePerson-Input"
@@ -78,6 +78,7 @@
                                                  value="#{MBlinkOwnerAndAnimal.varPerson.objCpf.cpf}" 
                                                  autoClear="false"
                                                  title="Ex.: 999.999.999-99" 
+                                                 disabled="#{!MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}"
                                                  required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
                                                  requiredMessage="Informe o campo CPF!">
                                         <p:ajax event="keyup"
@@ -113,7 +114,7 @@
                                     <p:selectOneMenu id="selectUF1-Input"
                                                      value="#{MBlinkOwnerAndAnimal.addressControl.var.selectUF}"
                                                      converter="federationUnityConverter"
-                                                     disabled="false"
+                                                     disabled="#{!MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}"
                                                      rendered="#{MBlinkOwnerAndAnimal.physicalOrLegalInterim.viewVariableBoolean}"
                                                      required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.rgOptional}"
                                                      requiredMessage="selecione uma opção UF!">
@@ -338,17 +339,17 @@
                                              styleClass="panelgrid-noborder"
                                              columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
                                     <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Rua:"
+                                                   value="Logradouro:"
                                                    for="selectStreet-Input" />
                                     <p:selectOneMenu id="selectStreet-Input"
                                                      value="#{MBlinkOwnerAndAnimal.addressControl.var.selectStreet}"
-                                                     placeholder="Selecione a rua"
+                                                     placeholder="Selecione o logradouro:"
                                                      editable="true"
                                                      filter="true"
                                                      filterMatchMode="startsWith"
                                                      disabled="#{MBlinkOwnerAndAnimal.addressControl.var.disableAddressFields}"
                                                      required="true"
-                                                     requiredMessage="selecione uma opção de Rua!">
+                                                     requiredMessage="selecione uma opção de logradouro:!">
                                         <f:selectItems value="#{MBlinkOwnerAndAnimal.addressControl.var.listStreet}" var="street"
                                                        itemLabel="#{street}" itemValue="#{street}" />
                                         <p:ajax update="growl" 
@@ -758,15 +759,17 @@
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="Rua:" />
+                                               value="Logradouro:" />
                                 <p:outputLabel class="LADES-default-Text" 
                                                value="#{MBlinkOwnerAndAnimal.addressControl.var.selectStreet}"/>
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="CEP:" />
+                                               value="CEP:"
+                                               rendered="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep != ''}"/>
                                 <p:outputLabel class="LADES-default-Text"
-                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep}" />
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep}"
+                                               rendered="#{MBlinkOwnerAndAnimal.addressControl.var.house.numberCep != ''}"/>
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
@@ -776,15 +779,19 @@
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="Complemento:" />
+                                               value="Complemento:"
+                                               rendered="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement != ''}"/>
                                 <p:outputLabel class="LADES-default-Text"
-                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement}"/>
+                                               value="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement}"
+                                               rendered="#{MBlinkOwnerAndAnimal.addressControl.var.house.complement != ''}"/>
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="Endereço de email:" />
+                                               value="Endereço de email:"
+                                               rendered="#{MBlinkOwnerAndAnimal.varPerson.person.email != ''}"/>
                                 <p:outputLabel class="LADES-default-Text"
-                                               value="#{MBlinkOwnerAndAnimal.varPerson.person.email}" />
+                                               value="#{MBlinkOwnerAndAnimal.varPerson.person.email}"
+                                               rendered="#{MBlinkOwnerAndAnimal.varPerson.person.email != ''}"/>
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="1ª Celular:" />
@@ -866,12 +873,18 @@
                                 <p:commandButton action="#{MBlinkOwnerAndAnimal.salvarTeste()}"
                                                  value="Confirmar consulta"
                                                  icon="fa fa-check"
-                                                 update="growl">
+                                                 disabled="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
+                                                 update="growl,testehchbdcbh">
                                     <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
                                     Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
                                     <p:ajax onstart="PF('statusDialog').show()"
                                             onsuccess="PF('statusDialog').hide()" />
                                 </p:commandButton>
+                                
+                                <p:button value="Retornar para agenda"
+                                          icon="fa fa-calendar-alt"
+                                          rendered="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
+                                          outcome="/sihv-telas/schedule-consulta_2" />
 
                             </p:panelGrid>
 
