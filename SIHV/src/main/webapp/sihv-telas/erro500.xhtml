@@ -9,12 +9,79 @@
     <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title">
-            <h:outputText value="Cadastrar proprietário"></h:outputText>
+            &#160;
+            <i class="fa fa-bug">
+                <h:outputText value=" Bug identificado"></h:outputText>
+            </i>
         </ui:define>
 
         <ui:define name="content">
 
-            
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-2 ui-lg-2 divNotUsed"></div>
+                <div class="ui-g-12 ui-md-8 ui-lg-8 erro500">
+                    <p:outputLabel class="outputLabel-SIHV colorPri "
+                                   value="Erro 500 "
+                                   rendered="true"/>
+
+                    <i class="fa fa-exclamation-triangle"
+                       style="color: #c0392b;" />
+                </div>
+                <div class="ui-g-12 ui-md-2 ui-lg-2 divNotUsed"></div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3 divNotUsed"></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6 erroText">
+                    <p:outputLabel class="LADES-default-Text"
+                                   style="text-align: justify;"
+                                   value="Desculpe, foi detectado uma falha interna
+                                   no sistema, reporte as informações abaixo ao 
+                                   desenvolvedor."
+                                   rendered="true"/>
+                </div>
+                <div class="ui-g-12 ui-md-2 ui-lg-2 divNotUsed"></div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3 divNotUsed"></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6 erroText">
+                    <p:panel>
+                        <div style="margin-bottom: 10px;">
+                            <p:outputLabel class="outputLabel-SIHV colorPri "
+                                           value="Origem: "/>
+                            <p:outputLabel class="LADES-default-Text"
+                                           value="#{MBerroPages.origin}"/>
+                        </div>
+
+                        <div>
+                            <p:outputLabel class="outputLabel-SIHV colorPri "
+                                           value="Informação coletada: "/>
+                            <p:outputLabel class="LADES-default-Text"
+                                           value="#{MBerroPages.description}"/>
+                        </div>
+                    </p:panel>
+                </div>
+                <div class="ui-g-12 ui-md-2 ui-lg-2 divNotUsed"></div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3 divNotUsed"></div>
+                <div class="ui-g-12 ui-md-6 ui-lg-6 erroText">
+                    <p:panelGrid id="buttons-panelGrid"
+                                 columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                        
+                        <p:button value="Voltar para tela inicial"
+                                  icon="fa fa-home"
+                                  style="width: 100%;"
+                                  outcome="/index.xhtml"/>
+                        
+                        <p:button value="Capturar print da tela"
+                                  icon="fa fa-print"
+                                  style="width: 100%;"
+                                  onclick="window.print();"/>
+                        
+                    </p:panelGrid>
+                </div>
+                <div class="ui-g-12 ui-md-2 ui-lg-2 divNotUsed"></div>
+            </div>
         </ui:define>
     </ui:composition>
 

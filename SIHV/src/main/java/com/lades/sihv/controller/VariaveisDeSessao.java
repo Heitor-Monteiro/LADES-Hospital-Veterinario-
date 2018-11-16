@@ -42,8 +42,17 @@ public class VariaveisDeSessao implements Serializable {
     public void setFerramentaTemp(Object objeto) {
         SessionUtils.getSession().setAttribute("ferramentaTemporaria", objeto);
     }
-
 //---------------------------------------------------------------------------------------
+
+    public List<String> getErroListText() {
+        return (List<String>) SessionUtils.getSession().getAttribute("erroListText");
+    }
+
+    public void setErroListText(List<String> erroListText) {
+        SessionUtils.getSession().setAttribute("erroListText", erroListText);
+    }
+
+//------------------------------------------------------------------------------
     private ListRenderedFields wizardButtons;
 
     public void startWizardButtons() {

@@ -48,10 +48,11 @@
                                                  title="Ex.: 999.999.999-99" 
                                                  required="true" 
                                                  requiredMessage="Informe o campo CPF!">
-                                        <p:ajax event="keyup"
+                                        <p:ajax event="blur"
                                                 update="growl,rg-Input,selectUF1-Input,cpf-Input"
                                                 listener="#{MBregisterUser.verifyPersonDocument()}"
-                                                delay="1000" />
+                                                delay="0"
+                                                 />
                                     </p:inputMask>
                                     <p:message id="cpf-Messager"
                                                for="cpf-Input"

@@ -33,12 +33,11 @@ public class Tools implements Serializable {
     //----------------------------------------------------------------------
 
     //Método para redirecionar para outra pagina.
-    public void redirecionar(String url) throws IOException {
+    public void redirectView(String url) throws IOException {
         try {
             FacesContext.getCurrentInstance().getExternalContext().redirect(url);
         } catch (IOException e) {
-            System.out.println("BACK-END WARNING: Erro ao redirecionar navegação! [ public void redirecionar(String url) ]"
-                    + e.getMessage());
+            System.out.println("►►►►►►►►►►►►► ERRO redirectView: " + e.toString());
         }
     }
 

@@ -92,7 +92,7 @@ public class MBconsulta extends AbstractBean {
     public void verConsulta() {
         formsExame = new VisualizarConsulta().viewCONSULTA("" + collectionClasses.getVetConsultation().getPkVetConsultation());
         try {
-            getObjTools().redirecionar("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
+            getObjTools().redirectView("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(MBconsulta.class.getName()).log(Level.SEVERE, null, ex);
         }

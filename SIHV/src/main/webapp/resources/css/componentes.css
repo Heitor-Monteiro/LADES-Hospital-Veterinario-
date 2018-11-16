@@ -89,3 +89,32 @@ and open the template in the editor.
     }
 }
 /*--------Fim Sobre nós-----------*/
+
+/*----------Interface ERRO 500----------*/
+
+.erro500 {
+    /* margin-left: 15%; */
+    /* margin-right: 10%; */
+    text-align: center;
+    margin-bottom: -60px;
+}
+
+.erroText {
+    margin-bottom: 15px;
+}
+
+@media(max-width: 960px){
+    .erro500 {
+        font-size: 45px!important;
+        margin-bottom: -20px;
+    }
+    
+    .erroText{
+/*        margin-left: 12%;
+        margin-right: 12%;*/
+    }
+}
+
+@media (min-width: 960px) {
+    .erro500 {font-size: 90px!important;}
+}
