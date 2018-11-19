@@ -125,7 +125,6 @@ public class MBscheduleConsulta extends AbstractBean {
             setViewClientPresence(true);
             textButtonSchedule = "Atualizar";
             geneScheduling.onEventSelect(selectEvent);
-            lists.getListEventID().clear();
             for (int i = 0; i < lists.getListEventID().size(); i++) {
                 if (lists.getListEventID().get(i).equals(geneScheduling.getEvent().getId())) {
                     schedule = lists.getListSchedule().get(i);
