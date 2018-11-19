@@ -8,6 +8,7 @@ package com.lades.sihv.bean;
 import com.lades.sihv.controller.person.IntercalateCpfRg;
 import java.util.List;
 import com.lades.sihv.controller.ListRenderedFields;
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.address.AddressControl;
 import com.lades.sihv.controller.animal.AnimalControl;
@@ -46,88 +47,106 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
 
     @PostConstruct
     public void init() {
-        System.out.println("BACK-END WARNING: MBlinkOwnerAndAnimal initiated");
-        varPerson = new VariablesPerson();
-        phonesControl = new PhonesControl();
-        intercalateCpfRg = new IntercalateCpfRg();
-        verifyPersonDocument = new VerifyPersonDocument();
-        //----------------------------------------------------------------------
-        animalControl = new AnimalControl();
-        listRenderedFields = new ListRenderedFields(3);
-        listRenderedFields.startIndexListViewFields();
-        //------------ Apagar linha quando check CNPJ for adaptado--------------
-        listRenderedFields.getListViewFields(0).setViewVariableBoolean(true);
-        //----------------------------------------------------------------------
-        addressControl = new AddressControl();
-        addressControl.loadLists();
-        loadData();
+        try {
+            System.out.println("►►►►►►►►►►►►► MBlinkOwnerAndAnimal initiated");
+            varPerson = new VariablesPerson();
+            phonesControl = new PhonesControl();
+            intercalateCpfRg = new IntercalateCpfRg();
+            verifyPersonDocument = new VerifyPersonDocument();
+            //----------------------------------------------------------------------
+            animalControl = new AnimalControl();
+            listRenderedFields = new ListRenderedFields(3);
+            listRenderedFields.startIndexListViewFields();
+            //------------ Apagar linha quando check CNPJ for adaptado--------------
+            listRenderedFields.getListViewFields(0).setViewVariableBoolean(true);
+            //----------------------------------------------------------------------
+            addressControl = new AddressControl();
+            addressControl.loadLists();
+            loadData();
+        } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO public void init(): " + e.toString());
+            new ModuleToCollectError().erroPage500("MBlinkOwnerAndAnimal > init", e.toString());
+        }
     }
 
     private void loadData() {
-        list = (List<Object>) getVariaveisDeSessao().getObjetoTemp();
-        schedule = (Scheduling) list.get(0);
-        tempCliData = (NewAnimalAndOwner) list.get(1);
-        varPerson.getPerson().setNamePerson(tempCliData.getProprietaryName());
-        animalControl.getVarAnimal().getAnimal().setAnimalName(tempCliData.getAnimalName());
-        phonesControl.coletarPhoneTemp(tempCliData);
+        try {
+            list = (List<Object>) getVariaveisDeSessao().getObjetoTemp();
+            schedule = (Scheduling) list.get(0);
+            tempCliData = (NewAnimalAndOwner) list.get(1);
+            varPerson.getPerson().setNamePerson(tempCliData.getProprietaryName());
+            animalControl.getVarAnimal().getAnimal().setAnimalName(tempCliData.getAnimalName());
+            phonesControl.coletarPhoneTemp(tempCliData);
+        } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO public void loadData(): " + e.toString());
+            new ModuleToCollectError().erroPage500("MBlinkOwnerAndAnimal > loadData", e.toString());
+        }
     }
 
     public void verifyPersonDocument() {
-        if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
-            //PhysicalPerson
-            boolean newPerson = verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
-            if (!newPerson) {
-                animalControl.methodSmallAnimalSpecies();
-                animalControl.methodSearchRegisteredAnimal(varPerson.getPerson());
+        try {
+            if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
+                //PhysicalPerson
+                boolean newPerson = verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
+                if (!newPerson) {
+                    animalControl.methodSmallAnimalSpecies();
+                    animalControl.methodSearchRegisteredAnimal(varPerson.getPerson());
 //                phonesControl.searchPhones(varPerson.getPerson());
+                } else {
+                    animalControl.getVarAnimal().getStatusNewAnimal().setViewVariableBoolean(true);
+                    animalControl.getGenerateRghv().methodNewRghvAnimal(animalControl.getVarAnimal(), "P");
+                    animalControl.methodSmallAnimalSpecies();
+                }
             } else {
-                animalControl.getVarAnimal().getStatusNewAnimal().setViewVariableBoolean(true);
-                animalControl.getGenerateRghv().methodNewRghvAnimal(animalControl.getVarAnimal(), "P");
-                animalControl.methodSmallAnimalSpecies();
+                // LegalPerson
             }
-        } else {
-            // LegalPerson
+        } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO public void verifyPersonDocument(): " + e.toString());
+            new ModuleToCollectError().erroPage500("MBlinkOwnerAndAnimal > verifyPersonDocument", e.toString());
         }
-
     }
 
     public void salvarTeste() {
+        try {
+            SaveVariablesPerson savePerson = new SaveVariablesPerson();
 
-        SaveVariablesPerson savePerson = new SaveVariablesPerson();
+            if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
 
-        if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
+                if (verifyPersonDocument.isNewPerson()) {
+                    savePerson.savePerson(varPerson);
+                    savePerson.savePhysicalPerson(varPerson);
+                    phonesControl.savePhones(varPerson.getPerson());
+                    addressControl.saveAddress(varPerson.getPerson());
+                    savePerson.saveOwners(varPerson);
+                }
 
-            if (verifyPersonDocument.isNewPerson()) {
-                savePerson.savePerson(varPerson);
-                savePerson.savePhysicalPerson(varPerson);
-                phonesControl.savePhones(varPerson.getPerson());
-                addressControl.saveAddress(varPerson.getPerson());
-                savePerson.saveOwners(varPerson);
+                if (verifyPersonDocument.isCheckCPF()
+                        && verifyPersonDocument.isNewCPF()) {
+                    savePerson.saveCPF(varPerson);
+                }
+
+                if (verifyPersonDocument.isCheckRG()
+                        && verifyPersonDocument.isNewRG()) {
+                    savePerson.saveRG(varPerson);
+                }
+
+                if (animalControl.getVarAnimal().getStatusNewAnimal().isViewVariableBoolean()) {
+                    animalControl.saveNewSmallAnimal();
+                    animalControl.saveOwnersHasAnimals(varPerson);
+                }
+
+                new ConfirmOwnerPresence()
+                        .methodConfirmOwnerPresence(schedule,
+                                tempCliData, varPerson, phonesControl,
+                                animalControl.getVarAnimal());
+                listRenderedFields.getListViewFields(1).setViewVariableBoolean(true);
+                getObjMessage().info("Animal confirmado para consulta", "");
+            } else {
+
             }
-
-            if (verifyPersonDocument.isCheckCPF()
-                    && verifyPersonDocument.isNewCPF()) {
-                savePerson.saveCPF(varPerson);
-            }
-
-            if (verifyPersonDocument.isCheckRG()
-                    && verifyPersonDocument.isNewRG()) {
-                savePerson.saveRG(varPerson);
-            }
-
-            if (animalControl.getVarAnimal().getStatusNewAnimal().isViewVariableBoolean()) {
-                animalControl.saveNewSmallAnimal();
-                animalControl.saveOwnersHasAnimals(varPerson);
-            }
-
-            new ConfirmOwnerPresence()
-                    .methodConfirmOwnerPresence(schedule,
-                             tempCliData, varPerson, phonesControl,
-                             animalControl.getVarAnimal());
-            listRenderedFields.getListViewFields(1).setViewVariableBoolean(true);
-            getObjMessage().info("Animal confirmado para consulta", "");
-        } else {
-
+        } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO public void salvarTeste(): " + e.toString());
+            new ModuleToCollectError().erroPage500("MBlinkOwnerAndAnimal > salvarTeste", e.toString());
         }
     }
 
@@ -151,7 +170,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
     public IntercalateCpfRg getIntercalateCpfRg() {
         return intercalateCpfRg;
     }
-    
+
     public RenderedFields getIntercalateSaveButtonsAndReturnToCalendar() {
         return listRenderedFields.getListViewFields(1);
     }

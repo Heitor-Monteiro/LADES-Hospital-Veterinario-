@@ -6,6 +6,7 @@
 package com.lades.sihv.controller.address;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.model.People;
 
 /**
@@ -32,8 +33,9 @@ public class AddressControl extends AbstractBean {
                 obj.methodSearchAddressOfPerson(person, var);
             }
         } catch (Exception e) {
-            getObjMessage().error("BACK-END WARNING: ERRO public startAddressControl():", e.getMessage());
-            System.out.println("BACK-END WARNING: ERRO public startAddressControl(): " + e);
+            getObjMessage().error("►►►►►►►►►►►►► ERRO public startAddressControl():", e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public startAddressControl(): " + e.toString());
+            new ModuleToCollectError().erroPage500("AddressControl > startAddressControl", e.toString());
         }
     }
 
@@ -42,7 +44,8 @@ public class AddressControl extends AbstractBean {
             //var.setListNation(getDaoGenerico().list("select n from Nation n"));
             var.setListUF(getDaoGenerico().list("select u from FederationUnity u"));
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public final void loadAddresses(): " + e);
+            System.out.println("►►►►►►►►►►►►► ERRO public final void loadAddresses(): " + e.toString());
+            new ModuleToCollectError().erroPage500("AddressControl > loadLists", e.toString());
         }
     }
 

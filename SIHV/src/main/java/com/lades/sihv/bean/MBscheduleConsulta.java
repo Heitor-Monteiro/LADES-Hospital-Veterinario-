@@ -42,7 +42,7 @@ public class MBscheduleConsulta extends AbstractBean {
     @PostConstruct
     public void init() {
         try {
-            System.out.println("BACK-END WARNING: MBscheduleConsulta initiated");
+            System.out.println("►►►►►►►►►►►►► MBscheduleConsulta initiated");
             geneScheduling = new GenericScheduling();
             schedule = new Scheduling();
             tempCliData = new NewAnimalAndOwner();
@@ -51,7 +51,7 @@ public class MBscheduleConsulta extends AbstractBean {
             listRenderedFields = new ListRenderedFields(3);
             textButtonSchedule = "Agendar";
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void init(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void init(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > init", e.toString());
         }
     }
@@ -82,7 +82,7 @@ public class MBscheduleConsulta extends AbstractBean {
             lists.popularListEventID(geneScheduling);
             geneScheduling.setEvent(new DefaultScheduleEvent());
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void addEvent(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void addEvent(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > addEvent", e.toString());
         }
     }
@@ -97,14 +97,14 @@ public class MBscheduleConsulta extends AbstractBean {
                 getObjMessage().info("Consulta cancelada!", "O agendamento foi removido do calendário");
             }
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void cancelEvent(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void cancelEvent(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > cancelEvent", e.toString());
         }
     }
 
     public void onDateSelect(SelectEvent selectEvent) {
         try {
-            System.out.println("BACK-END WARNING: public void onDateSelect(SelectEvent selectEvent)");
+            System.out.println("►►►►►►►►►►►►► public void onDateSelect(SelectEvent selectEvent)");
             listRenderedFields.getListViewFields(1).setViewVariableBoolean(false);
             listRenderedFields.getListViewFields(2).setViewVariableBoolean(false);
             setViewClientPresence(false);
@@ -115,7 +115,7 @@ public class MBscheduleConsulta extends AbstractBean {
             tempCliData = new NewAnimalAndOwner();
             geneScheduling.onDateSelect(selectEvent);
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void onDateSelect(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void onDateSelect(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > onDateSelect", e.toString());
         }
     }
@@ -125,6 +125,7 @@ public class MBscheduleConsulta extends AbstractBean {
             setViewClientPresence(true);
             textButtonSchedule = "Atualizar";
             geneScheduling.onEventSelect(selectEvent);
+            lists.getListEventID().clear();
             for (int i = 0; i < lists.getListEventID().size(); i++) {
                 if (lists.getListEventID().get(i).equals(geneScheduling.getEvent().getId())) {
                     schedule = lists.getListSchedule().get(i);
@@ -137,7 +138,7 @@ public class MBscheduleConsulta extends AbstractBean {
             disableProprietaryPhone2();
             disableProprietaryPhone3();
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void onEventSelect(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void onEventSelect(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > onEventSelect", e.toString());
         }
     }
@@ -151,7 +152,7 @@ public class MBscheduleConsulta extends AbstractBean {
             getVariaveisDeSessao().setObjetoTemp(list);
             getObjTools().redirectView("/SIHV/faces/sihv-telas/linkOwnerAndAnimal.xhtml");
         } catch (IOException e) {
-            System.out.println("BACK-END WARNING: ERRO public void buttonToLinkOwnerAndAnimal(): " + e);
+            System.out.println("►►►►►►►►►►►►► ERRO public void buttonToLinkOwnerAndAnimal(): " + e);
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > buttonToLinkOwnerAndAnimal", e.toString());
         }
     }
@@ -212,7 +213,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 listRenderedFields.getListViewFields(1).setViewVariableBoolean(false);
             }
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void disableProprietaryPhone2(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void disableProprietaryPhone2(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > disableProprietaryPhone2", e.toString());
         }
     }
@@ -230,7 +231,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 listRenderedFields.getListViewFields(2).setViewVariableBoolean(false);
             }
         } catch (Exception e) {
-            System.out.println("BACK-END WARNING: ERRO public void disableProprietaryPhone3(): " + e.toString());
+            System.out.println("►►►►►►►►►►►►► ERRO public void disableProprietaryPhone3(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > disableProprietaryPhone3", e.toString());
         }
     }
