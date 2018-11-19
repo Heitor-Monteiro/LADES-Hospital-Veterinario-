@@ -12,6 +12,7 @@ import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.address.AddressControl;
 import com.lades.sihv.controller.animal.AnimalControl;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.controller.person.PhonesControl;
 import com.lades.sihv.controller.person.SaveVariablesPerson;
 import com.lades.sihv.controller.person.VariablesPerson;
@@ -120,19 +121,33 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
                     savePerson.saveOwners(varPerson);
                 }
 
+                String cpfRg = "";
                 if (verifyPersonDocument.isCheckCPF()
                         && verifyPersonDocument.isNewCPF()) {
                     savePerson.saveCPF(varPerson);
+                    cpfRg = "CPF:"+varPerson.getObjCpf().getCpf();
                 }
 
                 if (verifyPersonDocument.isCheckRG()
                         && verifyPersonDocument.isNewRG()) {
                     savePerson.saveRG(varPerson);
+                    cpfRg += " RG:" + varPerson.getObjRg().getRg();
+                }
+
+                if (verifyPersonDocument.isNewPerson()) {
+                    new SaveLogControl().saveLog(1, "Proprietário:"
+                            + varPerson.getPerson().getNamePerson()
+                            + " " + cpfRg);
                 }
 
                 if (animalControl.getVarAnimal().getStatusNewAnimal().isViewVariableBoolean()) {
                     animalControl.saveNewSmallAnimal();
                     animalControl.saveOwnersHasAnimals(varPerson);
+                    new SaveLogControl().saveLog(2, "Animal pequeno:"
+                            + animalControl.getVarAnimal().getAnimal().getAnimalName()
+                            + ", Sexo:" + animalControl.getVarAnimal().getAnimal().getGenderAnimal()
+                            + ", RGHV:" + animalControl.getVarAnimal().getTempRGHV()
+                            + ", Espécie:" + animalControl.getVarAnimal().getSelectTextSpecies());
                 }
 
                 new ConfirmOwnerPresence()

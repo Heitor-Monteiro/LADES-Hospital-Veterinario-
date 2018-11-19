@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import com.lades.sihv.DAO.SessionUtils;
 import com.lades.sihv.controller.Security;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import java.io.IOException;
 import java.util.List;
 
@@ -66,6 +67,9 @@ public class Login extends AbstractBean {
                     + "p.pkPerson=u.people.pkPerson and \n"
                     + "u.pkUser=h.users.pkUser and \n"
                     + "h.powers.pkPower=pw.pkPower "));
+            new SaveLogControl().saveLog(5, getVariaveisDeSessao().getFullName()
+                    + " - " + getVariaveisDeSessao().getUserTipo()
+                    + " - " + getVariaveisDeSessao().getCrmvMatricula());
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
             System.out.println("►►►►►►►►►►►►► User name: " + getVariaveisDeSessao().getUsername());
             System.out.println("►►►►►►►►►►►►► User work position: " + getVariaveisDeSessao().getUserTipo());
@@ -82,6 +86,11 @@ public class Login extends AbstractBean {
 
     //logout event, invalidate session
     public void logout() throws IOException {
+        if (getVariaveisDeSessao().getDadosUSER() != null) {
+            new SaveLogControl().saveLog(6, getVariaveisDeSessao().getFullName()
+                    + " - " + getVariaveisDeSessao().getUserTipo()
+                    + " - " + getVariaveisDeSessao().getCrmvMatricula());
+        }
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         System.out.println("BACK-END WARNING: SESSION INVALIDATED!");
