@@ -7,6 +7,7 @@ package com.lades.sihv.controller.schedulesConfirmed;
 
 import com.lades.sihv.bean.*;
 import com.lades.sihv.controller.animal.CollectAnimalRghv;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.Animals;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import java.text.DateFormat;
@@ -42,6 +43,7 @@ public class MBschedulesConfirmed extends AbstractBean {
 
     public void searchForConfirmedSchedules() {
         try {
+            int number = 0;
             tempListSchedulesConfirmed.clear();
             List<?> list = getDaoGenerico().list("select s, n from Scheduling s, NewAnimalAndOwner n \n"
                     + "where \n"
@@ -67,10 +69,16 @@ public class MBschedulesConfirmed extends AbstractBean {
                 getObjMessage().info("Itens encontrados!",
                         "Agendas confirmadas no período estipulado: "
                         + tempListSchedulesConfirmed.size());
+                number = tempListSchedulesConfirmed.size();
             } else {
                 getObjMessage().info("Não a agendas confirmadas no período estipulado", "");
             }
-
+            String initial, end;
+            initial = "" + formatUS.format(dateInitial).substring(0, 10);
+            end = "" + formatUS.format(dateEnd).substring(0, 10);
+            new SaveLogControl().saveLog(12, "Período consultado: de "
+                    + initial + " ate " + end
+                    + " - Numero de registros achados: " + number);
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void searchForConfirmedSchedules():" + e);
         }

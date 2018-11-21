@@ -7,6 +7,7 @@ package com.lades.sihv.controller.proceduresHV;
 
 import com.lades.sihv.bean.*;
 import com.lades.sihv.controller.RenderedFields;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.Category;
 import com.lades.sihv.model.Prices;
 import com.lades.sihv.model.Procedures;
@@ -165,6 +166,15 @@ public class MBeditAndNewProcedure extends AbstractBean {
             collectCategoryOfProcedures();
             enableButtonSaveNewProcedure.setViewVariableBoolean(true);
             getObjMessage().info("Novo procedimento registrado com sucesso!", "");
+            String category = "---";
+            if (newPrice.getCategory() != null) {
+                category = newPrice.getCategory().getAbbreviation()
+                        + " - " + newPrice.getCategory().getDescription();
+            }
+            new SaveLogControl().saveLog(4, "Procedimento:" + newProcedure.getNameProcedure()
+                    + ", Valor:" + newPrice.getPrice() + ", Dosagem:" + newPrice.getDosage()
+                    + ", Categoria:" + category
+                    + ", Setor:" + newProcedure.getTypeProcedure().getNameTypeProced());
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void onRowAddProcedure(): " + e);
         }

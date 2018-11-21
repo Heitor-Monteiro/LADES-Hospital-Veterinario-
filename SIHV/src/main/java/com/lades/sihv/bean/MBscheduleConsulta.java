@@ -15,6 +15,7 @@ import com.lades.sihv.controller.scheduleConsulta.CheckSchedulingForm;
 import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.RenderedFields;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import java.io.IOException;
@@ -69,6 +70,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 getDaoGenerico().save(tempCliData);
                 getObjMessage().info("Agendamento salvo!", "Consulta marcada com sucesso");
                 RequestContext.getCurrentInstance().execute("PF('eventDialog').hide();");
+                new SaveLogControl().saveLog(7, descriptionLog());
             } else {
                 System.out.println("public void addEvent(ActionEvent actionEvent): !!! UPDATE STARTED !!!");
                 schedule.setSchedulingDate(geneScheduling.getEvent().getStartDate());
@@ -77,6 +79,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 getDaoGenerico().update(tempCliData);
                 getObjMessage().info("Agendamento atualizado!", "Atualização efetivada com sucesso");
                 RequestContext.getCurrentInstance().execute("PF('eventDialog').hide();");
+                new SaveLogControl().saveLog(9, descriptionLog());
             }
             lists.popularListSchedule();
             lists.popularListEventID(geneScheduling);
@@ -95,6 +98,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 lists.popularListSchedule();
                 lists.popularListEventID(geneScheduling);
                 getObjMessage().info("Consulta cancelada!", "O agendamento foi removido do calendário");
+                new SaveLogControl().saveLog(8, descriptionLog());
             }
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void cancelEvent(): " + e.toString());
@@ -154,6 +158,15 @@ public class MBscheduleConsulta extends AbstractBean {
             System.out.println("►►►►►►►►►►►►► ERRO public void buttonToLinkOwnerAndAnimal(): " + e);
             new ModuleToCollectError().erroPage500("MBscheduleConsulta > buttonToLinkOwnerAndAnimal", e.toString());
         }
+    }
+
+    private String descriptionLog() {
+        return "Proprietário:" + tempCliData.getProprietaryName()
+                + ", Animal:" + tempCliData.getAnimalName()
+                + ", Data e hora da consulta: " + schedule.getSchedulingDate()
+                + ", Telefones:" + tempCliData.getProprietaryPhone1()
+                + ", " + tempCliData.getProprietaryPhone2()
+                + ", " + tempCliData.getProprietaryPhone3();
     }
 
     //-GETs e SETs--------------------------------------------------------------

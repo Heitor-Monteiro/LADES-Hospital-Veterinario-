@@ -9,6 +9,7 @@ import com.lades.sihv.bean.*;
 import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.address.AddressControl;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.controller.person.PhonesControl;
 import com.lades.sihv.controller.person.SaveVariablesPerson;
 import com.lades.sihv.controller.person.VariablesPerson;
@@ -126,6 +127,11 @@ public class MBregisterUser extends AbstractBean {
             getObjMessage().info("Usuário salvo com sucesso", "Cargo: "
                     + varPerson.getUser().getUserProfile()
                     + "; Função: " + varPerson.getUser().getUserFunction());
+            new SaveLogControl().saveLog(0, "Usuário:" + varPerson.getPerson().getNamePerson()
+                    + ", Cargo:" + varPerson.getUser().getUserProfile()
+                    + ", Função" + varPerson.getUser().getUserFunction()
+                    + ", CPF:" + varPerson.getObjCpf().getCpf()
+                    + ", RG:" + varPerson.getObjRg().getRg());
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO saveUser(): " + e);
         }
@@ -194,7 +200,7 @@ public class MBregisterUser extends AbstractBean {
         return varPerson.getUser().getUserProfile() != null;
     }
     //--------------------------------------------------------------------------
-    
+
     public List<Powers> getSelectPower() {
         return selectPower;
     }

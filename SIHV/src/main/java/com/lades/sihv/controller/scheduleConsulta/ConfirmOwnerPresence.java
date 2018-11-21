@@ -7,6 +7,7 @@ package com.lades.sihv.controller.scheduleConsulta;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.animal.VariablesAnimal;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.controller.person.PhonesControl;
 import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.model.NewAnimalAndOwner;
@@ -42,6 +43,12 @@ public class ConfirmOwnerPresence extends AbstractBean {
                 }
             }
             getDaoGenerico().update(tempCliData);
+            new SaveLogControl().saveLog(10, "Proprietário:" + tempCliData.getProprietaryName()
+                    + ", Animal:" + tempCliData.getAnimalName()
+                    + ", Data e hora da consulta: " + schedule.getSchedulingDate()
+                    + ", Telefones:" + tempCliData.getProprietaryPhone1()
+                    + ", " + tempCliData.getProprietaryPhone2()
+                    + ", " + tempCliData.getProprietaryPhone3());
         } catch (Exception e) {
             System.out.println("BACK-END WARNING: ERRO public void methodConfirmOwnerPresence():" + e);
         }

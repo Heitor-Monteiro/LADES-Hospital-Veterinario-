@@ -6,6 +6,7 @@
 package com.lades.sihv.controller.schedulesCanceled;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -37,6 +38,7 @@ public class MBschedulesCanceled extends AbstractBean {
 
     public void searchForCanceledSchedules() {
         try {
+            int number = 0;
             tempListSchedulesCanceled.clear();
             List<?> list = getDaoGenerico().list("select s, n from Scheduling s, NewAnimalAndOwner n \n"
                     + "where \n"
@@ -52,12 +54,18 @@ public class MBschedulesCanceled extends AbstractBean {
                     tempListSchedulesCanceled.add(obj);
                 }
                 getObjMessage().info("Itens encontrados!",
-                         "Agendas canceladas no período estipulado: "
+                        "Agendas canceladas no período estipulado: "
                         + tempListSchedulesCanceled.size());
+                number = tempListSchedulesCanceled.size();
             } else {
-                getObjMessage().info("Não a agendas canceladas no período estipulado","");
+                getObjMessage().info("Não a agendas canceladas no período estipulado", "");
             }
-
+            String initial, end;
+            initial = "" + formatUS.format(dateInitial).substring(0, 10);
+            end = "" + formatUS.format(dateEnd).substring(0, 10);
+            new SaveLogControl().saveLog(11, "Período consultado: de "
+                    + initial + " ate " + end
+                    + " - Numero de registros achados: " + number);
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void searchForCanceledSchedules():" + e);
         }
@@ -83,7 +91,7 @@ public class MBschedulesCanceled extends AbstractBean {
     public List<TempListSchedulesCanceled> getTempListSchedulesCanceled() {
         return tempListSchedulesCanceled;
     }
-    
+
     public boolean isViewTableSchedulesCanceled() {
         return !tempListSchedulesCanceled.isEmpty();
     }
