@@ -136,6 +136,10 @@ public class MBeditAndNewProcedure extends AbstractBean {
             }
             getDaoGenerico().update(obj.getPrice());
             getObjMessage().info("Os dados da categoria foram atualizados", "");
+            new SaveLogControl().saveLog(13, "Procedimento:" + obj.getProcedure().getNameProcedure()
+                    + ", Valor:" + obj.getPrice().getPrice() + ", Dosagem:" + obj.getPrice().getDosage()
+                    + ", Categoria:" + obj.getAbbreviation() + " - " + obj.getDescription()
+                    + ", Setor:" + obj.getSelectTypeProcedure());
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void onRowEdit(): " + e);
         }
