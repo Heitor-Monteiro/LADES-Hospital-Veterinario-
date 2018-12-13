@@ -18,7 +18,11 @@
 
 .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
     padding-bottom: 1%;
-} 
+}
+
+.panelgrid-v2 {
+    border-radius: 40px!important;
+}
 
 
 @media (max-width: 640px) {

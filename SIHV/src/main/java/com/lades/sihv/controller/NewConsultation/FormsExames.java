@@ -25,6 +25,8 @@ public class FormsExames implements Serializable {
     private ControllerSisMuscEsque controleSisMuscEsque;
     private ControllerExamLaboratory controleExamLaboratory;
     private ControllerExaImage controleExaImage;
+    private ControllerHVcostTable controlerHVcostTable;
+    private ControllerToGrantDiscount controllerToGrantDiscount;
 
     /*O método verifica quais sistema
     de anamnese foram afetados.*/
@@ -126,5 +128,19 @@ public class FormsExames implements Serializable {
             controleExaImage = new ControllerExaImage();
         }
         return controleExaImage;
+    }
+
+    public ControllerHVcostTable getControlerHVcostTable() {
+        if (controlerHVcostTable == null) {
+            controlerHVcostTable = new ControllerHVcostTable(controlConsulta.getConsultation());
+        }
+        return controlerHVcostTable;
+    }
+
+    public ControllerToGrantDiscount getControllerToGrantDiscount() {
+        if (controllerToGrantDiscount == null) {
+            controllerToGrantDiscount = new ControllerToGrantDiscount(controlConsulta, controlerHVcostTable);
+        }
+        return controllerToGrantDiscount;
     }
 }

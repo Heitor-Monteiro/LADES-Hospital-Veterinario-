@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<!-- Generated 10/12/2018 16:25:53 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.VetConsultation" table="vetConsultation" catalog="bd_sihv" optimistic-lock="version">
         <id name="pkVetConsultation" type="java.lang.Integer">
@@ -17,8 +17,8 @@
         <many-to-one name="users" class="com.lades.sihv.model.Users" fetch="select">
             <column name="users_PK_user" not-null="true" />
         </many-to-one>
-        <property name="totalCostConsultation" type="big_decimal">
-            <column name="totalCostConsultation" precision="6" not-null="true" />
+        <property name="discountValue" type="big_decimal">
+            <column name="discountValue" precision="6" not-null="true" />
         </property>
         <property name="diagPresuntivo" type="string">
             <column name="diagPresuntivo" length="254" not-null="true" />

@@ -36,7 +36,7 @@ a {
     top: 0px;
     left: 0px;
     right: 0px;
-    z-index: 9998;
+    z-index: 999;
     position: fixed;
     /*background-color: #2d3e50;*/
     background-color: #eaeaea;
@@ -47,9 +47,9 @@ a {
 /* CONTENT */
 .LADES-content {
     /*overflow: auto;*/
-    padding-top: 96px;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-top: 80px;
+    padding-left: 0px;
+    padding-right: 0px;
     transition: margin-left 0.5s;
 }
 /* CONTENT */
@@ -80,7 +80,7 @@ a {
     left: 0;
     width: 270px;
     margin-left: -276px;
-    z-index: 9999;
+    z-index: 1000;
     transition: margin-left 0.5s;
     overflow-y: auto;
 

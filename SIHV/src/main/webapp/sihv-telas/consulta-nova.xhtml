@@ -19,7 +19,10 @@
             </f:metadata>
 
             <h:form>
-                <p:growl id="growl" sticky="true" showDetail="true"/>
+                <p:growl id="growl"
+                         sticky="true" 
+                         showDetail="true"
+                         life="5000" />
 
                 <p:wizard nextLabel="próximo"
                           backLabel="voltar"
@@ -27,14 +30,17 @@
                           showStepStatus="true"
                           widgetVar="wiz">
 
-                    <p:tab id="etapa1" title="1" titletip="Dados do proprietário">
-                        <p:panel header="Agendamentos confirmados para consulta">
-                            <ui:include src="/sihv-includes/selectOwnerAndSmallAnimalConfirmed.xhtml" />
-                        </p:panel>
+                    <p:tab id="etapa1" 
+                           title="1" 
+                           titletip="Dados do proprietário">
+                        <ui:include src="/sihv-includes/selectOwnerAndSmallAnimalConfirmed.xhtml" />
                     </p:tab>
 
 
-                    <p:tab id="etapa2" title="2" titletip="Anamnese e Exame físico geral" rendered="true">
+                    <p:tab id="etapa2" 
+                           title="2" 
+                           titletip="Anamnese e Exame físico geral" 
+                           rendered="true">
                         <p:tabView>
                             <p:tab title="Anamnese">
                                 <p:panel style="margin-top: -15px;
@@ -56,7 +62,10 @@
                     </p:tab>
 
 
-                    <p:tab id="etapa3" title="3" titletip="Exame físico específico" rendered="true">
+                    <p:tab id="etapa3" 
+                           title="3" 
+                           titletip="Exame físico específico" 
+                           rendered="true">
                         <p:panel header="Exame físico específico">
                             <f:facet name="actions">
                                 <p:outputLabel id="ajudaExameFisicoEspec"
@@ -83,199 +92,41 @@
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="etapa4" title="4" titletip="Exames complementares" rendered="true">
+                    <p:tab id="etapa4" 
+                           title="4" 
+                           titletip="Exames complementares" 
+                           rendered="true">
                         <p:panel header="Exames complementares">
 
                             <ui:include src="/sihv-includes/toggleable_ExamXray.xhtml" />
                             <ui:include src="/sihv-includes/toggleable_ExamUltrasound.xhtml" />
-                            <ui:include src="/sihv-includes/toggleable_ExamLaboratory.xhtml" />
+                            <!--<ui:include src="/sihv-includes/toggleable_ExamLaboratory.xhtml" />-->
 
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="etapa5" title="5" titletip="Diagnósticos diferenciais" rendered="true">
+                    <p:tab id="etapa5" 
+                           title="5" 
+                           titletip="Diagnósticos diferenciais" 
+                           rendered="true">
                         <p:panel header="Diagnósticos diferenciais">
                             <ui:include src="/sihv-includes/form_differential_Diagnostics.xhtml" />
                         </p:panel>
                     </p:tab>
 
-                    <p:tab id="etapa6" title="Finalizar">
-                        <p:panel id="CODconsulta">
-                            <div class="ui-fluid">
-                                <p:panelGrid columns="2"
-                                             layout="grid"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-3, ui-grid-col-3" >
+                    <p:tab id="etapa6" 
+                           title="6" 
+                           titletip="Tabela de custos" 
+                           rendered="true">
+                        <ui:include src="/sihv-includes/HVcostTable.xhtml" />
+                    </p:tab>
 
-
-
-                                    <p:outputLabel value="Código de atendimento:"
-                                                   style="color: #555;
-                                                   font-weight: bold;
-                                                   font-size: 16px; " />
-                                    <p:outputLabel value="#{MBconsulta.formsExame.controlConsulta.codNewConsulta}"
-                                                   style="color: #555;
-                                                   font-weight: bold;
-                                                   font-size: 16px; " />
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Proprietário:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.proprietaryName}" />
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="CPF/CNPJ:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.selectScheduleConfirmed.cpf}" />
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Nome do animal:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.animalName}" />
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Espécie:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="????????" />
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Código do animal:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.selectScheduleConfirmed.rghv}" />
-
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Data do atendimento:" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.objData}" />
-
-
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Valor da consulta:"
-                                                   for="valorConsult" />
-                                    <p:inputNumber id="valorConsult"
-                                                   class="LADES-default-Text"
-                                                   value="#{MBconsulta.formsExame.controlConsulta.consultation.totalCostConsultation}"
-                                                   decimalSeparator=","
-                                                   thousandSeparator="."
-                                                   maxlength="6"
-                                                   maxValue="9999"
-                                                   decimalPlaces="2"
-                                                   required="true"
-                                                   requiredMessage="Informe o valor da consulta!"
-                                                   style="margin-bottom: 20px;" />
-                                </p:panelGrid>
-
-
-                                <p:panelGrid columns="2"
-                                             layout="grid"
-                                             style="margin-top: 30px"
-                                             styleClass="panelgrid-noborder"
-                                             columnClasses="ui-grid-col-3, ui-grid-col-4, ui-grid-col-3" >
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Confirmação do medico veterinário:"
-                                                   style="font-size: 17px " />
-                                    <p:outputLabel value="" />
-
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Nome do residente:"
-                                                   rendered="#{MBconsulta.objTools.showButtonPrint}" />
-                                    <p:outputLabel class="LADES-default-Text"
-                                                   value="#{MBconsulta.variaveisDeSessao.fullName}"
-                                                   rendered="#{MBconsulta.objTools.showButtonPrint}" />
-
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Informe o CRMV:" />
-                                    <p:inputText id="ConfimMED1"
-                                                 value="#{MBconsulta.confirmeCRMV}"
-                                                 title="Ex.: CRMV-PA 00000"
-                                                 required="true"
-                                                 requiredMessage="Informe o CRMV para concretiza a consulta!"
-                                                 maxlength="50"/>
-
-
-
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Senha de acesso ao sistema:" />
-                                    <p:password id="ConfimMED2"
-                                                feedback="false"
-                                                inline="true"
-                                                value="#{MBconsulta.confirmeSENHA}"
-                                                title="Residente: digite a senha que você utiliza para acessar o sistema."
-                                                maxlength="100"
-                                                required="true"
-                                                requiredMessage="Informe a senha de residente!" />
-
-
-
-                                </p:panelGrid>
-
-                                <div class="ui-g">
-                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:commandButton value="Imprimir"
-                                                         rendered="#{MBconsulta.objTools.showButtonPrint}"
-                                                         type="button"
-                                                         icon="fa fa-print">
-                                            <p:printer target="CODconsulta" />
-                                        </p:commandButton>
-                                    </div>
-
-                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:button value="Nova consulta"
-                                                  rendered="#{MBconsulta.objTools.showButtonPrint}"
-                                                  outcome="/sihv-telas/consulta-nova"
-                                                  icon="fa fa-user-plus" />
-                                    </div>
-
-                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:commandButton  action="#{MBconsulta.adicionarNovaConsulta()}"
-                                                          value="Salvar consulta"
-                                                          icon="fa fa-save"
-                                                          update="growl, CODconsulta"
-                                                          disabled="#{MBconsulta.objTools.showButtonPrint}">
-                                            <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout
-                                            Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
-                                            <p:ajax onstart="PF('statusDialog').show()"
-                                                    onsuccess="PF('statusDialog').hide()" />
-                                        </p:commandButton>
-                                    </div>
-
-                                    <div class="ui-g-12 ui-md-3 ui-lg-3">
-                                        <p:button value="Sair"
-                                                  outcome="/index"
-                                                  icon="fa fa-home" />
-                                    </div>
-                                </div>
-                            </div>
-                        </p:panel>
+                    <p:tab id="etapa7" 
+                           title="Finalizar">
+                        <ui:include src="/sihv-includes/endOfConsultation.xhtml" />
                     </p:tab>
 
                 </p:wizard>
-
-
 
 
                 <p:dialog modal="true"

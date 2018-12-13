@@ -12,6 +12,7 @@ import com.lades.sihv.controller.ListRenderedFields;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.model.OwnersHasAnimals;
 import com.lades.sihv.model.Scheduling;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -27,6 +28,7 @@ public class ControllerConsulta extends AbstractBean {
     public ControllerConsulta() {
         codNewConsulta = 0;
         consultation = new VetConsultation();
+        consultation.setDiscountValue(BigDecimal.ZERO);
         listViewFields = new ListRenderedFields(3);
         listViewFields.startIndexListViewFields();
     }

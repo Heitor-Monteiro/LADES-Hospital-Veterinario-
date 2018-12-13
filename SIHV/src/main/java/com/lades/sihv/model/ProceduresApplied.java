@@ -1,14 +1,14 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 10/12/2018 16:25:52 by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
-import javax.persistence.AttributeOverride;
-import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
-import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -25,37 +25,36 @@ import javax.persistence.TemporalType;
 public class ProceduresApplied  implements java.io.Serializable {
 
 
-     private ProceduresAppliedId id;
+     private Integer pkProceduresApplied;
      private Procedures procedures;
      private VetConsultation vetConsultation;
+     private boolean paymentStatus;
      private Date applicationDate;
 
     public ProceduresApplied() {
     }
 
-    public ProceduresApplied(ProceduresAppliedId id, Procedures procedures, VetConsultation vetConsultation, Date applicationDate) {
-       this.id = id;
+    public ProceduresApplied(Procedures procedures, VetConsultation vetConsultation, boolean paymentStatus, Date applicationDate) {
        this.procedures = procedures;
        this.vetConsultation = vetConsultation;
+       this.paymentStatus = paymentStatus;
        this.applicationDate = applicationDate;
     }
    
-     @EmbeddedId
+     @Id @GeneratedValue(strategy=IDENTITY)
 
     
-    @AttributeOverrides( {
-        @AttributeOverride(name="proceduresPkProcedure", column=@Column(name="procedures_PK_procedure", nullable=false) ), 
-        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
-    public ProceduresAppliedId getId() {
-        return this.id;
+    @Column(name="PK_proceduresApplied", unique=true, nullable=false)
+    public Integer getPkProceduresApplied() {
+        return this.pkProceduresApplied;
     }
     
-    public void setId(ProceduresAppliedId id) {
-        this.id = id;
+    public void setPkProceduresApplied(Integer pkProceduresApplied) {
+        this.pkProceduresApplied = pkProceduresApplied;
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="procedures_PK_procedure", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="procedures_PK_procedure", nullable=false)
     public Procedures getProcedures() {
         return this.procedures;
     }
@@ -65,13 +64,23 @@ public class ProceduresApplied  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false)
     public VetConsultation getVetConsultation() {
         return this.vetConsultation;
     }
     
     public void setVetConsultation(VetConsultation vetConsultation) {
         this.vetConsultation = vetConsultation;
+    }
+
+    
+    @Column(name="paymentStatus", nullable=false)
+    public boolean isPaymentStatus() {
+        return this.paymentStatus;
+    }
+    
+    public void setPaymentStatus(boolean paymentStatus) {
+        this.paymentStatus = paymentStatus;
     }
 
     @Temporal(TemporalType.TIMESTAMP)

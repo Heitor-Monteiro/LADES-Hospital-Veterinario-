@@ -72,6 +72,7 @@ public class MBconsulta extends AbstractBean {
                 getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
                 getFormsExame().getControleExaImage().ConfirmeExamXray(consulta);
                 getFormsExame().getControleExaImage().ConfirmeExamUltrasound(consulta);
+                getFormsExame().getControlerHVcostTable().saveSelectProcedures(consulta);
                 //--------------------------------------------------------------
                 selectScheduleConfirmed.getSchedule().setStatusService("efetivado(a)");
                 getDaoGenerico().update(selectScheduleConfirmed.getSchedule());

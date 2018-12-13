@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
+// Generated 10/12/2018 16:25:52 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -33,7 +33,7 @@ public class VetConsultation  implements java.io.Serializable {
      private OwnersHasAnimals ownersHasAnimals;
      private Scheduling scheduling;
      private Users users;
-     private BigDecimal totalCostConsultation;
+     private BigDecimal discountValue;
      private String diagPresuntivo;
      private String diagDiferencial;
      private String diagDefinitivo;
@@ -54,20 +54,20 @@ public class VetConsultation  implements java.io.Serializable {
     }
 
 	
-    public VetConsultation(OwnersHasAnimals ownersHasAnimals, Scheduling scheduling, Users users, BigDecimal totalCostConsultation, String diagPresuntivo, String diagDiferencial, Date applicationDate) {
+    public VetConsultation(OwnersHasAnimals ownersHasAnimals, Scheduling scheduling, Users users, BigDecimal discountValue, String diagPresuntivo, String diagDiferencial, Date applicationDate) {
         this.ownersHasAnimals = ownersHasAnimals;
         this.scheduling = scheduling;
         this.users = users;
-        this.totalCostConsultation = totalCostConsultation;
+        this.discountValue = discountValue;
         this.diagPresuntivo = diagPresuntivo;
         this.diagDiferencial = diagDiferencial;
         this.applicationDate = applicationDate;
     }
-    public VetConsultation(OwnersHasAnimals ownersHasAnimals, Scheduling scheduling, Users users, BigDecimal totalCostConsultation, String diagPresuntivo, String diagDiferencial, String diagDefinitivo, Date applicationDate, Set exameFisicos, Set exameImages, Set proceduresApplieds, Set sisRespCardios, Set sisUrinarioMamarias, Set sisDigestorios, Set anamneses, Set sisMuscEsques, Set sisOftalmicos, Set sisTegumentars, Set sisNeurologicos) {
+    public VetConsultation(OwnersHasAnimals ownersHasAnimals, Scheduling scheduling, Users users, BigDecimal discountValue, String diagPresuntivo, String diagDiferencial, String diagDefinitivo, Date applicationDate, Set exameFisicos, Set exameImages, Set proceduresApplieds, Set sisRespCardios, Set sisUrinarioMamarias, Set sisDigestorios, Set anamneses, Set sisMuscEsques, Set sisOftalmicos, Set sisTegumentars, Set sisNeurologicos) {
        this.ownersHasAnimals = ownersHasAnimals;
        this.scheduling = scheduling;
        this.users = users;
-       this.totalCostConsultation = totalCostConsultation;
+       this.discountValue = discountValue;
        this.diagPresuntivo = diagPresuntivo;
        this.diagDiferencial = diagDiferencial;
        this.diagDefinitivo = diagDefinitivo;
@@ -128,13 +128,13 @@ public class VetConsultation  implements java.io.Serializable {
     }
 
     
-    @Column(name="totalCostConsultation", nullable=false, precision=6)
-    public BigDecimal getTotalCostConsultation() {
-        return this.totalCostConsultation;
+    @Column(name="discountValue", nullable=false, precision=6)
+    public BigDecimal getDiscountValue() {
+        return this.discountValue;
     }
     
-    public void setTotalCostConsultation(BigDecimal totalCostConsultation) {
-        this.totalCostConsultation = totalCostConsultation;
+    public void setDiscountValue(BigDecimal discountValue) {
+        this.discountValue = discountValue;
     }
 
     
