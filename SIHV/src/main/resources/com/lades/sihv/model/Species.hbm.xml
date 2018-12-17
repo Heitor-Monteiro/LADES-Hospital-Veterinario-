@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Species" table="species" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.SpeciesId">
+            <key-property name="pkSpecies" type="int">
+                <column name="PK_species" />
+            </key-property>
+            <key-property name="genrePkGenre" type="int">
+                <column name="genre_PK_genre" />
+            </key-property>
+            <key-property name="genreOrderPkOrder" type="int">
+                <column name="genre_order_PK_order" />
+            </key-property>
+            <key-property name="genreOrderClassAnimalPkClassAnimal" type="int">
+                <column name="genre_order_classAnimal_PK_classAnimal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="genre" class="com.lades.sihv.model.Genre" update="false" insert="false" fetch="select">
+            <column name="genre_PK_genre" not-null="true" />
+            <column name="genre_order_PK_order" not-null="true" />
+            <column name="genre_order_classAnimal_PK_classAnimal" not-null="true" />
+        </many-to-one>
+        <property name="nameSpecies" type="string">
+            <column name="nameSpecies" length="100" not-null="true" />
+        </property>
+        <property name="dataSpeciesRegister" type="timestamp">
+            <column name="dataSpeciesRegister" length="19" not-null="true" />
+        </property>
+        <set name="raceses" table="races" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="species_PK_species" not-null="true" />
+                <column name="species_genre_PK_genre" not-null="true" />
+                <column name="species_genre_order_PK_order" not-null="true" />
+                <column name="species_genre_order_classAnimal_PK_classAnimal" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Races" />
+        </set>
+    </class>
+</hibernate-mapping>

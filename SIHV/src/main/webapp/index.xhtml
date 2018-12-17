@@ -11,7 +11,7 @@
         </ui:define>
 
         <ui:define name="content">
-            
+
             <f:metadata>
                 <f:viewAction action="#{login.objTools.disableWizardNavBar()}" />
                 <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
@@ -24,7 +24,8 @@
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
                             <h:link outcome="/sihv-telas/consulta-nova"
-                                    rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}" >
+                                    disabled="false"
+                                    rendered="#{login.objSeekUserPowers.viewMakeConsultations}" >
                                 <h:graphicImage id="ficha"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -37,7 +38,9 @@
                             </h:link>
                         </div>
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/sihv-telas/cad-cliente">
+                            <h:link outcome="/sihv-telas/cad-cliente"
+                                    disabled="true"
+                                    rendered="#{login.objSeekUserPowers.viewRegisterOwner}">
                                 <h:graphicImage id="addUser"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -55,8 +58,8 @@
                 <div class="ui-g-12 ui-md-6 ui-lg-4">
                     <div class="ui-g">
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/sihv-telas/cad-user-medico"
-                                    rendered="#{login.variaveisDeSessao.userTipo == 'MEDICO'}" >
+                            <h:link outcome="/sihv-telas/registerUser"
+                                    rendered="#{login.objSeekUserPowers.viewRegisterUser}" >
                                 <h:graphicImage id="addMED"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 
@@ -65,11 +68,13 @@
                                            for="addMED"
                                            value="Cadastrar novo usuário do sistema"
                                            showEffect="clip" />
-                                <p>Novo residente</p>
+                                <p>Novo usuário</p>
                             </h:link>
                         </div>
                         <div class="ui-g-6 LADES-textoBotao">
-                            <h:link outcome="/sihv-telas/cad-animal-p">
+                            <h:link outcome="/sihv-telas/cad-animal-p"
+                                    disabled="true"
+                                    rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}">
                                 <h:graphicImage id="addPet"
                                                 class="LADES-indexBotao"
                                                 library="imagens" 

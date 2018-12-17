@@ -47,8 +47,8 @@
                     <f:selectItem itemLabel="Selecione" itemValue="" />
                     <f:selectItem itemLabel="Pendentes" itemValue="Pendentes" />
                     <f:selectItem itemLabel="Data de Solicitação" itemValue="solicitacaoData" />
-                    <f:selectItem itemLabel="Nome do proprietário" itemValue="nome" />
-                    <f:selectItem itemLabel="Nome do animal" itemValue="nomeAnimal" />
+                    <f:selectItem itemLabel="Nome do proprietário" itemValue="namePerson" />
+                    <f:selectItem itemLabel="Nome do animal" itemValue="animalName" />
                     <p:ajax update="search, ValorPesquisa"
                             listener="#{MBxrayPending.xRayItemSearch()}"/>
                 </p:selectOneMenu>
@@ -121,18 +121,18 @@
                 <p:column class="cellTextCenter"
                           headerText="RGHV"
                           width="100">
-                    <h:outputText value="#{xray.animais.rghv}" />
+                    <h:outputText value="#{xray.rghv}" />
                 </p:column>
 
                 <p:column headerText="Animal"
                           width="120">
-                    <h:outputText value="#{xray.animais.nomeAnimal}" />
+                    <h:outputText value="#{xray.animal.animalName}" />
                 </p:column>
 
                 <p:column class="cellTextCenter"
                           headerText="Espécie"
                           width="120">
-                    <h:outputText value="#{xray.animais.especie}" />
+                    <h:outputText value="#{xray.specie.nameSpecies}" />
                 </p:column>
 
                 <p:column class="cellTextCenter"

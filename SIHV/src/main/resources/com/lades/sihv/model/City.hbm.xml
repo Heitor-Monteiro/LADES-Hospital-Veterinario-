@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.City" table="city" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkCity" type="java.lang.Integer">
+            <column name="PK_city" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="federationUnity" class="com.lades.sihv.model.FederationUnity" fetch="select">
+            <column name="federationUnity_PK_federationUnity" not-null="true" />
+        </many-to-one>
+        <property name="fullNameCity" type="string">
+            <column name="fullNameCity" length="100" not-null="true" />
+        </property>
+        <property name="registrationDate" type="timestamp">
+            <column name="registrationDate" length="19" not-null="true" />
+        </property>
+        <set name="neighborhoods" table="neighborhood" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="city_PK_city" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Neighborhood" />
+        </set>
+    </class>
+</hibernate-mapping>

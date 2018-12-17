@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 25/07/2018 22:28:26 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -24,7 +24,7 @@ public class ExameFisico  implements java.io.Serializable {
 
 
      private ExameFisicoId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private short fcBpm;
      private short frMpm;
      private BigDecimal termpeReta;
@@ -47,9 +47,9 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
 	
-    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos) {
+    public ExameFisico(ExameFisicoId id, VetConsultation vetConsultation, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.fcBpm = fcBpm;
         this.frMpm = frMpm;
         this.termpeReta = termpeReta;
@@ -67,9 +67,9 @@ public class ExameFisico  implements java.io.Serializable {
         this.linfonodos = linfonodos;
         this.pelePelos = pelePelos;
     }
-    public ExameFisico(ExameFisicoId id, Consulta consulta, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, String inforAdiciona) {
+    public ExameFisico(ExameFisicoId id, VetConsultation vetConsultation, short fcBpm, short frMpm, BigDecimal termpeReta, short tpc, String estadoNutric, String mucosaOral, String mucosVagPeni, String mucosaOcular, String pulso, String estadoPulso, String hidratacao, String palpaAbdom, String auscuCardiaca, String auscuPulmona, String linfonodos, String pelePelos, String inforAdiciona) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.fcBpm = fcBpm;
        this.frMpm = frMpm;
        this.termpeReta = termpeReta;
@@ -94,7 +94,7 @@ public class ExameFisico  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkExameFisico", column=@Column(name="PK_exameFisico", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public ExameFisicoId getId() {
         return this.id;
     }
@@ -104,13 +104,13 @@ public class ExameFisico  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

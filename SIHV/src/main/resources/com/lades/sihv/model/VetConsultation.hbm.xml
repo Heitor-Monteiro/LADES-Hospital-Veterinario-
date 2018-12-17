@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 10/12/2018 16:25:53 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.VetConsultation" table="vetConsultation" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkVetConsultation" type="java.lang.Integer">
+            <column name="PK_vetConsultation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="ownersHasAnimals" class="com.lades.sihv.model.OwnersHasAnimals" fetch="select">
+            <column name="ownersHasAnimals_PK_ownersHasAnimals" not-null="true" />
+        </many-to-one>
+        <many-to-one name="scheduling" class="com.lades.sihv.model.Scheduling" fetch="select">
+            <column name="scheduling_Pk_schedule" not-null="true" />
+        </many-to-one>
+        <many-to-one name="users" class="com.lades.sihv.model.Users" fetch="select">
+            <column name="users_PK_user" not-null="true" />
+        </many-to-one>
+        <property name="discountValue" type="big_decimal">
+            <column name="discountValue" precision="6" not-null="true" />
+        </property>
+        <property name="diagPresuntivo" type="string">
+            <column name="diagPresuntivo" length="254" not-null="true" />
+        </property>
+        <property name="diagDiferencial" type="string">
+            <column name="diagDiferencial" length="254" not-null="true" />
+        </property>
+        <property name="diagDefinitivo" type="string">
+            <column name="diagDefinitivo" length="254" />
+        </property>
+        <property name="applicationDate" type="timestamp">
+            <column name="applicationDate" length="19" not-null="true" />
+        </property>
+        <set name="exameFisicos" table="exameFisico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.ExameFisico" />
+        </set>
+        <set name="exameImages" table="exameImage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.ExameImage" />
+        </set>
+        <set name="proceduresApplieds" table="proceduresApplied" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.ProceduresApplied" />
+        </set>
+        <set name="sisRespCardios" table="sisRespCardio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisRespCardio" />
+        </set>
+        <set name="sisUrinarioMamarias" table="sisUrinarioMamaria" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisUrinarioMamaria" />
+        </set>
+        <set name="sisDigestorios" table="sisDigestorio" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisDigestorio" />
+        </set>
+        <set name="anamneses" table="anamnese" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Anamnese" />
+        </set>
+        <set name="sisMuscEsques" table="sisMuscEsque" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisMuscEsque" />
+        </set>
+        <set name="sisOftalmicos" table="sisOftalmico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisOftalmico" />
+        </set>
+        <set name="sisTegumentars" table="sisTegumentar" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisTegumentar" />
+        </set>
+        <set name="sisNeurologicos" table="sisNeurologico" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="vetConsultation_PK_vetConsultation" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.SisNeurologico" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Users" table="users" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkUser" type="java.lang.Integer">
+            <column name="PK_user" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="people" class="com.lades.sihv.model.People" fetch="select">
+            <column name="people_PK_people" not-null="true" />
+        </many-to-one>
+        <property name="userName" type="string">
+            <column name="userName" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="100" not-null="true" />
+        </property>
+        <property name="userProfile" type="string">
+            <column name="userProfile" length="40" not-null="true" />
+        </property>
+        <property name="userFunction" type="string">
+            <column name="userFunction" length="69" not-null="true" />
+        </property>
+        <property name="registrationNumber" type="string">
+            <column name="registrationNumber" length="50" not-null="true" unique="true" />
+        </property>
+        <set name="powersHasUserses" table="powers_has_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="users_PK_user" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.PowersHasUsers" />
+        </set>
+        <set name="vetConsultations" table="vetConsultation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="users_PK_user" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.VetConsultation" />
+        </set>
+        <set name="logBookHasUserses" table="logBook_has_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="users_PK_user" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.LogBookHasUsers" />
+        </set>
+    </class>
+</hibernate-mapping>

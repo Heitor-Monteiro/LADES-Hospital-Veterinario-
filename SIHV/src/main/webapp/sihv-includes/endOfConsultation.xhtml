@@ -1,0 +1,243 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="ui-fluid">
+        <p:panelGrid id="dataConsultation"
+                     columns="4"
+                     layout="grid"
+                     style="margin: 20px 0 20px 0;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-3, ui-grid-col-3" >
+
+            <f:facet name="header">
+                <p:outputLabel value="Código de atendimento: 
+                               #{MBconsulta.formsExame.controlConsulta.codNewConsulta}" />
+            </f:facet>
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Proprietário:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.proprietaryName}" />
+
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="CPF/CNPJ:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBconsulta.selectScheduleConfirmed.cpf}" />
+
+
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Nome do animal:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBconsulta.selectScheduleConfirmed.newAnimalAndOwner.animalName}" />
+
+
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Espécie:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="????????" />
+
+
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Código do animal:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBconsulta.selectScheduleConfirmed.rghv}" />
+
+
+
+
+            <p:outputLabel class="outputLabel-SIHV colorPri"
+                           value="Data do atendimento:" />
+            <p:outputLabel class="LADES-default-Text"
+                           value="#{MBconsulta.objData}" />
+        </p:panelGrid>
+
+
+
+        <p:panelGrid id="teste76"
+                     columns="2"
+                     layout="grid"
+                     style="margin: 20px 0 20px 0;"
+                     styleClass="panelgrid-noborder"
+                     columnClasses="ui-grid-col-6, ui-grid-col-6" >
+
+            <p:panelGrid columns="1"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-12" >
+                <p:dataTable id="selectProcedures"
+                             var="procedure"
+                             value="#{MBconsulta.formsExame.controlerHVcostTable.selectProcedures}"
+                             reflow="false">
+
+                    <f:facet name="header">
+                        Procedimentos selecionados
+                    </f:facet>
+                    <p:column style="width:50px;">
+                        <p:rowToggler />
+                    </p:column>
+
+                    <p:column headerText="Procedimento" >
+                        <h:outputText value="#{procedure.procedure.nameProcedure}" />
+                    </p:column>
+
+                    <p:column headerText="Valor"
+                              width="150px;" >
+                        <h:outputText value="R$ #{procedure.price.price}"
+                                      title="#{procedure.category.description}"/>
+                    </p:column>
+
+                    <p:rowExpansion>
+                        <p:panelGrid columns="2"
+                                     layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-2, ui-grid-col-6" >
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Setor:" />
+                            <p:outputLabel class="LADES-default-Text"
+                                           value="#{procedure.typeProcedure.nameTypeProced}" />
+
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Dosagem:" />
+                            <p:outputLabel class="LADES-default-Text"
+                                           value="#{procedure.price.dosage}" />
+
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Peso:" />
+                            <p:outputLabel class="LADES-default-Text"
+                                           value="#{procedure.category.abbreviation}"
+                                           title="#{procedure.category.description}"/>
+                        </p:panelGrid>
+                    </p:rowExpansion>
+
+                    <p:columnGroup type="footer">
+                        <p:row>
+                            <p:column class="LADES-default-Text"
+                                      colspan="2"
+                                      style="text-align:right;
+                                      font-weight: bold; " 
+                                      footerText="Valor sem desconto:" />
+                            <p:column class="LADES-default-Text"
+                                      style="text-align:left;
+                                      font-weight: bold; "
+                                      footerText="R$ #{MBconsulta.formsExame.controlerHVcostTable.totalCost}" />
+                        </p:row>
+                        <p:row>
+                            <p:column class="LADES-default-Text"
+                                      colspan="2"
+                                      style="text-align:right;
+                                      font-weight: bold; " 
+                                      footerText="Desconto:" />
+                            <p:column class="LADES-default-Text"
+                                      style="text-align:left;
+                                      font-weight: bold; "
+                                      footerText="R$ #{MBconsulta.formsExame.controlConsulta.consultation.discountValue}" />
+                        </p:row>
+                        <p:row>
+                            <p:column class="LADES-default-Text"
+                                      colspan="2"
+                                      style="text-align:right;
+                                      font-weight: bold; " 
+                                      footerText="Total:" />
+                            <p:column class="LADES-default-Text"
+                                      style="text-align:left;
+                                      font-weight: bold; "
+                                      footerText="R$ #{MBconsulta.formsExame.controlerHVcostTable.totalCost 
+                                                       - MBconsulta.formsExame.controlConsulta.consultation.discountValue}" />
+                        </p:row>
+                    </p:columnGroup>
+                </p:dataTable>
+                
+            </p:panelGrid>
+
+            <p:panelGrid id="confirmedDoctorVet"
+                         columns="1"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-12" >
+
+                <f:facet name="header">
+                    <p:outputLabel value="Confirmação do medico veterinário" />
+                </f:facet>
+
+
+                <p:outputLabel class="outputLabel-SIHV colorPri"
+                               value="Nome do residente:"
+                               rendered="#{MBconsulta.objTools.showButtonPrint}" />
+                <p:outputLabel class="LADES-default-Text"
+                               value="#{MBconsulta.variaveisDeSessao.fullName}"
+                               rendered="#{MBconsulta.objTools.showButtonPrint}" />
+
+
+                <p:outputLabel class="outputLabel-SIHV colorPri"
+                               value="Informe o CRMV:"
+                               for="ConfimMED1"/>
+                <p:inputText id="ConfimMED1"
+                             value="#{MBconsulta.confirmeCRMV}"
+                             title="Ex.: CRMV-PA 00000"
+                             required="true"
+                             requiredMessage="Informe o CRMV para concretiza a consulta!"
+                             maxlength="50"/>
+
+
+                <p:outputLabel class="outputLabel-SIHV colorPri"
+                               value="Senha de acesso ao sistema:"
+                               for="ConfimMED2"/>
+                <p:password id="ConfimMED2"
+                            feedback="false"
+                            inline="true"
+                            value="#{MBconsulta.confirmeSENHA}"
+                            title="Residente: digite a senha que você utiliza para acessar o sistema."
+                            maxlength="100"
+                            required="true"
+                            requiredMessage="Informe a senha de residente!" />
+            </p:panelGrid>
+        </p:panelGrid>
+
+        <p:panel id="CODconsulta" 
+                 style="border: none;">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                    <p:commandButton value="Imprimir"
+                                     rendered="#{MBconsulta.objTools.showButtonPrint}"
+                                     type="button"
+                                     icon="fa fa-print"
+                                     onclick="window.print()" />
+                </div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                    <p:button value="Nova consulta"
+                              rendered="#{MBconsulta.objTools.showButtonPrint}"
+                              outcome="/sihv-telas/consulta-nova"
+                              icon="fa fa-user-plus" />
+                </div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                    <p:commandButton action="#{MBconsulta.adicionarNovaConsulta()}"
+                                     value="Salvar consulta"
+                                     icon="fa fa-save"
+                                     update="growl, confirmedDoctorVet, CODconsulta"
+                                     disabled="#{MBconsulta.objTools.showButtonPrint}">
+                        <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout
+                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                        <p:ajax onstart="PF('statusDialog').show()"
+                                onsuccess="PF('statusDialog').hide()" />
+                    </p:commandButton>
+                </div>
+
+                <div class="ui-g-12 ui-md-3 ui-lg-3">
+                    <p:button value="Sair"
+                              outcome="/index"
+                              icon="fa fa-home" />
+                </div>
+            </div>
+        </p:panel>
+
+        
+    </div>
+</ui:component>

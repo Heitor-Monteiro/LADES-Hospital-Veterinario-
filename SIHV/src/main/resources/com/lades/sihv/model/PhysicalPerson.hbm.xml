@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.PhysicalPerson" table="physicalPerson" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.PhysicalPersonId">
+            <key-property name="pkPhysicalPerson" type="int">
+                <column name="PK_physicalPerson" />
+            </key-property>
+            <key-property name="peoplePkPerson" type="int">
+                <column name="people_PK_person" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="people" class="com.lades.sihv.model.People" update="false" insert="false" fetch="select">
+            <column name="people_PK_person" not-null="true" />
+        </many-to-one>
+        <property name="gender" type="string">
+            <column name="gender" length="3" not-null="true" />
+        </property>
+        <set name="rgs" table="rg" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="physicalPerson_PK_physicalPerson" not-null="true" />
+                <column name="physicalPerson_people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Rg" />
+        </set>
+        <set name="cpfs" table="cpf" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="physicalPerson_PK_physicalPerson" not-null="true" />
+                <column name="physicalPerson_people_PK_person" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Cpf" />
+        </set>
+    </class>
+</hibernate-mapping>

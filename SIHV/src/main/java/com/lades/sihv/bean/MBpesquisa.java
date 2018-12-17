@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import com.lades.sihv.controller.pesquisa.*;
+import java.util.ArrayList;
 
 /**
  *
@@ -76,13 +77,13 @@ public class MBpesquisa extends AbstractBean {
 
         switch (item) {
             case "Pessoa":
-                objBuscados = new ListagemPessoa().listBySearchPESSOA(itemPesquisa, textoPesquisa);
+//                objBuscados = new ListagemPessoa().listBySearchPESSOA(itemPesquisa, textoPesquisa);
                 break;
             case "Animal":
-                objBuscados = new ListagemAnimais().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
+//                objBuscados = new ListagemAnimais().listBySearchANIMAIS(itemPesquisa, textoPesquisa);
                 break;
             case "Cosulta":
-                objBuscados = new ListagemConsulta().listBySearchCONSULTA(itemPesquisa, textoPesquisa);
+//                objBuscados = new ListagemConsulta().listBySearchCONSULTA(itemPesquisa, textoPesquisa);
                 break;
             default:
                 getObjMessage().warn("Erro ao listar!", "Item não encontrado.");
@@ -108,7 +109,8 @@ public class MBpesquisa extends AbstractBean {
         showDataTableAnimal = false;
 
         if (maximumCharacters(100, textoPesquisa)) {
-            objBuscados = new ListagemGeral().generalSearchList(itemPesquisa, textoPesquisa);
+            objBuscados = new ArrayList<Object>();
+//            objBuscados = new ListagemGeral().generalSearchList(itemPesquisa, textoPesquisa);
             boolean fullList = (objBuscados.size() > 0);
 
             switch (itemPesquisa) {

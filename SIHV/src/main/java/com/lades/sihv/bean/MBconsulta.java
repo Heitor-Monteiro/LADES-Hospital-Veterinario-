@@ -5,12 +5,16 @@
  */
 package com.lades.sihv.bean;
 
-import com.lades.sihv.controller.consulta.ConfirmarMedicoVeterinario;
-import com.lades.sihv.controller.consulta.VisualizarConsulta;
-import com.lades.sihv.classeMolde.FormsExames;
-import com.lades.sihv.classeMolde.CollectionClasses;
-import com.lades.sihv.model.Consulta;
+import com.lades.sihv.controller.NewConsultation.ConfirmarMedicoVeterinario;
+import com.lades.sihv.controller.NewConsultation.VisualizarConsulta;
+import com.lades.sihv.controller.NewConsultation.FormsExames;
+import com.lades.sihv.controller.NewConsultation.CollectionClasses;
+import com.lades.sihv.controller.NewConsultation.SchedulesConfirmedForConsultation;
+import com.lades.sihv.controller.NewConsultation.SearchForConfirmedSchedules;
+import com.lades.sihv.model.VetConsultation;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
@@ -31,9 +35,18 @@ public class MBconsulta extends AbstractBean {
     private CollectionClasses collectionClasses;
     private FormsExames formsExame;
 
+    //--------------------------------------------------------------------------
+    private List<SchedulesConfirmedForConsultation> schedulesConfirmedForConsultation;
+    private SchedulesConfirmedForConsultation selectScheduleConfirmed;
+    //--------------------------------------------------------------------------
+
     @PostConstruct
     public void init() {
-
+        System.out.println("►►►►►►►►►►►►► MBconsulta initiated");
+        formsExame = new FormsExames();
+        formsExame.getControlConsulta().generateMaxExamCode();
+        schedulesConfirmedForConsultation = new ArrayList<>();
+        new SearchForConfirmedSchedules().searchForConfirmedSchedules(schedulesConfirmedForConsultation);
     }
 
     /*Método utilizado para salvar uma nova consulta.
@@ -44,9 +57,9 @@ public class MBconsulta extends AbstractBean {
         boolean var = new ConfirmarMedicoVeterinario().confirmaMEDICO(confirmeSENHA, confirmeCRMV);
         if (var) {
             try {
-                Consulta consulta = getFormsExame()
+                VetConsultation consulta = getFormsExame()
                         .getControlConsulta()
-                        .ConfirmeConsulta(collectionClasses.getAnimais(),
+                        .ConfirmeConsulta(selectScheduleConfirmed,
                                 getVariaveisDeSessao().getDadosUSER());
                 getFormsExame().getControlAnamnese().ConfirmeAnamnese(consulta);
                 getFormsExame().getControlExameFisico().ConfirmeExameFisico(consulta);
@@ -59,6 +72,11 @@ public class MBconsulta extends AbstractBean {
                 getFormsExame().getControleSisMuscEsque().ConfirmeSisMuscEsque(consulta);
                 getFormsExame().getControleExaImage().ConfirmeExamXray(consulta);
                 getFormsExame().getControleExaImage().ConfirmeExamUltrasound(consulta);
+                getFormsExame().getControlerHVcostTable().saveSelectProcedures(consulta);
+                //--------------------------------------------------------------
+                selectScheduleConfirmed.getSchedule().setStatusService("efetivado(a)");
+                getDaoGenerico().update(selectScheduleConfirmed.getSchedule());
+                //--------------------------------------------------------------
                 getObjMessage().info("Cosulta efetuada.", "Consulta realizada com sucesso.");
                 getObjTools().blockBackWizad();//Bloqueio do botão back do Wizard PrimeFAces
                 getObjTools().setShowButtonPrint(true); //Habilitando visibilidade do botão para impressão
@@ -73,9 +91,9 @@ public class MBconsulta extends AbstractBean {
     /*O método direciona o usuário para uma
     pagina que exibirá todos os exames.*/
     public void verConsulta() {
-        formsExame = new VisualizarConsulta().viewCONSULTA("" + collectionClasses.getConsulta().getPkConsulta());
+        formsExame = new VisualizarConsulta().viewCONSULTA("" + collectionClasses.getVetConsultation().getPkVetConsultation());
         try {
-            getObjTools().redirecionar("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
+            getObjTools().redirectView("/SIHV/faces/sihv-telas-exame/Exames.xhtml");
         } catch (IOException ex) {
             Logger.getLogger(MBconsulta.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -98,6 +116,7 @@ public class MBconsulta extends AbstractBean {
     public void setConfirmeSENHA(String confirmeSENHA) {
         this.confirmeSENHA = confirmeSENHA;
     }
+
     //-----------------------------------------------------
     public CollectionClasses getCollectionClasses() {
         try {
@@ -122,4 +141,22 @@ public class MBconsulta extends AbstractBean {
         return formsExame;
     }
     //------------------------------------------------------------------
+
+    public List<SchedulesConfirmedForConsultation> getSchedulesConfirmedForConsultation() {
+        return schedulesConfirmedForConsultation;
+    }
+
+    public SchedulesConfirmedForConsultation getSelectScheduleConfirmed() {
+        return selectScheduleConfirmed;
+    }
+
+    public void setSelectScheduleConfirmed(SchedulesConfirmedForConsultation selectScheduleConfirmed) {
+        this.selectScheduleConfirmed = selectScheduleConfirmed;
+        if (this.selectScheduleConfirmed.getOwnersHasAnimals().getPkOwnersHasAnimals() != null) {
+            System.out.println("►►►►►►►►►►►►► SelectScheduleConfirmed:"
+                    + this.selectScheduleConfirmed.getOwnersHasAnimals().getPkOwnersHasAnimals());
+            getVariaveisDeSessao().setObjetoTemp(this.selectScheduleConfirmed);
+        }
+    }
+
 }

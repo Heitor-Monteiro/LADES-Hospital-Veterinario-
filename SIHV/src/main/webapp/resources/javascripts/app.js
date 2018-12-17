@@ -26,11 +26,8 @@ $(function () {
     });
 });
 
-
-
-
-function myAccFunc() {
-    var x = document.getElementById("demoAcc");
+function dropdownMenu(idMenu,icoMenu) {
+    var x = document.getElementById(idMenu);
     if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
         x.previousElementSibling.className += " w3-green";
@@ -39,20 +36,7 @@ function myAccFunc() {
         x.previousElementSibling.className =
                 x.previousElementSibling.className.replace(" w3-green", "");
     }
-    $('.icoMenu1').toggleClass('is-rotacao');
-        event.preventDefault();
-}
-
-function myDropFunc() {
-    var x = document.getElementById("demoDrop");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-        x.previousElementSibling.className += " w3-green";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-        x.previousElementSibling.className =
-                x.previousElementSibling.className.replace(" w3-green", "");
-    }
-    $('.icoMenu2').toggleClass('is-rotacao');
+    icoMenu = '.'+icoMenu;
+    $(icoMenu).toggleClass('is-rotacao');
         event.preventDefault();
 }

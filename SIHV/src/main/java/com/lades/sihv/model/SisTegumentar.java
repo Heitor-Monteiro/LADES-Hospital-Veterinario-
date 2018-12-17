@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisTegumentar  implements java.io.Serializable {
 
 
      private SisTegumentarId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String evoluLesao;
      private String localiLesao;
      private String pruridoCutaneo;
@@ -42,9 +42,9 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
 	
-    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoOtolog, String secreOtolog, String frequeBanhos, String preTratamen, String sistemaAfetado) {
+    public SisTegumentar(SisTegumentarId id, VetConsultation vetConsultation, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoOtolog, String secreOtolog, String frequeBanhos, String preTratamen, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.evoluLesao = evoluLesao;
         this.localiLesao = localiLesao;
         this.pruridoCutaneo = pruridoCutaneo;
@@ -54,9 +54,9 @@ public class SisTegumentar  implements java.io.Serializable {
         this.preTratamen = preTratamen;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisTegumentar(SisTegumentarId id, Consulta consulta, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoCutaneoEvolu, String pruridoOtolog, String pruridoOtologEvolu, String secreOtolog, String secreOtologEvolu, String frequeBanhos, String produUtilBanho, String preTratamen, String preTratamenDescri, String sistemaAfetado) {
+    public SisTegumentar(SisTegumentarId id, VetConsultation vetConsultation, String evoluLesao, String localiLesao, String pruridoCutaneo, String pruridoCutaneoEvolu, String pruridoOtolog, String pruridoOtologEvolu, String secreOtolog, String secreOtologEvolu, String frequeBanhos, String produUtilBanho, String preTratamen, String preTratamenDescri, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.evoluLesao = evoluLesao;
        this.localiLesao = localiLesao;
        this.pruridoCutaneo = pruridoCutaneo;
@@ -77,7 +77,7 @@ public class SisTegumentar  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisTegumentar", column=@Column(name="PK_sisTegumentar", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisTegumentarId getId() {
         return this.id;
     }
@@ -87,13 +87,13 @@ public class SisTegumentar  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

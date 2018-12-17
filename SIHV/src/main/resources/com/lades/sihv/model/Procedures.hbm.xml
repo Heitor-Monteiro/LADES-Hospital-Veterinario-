@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05/11/2018 17:29:55 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Procedures" table="procedures" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkProcedure" type="java.lang.Integer">
+            <column name="PK_procedure" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="typeProcedure" class="com.lades.sihv.model.TypeProcedure" fetch="select">
+            <column name="typeProcedure_PK_typeProcedure" not-null="true" />
+        </many-to-one>
+        <property name="nameProcedure" type="string">
+            <column name="nameProcedure" length="100" not-null="true" />
+        </property>
+        <property name="disableProcedure" type="boolean">
+            <column name="disableProcedure" not-null="true" />
+        </property>
+        <property name="dateOfLastModification" type="date">
+            <column name="dateOfLastModification" length="10" not-null="true" />
+        </property>
+        <property name="dateOfFirstRegistration" type="timestamp">
+            <column name="dateOfFirstRegistration" length="19" not-null="true" />
+        </property>
+        <set name="priceses" table="prices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="procedures_PK_procedure" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Prices" />
+        </set>
+        <set name="proceduresApplieds" table="proceduresApplied" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="procedures_PK_procedure" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.ProceduresApplied" />
+        </set>
+    </class>
+</hibernate-mapping>

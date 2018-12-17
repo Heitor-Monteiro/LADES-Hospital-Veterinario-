@@ -18,7 +18,11 @@
 
 .ui-panelgrid.panelgrid-noborder .ui-grid-responsive .ui-grid-row .ui-panelgrid-cell {
     padding-bottom: 1%;
-} 
+}
+
+.panelgrid-v2 {
+    border-radius: 40px!important;
+}
 
 
 @media (max-width: 640px) {
@@ -64,6 +68,11 @@
     color: #c0392b!important;
 }
 
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {
+    border: 1px solid #ED4635!important;
+    color: #c0392b!important;
+}
+
 /*selectBooleanButton*/
 .buttonAffectedSystem {
     width:100px!important;
@@ -76,7 +85,7 @@
 
 .outputLabel-SIHV {
     font-weight: bold!important;
-/*    float: right;*/
+    /*    float: right;*/
 }
 
 .colorPri {color: #00B59B!important;}
@@ -84,8 +93,17 @@
 .colorSub {color: #007463!important;}
 
 @media (max-width: 640px) {
-/*    .outputLabel-SIHV {float: none;}*/
+    /*    .outputLabel-SIHV {float: none;}*/
 }
 /*outputLabel para formulários do sistema SIHV*/
 
+.fc-view {
+    z-index: 0!important;
+}
 /*---------------- Prime Faces modificações na estilizações ----------------*/
+
+@media (max-width: 640px) {
+    .divNotUsed {
+        display: none;
+    }
+}

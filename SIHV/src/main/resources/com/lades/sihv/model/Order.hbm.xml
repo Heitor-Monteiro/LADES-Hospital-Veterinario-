@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Order" table="order" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.OrderId">
+            <key-property name="pkOrder" type="int">
+                <column name="PK_order" />
+            </key-property>
+            <key-property name="classAnimalPkClassAnimal" type="int">
+                <column name="classAnimal_PK_classAnimal" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="classAnimal" class="com.lades.sihv.model.ClassAnimal" update="false" insert="false" fetch="select">
+            <column name="classAnimal_PK_classAnimal" not-null="true" />
+        </many-to-one>
+        <property name="orderName" type="string">
+            <column name="orderName" length="100" not-null="true" />
+        </property>
+        <property name="dataOrderRegister" type="timestamp">
+            <column name="dataOrderRegister" length="19" not-null="true" />
+        </property>
+        <set name="genres" table="genre" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="order_PK_order" not-null="true" />
+                <column name="order_classAnimal_PK_classAnimal" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Genre" />
+        </set>
+    </class>
+</hibernate-mapping>

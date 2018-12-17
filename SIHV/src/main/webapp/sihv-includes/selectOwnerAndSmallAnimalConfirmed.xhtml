@@ -1,0 +1,66 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:form>
+        <div class="ui-fluid">
+            <p:dataTable id="confirmedSchedules-DataTable"
+                         var="schedule"
+                         rendered="true"
+                         value="#{MBconsulta.schedulesConfirmedForConsultation}"
+                         paginator="true"
+                         rows="10"
+                         reflow="true"
+                         selectionMode="single"
+                         selection="#{MBconsulta.selectScheduleConfirmed}"
+                         rowKey="#{schedule.ownersHasAnimals.pkOwnersHasAnimals}"
+                         resizableColumns="false"
+                         resizeMode="expand"
+                         style="margin-top: 20px;
+                         margin-bottom: 20px;">
+
+                <f:facet name="header">
+                    Agendamentos confirmados para consulta
+                </f:facet>
+
+                <p:column class="cellTextCenter"
+                          headerText="Tipo de consulta"
+                          width="110">
+                    <h:outputText value="#{schedule.schedule.typeService}" />
+                </p:column>
+
+
+                <p:column class="cellTextCenter"
+                          headerText="Data/Hora consulta"
+                          width="110">
+                    <h:outputText value="#{schedule.schedule.schedulingDate}" />
+                </p:column>
+
+                <p:column headerText="Proprietário">
+                    <h:outputText value="#{schedule.newAnimalAndOwner.proprietaryName}
+                                  , CPF:#{schedule.cpf}, RG:#{schedule.rg}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="RGHV"
+                          width="110">
+                    <h:outputText value="#{schedule.rghv}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="Animal">
+                    <h:outputText value="#{schedule.newAnimalAndOwner.animalName}" />
+                </p:column>
+
+                <p:column class="cellTextCenter"
+                          headerText="Telefones">
+                    <h:outputText value="#{schedule.newAnimalAndOwner.proprietaryPhone1}
+                                  , #{schedule.newAnimalAndOwner.proprietaryPhone2}
+                                  , #{schedule.newAnimalAndOwner.proprietaryPhone3}" />
+                </p:column>
+
+            </p:dataTable>
+        </div>
+    </h:form>
+</ui:component>

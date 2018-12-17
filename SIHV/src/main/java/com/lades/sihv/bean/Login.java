@@ -15,6 +15,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 import com.lades.sihv.DAO.SessionUtils;
 import com.lades.sihv.controller.Security;
+import com.lades.sihv.controller.logBook.SaveLogControl;
 import java.io.IOException;
 import java.util.List;
 
@@ -57,15 +58,24 @@ public class Login extends AbstractBean {
         pwd = new Security().encrypter(pwd);
         int valid = validate(user, pwd);
         if (valid != -1) {
-            getVariaveisDeSessao().setDadosPESSOA((Object) getDaoGenerico().list("select p from Pessoa p where p.pkPessoa=" + valid).get(0));
-            getVariaveisDeSessao().setDadosUSER((Object) getDaoGenerico().list("select u from Pessoa p, User u where p.pkPessoa=" + valid + " and u.id.fkPessoa=" + valid + "").get(0));
+            getVariaveisDeSessao().setDadosPESSOA((Object) getDaoGenerico().list("select p from People p where p.pkPerson=" + valid).get(0));
+            getVariaveisDeSessao().setDadosUSER((Object) getDaoGenerico().list("select u from People p, Users u where p.pkPerson=" + valid + " and u.people.pkPerson=" + valid + "").get(0));
+            getVariaveisDeSessao().setPowersUSER((List<Object>) getDaoGenerico().list("select pw from \n"
+                    + "People p, Users u, PowersHasUsers h, Powers pw \n"
+                    + "where \n"
+                    + "p.pkPerson='" + valid + "' and \n"
+                    + "p.pkPerson=u.people.pkPerson and \n"
+                    + "u.pkUser=h.users.pkUser and \n"
+                    + "h.powers.pkPower=pw.pkPower "));
+            new SaveLogControl().saveLog(5, getVariaveisDeSessao().getFullName()
+                    + " - " + getVariaveisDeSessao().getUserTipo()
+                    + " - " + getVariaveisDeSessao().getCrmvMatricula());
             FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
-            System.out.println("BACK-END WARNING: USER LOGGED! username=" + getVariaveisDeSessao().getUsername());
-            System.out.println("BACK-END WARNING: TipoUser=" + getVariaveisDeSessao().getUserTipo());
-            System.out.println("BACK-END WARNING: cpfCnpj=" + getVariaveisDeSessao().getCpfCnpj());
-            System.out.println("BACK-END WARNING: pkPessoa=" + getVariaveisDeSessao().getPkPessoa());
-            System.out.println("BACK-END WARNING: crmvMatricula=" + getVariaveisDeSessao().getCrmvMatricula());
-            System.out.println("BACK-END WARNING: userSenha=" + getVariaveisDeSessao().getSenhaUser());
+            System.out.println("►►►►►►►►►►►►► User name: " + getVariaveisDeSessao().getUsername());
+            System.out.println("►►►►►►►►►►►►► User work position: " + getVariaveisDeSessao().getUserTipo());
+            System.out.println("►►►►►►►►►►►►► User registration: " + getVariaveisDeSessao().getCrmvMatricula());
+            System.out.println("►►►►►►►►►►►►► Encrypted password: " + getVariaveisDeSessao().getSenhaUser());
+            System.out.println("►►►►►►►►►►►►► Number of powers granted to the User: " + getVariaveisDeSessao().getPowersUSER().size());
             return "index";
         } else {
             getObjMessage().warn("Nome de usuário ou Senha incorretos!", "Por favor, insira os dados corretamente!");
@@ -76,6 +86,11 @@ public class Login extends AbstractBean {
 
     //logout event, invalidate session
     public void logout() throws IOException {
+        if (getVariaveisDeSessao().getDadosUSER() != null) {
+            new SaveLogControl().saveLog(6, getVariaveisDeSessao().getFullName()
+                    + " - " + getVariaveisDeSessao().getUserTipo()
+                    + " - " + getVariaveisDeSessao().getCrmvMatricula());
+        }
         HttpSession session = SessionUtils.getSession();
         session.invalidate();
         System.out.println("BACK-END WARNING: SESSION INVALIDATED!");
@@ -90,12 +105,13 @@ public class Login extends AbstractBean {
         int resposta = -1;
         username = username.toLowerCase();
         System.out.print(username);
-        List<Object> checkLogin = (List<Object>) getDaoGenerico().list("select p.pkPessoa from  Pessoa p, User u where "
-                + "p.pkPessoa = u.id.fkPessoa "
-                + "and u.userSenha='" + password + "' "
-                + "and p.exclusaoLogica=0 "
+        List<Object> checkLogin = (List<Object>) getDaoGenerico().list("select p.pkPerson from  People p, Users u where "
+                + "p.pkPerson = u.people.pkPerson "
+                + "and u.password='" + password + "' "
+                + "and p.logicalExclusion='0' "
                 + "and (p.email='" + username + "' "
-                + "or u.userNick='" + username + "')");
+                + "or u.userName='" + username + "')");
+
         try {
             System.out.println("BACK-END WARNING: USER VALIDATED! p.pkPessoa=" + checkLogin.get(0) + "[ public int validate(String username, String password) ]");
             resposta = (int) checkLogin.get(0);

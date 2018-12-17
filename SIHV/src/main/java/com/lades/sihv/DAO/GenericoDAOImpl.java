@@ -45,7 +45,7 @@ public class GenericoDAOImpl<T> implements GenericoDAO<T> {
         List<T> lista = query.list();
         t.commit();
         session.close();
-        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<T> list(String sqlHQL) ]");
+        System.out.println("BACK-END WARNING: LIST RETURNED! [ public List<T> list(String sqlHQL) ] size:" + lista.size());
         return lista;
     }
 

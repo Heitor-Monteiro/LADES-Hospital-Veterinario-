@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisNeurologico  implements java.io.Serializable {
 
 
      private SisNeurologicoId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String consciencia;
      private String comportamento;
      private String ataxia;
@@ -43,9 +43,9 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
 	
-    public SisNeurologico(SisNeurologicoId id, Consulta consulta, String consciencia, String comportamento, String ataxia, String paralisia, String convulsao, String audicao, String sistemaAfetado) {
+    public SisNeurologico(SisNeurologicoId id, VetConsultation vetConsultation, String consciencia, String comportamento, String ataxia, String paralisia, String convulsao, String audicao, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.consciencia = consciencia;
         this.comportamento = comportamento;
         this.ataxia = ataxia;
@@ -54,9 +54,9 @@ public class SisNeurologico  implements java.io.Serializable {
         this.audicao = audicao;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisNeurologico(SisNeurologicoId id, Consulta consulta, String consciencia, String comportamento, String ataxia, String ataxiaTipo, String ataxiaEvolu, String paralisia, String paralisiaEspFla, String paralisiaTipo, String paralisiaEvolu, String convulsao, String convulsaoTipo, String convulsaoEvolu, String audicao, String sistemaAfetado) {
+    public SisNeurologico(SisNeurologicoId id, VetConsultation vetConsultation, String consciencia, String comportamento, String ataxia, String ataxiaTipo, String ataxiaEvolu, String paralisia, String paralisiaEspFla, String paralisiaTipo, String paralisiaEvolu, String convulsao, String convulsaoTipo, String convulsaoEvolu, String audicao, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.consciencia = consciencia;
        this.comportamento = comportamento;
        this.ataxia = ataxia;
@@ -78,7 +78,7 @@ public class SisNeurologico  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisNeurologico", column=@Column(name="PK_sisNeurologico", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisNeurologicoId getId() {
         return this.id;
     }
@@ -88,13 +88,13 @@ public class SisNeurologico  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

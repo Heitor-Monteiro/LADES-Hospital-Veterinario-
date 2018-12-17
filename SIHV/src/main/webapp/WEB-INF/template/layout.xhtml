@@ -94,23 +94,25 @@
         </div>
 
         <div class="LADES-content js-content" >
+            <p:panel id="master-Panel" 
+                     style="border: none; 
+                     background: none; color: #5f666c;">
+                <h4 id="tituloContente">
+                    <ui:insert  name="title">Default Title</ui:insert>
+                </h4>
 
-            <h4 id="tituloContente">
-                <ui:insert  name="title">Default Title</ui:insert>
-            </h4>
 
+                <ui:insert name="content" />
 
-            <ui:insert name="content" />
+                <!-- Chamando dialogo de processamento (arquivo:processando_gif.xhtml)
+                Calling processing dialog (file: processando_gif.xhtml) -->
+                <ui:include src="/sihv-includes/processando_dialog.xhtml" />
 
-            <!-- Chamando dialogo de processamento (arquivo:processando_gif.xhtml)
-            Calling processing dialog (file: processando_gif.xhtml) -->
-            <ui:include src="/sihv-includes/processando_dialog.xhtml" />
-
-            <div class="footer">
-                <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
-                               Sistemas | Copyright © 2016 Universidade Federal do Pará" style="font-family: Open Sans, Helvetica, Arial;" />
-            </div>
-
+                <div class="footer">
+                    <p:outputLabel value="SIHV | Laboratório de Desenvolvimento de 
+                                   Sistemas | Copyright © 2016 Universidade Federal do Pará" style="font-family: Open Sans, Helvetica, Arial;" />
+                </div>
+            </p:panel>
         </div>
 
     </h:body>

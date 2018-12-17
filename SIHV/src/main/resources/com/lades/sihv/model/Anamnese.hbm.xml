@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 21/05/2018 11:38:43 by Hibernate Tools 4.3.1 -->
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
     <class name="com.lades.sihv.model.Anamnese" table="anamnese" catalog="bd_sihv" optimistic-lock="version">
         <composite-id name="id" class="com.lades.sihv.model.AnamneseId">
             <key-property name="pkAnamnese" type="int">
                 <column name="PK_anamnese" />
             </key-property>
-            <key-property name="consultaFkConsulta" type="int">
-                <column name="consulta_FK_consulta" />
+            <key-property name="vetConsultationPkVetConsultation" type="int">
+                <column name="vetConsultation_PK_vetConsultation" />
             </key-property>
         </composite-id>
-        <many-to-one name="consulta" class="com.lades.sihv.model.Consulta" update="false" insert="false" fetch="select">
-            <column name="consulta_FK_consulta" not-null="true" />
+        <many-to-one name="vetConsultation" class="com.lades.sihv.model.VetConsultation" update="false" insert="false" fetch="select">
+            <column name="vetConsultation_PK_vetConsultation" not-null="true" />
         </many-to-one>
         <property name="escalaPeso" type="string">
             <column name="escalaPeso" length="4" not-null="true" />

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Neighborhood" table="neighborhood" catalog="bd_sihv" optimistic-lock="version">
+        <composite-id name="id" class="com.lades.sihv.model.NeighborhoodId">
+            <key-property name="pkNeighborhood" type="int">
+                <column name="PK_neighborhood" />
+            </key-property>
+            <key-property name="cityPkCity" type="int">
+                <column name="city_PK_city" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="city" class="com.lades.sihv.model.City" update="false" insert="false" fetch="select">
+            <column name="city_PK_city" not-null="true" />
+        </many-to-one>
+        <property name="neighborhood" type="string">
+            <column name="neighborhood" length="100" not-null="true" />
+        </property>
+        <property name="registrationDate" type="timestamp">
+            <column name="registrationDate" length="19" not-null="true" />
+        </property>
+        <set name="addresses" table="address" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="neighborhood_PK_neighborhood" not-null="true" />
+                <column name="neighborhood_city_PK_city" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Address" />
+        </set>
+    </class>
+</hibernate-mapping>

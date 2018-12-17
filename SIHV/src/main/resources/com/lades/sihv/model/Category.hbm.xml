@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 02/11/2018 14:22:33 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Category" table="category" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkCategory" type="java.lang.Integer">
+            <column name="PK_category" />
+            <generator class="identity" />
+        </id>
+        <property name="abbreviation" type="string">
+            <column name="abbreviation" length="2" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="100" not-null="true" />
+        </property>
+        <property name="logicalExclusion" type="boolean">
+            <column name="logicalExclusion" not-null="true" />
+        </property>
+        <property name="dateOfLastModification" type="date">
+            <column name="dateOfLastModification" length="10" not-null="true" />
+        </property>
+        <property name="dateOfFirstRegistration" type="timestamp">
+            <column name="dateOfFirstRegistration" length="19" not-null="true" />
+        </property>
+        <set name="priceses" table="prices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="category_PK_category" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Prices" />
+        </set>
+    </class>
+</hibernate-mapping>

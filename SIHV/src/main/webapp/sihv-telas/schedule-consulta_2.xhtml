@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+
+        <ui:define name="title"  >
+            <i class="fa fa-calendar-alt">
+                <h:outputText value=" Agendar consulta"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+            <f:metadata>
+                <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
+            </f:metadata>
+
+            <h:form>
+                <p:growl id="messages"
+                         sticky="false"
+                         life="5000"
+                         showDetail="false"/>
+
+                <p:schedule id="schedule"
+                            class="testeteste"
+                            value="#{MBscheduleConsulta.geneScheduling.eventModel}"
+                            widgetVar="myschedule"
+                            timeZone="GMT-3">
+
+                    <!-- adcionar novo evento no calendario -->
+                    <p:ajax event="dateSelect"
+                            listener="#{MBscheduleConsulta.onDateSelect}"
+                            update="eventDialog1-Panel,eventDialog3-Panel"
+                            oncomplete="PF('eventDialog').show();" />
+
+                    <p:ajax event="eventSelect"
+                            listener="#{MBscheduleConsulta.onEventSelect}"
+                            update="eventDialog1-Panel,eventDialog3-Panel"
+                            oncomplete="PF('eventDialog').show();" />
+
+                    <!--
+                    <p:ajax event="eventMove"
+                            listener="#{MBscheduleConsulta.geneScheduling.onEventMove}"
+                            update="messages" />
+
+                    <p:ajax event="eventResize"
+                            listener="#{MBscheduleConsulta.geneScheduling.onEventResize}"
+                            update="messages" />-->
+
+                </p:schedule>
+
+                <p:dialog widgetVar="eventDialog"
+                          header="Agendar consulta"
+                          showEffect="clip"
+                          hideEffect="clip" 
+                          focus="typeService-Input">
+
+                    <p:panel id="eventDialog1-Panel"
+                             style="margin: -11px -15px -17px -15px;
+                             padding: 0px 0px 0px 0px;
+                             background: none;
+                             border: none;" >
+
+                        <div class="ui-g ui-fluid" >
+                            <div class="ui-g-12 ui-md-12">
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Status: "
+                                               rendered="true" />
+                                <p:outputLabel id="typeService-Input"
+                                               class="outputLabel-SIHV LADES-default-Text"
+                                               value="#{MBscheduleConsulta.schedule.typeService}"
+                                               rendered="true" />
+                            </div>
+                        </div>
+
+                        <div class="ui-g ui-fluid" >
+                            <div class="ui-g-12 ui-md-12">
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="Presença do cliente: "
+                                               rendered="#{MBscheduleConsulta.viewClientPresence.viewVariableBoolean}" />
+                                <p:outputLabel id="clientPresence-Input"
+                                               class="outputLabel-SIHV LADES-default-Text"
+                                               value="#{MBscheduleConsulta.clientPresenceText}"
+                                               rendered="#{MBscheduleConsulta.viewClientPresence.viewVariableBoolean}" />
+                            </div>
+                        </div>
+
+
+                        <div class="ui-fluid">
+                            <p:panelGrid id="registerClient-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+
+
+
+                            </p:panelGrid>
+
+                            <p:panelGrid id="dateSchedule-PanelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+                                <p:calendar id="schedulingDate-Input"
+                                            value="#{MBscheduleConsulta.geneScheduling.event.startDate}"
+                                            required="true"
+                                            requiredMessage="É necessário a data do agendamento!"
+                                            placeholder="Data do agendamento*"
+                                            pattern="dd/MM/yyyy"
+                                            locale="pt_BR"
+                                            timeZone="GMT-3">
+                                    <p:tooltip id="schedulingDate-toolTip"
+                                               for="schedulingDate-Input"
+                                               value="Data do agendamento"
+                                               position="top"/>
+                                </p:calendar>
+
+
+                                <p:selectOneMenu id="scheduleTime-Input"
+                                                 value="#{MBscheduleConsulta.timeConsultation}"
+                                                 required="true"
+                                                 requiredMessage="É necessário a hora do agendamento!"
+                                                 rendered="true"
+                                                 placeholder="Hora do agendamento*">
+                                    <f:selectItem itemLabel="Hora do agendamento*" itemValue="" noSelectionOption="true" />
+                                    <f:selectItem itemLabel="08:00 AM" itemValue="08:00" />
+                                    <f:selectItem itemLabel="09:00 AM" itemValue="09:00" />
+                                    <f:selectItem itemLabel="10:00 AM" itemValue="10:00" />
+
+                                </p:selectOneMenu>
+                                <p:tooltip id="scheduleTime-toolTip"
+                                           for="scheduleTime-Input"
+                                           value="Hora do agendamento"
+                                           position="top"/>
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+
+                    <p:panel id="eventDialog3-Panel"
+                             style="margin: -11px -15px -17px -15px;
+                             padding: 0px 0px 0px 0px;
+                             background: none;
+                             border: none;" >
+                        <div class="ui-fluid">
+                            <p:panelGrid id="newSchedule-panelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+
+                                <p:inputText id="proprietaryName-input"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryName}"
+                                             placeholder="Nome do proprietário*"
+                                             disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                             required="true"
+                                             requiredMessage="É necessário nome do proprietário!"
+                                             rendered="true">
+                                    <p:tooltip id="proprietaryName-toolTip"
+                                               for="proprietaryName-input"
+                                               value="Nome do proprietário"
+                                               position="top"/>
+                                </p:inputText>
+
+
+                                <p:inputText id="animalName-input"
+                                             value="#{MBscheduleConsulta.geneScheduling.event.title}"
+                                             placeholder="Nome do animal*"
+                                             disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                             required="true"
+                                             requiredMessage="É necessário nome do animal!"
+                                             rendered="true">
+                                    <p:tooltip id="animalName-toolTip"
+                                               for="animalName-input"
+                                               value="Nome do animal"
+                                               position="top"/>
+                                </p:inputText>
+
+                                <p:inputMask id="proprietaryPhones1-input"
+                                             mask="(99) 99999-9999"
+                                             placeholder="1ª Telefone*"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryPhone1}"
+                                             disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                             required="true"
+                                             requiredMessage="É necessário um numero de telefone!"
+                                             rendered="true">
+                                    <p:ajax event="keyup"
+                                            listener="#{MBscheduleConsulta.disableProprietaryPhone2()}"
+                                            update="proprietaryPhones2-input" />
+                                </p:inputMask>
+
+                                <p:inputMask id="proprietaryPhones2-input"
+                                             mask="(99) 99999-9999"
+                                             placeholder="2ª Telefone"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryPhone2}"
+                                             disabled="#{!MBscheduleConsulta.useProprietaryPhone2.viewVariableBoolean}"
+                                             required="false"
+                                             rendered="true">
+                                    <p:ajax event="keyup"
+                                            listener="#{MBscheduleConsulta.disableProprietaryPhone3()}"
+                                            update="proprietaryPhones3-input" />
+                                </p:inputMask>
+
+                                <p:inputMask id="proprietaryPhones3-input"
+                                             mask="(99) 99999-9999"
+                                             placeholder="3ª Telefone"
+                                             value="#{MBscheduleConsulta.tempCliData.proprietaryPhone3}"
+                                             disabled="#{!MBscheduleConsulta.useProprietaryPhone3.viewVariableBoolean}"
+                                             required="false"
+                                             rendered="true" />
+                            </p:panelGrid>
+
+                            <p:panelGrid id="scheduleButtons-panelGrid"
+                                         columns="2"
+                                         layout="grid"
+                                         styleClass="panelgrid-noborder"
+                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
+
+                                <p:commandButton id="cancelButton"
+                                                 value="Cancelar"
+                                                 icon="fa fa-calendar-times"
+                                                 actionListener="#{MBscheduleConsulta.cancelEvent}"
+                                                 update="messages"
+                                                 oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+
+
+                                <p:commandButton id="addButton1"
+                                                 value="Agendar"
+                                                 icon="fa fa-calendar-check"
+                                                 actionListener="#{MBscheduleConsulta.addEvent}"
+                                                 rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}"
+                                                 update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                                 oncomplete="PF('myschedule').update();"/>
+
+
+                                <p:splitButton id="addButton2"
+                                               value="Atualizar"
+                                               icon="fa fa-sync-alt"
+                                               actionListener="#{MBscheduleConsulta.addEvent}"
+                                               rendered="#{MBscheduleConsulta.viewInterleaveAddButton}"
+                                               update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                               oncomplete="PF('myschedule').update();PF('eventDialog').hide();">
+                                    <p:menuitem value="Confirmar presença do cliente &#160;&#160;"
+                                                disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                                actionListener="#{MBscheduleConsulta.buttonToLinkOwnerAndAnimal()}"
+                                                icon="fa fa-calendar-check" />
+                                </p:splitButton>
+
+                            </p:panelGrid>
+                        </div>
+                    </p:panel>
+                </p:dialog> 
+
+            </h:form>
+            <div  style="height: 198px;" />
+        </ui:define>
+    </ui:composition>
+
+</html>

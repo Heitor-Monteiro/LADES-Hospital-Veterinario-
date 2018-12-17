@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.LogBook" table="logBook" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkLogBook" type="java.lang.Integer">
+            <column name="PK_logBook" />
+            <generator class="identity" />
+        </id>
+        <property name="task" type="string">
+            <column name="task" length="254" not-null="true" />
+        </property>
+        <set name="logBookHasUserses" table="logBook_has_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="logBook_PK_logBook" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.LogBookHasUsers" />
+        </set>
+    </class>
+</hibernate-mapping>

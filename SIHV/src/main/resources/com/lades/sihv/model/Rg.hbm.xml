@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 04/10/2018 16:09:39 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Rg" table="rg" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkRg" type="java.lang.Integer">
+            <column name="PK_rg" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="physicalPerson" class="com.lades.sihv.model.PhysicalPerson" fetch="select">
+            <column name="physicalPerson_PK_physicalPerson" not-null="true" />
+            <column name="physicalPerson_people_PK_person" not-null="true" />
+        </many-to-one>
+        <property name="rg" type="string">
+            <column name="rg" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

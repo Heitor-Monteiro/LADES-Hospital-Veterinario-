@@ -1,0 +1,264 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <div class="ui-fluid">
+        <p:dataTable id="checkboxDT"
+                     var="procedure"
+                     value="#{MBconsulta.formsExame.controlerHVcostTable.listProcedures}"
+                     selection="#{MBconsulta.formsExame.controlerHVcostTable.selectProcedures}"
+                     rowKey="#{procedure.price.pkPrice}"
+                     widgetVar="tableProcedureSelect"
+                     sortBy="#{procedure.typeProcedure.nameTypeProced}" 
+                     paginator="true"
+                     rows="10"
+                     rowsPerPageTemplate="5,10,15"
+                     filteredValue="#{MBconsulta.formsExame.controlerHVcostTable.filterProcedures}"
+                     style="margin: 20px 0 20px 0;">
+
+            <f:facet name="header">
+                Tabela de custos
+                <p:commandButton class="LADES-default-Text"
+                                 value="Solicitar desconto"
+                                 style="float:right;width: 190px;"
+                                 type="button"
+                                 onclick="PF('enableDiscount').show()"/>
+            </f:facet>
+
+            <p:ajax event="rowSelectCheckbox" 
+                    listener="#{MBconsulta.formsExame.controlerHVcostTable.addCostsProcedureHV}" 
+                    update="checkboxDT" />
+            <p:ajax event="rowUnselectCheckbox" 
+                    listener="#{MBconsulta.formsExame.controlerHVcostTable.addCostsProcedureHV}" 
+                    update="checkboxDT" />
+            <p:ajax event="rowSelect" 
+                    listener="#{MBconsulta.formsExame.controlerHVcostTable.addCostsProcedureHV}" 
+                    update="checkboxDT" />
+            <p:ajax event="rowUnselect" 
+                    listener="#{MBconsulta.formsExame.controlerHVcostTable.addCostsProcedureHV}" 
+                    update="checkboxDT" />
+            <p:ajax event="toggleSelect" 
+                    listener="#{MBconsulta.formsExame.controlerHVcostTable.addCostsProcedureHV}"
+                    update="checkboxDT"/>
+
+
+            <p:column selectionMode="multiple" 
+                      style="width:50px;
+                      text-align:center"/>
+
+            <p:column headerText="Setor"
+                      filterBy="#{procedure.typeProcedure.nameTypeProced}"
+                      filterMatchMode="exact" 
+                      groupRow="false">
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('tableProcedureSelect').filter()"
+                                     styleClass="custom-filter">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{MBconsulta.formsExame.controlerHVcostTable.typeProcedureOptions}" />
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{procedure.typeProcedure.nameTypeProced}" />
+            </p:column>
+            <p:column headerText="Procedimento"
+                      filterBy="#{procedure.procedure.nameProcedure}"
+                      filterMatchMode="contains" >
+                <h:outputText value="#{procedure.procedure.nameProcedure}" />
+            </p:column>
+            <p:column headerText="Dosagem"
+                      style="width:100px;
+                      text-align:center;">
+                <h:outputText value="#{procedure.price.dosage}"/>
+            </p:column>
+            <p:column headerText="Peso"
+                      style="width:90px;
+                      text-align:center;" 
+                      filterBy="#{procedure.category.abbreviation}"
+                      filterMatchMode="exact" >
+                <f:facet name="filter">
+                    <p:selectOneMenu onchange="PF('tableProcedureSelect').filter()"
+                                     styleClass="custom-filter">
+                        <f:selectItem itemLabel="---" itemValue="#{null}" noSelectionOption="true" />
+                        <f:selectItems value="#{MBconsulta.formsExame.controlerHVcostTable.category}" />
+                    </p:selectOneMenu>
+                </f:facet>
+                <h:outputText value="#{procedure.category.abbreviation}"
+                              title="#{procedure.category.description}"/>
+            </p:column>
+            <p:column headerText="Valor"
+                      filterBy="#{procedure.price.price}"
+                      filterMatchMode="contains"
+                      style="width:150px;">
+                <h:outputText value="R$ #{procedure.price.price}"/>
+            </p:column>
+            <p:columnGroup type="footer">
+                <p:row>
+                    <p:column class="LADES-default-Text"
+                              colspan="5"
+                              style="text-align:right;
+                              font-weight: bold; " 
+                              footerText="Total:" />
+                    <p:column class="LADES-default-Text"
+                              style="text-align:left;
+                              font-weight: bold; "
+                              footerText="R$ #{MBconsulta.formsExame.controlerHVcostTable.totalCost}" />
+                </p:row>
+                <p:row>
+                    <p:column class="LADES-default-Text"
+                              colspan="5"
+                              style="text-align:right;
+                              font-weight: bold; " 
+                              footerText="Desconto:" />
+                    <p:column class="LADES-default-Text"
+                              style="text-align:left;
+                              font-weight: bold; "
+                              footerText="R$ #{MBconsulta.formsExame.controlConsulta.consultation.discountValue}" />
+                </p:row>
+                <p:row>
+                    <p:column class="LADES-default-Text"
+                              colspan="5"
+                              style="text-align:right;
+                              font-weight: bold; " 
+                              footerText="Total:" />
+                    <p:column class="LADES-default-Text"
+                              style="text-align:left;
+                              font-weight: bold; "
+                              footerText="R$ #{MBconsulta.formsExame.controlerHVcostTable.totalCost 
+                                               - MBconsulta.formsExame.controlConsulta.consultation.discountValue}" />
+                </p:row>
+            </p:columnGroup>
+        </p:dataTable>
+
+        <p:dialog id="enableDiscount"
+                  header="Dados do administrador"
+                  modal="true"
+                  resizable="false"
+                  showEffect="clip"
+                  hideEffect="clip" 
+                  responsive="true"
+                  closable="true"
+                  widgetVar="enableDiscount">
+
+            <p:panelGrid id="messages-PanelGrid"
+                         columns="1"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-12" >
+                <p:messages id="messagesDiscount" showDetail="true"  />
+            </p:panelGrid>
+
+            <p:panelGrid id="formDiscount"
+                         columns="2"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-4,ui-grid-col-8" >
+
+                <p:outputLabel id="login-Label"
+                               class="outputLabel-SIHV colorPri"
+                               value="login:"
+                               rendered="#{!MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                               for="login-Input"/>
+                <p:inputText id="login-Input"
+                             value="#{MBconsulta.formsExame.controllerToGrantDiscount.loginUserPowerDiscount}"
+                             rendered="#{!MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                             required="false"
+                             requiredMessage="Login do administrador!" />
+
+                <p:outputLabel id="password-Label"
+                               class="outputLabel-SIHV colorPri"
+                               value="Senha:"
+                               rendered="#{!MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                               for="password-Input"/>
+                <p:password id="password-Input"
+                            feedback="false"
+                            inline="true"
+                            value="#{MBconsulta.formsExame.controllerToGrantDiscount.passwordUserPowerDiscount}"
+                            title="Residente: digite a senha que você utiliza para acessar o sistema."
+                            maxlength="100"
+                            rendered="#{!MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                            required="false"
+                            requiredMessage="Senha do administrador!" />
+
+                <p:outputLabel class="outputLabel-SIHV colorPri"
+                               value="Tota:"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}" />
+                <p:outputLabel class="LADES-default-Text"
+                               value="R$ #{MBconsulta.formsExame.controlerHVcostTable.totalCost}"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}" />
+
+                <p:outputLabel id="valueDiscount-Label"
+                               class="outputLabel-SIHV colorPri"
+                               value="Desconto:"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                               for="valueDiscount-Input" />
+                <p:inputNumber id="valueDiscount-Input"
+                               class="LADES-default-Text"
+                               value="#{MBconsulta.formsExame.controlConsulta.consultation.discountValue}"
+                               symbol="R$ "
+                               minValue="0"
+                               maxValue="#{MBconsulta.formsExame.controlerHVcostTable.totalCost}"
+                               maxlength="#{MBconsulta.formsExame.controlerHVcostTable.totalCost}"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                               required="false"
+                               requiredMessage="Informe o desconto!">
+                    <p:ajax event="keyup" 
+                            update="formDiscount"
+                            />
+                </p:inputNumber>
+
+
+                <p:outputLabel class="outputLabel-SIHV colorPri"
+                               value="Restante:"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}" />
+                <p:outputLabel class="LADES-default-Text"
+                               value="#{MBconsulta.formsExame.controllerToGrantDiscount.calculateDiscount}"
+                               rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}" />
+            </p:panelGrid>
+
+
+            <p:panelGrid id="formDiscount2"
+                         columns="2"
+                         layout="grid"
+                         styleClass="panelgrid-noborder"
+                         columnClasses="ui-grid-col-6,ui-grid-col-6" >
+                <p:commandButton value="Cancelar desconto"
+                                 actionListener="#{MBconsulta.formsExame.controllerToGrantDiscount.cancelDiscount()}"
+                                 icon="fa fa-ban"
+                                 disabled="false"
+                                 update="formDiscount,formDiscount2,checkboxDT,messagesDiscount"/>
+
+
+                <p:commandButton id="checkUserWithDiscountPower-Button"
+                                 value="Autorizar desconto"
+                                 actionListener="#{MBconsulta.formsExame.controllerToGrantDiscount.checkUserWithDiscountPower()}"
+                                 icon="fa fa-lock"
+                                 disabled="false"
+                                 rendered="#{!MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                                 update="formDiscount,formDiscount2,messagesDiscount"  />
+
+
+                <p:commandButton id="confirmeDiscount-Button"
+                                 actionListener="#{MBconsulta.formsExame.controllerToGrantDiscount.confirmDiscount()}"
+                                 value="Confirmar desconto"
+                                 icon="fa fa-check" 
+                                 disabled="false"
+                                 rendered="#{MBconsulta.formsExame.controllerToGrantDiscount.viewFieldsDiscount.viewVariableBoolean}"
+                                 update="formDiscount,formDiscount2,checkboxDT,messagesDiscount" /> 
+            </p:panelGrid>
+        </p:dialog>
+
+    </div>
+
+    <!--
+    <script>
+        $(document).ready(function () {
+            $('#checkAll').on('click', function () {
+                //selects all records on the displayed page if pagination is supported.
+                dataTableWV.selectAllRowsOnPage();
+
+                //or you can select all the rows across all pages.
+                dataTableWV.selectAllRows();
+            });
+        });
+    </script>-->
+</ui:component>

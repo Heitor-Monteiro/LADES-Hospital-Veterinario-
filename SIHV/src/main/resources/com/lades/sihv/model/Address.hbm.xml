@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 25/09/2018 14:47:07 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.lades.sihv.model.Address" table="address" catalog="bd_sihv" optimistic-lock="version">
+        <id name="pkAddress" type="java.lang.Integer">
+            <column name="PK_address" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="neighborhood" class="com.lades.sihv.model.Neighborhood" fetch="select">
+            <column name="neighborhood_PK_neighborhood" not-null="true" />
+            <column name="neighborhood_city_PK_city" not-null="true" />
+        </many-to-one>
+        <many-to-one name="street" class="com.lades.sihv.model.Street" fetch="select">
+            <column name="street_PK_street" not-null="true" />
+        </many-to-one>
+        <set name="houseses" table="houses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="address_PK_address" not-null="true" />
+            </key>
+            <one-to-many class="com.lades.sihv.model.Houses" />
+        </set>
+    </class>
+</hibernate-mapping>

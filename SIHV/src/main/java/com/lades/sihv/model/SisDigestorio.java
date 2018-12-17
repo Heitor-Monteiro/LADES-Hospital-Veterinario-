@@ -1,5 +1,5 @@
 package com.lades.sihv.model;
-// Generated 18/07/2018 22:27:45 by Hibernate Tools 4.3.1
+// Generated 25/09/2018 14:47:05 by Hibernate Tools 4.3.1
 
 
 import javax.persistence.AttributeOverride;
@@ -23,7 +23,7 @@ public class SisDigestorio  implements java.io.Serializable {
 
 
      private SisDigestorioId id;
-     private Consulta consulta;
+     private VetConsultation vetConsultation;
      private String estaSeAlimentando;
      private String descriNaoSeAlimeta;
      private String vomito;
@@ -42,9 +42,9 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
 	
-    public SisDigestorio(SisDigestorioId id, Consulta consulta, String estaSeAlimentando, String vomito, String regurgitacao, String diarreia, String disquesiaTenesmo, String sistemaAfetado) {
+    public SisDigestorio(SisDigestorioId id, VetConsultation vetConsultation, String estaSeAlimentando, String vomito, String regurgitacao, String diarreia, String disquesiaTenesmo, String sistemaAfetado) {
         this.id = id;
-        this.consulta = consulta;
+        this.vetConsultation = vetConsultation;
         this.estaSeAlimentando = estaSeAlimentando;
         this.vomito = vomito;
         this.regurgitacao = regurgitacao;
@@ -52,9 +52,9 @@ public class SisDigestorio  implements java.io.Serializable {
         this.disquesiaTenesmo = disquesiaTenesmo;
         this.sistemaAfetado = sistemaAfetado;
     }
-    public SisDigestorio(SisDigestorioId id, Consulta consulta, String estaSeAlimentando, String descriNaoSeAlimeta, String vomito, String aspectoVomito, String evoluVomito, String regurgitacao, String evoluRegurgitacao, String diarreia, String aspectDiarreia, String evoluDiarreia, String disquesiaTenesmo, String evoluDisquesiaTenesmo, String sistemaAfetado) {
+    public SisDigestorio(SisDigestorioId id, VetConsultation vetConsultation, String estaSeAlimentando, String descriNaoSeAlimeta, String vomito, String aspectoVomito, String evoluVomito, String regurgitacao, String evoluRegurgitacao, String diarreia, String aspectDiarreia, String evoluDiarreia, String disquesiaTenesmo, String evoluDisquesiaTenesmo, String sistemaAfetado) {
        this.id = id;
-       this.consulta = consulta;
+       this.vetConsultation = vetConsultation;
        this.estaSeAlimentando = estaSeAlimentando;
        this.descriNaoSeAlimeta = descriNaoSeAlimeta;
        this.vomito = vomito;
@@ -75,7 +75,7 @@ public class SisDigestorio  implements java.io.Serializable {
     
     @AttributeOverrides( {
         @AttributeOverride(name="pkSisDigestorio", column=@Column(name="PK_sisDigestorio", nullable=false) ), 
-        @AttributeOverride(name="consultaFkConsulta", column=@Column(name="consulta_FK_consulta", nullable=false) ) } )
+        @AttributeOverride(name="vetConsultationPkVetConsultation", column=@Column(name="vetConsultation_PK_vetConsultation", nullable=false) ) } )
     public SisDigestorioId getId() {
         return this.id;
     }
@@ -85,13 +85,13 @@ public class SisDigestorio  implements java.io.Serializable {
     }
 
 @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="consulta_FK_consulta", nullable=false, insertable=false, updatable=false)
-    public Consulta getConsulta() {
-        return this.consulta;
+    @JoinColumn(name="vetConsultation_PK_vetConsultation", nullable=false, insertable=false, updatable=false)
+    public VetConsultation getVetConsultation() {
+        return this.vetConsultation;
     }
     
-    public void setConsulta(Consulta consulta) {
-        this.consulta = consulta;
+    public void setVetConsultation(VetConsultation vetConsultation) {
+        this.vetConsultation = vetConsultation;
     }
 
     

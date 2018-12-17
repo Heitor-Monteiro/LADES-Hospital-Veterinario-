@@ -11,6 +11,7 @@ import com.lades.sihv.controller.Tools;
 import com.lades.sihv.controller.FacesMessages;
 import com.lades.sihv.controller.VariaveisDeSessao;
 import com.lades.sihv.controller.DialogTools;
+import com.lades.sihv.controller.powers.SeekUserPowers;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -55,16 +56,16 @@ public abstract class AbstractBean implements Serializable {
         }
         return data;
     }
-    
+
     private VariaveisDeSessao variaveisDeSessao;
-    
-    public VariaveisDeSessao getVariaveisDeSessao () {
+
+    public VariaveisDeSessao getVariaveisDeSessao() {
         if (variaveisDeSessao == null) {
             variaveisDeSessao = new VariaveisDeSessao();
         }
         return variaveisDeSessao;
     }
-    
+
     private DialogTools dialogTools;
 
     public DialogTools getObjDialogTools() {
@@ -72,5 +73,14 @@ public abstract class AbstractBean implements Serializable {
             dialogTools = new DialogTools();
         }
         return dialogTools;
+    }
+
+    private SeekUserPowers seekUserPowers;
+
+    public SeekUserPowers getObjSeekUserPowers() {
+        if (seekUserPowers == null) {
+            seekUserPowers = new SeekUserPowers(getVariaveisDeSessao());
+        }
+        return seekUserPowers;
     }
 }
