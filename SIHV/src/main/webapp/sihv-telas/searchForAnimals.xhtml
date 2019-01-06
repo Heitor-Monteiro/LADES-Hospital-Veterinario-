@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <style>
+        </style>
+
+        <ui:define name="title"  >
+            &#160;
+            <i class="fa fa-dog">
+                <h:outputText value=" Buscar animal pequeno"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+            <f:metadata>
+                <!--<f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />-->
+            </f:metadata>
+
+            <h:form>
+
+                <p:growl id="growl"
+                         showDetail="false"
+                         sticky="false"
+                         life="5000" />
+                <div class="ui-fluid">
+                    <p:panelGrid columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4"
+                                 style="margin-top: 20px;">
+
+                        <p:outputLabel class="outputLabel-SIHV colorPri "
+                                       value="Tipo de pesquisa: "/>
+
+                        <p:selectOneMenu id="itemSearch-Input"
+                                         value="#{MBsearchForAnimalSmall.objVarSearch.itemSearch}"
+                                         required="true"
+                                         requiredMessage="Selecione o tipo de pesquisa!">
+                            <f:selectItem itemLabel=" --- " itemValue="" noSelectionOption="false"  />
+                            <f:selectItem itemLabel="RGHV" itemValue="RGHV" />
+                            <f:selectItem itemLabel="Nome do animal" itemValue="NameAnimal" />
+                            <f:selectItem itemLabel="Nome do proprietário" itemValue="NameOwner" />
+                            <f:selectItem itemLabel="Entre datas" itemValue="BetweenDates" />
+                            <p:ajax update="inputs-Calendar,input-Mask"
+                                    listener="#{MBsearchForAnimalSmall.selectionEngine.selectSearchType()}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+
+                    <p:panelGrid id="inputs-Calendar"
+                                 columns="3"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
+
+                        <p:outputLabel value=""
+                                       rendered="#{MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"/>
+
+                        <p:calendar id="textSearch-calendar"
+                                    value="#{MBsearchForAnimalSmall.objVarSearch.dateInitial}"
+                                    placeholder="Data inicial"
+                                    maxlength="#{MBsearchForAnimalSmall.objVarSearch.maxLength}" 
+                                    disabled="false" 
+                                    title=""
+                                    rendered="#{MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                                    required="true"  
+                                    requiredMessage="Informe a data inicial!" 
+                                    locale="de" navigator="true"  
+                                    pattern="yyyy-mm-dd" />
+
+                        <p:calendar id="textSearch2-calendar"
+                                    value="#{MBsearchForAnimalSmall.objVarSearch.dateEnd}"
+                                    placeholder="Data final"
+                                    maxlength="#{MBsearchForAnimalSmall.objVarSearch.maxLength}" 
+                                    disabled="false" 
+                                    title=""
+                                    rendered="#{MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                                    required="true"  
+                                    requiredMessage="Informe a data final!" 
+                                    locale="de" navigator="true"  
+                                    pattern="yyyy-mm-dd" /> 
+                    </p:panelGrid>
+
+                    <p:panelGrid id="input-Mask"
+                                 columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4">
+                        <p:outputLabel value=""
+                                       rendered="#{!MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"/>
+                        <p:inputMask id="textSearch-Input"
+                                     mask="#{MBsearchForAnimalSmall.objVarSearch.searchMask}"
+                                     value="#{MBsearchForAnimalSmall.objVarSearch.textSearch}"
+                                     title="#{MBsearchForAnimalSmall.objVarSearch.searchTip}" 
+                                     maxlength="#{MBsearchForAnimalSmall.objVarSearch.maxLength}"
+                                     rendered="#{!MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                                     required="true" 
+                                     requiredMessage="Informe o valor a ser pesquisado!" />
+
+                        <p:outputLabel value="" />
+                        <p:commandButton value="Pesquisar"
+                                         icon="fa fa-search"
+                                         actionListener="#{MBsearchForAnimalSmall.buttonToSearchForAnimalSmall()}"
+                                         update="growl,itemSearch-Input,inputs-Calendar,input-Mask,selectAnimals,tableAnimals"/>
+                    </p:panelGrid>
+
+
+                    <p:panelGrid id="tableAnimals"
+                                 columns="1"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-12"
+                                 style="margin-top: 20px;">
+                        <p:dataTable id="selectAnimals"
+                                     var="itemAnimal"
+                                     value="#{MBsearchForAnimalSmall.animalSearchEngine.listAnimal}"
+                                     filteredValue="#{MBconsulta.formsExame.controlerHVcostTable.filterProcedures}"
+                                     rendered="#{MBsearchForAnimalSmall.animalSearchEngine.viewTablelistAnimals}"
+                                     reflow="false"
+                                     paginator="true"
+                                     rows="10">
+
+                            <f:facet name="header">
+                                Resultado da pesquisa
+                                <p:commandButton id="toggler"
+                                                 class="LADES-default-Text"
+                                                 type="button"
+                                                 value="Colunas"
+                                                 style="float:right;width: 120px;"
+                                                 icon="fa fa-columns" />
+                                <p:columnToggler datasource="selectAnimals"
+                                                 trigger="toggler" />
+                            </f:facet>
+
+                            <p:column style="width:40px;"
+                                      class="LADES-default-Text">
+                                <p:rowToggler />
+                            </p:column>
+
+                            <p:column headerText="RGHV"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.rghv}"
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.rghv}" />
+                            </p:column>
+
+                            <p:column headerText="Nome"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.animal.animalName}"
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.animal.animalName}" />
+                            </p:column>
+
+                            <p:column headerText="Raça"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.race.nameRaces}"
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.race.nameRaces}"/>
+                            </p:column>
+
+                            <p:column headerText="Espécie"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.species.nameSpecies}"
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.species.nameSpecies}"/>
+                            </p:column>
+
+                            <p:column headerText="Óbito"
+                                      class="LADES-default-Text"
+                                      style="text-align: center;"
+                                      filterBy="#{itemAnimal.deathAnimal}"
+                                      filterMatchMode="contains"
+                                      width="80px;">
+                                <h:outputText value="#{itemAnimal.deathAnimal}"/>
+                            </p:column>
+
+                            <p:rowExpansion>
+
+                                <p:panelGrid columns="6"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3,ui-grid-col-4"
+                                             style="background: #f2f2f2;
+                                             margin-left: -10px;
+                                             margin-right: -10px;
+                                             margin-top: -4px;">
+
+                                    <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                   value="Data do registro:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{itemAnimal.animal.registrationDate}" />
+
+                                    <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                   value="Sexo:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{itemAnimal.animal.genderAnimal}" />
+
+                                    <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                   value="Idade:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="#{itemAnimal.animal.animalAge}" />
+                                </p:panelGrid>
+
+                                <p:dataTable id="ownersSmallAnimal"
+                                             var="owner"
+                                             value="#{itemAnimal.listOwner}"
+                                             reflow="false"
+                                             style="margin-left: -11px;
+                                             margin-right: -11px;
+                                             margin-bottom: -4px;">
+
+                                    <p:column style="width:40px;
+                                              background: #f2f2f2;"
+                                              class="LADES-default-Text">
+                                        <p:rowToggler />
+                                    </p:column>
+
+                                    <p:column headerText=""
+                                              class="LADES-default-Text"
+                                              style="text-align: center;
+                                              background: #f2f2f2;">
+                                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                       value="Proprietário: "/> 
+                                        <p:outputLabel class="LADES-default-Text"
+                                                       value="#{owner.person.namePerson}" />
+                                    </p:column>
+
+                                    <p:column headerText=""
+                                              width="200px;"
+                                              class="LADES-default-Text"
+                                              style="text-align: center;
+                                              background: #f2f2f2;">
+                                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                       value="1ª cel: "/>
+                                        <p:outputLabel class="LADES-default-Text"
+                                                       value="#{owner.phone1.numberPhone}"/>
+                                    </p:column>
+
+                                    <p:column headerText=""
+                                              width="210px;"
+                                              class="LADES-default-Text"
+                                              style="text-align: center;
+                                              background: #f2f2f2;">
+                                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                       rendered="#{owner.cpf.pkCpf > 0}"
+                                                       value="CPF: " />
+                                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                       rendered="#{owner.legalPerson.pkLegalPerson > 0}"
+                                                       value="CNPJ: " />
+                                        <p:outputLabel class="LADES-default-Text"
+                                                       value="#{owner.cpfCnpj}" />
+                                    </p:column>
+
+                                    <p:column headerText=""
+                                              width="120px;"
+                                              class="LADES-default-Text"
+                                              style="text-align: center;
+                                              background: #f2f2f2;">
+                                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                       rendered="#{owner.physicalPerson.id.pkPhysicalPerson > 0}"
+                                                       value="RG: " />
+                                        <p:outputLabel class="LADES-default-Text"
+                                                       rendered="#{owner.physicalPerson.id.pkPhysicalPerson > 0}"
+                                                       value="#{owner.rg.rg}" />
+                                    </p:column>
+
+                                    <p:rowExpansion>
+                                        <p:panelGrid columns="4"
+                                                     layout="grid"
+                                                     styleClass="panelgrid-noborder"
+                                                     columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4"
+                                                     style="background: #f2f2f2;
+                                                     margin-top: -4px;
+                                                     margin-left: -10px;
+                                                     margin-right: -10px;
+                                                     margin-bottom: -4px;">
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="UF:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.uf.uf}" />
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="Cidade:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.city.fullNameCity}" />
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="Bairro:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.neighborhood.neighborhood}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="Logradouro:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.street.nameStreet}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="Nº:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.house.numberHouse}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.house.complement != ''}"
+                                                           value="Complemento:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.house.complement != ''}"
+                                                           value="#{owner.house.complement}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.house.numberCep != ''}"
+                                                           value="CEP:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.house.numberCep != ''}"
+                                                           value="#{owner.house.numberCep}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="1ª Celular:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.phone1.numberPhone}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.phone2.pkPhone > 0}"
+                                                           value="2ª Celular:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.phone2.pkPhone > 0}"
+                                                           value="#{owner.phone2.numberPhone}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.phone3.pkPhone > 0}"
+                                                           value="3ª Celular:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.phone3.pkPhone > 0}"
+                                                           value="#{owner.phone3.numberPhone}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.physicalPerson.id.pkPhysicalPerson > 0}"
+                                                           value="Sexo:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.physicalPerson.id.pkPhysicalPerson > 0}"
+                                                           value="#{owner.physicalPerson.gender}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           rendered="#{owner.person.email != ''}"
+                                                           value="E-mail:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           rendered="#{owner.person.email != ''}"
+                                                           value="#{owner.person.email}"/>
+
+                                            <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                                           value="Data do registro:" />
+                                            <p:outputLabel class="LADES-default-Text"
+                                                           value="#{owner.person.registrationDate}"/>
+                                        </p:panelGrid>
+                                    </p:rowExpansion>
+
+                                </p:dataTable>
+                            </p:rowExpansion>
+                        </p:dataTable>
+                    </p:panelGrid>
+                </div>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

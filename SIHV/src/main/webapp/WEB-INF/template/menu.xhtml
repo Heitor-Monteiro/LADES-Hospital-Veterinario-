@@ -213,13 +213,43 @@
                     </p:link>            
                 </div>
             </div>
+            
+            <div class="w3-accordion">
+                <p:outputLabel rendered="false">
+                    <a class="itemMenu" onclick="dropdownMenu('menu34','icoMenu4')" href="#">
+                        <i class="fa fa-search"></i>
+                        <p:outputLabel value="Buscar cliente"
+                                       style="margin: 0px 0px 0px 18px;" />
+                        <i class="fa fa-plus icoMenu4 icoHover"
+                           style="float: right;margin: 4px 13px 0px 0px;" />
+                    </a>
+                </p:outputLabel>
+                <div id="menu34" class="w3-accordion-content w3-SIHV-bright  w3-card-4 ">
 
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/searchForOwner" >
+                        <i class="fa fa-address-card"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Buscar proprietário" />
+                    </p:link>
+
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="true"
+                            outcome="/sihv-telas/searchForAnimals" >
+                        <i class="fa fa-dog"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Buscar animal pequeno" />
+                    </p:link>
+                </div>
+            </div>
+            
             <p:link class="itemMenu"
-                    rendered="false"
-                    outcome="/sihv-telas/advanced-search" >
-                <i class="fa fa-search"
+                    rendered="true"
+                    outcome="/sihv-telas/searchForAnimals" >
+                <i class="fa fa-dog"
                    style="margin: 0px 17px 0px 0px;"></i>
-                <p:outputLabel value="Buscar clientes" />
+                <p:outputLabel value="Buscar animal pequeno" />
             </p:link>
 
             <p:link class="itemMenu"

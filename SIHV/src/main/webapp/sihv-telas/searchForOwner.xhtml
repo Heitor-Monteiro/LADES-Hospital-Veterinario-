@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title"  >
+            &#160;
+            <i class="fa fa-search">
+                <h:outputText value=" Buscar proprietário"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+            <f:metadata>
+                <!--<f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />-->
+            </f:metadata>
+
+            <h:form>
+
+                <p:growl id="growl"
+                         showDetail="false"
+                         sticky="false"
+                         life="5000" />
+                <div class="ui-fluid">
+                    <p:panelGrid columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-3"
+                                 style="margin-top: 20px;">
+
+                        <p:outputLabel class="outputLabel-SIHV colorPri "
+                                       value="Tipo de pesquisa: "/>
+
+                        <p:selectOneMenu id="itemSearch-Input"
+                                         value="#{MBsearchForOwner.objVarSearch.itemSearch}"
+                                         required="true"
+                                         requiredMessage="Selecione o tipo de pesquisa!">
+                            <f:selectItem itemLabel=" --- " itemValue="" noSelectionOption="false"  />
+                            <f:selectItem itemLabel="CPF" itemValue="CPF" />
+                            <f:selectItem itemLabel="RG" itemValue="RG" />
+                            <f:selectItem itemLabel="Nome do proprietário" itemValue="NameOwner" />
+                            <p:ajax update="textSearch-Input"
+                                    listener="#{MBsearchForOwner.proprietarySearchSelectionEngine.selectSearchType()}" />
+                        </p:selectOneMenu>
+
+                        <p:outputLabel value="" />
+                        <p:inputMask id="textSearch-Input"
+                                     mask="#{MBsearchForOwner.objVarSearch.searchMask}"
+                                     value="#{MBsearchForOwner.objVarSearch.textSearch}"
+                                     title="#{MBsearchForOwner.objVarSearch.searchTip}" 
+                                     maxlength="#{MBsearchForOwner.objVarSearch.maxLength}"
+                                     rendered="true"
+                                     required="true" 
+                                     requiredMessage="Informe o valor a ser pesquisado!" />
+
+                        <p:outputLabel value="" />
+                        <p:commandButton value="Pesquisar"
+                                         icon="fa fa-search"
+                                         actionListener="#{MBsearchForOwner.buttonToSearchForOwner()}"
+                                         update="growl,itemSearch-Input,textSearch-Input"/>
+                    </p:panelGrid>
+
+
+                    <p:panelGrid columns="1"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-12"
+                                 style="margin-top: 20px;">
+                        <p:dataTable id="selectProcedures"
+                                     var="procedure"
+                                     value=""
+                                     reflow="false"
+                                     paginator="true"
+                                     rows="10">
+
+                            <f:facet name="header">
+                                Resultado da pesquisa
+                            </f:facet>
+                            <p:column style="width:50px;">
+                                <p:rowToggler />
+                            </p:column>
+
+                            <p:column headerText="Nome" >
+                                <h:outputText value="Beltrano Silva Monteiro" />
+                            </p:column>
+
+                            <p:column headerText="Animais"
+                                      style="text-align: center;"
+                                      width="100px;">
+                                <h:outputText value="1" title="Quantidade de animais cadastrado para o proprietário"
+                                              style="cursor: help;"/>
+                            </p:column>
+
+                            <p:column headerText="CPF"
+                                      style="text-align: center;"
+                                      width="140px;">
+                                <h:outputText value="000.000.000-00"/>
+                            </p:column>
+
+                            <p:column headerText="RG"
+                                      style="text-align: center;"
+                                      width="100px;">
+                                <h:outputText value="12345467"/>
+                            </p:column>
+
+                            <p:rowExpansion>
+                                <p:panelGrid columns="6"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="" >
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="UF:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="PA" />
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Cidade:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="Castanhal" />
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Bairro:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="Ianetama"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Logradouro:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="Nova rua castanhal"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Nº:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="0000"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Complemento:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="fggsdf ysdcygsjgh sdkhsfhgf"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="1ª Celular:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="9199988-7766"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="2ª Celular:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="9198866-5544"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="3ª Celular:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="9192211-0077"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Sexo:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="M"/>
+
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="E-mail:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="beltrano@email.com"/>
+                                    
+                                    <p:outputLabel class="outputLabel-SIHV colorPri"
+                                                   value="Data de cadastro:" />
+                                    <p:outputLabel class="LADES-default-Text"
+                                                   value="12/09/2018"/>
+                                </p:panelGrid>
+
+
+
+                                <p:dataTable var="animals"
+                                             value=""
+                                             reflow="false">
+
+                                    <p:column headerText="RGHV"
+                                              width="130px;"
+                                              style="text-align: center;">
+                                        <h:outputText value="0000P00" />
+                                    </p:column>
+
+                                    <p:column headerText="Animal"
+                                              style="text-align: center;">
+                                        <h:outputText value="Dog" />
+                                    </p:column>
+
+                                    <p:column headerText="Espécie"
+                                              style="text-align: center;">
+                                        <h:outputText value="Canino" />
+                                    </p:column>
+
+                                    <p:column headerText="Raça"
+                                              style="text-align: center;">
+                                        <h:outputText value="S.R.D." />
+                                    </p:column>
+
+                                    <p:column headerText="Óbito"
+                                              style="text-align: center;">
+                                        <h:outputText value="Não" />
+                                    </p:column>
+
+                                </p:dataTable>
+
+                            </p:rowExpansion>
+                        </p:dataTable>
+
+                    </p:panelGrid>
+                </div>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>
