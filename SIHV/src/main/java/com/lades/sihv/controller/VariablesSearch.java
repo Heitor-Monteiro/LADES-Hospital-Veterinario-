@@ -6,6 +6,7 @@
 package com.lades.sihv.controller;
 
 import com.lades.sihv.bean.AbstractBean;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,8 +18,10 @@ import java.util.List;
 gerenciar um item na tela que precise de rendered*/
 public class VariablesSearch extends AbstractBean {
 
-    private String textSearch, itemSearch,
+    private String textSearch, textSearch2, itemSearch,
             searchMask, searchTip, placeholderField;
+    private Date dateInitial;
+    private Date dateEnd;
     private int maxLength;
     private RenderedFields showTable;
     private List<?> objectsReturned;
@@ -55,6 +58,30 @@ public class VariablesSearch extends AbstractBean {
 
     public void setTextSearch(String textSearch) {
         this.textSearch = textSearch;
+    }
+
+    public String getTextSearch2() {
+        return textSearch2;
+    }
+
+    public void setTextSearch2(String textSearch2) {
+        this.textSearch2 = textSearch2;
+    }
+    
+    public Date getDateInitial() {
+        return dateInitial;
+    }
+
+    public void setDateInitial(Date dateInitial) {
+        this.dateInitial = dateInitial;
+    }
+
+    public Date getDateEnd() {
+        return dateEnd;
+    }
+
+    public void setDateEnd(Date dateEnd) {
+        this.dateEnd = dateEnd;
     }
 
     public String getItemSearch() {
@@ -111,6 +138,4 @@ public class VariablesSearch extends AbstractBean {
     public void setPlaceholderField(String placeholderField) {
         this.placeholderField = placeholderField;
     }
-    
-    
 }
