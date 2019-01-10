@@ -6,16 +6,133 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
     <ui:composition template="/WEB-INF/template/layout.xhtml">
+
         <ui:define name="title">
             <h:outputText value="" />
         </ui:define>
 
         <ui:define name="content">
+            <style type="text/css">
+                .ui-panel, div.ui-state-hover {
+                    width:100%!important;
+                    margin: 7px;
+                }
+
+                .ui-dashboard-column {
+                    width:320px;
+                    margin: 7px;
+                }
+
+                .c {
+                    color: #5f666c!important;
+                }
+
+                .s {
+                    font-size: 61px;
+                    text-align: right;
+                }
+
+                .i {
+                    font-size: 12px!important;
+                    font-weight: bold!important;
+                    padding-bottom: 0px!important;
+                }
+
+            </style>
 
             <f:metadata>
                 <f:viewAction action="#{login.objTools.disableWizardNavBar()}" />
                 <f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />
             </f:metadata>
+
+
+            <div style="">
+                <h:form>
+                    <p:growl id="msgs"
+                             showDetail="true" />
+                    <p:dashboard id="board"
+                                 model="#{MBdashboardView.model}">
+                        <p:ajax event="reorder" listener="#{MBdashboardView.handleReorder}" update="msgs" />
+
+                        <p:panel id="smallAnimal" >
+                            <h:outputText class="c" value="Cães e gatos cadastrados"/>
+                            <div class="ui-g">
+                                <div class="ui-g-4">
+                                    <i class="c s fa fa-dog"/>
+                                </div>
+                                <div class="ui-g-7 ui-g-nopad">
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Total: #{MBdashboardView.totalSmallAnimal.qtd}"/>
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Anual: #{MBdashboardView.totalSmallAnimal.qtdCurrentYear}"/>
+
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Mensal: #{MBdashboardView.totalSmallAnimal.qtdCurrentMonth}"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </p:panel>
+
+                        <p:panel id="xRay">
+                            <h:outputText class="c" value="Solicitações de radiografia " />
+                            <div class="ui-g">
+                                <div class="ui-g-4">
+                                    <i class="c s fa fa-x-ray"/>
+                                </div>
+                                <div class="ui-g-7 ui-g-nopad">
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Pendentes: #{MBdashboardView.xrayPending.qtd}"/>
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Atendidas no ano: #{MBdashboardView.xrayPending.xrayCurrentYear}"/>
+
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Atendidas no mês: #{MBdashboardView.xrayPending.xrayCurrentMonth}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </p:panel>
+
+                        <p:panel id="scheduledConsultations">
+                            <h:outputText class="c" value="Agenda de consultas"  />
+                            <div class="ui-g">
+                                <div class="ui-g-4">
+                                    <i class="c s fa fa-calendar-day"/>
+                                </div>
+                                <div class="ui-g-7 ui-g-nopad">
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Agendamentos: #{MBdashboardView.scheduledConsultations.qtd}"/>
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Confirmado no mês: #{MBdashboardView.scheduledConsultations.confirmedSchedules}"/>
+
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Cancelados no mês : #{MBdashboardView.scheduledConsultations.scheduleCanceledInTheMonth}"/>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </p:panel>
+
+                        <p:panel id="weather" header="Weather">
+                            <h:outputText value="Weather Content" />
+                        </p:panel>
+
+                        <p:panel id="politics" header="Politics">
+                            <h:outputText value="Politics Content" />
+                        </p:panel>
+
+                    </p:dashboard>
+
+                    <div style="clear:both" />
+                </h:form>
+            </div>
 
             <div class="ui-g" style="text-align: center">
 
@@ -87,10 +204,6 @@
                             </h:link>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="ui-g">
-                <div class="ui-g-12 ui-md-6 ui-lg-6" style="height: 220px;">
                 </div>
             </div>
         </ui:define>

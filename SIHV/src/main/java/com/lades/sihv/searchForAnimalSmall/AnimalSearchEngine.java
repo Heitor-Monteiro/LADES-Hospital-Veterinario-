@@ -134,18 +134,25 @@ public class AnimalSearchEngine extends AbstractBean {
                         if (list4 != null && !list4.isEmpty()) {
                             PhysicalPerson phy = (PhysicalPerson) list4.get(0);
                             p.setPhysicalPerson(phy);
-                            Cpf cpf = (Cpf) getDaoGenerico().list("select c from Cpf c, PhysicalPerson phy \n"
+
+                            List<Cpf> listCpf = getDaoGenerico().list("select c from Cpf c, PhysicalPerson phy \n"
                                     + "where \n"
                                     + "phy.id.pkPhysicalPerson=c.physicalPerson.id.pkPhysicalPerson and \n"
-                                    + "phy.id.pkPhysicalPerson='" + p.getPhysicalPerson().getId().getPkPhysicalPerson() + "'").get(0);
-                            if (cpf == null) {
-                                cpf = new Cpf(null, "não informado");
+                                    + "phy.id.pkPhysicalPerson='" + p.getPhysicalPerson().getId().getPkPhysicalPerson() + "'");
+                            Cpf cpf;
+                            if (listCpf != null && !listCpf.isEmpty()) {
+                                cpf = (Cpf) listCpf.get(0);
+                            } else {
+                                cpf = new Cpf(null, "CPF não informado");
                             }
-                            Rg rg = (Rg) getDaoGenerico().list("select r from Rg r, PhysicalPerson phy \n"
+                            List<Rg> listRg = getDaoGenerico().list("select r from Rg r, PhysicalPerson phy \n"
                                     + "where \n"
                                     + "phy.id.pkPhysicalPerson=r.physicalPerson.id.pkPhysicalPerson and \n"
-                                    + "phy.id.pkPhysicalPerson='" + p.getPhysicalPerson().getId().getPkPhysicalPerson() + "'").get(0);
-                            if (rg == null) {
+                                    + "phy.id.pkPhysicalPerson='" + p.getPhysicalPerson().getId().getPkPhysicalPerson() + "'");
+                            Rg rg;
+                            if (listRg != null && !listRg.isEmpty()) {
+                                rg = (Rg) listRg.get(0);
+                            } else {
                                 rg = new Rg(null, "não informado");
                             }
                             p.setRg(rg);
