@@ -31,25 +31,27 @@ public class MBdashboardView extends AbstractBean {
     //objetos que gerenciam as informações da dash.
 
     private List<DashboardColumn> columns;
-    
-    private ScheduledConsultations scheduledConsultations; 
+
+    private ScheduledConsultations scheduledConsultations;
     private TotalSmallAnimal totalSmallAnimal;
     private XrayPending xrayPending;
-    
-    
+    private ConsultationRealized consultationRealized;
+
     @PostConstruct
     public void init() {
         System.out.println("►►►►►►►►►►►►► MBdashboardView initiated");
         scheduledConsultations = new ScheduledConsultations();
         totalSmallAnimal = new TotalSmallAnimal();
         xrayPending = new XrayPending();
-        
+        consultationRealized = new ConsultationRealized();
+
         //----------------------------------------------------------------------
         model = new DefaultDashboardModel();
         createColumns();
         columns.get(0).addWidget("smallAnimal");
         columns.get(1).addWidget("xRay");
         columns.get(2).addWidget("scheduledConsultations");
+        columns.get(0).addWidget("consultation");
         for (DashboardColumn column : columns) {
             model.addColumn(column);
         }
@@ -93,7 +95,6 @@ public class MBdashboardView extends AbstractBean {
     }
 
     //-GETs e SETs--------------------------------------------------------------
-
     public ScheduledConsultations getScheduledConsultations() {
         return scheduledConsultations;
     }
@@ -104,6 +105,10 @@ public class MBdashboardView extends AbstractBean {
 
     public XrayPending getXrayPending() {
         return xrayPending;
+    }
+
+    public ConsultationRealized getConsultationRealized() {
+        return consultationRealized;
     }
     
 }
