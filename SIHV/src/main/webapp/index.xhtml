@@ -15,7 +15,7 @@
             <style type="text/css">
                 .ui-panel, div.ui-state-hover {
                     width:100%!important;
-                    margin: 7px;
+                    margin: 14px;
                 }
 
                 .ui-dashboard-column {
@@ -116,12 +116,27 @@
                                     </div>
                                 </div>
                             </div>
-
-
                         </p:panel>
 
-                        <p:panel id="weather" header="Weather">
-                            <h:outputText value="Weather Content" />
+                        <p:panel id="consultation">
+                            <h:outputText class="c" value="Consultas realizadas"  />
+                            <div class="ui-g">
+                                <div class="ui-g-4">
+                                    <i class="c s fa fa-stethoscope"/>
+                                </div>
+                                <div class="ui-g-7 ui-g-nopad">
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Total no ano: #{MBdashboardView.consultationRealized.consultationsInTheCurrentYear}"/>
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Total no mês: #{MBdashboardView.consultationRealized.consultationsInTheCurrentMonth}"/>
+
+                                    </div>
+                                    <div class="c i ui-g-12">
+                                        <h:outputText value="Total na semana: #{MBdashboardView.consultationRealized.consultationsInTheCurrentWeek}"/>
+                                    </div>
+                                </div>
+                            </div>
                         </p:panel>
 
                         <p:panel id="politics" header="Politics">
