@@ -49,6 +49,19 @@ public class ControllerHVcostTable extends AbstractBean {
                 + "c.logicalExclusion='0' ");
     }
 
+    public void confirmeStatusConsultation() {
+        try {
+            SchedulesConfirmedForConsultation obj = (SchedulesConfirmedForConsultation) getVariaveisDeSessao().getObjetoTemp();
+            if (obj != null && obj.getSchedule().getTypeService().equals("Nova consulta")) {
+                selectProcedures.add(listProcedures.get(0));
+                totalCost = listProcedures.get(0).getPrice().getPrice().doubleValue();
+            }
+        } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO private void confirmeStatusConsultation(): " + e.toString());
+            new ModuleToCollectError().erroPage500("ControllerHVcostTable > confirmeStatusConsultation", e.toString());
+        }
+    }
+
     private void collectProceduresHV() {
         try {
             listProcedures = new ArrayList<>();
@@ -66,8 +79,7 @@ public class ControllerHVcostTable extends AbstractBean {
                 listProcedures.add(newObj);
             }
             collectCategoryOfProcedures();
-            selectProcedures.add(listProcedures.get(0));
-            totalCost = listProcedures.get(0).getPrice().getPrice().doubleValue();
+            //confirmeStatusConsultation();
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO private void collectProceduresHV(): " + e.toString());
             objErro.erroPage500("ControllerHVcostTable > collectProceduresHV", e.toString());
@@ -169,5 +181,4 @@ public class ControllerHVcostTable extends AbstractBean {
     public void setCategory(List<String> category) {
         this.category = category;
     }
-
 }

@@ -67,14 +67,24 @@
                              border: none;" >
 
                         <div class="ui-g ui-fluid" >
-                            <div class="ui-g-12 ui-md-12">
+                            <div class="ui-g-2 ui-md-2">
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="Status: "
                                                rendered="true" />
                                 <p:outputLabel id="typeService-Input"
                                                class="outputLabel-SIHV LADES-default-Text"
                                                value="#{MBscheduleConsulta.schedule.typeService}"
-                                               rendered="true" />
+                                               rendered="false" />
+                            </div>
+                            <div class="ui-g-10 ui-md-10">
+                                <p:selectOneButton id="typeService2-Input"
+                                                   value="#{MBscheduleConsulta.schedule.typeService}"
+                                                   required="true"
+                                                   requiredMessage="Informe o status!"
+                                                   rendered="true">
+                                    <f:selectItem itemLabel="Nova consulta" itemValue="Nova consulta" />
+                                    <f:selectItem itemLabel="Retorno" itemValue="Retorno" />
+                                </p:selectOneButton>
                             </div>
                         </div>
 
