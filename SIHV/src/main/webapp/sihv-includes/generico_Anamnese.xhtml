@@ -64,10 +64,12 @@
                              required="true"
                              requiredMessage="Informe a queixa principal!"
                              style="margin-bottom: 20px;"
-                             maxlength="300" />
+                             maxlength="300">
+                <p:ajax event="keyup"
+                        listener="#{MBconsulta.formsExame.controlerHVcostTable.confirmeStatusConsultation()}" />
+            </p:inputTextarea>
             <p:message id="Anamnese3Messager"
                        for="Anamnese3Input" />
-
         </p:panelGrid>
 
 

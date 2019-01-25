@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title">
+            <i class="fa fa-donate">
+                <h:outputText value=" Controle de fichas e entrada de caixa"></h:outputText>
+            </i>
+        </ui:define>
+
+        <ui:define name="content">
+            <style type="text/css">
+                .c {color: #5f666c!important;}
+                .i{font-size: 40px;}
+                .n{font-size: 30px;}
+            </style>
+
+            <f:metadata>
+            </f:metadata>
+
+            <h:form id="form">
+                <p:growl id="growl" 
+                         sticky="false"
+                         showDetail="false" 
+                         life="15000" />
+                <div class="ui-fluid">
+                    <p:panelGrid id="dashConsultationEntry"
+                                 columns="4"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3" 
+                                 style="margin-top: 15px;">
+
+                        <p:panel>
+                            <h:outputText class="c" value="Total de fichas pesquisadas"  />
+                            <div class="c ui-g">
+                                <div class="ui-g-4">
+                                    <i class="i fa fa-file-medical"/>
+                                </div>
+                                <div class="ui-g-4">
+                                    <h:outputText class="n" 
+                                                  value="#{MBconsultationEntryControl.dash.numberOfConsultations}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+
+                        <p:panel>
+                            <h:outputText class="c" value="Total"  />
+                            <div class="c ui-g">
+                                <div class="ui-g-4">
+                                    <i class="i fa fa-dollar-sign"/>
+                                </div>
+                                <div class="ui-g-4">
+                                    <h:outputText class="n" 
+                                                  value="#{MBconsultationEntryControl.dash.total}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+
+                        <p:panel>
+                            <h:outputText class="c" value="Total pago"  />
+                            <div class="c ui-g">
+                                <div class="ui-g-4">
+                                    <i class="i fa fa-piggy-bank"/>
+                                </div>
+                                <div class="ui-g-4">
+                                    <h:outputText class="n" 
+                                                  value="#{MBconsultationEntryControl.dash.totalPaid}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+
+                        <p:panel>
+                            <h:outputText class="c" value="Total pendente a ser pago"  />
+                            <div class="c ui-g">
+                                <div class="ui-g-4">
+                                    <i class="i fa fa-hand-holding-usd"/>
+                                </div>
+                                <div class="ui-g-4">
+                                    <h:outputText class="n" 
+                                                  value="#{MBconsultationEntryControl.dash.totalOutstandingPayable}"/>
+                                </div>
+                            </div>
+                        </p:panel>
+                    </p:panelGrid>
+
+
+
+                    <p:panelGrid id="selectSearch"
+                                 columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4"
+                                 rendered="false"
+                                 style="margin-top: 20px;">
+
+                        <p:outputLabel class="outputLabel-SIHV colorPri "
+                                       value="Tipo de pesquisa: "/>
+
+                        <p:selectOneButton id="itemSearch-Input"
+                                           value="#{MBconsultationEntryControl.typeSearch}"
+                                           required="true"
+                                           requiredMessage="Selecione o tipo de pesquisa!">
+                            <f:selectItem itemLabel="Semana atual" itemValue="false" />
+                            <f:selectItem itemLabel="Entre datas" itemValue="true" />
+                            <p:ajax update="selectSearch,inputs-Calendar,button-Search" />
+                        </p:selectOneButton>
+                    </p:panelGrid>
+
+                    <p:panelGrid id="inputs-Calendar"
+                                 columns="3"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2">
+
+                        <p:outputLabel class="outputLabel-SIHV colorPri"
+                                       value="Informe o intervalo:"
+                                       rendered="true"/>
+
+                        <p:calendar id="textSearch-calendar"
+                                    value="#{MBconsultationEntryControl.objVarSearch.dateInitial}"
+                                    placeholder="Data inicial *"
+                                    maxlength="" 
+                                    disabled="false" 
+                                    title=""
+                                    rendered="true"
+                                    required="true"  
+                                    requiredMessage="Informe a data inicial!" 
+                                    locale="de" navigator="true"  
+                                    pattern="yyyy-mm-dd" />
+
+                        <p:calendar id="textSearch2-calendar"
+                                    value="#{MBconsultationEntryControl.objVarSearch.dateEnd}"
+                                    placeholder="Data final *"
+                                    maxlength="" 
+                                    disabled="false" 
+                                    title=""
+                                    rendered="true"
+                                    required="true"  
+                                    requiredMessage="Informe a data final!" 
+                                    locale="de" navigator="true"  
+                                    pattern="yyyy-mm-dd" /> 
+                    </p:panelGrid>
+
+
+                    <p:panelGrid id="button-Search"
+                                 columns="2"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4">
+                        <p:outputLabel value="" />
+                        <p:commandButton value="Pesquisar"
+                                         icon="fa fa-search"
+                                         actionListener="#{MBconsultationEntryControl.searchConsultationEntry()}"
+                                         update="growl,dashConsultationEntry,inputs-Calendar,tableConsultation"/>
+                    </p:panelGrid>
+
+
+
+                    <p:panelGrid id="tableConsultation"
+                                 columns="1"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-12"
+                                 style="margin-top: 20px;">
+                        <p:dataTable id="selectAnimals"
+                                     var="itemAnimal"
+                                     value="#{MBconsultationEntryControl.listItens}"
+                                     filteredValue=""
+                                     rendered="#{MBconsultationEntryControl.listItens.size() > 0}"
+                                     reflow="true"
+                                     paginator="true"
+                                     rows="10">
+
+                            <f:facet name="header">
+                                Resultado da pesquisa
+                                <p:commandButton id="toggler"
+                                                 class="LADES-default-Text"
+                                                 type="button"
+                                                 value="Colunas"
+                                                 style="float:right;width: 120px;"
+                                                 icon="fa fa-columns" />
+                                <p:columnToggler datasource="selectAnimals"
+                                                 trigger="toggler" />
+                            </f:facet>
+
+                            <p:column headerText="RGHV / Nome / Espécie"
+                                      class="LADES-default-Text"
+                                      filterBy=""
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <p:commandButton id="viewAnimal"
+                                                 icon="fa fa-search" 
+                                                 disabled="false"
+                                                 style="width: 30px;"
+                                                 onclick="PF('dlg4').show();"
+                                                 update=":form:dataAnimal-panelGrid">
+                                    <f:setPropertyActionListener value="#{itemAnimal}" 
+                                                                 target="#{MBconsultationEntryControl.selectItem}" />
+                                </p:commandButton>
+                                <p:tooltip id="toolTipViewAnimal" 
+                                           for="viewAnimal" 
+                                           value="Visualizar dados de animal" 
+                                           position="top"/>
+                                <h:outputText value=" #{itemAnimal.animalData}" />
+                            </p:column>
+
+                            <p:column headerText="Proprietário"
+                                      class="LADES-default-Text"
+                                      filterBy=""
+                                      filterMatchMode="contains"
+                                      style="text-align: center;">
+                                <p:commandButton id="viewOwner" 
+                                                 icon="fa fa-search" 
+                                                 style="width: 30px;"
+                                                 rendered="false"
+                                                 onclick="PF('dlg3').show();"/>
+                                <p:tooltip id="toolTipViewOwner" 
+                                           for="viewOwner" 
+                                           rendered="false"
+                                           value="Visualizar dados de proprietário" 
+                                           position="top"/>
+                                <h:outputText value=" #{itemAnimal.ownerPerson.namePerson}"/>
+                            </p:column>
+
+                            <p:column headerText="Veterinário"
+                                      class="LADES-default-Text"
+                                      style="text-align: center;"
+                                      filterBy=""
+                                      filterMatchMode="contains"
+                                      width="140px;">
+                                <h:outputText value="#{itemAnimal.vetPerson.namePerson}"/>
+                            </p:column>
+
+                            <p:column headerText="Procedimento"
+                                      class="LADES-default-Text"
+                                      filterBy=""
+                                      filterMatchMode="contains"
+                                      width="130px;"
+                                      style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.scheduling.typeService}"/>
+                            </p:column>
+
+                            <p:column headerText="Subtotal"
+                                      class="LADES-default-Text"
+                                      width="150px;"
+                                      style="text-align: center;">
+                                <p:commandButton id="viewSubtotal" 
+                                                 icon="fa fa-search" 
+                                                 style="width: 30px;"
+                                                 rendered="false"
+                                                 onclick="PF('dlg2').show();"/>
+                                <p:tooltip id="toolTipSubtotal" 
+                                           for="viewSubtotal" 
+                                           rendered="false"
+                                           value="Clique para visualizar os procedimentos." 
+                                           position="top"/>
+                                <h:outputText value=" R$ #{itemAnimal.subTotal}"/>
+                            </p:column>
+
+                            <p:column headerText=""
+                                      class="LADES-default-Text"
+                                      width="50px;"
+                                      style="text-align: center;">
+                                <p:outputLabel id="status1"
+                                               rendered="#{itemAnimal.pendingPayment}">
+                                    <i class="fas fa-check-circle" 
+                                       style="color: #329a32;"/>
+                                </p:outputLabel>
+                                <p:outputLabel id="status2"
+                                               rendered="#{!itemAnimal.pendingPayment}">
+                                    <i class="fas fa-times-circle" 
+                                       style="color: #c71212;"/>
+                                </p:outputLabel>
+                                <p:tooltip id="toolTipStatus1" 
+                                           for="status1" 
+                                           value="Pagamento efetuado" 
+                                           position="left"
+                                           rendered="#{itemAnimal.pendingPayment}"/>
+                                <p:tooltip id="toolTipStatus2" 
+                                           for="status2" 
+                                           value="Pagamento pendente" 
+                                           position="left"
+                                           rendered="#{!itemAnimal.pendingPayment}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:panelGrid>
+                </div>
+                <p:dialog header="Procedimentos selecionados"
+                          widgetVar="dlg2"
+                          modal="true"
+                          width="640px;"
+                          style="width: 640px;">
+                    <p:dataTable id="proceduresApplied"
+                                 var="procedure"
+                                 value=""
+                                 editable="true"
+                                 reflow="true">
+
+                        <p:ajax event="rowEdit" 
+                                update="proceduresApplied" />
+                        <p:ajax event="rowEditCancel" 
+                                update="proceduresApplied" />
+
+                        <p:column headerText="Procedimento"
+                                  style="text-align: center;"> 
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <p:outputLabel value="OH eletiva - Canina" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:outputLabel value="OH eletiva - Canina" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Valor"
+                                  style="text-align: center;"
+                                  width="150px;"> 
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <p:outputLabel value="PP - R$ 250" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:outputLabel value="PP - R$ 250" />
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Status"
+                                  style="text-align: center;"
+                                  width="150px;">
+                            <p:cellEditor>
+                                <f:facet name="output">
+                                    <p:outputLabel value="status" />
+                                </f:facet>
+                                <f:facet name="input">
+                                    <p:selectBooleanButton class="buttonAffectedSystem"
+                                                           value=""
+                                                           rendered="true"
+                                                           required="false"
+                                                           requiredMessage="Informe se houve alteração!"
+                                                           title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
+                                                           onLabel="Pago"
+                                                           offLabel="Pendente"
+                                                           offIcon="fa fa-times-circle"
+                                                           onIcon="fa fa-check-circle">
+                                    </p:selectBooleanButton>
+                                </f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column style="width:55px;">
+                            <p:rowEditor />
+                        </p:column>
+                    </p:dataTable>
+                </p:dialog>
+
+                <p:dialog header="Dados do proprietário"
+                          widgetVar="dlg3"
+                          modal="true">
+                    <p:panelGrid columns="4"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-4,ui-grid-col-2,ui-grid-col-4">
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Proprietário: "/> 
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="CPF/CNPJ: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="RG: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value="" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="UF:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Cidade:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Bairro:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Logradouro:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Nº:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="Complemento:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="CEP:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="1ª Celular:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="2ª Celular:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="3ª Celular:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="Sexo:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       rendered="true"
+                                       value="E-mail:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value=""/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Data do registro:" />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value=""/>
+                    </p:panelGrid>
+                </p:dialog>
+
+                <p:dialog header="Dados do animal"
+                          widgetVar="dlg4"
+                          modal="true"
+                          responsive="true">
+                    <p:panelGrid id="dataAnimal-panelGrid"
+                                 columns="4"
+                                 layout="grid"
+                                 styleClass="panelgrid-noborder"
+                                 columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3">
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="RGHV: "/> 
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.smallAnimal.pkSmallAnimal}" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Nome: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.animal.animalName}" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Gênero: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="true"
+                                       value="#{MBconsultationEntryControl.selectItem.animal.genderAnimal}"/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Idade: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.animal.animalAge}" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Data de registro: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.animal.registrationDate}" />
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="óbito: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="#{!MBconsultationEntryControl.selectItem.animal.deathAnimal}"
+                                       value="Não"/>
+                        <p:outputLabel class="LADES-default-Text"
+                                       rendered="#{MBconsultationEntryControl.selectItem.animal.deathAnimal}"
+                                       value="Sim"/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Espécie: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.species.nameSpecies}"/>
+
+                        <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
+                                       value="Raça: " />
+                        <p:outputLabel class="LADES-default-Text"
+                                       value="#{MBconsultationEntryControl.selectItem.breed.nameRaces}"/>
+                    </p:panelGrid>
+                </p:dialog>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
