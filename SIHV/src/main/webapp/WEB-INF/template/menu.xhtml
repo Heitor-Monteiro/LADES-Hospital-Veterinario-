@@ -131,6 +131,14 @@
             </div>
 
             <p:link class="itemMenu"
+                    rendered="true"
+                    outcome="/sihv-telas/consultationEntryControl" >
+                <i class="fa fa-donate"
+                   style="margin: 0px 18px 0px 0px;"></i>
+                <p:outputLabel value="Controle de fichas e entrada de &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;caixa" />
+            </p:link>
+            
+            <p:link class="itemMenu"
                     rendered="#{login.objSeekUserPowers.viewMakeConsultations}"
                     outcome="/sihv-telas/consulta-nova" >
                 <i class="fa fa-stethoscope"
