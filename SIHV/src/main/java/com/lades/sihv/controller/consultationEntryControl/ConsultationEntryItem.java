@@ -29,9 +29,9 @@ public class ConsultationEntryItem implements Serializable {
     private SmallAnimal smallAnimal;
     private Races breed;
     private Species species;
-    private String animalData;
     //--------------------------------------------------------------------------
     private double subTotal;
+    private String subTotalText;
     private boolean pendingPayment;
 
     // GETs & SETs -------------------------------------------------------------
@@ -99,16 +99,6 @@ public class ConsultationEntryItem implements Serializable {
     public void setSpecies(Species species) {
         this.species = species;
     }
-
-    public String getAnimalData() {
-        if (animalData == null && smallAnimal != null && animal != null && species != null) {
-            animalData = "" + smallAnimal.getPkSmallAnimal();
-            animalData += " / " + animal.getAnimalName();
-            animalData += " / " + species.getNameSpecies();
-        }
-
-        return animalData;
-    }
     //--------------------------------------------------------------------------
 
     public double getSubTotal() {
@@ -117,6 +107,14 @@ public class ConsultationEntryItem implements Serializable {
 
     public void setSubTotal(double subTotal) {
         this.subTotal = subTotal;
+    }
+
+    public String getSubTotalText() {
+        return subTotalText;
+    }
+
+    public void setSubTotalText(String subTotalText) {
+        this.subTotalText = subTotalText;
     }
 
     public boolean isPendingPayment() {
