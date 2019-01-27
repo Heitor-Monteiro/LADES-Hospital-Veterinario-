@@ -172,8 +172,9 @@
                         <p:dataTable id="selectAnimals"
                                      var="itemAnimal"
                                      value="#{MBconsultationEntryControl.listItens}"
-                                     filteredValue=""
+                                     filteredValue="#{MBconsultationEntryControl.filterlistItens}"
                                      rendered="#{MBconsultationEntryControl.listItens.size() > 0}"
+                                     widgetVar="animalsTable"
                                      reflow="true"
                                      paginator="true"
                                      rows="10">
@@ -190,30 +191,49 @@
                                                  trigger="toggler" />
                             </f:facet>
 
-                            <p:column headerText="RGHV / Nome / Espécie"
+
+                            <p:column headerText="RGHV"
                                       class="LADES-default-Text"
-                                      filterBy=""
+                                      filterBy="#{itemAnimal.smallAnimal.pkSmallAnimal}"
+                                      filterMatchMode="contains"
+                                      width="80px;"
+                                      style="text-align: center;">
+                                <h:outputText value=" #{itemAnimal.smallAnimal.pkSmallAnimal}" />
+                            </p:column>
+
+                            <p:column headerText="Nome"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.animal.animalName}"
                                       filterMatchMode="contains"
                                       style="text-align: center;">
-                                <p:commandButton id="viewAnimal"
-                                                 icon="fa fa-search" 
-                                                 disabled="false"
-                                                 style="width: 30px;"
-                                                 onclick="PF('dlg4').show();"
-                                                 update=":form:dataAnimal-panelGrid">
+                                <p:commandLink id="viewAnimal"
+                                               disabled="false"
+                                               style="width: 30px;"
+                                               onclick="PF('dlg4').show();"
+                                               update=":form:dataAnimal-panelGrid">
+                                    <i class="c fa fa-search"/>
                                     <f:setPropertyActionListener value="#{itemAnimal}" 
                                                                  target="#{MBconsultationEntryControl.selectItem}" />
-                                </p:commandButton>
+                                </p:commandLink>
                                 <p:tooltip id="toolTipViewAnimal" 
                                            for="viewAnimal" 
                                            value="Visualizar dados de animal" 
                                            position="top"/>
-                                <h:outputText value=" #{itemAnimal.animalData}" />
+                                <h:outputText value=" #{itemAnimal.animal.animalName}" />
+                            </p:column>
+
+                            <p:column headerText="Espécie"
+                                      class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.species.nameSpecies}"
+                                      filterMatchMode="contains"
+                                      width="90px;"
+                                      style="text-align: center;">
+                                <h:outputText value=" #{itemAnimal.species.nameSpecies}" />
                             </p:column>
 
                             <p:column headerText="Proprietário"
                                       class="LADES-default-Text"
-                                      filterBy=""
+                                      filterBy="#{itemAnimal.ownerPerson.namePerson}"
                                       filterMatchMode="contains"
                                       style="text-align: center;">
                                 <p:commandButton id="viewOwner" 
@@ -232,7 +252,7 @@
                             <p:column headerText="Veterinário"
                                       class="LADES-default-Text"
                                       style="text-align: center;"
-                                      filterBy=""
+                                      filterBy="#{itemAnimal.vetPerson.namePerson}"
                                       filterMatchMode="contains"
                                       width="140px;">
                                 <h:outputText value="#{itemAnimal.vetPerson.namePerson}"/>
@@ -240,15 +260,24 @@
 
                             <p:column headerText="Procedimento"
                                       class="LADES-default-Text"
-                                      filterBy=""
-                                      filterMatchMode="contains"
-                                      width="130px;"
+                                      filterBy="#{itemAnimal.scheduling.typeService}"
+                                      filterMatchMode="exact"
+                                      width="150px;"
                                       style="text-align: center;">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('animalsTable').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:selectItem itemLabel=" --- " itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItems value="#{MBconsultationEntryControl.typeService}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <h:outputText value="#{itemAnimal.scheduling.typeService}"/>
                             </p:column>
 
                             <p:column headerText="Subtotal"
                                       class="LADES-default-Text"
+                                      filterBy="#{itemAnimal.subTotalText}"
+                                      filterMatchMode="contains"
                                       width="150px;"
                                       style="text-align: center;">
                                 <p:commandButton id="viewSubtotal" 
@@ -261,13 +290,24 @@
                                            rendered="false"
                                            value="Clique para visualizar os procedimentos." 
                                            position="top"/>
-                                <h:outputText value=" R$ #{itemAnimal.subTotal}"/>
+                                <h:outputText value=" R$ #{itemAnimal.subTotalText}"/>
                             </p:column>
 
-                            <p:column headerText=""
+                            <p:column headerText="Pagamento"
                                       class="LADES-default-Text"
-                                      width="50px;"
+                                      filterBy="#{itemAnimal.pendingPayment}"
+                                      filterMatchMode="equals"
+                                      width="100px;"
                                       style="text-align: center;">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('animalsTable').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:converter converterId="javax.faces.Boolean" />
+                                        <f:selectItem itemLabel=" --- " itemValue="" />
+                                        <f:selectItem itemLabel="Pago" itemValue="true" />
+                                        <f:selectItem itemLabel="Devendo" itemValue="false" />
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <p:outputLabel id="status1"
                                                rendered="#{itemAnimal.pendingPayment}">
                                     <i class="fas fa-check-circle" 
@@ -505,7 +545,7 @@
                                        value="#{MBconsultationEntryControl.selectItem.animal.registrationDate}" />
 
                         <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
-                                       value="óbito: " />
+                                       value="Óbito: " />
                         <p:outputLabel class="LADES-default-Text"
                                        rendered="#{!MBconsultationEntryControl.selectItem.animal.deathAnimal}"
                                        value="Não"/>

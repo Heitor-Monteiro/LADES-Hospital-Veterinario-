@@ -6,7 +6,6 @@
 package com.lades.sihv.controller.consultationEntryControl;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.VariablesSearch;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +22,7 @@ public class MBconsultationEntryControl extends AbstractBean {
     private boolean typeSearch;
     private VariablesSearch objVarSearch;
     private List<ConsultationEntryItem> listItens;
+    private List<ConsultationEntryItem> filterlistItens;
     private ConsultationEntryItem selectItem;
     private DashConsultationEntry dash;
     private PerformedConsultation perfConsult;
@@ -31,6 +31,7 @@ public class MBconsultationEntryControl extends AbstractBean {
     private SearchOwner searchOwner;
     private SearchSmallAnimal searchSmallAnimal;
     private TotalProceduresApplied totalProceduresApplied;
+    private String typeService[];
 
     @PostConstruct
     public void init() {
@@ -44,6 +45,9 @@ public class MBconsultationEntryControl extends AbstractBean {
         searchOwner = new SearchOwner();
         searchSmallAnimal = new SearchSmallAnimal();
         totalProceduresApplied = new TotalProceduresApplied();
+        typeService = new String[2];
+        typeService[0] = "Nova consulta";
+        typeService[1] = "Retorno";
     }
 
     public void searchConsultationEntry() {
@@ -66,6 +70,14 @@ public class MBconsultationEntryControl extends AbstractBean {
     //-GETs e SETs--------------------------------------------------------------
     public List<ConsultationEntryItem> getListItens() {
         return listItens;
+    }
+
+    public List<ConsultationEntryItem> getFilterlistItens() {
+        return filterlistItens;
+    }
+
+    public void setFilterlistItens(List<ConsultationEntryItem> filterlistItens) {
+        this.filterlistItens = filterlistItens;
     }
 
     public VariablesSearch getObjVarSearch() {
@@ -97,5 +109,9 @@ public class MBconsultationEntryControl extends AbstractBean {
         if (this.selectItem != null) {
             System.out.println("----------------------- not null");
         }
+    }
+
+    public String[] getTypeService() {
+        return typeService;
     }
 }

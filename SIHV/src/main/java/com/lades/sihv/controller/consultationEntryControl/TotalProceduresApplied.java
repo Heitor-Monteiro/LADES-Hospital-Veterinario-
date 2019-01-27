@@ -8,6 +8,7 @@ package com.lades.sihv.controller.consultationEntryControl;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.model.Prices;
 import com.lades.sihv.model.ProceduresApplied;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -15,12 +16,13 @@ import java.util.List;
  * @author thiberius
  */
 public class TotalProceduresApplied extends AbstractBean {
-
+    
     public void listProceduresApplied(DashConsultationEntry dash, List<ConsultationEntryItem> listItens) {
         double total = 0;
         double totalPaid = 0;
         double totalOutstandingPayable = 0;
         double totalDiscount = 0;
+        DecimalFormat df = new DecimalFormat("###,###,###,###,###.00");
         for (ConsultationEntryItem listIten : listItens) {
             List<?> list = getDaoGenerico().list("select pa,pr from "
                     + "VetConsultation v, ProceduresApplied pa, Procedures pc, Prices pr \n"
@@ -46,11 +48,9 @@ public class TotalProceduresApplied extends AbstractBean {
                     ProceduresApplied pa = (ProceduresApplied) object[0];
                     if (!pa.isPaymentStatus()) {
                         listIten.setPendingPayment(false);
-                        System.out.println("-------------------------");
                         break;
                     } else {
                         listIten.setPendingPayment(true);
-                        System.out.println("+++++++++++++++++++++++++");
                     }
                 }
                 if (listIten.isPendingPayment()) {
@@ -61,6 +61,7 @@ public class TotalProceduresApplied extends AbstractBean {
             }
             listIten.setSubTotal(listIten.getSubTotal() - listIten.getConsultation().getDiscountValue().doubleValue());
             totalDiscount += listIten.getConsultation().getDiscountValue().doubleValue();
+            listIten.setSubTotalText(df.format(listIten.getSubTotal()));
         }
         dash.setTotal(total - totalDiscount);
         dash.setTotalPaid(totalPaid);
