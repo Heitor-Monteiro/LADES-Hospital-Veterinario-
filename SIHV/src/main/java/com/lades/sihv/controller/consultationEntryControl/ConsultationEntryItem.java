@@ -32,6 +32,8 @@ public class ConsultationEntryItem implements Serializable {
     //--------------------------------------------------------------------------
     private double subTotal;
     private String subTotalText;
+    private double subTotalNotDiscount;
+    private String subTotalNotDiscountText;
     private boolean pendingPayment;
 
     // GETs & SETs -------------------------------------------------------------
@@ -115,6 +117,22 @@ public class ConsultationEntryItem implements Serializable {
 
     public void setSubTotalText(String subTotalText) {
         this.subTotalText = subTotalText;
+    }
+
+    public double getSubTotalNotDiscount() {
+        return subTotalNotDiscount;
+    }
+
+    public void setSubTotalNotDiscount(double subTotalNotDiscount) {
+        this.subTotalNotDiscount = subTotalNotDiscount;
+    }
+
+    public String getSubTotalNotDiscountText() {
+        return subTotalNotDiscountText;
+    }
+
+    public void setSubTotalNotDiscountText(String subTotalNotDiscountText) {
+        this.subTotalNotDiscountText = subTotalNotDiscountText;
     }
 
     public boolean isPendingPayment() {

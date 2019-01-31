@@ -214,12 +214,12 @@
                                     <i class="c fa fa-search"/>
                                     <f:setPropertyActionListener value="#{itemAnimal}" 
                                                                  target="#{MBconsultationEntryControl.selectItem}" />
+                                    <h:outputText class="c" value=" #{itemAnimal.animal.animalName}" />
                                 </p:commandLink>
                                 <p:tooltip id="toolTipViewAnimal" 
                                            for="viewAnimal" 
                                            value="Visualizar dados de animal" 
                                            position="top"/>
-                                <h:outputText value=" #{itemAnimal.animal.animalName}" />
                             </p:column>
 
                             <p:column headerText="Espécie"
@@ -280,17 +280,21 @@
                                       filterMatchMode="contains"
                                       width="150px;"
                                       style="text-align: center;">
-                                <p:commandButton id="viewSubtotal" 
-                                                 icon="fa fa-search" 
-                                                 style="width: 30px;"
-                                                 rendered="false"
-                                                 onclick="PF('dlg2').show();"/>
+                                <p:commandLink id="viewSubtotal" 
+                                               style="width: 30px;"
+                                               rendered="true"
+                                               onclick="PF('dlg2').show();"
+                                               action="#{MBconsultationEntryControl.methodSearchProceduresApplied(itemAnimal)}"
+                                               update=":form:proceduresApplied">
+                                    <i class="c fa fa-search"/>
+                                    <h:outputText class="c" value=" R$ #{itemAnimal.subTotalText}"/>
+                                </p:commandLink>
                                 <p:tooltip id="toolTipSubtotal" 
                                            for="viewSubtotal" 
-                                           rendered="false"
+                                           rendered="true"
                                            value="Clique para visualizar os procedimentos." 
                                            position="top"/>
-                                <h:outputText value=" R$ #{itemAnimal.subTotalText}"/>
+
                             </p:column>
 
                             <p:column headerText="Pagamento"
@@ -333,74 +337,148 @@
                         </p:dataTable>
                     </p:panelGrid>
                 </div>
+
                 <p:dialog header="Procedimentos selecionados"
                           widgetVar="dlg2"
+                          closable="false"
                           modal="true"
+                          responsive="true"
                           width="640px;"
                           style="width: 640px;">
-                    <p:dataTable id="proceduresApplied"
-                                 var="procedure"
-                                 value=""
-                                 editable="true"
-                                 reflow="true">
+                    <div class="ui-fluid">
+                        <p:dataTable id="proceduresApplied"
+                                     var="procedure"
+                                     value="#{MBconsultationEntryControl.searchProceduresApplied.listProceduresApplied}"
+                                     editable="true"
+                                     reflow="true">
 
-                        <p:ajax event="rowEdit" 
-                                update="proceduresApplied" />
-                        <p:ajax event="rowEditCancel" 
-                                update="proceduresApplied" />
+                            <p:ajax event="rowEdit" 
+                                    listener="#{MBconsultationEntryControl.searchProceduresApplied.onRowEdit}" 
+                                    update="proceduresApplied" />
+                            <p:ajax event="rowEditCancel" 
+                                    listener="#{MBconsultationEntryControl.searchProceduresApplied.onRowCancel}" 
+                                    update="proceduresApplied" />
 
-                        <p:column headerText="Procedimento"
-                                  style="text-align: center;"> 
-                            <p:cellEditor>
-                                <f:facet name="output">
-                                    <p:outputLabel value="OH eletiva - Canina" />
-                                </f:facet>
-                                <f:facet name="input">
-                                    <p:outputLabel value="OH eletiva - Canina" />
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
 
-                        <p:column headerText="Valor"
-                                  style="text-align: center;"
-                                  width="150px;"> 
-                            <p:cellEditor>
-                                <f:facet name="output">
-                                    <p:outputLabel value="PP - R$ 250" />
-                                </f:facet>
-                                <f:facet name="input">
-                                    <p:outputLabel value="PP - R$ 250" />
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
+                            <p:column headerText="Procedimento"
+                                      style="text-align: center;"> 
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <p:outputLabel value="#{procedure.procedure.nameProcedure}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:outputLabel value="#{procedure.procedure.nameProcedure}" />
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
 
-                        <p:column headerText="Status"
-                                  style="text-align: center;"
-                                  width="150px;">
-                            <p:cellEditor>
-                                <f:facet name="output">
-                                    <p:outputLabel value="status" />
-                                </f:facet>
-                                <f:facet name="input">
-                                    <p:selectBooleanButton class="buttonAffectedSystem"
-                                                           value=""
-                                                           rendered="true"
-                                                           required="false"
-                                                           requiredMessage="Informe se houve alteração!"
-                                                           title="Clique para alterar o status do formulário de Nada Digno de Nota (N.D.N.) para Alterado ou vice-versa"
-                                                           onLabel="Pago"
-                                                           offLabel="Pendente"
-                                                           offIcon="fa fa-times-circle"
-                                                           onIcon="fa fa-check-circle">
-                                    </p:selectBooleanButton>
-                                </f:facet>
-                            </p:cellEditor>
-                        </p:column>
 
-                        <p:column style="width:55px;">
-                            <p:rowEditor />
-                        </p:column>
-                    </p:dataTable>
+                            <p:column headerText="Pagamento"
+                                      style="text-align: center;"
+                                      width="120px;">
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <p:outputLabel rendered="#{procedure.applied.paymentStatus}">
+                                            <i class="fas fa-check-circle" 
+                                               style="color: #329a32;"/>
+                                        </p:outputLabel>
+                                        <p:outputLabel rendered="#{!procedure.applied.paymentStatus}">
+                                            <i class="fas fa-times-circle" 
+                                               style="color: #c71212;"/>
+                                        </p:outputLabel>
+                                        <p:outputLabel value="#{procedure.applied.paymentStatus ? ' Pago': ' Pendente'}"/>
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <h:selectOneMenu value="#{procedure.applied.paymentStatus}"
+                                                         rendered="true"
+                                                         required="false"
+                                                         requiredMessage="">
+                                            <f:selectItem itemLabel=" --- " itemValue="" />
+                                            <f:selectItem itemLabel="Pago" itemValue="true" />
+                                            <f:selectItem itemLabel="Pendente" itemValue="false" />
+                                        </h:selectOneMenu>
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+
+                            <p:column headerText="Valor"
+                                      width="120px;"> 
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                        <p:outputLabel value="R$ #{procedure.price.price}" />
+                                    </f:facet>
+                                    <f:facet name="input">
+                                        <p:outputLabel value="&#160;&#160;&#160;R$ #{procedure.price.price}" />
+                                    </f:facet>
+                                </p:cellEditor>
+                            </p:column>
+
+                            <p:column style="width:55px">
+                                <p:rowEditor />
+                            </p:column>
+
+                            <p:column rendered="false"
+                                      style="width:35px">
+                                <p:commandLink id="trashButton"
+                                               disabled="false">
+                                    <i class="c fa fa-trash-alt"/>
+                                </p:commandLink>
+                                <p:tooltip id="toolTiptrashButton" 
+                                           for="trashButton" 
+                                           value="Solicitar exclusão de procedimento" 
+                                           position="left"/>
+                            </p:column>
+
+                            <p:columnGroup type="footer">
+                                <p:row>
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:right;
+                                              font-weight: bold; " 
+                                              footerText="Subtotal:" />
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:left;
+                                              font-weight: bold; "
+                                              footerText="R$ #{MBconsultationEntryControl.selectItem.subTotalNotDiscountText}" />
+                                </p:row>
+                                <p:row>
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:right;
+                                              font-weight: bold; " 
+                                              footerText="Desconto:" />
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:left;
+                                              font-weight: bold; "
+                                              footerText="R$ #{MBconsultationEntryControl.selectItem.consultation.discountValue}" />
+                                </p:row>
+
+                                <p:row>
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:right;
+                                              font-weight: bold; " 
+                                              footerText="Total:" />
+                                    <p:column class="LADES-default-Text"
+                                              colspan="2"
+                                              style="text-align:left;
+                                              font-weight: bold; "
+                                              footerText="R$ #{MBconsultationEntryControl.selectItem.subTotal}" />
+                                </p:row>
+                            </p:columnGroup>
+                        </p:dataTable>
+                    </div>
+
+                    <p:commandButton value="Fechar"
+                                     icon="fa fa-times-circle"
+                                     style="float: right;
+                                     margin-top: 20px;"
+                                     actionListener="#{MBconsultationEntryControl.searchConsultationEntry()}"
+                                     update="dashConsultationEntry,selectAnimals"
+                                     onclick="PF('dlg2').hide();"/>
                 </p:dialog>
 
                 <p:dialog header="Dados do proprietário"

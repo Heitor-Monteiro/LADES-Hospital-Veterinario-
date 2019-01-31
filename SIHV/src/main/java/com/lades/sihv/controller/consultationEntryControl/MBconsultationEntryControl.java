@@ -31,6 +31,7 @@ public class MBconsultationEntryControl extends AbstractBean {
     private SearchOwner searchOwner;
     private SearchSmallAnimal searchSmallAnimal;
     private TotalProceduresApplied totalProceduresApplied;
+    private SearchProceduresApplied searchProceduresApplied;
     private String typeService[];
 
     @PostConstruct
@@ -45,6 +46,7 @@ public class MBconsultationEntryControl extends AbstractBean {
         searchOwner = new SearchOwner();
         searchSmallAnimal = new SearchSmallAnimal();
         totalProceduresApplied = new TotalProceduresApplied();
+        searchProceduresApplied = new SearchProceduresApplied();
         typeService = new String[2];
         typeService[0] = "Nova consulta";
         typeService[1] = "Retorno";
@@ -64,6 +66,13 @@ public class MBconsultationEntryControl extends AbstractBean {
             getObjMessage().warn("Não houve consultas efetivadas no intervalo estipulado.", "");
         } else {
             getObjMessage().info(listItens.size() + " itens encontrados no intervalo estipulado.", "");
+        }
+    }
+
+    public void methodSearchProceduresApplied(ConsultationEntryItem selectItem) {
+        this.selectItem = selectItem;
+        if (this.selectItem != null) {
+            searchProceduresApplied.methodListProceduresApplied(this.selectItem);
         }
     }
 
@@ -113,5 +122,9 @@ public class MBconsultationEntryControl extends AbstractBean {
 
     public String[] getTypeService() {
         return typeService;
+    }
+
+    public SearchProceduresApplied getSearchProceduresApplied() {
+        return searchProceduresApplied;
     }
 }
