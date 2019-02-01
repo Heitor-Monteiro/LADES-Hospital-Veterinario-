@@ -36,6 +36,7 @@ public class MBdashboardView extends AbstractBean {
     private TotalSmallAnimal totalSmallAnimal;
     private XrayPending xrayPending;
     private ConsultationRealized consultationRealized;
+    private PaymentsReceivable paymentsReceivable;
 
     @PostConstruct
     public void init() {
@@ -44,6 +45,7 @@ public class MBdashboardView extends AbstractBean {
         totalSmallAnimal = new TotalSmallAnimal();
         xrayPending = new XrayPending();
         consultationRealized = new ConsultationRealized();
+        paymentsReceivable = new PaymentsReceivable();
 
         //----------------------------------------------------------------------
         model = new DefaultDashboardModel();
@@ -52,6 +54,7 @@ public class MBdashboardView extends AbstractBean {
         columns.get(1).addWidget("xRay");
         columns.get(2).addWidget("scheduledConsultations");
         columns.get(0).addWidget("consultation");
+        columns.get(1).addWidget("payment");
         for (DashboardColumn column : columns) {
             model.addColumn(column);
         }
@@ -110,5 +113,8 @@ public class MBdashboardView extends AbstractBean {
     public ConsultationRealized getConsultationRealized() {
         return consultationRealized;
     }
-    
+
+    public PaymentsReceivable getPaymentsReceivable() {
+        return paymentsReceivable;
+    }
 }

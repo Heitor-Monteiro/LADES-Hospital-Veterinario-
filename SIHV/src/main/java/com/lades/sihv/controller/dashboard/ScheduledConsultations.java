@@ -39,11 +39,14 @@ public class ScheduledConsultations extends AbstractBean {
         cal.set(Calendar.DAY_OF_MONTH, 1);
         cal.set(Calendar.MONTH, currentMonth);
         int day = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
+//        List<?> list = getDaoGenerico().list("select count(s.pkSchedule) from Scheduling s \n"
+//                + "where \n"
+//                + "s.statusService='" + statusService + "' and \n"
+//                + "s.schedulingDate>='" + currentYear + "-" + (currentMonth + 1) + "-01 01:00:00' and \n"
+//                + "s.schedulingDate<='" + currentYear + "-" + (currentMonth + 1) + "-" + day + " 23:59:59' ");
         List<?> list = getDaoGenerico().list("select count(s.pkSchedule) from Scheduling s \n"
                 + "where \n"
-                + "s.statusService='" + statusService + "' and \n"
-                + "s.schedulingDate>='" + currentYear + "-" + (currentMonth + 1) + "-01 01:00:00' and \n"
-                + "s.schedulingDate<='" + currentYear + "-" + (currentMonth + 1) + "-" + day + " 23:59:59' ");
+                + "s.statusService='" + statusService + "'");
         if (list != null && !list.isEmpty()) {
             quantityOfItems = "" + list.get(0);
         }

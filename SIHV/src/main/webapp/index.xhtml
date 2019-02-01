@@ -108,7 +108,7 @@
                                         <h:outputText value="Agendamentos: #{MBdashboardView.scheduledConsultations.qtd}"/>
                                     </div>
                                     <div class="c i ui-g-12">
-                                        <h:outputText value="Confirmado no mês: #{MBdashboardView.scheduledConsultations.confirmedSchedules}"/>
+                                        <h:outputText value="Confirmadas: #{MBdashboardView.scheduledConsultations.confirmedSchedules}"/>
 
                                     </div>
                                     <div class="c i ui-g-12">
@@ -139,8 +139,33 @@
                             </div>
                         </p:panel>
 
-                        <p:panel id="politics" header="Politics">
-                            <h:outputText value="Politics Content" />
+                        <p:panel id="payment">
+                            <h:outputText class="c" value="Pagamentos a receber"  />
+                            <div class="ui-g">
+                                <div class="ui-g-3">
+                                    <i class="c s fa fa-hand-holding-usd"/>
+                                </div>
+                                <div class="ui-g-7 ui-g-nopad">
+
+                                    <p:panelGrid columns="2"
+                                                 layout="grid"
+                                                 style="margin-bottom: -55px;"
+                                                 styleClass="panelgrid-noborder"
+                                                 columnClasses="ui-grid-col-8, ui-grid-col-4" >
+                                        <h:outputText class="c i" style="float: right;" 
+                                                      value="#{MBdashboardView.paymentsReceivable.subtotal}"/>
+                                        <h:outputText class="c i" value="Subtotal"/>
+
+                                        <h:outputText class="c i" style="float: right;" 
+                                                      value=" - #{MBdashboardView.paymentsReceivable.totalDiscount}"/>
+                                        <h:outputText class="c i" value="Desconto"/>
+
+                                        <h:outputText class="c i" style="float: right;" 
+                                                      value="R$ #{MBdashboardView.paymentsReceivable.paymentReceivable}"/>
+                                        <h:outputText class="c i" value="Receber"/>
+                                    </p:panelGrid>
+                                </div>
+                            </div>
                         </p:panel>
 
                     </p:dashboard>
