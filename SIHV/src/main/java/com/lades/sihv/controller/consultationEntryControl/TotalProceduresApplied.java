@@ -59,6 +59,8 @@ public class TotalProceduresApplied extends AbstractBean {
                     totalOutstandingPayable -= listIten.getConsultation().getDiscountValue().doubleValue();
                 }
             }
+            listIten.setSubTotalNotDiscount(listIten.getSubTotal());
+            listIten.setSubTotalNotDiscountText(df.format(listIten.getSubTotal()));
             listIten.setSubTotal(listIten.getSubTotal() - listIten.getConsultation().getDiscountValue().doubleValue());
             totalDiscount += listIten.getConsultation().getDiscountValue().doubleValue();
             listIten.setSubTotalText(df.format(listIten.getSubTotal()));
