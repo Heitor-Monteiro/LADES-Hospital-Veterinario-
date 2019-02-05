@@ -30,7 +30,6 @@
                 <div class="ui-fluid ui-g">
                     <div class="ui-g-12 ui-md-3 ui-lg-3">
                         <p:commandButton value="Criar novo procedimento"
-                                         action="#{MBeditAndNewProcedure.prepareAnewProcedure()}"
                                          icon="fa fa-plus"
                                          rendered="true"
                                          onclick="PF('addCategoryForm').show()"/>
@@ -160,132 +159,100 @@
                               modal="true"
                               resizable="false"
                               widgetVar="addCategoryForm"
-                              showEffect="fold">
+                              showEffect="fold"
+                              hideEffect="fold">
 
-                        <div class="ui-g">
-                            <div class="ui-g-12 ui-md-4 ui-lg-4">
-                                <p:outputLabel id="nameProcedure-Ladel"
-                                               class="outputLabel-SIHV colorPri"
-                                               value="Nome do procedimento:"
-                                               for="nameProcedure-Input"/>
-                            </div>
-                            <div class="ui-g-12 ui-md-7 ui-lg-7">
-                                <p:inputTextarea id="nameProcedure-Input"
-                                                 class="LADES-default-Text"
-                                                 value="#{MBeditAndNewProcedure.newProcedure.nameProcedure}" 
-                                                 maxlength="100"
-                                                 rows="2"
-                                                 disabled="false"
-                                                 rendered="true"
-                                                 required="true" 
-                                                 requiredMessage="Informe o nome do procedimento!" />
-                            </div>
-                        </div>
+                        <p:panelGrid id="formAddCategory"
+                                     columns="2"
+                                     layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-4, ui-grid-col-7">
 
-                        <div class="ui-g">
-                            <div class="ui-g-4 ui-md-4 ui-lg-4">
-                                <p:outputLabel id="typeProcedure-Label"
-                                               class="outputLabel-SIHV colorPri"
-                                               value="Setor:"
-                                               for="typeProcedure-Input"/>
-                            </div>
-                            <div class="ui-g-7 ui-md-7 ui-lg-7">
-                                <p:selectOneMenu id="typeProcedure-Input"
-                                                 value="#{MBeditAndNewProcedure.newProcedure.typeProcedure}"
-                                                 converter="typeProcedureConverter"
-                                                 required="true"
-                                                 requiredMessage="Informe o setor do procedimento!">
-                                    <f:selectItem itemLabel="---" itemValue="" />
-                                    <f:selectItems value="#{MBeditAndNewProcedure.listTypeProcedure}" var="setor"
-                                                   itemLabel="#{setor.nameTypeProced}" itemValue="#{setor}" />
-                                </p:selectOneMenu>
-                            </div>
-                        </div>
 
-                        <div class="ui-g">
-                            <div class="ui-g-4 ui-md-4 ui-lg-4">
-                                <p:outputLabel id="price-Label"
-                                               class="outputLabel-SIHV colorPri"
-                                               value="Valor:"
-                                               for="price-Input"/>
-                            </div>
-                            <div class="ui-g-7 ui-md-7 ui-lg-7">
-                                <p:inputNumber id="price-Input"
-                                               value="#{MBeditAndNewProcedure.newPrice.price}"
-                                               required="true"
-                                               decimalSeparator=","
-                                               thousandSeparator="."
-                                               symbol="R$ "
-                                               maxlength="6"
-                                               maxValue="9999"
-                                               decimalPlaces="2"/>
-                            </div>
-                        </div>
+                            <p:outputLabel id="nameProcedure-Ladel"
+                                           class="outputLabel-SIHV colorPri"
+                                           value="Nome do procedimento:"
+                                           for="nameProcedure-Input"/>
+                            <p:inputTextarea id="nameProcedure-Input"
+                                             class="LADES-default-Text"
+                                             value="#{MBeditAndNewProcedure.newProcedure.nameProcedure}" 
+                                             maxlength="100"
+                                             rows="2"
+                                             disabled="false"
+                                             required="true" 
+                                             requiredMessage="Informe o nome do procedimento!" />
 
-                        <div class="ui-g">
-                            <div class="ui-g-4 ui-md-4 ui-lg-4">
-                                <p:outputLabel id="category-Label"
-                                               class="outputLabel-SIHV colorPri"
-                                               value="Faixa:"
-                                               for="category-Input"/>
-                            </div>
-                            <div class="ui-g-7 ui-md-7 ui-lg-7">
-                                <p:selectOneMenu id="category-Input"
-                                                 value="#{MBeditAndNewProcedure.newPrice.category}"
-                                                 converter="categoryConverter"
-                                                 required="false"
-                                                 requiredMessage="">
-                                    <f:selectItem itemLabel="---" itemValue="" />
-                                    <f:selectItems value="#{MBeditAndNewProcedure.listCategory}" var="category"
-                                                   itemLabel="#{category.abbreviation}"
-                                                   itemDescription="#{category.description}"
-                                                   itemValue="#{category}"/>
-                                </p:selectOneMenu>
-                            </div>
-                        </div>
 
-                        <div class="ui-g">
-                            <div class="ui-g-4 ui-md-4 ui-lg-4">
-                                <p:outputLabel id="dosage-Label"
-                                               class="outputLabel-SIHV colorPri"
-                                               value="Dosagem:"
-                                               for="dosage-Input"/>
-                            </div>
-                            <div class="ui-g-7 ui-md-7 ui-lg-7">
-                                <p:selectOneMenu id="dosage-Input"
-                                                 value="#{MBeditAndNewProcedure.newPrice.dosage}"
-                                                 required="true">
-                                    <f:selectItem itemLabel="---" itemValue="" />
-                                    <f:selectItem itemLabel="unica" itemValue="unica" />
-                                    <f:selectItem itemLabel="/ml" itemValue="/ml" />
-                                </p:selectOneMenu>
-                            </div>
-                        </div>
+                            <p:outputLabel id="typeProcedure-Label"
+                                           class="outputLabel-SIHV colorPri"
+                                           value="Setor:"
+                                           for="typeProcedure-Input"/>
+                            <p:selectOneMenu id="typeProcedure-Input"
+                                             value="#{MBeditAndNewProcedure.newProcedure.typeProcedure}"
+                                             converter="typeProcedureConverter"
+                                             required="true"
+                                             requiredMessage="Informe o setor do procedimento!">
+                                <f:selectItem itemLabel="---" itemValue="" />
+                                <f:selectItems value="#{MBeditAndNewProcedure.listTypeProcedure}" var="setor"
+                                               itemLabel="#{setor.nameTypeProced}" itemValue="#{setor}" />
+                            </p:selectOneMenu>
 
-                        <div class="ui-g">
-                            <div class="ui-g-12 ui-md-4 ui-lg-4 divNotUsed"></div>
-                            <div class="ui-g-12 ui-md-7 ui-lg-7">
-                                <p:commandButton id="onRowAddProcedure-Button"
-                                                 value="Salvar procedimento"
-                                                 action="#{MBeditAndNewProcedure.onRowAddProcedure()}"
-                                                 icon="fa fa-save" 
-                                                 disabled="#{MBeditAndNewProcedure.enableButtonSaveNewProcedure.viewVariableBoolean}"
-                                                 rendered="true"
-                                                 style="margin-top: 14px;"
-                                                 update="growl,listProcedure,
-                                                 nameProcedure-Ladel,nameProcedure-Input,
-                                                 typeProcedure-Label,typeProcedure-Input,
-                                                 price-Label,price-Input,
-                                                 dosage-Label,dosage-Input,
-                                                 onRowAddProcedure-Button"/>
-                            </div>
-                        </div>
 
+                            <p:outputLabel id="price-Label"
+                                           class="outputLabel-SIHV colorPri"
+                                           value="Valor:"
+                                           for="price-Input"/>
+                            <p:inputNumber id="price-Input"
+                                           value="#{MBeditAndNewProcedure.newPrice.price}"
+                                           required="true"
+                                           decimalSeparator=","
+                                           thousandSeparator="."
+                                           symbol="R$ "
+                                           maxlength="6"
+                                           maxValue="9999"
+                                           decimalPlaces="2"/>
+
+
+                            <p:outputLabel id="category-Label"
+                                           class="outputLabel-SIHV colorPri"
+                                           value="Faixa:"
+                                           for="category-Input"/>
+                            <p:selectOneMenu id="category-Input"
+                                             value="#{MBeditAndNewProcedure.newPrice.category}"
+                                             converter="categoryConverter"
+                                             required="false"
+                                             requiredMessage="">
+                                <f:selectItem itemLabel="---" itemValue="" />
+                                <f:selectItems value="#{MBeditAndNewProcedure.listCategory}" var="category"
+                                               itemLabel="#{category.abbreviation}"
+                                               itemDescription="#{category.description}"
+                                               itemValue="#{category}"/>
+                            </p:selectOneMenu>
+
+
+                            <p:outputLabel id="dosage-Label"
+                                           class="outputLabel-SIHV colorPri"
+                                           value="Dosagem:"
+                                           for="dosage-Input"/>
+                            <p:selectOneMenu id="dosage-Input"
+                                             value="#{MBeditAndNewProcedure.newPrice.dosage}"
+                                             required="true">
+                                <f:selectItem itemLabel="---" itemValue="" />
+                                <f:selectItem itemLabel="unica" itemValue="unica" />
+                                <f:selectItem itemLabel="/ml" itemValue="/ml" />
+                            </p:selectOneMenu>
+
+
+                            <p:outputLabel value=""/>
+                            <p:commandButton id="onRowAddProcedure-Button"
+                                             value="Salvar procedimento"
+                                             action="#{MBeditAndNewProcedure.onRowAddProcedure()}"
+                                             icon="fa fa-save"
+                                             rendered="true"
+                                             style="margin-top: 14px;"
+                                             update="growl,listProcedure,formAddCategory"/>
+                        </p:panelGrid>
                     </p:dialog>
-
-
-
-
                 </div>
             </h:form>
         </ui:define>

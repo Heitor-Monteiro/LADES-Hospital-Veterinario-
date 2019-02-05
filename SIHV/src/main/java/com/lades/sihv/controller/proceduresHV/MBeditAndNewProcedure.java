@@ -6,7 +6,6 @@
 package com.lades.sihv.controller.proceduresHV;
 
 import com.lades.sihv.bean.*;
-import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.Category;
 import com.lades.sihv.model.Prices;
@@ -17,6 +16,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
 //@author thiberius
@@ -38,8 +38,6 @@ public class MBeditAndNewProcedure extends AbstractBean {
     private String hqlProcedures;
     private Procedures newProcedure;
     private Prices newPrice;
-    //--------------------------------------------------------------------------
-    private RenderedFields enableButtonSaveNewProcedure;
 
     @PostConstruct
     public void init() {
@@ -63,7 +61,6 @@ public class MBeditAndNewProcedure extends AbstractBean {
         collectCategoryOfProcedures();
         newProcedure = new Procedures();
         newPrice = new Prices();
-        enableButtonSaveNewProcedure = new RenderedFields();
     }
 
     private void popularListTextTypeProcedure() {
@@ -149,12 +146,6 @@ public class MBeditAndNewProcedure extends AbstractBean {
         getObjMessage().info("Nada foi alterado!", "");
     }
 
-    public void prepareAnewProcedure() {
-        enableButtonSaveNewProcedure.setViewVariableBoolean(false);
-        newProcedure = new Procedures();
-        newPrice = new Prices();
-    }
-
     public void onRowAddProcedure() {
         try {
             newProcedure.setDateOfLastModification(getObjData());
@@ -168,8 +159,8 @@ public class MBeditAndNewProcedure extends AbstractBean {
             listTempProcedures = getDaoGenerico().list(hqlProcedures);
             collectProceduresAndTypeProcedure();
             collectCategoryOfProcedures();
-            enableButtonSaveNewProcedure.setViewVariableBoolean(true);
             getObjMessage().info("Novo procedimento registrado com sucesso!", "");
+            RequestContext.getCurrentInstance().execute("PF('addCategoryForm').hide();");
             String category = "---";
             if (newPrice.getCategory() != null) {
                 category = newPrice.getCategory().getAbbreviation()
@@ -179,6 +170,8 @@ public class MBeditAndNewProcedure extends AbstractBean {
                     + ", Valor:" + newPrice.getPrice() + ", Dosagem:" + newPrice.getDosage()
                     + ", Categoria:" + category
                     + ", Setor:" + newProcedure.getTypeProcedure().getNameTypeProced());
+            newProcedure = new Procedures();
+            newPrice = new Prices();
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void onRowAddProcedure(): " + e);
         }
@@ -211,9 +204,5 @@ public class MBeditAndNewProcedure extends AbstractBean {
 
     public List<String[]> getListTextCategory() {
         return listTextCategory;
-    }
-
-    public RenderedFields getEnableButtonSaveNewProcedure() {
-        return enableButtonSaveNewProcedure;
     }
 }
