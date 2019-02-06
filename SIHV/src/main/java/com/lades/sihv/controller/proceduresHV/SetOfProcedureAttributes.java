@@ -19,6 +19,7 @@ public class SetOfProcedureAttributes implements Serializable {
 
     private Procedures procedure;
     private Prices price;
+    private String priceText;
     private Category category;
     private TypeProcedure typeProcedure;
     private String selectTypeProcedure;
@@ -55,6 +56,14 @@ public class SetOfProcedureAttributes implements Serializable {
 
     public void setPrice(Prices price) {
         this.price = price;
+    }
+
+    public String getPriceText() {
+        return priceText;
+    }
+
+    public void setPriceText(String priceText) {
+        this.priceText = priceText;
     }
 
     public Category getCategory() {

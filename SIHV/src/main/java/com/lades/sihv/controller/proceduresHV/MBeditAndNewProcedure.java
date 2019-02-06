@@ -6,17 +6,18 @@
 package com.lades.sihv.controller.proceduresHV;
 
 import com.lades.sihv.bean.*;
-import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.model.Category;
 import com.lades.sihv.model.Prices;
 import com.lades.sihv.model.Procedures;
 import com.lades.sihv.model.TypeProcedure;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.RowEditEvent;
 
 //@author thiberius
@@ -24,8 +25,9 @@ import org.primefaces.event.RowEditEvent;
 @ViewScoped
 
 public class MBeditAndNewProcedure extends AbstractBean {
-
+    
     private List<SetOfProcedureAttributes> setOfProcedureAttributes;
+    private List<SetOfProcedureAttributes> filterOfProcedureAttributes;
     //--------------------------------------------------------------------------
     private List<?> listTempProcedures;
     //--------------------------------------------------------------------------
@@ -38,9 +40,7 @@ public class MBeditAndNewProcedure extends AbstractBean {
     private String hqlProcedures;
     private Procedures newProcedure;
     private Prices newPrice;
-    //--------------------------------------------------------------------------
-    private RenderedFields enableButtonSaveNewProcedure;
-
+    
     @PostConstruct
     public void init() {
         System.out.println("►►►►►►►►►►►►► MBeditAndNewProcedure initiated");
@@ -63,9 +63,8 @@ public class MBeditAndNewProcedure extends AbstractBean {
         collectCategoryOfProcedures();
         newProcedure = new Procedures();
         newPrice = new Prices();
-        enableButtonSaveNewProcedure = new RenderedFields();
     }
-
+    
     private void popularListTextTypeProcedure() {
         for (TypeProcedure obj : listTypeProcedure) {
             if (!obj.isLogicalExclusion()) {
@@ -73,7 +72,7 @@ public class MBeditAndNewProcedure extends AbstractBean {
             }
         }
     }
-
+    
     private void popularListTextCategory() {
         for (Category obj : listCategory) {
             if (!obj.isLogicalExclusion()) {
@@ -84,17 +83,19 @@ public class MBeditAndNewProcedure extends AbstractBean {
             }
         }
     }
-
+    
     private void collectProceduresAndTypeProcedure() {
+        DecimalFormat df = new DecimalFormat("###,###,###,###,##0.00");
         for (Object[] item : (List<Object[]>) listTempProcedures) {
             SetOfProcedureAttributes newObj = new SetOfProcedureAttributes();
             newObj.setProcedure((Procedures) item[0]);
             newObj.setTypeProcedure((TypeProcedure) item[1]);
             newObj.setPrice((Prices) item[2]);
+            newObj.setPriceText(df.format(newObj.getPrice().getPrice()));
             setOfProcedureAttributes.add(newObj);
         }
     }
-
+    
     private void collectCategoryOfProcedures() {
         try {
             for (SetOfProcedureAttributes obj : setOfProcedureAttributes) {
@@ -110,9 +111,9 @@ public class MBeditAndNewProcedure extends AbstractBean {
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void collectCategoryOfProcedures(): " + e);
         }
-
+        
     }
-
+    
     public void onRowEdit(RowEditEvent event) {
         try {
             SetOfProcedureAttributes obj = (SetOfProcedureAttributes) event.getObject();
@@ -144,17 +145,11 @@ public class MBeditAndNewProcedure extends AbstractBean {
             System.out.println("►►►►►►►►►►►►► ERRO public void onRowEdit(): " + e);
         }
     }
-
+    
     public void onRowCancel(RowEditEvent event) {
         getObjMessage().info("Nada foi alterado!", "");
     }
-
-    public void prepareAnewProcedure() {
-        enableButtonSaveNewProcedure.setViewVariableBoolean(false);
-        newProcedure = new Procedures();
-        newPrice = new Prices();
-    }
-
+    
     public void onRowAddProcedure() {
         try {
             newProcedure.setDateOfLastModification(getObjData());
@@ -168,8 +163,8 @@ public class MBeditAndNewProcedure extends AbstractBean {
             listTempProcedures = getDaoGenerico().list(hqlProcedures);
             collectProceduresAndTypeProcedure();
             collectCategoryOfProcedures();
-            enableButtonSaveNewProcedure.setViewVariableBoolean(true);
             getObjMessage().info("Novo procedimento registrado com sucesso!", "");
+            RequestContext.getCurrentInstance().execute("PF('addCategoryForm').hide();");
             String category = "---";
             if (newPrice.getCategory() != null) {
                 category = newPrice.getCategory().getAbbreviation()
@@ -179,6 +174,8 @@ public class MBeditAndNewProcedure extends AbstractBean {
                     + ", Valor:" + newPrice.getPrice() + ", Dosagem:" + newPrice.getDosage()
                     + ", Categoria:" + category
                     + ", Setor:" + newProcedure.getTypeProcedure().getNameTypeProced());
+            newProcedure = new Procedures();
+            newPrice = new Prices();
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void onRowAddProcedure(): " + e);
         }
@@ -188,32 +185,36 @@ public class MBeditAndNewProcedure extends AbstractBean {
     public Procedures getNewProcedure() {
         return newProcedure;
     }
-
+    
     public Prices getNewPrice() {
         return newPrice;
     }
-
+    
     public List<SetOfProcedureAttributes> getSetOfProcedureAttributes() {
         return setOfProcedureAttributes;
     }
-
+    
     public List<TypeProcedure> getListTypeProcedure() {
         return listTypeProcedure;
     }
-
+    
     public List<Category> getListCategory() {
         return listCategory;
     }
-
+    
     public List<String> getListTextTypeProcedure() {
         return listTextTypeProcedure;
     }
-
+    
     public List<String[]> getListTextCategory() {
         return listTextCategory;
     }
-
-    public RenderedFields getEnableButtonSaveNewProcedure() {
-        return enableButtonSaveNewProcedure;
+    
+    public List<SetOfProcedureAttributes> getFilterOfProcedureAttributes() {
+        return filterOfProcedureAttributes;
+    }
+    
+    public void setFilterOfProcedureAttributes(List<SetOfProcedureAttributes> filterOfProcedureAttributes) {
+        this.filterOfProcedureAttributes = filterOfProcedureAttributes;
     }
 }
