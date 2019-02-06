@@ -32,6 +32,7 @@
                         <p:commandButton value="Criar novo procedimento"
                                          icon="fa fa-plus"
                                          rendered="true"
+                                         style="margin-top: 10px;"
                                          onclick="PF('addCategoryForm').show()"/>
                     </div>
 
@@ -39,16 +40,21 @@
                         <p:dataTable id="listProcedure"
                                      var="procedure"
                                      value="#{MBeditAndNewProcedure.setOfProcedureAttributes}"
+                                     filteredValue="#{MBeditAndNewProcedure.filterOfProcedureAttributes}"
+                                     widgetVar="tableListProcedure"
                                      reflow="true"
                                      paginator="true"
                                      rows="10"
                                      editable="true"
-                                     style="margin-bottom:20px;margin-top: 20px;">
+                                     style="margin-top: 20px;">
 
                             <p:ajax event="rowEdit" listener="#{MBeditAndNewProcedure.onRowEdit}" update=":form:growl" />
                             <p:ajax event="rowEditCancel" listener="#{MBeditAndNewProcedure.onRowCancel}" update=":form:growl" />
 
                             <p:column headerText="Procedimento"
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.procedure.nameProcedure}"
+                                      filterMatchMode="contains"
                                       width="" >
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{procedure.procedure.nameProcedure}" /></f:facet>
@@ -59,7 +65,17 @@
                             </p:column>
 
                             <p:column headerText="Setor"
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.typeProcedure.nameTypeProced}"
+                                      filterMatchMode="exact"
                                       width="">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('tableListProcedure').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:selectItem itemLabel=" --- " itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItems value="#{MBeditAndNewProcedure.listTextTypeProcedure}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{procedure.typeProcedure.nameTypeProced}" /></f:facet>
                                     <f:facet name="input">
@@ -77,13 +93,30 @@
                             </p:column>
 
                             <p:column headerText="Status" 
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.procedure.disableProcedure}"
+                                      filterMatchMode="equals"
                                       width="130">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('tableListProcedure').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:converter converterId="javax.faces.Boolean" />
+                                        <f:selectItem itemLabel=" --- " itemValue="" />
+                                        <f:selectItem itemLabel="Ligado" itemValue="false" />
+                                        <f:selectItem itemLabel="Desligado" itemValue="true" />
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <p:cellEditor>
                                     <f:facet name="output">
-                                        <p:selectBooleanButton value="#{procedure.procedure.disableProcedure}"
-                                                               disabled="true" style="" 
-                                                               onLabel="Desligado" offLabel="Ligado" 
-                                                               onIcon="fa fa-ban" offIcon="fa fa-check-circle"/>
+                                        <p:outputLabel rendered="#{procedure.procedure.disableProcedure}">
+                                            <i class="fa fa-ban" 
+                                               style="color: #c71212;"/>
+                                        </p:outputLabel>
+                                        <p:outputLabel rendered="#{!procedure.procedure.disableProcedure}">
+                                            <i class="fa fa-check-circle" 
+                                               style="color: #329a32;"/>
+                                        </p:outputLabel>
+                                        <p:outputLabel value="#{procedure.procedure.disableProcedure ? ' Desligado': ' Ligado'}"/>
                                     </f:facet>
                                     <f:facet name="input">
                                         <p:selectBooleanButton value="#{procedure.procedure.disableProcedure}"
@@ -96,9 +129,12 @@
 
 
                             <p:column headerText="Valor"
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.priceText}"
+                                      filterMatchMode="contains"
                                       width="100">
                                 <p:cellEditor>
-                                    <f:facet name="output"><h:outputText value="#{procedure.price.price}" /></f:facet>
+                                    <f:facet name="output"><h:outputText value="R$ #{procedure.priceText}" /></f:facet>
                                     <f:facet name="input">
                                         <p:inputNumber 
                                             value="#{procedure.price.price}"
@@ -113,7 +149,21 @@
                             </p:column>
 
                             <p:column headerText="Faixa"
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.category.abbreviation}"
+                                      filterMatchMode="exact"
                                       width="100">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('tableListProcedure').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:selectItem itemLabel=" --- " itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItems value="#{MBeditAndNewProcedure.listTextCategory}" 
+                                                       var="category"
+                                                       itemLabel="#{category[0]}"
+                                                       itemDescription="#{category[1]}"
+                                                       itemValue="#{category[0]}"/>
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <p:cellEditor>
                                     <f:facet name="output">
                                         <h:outputText value="#{procedure.category.abbreviation}" 
@@ -124,7 +174,8 @@
                                                          required="false"
                                                          requiredMessage="">
                                             <f:selectItem itemLabel="---" itemValue="not" />
-                                            <f:selectItems value="#{MBeditAndNewProcedure.listTextCategory}" var="category"
+                                            <f:selectItems value="#{MBeditAndNewProcedure.listTextCategory}" 
+                                                           var="category"
                                                            itemLabel="#{category[0]}"
                                                            itemDescription="#{category[1]}"
                                                            itemValue="#{category[0]}"/>
@@ -134,7 +185,18 @@
                             </p:column>
 
                             <p:column headerText="Dosagem"
+                                      class="LADES-default-Text"
+                                      filterBy="#{procedure.price.dosage}"
+                                      filterMatchMode="exact"
                                       width="95">
+                                <f:facet name="filter">
+                                    <p:selectOneMenu onchange="PF('tableListProcedure').filter()" 
+                                                     styleClass="custom-filter">
+                                        <f:selectItem itemLabel=" --- " itemValue="#{null}" noSelectionOption="true" />
+                                        <f:selectItem itemLabel="unica" itemValue="unica" />
+                                        <f:selectItem itemLabel="/ml" itemValue="/ml" />
+                                    </p:selectOneMenu>
+                                </f:facet>
                                 <p:cellEditor>
                                     <f:facet name="output"><h:outputText value="#{procedure.price.dosage}" /></f:facet>
                                     <f:facet name="input">
@@ -147,9 +209,9 @@
                             </p:column>
 
                             <p:column width="60">
-                                <p:rowEditor editTitle="editar" 
-                                             cancelTitle="cancelar" 
-                                             saveTitle="salvar" />
+                                <p:rowEditor editTitle="Editar" 
+                                             cancelTitle="Cancelar" 
+                                             saveTitle="Salvar" />
                             </p:column>
                         </p:dataTable>
                     </div>
