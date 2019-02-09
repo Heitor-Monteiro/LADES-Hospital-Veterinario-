@@ -58,6 +58,7 @@
                           header="Agendar consulta"
                           showEffect="clip"
                           hideEffect="clip" 
+                          modal="true"
                           focus="typeService-Input">
 
                     <p:panel id="eventDialog1-Panel"
@@ -67,16 +68,16 @@
                              border: none;" >
 
                         <div class="ui-g ui-fluid" >
-                            <div class="ui-g-2 ui-md-2">
+                            <div class="ui-g-3 ui-md-3">
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="Status: "
+                                               value="Procedimento: "
                                                rendered="true" />
                                 <p:outputLabel id="typeService-Input"
                                                class="outputLabel-SIHV LADES-default-Text"
                                                value="#{MBscheduleConsulta.schedule.typeService}"
                                                rendered="false" />
                             </div>
-                            <div class="ui-g-10 ui-md-10">
+                            <div class="ui-g-9 ui-md-9">
                                 <p:selectOneButton id="typeService2-Input"
                                                    value="#{MBscheduleConsulta.schedule.typeService}"
                                                    required="true"
@@ -137,8 +138,8 @@
                                                  required="true"
                                                  requiredMessage="É necessário a hora do agendamento!"
                                                  rendered="true"
-                                                 placeholder="Hora do agendamento*">
-                                    <f:selectItem itemLabel="Hora do agendamento*" itemValue="" noSelectionOption="true" />
+                                                 placeholder="Hora do agendamento *">
+                                    <f:selectItem itemLabel="Hora do agendamento *" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="08:00 AM" itemValue="08:00" />
                                     <f:selectItem itemLabel="09:00 AM" itemValue="09:00" />
                                     <f:selectItem itemLabel="10:00 AM" itemValue="10:00" />
@@ -225,34 +226,62 @@
                                              rendered="true" />
                             </p:panelGrid>
 
-                            <p:panelGrid id="scheduleButtons-panelGrid"
-                                         columns="2"
-                                         layout="grid"
-                                         styleClass="panelgrid-noborder"
-                                         columnClasses="ui-grid-col-6, ui-grid-col-6" >
 
-                                <p:commandButton id="cancelButton"
-                                                 value="Cancelar"
-                                                 icon="fa fa-calendar-times"
-                                                 actionListener="#{MBscheduleConsulta.cancelEvent}"
-                                                 update="messages"
-                                                 oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+                            <p:panelGrid 
+                                columns="2"
+                                layout="grid"
+                                styleClass="panelgrid-noborder"
+                                columnClasses="ui-grid-col-6, ui-grid-col-6"
+                                rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}">
+
+                                <p:commandButton 
+                                    value="Cancelar"
+                                    icon="fa fa-calendar-times"
+                                    actionListener="#{MBscheduleConsulta.cancelEvent}"
+                                    update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                    oncomplete="PF('myschedule').update();"/>
+
+                                <p:commandButton 
+                                    value="Agendar"
+                                    icon="fa fa-calendar-check"
+                                    actionListener="#{MBscheduleConsulta.addEvent}"
+                                    rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}"
+                                    update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                    oncomplete="PF('myschedule').update();"/>
+                            </p:panelGrid>
 
 
-                                <p:commandButton id="addButton1"
-                                                 value="Agendar"
-                                                 icon="fa fa-calendar-check"
-                                                 actionListener="#{MBscheduleConsulta.addEvent}"
-                                                 rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}"
-                                                 update="messages,eventDialog1-Panel,eventDialog3-Panel"
-                                                 oncomplete="PF('myschedule').update();"/>
+                            <p:panelGrid 
+                                columns="3"
+                                layout="grid"
+                                styleClass="panelgrid-noborder"
+                                columnClasses="ui-grid-col-4, ui-grid-col-4, ui-grid-col-4"
+                                rendered="#{MBscheduleConsulta.viewInterleaveAddButton}">
+
+                                <p:commandButton 
+                                    id="cancelButton"
+                                    value="Cancelar"
+                                    icon="fa fa-calendar-times"
+                                    actionListener="#{MBscheduleConsulta.cancelEvent}"
+                                    update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                    oncomplete="PF('myschedule').update();"/>
+
+
+                                <p:commandButton 
+                                    id="addButton1"
+                                    value="Agendar"
+                                    icon="fa fa-calendar-check"
+                                    actionListener="#{MBscheduleConsulta.addEvent}"
+                                    rendered="#{!MBscheduleConsulta.viewInterleaveAddButton}"
+                                    update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                    oncomplete="PF('myschedule').update();"/>
 
 
                                 <p:splitButton id="addButton2"
                                                value="Atualizar"
                                                icon="fa fa-sync-alt"
                                                actionListener="#{MBscheduleConsulta.addEvent}"
-                                               rendered="#{MBscheduleConsulta.viewInterleaveAddButton}"
+                                               rendered="false"
                                                update="messages,eventDialog1-Panel,eventDialog3-Panel"
                                                oncomplete="PF('myschedule').update();PF('eventDialog').hide();">
                                     <p:menuitem value="Confirmar presença do cliente &#160;&#160;"
@@ -261,6 +290,19 @@
                                                 icon="fa fa-calendar-check" />
                                 </p:splitButton>
 
+                                <p:commandButton
+                                    value="Atualizar"
+                                    icon="fa fa-sync-alt"
+                                    actionListener="#{MBscheduleConsulta.addEvent}"
+                                    rendered="#{MBscheduleConsulta.viewInterleaveAddButton}"
+                                    update="messages,eventDialog1-Panel,eventDialog3-Panel"
+                                    oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
+
+                                <p:commandButton 
+                                    value="Confirmar"
+                                    disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
+                                    actionListener="#{MBscheduleConsulta.buttonToLinkOwnerAndAnimal()}"
+                                    icon="fa fa-calendar-check"/>
                             </p:panelGrid>
                         </div>
                     </p:panel>
