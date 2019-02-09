@@ -98,6 +98,7 @@ public class MBscheduleConsulta extends AbstractBean {
                 lists.popularListSchedule();
                 lists.popularListEventID(geneScheduling);
                 getObjMessage().info("Consulta cancelada!", "O agendamento foi removido do calendário");
+                RequestContext.getCurrentInstance().execute("PF('eventDialog').hide();");
                 new SaveLogControl().saveLog(8, descriptionLog());
             }
         } catch (Exception e) {
