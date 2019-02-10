@@ -30,6 +30,7 @@
                             class="testeteste"
                             value="#{MBscheduleConsulta.geneScheduling.eventModel}"
                             widgetVar="myschedule"
+                            locale="pt"
                             timeZone="GMT-3">
 
                     <!-- adcionar novo evento no calendario -->
@@ -59,7 +60,7 @@
                           showEffect="clip"
                           hideEffect="clip" 
                           modal="true"
-                          focus="typeService-Input">
+                          focus="scheduleTime2-Input">
 
                     <p:panel id="eventDialog1-Panel"
                              style="margin: -11px -15px -17px -15px;
@@ -124,7 +125,7 @@
                                             requiredMessage="É necessário a data do agendamento!"
                                             placeholder="Data do agendamento*"
                                             pattern="dd/MM/yyyy"
-                                            locale="pt_BR"
+                                            locale="pt"
                                             timeZone="GMT-3">
                                     <p:tooltip id="schedulingDate-toolTip"
                                                for="schedulingDate-Input"
@@ -137,7 +138,7 @@
                                                  value="#{MBscheduleConsulta.timeConsultation}"
                                                  required="true"
                                                  requiredMessage="É necessário a hora do agendamento!"
-                                                 rendered="true"
+                                                 rendered="false"
                                                  placeholder="Hora do agendamento *">
                                     <f:selectItem itemLabel="Hora do agendamento *" itemValue="" noSelectionOption="true" />
                                     <f:selectItem itemLabel="08:00 AM" itemValue="08:00" />
@@ -145,8 +146,20 @@
                                     <f:selectItem itemLabel="10:00 AM" itemValue="10:00" />
 
                                 </p:selectOneMenu>
+
+
+                                <p:calendar 
+                                    id="scheduleTime2-Input" 
+                                    value="#{MBscheduleConsulta.timeConsultation}" 
+                                    required="true"
+                                    requiredMessage="É necessário a hora do agendamento!"
+                                    locale="pt"
+                                    pattern="HH:mm" 
+                                    timeOnly="true"
+                                    mask="99:99" 
+                                    placeholder="Hora do agendamento *"/>
                                 <p:tooltip id="scheduleTime-toolTip"
-                                           for="scheduleTime-Input"
+                                           for="scheduleTime2-Input"
                                            value="Hora do agendamento"
                                            position="top"/>
                             </p:panelGrid>

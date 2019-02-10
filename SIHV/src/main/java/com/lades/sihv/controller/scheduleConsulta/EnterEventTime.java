@@ -17,15 +17,27 @@ import java.util.Date;
  */
 public class EnterEventTime extends AbstractBean {
 
-    public void insertTimeMethod(GenericScheduling geneScheduling, String timeConsultation) {
+//    public void insertTimeMethod(GenericScheduling geneScheduling, String timeConsultation) {
+//        try {
+//            String text = new SimpleDateFormat().format(geneScheduling.getEvent().getStartDate());
+//            text = text.replace("00:00", "");
+//            text += timeConsultation;
+//            Date date = new SimpleDateFormat().parse(text);
+//            geneScheduling.getEvent().getStartDate().setTime(date.getTime());
+//        } catch (ParseException e) {
+//            System.out.println("BACK-END WARNING: ERRO public void insertTimeMethod(): " + e);
+//        }
+//    }
+    public void insertTimeMethod(GenericScheduling geneScheduling, Date timeConsultation) {
         try {
             String text = new SimpleDateFormat().format(geneScheduling.getEvent().getStartDate());
             text = text.replace("00:00", "");
-            text += timeConsultation;
+            String text2 = new SimpleDateFormat().format(timeConsultation);
+            text += text2.substring(9, 14);
             Date date = new SimpleDateFormat().parse(text);
             geneScheduling.getEvent().getStartDate().setTime(date.getTime());
         } catch (ParseException e) {
-            System.out.println("BACK-END WARNING: ERRO public void insertTimeMethod(): "+ e);
+            System.out.println("BACK-END WARNING: ERRO public void insertTimeMethod(): " + e);
         }
     }
 

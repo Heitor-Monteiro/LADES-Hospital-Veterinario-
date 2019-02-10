@@ -20,6 +20,7 @@ import com.lades.sihv.model.Scheduling;
 import com.lades.sihv.model.NewAnimalAndOwner;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultScheduleEvent;
@@ -36,7 +37,8 @@ public class MBscheduleConsulta extends AbstractBean {
     private Scheduling schedule;
     private NewAnimalAndOwner tempCliData;
     private ListsForConsultaScheduling lists;
-    private String timeConsultation;
+//    private String timeConsultation;
+    private Date timeConsultation;
     private String textButtonSchedule;
     private ListRenderedFields listRenderedFields;
 
@@ -114,7 +116,8 @@ public class MBscheduleConsulta extends AbstractBean {
             listRenderedFields.getListViewFields(2).setViewVariableBoolean(false);
             setViewClientPresence(false);
             textButtonSchedule = "Agendar";
-            timeConsultation = "";
+//            timeConsultation = "";
+            timeConsultation = null;
             schedule = new Scheduling();
             schedule.setTypeService("Nova consulta");
             tempCliData = new NewAnimalAndOwner();
@@ -133,8 +136,9 @@ public class MBscheduleConsulta extends AbstractBean {
             for (int i = 0; i < lists.getListEventID().size(); i++) {
                 if (lists.getListEventID().get(i).equals(geneScheduling.getEvent().getId())) {
                     schedule = lists.getListSchedule().get(i);
-                    timeConsultation = "" + schedule.getSchedulingDate();
-                    timeConsultation = timeConsultation.substring(11, 16);
+//                    timeConsultation = "" + schedule.getSchedulingDate();
+//                    timeConsultation = timeConsultation.substring(11, 16);
+                    timeConsultation = schedule.getSchedulingDate();
                     tempCliData = lists.getListTempCliData().get(i);
                     i = lists.getListEventID().size();
                 }
@@ -183,11 +187,18 @@ public class MBscheduleConsulta extends AbstractBean {
         return tempCliData;
     }
 
-    public String getTimeConsultation() {
+//    public String getTimeConsultation() {
+//        return timeConsultation;
+//    }
+//
+//    public void setTimeConsultation(String timeConsultation) {
+//        this.timeConsultation = timeConsultation;
+//    }
+    public Date getTimeConsultation() {
         return timeConsultation;
     }
 
-    public void setTimeConsultation(String timeConsultation) {
+    public void setTimeConsultation(Date timeConsultation) {
         this.timeConsultation = timeConsultation;
     }
 
