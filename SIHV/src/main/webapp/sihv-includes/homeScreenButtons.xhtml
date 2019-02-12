@@ -1,0 +1,275 @@
+<ui:component 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui" 
+    xmlns:h="http://xmlns.jcp.org/jsf/html" 
+    xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <div class="ui-fluid">
+        <p:panelGrid 
+            columns="4"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            style="margin-right: 40px;">
+
+
+            <h:link 
+                outcome="/sihv-telas/schedule-consulta_2"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #47AB6C 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-calendar-plus"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Agendar consulta" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/schedulesCanceled"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #e2634d 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-calendar-times"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Agendamentos cancelados" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/schedulesConfirmed"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #0894A1 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-calendar-check"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Agendamentos confirmados" 
+                                    style="font-size: 15px; 
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/consultationEntryControl"
+                disabled="false"
+                rendered="true" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #F2B134 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="c fa fa-donate"
+                               style="font-size: 40px;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Controle de fichas e entrada de caixa" 
+                                    style="font-size: 12.6px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/searchForAnimals"
+                disabled="false"
+                rendered="true" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #7888BF 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-dog"
+                               style="font-size: 40px; 
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Buscar animal pequeno" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/consulta-nova"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewMakeConsultations}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #F0A8CA 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="c fa fa-file-medical"
+                               style="font-size: 40px;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Nova consulta" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/new-xray"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewPendingRadiographs}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #9371c7 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-x-ray"
+                               style="font-size: 35px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Radiografias pendentes" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/registerUser"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewRegisterUser}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #7d7d7d 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-user-plus"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Novo usuário" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/editAndNewProcedure"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #ffb049 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fas fa-clipboard-list"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Registrar ou editar procedimentos" 
+                                    style="font-size: 12.3px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+
+
+            <h:link 
+                outcome="/sihv-telas/editProcedureCategory"
+                disabled="false"
+                rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}" >
+                <p:panel style="background-image: 
+                         linear-gradient(90deg, #b5668d 35%, 
+                         rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-pencil-alt"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Editar categorias de peso" 
+                                    style="font-size: 13.7px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </h:link>
+        </p:panelGrid> 
+    </div>
+</ui:component>

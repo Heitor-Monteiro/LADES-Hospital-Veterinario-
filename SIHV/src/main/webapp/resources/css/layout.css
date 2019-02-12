@@ -150,6 +150,9 @@ nav .menu-toggle:hover {
     margin: -60px 0px 0px 300px;
 }
 
+#tituloContente {
+    color: #5f666c!important;
+}
 
 @media (min-width: 960px) {
     #botao2{display: none;}
