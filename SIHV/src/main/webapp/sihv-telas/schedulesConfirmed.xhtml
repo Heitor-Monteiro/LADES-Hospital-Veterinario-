@@ -9,9 +9,8 @@
     <ui:composition template="/WEB-INF/template/layout.xhtml">
 
         <ui:define name="title">
-            <i class="fa fa-calendar-check">
-                <h:outputText value=" Agendamentos confirmados"></h:outputText>
-            </i>
+            <i class="fa fa-calendar-check"/>
+            <p:outputLabel value=" Agendamentos confirmados"/>
         </ui:define>
 
         <ui:define name="content">
@@ -116,7 +115,7 @@
                                 <h:outputText value="#{schedule.newAnimalAndOwner.proprietaryName}
                                               , CPF:#{schedule.cpf}, RG:#{schedule.rg}" />
                             </p:column>
-                            
+
                             <p:column class="cellTextCenter"
                                       headerText="RGHV"
                                       width="110">
