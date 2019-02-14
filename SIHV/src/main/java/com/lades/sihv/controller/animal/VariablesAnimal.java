@@ -32,6 +32,7 @@ public class VariablesAnimal implements Serializable {
 
     private OwnersHasAnimals ownersHasAnimals;
     private String tempRGHV;
+    private String oldRGHV;
     private Animals animal;
     private final List<TempListAnimals> tempListAnimals;
     private TempListAnimals selectTempListAnimals;
@@ -150,6 +151,14 @@ public class VariablesAnimal implements Serializable {
 
     public void setTempRGHV(String tempRGHV) {
         this.tempRGHV = tempRGHV;
+    }
+
+    public String getOldRGHV() {
+        return oldRGHV;
+    }
+
+    public void setOldRGHV(String oldRGHV) {
+        this.oldRGHV = oldRGHV;
     }
 
     public Animals getAnimal() {
