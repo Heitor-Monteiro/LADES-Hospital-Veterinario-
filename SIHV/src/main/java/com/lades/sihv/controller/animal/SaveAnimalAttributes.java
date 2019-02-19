@@ -22,6 +22,9 @@ public class SaveAnimalAttributes extends AbstractBean {
         try {
             varAnimal.getAnimal().setAnimalName(new BeautyText()
                     .Captalizador(varAnimal.getAnimal().getAnimalName()));
+            String nameAnimal = varAnimal.getAnimal().getAnimalName();
+            nameAnimal += " - " + varAnimal.getOldRGHV();
+            varAnimal.getAnimal().setAnimalName(nameAnimal);
             varAnimal.getAnimal().setAnimalAge(varAnimal.getAnimal().getAnimalAge().toLowerCase());
             varAnimal.getAnimal().setDeathAnimal(false);
             varAnimal.getAnimal().setRegistrationDate(getObjData());

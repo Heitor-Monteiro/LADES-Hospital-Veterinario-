@@ -598,6 +598,26 @@
                                     <p:outputLabel value=" " />
 
 
+                                    <p:outputLabel 
+                                        class="outputLabel-SIHV colorPri"
+                                        value="RGHV antiga:"
+                                        rendered="true"
+                                        for="oldRGHV-Input" />
+                                    <p:inputNumber 
+                                        id="oldRGHV-Input" 
+                                        value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.oldRGHV}" 
+                                        decimalSeparator=""
+                                        thousandSeparator=""
+                                        decimalPlaces="0"
+                                        minValue="0" 
+                                        maxValue="999999"
+                                        rendered="true" 
+                                        required="true" 
+                                        requiredMessage="Informe a RGHV antiga do animal!"/>
+                                    <p:message for="oldRGHV-Input"
+                                               rendered="true" />
+
+
                                     <p:outputLabel class="outputLabel-SIHV colorPri"
                                                    value="Nome do animal:"
                                                    rendered="true"
@@ -837,7 +857,8 @@
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="Nome do animal:" />
                                 <p:outputLabel class="LADES-default-Text"
-                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalName}" />
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalName} - 
+                                               #{MBlinkOwnerAndAnimal.animalControl.varAnimal.oldRGHV}" />
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
@@ -880,7 +901,7 @@
                                     <p:ajax onstart="PF('statusDialog').show()"
                                             onsuccess="PF('statusDialog').hide()" />
                                 </p:commandButton>
-                                
+
                                 <p:button value="Retornar para agenda"
                                           icon="fa fa-calendar-alt"
                                           rendered="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
