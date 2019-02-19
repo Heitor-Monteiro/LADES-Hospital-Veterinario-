@@ -69,7 +69,8 @@
                                     rendered="#{MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
                                     required="true"  
                                     requiredMessage="Informe a data inicial!" 
-                                    locale="de" navigator="true"  
+                                    locale="pt" 
+                                    navigator="true"  
                                     pattern="yyyy-mm-dd" />
 
                         <p:calendar id="textSearch2-calendar"
@@ -81,7 +82,8 @@
                                     rendered="#{MBsearchForAnimalSmall.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
                                     required="true"  
                                     requiredMessage="Informe a data final!" 
-                                    locale="de" navigator="true"  
+                                    locale="pt" 
+                                    navigator="true"  
                                     pattern="yyyy-mm-dd" /> 
                     </p:panelGrid>
 
@@ -145,7 +147,8 @@
                                       class="LADES-default-Text"
                                       filterBy="#{itemAnimal.rghv}"
                                       filterMatchMode="contains"
-                                      style="text-align: center;">
+                                      style="text-align: center;"
+                                      width="160px;">
                                 <h:outputText value="#{itemAnimal.rghv}" />
                             </p:column>
 
@@ -161,7 +164,8 @@
                                       class="LADES-default-Text"
                                       filterBy="#{itemAnimal.race.nameRaces}"
                                       filterMatchMode="contains"
-                                      style="text-align: center;">
+                                      style="text-align: center;"
+                                      width="200px;">
                                 <h:outputText value="#{itemAnimal.race.nameRaces}"/>
                             </p:column>
 
@@ -169,7 +173,8 @@
                                       class="LADES-default-Text"
                                       filterBy="#{itemAnimal.species.nameSpecies}"
                                       filterMatchMode="contains"
-                                      style="text-align: center;">
+                                      style="text-align: center;"
+                                      width="100px;">
                                 <h:outputText value="#{itemAnimal.species.nameSpecies}"/>
                             </p:column>
 
