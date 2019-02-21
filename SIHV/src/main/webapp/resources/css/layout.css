@@ -28,8 +28,9 @@ a {
 }
 /* BASE */
 
-
-
+.c {
+    color: #5f666c!important;
+}
 
 /*-------------------------Inicio da resposividade-------------------------*/
 .LADES-topbar{

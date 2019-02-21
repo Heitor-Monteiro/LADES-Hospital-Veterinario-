@@ -21,7 +21,8 @@
                 <!--<f:viewAction action="#{login.variaveisDeSessao.startWizardButtons()}" />-->
             </f:metadata>
 
-            <h:form>
+            <h:form 
+                id="form">
 
                 <p:growl id="growl"
                          showDetail="false"
@@ -117,14 +118,15 @@
                                  styleClass="panelgrid-noborder"
                                  columnClasses="ui-grid-col-12"
                                  style="margin-top: 20px;">
-                        <p:dataTable id="selectAnimals"
-                                     var="itemAnimal"
-                                     value="#{MBsearchForAnimalSmall.animalSearchEngine.listAnimal}"
-                                     filteredValue="#{MBsearchForAnimalSmall.animalSearchEngine.filterAnimal}"
-                                     rendered="#{MBsearchForAnimalSmall.animalSearchEngine.viewTablelistAnimals}"
-                                     reflow="false"
-                                     paginator="true"
-                                     rows="10">
+                        <p:dataTable 
+                            id="selectAnimals"
+                            var="itemAnimal"
+                            value="#{MBsearchForAnimalSmall.animalSearchEngine.listAnimal}"
+                            filteredValue="#{MBsearchForAnimalSmall.animalSearchEngine.filterAnimal}"
+                            rendered="#{MBsearchForAnimalSmall.animalSearchEngine.viewTablelistAnimals}"
+                            reflow="false"
+                            paginator="true"
+                            rows="10">
 
                             <f:facet name="header">
                                 Resultado da pesquisa
@@ -183,8 +185,30 @@
                                       style="text-align: center;"
                                       filterBy="#{itemAnimal.deathAnimal}"
                                       filterMatchMode="contains"
-                                      width="80px;">
-                                <h:outputText value="#{itemAnimal.deathAnimal}"/>
+                                      width="100px;">
+                                <h:outputText 
+                                    rendered="false"
+                                    value="#{itemAnimal.deathAnimal}&#160;&#160;"/>
+                                <p:commandLink 
+                                    id="declareDeath"
+                                    disabled="false"
+                                    rendered="true"
+                                    onclick="PF('dlg1').show();"
+                                    action="#{MBsearchForAnimalSmall.
+                                              declareDeathOfSmallAnimal.
+                                              methodToSelectSmallAnimalStatus(itemAnimal)}"
+                                    update=":form:declareDeath-panelGrid">
+                                    <h:outputText 
+                                        class="c"
+                                        rendered="true"
+                                        value="#{itemAnimal.deathAnimal}&#160;&#160;"/>
+                                    <i class="c fas fa-pencil-alt"/>
+                                </p:commandLink>
+                                <p:tooltip 
+                                    id="toolTipDeclareDeath" 
+                                    for="declareDeath" 
+                                    value="Declarar óbito de #{itemAnimal.animal.animalName}" 
+                                    position="left"/>
                             </p:column>
 
                             <p:rowExpansion>
@@ -372,6 +396,43 @@
                         </p:dataTable>
                     </p:panelGrid>
                 </div>
+
+                <p:dialog 
+                    header="Status de óbito do animal"
+                    widgetVar="dlg1"
+                    modal="true"
+                    responsive="true">
+                    <div class="ui-fluid">
+                        <p:panelGrid 
+                            id="declareDeath-panelGrid"
+                            columns="2"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-6,ui-grid-col-6">
+                            <p:outputLabel 
+                                class="colorPri outputLabel2-SIHV"
+                                value="Nome do animal: "/> 
+                            <p:outputLabel 
+                                class="LADES-default-Text outputLabel2-SIHV"
+                                value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.animalName}"/>
+
+                            <p:outputLabel 
+                                class="colorPri outputLabel2-SIHV"
+                                value="Declarar óbito do animal?: "/> 
+                            <p:selectOneRadio
+                                class="LADES-default-Text"
+                                value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.deathAnimal}">
+                                <f:selectItem itemLabel="Não" itemValue="false" />
+                                <f:selectItem itemLabel="Sim" itemValue="true" />
+                                <p:ajax update="tableAnimals"
+                                        listener="#{MBsearchForAnimalSmall.
+                                                    declareDeathOfSmallAnimal.
+                                                    methodToUpdateDeathData(MBsearchForAnimalSmall.
+                                                    animalSearchEngine.listAnimal)}" />
+                            </p:selectOneRadio>
+                        </p:panelGrid>
+                    </div>
+                </p:dialog>
             </h:form>
 
         </ui:define>
