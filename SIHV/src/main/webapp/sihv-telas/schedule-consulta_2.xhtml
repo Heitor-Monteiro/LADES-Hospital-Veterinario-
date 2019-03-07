@@ -68,6 +68,16 @@
                              border: none;" >
 
                         <div class="ui-g ui-fluid" >
+                            <div class="ui-g-12 ui-md-12">
+                                <p:outputLabel 
+                                    class="outputLabel-SIHV colorPri"
+                                    value="Código de agendamento.: "
+                                    rendered="#{MBscheduleConsulta.schedule.pkSchedule != null}" />
+                                <p:outputLabel 
+                                    class="outputLabel-SIHV LADES-default-Text"
+                                    value="#{MBscheduleConsulta.schedule.pkSchedule}"
+                                    rendered="#{MBscheduleConsulta.schedule.pkSchedule != null}" />
+                            </div>
                             <div class="ui-g-3 ui-md-3">
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="Procedimento: "
