@@ -6,17 +6,12 @@
 package com.lades.sihv.controller.animal;
 
 import com.lades.sihv.bean.AbstractBean;
-import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.model.Animals;
-import com.lades.sihv.model.Owners;
 import com.lades.sihv.model.OwnersHasAnimals;
 import com.lades.sihv.model.People;
 import com.lades.sihv.model.Races;
 import com.lades.sihv.model.SmallAnimal;
 import com.lades.sihv.model.Species;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,9 +28,11 @@ public class SearchRegisteredAnimal extends AbstractBean {
                         .getAnimals().getPkAnimal(), obj.getAnimals().getPkAnimal())) {
                     varAnimal.setTempRGHV(varAnimal.getSelectTempListAnimals().getTempRGHV());
                     varAnimal.setAnimal(varAnimal.getSelectTempListAnimals().getAnimals());
+                    varAnimal.setOldRGHV(filterRghvOfAnimalName(varAnimal.getAnimal().getAnimalName()));
                     varAnimal.setSmallAnimal(varAnimal.getSelectTempListAnimals().getSmallAnimal());
                     varAnimal.setSelectObjSpecies(varAnimal.getSelectTempListAnimals().getSpecie());
                     varAnimal.setSelectObjRaces(varAnimal.getSelectTempListAnimals().getRace());
+                    varAnimal.setSelectTextRaces(varAnimal.getSelectTempListAnimals().getRace().getNameRaces());
                     varAnimal.setOwnersHasAnimals(varAnimal.getSelectTempListAnimals().getOwnersHasAnimals());
                     break;
                 }
@@ -43,6 +40,10 @@ public class SearchRegisteredAnimal extends AbstractBean {
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void methosSelectSmallAnimal():" + e);
         }
+    }
+
+    private String filterRghvOfAnimalName(String nameAnimal) {
+        return nameAnimal.replaceAll("[^1234567890]", "");
     }
 
     public void methodSearchRegisteredAnimal(People person, VariablesAnimal varAnimal) {

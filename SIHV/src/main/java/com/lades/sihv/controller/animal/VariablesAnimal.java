@@ -186,7 +186,6 @@ public class VariablesAnimal implements Serializable {
     }
 
     public void setSelectTempListAnimals(TempListAnimals selectTempListAnimals) {
-        System.out.println("►►►►►►►►►►►►► SET utilizado");
         if (selectTempListAnimals != null) {
             this.selectTempListAnimals = selectTempListAnimals;
             if (selectTempListAnimals.getAnimals().getPkAnimal() != null) {

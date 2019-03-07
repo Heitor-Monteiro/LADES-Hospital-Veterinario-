@@ -12,6 +12,7 @@ import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.RenderedFields;
 import com.lades.sihv.controller.address.AddressControl;
 import com.lades.sihv.controller.animal.AnimalControl;
+import com.lades.sihv.controller.generatePdf.OwnerAndAnimalData;
 import com.lades.sihv.controller.logBook.SaveLogControl;
 import com.lades.sihv.controller.person.PhonesControl;
 import com.lades.sihv.controller.person.SaveVariablesPerson;
@@ -39,6 +40,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
     public AddressControl addressControl;
     private PhonesControl phonesControl;
     private AnimalControl animalControl;
+    private OwnerAndAnimalData ownerAndAnimalData;
 
     private ListRenderedFields listRenderedFields;
 
@@ -64,6 +66,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
             addressControl = new AddressControl();
             addressControl.loadLists();
             loadData();
+            ownerAndAnimalData = new OwnerAndAnimalData();
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void init(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBlinkOwnerAndAnimal > init", e.toString());
@@ -125,7 +128,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
                 if (verifyPersonDocument.isCheckCPF()
                         && verifyPersonDocument.isNewCPF()) {
                     savePerson.saveCPF(varPerson);
-                    cpfRg = "CPF:"+varPerson.getObjCpf().getCpf();
+                    cpfRg = "CPF:" + varPerson.getObjCpf().getCpf();
                 }
 
                 if (verifyPersonDocument.isCheckRG()
@@ -165,6 +168,12 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
         }
     }
 
+    public void printOwnerAndAnimalData() {
+        ownerAndAnimalData.printOwnerAndAnimalData(schedule, varPerson,
+                addressControl, animalControl.getVarAnimal(),
+                phonesControl);
+    }
+
     //-GETs e SETs--------------------------------------------------------------
     public VariablesPerson getVarPerson() {
         return varPerson;
@@ -193,5 +202,4 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
     public AnimalControl getAnimalControl() {
         return animalControl;
     }
-
 }

@@ -11,6 +11,7 @@ import com.lades.sihv.controller.Tools;
 import com.lades.sihv.controller.FacesMessages;
 import com.lades.sihv.controller.VariaveisDeSessao;
 import com.lades.sihv.controller.DialogTools;
+import com.lades.sihv.controller.generatePdf.GeneratorAndSendOfPDF;
 import com.lades.sihv.controller.powers.SeekUserPowers;
 import java.io.Serializable;
 import java.util.Date;
@@ -82,5 +83,14 @@ public abstract class AbstractBean implements Serializable {
             seekUserPowers = new SeekUserPowers(getVariaveisDeSessao());
         }
         return seekUserPowers;
+    }
+
+    private GeneratorAndSendOfPDF generatorAndSendOfPDF;
+
+    public GeneratorAndSendOfPDF getGeneratorAndSendOfPDF() {
+        if (generatorAndSendOfPDF == null) {
+            generatorAndSendOfPDF = new GeneratorAndSendOfPDF();
+        }
+        return generatorAndSendOfPDF;
     }
 }

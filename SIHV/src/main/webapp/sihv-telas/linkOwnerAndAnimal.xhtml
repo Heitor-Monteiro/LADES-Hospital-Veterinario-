@@ -21,7 +21,8 @@
             </f:metadata>
 
 
-            <h:form>
+            <h:form 
+                id="form">
                 <p:growl id="growl" 
                          sticky="false"
                          showDetail="true" 
@@ -664,20 +665,22 @@
                                              columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3"
                                              rendered="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.statusNewAnimal.viewVariableBoolean}">
 
-                                    <p:outputLabel class="outputLabel-SIHV colorPri"
-                                                   value="Espécie:"
-                                                   for="species-Input" />                             
-                                    <p:selectOneMenu id="species-Input"
-                                                     value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTextSpecies}"
-                                                     disabled="false"
-                                                     required="true"
-                                                     requiredMessage="selecione uma espécie!">
-                                        <f:selectItem itemLabel="Selecione a Espécie" itemValue="" noSelectionOption="true" />
+                                    <p:outputLabel 
+                                        class="outputLabel-SIHV colorPri"
+                                        value="Espécie:"
+                                        for="species-Input" />                             
+                                    <p:selectOneButton 
+                                        id="species-Input"
+                                        value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTextSpecies}"
+                                        disabled="false"
+                                        required="true"
+                                        requiredMessage="selecione uma espécie!">
+                                        <!--<f:selectItem itemLabel="Selecione a Espécie" itemValue="" noSelectionOption="true" />-->
                                         <f:selectItems value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.listTextSpecies}" var="species"
                                                        itemLabel="#{species}" itemValue="#{species}" />
                                         <p:ajax update="selectTextRaces-Input" 
                                                 listener="#{MBlinkOwnerAndAnimal.animalControl.methodSearchForPossibleRaces()}"/>
-                                    </p:selectOneMenu>
+                                    </p:selectOneButton>
                                     <p:message for="species-Input" />
 
 
@@ -708,11 +711,13 @@
                     <p:tab id="teste-tab"
                            title="4"
                            rendered="true"  >
-                        <p:panel>
+                        <p:panel 
+                            id="printData">
 
-                            <p:panel header="Dados do Proprietário" 
-                                     style="border: none;
-                                     background: none;" />
+                            <p:panel 
+                                header="Dados do Proprietário" 
+                                style="border: none;
+                                background: none;" />
 
 
                             <p:panelGrid id="viewPerson-panelGrid"
@@ -851,14 +856,20 @@
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="RGHV:" />
                                 <p:outputLabel class="LADES-default-Text"
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.oldRGHV}" />
+
+                                <p:outputLabel class="outputLabel-SIHV colorPri"
+                                               value="RGHV do sistema:" />
+                                <p:outputLabel class="LADES-default-Text"
                                                value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.tempRGHV}" />
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="Nome do animal:" />
                                 <p:outputLabel class="LADES-default-Text"
-                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.animal.animalName} - 
-                                               #{MBlinkOwnerAndAnimal.animalControl.varAnimal.oldRGHV}" />
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.
+                                                        varAnimal.animal.animalName.
+                                                        replaceAll('[^QWERTYUIOPASDFGHJKLZXCVBNMqwertyuiopasdfghjklzxcvbnm ]', '')}"/>
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
@@ -874,7 +885,7 @@
 
 
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
-                                               value="Especie:" />
+                                               value="Espécie:" />
                                 <p:outputLabel class="LADES-default-Text" 
                                                value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectObjSpecies.nameSpecies}"/>
 
@@ -882,33 +893,41 @@
                                 <p:outputLabel class="outputLabel-SIHV colorPri"
                                                value="Raça:" />
                                 <p:outputLabel class="LADES-default-Text" 
-                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectObjRaces.nameRaces}"/>
+                                               value="#{MBlinkOwnerAndAnimal.animalControl.varAnimal.selectTextRaces}"/>
                             </p:panelGrid>
 
-                            <p:panelGrid id="testehchbdcbh"
-                                         columns="3"
-                                         layout="grid"
-                                         styleClass="panelgrid-noborder"
-                                         columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <div class="ui-fluid">
+                                <p:panelGrid id="testehchbdcbh"
+                                             columns="3"
+                                             layout="grid"
+                                             styleClass="panelgrid-noborder"
+                                             columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                                    <p:commandButton 
+                                        action="#{MBlinkOwnerAndAnimal.salvarTeste()}"
+                                        value="Confirmar consulta"
+                                        icon="fa fa-check"
+                                        disabled="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
+                                        update="growl,testehchbdcbh">
+                                        <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
+                                        Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
+                                        <p:ajax onstart="PF('statusDialog').show()"
+                                                onsuccess="PF('statusDialog').hide()" />
+                                    </p:commandButton>
 
-                                <p:commandButton action="#{MBlinkOwnerAndAnimal.salvarTeste()}"
-                                                 value="Confirmar consulta"
-                                                 icon="fa fa-check"
-                                                 disabled="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
-                                                 update="growl,testehchbdcbh">
-                                    <!--Ajax que controla o dialogo de processamento em andamento, arquivo "processando_dialog.xhtml" é chamado no layout 
-                                    Ajax that controls the processing dialog in progress, file "processando_dialog.xhtml" is called in the layout-->
-                                    <p:ajax onstart="PF('statusDialog').show()"
-                                            onsuccess="PF('statusDialog').hide()" />
-                                </p:commandButton>
+                                    <p:commandButton 
+                                        action="#{MBlinkOwnerAndAnimal.printOwnerAndAnimalData()}"
+                                        rendered="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
+                                        icon="fa fa-print"
+                                        ajax="false"
+                                        value="Imprimir"/>
 
-                                <p:button value="Retornar para agenda"
-                                          icon="fa fa-calendar-alt"
-                                          rendered="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
-                                          outcome="/sihv-telas/schedule-consulta_2" />
-
-                            </p:panelGrid>
-
+                                    <p:button 
+                                        value="Retornar para agenda"
+                                        icon="fa fa-calendar-alt"
+                                        rendered="#{MBlinkOwnerAndAnimal.intercalateSaveButtonsAndReturnToCalendar.viewVariableBoolean}"
+                                        outcome="/sihv-telas/schedule-consulta_2" />
+                                </p:panelGrid>
+                            </div>
                         </p:panel>
                     </p:tab>
 
