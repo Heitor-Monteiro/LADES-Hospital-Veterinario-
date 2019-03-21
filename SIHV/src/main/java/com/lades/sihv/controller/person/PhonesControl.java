@@ -22,9 +22,15 @@ public class PhonesControl extends AbstractBean {
     private Phones phone1;
     private Phones phone2;
     private Phones phone3;
-    private final ListRenderedFields listRenderedFields;
+    private ListRenderedFields listRenderedFields;
 
     public PhonesControl() {
+        instantiateObjects();
+    }
+
+    public final void instantiateObjects() {
+        System.out.println("►►►►►►►►►►►►► "
+                + "PhonesControl > public void instantiateObjects()");
         phone1 = new Phones();
         phone2 = new Phones();
         phone3 = new Phones();
@@ -33,13 +39,17 @@ public class PhonesControl extends AbstractBean {
     }
 
     public void searchPhones(People person) {
+        System.out.println("►►►►►►►►►►►►► "
+                + "PhonesControl > public void searchPhones()");
         try {
-            List<Phones> listPhones = getDaoGenerico().list("select phone from Phones phone, People p\n"
-                    + "where \n"
-                    + "p.pkPerson=phone.people.pkPerson and \n"
-                    + "p.pkPerson='" + person.getPkPerson() + "' ");
+            List<Phones> listPhones = getDaoGenerico()
+                    .list("select phone from Phones phone, People p\n"
+                            + "where \n"
+                            + "p.pkPerson=phone.people.pkPerson and \n"
+                            + "p.pkPerson='" + person.getPkPerson() + "' ");
             if (!listPhones.isEmpty()) {
                 if (listPhones.size() <= 3) {
+                    instantiateObjects();
                     switch (listPhones.size()) {
                         case 1:
                             phone1 = (Phones) listPhones.get(0);
@@ -47,41 +57,30 @@ public class PhonesControl extends AbstractBean {
                         case 2:
                             phone1 = (Phones) listPhones.get(0);
                             phone2 = (Phones) listPhones.get(1);
+                            listRenderedFields.getListViewFields(0)
+                                    .setViewVariableBoolean(true);
                             break;
                         default:
                             phone1 = (Phones) listPhones.get(0);
                             phone2 = (Phones) listPhones.get(1);
                             phone3 = (Phones) listPhones.get(2);
+                            listRenderedFields.getListViewFields(0)
+                                    .setViewVariableBoolean(true);
+                            listRenderedFields.getListViewFields(1)
+                                    .setViewVariableBoolean(true);
                             break;
                     }
                 }
             }
         } catch (Exception e) {
-            System.out.println("►►►►►►►►►►►►► ERRO public void searchPhones(): " + e.toString());
+            System.err.println("►►►►►►►►►►►►► ERRO public void searchPhones(): " + e.toString());
             new ModuleToCollectError().erroPage500("PhonesControl > searchPhones", e.toString());
         }
     }
 
-//    public void identifyPhoneExist(People person, NewAnimalAndOwner tempCliData) {
-//        searchPhones(person);
-//        List<Phones> listPhones = new ArrayList<>();
-//        List<String> tempPhones = new ArrayList<>();
-//        listPhones.add(phone1);
-//        listPhones.add(phone2);
-//        listPhones.add(phone3);
-//        tempPhones.add(tempCliData.getProprietaryPhone1());
-//        tempPhones.add(tempCliData.getProprietaryPhone2());
-//        tempPhones.add(tempCliData.getProprietaryPhone3());
-//        
-//        for (Phones phone : listPhones) {
-//            for (String tempPhone : tempPhones) {
-//                if (phone.getNumberPhone().equals(tempPhone)) {
-//                    
-//                }
-//            }
-//        }
-//    }
     public void coletarPhoneTemp(NewAnimalAndOwner tempCliData) {
+        System.out.println("►►►►►►►►►►►►► "
+                + "PhonesControl > public void coletarPhoneTemp()");
         try {
             phone1.setNumberPhone(tempCliData.getProprietaryPhone1());
             if (tempCliData.getProprietaryPhone2() != null) {
@@ -97,25 +96,39 @@ public class PhonesControl extends AbstractBean {
                 }
             }
         } catch (Exception e) {
-            System.out.println("►►►►►►►►►►►►► ERRO public void coletarPhoneTemp(): " + e.toString());
+            System.err.println("►►►►►►►►►►►►► ERRO public void coletarPhoneTemp(): " + e.toString());
             new ModuleToCollectError().erroPage500("PhonesControl > coletarPhoneTemp", e.toString());
         }
     }
 
     public void savePhones(People person) {
+        System.out.println("►►►►►►►►►►►►► "
+                + "PhonesControl > public void savePhones()");
         try {
             phone1.setPeople(person);
-            getDaoGenerico().save(phone1);
+            if (phone1.getPkPhone() != null) {
+                getDaoGenerico().update(phone1);
+            } else {
+                getDaoGenerico().save(phone1);
+            }
             if (listRenderedFields.getListViewFields(0).isViewVariableBoolean()) {
                 phone2.setPeople(person);
-                getDaoGenerico().save(phone2);
+                if (phone2.getPkPhone() != null) {
+                    getDaoGenerico().update(phone2);
+                } else {
+                    getDaoGenerico().save(phone2);
+                }
             }
             if (listRenderedFields.getListViewFields(1).isViewVariableBoolean()) {
                 phone3.setPeople(person);
-                getDaoGenerico().save(phone3);
+                if (phone3.getPkPhone() != null) {
+                    getDaoGenerico().update(phone3);
+                } else {
+                    getDaoGenerico().save(phone3);
+                }
             }
         } catch (Exception e) {
-            System.out.println("►►►►►►►►►►►►► ERRO public void savePhones(): " + e.toString());
+            System.err.println("►►►►►►►►►►►►► ERRO public void savePhones(): " + e.toString());
             new ModuleToCollectError().erroPage500("PhonesControl > savePhones", e.toString());
         }
     }

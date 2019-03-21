@@ -80,7 +80,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="false">
-                    <a class="itemMenu" onclick="dropdownMenu('demoAcc','icoMenu1')" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('demoAcc', 'icoMenu1')" href="#">
                         <i class="fa fa-pencil-alt"></i>
                         <p:outputLabel value="Cadastro"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -110,7 +110,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterUser}">
-                    <a class="itemMenu" onclick="dropdownMenu('demoDrop','icoMenu2')" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('demoDrop', 'icoMenu2')" href="#">
                         <i class="fa fa-user-tie"></i> 
                         <p:outputLabel value="Usuário do sistema"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -127,6 +127,14 @@
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Novo usuário" />
                     </p:link>
+
+                    <p:link class="itemMenu itemMenuText"
+                            rendered="#{login.objSeekUserPowers.viewRegisterUser}"
+                            outcome="/sihv-telas/editUserData" >
+                        <i class="fa fa-user-edit"
+                           style="margin: 0px 15px 0px 15px;"></i>
+                        <p:outputLabel value="Editar dados de usuário" />
+                    </p:link>
                 </div>
             </div>
 
@@ -137,7 +145,7 @@
                    style="margin: 0px 18px 0px 0px;"></i>
                 <p:outputLabel value="Controle de fichas e entrada de &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;caixa" />
             </p:link>
-            
+
             <p:link class="itemMenu"
                     rendered="#{login.objSeekUserPowers.viewMakeConsultations}"
                     outcome="/sihv-telas/consulta-nova" >
@@ -156,7 +164,7 @@
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}">
-                    <a class="itemMenu" onclick="dropdownMenu('menu33','icoMenu3')" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('menu33', 'icoMenu3')" href="#">
                         <i class="fa fa-calendar-alt"></i>
                         <p:outputLabel value="Agenda"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -191,10 +199,10 @@
                     </p:link>
                 </div>
             </div>
-            
+
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}">
-                    <a class="itemMenu" onclick="dropdownMenu('menuProcedure','icoMenuProcedure')" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('menuProcedure', 'icoMenuProcedure')" href="#">
                         <i class="fas fa-notes-medical"></i>
                         <p:outputLabel value="procedimento do HV"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -211,20 +219,20 @@
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Editar categorias de peso" />
                     </p:link>
-                    
+
                     <p:link class="itemMenu itemMenuText"
                             rendered="true"
                             outcome="/sihv-telas/editAndNewProcedure" >
                         <i class="fas fa-clipboard-list"
                            style="margin: 0px 15px 0px 15px;"></i>
-                           <p:outputLabel value="Registrar ou editar &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;procedimentos" />
+                        <p:outputLabel value="Registrar ou editar &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;procedimentos" />
                     </p:link>            
                 </div>
             </div>
-            
+
             <div class="w3-accordion">
                 <p:outputLabel rendered="false">
-                    <a class="itemMenu" onclick="dropdownMenu('menu34','icoMenu4')" href="#">
+                    <a class="itemMenu" onclick="dropdownMenu('menu34', 'icoMenu4')" href="#">
                         <i class="fa fa-search"></i>
                         <p:outputLabel value="Buscar cliente"
                                        style="margin: 0px 0px 0px 18px;" />
@@ -251,7 +259,7 @@
                     </p:link>
                 </div>
             </div>
-            
+
             <p:link class="itemMenu"
                     rendered="true"
                     outcome="/sihv-telas/searchForAnimals" >

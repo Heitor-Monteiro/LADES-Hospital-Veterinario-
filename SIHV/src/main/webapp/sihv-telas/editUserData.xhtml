@@ -1,0 +1,804 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"   
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+
+        <ui:define name="title"  >
+            <i class="fa fa-user-edit"/>
+            <p:outputLabel value=" Editar dados de usuário"/>
+        </ui:define>
+
+        <ui:define name="content">
+
+            <f:metadata>
+            </f:metadata>
+
+            <h:form id="form">
+                <p:growl 
+                    id="growl" 
+                    sticky="false" 
+                    showDetail="true"
+                    life="10000"/>
+
+                <div class="ui-fluid">
+                    <p:panelGrid
+                        id="selectUsers"
+                        columns="2"
+                        layout="grid"
+                        styleClass="panelgrid-noborder"
+                        columnClasses="ui-grid-col-3,ui-grid-col-3"
+                        style="margin-top: 20px;">
+                        <p:outputLabel 
+                            class="outputLabel-SIHV colorPri "
+                            value="Selecione o usuário: "/>
+                        <p:selectOneMenu 
+                            id="itemSearch-Input"
+                            class="c"
+                            value="#{MBeditUserData.varPerson.person}"
+                            converter="PeopleConverter"
+                            required="true"
+                            requiredMessage="Selecione o tipo de pesquisa!">
+                            <f:selectItem itemLabel=" --- " itemValue="" noSelectionOption="false"  />
+                            <f:selectItems 
+                                value="#{MBeditUserData.listPersons}" 
+                                var="person"
+                                itemLabel="#{person.namePerson}" 
+                                itemValue="#{person}" />
+                            <p:ajax 
+                                update="form"
+                                listener="#{MBeditUserData.returnUserRegistration()}"  />
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+
+
+                    <p:panel 
+                        id="formPersonUser" 
+                        header="Dados cadastrais" 
+                        toggleable="true" 
+                        closable="false" 
+                        toggleSpeed="500" 
+                        closeSpeed="500" 
+                        style="margin-top:20px"
+                        rendered="#{MBeditUserData.varPerson.person.pkPerson != null}">
+
+
+                        <p:panelGrid 
+                            id="searchUserData"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3"
+                            style="margin-top: 6px;">
+
+
+                            <p:outputLabel 
+                                id="cpf-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="CPF:"
+                                rendered="true"
+                                for="cpf-Input"/>                                
+                            <p:inputMask 
+                                id="cpf-Input"
+                                mask="999.999.999-99"
+                                rendered="true"
+                                value="#{MBeditUserData.varPerson.objCpf.cpf}" 
+                                autoClear="false"
+                                title="Ex.: 999.999.999-99" 
+                                required="true" 
+                                requiredMessage="Informe o campo CPF!">
+                                <p:ajax 
+                                    event="blur"
+                                    update="growl,rg-Input,selectUF1-Input,cpf-Input"
+                                    listener="#{MBeditUserData.checkDocumentPhysicalPersonCPF()}"
+                                    delay="0" />
+                            </p:inputMask>
+                            <p:message 
+                                id="cpf-Messager"
+                                for="cpf-Input"
+                                rendered="true" />
+
+
+                            <p:outputLabel 
+                                id="rg-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="RG:"
+                                rendered="true"
+                                for="rg-Input" />                              
+                            <p:inputText 
+                                id="rg-Input"
+                                value="#{MBeditUserData.varPerson.objRg.rg}" 
+                                maxlength="15"
+                                disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                rendered="true"
+                                required="true" 
+                                requiredMessage="Informe o campo RG!">
+                                <p:ajax 
+                                    event="keyup"
+                                    update="growl,cpf-Input,rg-Input"
+                                    listener="#{MBeditUserData.checkDocumentPhysicalPersonRG()}"
+                                    delay="1000" />
+                            </p:inputText>
+                            <p:message 
+                                id="rg-Messager"
+                                for="rg-Input"
+                                rendered="true" />
+
+
+                            <p:outputLabel 
+                                id="selectUF1-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="UF:"
+                                rendered="true"
+                                for="selectUF1-Input" />                             
+                            <p:selectOneMenu 
+                                id="selectUF1-Input"
+                                value="#{MBeditUserData.addressControl.var.selectUF}"
+                                converter="federationUnityConverter"
+                                disabled="false"
+                                rendered="true"
+                                required="true"
+                                requiredMessage="selecione uma opção UF!">
+                                <f:selectItem itemLabel="Selecione o estado" itemValue="" />
+                                <f:selectItems 
+                                    value="#{MBeditUserData.addressControl.var.listUF}" var="uf"
+                                    itemLabel="#{uf.uf} - #{uf.fullName}" itemValue="#{uf}" />
+                                <p:ajax update="rg-Input,city-panelGrid, neighborhood-panelGrid, street-panelGrid, house-panelGrid"
+                                        listener="#{MBeditUserData.addressControl.enableListCitys()}"/>
+                            </p:selectOneMenu>
+                            <p:message 
+                                for="selectUF1-Input"
+                                rendered="true"/>
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="city-panelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Cidade:"
+                                for="selectCity-Input" />
+                            <p:selectOneMenu 
+                                id="selectCity-Input"
+                                class="LADES-default-Text"
+                                value="#{MBeditUserData.addressControl.var.selectCity}"
+                                placeholder="Selecione uma cidade"
+                                editable="true"
+                                filter="true"
+                                filterMatchMode="startsWith"
+                                disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                required="true"
+                                requiredMessage="selecione uma opção de Cidade!">
+                                <f:selectItems 
+                                    value="#{MBeditUserData.addressControl.var.listCity}" var="city"
+                                    itemLabel="#{city}" itemValue="#{city}" />
+                                <p:ajax update="growl, neighborhood-panelGrid, street-panelGrid" 
+                                        listener="#{MBeditUserData.addressControl.enableListNeighborhood()}"/>
+                            </p:selectOneMenu>
+                            <p:message for="selectCity-Input" />
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="neighborhood-panelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Bairro:"
+                                for="selectNeighborhood-Input" />
+                            <p:selectOneMenu 
+                                id="selectNeighborhood-Input"
+                                value="#{MBeditUserData.addressControl.var.selectNeighborhood}"
+                                placeholder="Selecione o bairro"
+                                editable="true"
+                                filter="true"
+                                filterMatchMode="startsWith"
+                                disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                required="true"
+                                requiredMessage="selecione uma opção de Bairro!">
+                                <f:selectItems value="#{MBeditUserData.addressControl.var.listNeighborhood}" var="neighborhood"
+                                               itemLabel="#{neighborhood}" itemValue="#{neighborhood}" />
+                                <p:ajax update="growl, street-panelGrid" 
+                                        listener="#{MBeditUserData.addressControl.enableListStreet()}"/>
+                            </p:selectOneMenu>
+                            <p:message for="selectNeighborhood-Input" />
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="street-panelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Rua:"
+                                           for="selectStreet-Input" />
+                            <p:selectOneMenu id="selectStreet-Input"
+                                             value="#{MBeditUserData.addressControl.var.selectStreet}"
+                                             placeholder="Selecione a rua"
+                                             editable="true"
+                                             filter="true"
+                                             filterMatchMode="startsWith"
+                                             disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                             required="true"
+                                             requiredMessage="selecione uma opção de Rua!">
+                                <f:selectItems value="#{MBeditUserData.addressControl.var.listStreet}" var="street"
+                                               itemLabel="#{street}" itemValue="#{street}" />
+                                <p:ajax update="growl" 
+                                        listener="#{MBeditUserData.addressControl.finalizeAddressSelection()}"/>
+                            </p:selectOneMenu>
+                            <p:message for="selectStreet-Input" />
+                        </p:panelGrid>
+
+
+                        <p:panelGrid id="house-panelGrid"
+                                     columns="3"
+                                     layout="grid"
+                                     styleClass="panelgrid-noborder"
+                                     columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="CEP:"
+                                           for="numberCep-Input" />
+                            <p:inputMask id="numberCep-Input"
+                                         mask="99999-999"
+                                         value="#{MBeditUserData.addressControl.var.house.numberCep}" 
+                                         disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                         rendered="true"
+                                         required="true" 
+                                         requiredMessage="Informe o campo CEP!" />
+                            <p:message for="numberCep-Input" />
+
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Numero da casa:"
+                                           for="numberHouse-Input" />
+                            <p:inputText id="numberHouse-Input"
+                                         value="#{MBeditUserData.addressControl.var.house.numberHouse}"
+                                         maxlength="9"
+                                         disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                         required="true"
+                                         requiredMessage="Informe o número da casa!" />
+                            <p:message for="numberHouse-Input" />
+
+                            <p:outputLabel class="outputLabel-SIHV colorPri"
+                                           value="Complemento:" />
+                            <p:inputText id="complement-Input"
+                                         value="#{MBeditUserData.addressControl.var.house.complement}"
+                                         maxlength="100"
+                                         disabled="#{MBeditUserData.addressControl.var.confirmSelectUF}"
+                                         required="false"
+                                         title="Endereço complementar"/>
+                            <p:message for="complement-Input" />
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="formPerson-panelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Nome:"
+                                rendered="true"
+                                for="namePerson-Input" />
+                            <p:inputText 
+                                id="namePerson-Input" 
+                                value="#{MBeditUserData.varPerson.person.namePerson}" 
+                                title="#{label_SIHV.CreatePessoaTitle_nome}"
+                                maxlength="100"
+                                rendered="true"
+                                required="true" 
+                                requiredMessage="Informe o campo nome!"/>
+                            <p:message for="namePerson-Input"
+                                       rendered="true" />
+
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Sexo:"
+                                rendered="true"
+                                for="gender-Input" />
+                            <p:selectOneButton 
+                                id="gender-Input"
+                                value="#{MBeditUserData.varPerson.physicalPerson.gender}"
+                                rendered="true"
+                                required="true"
+                                requiredMessage="Informe o campo sexo!">
+                                <f:selectItem itemLabel="M" itemValue="M" />
+                                <f:selectItem itemLabel="F" itemValue="F" />
+                            </p:selectOneButton>
+                            <p:message for="gender-Input"
+                                       rendered="true"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid 
+                            id="email-panelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Endereço de email:"
+                                rendered="true"
+                                for="email-Input" />
+                            <p:inputText 
+                                id="email-Input" 
+                                value="#{MBeditUserData.varPerson.person.email}" 
+                                title="Ex.: usuario@email.com"
+                                maxlength="100"
+                                rendered="true"
+                                required="true" >
+                            </p:inputText>
+                            <p:message for="email-Input"/>
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="phone1-PanelGrid"
+                            columns="4"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+                            <p:outputLabel 
+                                id="phone1-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="1ª Celular:"
+                                for="phone1-Input" />
+                            <p:inputMask 
+                                id="phone1-Input"
+                                mask="(99) 99999-9999" 
+                                value="#{MBeditUserData.phonesControl.phone1.numberPhone}"
+                                required="true"
+                                requiredMessage="Informe o campo 1ª Celular!"/>
+                            <p:selectBooleanCheckbox 
+                                id="phone2-Opcao" 
+                                class="outputLabel-SIHV colorPri"
+                                style="font-size: 13px"
+                                itemLabel="2ª Celular"
+                                value="#{MBeditUserData.phonesControl.viewPhone2}">
+                                <p:ajax update="phone2-PanelGrid, phone3-PanelGrid" />
+                            </p:selectBooleanCheckbox>
+                            <p:message id="phone1-Messager"
+                                       for="phone1-Input" />
+                        </p:panelGrid>
+
+                        <p:panelGrid 
+                            id="phone2-PanelGrid"
+                            columns="4"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-2, ui-grid-col-3" >
+                            <p:outputLabel 
+                                id="phone2-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="2ª Celular:"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone2}"
+                                for="phone2-Input" />
+                            <p:inputMask 
+                                id="phone2-Input"
+                                mask="(99) 99999-9999" 
+                                value="#{MBeditUserData.phonesControl.phone2.numberPhone}"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone2}"
+                                required="#{MBeditUserData.phonesControl.viewPhone2}"
+                                requiredMessage="Informe o campo 2ª Celular!"/>
+                            <p:selectBooleanCheckbox 
+                                id="phone3-Opcao"
+                                class="outputLabel-SIHV colorPri"
+                                style="font-size: 13px"
+                                itemLabel="3ª Celular"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone2}"
+                                value="#{MBeditUserData.phonesControl.viewPhone3}">
+                                <p:ajax update="phone3-PanelGrid" />
+                            </p:selectBooleanCheckbox>
+                            <p:message 
+                                id="phone2-Messager"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone2}"
+                                for="phone2-Input" />
+                        </p:panelGrid>
+
+                        <p:panelGrid 
+                            id="phone3-PanelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel 
+                                id="phone3-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="3ª Celular:"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone3}"
+                                for="phone3-Input" />
+                            <p:inputMask 
+                                id="phone3-Input"
+                                mask="(99) 99999-9999" 
+                                value="#{MBeditUserData.phonesControl.phone3.numberPhone}"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone3}"
+                                required="#{MBeditUserData.phonesControl.viewPhone3}"
+                                requiredMessage="Informe o campo 3ª Celular!"/>
+                            <p:message 
+                                id="phone3-Messager"
+                                rendered="#{MBeditUserData.phonesControl.viewPhone3}"
+                                for="phone3-Input" />
+                        </p:panelGrid>
+
+                        <p:panelGrid 
+                            columns="6"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2, ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2"
+                            style="margin-top: 6px;">
+
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+
+                            <p:commandButton
+                                class="c"
+                                action="#{MBeditUserData.updateUserRegistrationData()}"
+                                icon="fa fa-save"
+                                value="Salvar alterações"
+                                update="form"/>
+
+                        </p:panelGrid>
+                    </p:panel>
+
+
+                    <p:panel 
+                        class="c"
+                        header="Perfil no sistema" 
+                        toggleable="true" 
+                        closable="false" 
+                        toggleSpeed="500" 
+                        closeSpeed="500"
+                        rendered="false"
+                        style="margin-top:40px">
+
+                        <p:panelGrid 
+                            id="userProfile-PanelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
+                            <p:outputLabel 
+                                id="userProfile-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Cargo profissional:"
+                                rendered="true"
+                                for="userProfile-Input" />                             
+                            <p:selectOneMenu 
+                                id="userProfile-Input"
+                                value="#{MBeditUserData.varPerson.user.userProfile}"
+                                disabled="false"
+                                rendered="true"
+                                required="true"
+                                requiredMessage="Selecione um cargo profissional!">
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Médico Veterinário" itemValue="médico veterinário" />
+                                <f:selectItem itemLabel="Discente" itemValue="discente" />
+                                <f:selectItem itemLabel="Radiologista" itemValue="radiologista" itemDisabled="true" />
+                                <p:ajax 
+                                    update="userFunction-PanelGrid,fieldTypeRecord-PanelGrid"
+                                    listener="#{MBeditUserData.generateFunctionsToCharge()}" />
+                            </p:selectOneMenu>
+                            <p:message 
+                                for="userProfile-Input"
+                                rendered="true"/>
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="userFunction-PanelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+                            <p:outputLabel 
+                                id="userFunction-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Função:"
+                                rendered="#{MBeditUserData.viewFunctionsForVeterinaryDoctor().viewVariableBoolean}"
+                                for="userFunction-Input" />                             
+                            <p:selectOneMenu 
+                                id="userFunction-Input"
+                                value="#{MBeditUserData.varPerson.user.userFunction}"
+                                disabled="false"
+                                rendered="#{MBeditUserData.viewFunctionsForVeterinaryDoctor().viewVariableBoolean}"
+                                required="#{MBeditUserData.viewFunctionsForVeterinaryDoctor().viewVariableBoolean}"
+                                requiredMessage="Selecione uma função!">
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Residente" itemValue="residente"  />
+                                <f:selectItem itemLabel="Docente" itemValue="docente" />
+                                <f:selectItem itemLabel="Técnico" itemValue="técnico" />
+                                <p:ajax listener="#{MBeditUserData.determinePowersAccordingToFunctionUser()}" />
+                            </p:selectOneMenu>
+                            <p:message 
+                                id="userFunction-Messager"
+                                for="userFunction-Input"
+                                rendered="#{MBeditUserData.viewFunctionsForVeterinaryDoctor().viewVariableBoolean}"/>
+
+
+                            <p:outputLabel 
+                                id="userFunction2-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Função:"
+                                rendered="#{MBeditUserData.viewFunctionsForStudent().viewVariableBoolean}"
+                                for="userFunction2-Input" />                             
+                            <p:selectOneMenu 
+                                id="userFunction2-Input"
+                                value="#{MBeditUserData.varPerson.user.userFunction}"
+                                disabled="false"
+                                rendered="#{MBeditUserData.viewFunctionsForStudent().viewVariableBoolean}"
+                                required="#{MBeditUserData.viewFunctionsForStudent().viewVariableBoolean}"
+                                requiredMessage="Selecione uma função!">
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Recepcionista" itemValue="recepcionista"  />
+                                <p:ajax listener="#{MBregisterUser.determinePowersAccordingToFunctionUser()}" />
+                            </p:selectOneMenu>
+                            <p:message 
+                                id="userFunction2-Messager"
+                                for="userFunction2-Input"
+                                rendered="#{MBeditUserData.viewFunctionsForStudent().viewVariableBoolean}"/>
+
+                            <p:outputLabel 
+                                id="userFunction3-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Função:"
+                                rendered="#{MBeditUserData.viewFunctionsForRadiologist().viewVariableBoolean}"
+                                for="userFunction3-Input" />                             
+                            <p:selectOneMenu 
+                                id="userFunction3-Input"
+                                value="#{MBeditUserData.varPerson.user.userFunction}"
+                                disabled="false"
+                                rendered="#{MBeditUserData.viewFunctionsForRadiologist().viewVariableBoolean}"
+                                required="#{MBeditUserData.viewFunctionsForRadiologist().viewVariableBoolean}"
+                                requiredMessage="Selecione uma função!">
+                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                <f:selectItem itemLabel="Técnico" itemValue="técnico"  />
+                                <p:ajax listener="#{MBregisterUser.determinePowersAccordingToFunctionUser()}" />
+                            </p:selectOneMenu>
+                            <p:message 
+                                id="userFunction3-Messager"
+                                for="userFunction3-Input"
+                                rendered="#{MBeditUserData.viewFunctionsForRadiologist().viewVariableBoolean}"/>
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            id="fieldTypeRecord-PanelGrid"
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-3" >
+
+
+                            <p:outputLabel 
+                                id="number1-Label"
+                                class="outputLabel-SIHV colorPri"
+                                rendered="#{MBeditUserData.viewNumber1().viewVariableBoolean}"
+                                value="CRMV-UF:"
+                                for="number1-Input" />                             
+                            <p:selectOneMenu 
+                                id="number1-Input"
+                                value="#{MBeditUserData.number1}"
+                                rendered="#{MBeditUserData.viewNumber1().viewVariableBoolean}"
+                                required="#{MBeditUserData.viewNumber1().viewVariableBoolean}"
+                                requiredMessage="Informe o campo CRMV-UF!">
+                                <f:selectItem itemLabel="Selecione o CRMV-UF" itemValue="" />
+                                <f:selectItem itemLabel="CRMV-PA" itemValue="CRMV-PA" />
+                                <f:selectItem itemLabel="CRMV-AC" itemValue="CRMV-AC" />
+                                <f:selectItem itemLabel="CRMV-AL" itemValue="CRMV-AL" />
+                                <f:selectItem itemLabel="CRMV-AP" itemValue="CRMV-AP" />
+                                <f:selectItem itemLabel="CRMV-AM" itemValue="CRMV-AM" />
+                                <f:selectItem itemLabel="CRMV-BA" itemValue="CRMV-BA" />
+                                <f:selectItem itemLabel="CRMV-CE" itemValue="CRMV-CE" />
+                                <f:selectItem itemLabel="CRMV-DF" itemValue="CRMV-DF" />
+                                <f:selectItem itemLabel="CRMV-ES" itemValue="CRMV-ES" />
+                                <f:selectItem itemLabel="CRMV-GO" itemValue="CRMV-GO" />
+                                <f:selectItem itemLabel="CRMV-MA" itemValue="CRMV-MA" />
+                                <f:selectItem itemLabel="CRMV-MT" itemValue="CRMV-MT" />
+                                <f:selectItem itemLabel="CRMV-MS" itemValue="CRMV-MS" />
+                                <f:selectItem itemLabel="CRMV-MG" itemValue="CRMV-MG" />
+                                <f:selectItem itemLabel="CRMV-PB" itemValue="CRMV-PB" />
+                                <f:selectItem itemLabel="CRMV-PR" itemValue="CRMV-PR" />
+                                <f:selectItem itemLabel="CRMV-PE" itemValue="CRMV-PE" />
+                                <f:selectItem itemLabel="CRMV-PI" itemValue="CRMV-PI" />
+                                <f:selectItem itemLabel="CRMV-RJ" itemValue="CRMV-RJ" />
+                                <f:selectItem itemLabel="CRMV-RN" itemValue="CRMV-RN" />
+                                <f:selectItem itemLabel="CRMV-RS" itemValue="CRMV-RS" />
+                                <f:selectItem itemLabel="CRMV-RO" itemValue="CRMV-RO" />
+                                <f:selectItem itemLabel="CRMV-RR" itemValue="CRMV-RR" />
+                                <f:selectItem itemLabel="CRMV-SC" itemValue="CRMV-SC" />
+                                <f:selectItem itemLabel="CRMV-SP" itemValue="CRMV-SP" />
+                                <f:selectItem itemLabel="CRMV-SE" itemValue="CRMV-SE" />
+                                <f:selectItem itemLabel="CRMV-TO" itemValue="CRMV-TO" />
+                            </p:selectOneMenu>
+                            <p:message 
+                                id="number1-Messager"
+                                rendered="#{MBeditUserData.viewNumber1().viewVariableBoolean}"
+                                for="number1-Input" />
+
+
+                            <p:outputLabel 
+                                id="number2-Input-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="#{MBeditUserData.textFieldRecordNumber}"
+                                rendered="#{MBeditUserData.viewNumber2}"
+                                for="number2-Input" />
+                            <p:inputText 
+                                id="number2-Input" 
+                                value="#{MBeditUserData.number2}" 
+                                title=""
+                                maxlength="43"
+                                rendered="#{MBeditUserData.viewNumber2}"
+                                required="#{MBeditUserData.viewNumber2}" 
+                                requiredMessage="Informe o número!" >
+                                <p:keyFilter regEx="/[\d\-\.]/" />
+                            </p:inputText>
+                            <p:message 
+                                id="number2-Messager"
+                                rendered="#{MBeditUserData.viewNumber2}"
+                                for="number2-Input" />
+                        </p:panelGrid>
+
+                        <p:panelGrid 
+                            columns="3"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-3, ui-grid-col-3, ui-grid-col-4" >
+
+                            <p:outputLabel 
+                                id="userName-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Login de usuário:"
+                                for="userName-Input"/>
+                            <p:inputText 
+                                id="userName-Input" 
+                                value="#{MBeditUserData.varPerson.user.userName}" 
+                                maxlength="100"
+                                required="true" 
+                                requiredMessage="Por favor, informe um nome de Login!"/>
+                            <p:message 
+                                id="userName-Messager"
+                                for="userName-Input" />
+
+
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Senha de usuário:"
+                                for="senha1" />
+                            <p:password 
+                                id="senha1"
+                                feedback="true"
+                                inline="true"
+                                match="senha2"
+                                value="#{MBeditUserData.varPerson.user.password}"
+                                title="A senha pode conter números, letras e caracteres especiais."
+                                promptLabel="Digite uma senha"
+                                weakLabel="Fraco"
+                                goodLabel="Boa"
+                                strongLabel="Forte"
+                                maxlength="100"
+                                required="true" 
+                                requiredMessage="Informe uma senha para o usuário!" />
+                            <p:message for="senha1" />
+
+
+
+                            <p:outputLabel 
+                                class="outputLabel-SIHV colorPri"
+                                value="Digite novamente a senha:"
+                                for="senha2" />
+                            <p:password 
+                                id="senha2"
+                                feedback="true"
+                                inline="true"
+                                promptLabel="Digite uma senha"
+                                weakLabel="Fraco"
+                                goodLabel="Boa"
+                                strongLabel="Forte"
+                                maxlength="100"
+                                required="true"
+                                requiredMessage="Digite novamente sua senha!" />
+                            <p:message for="senha2" />
+                        </p:panelGrid>
+
+
+                        <p:panelGrid 
+                            columns="6"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2, ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2"
+                            style="margin-top: 6px;">
+
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+
+                            <p:commandButton
+                                class="c"
+                                icon="fa fa-save"
+                                value="Salvar alterações" />
+
+                        </p:panelGrid>
+                    </p:panel>
+
+
+                    <p:panel 
+                        class="c"
+                        header="Poderes atribuídos à este usuário" 
+                        toggleable="true" 
+                        closable="false" 
+                        toggleSpeed="500" 
+                        closeSpeed="500" 
+                        rendered="false"
+                        style="margin-top:40px">
+
+                        <p:selectManyCheckbox 
+                            id="grid2"
+                            class="c"
+                            layout="responsive" 
+                            columns="3">
+                            <f:selectItems 
+                                value="true" 
+                                var="power" 
+                                itemLabel="Descrição do porder" 
+                                itemValue="Valor do poder" />
+
+                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
+                            <f:selectItem itemLabel="PS4" itemValue="PS4" />
+                            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                        </p:selectManyCheckbox>
+
+
+                        <p:panelGrid 
+                            columns="6"
+                            layout="grid"
+                            styleClass="panelgrid-noborder"
+                            columnClasses="ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2, ui-grid-col-2
+                            , ui-grid-col-2, ui-grid-col-2"
+                            style="margin-top: 6px;">
+
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+                            <p:outputLabel value="" />
+
+                            <p:commandButton
+                                class="c"
+                                icon="fa fa-save"
+                                value="Salvar alterações" />
+
+                        </p:panelGrid>
+                    </p:panel>
+
+                </div>
+            </h:form>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

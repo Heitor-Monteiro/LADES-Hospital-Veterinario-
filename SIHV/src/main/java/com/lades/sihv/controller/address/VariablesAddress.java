@@ -32,9 +32,9 @@ public class VariablesAddress implements Serializable {
     private List<Address> listObjAddress;
     private List<Street> listObjStreet;
     //--------------------------------------------------------------------------
-    private final List<String> listCity;
-    private final List<String> listNeighborhood;
-    private final List<String> listStreet;
+    private List<String> listCity;
+    private List<String> listNeighborhood;
+    private List<String> listStreet;
     //--------------------------------------------------------------------------
     private Nation selectNation;
     private FederationUnity selectUF;
@@ -53,6 +53,19 @@ public class VariablesAddress implements Serializable {
     public VariablesAddress() {
         house = new Houses();
         //----------------------------------------------------------------------
+        instantiateLists();
+        //----------------------------------------------------------------------
+        objCity = new City();
+        objNeighborhood = new Neighborhood();
+        objStreet = new Street();
+        objAddress = new Address();
+        //----------------------------------------------------------------------
+        listRenderedFields = new ListRenderedFields(4);
+        listRenderedFields.startIndexListViewFields();
+    }
+
+    public final void instantiateLists() {
+        listNation = new ArrayList<>();
         listUF = new ArrayList<>();
         listObjCity = new ArrayList<>();
         listObjNeighborhood = new ArrayList<>();
@@ -62,14 +75,6 @@ public class VariablesAddress implements Serializable {
         listCity = new ArrayList<>();
         listNeighborhood = new ArrayList<>();
         listStreet = new ArrayList<>();
-        //----------------------------------------------------------------------
-        objCity = new City();
-        objNeighborhood = new Neighborhood();
-        objStreet = new Street();
-        objAddress = new Address();
-        //----------------------------------------------------------------------
-        listRenderedFields = new ListRenderedFields(4);
-        listRenderedFields.startIndexListViewFields();
     }
 
     //-GETs e SETs--------------------------------------------------------------
