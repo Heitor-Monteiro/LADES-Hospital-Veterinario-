@@ -5,6 +5,7 @@
  */
 package com.lades.sihv.controller.registerUser;
 
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.model.Powers;
 import java.util.List;
@@ -71,7 +72,8 @@ public class DeterminePowersAccordingToFunctionUser {
                     break;
             }
         } catch (Exception e) {
-            System.out.println("►►►►►►►►►►►►► ERRO determinePowersAccordingToFunctionUser(): " + e);
+            System.err.println("►►►►►►►►►►►►► ERRO public void determinePowersAccordingToFunctionUser(): " + e.toString());
+            new ModuleToCollectError().erroPage500("DeterminePowersAccordingToFunctionUser > determinePowersAccordingToFunctionUser", e.toString());
         }
     }
 }

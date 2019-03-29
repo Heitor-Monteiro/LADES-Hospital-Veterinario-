@@ -6,6 +6,7 @@
 package com.lades.sihv.controller.editUserData;
 
 import com.lades.sihv.controller.ListRenderedFields;
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.person.VariablesPerson;
 import java.io.Serializable;
 
@@ -38,7 +39,8 @@ public class GenerateFunctionsToCharge implements Serializable {
             }
             return textFieldRecordNumber;
         } catch (Exception e) {
-            System.err.println("►►►►►►►►►►►►► ERRO generateFunctionsToCharge(): " + e);
+            System.err.println("►►►►►►►►►►►►► ERRO public void methodGenerateFunctionsToCharge(): " + e.toString());
+            new ModuleToCollectError().erroPage500("GenerateFunctionsToCharge > methodGenerateFunctionsToCharge", e.toString());
             return null;
         }
     }

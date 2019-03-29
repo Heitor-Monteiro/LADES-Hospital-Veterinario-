@@ -51,7 +51,7 @@
                                 itemValue="#{person}" />
                             <p:ajax 
                                 update="form"
-                                listener="#{MBeditUserData.returnUserRegistration()}"  />
+                                listener="#{MBeditUserData.returnUserRegistration()}" />
                         </p:selectOneMenu>
                     </p:panelGrid>
 
@@ -324,6 +324,7 @@
                                        rendered="true"/>
                         </p:panelGrid>
 
+
                         <p:panelGrid 
                             id="email-panelGrid"
                             columns="3"
@@ -376,6 +377,7 @@
                                        for="phone1-Input" />
                         </p:panelGrid>
 
+
                         <p:panelGrid 
                             id="phone2-PanelGrid"
                             columns="4"
@@ -410,6 +412,7 @@
                                 for="phone2-Input" />
                         </p:panelGrid>
 
+
                         <p:panelGrid 
                             id="phone3-PanelGrid"
                             columns="3"
@@ -435,6 +438,7 @@
                                 for="phone3-Input" />
                         </p:panelGrid>
 
+
                         <p:panelGrid 
                             columns="6"
                             layout="grid"
@@ -456,19 +460,19 @@
                                 icon="fa fa-save"
                                 value="Salvar alterações"
                                 update="form"/>
-
                         </p:panelGrid>
                     </p:panel>
 
 
                     <p:panel 
+                        id="profileInTheSystem"
                         class="c"
                         header="Perfil no sistema" 
                         toggleable="true" 
                         closable="false" 
                         toggleSpeed="500" 
                         closeSpeed="500"
-                        rendered="false"
+                        rendered="#{MBeditUserData.varPerson.user.pkUser != null}"
                         style="margin-top:40px">
 
                         <p:panelGrid 
@@ -527,7 +531,9 @@
                                 <f:selectItem itemLabel="Residente" itemValue="residente"  />
                                 <f:selectItem itemLabel="Docente" itemValue="docente" />
                                 <f:selectItem itemLabel="Técnico" itemValue="técnico" />
-                                <p:ajax listener="#{MBeditUserData.determinePowersAccordingToFunctionUser()}" />
+                                <p:ajax 
+                                    listener="#{MBeditUserData.determinePowersAccordingToFunctionUser()}"
+                                    update="form"/>
                             </p:selectOneMenu>
                             <p:message 
                                 id="userFunction-Messager"
@@ -550,7 +556,9 @@
                                 requiredMessage="Selecione uma função!">
                                 <f:selectItem itemLabel="Selecione" itemValue="" />
                                 <f:selectItem itemLabel="Recepcionista" itemValue="recepcionista"  />
-                                <p:ajax listener="#{MBregisterUser.determinePowersAccordingToFunctionUser()}" />
+                                <p:ajax 
+                                    listener="#{MBeditUserData.determinePowersAccordingToFunctionUser()}"
+                                    update="form"/>
                             </p:selectOneMenu>
                             <p:message 
                                 id="userFunction2-Messager"
@@ -572,7 +580,9 @@
                                 requiredMessage="Selecione uma função!">
                                 <f:selectItem itemLabel="Selecione" itemValue="" />
                                 <f:selectItem itemLabel="Técnico" itemValue="técnico"  />
-                                <p:ajax listener="#{MBregisterUser.determinePowersAccordingToFunctionUser()}" />
+                                <p:ajax 
+                                    listener="#{MBeditUserData.determinePowersAccordingToFunctionUser()}"
+                                    update="form"/>
                             </p:selectOneMenu>
                             <p:message 
                                 id="userFunction3-Messager"
@@ -659,6 +669,7 @@
                         </p:panelGrid>
 
                         <p:panelGrid 
+                            id="gjsdgdvsg"
                             columns="3"
                             layout="grid"
                             styleClass="panelgrid-noborder"
@@ -679,9 +690,25 @@
                                 id="userName-Messager"
                                 for="userName-Input" />
 
+                            <p:outputLabel 
+                                id="viewFieldEditpassword-Label"
+                                class="outputLabel-SIHV colorPri"
+                                value="Editar senha:"/>
+                            <p:selectOneRadio 
+                                id="viewFieldEditpassword-Input" 
+                                value="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
+                                columns="2"
+                                layout="responsive">
+                                <f:selectItem itemLabel="Sim" itemValue="true" />
+                                <f:selectItem itemLabel="Não" itemValue="false" />
+                                <p:ajax update="gjsdgdvsg" />
+                            </p:selectOneRadio>
+                            <p:outputLabel value=""/>
+
 
                             <p:outputLabel 
                                 class="outputLabel-SIHV colorPri"
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
                                 value="Senha de usuário:"
                                 for="senha1" />
                             <p:password 
@@ -696,15 +723,19 @@
                                 goodLabel="Boa"
                                 strongLabel="Forte"
                                 maxlength="100"
-                                required="true" 
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
+                                required="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}" 
                                 requiredMessage="Informe uma senha para o usuário!" />
-                            <p:message for="senha1" />
+                            <p:message 
+                                for="senha1"
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"/>
 
 
 
                             <p:outputLabel 
                                 class="outputLabel-SIHV colorPri"
                                 value="Digite novamente a senha:"
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
                                 for="senha2" />
                             <p:password 
                                 id="senha2"
@@ -715,9 +746,12 @@
                                 goodLabel="Boa"
                                 strongLabel="Forte"
                                 maxlength="100"
-                                required="true"
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
+                                required="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"
                                 requiredMessage="Digite novamente sua senha!" />
-                            <p:message for="senha2" />
+                            <p:message 
+                                for="senha2"
+                                rendered="#{MBeditUserData.viewFieldEditpassword.viewVariableBoolean}"/>
                         </p:panelGrid>
 
 
@@ -738,9 +772,10 @@
 
                             <p:commandButton
                                 class="c"
+                                action="#{MBeditUserData.updateUserProfileData()}"
                                 icon="fa fa-save"
-                                value="Salvar alterações" />
-
+                                value="Salvar alterações"
+                                update="form"/>
                         </p:panelGrid>
                     </p:panel>
 
@@ -752,23 +787,21 @@
                         closable="false" 
                         toggleSpeed="500" 
                         closeSpeed="500" 
-                        rendered="false"
+                        rendered="#{MBeditUserData.tempUser.pkUser != null}"
                         style="margin-top:40px">
 
                         <p:selectManyCheckbox 
                             id="grid2"
                             class="c"
+                            value="#{MBeditUserData.selectPower}"
+                            converter="PowerConverter" 
                             layout="responsive" 
                             columns="3">
                             <f:selectItems 
-                                value="true" 
+                                value="#{MBeditUserData.listPowers}" 
                                 var="power" 
-                                itemLabel="Descrição do porder" 
-                                itemValue="Valor do poder" />
-
-                            <f:selectItem itemLabel="Xbox One" itemValue="Xbox One" />
-                            <f:selectItem itemLabel="PS4" itemValue="PS4" />
-                            <f:selectItem itemLabel="Wii U" itemValue="Wii U" />
+                                itemLabel="#{power.descriptionPower}" 
+                                itemValue="#{power}" />
                         </p:selectManyCheckbox>
 
 
@@ -789,9 +822,10 @@
 
                             <p:commandButton
                                 class="c"
+                                action="#{MBeditUserData.upgradePowersOnly()}"
                                 icon="fa fa-save"
-                                value="Salvar alterações" />
-
+                                value="Salvar alterações"
+                                update="form"/>
                         </p:panelGrid>
                     </p:panel>
 

@@ -16,8 +16,12 @@ import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.controller.registerUser.DeterminePowersAccordingToFunctionUser;
 import com.lades.sihv.model.People;
 import com.lades.sihv.model.Powers;
+import com.lades.sihv.model.PowersHasUsers;
+import com.lades.sihv.model.Users;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -36,7 +40,10 @@ public class MBeditUserData extends AbstractBean {
     private String textFieldRecordNumber;
     private List<Powers> listPowers;
     private List<Powers> selectPower;
+    private List<Powers> previousStatusOfPowers;
+    private List<PowersHasUsers> powerAndUserJoining;
     private String number1, number2;
+    private Users tempUser;
 
     //--------------------------------------------------------------------------
     @PostConstruct
@@ -51,6 +58,8 @@ public class MBeditUserData extends AbstractBean {
                             + "p.logicalExclusion='0'");
             listPowers = getDaoGenerico().list("select pw from Powers pw ");
             selectPower = new ArrayList();
+            previousStatusOfPowers = new ArrayList();
+            powerAndUserJoining = new ArrayList();
         } catch (Exception e) {
             System.err.println("►►►►►►►►►►►►► ERRO public void init(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBeditUserData > init", e.toString());
@@ -63,7 +72,7 @@ public class MBeditUserData extends AbstractBean {
         varPerson = new VariablesPerson();
         addressControl = new AddressControl();
         phonesControl = new PhonesControl();
-        viewFunctionsToCharge = new ListRenderedFields(4);
+        viewFunctionsToCharge = new ListRenderedFields(6);
         viewFunctionsToCharge.startIndexListViewFields();
     }
 
@@ -82,13 +91,33 @@ public class MBeditUserData extends AbstractBean {
                 obj.methodEnableListStreet(addressControl.getVar());
                 phonesControl.searchPhones(varPerson.getPerson());
                 //--------------------------------------------------------------
-                new ReturnUserProfileData().methodOfReturnUserProfileData(varPerson);
+                ReturnUserProfileData objReturnUser = new ReturnUserProfileData();
+                varPerson.setUser(objReturnUser.methodOfReturnUserProfileData(varPerson));
+                tempUser = objReturnUser.methodOfReturnUserProfileData(varPerson);
                 generateFunctionsToCharge();
                 if (varPerson.getUser().getUserProfile().equals("médico veterinário")) {
                     number1 = varPerson.getUser().getRegistrationNumber().replaceAll("[1234567890 ]", "");
                     number2 = varPerson.getUser().getRegistrationNumber().replaceAll("[^1234567890]", "");
                 } else {
                     number2 = varPerson.getUser().getRegistrationNumber();
+                }
+                selectPower.clear();
+                powerAndUserJoining.clear();
+                List<?> list = getDaoGenerico().list("select pw, phu from "
+                        + "Powers pw,PowersHasUsers phu, Users u \n"
+                        + "where \n"
+                        + "pw.pkPower=phu.powers.pkPower and \n"
+                        + "phu.users.pkUser=u.pkUser and \n"
+                        + "u.pkUser='" + varPerson.getUser().getPkUser() + "'");
+                for (Object[] object : (List<Object[]>) list) {
+                    Powers power = (Powers) object[0];
+                    for (Powers itemPower : listPowers) {
+                        if (Objects.equals(power.getPkPower(), itemPower.getPkPower())) {
+                            selectPower.add(itemPower);
+                            previousStatusOfPowers.add(itemPower);
+                        }
+                    }
+                    powerAndUserJoining.add((PowersHasUsers) object[1]);
                 }
             }
         } catch (Exception e) {
@@ -128,6 +157,65 @@ public class MBeditUserData extends AbstractBean {
         } else {
             varPerson.getUser().setRegistrationNumber(number2);
         }
+        SaveVariablesPerson obj = new SaveVariablesPerson();
+        obj.saveUser(varPerson);
+        if (changeOfPowers().isViewVariableBoolean()) {
+            System.out.println("############### selectPower: ChangeOfPowers");
+            for (PowersHasUsers phu : powerAndUserJoining) {
+                getDaoGenerico().remove(phu);
+            }
+            for (Powers power : selectPower) {
+                PowersHasUsers obj2 = new PowersHasUsers();
+                obj2.setPowers(power);
+                obj2.setUsers(varPerson.getUser());
+                getDaoGenerico().save(obj2);
+            }
+        }
+        varPerson.setUser(new Users());
+        getObjMessage().info("Os dados foram atualizados com sucesso!", "");
+    }
+
+    public void upgradePowersOnly() {
+        System.out.println("►►►►►►►►►►►►► "
+                + "MBeditUserData > public void upgradePowersOnly()");
+        try {
+            getObjMessage().warn("selectPower:" + selectPower.size(),
+                    "previousStatusOfPowers:" + previousStatusOfPowers.size());
+
+            if (selectPower.isEmpty()) {
+                for (PowersHasUsers phu : powerAndUserJoining) {
+                    getDaoGenerico().remove(phu);
+                }
+                getObjMessage().info("Alteração realizada!", "Todos os poderes foram retirados.");
+            } else if (true) {
+                getObjMessage().info("Condição 2!", "");
+                boolean pauj;
+                for (int i = 0; i < previousStatusOfPowers.size(); i++) {
+                    pauj = false;
+                    for (Iterator<Powers> iterator = selectPower.iterator(); iterator.hasNext();) {
+                        Powers next = iterator.next();
+                        if (Objects.equals(previousStatusOfPowers.get(i).getPkPower(), next.getPkPower())) {
+                            pauj = true;
+                            selectPower.remove(next);
+                            break;
+                        }
+                    }
+                    if (!pauj) {
+                        getDaoGenerico().remove(powerAndUserJoining.get(i));
+                    }
+                }
+                for (Powers power : selectPower) {
+                    PowersHasUsers phu = new PowersHasUsers();
+                    phu.setPowers(power);
+                    phu.setUsers(tempUser);
+                    getDaoGenerico().save(phu);
+                }
+            }
+            tempUser = new Users();
+        } catch (Exception e) {
+            System.err.println("►►►►►►►►►►►►► ERRO public void upgradePowersOnly(): " + e.toString());
+            new ModuleToCollectError().erroPage500("MBeditUserData > upgradePowersOnly", e.toString());
+        }
     }
 
     public void generateFunctionsToCharge() {
@@ -136,6 +224,8 @@ public class MBeditUserData extends AbstractBean {
     }
 
     public void determinePowersAccordingToFunctionUser() {
+        selectPower.clear();
+        changeOfPowers().setViewVariableBoolean(true);
         new DeterminePowersAccordingToFunctionUser()
                 .determinePowersAccordingToFunctionUser(varPerson, listPowers, selectPower);
     }
@@ -173,12 +263,32 @@ public class MBeditUserData extends AbstractBean {
         return viewFunctionsToCharge.getListViewFields(3);
     }
 
+    public RenderedFields getViewFieldEditpassword() {
+        return viewFunctionsToCharge.getListViewFields(4);
+    }
+
+    private RenderedFields changeOfPowers() {
+        return viewFunctionsToCharge.getListViewFields(5);
+    }
+
     public String getTextFieldRecordNumber() {
         return textFieldRecordNumber;
     }
 
     public List<Powers> getSelectPower() {
         return selectPower;
+    }
+
+    public void setSelectPower(List<Powers> selectPower) {
+        this.selectPower = selectPower;
+    }
+
+    public List<Powers> getListPowers() {
+        return listPowers;
+    }
+
+    public void setListPowers(List<Powers> listPowers) {
+        this.listPowers = listPowers;
     }
 
     public String getNumber1() {
@@ -199,5 +309,9 @@ public class MBeditUserData extends AbstractBean {
 
     public boolean isViewNumber2() {
         return varPerson.getUser().getUserProfile() != null;
+    }
+
+    public Users getTempUser() {
+        return tempUser;
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class ReturnUserProfileData extends AbstractBean {
 
-    public void methodOfReturnUserProfileData(VariablesPerson varPerson) {
+    public Users methodOfReturnUserProfileData(VariablesPerson varPerson) {
         System.out.println("►►►►►►►►►►►►► "
                 + "ReturnUserProfileData "
                 + "> public void methodOfReturnUserProfileData()");
@@ -27,12 +27,11 @@ public class ReturnUserProfileData extends AbstractBean {
                             + "where \n"
                             + "u.people.pkPerson=p.pkPerson and \n"
                             + "p.pkPerson='" + varPerson.getPerson().getPkPerson() + "'");
-            if (list != null && !list.isEmpty()) {
-                varPerson.setUser(list.get(0));
-            }
+            return list.get(0);
         } catch (Exception e) {
             System.err.println("►►►►►►►►►►►►► ERRO public void methodOfReturnUserProfileData(): " + e.toString());
             new ModuleToCollectError().erroPage500("ReturnUserProfileData > methodOfReturnUserProfileData", e.toString());
+            return new Users();
         }
     }
 }
