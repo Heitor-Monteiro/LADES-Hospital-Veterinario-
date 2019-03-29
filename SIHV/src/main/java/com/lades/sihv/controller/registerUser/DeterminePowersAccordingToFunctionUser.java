@@ -5,6 +5,7 @@
  */
 package com.lades.sihv.controller.registerUser;
 
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.person.VariablesPerson;
 import com.lades.sihv.model.Powers;
 import java.util.List;
@@ -18,6 +19,9 @@ public class DeterminePowersAccordingToFunctionUser {
     public void determinePowersAccordingToFunctionUser(VariablesPerson varPerson,
             List<Powers> listPowers,
             List<Powers> selectPower) {
+        System.out.println("►►►►►►►►►►►►► "
+                + "DeterminePowersAccordingToFunctionUser "
+                + "> public void determinePowersAccordingToFunctionUser()");
         try {
             selectPower.clear();
             String var = varPerson.getUser().getUserFunction();
@@ -63,12 +67,13 @@ public class DeterminePowersAccordingToFunctionUser {
                     break;
                 case "radiologista":
                     selectPower.add(listPowers.get(8));
-                        System.out.println("►►►►►►►►►►►►► "
-                                + listPowers.get(8).getDescriptionPower());
+                    System.out.println("►►►►►►►►►►►►► "
+                            + listPowers.get(8).getDescriptionPower());
                     break;
             }
         } catch (Exception e) {
-            System.out.println("►►►►►►►►►►►►► ERRO determinePowersAccordingToFunctionUser(): " + e);
+            System.err.println("►►►►►►►►►►►►► ERRO public void determinePowersAccordingToFunctionUser(): " + e.toString());
+            new ModuleToCollectError().erroPage500("DeterminePowersAccordingToFunctionUser > determinePowersAccordingToFunctionUser", e.toString());
         }
     }
 }
