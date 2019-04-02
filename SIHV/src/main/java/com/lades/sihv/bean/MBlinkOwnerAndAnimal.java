@@ -92,7 +92,7 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
             if (getPhysicalOrLegalInterim().isViewVariableBoolean()) {
                 //PhysicalPerson
                 boolean newPerson = verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
-                if (!newPerson) {
+                if (!newPerson && !verifyPersonDocument.isUserNewOwner()) {
                     animalControl.methodSmallAnimalSpecies();
                     animalControl.methodSearchRegisteredAnimal(varPerson.getPerson());
 //                phonesControl.searchPhones(varPerson.getPerson());
@@ -121,6 +121,10 @@ public class MBlinkOwnerAndAnimal extends AbstractBean {
                     savePerson.savePhysicalPerson(varPerson);
                     phonesControl.savePhones(varPerson.getPerson());
                     addressControl.saveAddress(varPerson.getPerson());
+                    savePerson.saveOwners(varPerson);
+                }
+
+                if (verifyPersonDocument.isUserNewOwner()) {
                     savePerson.saveOwners(varPerson);
                 }
 

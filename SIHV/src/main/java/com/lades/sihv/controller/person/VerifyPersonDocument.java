@@ -6,6 +6,7 @@
 package com.lades.sihv.controller.person;
 
 import com.lades.sihv.bean.AbstractBean;
+import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.address.AddressControl;
 import com.lades.sihv.model.People;
 import com.lades.sihv.model.Cpf;
@@ -25,6 +26,7 @@ public class VerifyPersonDocument extends AbstractBean {
 
     private List<?> listSearchPerson = new ArrayList<>();
     private boolean newPerson = false;
+    private boolean userNewOwner = false;
     private boolean newRG = false;
     private boolean newCPF = false;
     private boolean checkCPF = false;
@@ -161,12 +163,22 @@ public class VerifyPersonDocument extends AbstractBean {
     }
 
     private void searchForOwner(VariablesPerson varPerson) {
-        List<Owners> listOwner = getDaoGenerico().list("select o from People p, Owners o \n"
-                + "where \n"
-                + "p.pkPerson=o.people.pkPerson and \n"
-                + "p.logicalExclusion='0' and\n"
-                + "o.people.pkPerson='" + varPerson.getPerson().getPkPerson() + "'");
-        varPerson.setOwner(listOwner.get(0));
+        try {
+            List<Owners> listOwner = getDaoGenerico()
+                    .list("select o from People p, Owners o \n"
+                            + "where \n"
+                            + "p.pkPerson=o.people.pkPerson and \n"
+                            + "p.logicalExclusion='0' and\n"
+                            + "o.people.pkPerson='" + varPerson.getPerson().getPkPerson() + "'");
+            if (!listOwner.isEmpty()) {
+                varPerson.setOwner(listOwner.get(0));
+            } else {
+                userNewOwner = true;
+            }
+        } catch (Exception e) {
+            System.err.println("►►►►►►►►►►►►► ERRO private void collectListValues: " + e.toString());
+            new ModuleToCollectError().erroPage500("VerifyPersonDocument > collectListValues", e.toString());
+        }
     }
 
     private List<?> collectListValues(VariablesPerson varPerson,
@@ -267,11 +279,10 @@ public class VerifyPersonDocument extends AbstractBean {
                 } else if (checkRG) {
                     newRG = true;
                 }
-
             }
         } catch (Exception e) {
-            getObjMessage().error("BACK-END WARNING: ERRO private void collectListValues():", e.getMessage());
-            System.out.println("►►►►►►►►►►►►► ERRO private void collectListValues(): " + e);
+            System.err.println("►►►►►►►►►►►►► ERRO private void collectListValues: " + e.toString());
+            new ModuleToCollectError().erroPage500("VerifyPersonDocument > collectListValues", e.toString());
         }
         return list;
     }
@@ -331,4 +342,7 @@ public class VerifyPersonDocument extends AbstractBean {
         return newCPF;
     }
 
+    public boolean isUserNewOwner() {
+        return userNewOwner;
+    }
 }
