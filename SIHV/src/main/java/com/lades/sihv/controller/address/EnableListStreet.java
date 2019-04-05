@@ -35,6 +35,7 @@ public class EnableListStreet extends AbstractBean {
 
     private void ConfirmNewNeighborhood(VariablesAddress var) {
         try {
+            var.setObjNeighborhood(new Neighborhood());
             var.newNeighborhood(true);
             var.newStreet(true);
             var.getObjNeighborhood().setNeighborhood(var.getSelectNeighborhood());

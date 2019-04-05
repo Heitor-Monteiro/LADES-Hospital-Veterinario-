@@ -44,6 +44,7 @@ public class EnableListNeighborhood extends AbstractBean {
                         }
                     }
                     if (var) {
+                        varr.setObjCity(new City());
                         varr.newCity(var);
                         varr.newNeighborhood(var);
                         varr.newStreet(var);
