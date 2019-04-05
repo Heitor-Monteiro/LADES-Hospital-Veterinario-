@@ -82,10 +82,10 @@
                                                  disabled="#{!MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}"
                                                  required="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 
                                                  requiredMessage="Informe o campo CPF!">
-                                        <p:ajax event="keyup"
+                                        <p:ajax event="blur"
                                                 update="growl,rg-Input,selectUF1-Input,rg-Opcao,cpf-Input"
                                                 listener="#{MBlinkOwnerAndAnimal.verifyPersonDocument()}"
-                                                delay="3000" />
+                                                delay="0" />
                                     </p:inputMask>
                                     <p:selectBooleanButton id="cpf-opcao" 
                                                            value="#{MBlinkOwnerAndAnimal.intercalateCpfRg.cpfOptional}" 

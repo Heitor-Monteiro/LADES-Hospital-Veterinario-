@@ -59,6 +59,7 @@
                           showEffect="clip"
                           hideEffect="clip" 
                           modal="true"
+                          responsive="true"
                           focus="scheduleTime2-Input">
 
                     <p:panel id="eventDialog1-Panel"
@@ -259,9 +260,12 @@
                                 <p:commandButton 
                                     value="Cancelar"
                                     icon="fa fa-calendar-times"
+                                    rendered="false"
                                     actionListener="#{MBscheduleConsulta.cancelEvent}"
                                     update="messages,eventDialog1-Panel,eventDialog3-Panel"
                                     oncomplete="PF('myschedule').update();"/>
+
+                                <p:outputLabel value=""/>
 
                                 <p:commandButton 
                                     value="Agendar"
@@ -282,7 +286,7 @@
 
                                 <p:commandButton 
                                     id="cancelButton"
-                                    value="Cancelar"
+                                    value="Desmarcar agendamento"
                                     icon="fa fa-calendar-times"
                                     actionListener="#{MBscheduleConsulta.cancelEvent}"
                                     update="messages,eventDialog1-Panel,eventDialog3-Panel"
@@ -300,7 +304,7 @@
 
 
                                 <p:splitButton id="addButton2"
-                                               value="Atualizar"
+                                               value="Atualizar agendamento"
                                                icon="fa fa-sync-alt"
                                                actionListener="#{MBscheduleConsulta.addEvent}"
                                                rendered="false"
@@ -313,7 +317,7 @@
                                 </p:splitButton>
 
                                 <p:commandButton
-                                    value="Atualizar"
+                                    value="Atualizar agendamento"
                                     icon="fa fa-sync-alt"
                                     actionListener="#{MBscheduleConsulta.addEvent}"
                                     rendered="#{MBscheduleConsulta.viewInterleaveAddButton}"
@@ -321,7 +325,7 @@
                                     oncomplete="PF('myschedule').update();PF('eventDialog').hide();"/>
 
                                 <p:commandButton 
-                                    value="Confirmar"
+                                    value="Confirmar agendamento"
                                     disabled="#{MBscheduleConsulta.customerLinkedBlockForm}"
                                     actionListener="#{MBscheduleConsulta.buttonToLinkOwnerAndAnimal()}"
                                     icon="fa fa-calendar-check"/>
