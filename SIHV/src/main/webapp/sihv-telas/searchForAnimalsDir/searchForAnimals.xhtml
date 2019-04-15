@@ -32,24 +32,26 @@
                     <p:panelGrid columns="2"
                                  layout="grid"
                                  styleClass="panelgrid-noborder"
-                                 columnClasses="ui-grid-col-2,ui-grid-col-4"
+                                 columnClasses="ui-grid-col-2,ui-grid-col-6"
                                  style="margin-top: 20px;">
 
                         <p:outputLabel class="outputLabel-SIHV colorPri "
                                        value="Tipo de pesquisa: "/>
 
-                        <p:selectOneMenu id="itemSearch-Input"
-                                         value="#{MBsearchForAnimalSmall.objVarSearch.itemSearch}"
-                                         required="true"
-                                         requiredMessage="Selecione o tipo de pesquisa!">
-                            <f:selectItem itemLabel=" --- " itemValue="" noSelectionOption="false"  />
+                        <p:selectOneRadio 
+                            id="itemSearch-Input"
+                            layout="responsive" 
+                            columns="2"
+                            value="#{MBsearchForAnimalSmall.objVarSearch.itemSearch}"
+                            required="true"
+                            requiredMessage="Selecione o tipo de pesquisa!">
                             <f:selectItem itemLabel="RGHV" itemValue="RGHV" />
                             <f:selectItem itemLabel="Nome do animal" itemValue="NameAnimal" />
                             <f:selectItem itemLabel="Nome do proprietário" itemValue="NameOwner" />
                             <f:selectItem itemLabel="Entre datas" itemValue="BetweenDates" />
                             <p:ajax update="inputs-Calendar,input-Mask"
                                     listener="#{MBsearchForAnimalSmall.selectionEngine.selectSearchType()}"/>
-                        </p:selectOneMenu>
+                        </p:selectOneRadio>
                     </p:panelGrid>
 
                     <p:panelGrid id="inputs-Calendar"
@@ -130,20 +132,33 @@
 
                             <f:facet name="header">
                                 Resultado da pesquisa
-                                <p:commandButton id="toggler"
-                                                 class="LADES-default-Text"
-                                                 type="button"
-                                                 value="Colunas"
-                                                 style="float:right;width: 120px;"
-                                                 icon="fa fa-columns" />
-                                <p:columnToggler datasource="selectAnimals"
-                                                 trigger="toggler" />
+                                <p:commandButton 
+                                    id="toggler"
+                                    class="LADES-default-Text"
+                                    type="button"
+                                    value="Colunas"
+                                    style="float:right;width: 120px;"
+                                    icon="fa fa-columns" />
+                                <p:columnToggler 
+                                    datasource="selectAnimals"
+                                    trigger="toggler" />
                             </f:facet>
 
                             <p:column style="width:40px;"
                                       class="LADES-default-Text">
                                 <p:rowToggler />
                             </p:column>
+
+
+                            <p:column 
+                                headerText="Proprietário"
+                                class="LADES-default-Text"
+                                filterBy="#{itemAnimal.listOwner.get(0).person.namePerson}"
+                                filterMatchMode="contains"
+                                style="text-align: center;">
+                                <h:outputText value="#{itemAnimal.listOwner.get(0).person.namePerson}" />
+                            </p:column>
+
 
                             <p:column headerText="RGHV"
                                       class="LADES-default-Text"
@@ -154,12 +169,32 @@
                                 <h:outputText value="#{itemAnimal.rghv}" />
                             </p:column>
 
-                            <p:column headerText="Nome"
+
+                            <p:column headerText="Animal"
                                       class="LADES-default-Text"
                                       filterBy="#{itemAnimal.animal.animalName}"
                                       filterMatchMode="contains"
                                       style="text-align: center;">
-                                <h:outputText value="#{itemAnimal.animal.animalName}" />
+                                <p:commandLink 
+                                    id="editAnimalData"
+                                    disabled="false"
+                                    rendered="true"
+                                    onclick="PF('dlg2').show();"
+                                    action="#{MBsearchForAnimalSmall.
+                                              editAnimalSmallData.
+                                              methodToSelectSmallAnimalData(itemAnimal)}"
+                                    update=":form:editAnimalData-panelGrid">
+                                    <h:outputText 
+                                        class="c"
+                                        rendered="true"
+                                        value="#{itemAnimal.animal.animalName}&#160;&#160;"/>
+                                    <i class="c fas fa-pencil-alt"/>
+                                </p:commandLink>
+                                <p:tooltip 
+                                    id="toolTipDataSmallAnimal" 
+                                    for="editAnimalData" 
+                                    value="Alterar dados de #{itemAnimal.animal.animalName}" 
+                                    position="left"/>
                             </p:column>
 
                             <p:column headerText="Raça"
@@ -186,9 +221,6 @@
                                       filterBy="#{itemAnimal.deathAnimal}"
                                       filterMatchMode="contains"
                                       width="100px;">
-                                <h:outputText 
-                                    rendered="false"
-                                    value="#{itemAnimal.deathAnimal}&#160;&#160;"/>
                                 <p:commandLink 
                                     id="declareDeath"
                                     disabled="false"
@@ -397,42 +429,8 @@
                     </p:panelGrid>
                 </div>
 
-                <p:dialog 
-                    header="Status de óbito do animal"
-                    widgetVar="dlg1"
-                    modal="true"
-                    responsive="true">
-                    <div class="ui-fluid">
-                        <p:panelGrid 
-                            id="declareDeath-panelGrid"
-                            columns="2"
-                            layout="grid"
-                            styleClass="panelgrid-noborder"
-                            columnClasses="ui-grid-col-6,ui-grid-col-6">
-                            <p:outputLabel 
-                                class="colorPri outputLabel2-SIHV"
-                                value="Nome do animal: "/> 
-                            <p:outputLabel 
-                                class="LADES-default-Text outputLabel2-SIHV"
-                                value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.animalName}"/>
-
-                            <p:outputLabel 
-                                class="colorPri outputLabel2-SIHV"
-                                value="Declarar óbito do animal?: "/> 
-                            <p:selectOneRadio
-                                class="LADES-default-Text"
-                                value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.deathAnimal}">
-                                <f:selectItem itemLabel="Não" itemValue="false" />
-                                <f:selectItem itemLabel="Sim" itemValue="true" />
-                                <p:ajax update="tableAnimals"
-                                        listener="#{MBsearchForAnimalSmall.
-                                                    declareDeathOfSmallAnimal.
-                                                    methodToUpdateDeathData(MBsearchForAnimalSmall.
-                                                    animalSearchEngine.listAnimal)}" />
-                            </p:selectOneRadio>
-                        </p:panelGrid>
-                    </div>
-                </p:dialog>
+                <ui:include src="/sihv-telas/searchForAnimalsDir/dialogDeclareDeathSmallAnimal.xhtml" />
+                <ui:include src="/sihv-telas/searchForAnimalsDir/dialogEditAnimalData.xhtml" />
             </h:form>
 
         </ui:define>

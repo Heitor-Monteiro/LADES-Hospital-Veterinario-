@@ -25,6 +25,7 @@ public class MBsearchForAnimalSmall extends AbstractBean {
     private AnimalSearchSelectionEngine selectionEngine;
     private AnimalSearchEngine animalSearchEngine;
     private DeclareDeathOfSmallAnimal declareDeathOfSmallAnimal;
+    private EditAnimalSmallData editAnimalSmallData;
 
     @PostConstruct
     public void init() {
@@ -33,6 +34,7 @@ public class MBsearchForAnimalSmall extends AbstractBean {
         selectionEngine = new AnimalSearchSelectionEngine(objVarSearch);
         animalSearchEngine = new AnimalSearchEngine(objVarSearch);
         declareDeathOfSmallAnimal = new DeclareDeathOfSmallAnimal();
+        editAnimalSmallData = new EditAnimalSmallData();
     }
 
     public void buttonToSearchForAnimalSmall() throws ParseException {
@@ -54,5 +56,9 @@ public class MBsearchForAnimalSmall extends AbstractBean {
 
     public DeclareDeathOfSmallAnimal getDeclareDeathOfSmallAnimal() {
         return declareDeathOfSmallAnimal;
+    }
+
+    public EditAnimalSmallData getEditAnimalSmallData() {
+        return editAnimalSmallData;
     }
 }

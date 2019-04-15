@@ -1,0 +1,44 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:dialog 
+        header="Status de óbito do animal"
+        widgetVar="dlg1"
+        modal="true"
+        responsive="true">
+        <div class="ui-fluid">
+            <p:panelGrid 
+                id="declareDeath-panelGrid"
+                columns="2"
+                layout="grid"
+                styleClass="panelgrid-noborder"
+                columnClasses="ui-grid-col-6,ui-grid-col-6">
+                <p:outputLabel 
+                    class="colorPri outputLabel2-SIHV"
+                    value="Nome do animal: "/> 
+                <p:outputLabel 
+                    class="LADES-default-Text outputLabel2-SIHV"
+                    value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.animalName}"/>
+
+                <p:outputLabel 
+                    class="colorPri outputLabel2-SIHV"
+                    value="Declarar óbito do animal?: "/> 
+                <p:selectOneRadio
+                    class="LADES-default-Text"
+                    value="#{MBsearchForAnimalSmall.declareDeathOfSmallAnimal.item.animal.deathAnimal}">
+                    <f:selectItem itemLabel="Não" itemValue="false" />
+                    <f:selectItem itemLabel="Sim" itemValue="true" />
+                    <p:ajax update="tableAnimals"
+                            listener="#{MBsearchForAnimalSmall.
+                                        declareDeathOfSmallAnimal.
+                                        methodToUpdateDeathData(MBsearchForAnimalSmall.
+                                        animalSearchEngine.listAnimal)}" />
+                </p:selectOneRadio>
+            </p:panelGrid>
+        </div>
+    </p:dialog>
+
+</ui:component>
