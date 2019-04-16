@@ -12,8 +12,8 @@
         </style>
 
         <ui:define name="title"  >
-            <i class="fa fa-dog"/>
-            <p:outputLabel value=" Buscar animal pequeno"/>
+            <i class="fa fa-search"/>
+            <p:outputLabel value=" Buscar e editar dados de cliente"/>
         </ui:define>
 
         <ui:define name="content">
@@ -177,8 +177,7 @@
                                       style="text-align: center;">
                                 <p:commandLink 
                                     id="editAnimalData"
-                                    disabled="false"
-                                    rendered="true"
+                                    rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}"
                                     onclick="PF('dlg2').show();"
                                     action="#{MBsearchForAnimalSmall.
                                               editAnimalSmallData.
@@ -190,10 +189,15 @@
                                         value="#{itemAnimal.animal.animalName}&#160;&#160;"/>
                                     <i class="c fas fa-pencil-alt"/>
                                 </p:commandLink>
+                                <h:outputText 
+                                    class="c"
+                                    rendered="#{!login.objSeekUserPowers.viewRegisterSmallAnimal}"
+                                    value="#{itemAnimal.animal.animalName}"/>
                                 <p:tooltip 
                                     id="toolTipDataSmallAnimal" 
                                     for="editAnimalData" 
                                     value="Alterar dados de #{itemAnimal.animal.animalName}" 
+                                    rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}"
                                     position="left"/>
                             </p:column>
 
@@ -223,8 +227,7 @@
                                       width="100px;">
                                 <p:commandLink 
                                     id="declareDeath"
-                                    disabled="false"
-                                    rendered="true"
+                                    rendered="#{login.objSeekUserPowers.viewDeclareSmallAnimalDeath}"
                                     onclick="PF('dlg1').show();"
                                     action="#{MBsearchForAnimalSmall.
                                               declareDeathOfSmallAnimal.
@@ -236,10 +239,15 @@
                                         value="#{itemAnimal.deathAnimal}&#160;&#160;"/>
                                     <i class="c fas fa-pencil-alt"/>
                                 </p:commandLink>
+                                <h:outputText 
+                                    class="c"
+                                    rendered="#{!login.objSeekUserPowers.viewDeclareSmallAnimalDeath}"
+                                    value="#{itemAnimal.deathAnimal}"/>
                                 <p:tooltip 
                                     id="toolTipDeclareDeath" 
                                     for="declareDeath" 
                                     value="Declarar óbito de #{itemAnimal.animal.animalName}" 
+                                    rendered="#{login.objSeekUserPowers.viewDeclareSmallAnimalDeath}"
                                     position="left"/>
                             </p:column>
 

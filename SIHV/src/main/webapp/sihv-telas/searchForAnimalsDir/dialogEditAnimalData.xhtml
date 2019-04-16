@@ -8,7 +8,7 @@
         header="Alterar dados do animal"
         widgetVar="dlg2"
         modal="true"
-        responsive="true">
+        responsive="true" >
         <div class="ui-fluid">
             <p:panelGrid 
                 id="editAnimalData-panelGrid"
@@ -17,9 +17,17 @@
                 styleClass="panelgrid-noborder"
                 columnClasses="ui-grid-col-6,ui-grid-col-6">
 
-                Data do registro
-                
-                
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Data do registro:"
+                    rendered="true" />
+                <p:outputLabel 
+                    class="LADES-default-Text"
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.animal.registrationDate}"
+                    rendered="true" />
+
+
                 <p:outputLabel 
                     class="outputLabel-SIHV colorPri"
                     value="RGHV no sistema:"
@@ -134,32 +142,19 @@
                 </p:selectOneMenu>
 
 
-                <p:outputLabel value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.species.nameSpecies}"/>
-                <p:outputLabel value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.selectTextSpecies}"/>
-
-                <p:outputLabel value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.race.nameRaces}"/>
-                <p:outputLabel value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.selectTextBreed}"/>
-
-                <p:outputLabel value=" " />
+                <p:outputLabel 
+                    value=" " />
                 <p:commandButton
                     class="c"
+                    style="margin-top: 10px;"
                     value="Salvar alterações"
                     action="#{MBsearchForAnimalSmall.
                               editAnimalSmallData.
                               methodToUpdateSmallAnimalData(MBsearchForAnimalSmall.animalSearchEngine.listAnimal)}"
-                    update="growl,editAnimalData-panelGrid,tableAnimals"
-                    />
+                    update="growl,editAnimalData-panelGrid,tableAnimals"/>
 
             </p:panelGrid>
         </div>
     </p:dialog>
 
 </ui:component>
-
-
-
-
-
-
-
-

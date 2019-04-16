@@ -53,6 +53,8 @@ public class EditAnimalSmallData extends AbstractBean {
     }
 
     public void methodToSelectSmallAnimalData(AnimalDataGroup selectAnimalDataGroup) {
+        System.out.println("►►►►►►►►►►►►► "
+                + "EditAnimalSmallData > public void methodToSelectSmallAnimalData");
         item = selectAnimalDataGroup;
         new BreedListing().methodBreedListing(listObjRaces, item);
         statusRace = false;
@@ -66,9 +68,7 @@ public class EditAnimalSmallData extends AbstractBean {
     public void methodCheckBreeds() {
         System.out.println("►►►►►►►►►►►►► "
                 + "EditAnimalSmallData > public void methodCheckBreeds");
-        System.out.println("__________________________________:" + statusRace);
         statusRace = new CheckBreeds().methodCheckBreeds(listObjRaces, item, statusRace);
-        System.out.println("__________________________________:" + statusRace);
     }
 
     public void methodToUpdateSmallAnimalData(List<AnimalDataGroup> listAnimal) {
@@ -77,15 +77,12 @@ public class EditAnimalSmallData extends AbstractBean {
         try {
             item.getAnimal().setAnimalName(item.getAnimalNameTemp() + " - " + item.getOldRGHV());
             getDaoGenerico().update(item.getAnimal());
-            System.out.println("__________________________________:" + statusRace);
-
             for (Species specie : listObjSpecies) {
                 if (specie.getNameSpecies().equals(item.getSelectTextSpecies())) {
                     item.setSpecies(specie);
                     break;
                 }
             }
-
             if (statusRace) {
                 RacesId id = new RacesId();
                 id.setSpeciesGenreOrderClassAnimalPkClassAnimal(listObjRaces.get(0).getId().getSpeciesGenreOrderClassAnimalPkClassAnimal());
