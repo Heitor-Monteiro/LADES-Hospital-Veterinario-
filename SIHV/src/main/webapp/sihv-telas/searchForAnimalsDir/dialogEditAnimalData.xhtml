@@ -1,0 +1,160 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <p:dialog 
+        header="Alterar dados do animal"
+        widgetVar="dlg2"
+        modal="true"
+        responsive="true" >
+        <div class="ui-fluid">
+            <p:panelGrid 
+                id="editAnimalData-panelGrid"
+                columns="2"
+                layout="grid"
+                styleClass="panelgrid-noborder"
+                columnClasses="ui-grid-col-6,ui-grid-col-6">
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Data do registro:"
+                    rendered="true" />
+                <p:outputLabel 
+                    class="LADES-default-Text"
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.animal.registrationDate}"
+                    rendered="true" />
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="RGHV no sistema:"
+                    rendered="true" />
+                <p:outputLabel 
+                    class="LADES-default-Text"
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.rghv}"
+                    rendered="true" />
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="RGHV manual:"
+                    rendered="true"
+                    for="oldRGHV-Input" />
+                <p:inputNumber 
+                    id="oldRGHV-Input" 
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.oldRGHV}" 
+                    decimalSeparator=""
+                    thousandSeparator=""
+                    decimalPlaces="0"
+                    minValue="0" 
+                    maxValue="999999"
+                    rendered="true" 
+                    required="true" 
+                    requiredMessage="Informe a RGHV antiga do animal!"/>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Nome do animal:"
+                    rendered="true"
+                    for="animalName-Input" />
+                <p:inputText 
+                    id="animalName-Input" 
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.animalNameTemp}" 
+                    maxlength="70"
+                    rendered="true"
+                    required="true" 
+                    requiredMessage="Informe o campo nome do animal!"/>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Sexo:" 
+                    for="genderAnimal-Input" />                                
+                <p:selectOneButton 
+                    id="genderAnimal-Input" 
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.animal.genderAnimal}"
+                    required="true"
+                    requiredMessage="Informe o sexo do animal!">
+                    <f:selectItem itemLabel="M" itemValue="M" />
+                    <f:selectItem itemLabel="F" itemValue="F" />
+                </p:selectOneButton>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Idade do animal:"
+                    for="idade" />
+                <p:inputText 
+                    id="idade" 
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.animal.animalAge}" 
+                    title="Quanto tempo o proprietário possui o animal?"
+                    maxlength="100"
+                    required="true" 
+                    requiredMessage="Informe quanto tempo o proprietário possui o animal!"/>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Espécie:"
+                    for="species-Input" />                             
+                <p:selectOneButton 
+                    id="species-Input"
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.selectTextSpecies}"
+                    disabled="false"
+                    required="false"
+                    requiredMessage="selecione uma espécie!">
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editAnimalSmallData.listObjSpecies}" 
+                        var="species"
+                        itemLabel="#{species.nameSpecies}" 
+                        itemValue="#{species.nameSpecies}" />
+                    <p:ajax 
+                        update="editAnimalData-panelGrid" 
+                        listener="#{MBsearchForAnimalSmall.editAnimalSmallData.loadRegisteredBreedsDogAndCat()}"/>
+                </p:selectOneButton>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Raça:"
+                    for="selectTextRaces-Input" />
+                <p:selectOneMenu 
+                    id="selectTextRaces-Input"
+                    value="#{MBsearchForAnimalSmall.editAnimalSmallData.item.selectTextBreed}"
+                    placeholder="Selecione uma raça"
+                    editable="true"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    disabled="false"
+                    required="false"
+                    requiredMessage="selecione uma raça para o animal!">
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editAnimalSmallData.listObjRaces}" 
+                        var="races"
+                        itemLabel="#{races.nameRaces}" 
+                        itemValue="#{races.nameRaces}" />
+                    <p:ajax 
+                        update="growl,editAnimalData-panelGrid" 
+                        listener="#{MBsearchForAnimalSmall.editAnimalSmallData.methodCheckBreeds()}"/>
+                </p:selectOneMenu>
+
+
+                <p:outputLabel 
+                    value=" " />
+                <p:commandButton
+                    class="c"
+                    style="margin-top: 10px;"
+                    value="Salvar alterações"
+                    action="#{MBsearchForAnimalSmall.
+                              editAnimalSmallData.
+                              methodToUpdateSmallAnimalData(MBsearchForAnimalSmall.animalSearchEngine.listAnimal)}"
+                    update="growl,editAnimalData-panelGrid,tableAnimals"/>
+
+            </p:panelGrid>
+        </div>
+    </p:dialog>
+
+</ui:component>

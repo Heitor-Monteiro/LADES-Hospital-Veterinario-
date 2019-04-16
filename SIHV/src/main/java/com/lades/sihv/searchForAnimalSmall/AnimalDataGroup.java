@@ -21,9 +21,13 @@ public class AnimalDataGroup implements Serializable {
 
     private Animals animal;
     private SmallAnimal smallAnimal;
+    private String oldRGHV;
+    private String animalNameTemp;
     private String rghv;
     private Races race;
     private Species species;
+    private String selectTextSpecies;
+    private String selectTextBreed;
     private List<OwnerDataGroup> listOwner;
 
     public AnimalDataGroup() {
@@ -37,6 +41,10 @@ public class AnimalDataGroup implements Serializable {
 
     public void setAnimal(Animals animal) {
         this.animal = animal;
+        if (this.animal.getPkAnimal() != null) {
+            oldRGHV = this.animal.getAnimalName().replaceAll("[^1234567890]", "");
+            animalNameTemp = this.animal.getAnimalName().replaceAll("[-1234567890 ]", "");
+        }
     }
 
     public SmallAnimal getSmallAnimal() {
@@ -59,6 +67,9 @@ public class AnimalDataGroup implements Serializable {
 
     public void setRace(Races race) {
         this.race = race;
+        if (this.race.getId() != null) {
+            selectTextBreed = this.race.getNameRaces();
+        }
     }
 
     public Species getSpecies() {
@@ -67,6 +78,9 @@ public class AnimalDataGroup implements Serializable {
 
     public void setSpecies(Species species) {
         this.species = species;
+        if (this.species.getId() != null) {
+            selectTextSpecies = this.species.getNameSpecies();
+        }
     }
 
     public List<OwnerDataGroup> getListOwner() {
@@ -75,6 +89,42 @@ public class AnimalDataGroup implements Serializable {
 
     public void setListOwner(List<OwnerDataGroup> listOwner) {
         this.listOwner = listOwner;
+    }
+
+    public String getOldRGHV() {
+        return oldRGHV;
+    }
+
+    public void setOldRGHV(String oldRGHV) {
+        this.oldRGHV = oldRGHV;
+    }
+
+    public String getAnimalNameTemp() {
+        return animalNameTemp;
+    }
+
+    public void setAnimalNameTemp(String animalNameTemp) {
+        this.animalNameTemp = animalNameTemp;
+    }
+
+    public String getSelectTextSpecies() {
+        return selectTextSpecies;
+    }
+
+    public void setSelectTextSpecies(String selectTextSpecies) {
+        this.selectTextSpecies = selectTextSpecies;
+        System.out.println("++++++++++++++++++++++++++++ " + this.selectTextSpecies);
+    }
+
+    public String getSelectTextBreed() {
+        return selectTextBreed;
+    }
+
+    public void setSelectTextBreed(String selectTextBreed) {
+        this.selectTextBreed = selectTextBreed;
+        if (this.selectTextBreed != null) {
+            System.out.println("►►►►►►►►►►►►► setSelectTextBreed:" + this.selectTextBreed);
+        }
     }
 
     // viewsFields -------------------------------------------------------------

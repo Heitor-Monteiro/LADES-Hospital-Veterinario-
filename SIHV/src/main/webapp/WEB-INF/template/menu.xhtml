@@ -139,14 +139,6 @@
             </div>
 
             <p:link class="itemMenu"
-                    rendered="true"
-                    outcome="/sihv-telas/consultationEntryControl" >
-                <i class="fa fa-donate"
-                   style="margin: 0px 18px 0px 0px;"></i>
-                <p:outputLabel value="Controle de fichas e entrada de &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;caixa" />
-            </p:link>
-
-            <p:link class="itemMenu"
                     rendered="#{login.objSeekUserPowers.viewMakeConsultations}"
                     outcome="/sihv-telas/consulta-nova" >
                 <i class="fa fa-stethoscope"
@@ -162,6 +154,50 @@
                 <p:outputLabel value=" Radiografias pendentes" />
             </p:link>
 
+            <p:link 
+                class="itemMenu"
+                rendered="true"
+                outcome="/sihv-telas/consultationEntryControl" >
+                <i class="fa fa-donate"
+                   style="margin: 0px 18px 0px 0px;"></i>
+                <p:outputLabel value="Controle de fichas e entrada de 
+                               &#160;&#160;&#160;&#160;&#160;
+                               &#160;&#160;&#160;caixa" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="true"
+                    outcome="/sihv-telas/searchForAnimalsDir/searchForAnimals" >
+                <i class="fa fa-search"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Buscar e editar dados de cliente" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}"
+                    outcome="/sihv-telas/schedule-consulta_2" >
+                <i class="fa fa-calendar-plus"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Agendar consulta" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}"
+                    outcome="/sihv-telas/schedulesCanceled" >
+                <i class="fa fa-calendar-times"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Agendamentos desmarcados" />
+            </p:link>
+
+            <p:link class="itemMenu"
+                    rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}"
+                    outcome="/sihv-telas/schedulesConfirmed" >
+                <i class="fa fa-calendar-check"
+                   style="margin: 0px 17px 0px 0px;"></i>
+                <p:outputLabel value="Agendamentos confirmados" />
+            </p:link>
+
+            <!--
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewManipulateConsultationSchedules}">
                     <a class="itemMenu" onclick="dropdownMenu('menu33', 'icoMenu3')" href="#">
@@ -199,6 +235,7 @@
                     </p:link>
                 </div>
             </div>
+            -->
 
             <div class="w3-accordion">
                 <p:outputLabel rendered="#{login.objSeekUserPowers.viewRegisterAndEditHOVETprocedures}">
@@ -251,22 +288,13 @@
                     </p:link>
 
                     <p:link class="itemMenu itemMenuText"
-                            rendered="true"
-                            outcome="/sihv-telas/searchForAnimals" >
+                            rendered="true" >
                         <i class="fa fa-dog"
                            style="margin: 0px 15px 0px 15px;"></i>
                         <p:outputLabel value="Buscar animal pequeno" />
                     </p:link>
                 </div>
             </div>
-
-            <p:link class="itemMenu"
-                    rendered="true"
-                    outcome="/sihv-telas/searchForAnimals" >
-                <i class="fa fa-dog"
-                   style="margin: 0px 17px 0px 0px;"></i>
-                <p:outputLabel value="Buscar animal pequeno" />
-            </p:link>
 
             <p:link class="itemMenu"
                     rendered="false"

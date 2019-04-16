@@ -38,6 +38,7 @@ public class FinalizeAddressSelection extends AbstractBean {
                                 }
                             }
                             var = false;
+                            varr.newStreet(var);
                             break;
                         }
                     }
@@ -61,6 +62,7 @@ public class FinalizeAddressSelection extends AbstractBean {
                         }
                     }
                     if (var) {
+                        varr.setObjStreet(new Street());
                         varr.newStreet(var);
                         varr.getObjStreet().setNameStreet(varr.getSelectStreet());
                         varr.getObjStreet().setRegistrationDate(getObjData());
