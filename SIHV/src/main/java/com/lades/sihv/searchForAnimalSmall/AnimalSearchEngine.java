@@ -124,6 +124,7 @@ public class AnimalSearchEngine extends AbstractBean {
                             if (list3.size() == 2) {
                                 p.setPhone2(list3.get(1));
                             } else if (list3.size() == 3) {
+                                p.setPhone2(list3.get(1));
                                 p.setPhone3(list3.get(2));
                             }
                         }
@@ -143,7 +144,7 @@ public class AnimalSearchEngine extends AbstractBean {
                             if (listCpf != null && !listCpf.isEmpty()) {
                                 cpf = (Cpf) listCpf.get(0);
                             } else {
-                                cpf = new Cpf(null, "CPF não informado");
+                                cpf = new Cpf(null, "");
                             }
                             List<Rg> listRg = getDaoGenerico().list("select r from Rg r, PhysicalPerson phy \n"
                                     + "where \n"
@@ -153,7 +154,7 @@ public class AnimalSearchEngine extends AbstractBean {
                             if (listRg != null && !listRg.isEmpty()) {
                                 rg = (Rg) listRg.get(0);
                             } else {
-                                rg = new Rg(null, "não informado");
+                                rg = new Rg(null, "");
                             }
                             p.setRg(rg);
                             p.setCpf(cpf);

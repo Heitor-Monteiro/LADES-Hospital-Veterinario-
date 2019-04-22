@@ -1,0 +1,189 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        .inconclusiveButton {
+            float: right!important;
+            width: 106px!important;
+            font-size: 12px!important;
+            margin-bottom: 13px!important;
+        }
+    </style>
+
+    <p:dialog 
+        header="Alterar dados de proprietário"
+        widgetVar="dlg3"
+        modal="true"
+        responsive="true"
+        focus="namePerson-Input">
+        <div class="ui-fluid">
+            <p:panelGrid 
+                id="editOwnerData-panelGrid"
+                columns="2"
+                layout="grid"
+                styleClass="panelgrid-noborder"
+                columnClasses="ui-grid-col-6,ui-grid-col-6">
+
+
+                <p:selectBooleanCheckbox 
+                    id="cpf-Label" 
+                    class="outputLabel-SIHV colorPri"
+                    style="font-size: 13px"
+                    itemLabel="CPF:"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.cpfOptional}">
+                    <p:ajax update="editOwnerData-panelGrid" />
+                </p:selectBooleanCheckbox>                              
+                <p:inputMask 
+                    id="cpf-Input"
+                    mask="999.999.999-99"
+                    rendered="true"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.ownerDataGroup.cpfCnpj}" 
+                    autoClear="false"
+                    title="Ex.: 999.999.999-99" 
+                    disabled="#{!MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.cpfOptional}"
+                    required="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.cpfOptional}" 
+                    requiredMessage="Informe o campo CPF!">
+                    <p:ajax 
+                        event="blur"
+                        update="growl,editOwnerData-panelGrid"
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.checkDocumentPhysicalPersonCPF()}"/>
+                </p:inputMask>
+
+
+                <p:selectBooleanCheckbox 
+                    id="rg-Label" 
+                    class="outputLabel-SIHV colorPri"
+                    style="font-size: 13px"
+                    itemLabel="RG:"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}">
+                    <p:ajax update="editOwnerData-panelGrid" />
+                </p:selectBooleanCheckbox>                              
+                <p:inputText 
+                    id="rg-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.
+                             ownerDataGroup.rg.rg}" 
+                    maxlength="15"
+                    disabled="#{!MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}"
+                    required="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}" 
+                    requiredMessage="Informe o campo RG!">
+                </p:inputText>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Nome:"
+                    rendered="true"
+                    for="namePerson-Input" />
+                <p:inputText 
+                    id="namePerson-Input" 
+                    value="#{MBsearchForAnimalSmall.editOwnerData.ownerDataGroup.person.namePerson}"
+                    maxlength="100"
+                    rendered="true"
+                    required="true" 
+                    requiredMessage="Informe o campo nome!"/>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Sexo:"
+                    rendered="true"
+                    for="gender-Input" />
+                <p:selectOneRadio 
+                    id="gender-Input"
+                    columns="2"
+                    layout="responsive"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.ownerDataGroup.physicalPerson.gender}"
+                    rendered="true"
+                    required="true"
+                    requiredMessage="Informe o campo sexo!">
+                    <f:selectItem itemLabel="M" itemValue="M" />
+                    <f:selectItem itemLabel="F" itemValue="F" />
+                </p:selectOneRadio>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Endereço de email:"
+                    rendered="true"
+                    for="email-Input" />
+                <p:inputText 
+                    id="email-Input" 
+                    value="#{MBsearchForAnimalSmall.editOwnerData.ownerDataGroup.person.email}" 
+                    title="Ex.: usuario@email.com"
+                    maxlength="100"
+                    rendered="true"
+                    required="false" />
+
+                <p:outputLabel 
+                    id="phone1-Label"
+                    class="outputLabel-SIHV colorPri"
+                    value="1ª Celular:"
+                    for="phone1-Input" />
+                <p:inputMask 
+                    id="phone1-Input"
+                    mask="(99) 99999-9999" 
+                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone1.numberPhone}"
+                    required="false"
+                    requiredMessage="Informe o campo 1ª Celular!">
+                </p:inputMask>
+
+
+                <p:selectBooleanCheckbox 
+                    id="phone2-Opcao" 
+                    class="outputLabel-SIHV colorPri"
+                    style="font-size: 13px"
+                    itemLabel="2ª Celular"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}">
+                    <p:ajax update="editOwnerData-panelGrid" />
+                </p:selectBooleanCheckbox>
+                <p:inputMask 
+                    id="phone2-Input"
+                    mask="(99) 99999-9999" 
+                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone2.numberPhone}"
+                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
+                    required="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
+                    requiredMessage="Informe o campo 2ª Celular!"/>
+
+
+                <p:selectBooleanCheckbox 
+                    id="phone3-Opcao"
+                    class="outputLabel-SIHV colorPri"
+                    style="font-size: 13px"
+                    itemLabel="3ª Celular"
+                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}">
+                    <p:ajax update="editOwnerData-panelGrid" />
+                </p:selectBooleanCheckbox>
+                <p:inputMask 
+                    id="phone3-Input"
+                    mask="(99) 99999-9999" 
+                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone3.numberPhone}"
+                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}"
+                    required="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}"
+                    requiredMessage="Informe o campo 3ª Celular!"/>
+            </p:panelGrid>
+
+
+            <p:panelGrid 
+                columns="2"
+                layout="grid"
+                styleClass="panelgrid-noborder"
+                columnClasses="ui-grid-col-6,ui-grid-col-6">
+                <p:outputLabel 
+                    value=" " />
+                <p:commandButton
+                    class="c"
+                    style="margin-top: 10px;"
+                    value="Salvar alterações"
+                    action="#{MBsearchForAnimalSmall.
+                              editOwnerData.
+                              methodToUpdateOwnerData(MBsearchForAnimalSmall.animalSearchEngine.listAnimal)}"
+                    update="growl,editOwnerData-panelGrid,tableAnimals"/>
+            </p:panelGrid>
+        </div>
+    </p:dialog>
+
+</ui:component>
