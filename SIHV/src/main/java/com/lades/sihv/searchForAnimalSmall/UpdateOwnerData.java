@@ -7,6 +7,8 @@ package com.lades.sihv.searchForAnimalSmall;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.ModuleToCollectError;
+import com.lades.sihv.controller.address.AddressControl;
+import com.lades.sihv.controller.editUserData.SaveAddress;
 import com.lades.sihv.controller.person.IntercalateCpfRg;
 import com.lades.sihv.controller.person.PhonesControl;
 import java.util.List;
@@ -18,12 +20,13 @@ import org.primefaces.context.RequestContext;
  * @author thiberius
  */
 public class UpdateOwnerData extends AbstractBean {
-
+    
     public void methodToUpdateOwnerData(List<AnimalDataGroup> listAnimal,
             OwnerDataGroup ownerDataGroup,
             PhonesControl phonesControl,
             IntercalateCpfRg intercalateCpfRg,
-            AnimalDataGroup item) {
+            AnimalDataGroup item,
+            AddressControl addressControl) {
         System.out.println("►►►►►►►►►►►►► "
                 + "EditOwnerData > public void methodToUpdateOwnerData");
         try {
@@ -38,8 +41,15 @@ public class UpdateOwnerData extends AbstractBean {
                     getDaoGenerico().update(ownerDataGroup.getRg());
                 }
             } else {
-
+                
             }
+            new SaveAddress().methodSaveAddress(ownerDataGroup.getPerson(), addressControl.getVar());
+            ownerDataGroup.setUf(addressControl.getVar().getSelectUF());
+            ownerDataGroup.setCity(addressControl.getVar().getObjCity());
+            ownerDataGroup.setNeighborhood(addressControl.getVar().getObjNeighborhood());
+            ownerDataGroup.setStreet(addressControl.getVar().getObjStreet());
+            ownerDataGroup.setHouse(addressControl.getVar().getHouse());
+            ownerDataGroup.setAddress(addressControl.getVar().getObjAddress());
             item.getListOwner().add(0, ownerDataGroup);
             int num = listAnimal.indexOf(item);
             listAnimal.remove(num);

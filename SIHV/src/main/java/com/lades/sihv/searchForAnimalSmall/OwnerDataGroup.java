@@ -5,6 +5,7 @@
  */
 package com.lades.sihv.searchForAnimalSmall;
 
+import com.lades.sihv.model.Address;
 import com.lades.sihv.model.City;
 import com.lades.sihv.model.Cpf;
 import com.lades.sihv.model.FederationUnity;
@@ -41,6 +42,7 @@ public class OwnerDataGroup implements Serializable {
     private Neighborhood neighborhood;
     private City city;
     private FederationUnity uf;
+    private Address address;
 
     // GETs & SETs -------------------------------------------------------------
     public People getPerson() {
@@ -163,5 +165,13 @@ public class OwnerDataGroup implements Serializable {
 
     public void setUf(FederationUnity uf) {
         this.uf = uf;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }

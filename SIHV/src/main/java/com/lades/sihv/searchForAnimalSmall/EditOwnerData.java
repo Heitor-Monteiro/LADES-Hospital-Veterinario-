@@ -8,30 +8,30 @@ package com.lades.sihv.searchForAnimalSmall;
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.address.AddressControl;
+import com.lades.sihv.controller.editUserData.SearchAddressOfPerson;
 import com.lades.sihv.controller.person.IntercalateCpfRg;
 import com.lades.sihv.controller.person.PhonesControl;
-import com.lades.sihv.controller.person.VariablesPerson;
-import com.lades.sihv.controller.person.VerifyPersonDocument;
 import com.lades.sihv.model.Cpf;
+import com.lades.sihv.model.FederationUnity;
 import com.lades.sihv.model.People;
 import com.lades.sihv.model.PhysicalPerson;
 import com.lades.sihv.model.Rg;
 import java.util.List;
+import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author thiberius
  */
 public class EditOwnerData extends AbstractBean {
-    
+
     private AnimalDataGroup item;
     private OwnerDataGroup ownerDataGroup;
     private PhonesControl phonesControl;
-    private IntercalateCpfRg intercalateCpfRg;
-    private VerifyPersonDocument verifyPersonDocument;
+    private final IntercalateCpfRg intercalateCpfRg;
     private AddressControl addressControl;
-    private CheckOwnerDocument checkOwnerDocument;
-    
+    private final CheckOwnerDocument checkOwnerDocument;
+
     public EditOwnerData() {
         ownerDataGroup = new OwnerDataGroup();
         ownerDataGroup.setPerson(new People());
@@ -44,13 +44,20 @@ public class EditOwnerData extends AbstractBean {
         ownerDataGroup.setCpfCnpj("11111111111");
         ownerDataGroup.setRg(new Rg());
         ownerDataGroup.getRg().setRg("x");
+        ownerDataGroup.setUf(new FederationUnity());
         phonesControl = new PhonesControl();
-        phonesControl.getPhone1().setNumberPhone("x");
+        phonesControl.getPhone1().setNumberPhone("11111111111");
         intercalateCpfRg = new IntercalateCpfRg();
         checkOwnerDocument = new CheckOwnerDocument();
         addressControl = new AddressControl();
+        addressControl.loadLists();
+        addressControl.getVar().setSelectUF(addressControl.getVar().getListUF().get(0));
+        addressControl.getVar().setSelectCity("x");
+        addressControl.getVar().setSelectNeighborhood("x");
+        addressControl.getVar().setSelectStreet("x");
+        addressControl.getVar().getHouse().setNumberHouse("x");
     }
-    
+
     public void methodToSelectOwner(AnimalDataGroup selectAnimalDataGroup) {
         System.out.println("►►►►►►►►►►►►► "
                 + "EditOwnerData > public void methodToSelectOwner");
@@ -78,48 +85,66 @@ public class EditOwnerData extends AbstractBean {
             } else {
                 intercalateCpfRg.setRgOptional(false);
             }
+            SearchAddressOfPerson obj = new SearchAddressOfPerson();
+            addressControl.getVar().instantiateLists();
+            addressControl.getVar().setSelectUF(ownerDataGroup.getUf());
+            addressControl.getVar().getListUF().add(ownerDataGroup.getUf());
+            obj.ufListing(addressControl.getVar());
+            addressControl.getVar().setSelectCity(ownerDataGroup.getCity().getFullNameCity());
+            addressControl.getVar().setObjCity(ownerDataGroup.getCity());
+            addressControl.getVar().getListObjCity().add(ownerDataGroup.getCity());
+            obj.methodEnableListCitys(addressControl.getVar());
+            addressControl.getVar().setSelectNeighborhood(ownerDataGroup.getNeighborhood().getNeighborhood());
+            addressControl.getVar().setObjNeighborhood(ownerDataGroup.getNeighborhood());
+            obj.methodEnableListNeighborhood(addressControl.getVar());
+            addressControl.getVar().setSelectStreet(ownerDataGroup.getStreet().getNameStreet());
+            addressControl.getVar().setObjStreet(ownerDataGroup.getStreet());
+            obj.methodEnableListStreet(addressControl.getVar());
+            addressControl.getVar().setHouse(ownerDataGroup.getHouse());
+            addressControl.getVar().setObjAddress(ownerDataGroup.getAddress());
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void methodToSelectOwner(): " + e.toString());
             new ModuleToCollectError().erroPage500("EditOwnerData > methodToSelectOwner", e.toString());
         }
     }
-    
-    public void verifyPersonDocument() {
-        VariablesPerson varPerson = new VariablesPerson();
-        varPerson.setPerson(ownerDataGroup.getPerson());
-        varPerson.setOwner(ownerDataGroup.getOwner());
-        varPerson.setPhysicalPerson(ownerDataGroup.getPhysicalPerson());
-        varPerson.setObjCpf(ownerDataGroup.getCpf());
-        varPerson.setObjRg(ownerDataGroup.getRg());
-        varPerson.setLegalPerson(ownerDataGroup.getLegalPerson());
-        
-        verifyPersonDocument = new VerifyPersonDocument();
-        verifyPersonDocument.checkDocumentPhysicalPerson(varPerson, addressControl);
-    }
-    
+
     public void checkDocumentPhysicalPersonCPF() {
         checkOwnerDocument.checkDocumentPhysicalPersonCPF(ownerDataGroup);
     }
-    
+
     public void methodToUpdateOwnerData(List<AnimalDataGroup> listAnimal) {
         new UpdateOwnerData().methodToUpdateOwnerData(listAnimal, ownerDataGroup,
-                phonesControl, intercalateCpfRg, item);
+                phonesControl, intercalateCpfRg, item, addressControl);
+    }
+
+    public void closeDialogEditOwnerData() {
+        if (ownerDataGroup.getPerson().getPkPerson() != null) {
+            item = new AnimalDataGroup();
+            ownerDataGroup = new OwnerDataGroup();
+            phonesControl = new PhonesControl();
+            addressControl = new AddressControl();
+            RequestContext.getCurrentInstance().execute("PF('dlg3').hide();");
+        }
     }
 
     // GETs & SETs ------------------------------------------------------------
     public OwnerDataGroup getOwnerDataGroup() {
         return ownerDataGroup;
     }
-    
+
     public void setOwnerDataGroup(OwnerDataGroup ownerDataGroup) {
         this.ownerDataGroup = ownerDataGroup;
     }
-    
+
     public PhonesControl getPhonesControl() {
         return phonesControl;
     }
-    
+
     public IntercalateCpfRg getIntercalateCpfRg() {
         return intercalateCpfRg;
+    }
+
+    public AddressControl getAddressControl() {
+        return addressControl;
     }
 }

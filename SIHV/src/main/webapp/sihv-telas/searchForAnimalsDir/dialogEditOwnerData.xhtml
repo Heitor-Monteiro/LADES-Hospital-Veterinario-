@@ -18,14 +18,19 @@
         widgetVar="dlg3"
         modal="true"
         responsive="true"
-        focus="namePerson-Input">
+        focus="namePerson-Input"
+        width="800"
+        onHide="#{MBsearchForAnimalSmall.editOwnerData.closeDialogEditOwnerData()}">
+        <p:ajax 
+            event="close" 
+            update="editOwnerData-panelGrid" />
         <div class="ui-fluid">
             <p:panelGrid 
                 id="editOwnerData-panelGrid"
-                columns="2"
+                columns="4"
                 layout="grid"
                 styleClass="panelgrid-noborder"
-                columnClasses="ui-grid-col-6,ui-grid-col-6">
+                columnClasses="ui-grid-col-3,ui-grid-col-3,ui-grid-col-3,ui-grid-col-3">
 
 
                 <p:selectBooleanCheckbox 
@@ -70,6 +75,146 @@
                     required="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}" 
                     requiredMessage="Informe o campo RG!">
                 </p:inputText>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="UF:"
+                    for="selectUF-Input" />                             
+                <p:selectOneMenu 
+                    id="selectUF-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.selectUF}"
+                    converter="federationUnityConverter"
+                    disabled="false"
+                    required="true"
+                    requiredMessage="selecione uma opção UF!">
+                    <f:selectItem 
+                        itemLabel="Selecione o estado" 
+                        itemValue="" 
+                        noSelectionOption="true" />
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.listUF}" 
+                        var="uf"
+                        itemLabel="#{uf.fullName}" 
+                        itemValue="#{uf}" />
+                    <p:ajax 
+                        update="growl,editOwnerData-panelGrid"
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.addressControl.enableListCitys()}"/>
+                </p:selectOneMenu>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Cidade:"
+                    for="selectCity-Input" />
+                <p:selectOneMenu 
+                    id="selectCity-Input"
+                    class="LADES-default-Text"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.selectCity}"
+                    placeholder="Selecione uma cidade"
+                    editable="true"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    disabled="false"
+                    required="true"
+                    requiredMessage="selecione uma opção de Cidade!">
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.listCity}" 
+                        var="city"
+                        itemLabel="#{city}" 
+                        itemValue="#{city}" />
+                    <p:ajax 
+                        update="growl, editOwnerData-panelGrid" 
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.addressControl.enableListNeighborhood()}"/>F
+                </p:selectOneMenu>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Bairro:"
+                    for="selectNeighborhood-Input" />
+                <p:selectOneMenu 
+                    id="selectNeighborhood-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.selectNeighborhood}"
+                    placeholder="Selecione o bairro"
+                    editable="true"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    disabled="false"
+                    required="true"
+                    requiredMessage="selecione uma opção de Bairro!">
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.listNeighborhood}" 
+                        var="neighborhood"
+                        itemLabel="#{neighborhood}" 
+                        itemValue="#{neighborhood}" />
+                    <p:ajax 
+                        update="growl, editOwnerData-panelGrid" 
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.addressControl.enableListStreet()}"/>\
+                </p:selectOneMenu>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Rua:"
+                    for="selectStreet-Input" />
+                <p:selectOneMenu 
+                    id="selectStreet-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.selectStreet}"
+                    placeholder="Selecione a rua"
+                    editable="true"
+                    filter="true"
+                    filterMatchMode="startsWith"
+                    disabled="false"
+                    required="true"
+                    requiredMessage="selecione uma opção de Rua!">
+                    <f:selectItems 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.listStreet}" 
+                        var="street"
+                        itemLabel="#{street}" 
+                        itemValue="#{street}" />
+                    <p:ajax 
+                        update="growl,editOwnerData-panelGrid" 
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.addressControl.finalizeAddressSelection()}"/>
+                </p:selectOneMenu>
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="CEP:"
+                    for="numberCep-Input" />
+                <p:inputMask 
+                    id="numberCep-Input"
+                    mask="99999-999"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.house.numberCep}" 
+                    disabled="false"
+                    required="false" 
+                    requiredMessage="Informe o campo CEP!" />
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Numero da casa:"
+                    for="numberHouse-Input" />
+                <p:inputText 
+                    id="numberHouse-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.house.numberHouse}"
+                    maxlength="9"
+                    disabled="false"
+                    required="true"
+                    requiredMessage="Informe o número da casa!" />
+
+
+                <p:outputLabel 
+                    class="outputLabel-SIHV colorPri"
+                    value="Complemento:" />
+                <p:inputText 
+                    id="complement-Input"
+                    value="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.house.complement}"
+                    maxlength="100"
+                    disabled="#{MBsearchForAnimalSmall.editOwnerData.addressControl.var.confirmSelectUF}"
+                    required="false"
+                    title="Endereço complementar"/>
 
 
                 <p:outputLabel 
@@ -126,7 +271,7 @@
                     id="phone1-Input"
                     mask="(99) 99999-9999" 
                     value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone1.numberPhone}"
-                    required="false"
+                    required="true"
                     requiredMessage="Informe o campo 1ª Celular!">
                 </p:inputMask>
 
@@ -168,14 +313,17 @@
 
 
             <p:panelGrid 
-                columns="2"
+                columns="3"
                 layout="grid"
                 styleClass="panelgrid-noborder"
-                columnClasses="ui-grid-col-6,ui-grid-col-6">
+                columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4">
+                <p:outputLabel 
+                    value=" " />
                 <p:outputLabel 
                     value=" " />
                 <p:commandButton
                     class="c"
+                    icon="fa fa-save"
                     style="margin-top: 10px;"
                     value="Salvar alterações"
                     action="#{MBsearchForAnimalSmall.

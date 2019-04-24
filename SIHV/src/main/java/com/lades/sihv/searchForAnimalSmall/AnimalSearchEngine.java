@@ -7,6 +7,7 @@ package com.lades.sihv.searchForAnimalSmall;
 
 import com.lades.sihv.bean.AbstractBean;
 import com.lades.sihv.controller.VariablesSearch;
+import com.lades.sihv.model.Address;
 import com.lades.sihv.model.Animals;
 import com.lades.sihv.model.City;
 import com.lades.sihv.model.Cpf;
@@ -34,17 +35,17 @@ import java.util.List;
  * @author thiberius
  */
 public class AnimalSearchEngine extends AbstractBean {
-
+    
     private final VariablesSearch objVarSearch;
     private final List<AnimalDataGroup> listAnimal;
     private List<AnimalDataGroup> filterAnimal;
     private String join = "";
-
+    
     public AnimalSearchEngine(VariablesSearch objVarSearch) {
         this.objVarSearch = objVarSearch;
         listAnimal = new ArrayList();
     }
-
+    
     private void gerarJoins() throws ParseException {
         join = "";
         switch (objVarSearch.getItemSearch()) {
@@ -66,11 +67,11 @@ public class AnimalSearchEngine extends AbstractBean {
                 break;
         }
     }
-
+    
     public boolean isViewTablelistAnimals() {
         return !listAnimal.isEmpty();
     }
-
+    
     public void listAnimals() throws ParseException {
         listAnimal.clear();
         gerarJoins();
@@ -102,7 +103,7 @@ public class AnimalSearchEngine extends AbstractBean {
                 x.setSpecies((Species) obj[3]);
                 listAnimal.add(x);
             }
-
+            
             for (AnimalDataGroup obj : listAnimal) {
                 List<?> list2 = getDaoGenerico().list("select p,o from Animals a, OwnersHasAnimals oha, Owners o, People p \n"
                         + "where \n"
@@ -135,7 +136,7 @@ public class AnimalSearchEngine extends AbstractBean {
                         if (list4 != null && !list4.isEmpty()) {
                             PhysicalPerson phy = (PhysicalPerson) list4.get(0);
                             p.setPhysicalPerson(phy);
-
+                            
                             List<Cpf> listCpf = getDaoGenerico().list("select c from Cpf c, PhysicalPerson phy \n"
                                     + "where \n"
                                     + "phy.id.pkPhysicalPerson=c.physicalPerson.id.pkPhysicalPerson and \n"
@@ -165,8 +166,8 @@ public class AnimalSearchEngine extends AbstractBean {
                                     + "p.pkPerson='" + p.getPerson().getPkPerson() + "'");
                             p.setLegalPerson((LegalPerson) list4.get(0));
                         }
-
-                        List<?> list5 = getDaoGenerico().list("select h,s,n,c,uf from \n"
+                        
+                        List<?> list5 = getDaoGenerico().list("select h,s,n,c,uf,a from \n"
                                 + "People p, Houses h, Address a, Street s, Neighborhood n, City c, FederationUnity uf \n"
                                 + "where \n"
                                 + "p.pkPerson=h.people.pkPerson and \n"
@@ -183,6 +184,7 @@ public class AnimalSearchEngine extends AbstractBean {
                             p.setNeighborhood((Neighborhood) address[2]);
                             p.setCity((City) address[3]);
                             p.setUf((FederationUnity) address[4]);
+                            p.setAddress((Address) address[5]);
                         }
                         obj.getListOwner().add(p);
                     }
@@ -197,11 +199,11 @@ public class AnimalSearchEngine extends AbstractBean {
     public List<AnimalDataGroup> getListAnimal() {
         return listAnimal;
     }
-
+    
     public List<AnimalDataGroup> getFilterAnimal() {
         return filterAnimal;
     }
-
+    
     public void setFilterAnimal(List<AnimalDataGroup> filterAnimal) {
         this.filterAnimal = filterAnimal;
     }
