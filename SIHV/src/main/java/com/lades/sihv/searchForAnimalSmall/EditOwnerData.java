@@ -24,14 +24,14 @@ import org.primefaces.context.RequestContext;
  * @author thiberius
  */
 public class EditOwnerData extends AbstractBean {
-
+    
     private AnimalDataGroup item;
     private OwnerDataGroup ownerDataGroup;
     private PhonesControl phonesControl;
-    private final IntercalateCpfRg intercalateCpfRg;
+    private IntercalateCpfRg intercalateCpfRg;
     private AddressControl addressControl;
     private final CheckOwnerDocument checkOwnerDocument;
-
+    
     public EditOwnerData() {
         ownerDataGroup = new OwnerDataGroup();
         ownerDataGroup.setPerson(new People());
@@ -44,6 +44,7 @@ public class EditOwnerData extends AbstractBean {
         ownerDataGroup.setCpfCnpj("11111111111");
         ownerDataGroup.setRg(new Rg());
         ownerDataGroup.getRg().setRg("x");
+        ownerDataGroup.setTempRg("x");
         ownerDataGroup.setUf(new FederationUnity());
         phonesControl = new PhonesControl();
         phonesControl.getPhone1().setNumberPhone("11111111111");
@@ -57,7 +58,7 @@ public class EditOwnerData extends AbstractBean {
         addressControl.getVar().setSelectStreet("x");
         addressControl.getVar().getHouse().setNumberHouse("x");
     }
-
+    
     public void methodToSelectOwner(AnimalDataGroup selectAnimalDataGroup) {
         System.out.println("►►►►►►►►►►►►► "
                 + "EditOwnerData > public void methodToSelectOwner");
@@ -82,6 +83,7 @@ public class EditOwnerData extends AbstractBean {
             }
             if (ownerDataGroup.getRg().getPkRg() != null) {
                 intercalateCpfRg.setRgOptional(true);
+                ownerDataGroup.setTempRg(ownerDataGroup.getRg().getRg());
             } else {
                 intercalateCpfRg.setRgOptional(false);
             }
@@ -107,22 +109,27 @@ public class EditOwnerData extends AbstractBean {
             new ModuleToCollectError().erroPage500("EditOwnerData > methodToSelectOwner", e.toString());
         }
     }
-
+    
     public void checkDocumentPhysicalPersonCPF() {
         checkOwnerDocument.checkDocumentPhysicalPersonCPF(ownerDataGroup);
     }
-
+    
+    public void checkDocumentPhysicalPersonRG() {
+        checkOwnerDocument.checkDocumentPhysicalPersonRG(ownerDataGroup, addressControl);
+    }
+    
     public void methodToUpdateOwnerData(List<AnimalDataGroup> listAnimal) {
         new UpdateOwnerData().methodToUpdateOwnerData(listAnimal, ownerDataGroup,
                 phonesControl, intercalateCpfRg, item, addressControl);
     }
-
+    
     public void closeDialogEditOwnerData() {
         if (ownerDataGroup.getPerson().getPkPerson() != null) {
             item = new AnimalDataGroup();
             ownerDataGroup = new OwnerDataGroup();
             phonesControl = new PhonesControl();
             addressControl = new AddressControl();
+            intercalateCpfRg = new IntercalateCpfRg();
             RequestContext.getCurrentInstance().execute("PF('dlg3').hide();");
         }
     }
@@ -131,19 +138,19 @@ public class EditOwnerData extends AbstractBean {
     public OwnerDataGroup getOwnerDataGroup() {
         return ownerDataGroup;
     }
-
+    
     public void setOwnerDataGroup(OwnerDataGroup ownerDataGroup) {
         this.ownerDataGroup = ownerDataGroup;
     }
-
+    
     public PhonesControl getPhonesControl() {
         return phonesControl;
     }
-
+    
     public IntercalateCpfRg getIntercalateCpfRg() {
         return intercalateCpfRg;
     }
-
+    
     public AddressControl getAddressControl() {
         return addressControl;
     }

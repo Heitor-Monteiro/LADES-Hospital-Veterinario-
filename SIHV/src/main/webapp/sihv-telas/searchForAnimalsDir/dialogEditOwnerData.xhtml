@@ -69,11 +69,16 @@
                 <p:inputText 
                     id="rg-Input"
                     value="#{MBsearchForAnimalSmall.editOwnerData.
-                             ownerDataGroup.rg.rg}" 
+                             ownerDataGroup.tempRg}" 
                     maxlength="15"
                     disabled="#{!MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}"
                     required="#{MBsearchForAnimalSmall.editOwnerData.intercalateCpfRg.rgOptional}" 
                     requiredMessage="Informe o campo RG!">
+                    <p:ajax 
+                        event="keyup"
+                        update="growl,editOwnerData-panelGrid"
+                        listener="#{MBsearchForAnimalSmall.editOwnerData.checkDocumentPhysicalPersonRG()}"
+                        delay="1000" />
                 </p:inputText>
 
 

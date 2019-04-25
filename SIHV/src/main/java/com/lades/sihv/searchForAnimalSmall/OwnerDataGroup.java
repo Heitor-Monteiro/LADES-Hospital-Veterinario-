@@ -33,6 +33,7 @@ public class OwnerDataGroup implements Serializable {
     private Cpf cpf;
     private Rg rg;
     private String cpfCnpj;
+    private String tempRg;
     private Phones phone1;
     private Phones phone2;
     private Phones phone3;
@@ -92,6 +93,7 @@ public class OwnerDataGroup implements Serializable {
     }
 
     public void setRg(Rg rg) {
+        tempRg = rg.getRg();
         this.rg = rg;
     }
 
@@ -101,6 +103,14 @@ public class OwnerDataGroup implements Serializable {
 
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
+    }
+
+    public String getTempRg() {
+        return tempRg;
+    }
+
+    public void setTempRg(String tempRg) {
+        this.tempRg = tempRg;
     }
 
     public Phones getPhone1() {
