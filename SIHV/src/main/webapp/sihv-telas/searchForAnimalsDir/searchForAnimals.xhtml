@@ -156,7 +156,32 @@
                                 filterBy="#{itemAnimal.listOwner.get(0).person.namePerson}"
                                 filterMatchMode="contains"
                                 style="text-align: center;">
-                                <h:outputText value="#{itemAnimal.listOwner.get(0).person.namePerson}" />
+
+
+                                <p:commandLink 
+                                    id="editOwnerData"
+                                    rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}"
+                                    onclick="PF('dlg3').show();"
+                                    action="#{MBsearchForAnimalSmall.
+                                              editOwnerData.
+                                              methodToSelectOwner(itemAnimal)}"
+                                    update=":form:editOwnerData-panelGrid">
+                                    <h:outputText 
+                                        class="c"
+                                        rendered="true"
+                                        value="#{itemAnimal.listOwner.get(0).person.namePerson}&#160;&#160;"/>
+                                    <i class="c fas fa-pencil-alt"/>
+                                </p:commandLink>
+                                <h:outputText 
+                                    class="c"
+                                    rendered="#{!login.objSeekUserPowers.viewRegisterSmallAnimal}"
+                                    value="#{itemAnimal.listOwner.get(0).person.namePerson}"/>
+                                <p:tooltip 
+                                    id="toolTipDataOwner" 
+                                    for="editOwnerData" 
+                                    value="Alterar dados de #{itemAnimal.listOwner.get(0).person.namePerson}" 
+                                    rendered="#{login.objSeekUserPowers.viewRegisterSmallAnimal}"
+                                    position="left"/>
                             </p:column>
 
 
@@ -263,7 +288,7 @@
                                              margin-top: -4px;">
 
                                     <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
-                                                   value="Data do registro:" />
+                                                   value="Data de registro do animal:" />
                                     <p:outputLabel class="LADES-default-Text"
                                                    value="#{itemAnimal.animal.registrationDate}" />
 
@@ -425,7 +450,7 @@
                                                            value="#{owner.person.email}"/>
 
                                             <p:outputLabel class="LADES-default-Text outputLabel2-SIHV"
-                                                           value="Data do registro:" />
+                                                           value="Data de registro do proprietário:" />
                                             <p:outputLabel class="LADES-default-Text"
                                                            value="#{owner.person.registrationDate}"/>
                                         </p:panelGrid>
@@ -439,6 +464,7 @@
 
                 <ui:include src="/sihv-telas/searchForAnimalsDir/dialogDeclareDeathSmallAnimal.xhtml" />
                 <ui:include src="/sihv-telas/searchForAnimalsDir/dialogEditAnimalData.xhtml" />
+                <ui:include src="/sihv-telas/searchForAnimalsDir/dialogEditOwnerData.xhtml" />
             </h:form>
 
         </ui:define>

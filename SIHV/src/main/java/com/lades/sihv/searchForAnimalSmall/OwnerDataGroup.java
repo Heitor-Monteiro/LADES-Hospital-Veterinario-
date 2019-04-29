@@ -5,6 +5,7 @@
  */
 package com.lades.sihv.searchForAnimalSmall;
 
+import com.lades.sihv.model.Address;
 import com.lades.sihv.model.City;
 import com.lades.sihv.model.Cpf;
 import com.lades.sihv.model.FederationUnity;
@@ -32,6 +33,7 @@ public class OwnerDataGroup implements Serializable {
     private Cpf cpf;
     private Rg rg;
     private String cpfCnpj;
+    private String tempRg;
     private Phones phone1;
     private Phones phone2;
     private Phones phone3;
@@ -41,6 +43,7 @@ public class OwnerDataGroup implements Serializable {
     private Neighborhood neighborhood;
     private City city;
     private FederationUnity uf;
+    private Address address;
 
     // GETs & SETs -------------------------------------------------------------
     public People getPerson() {
@@ -90,6 +93,7 @@ public class OwnerDataGroup implements Serializable {
     }
 
     public void setRg(Rg rg) {
+        tempRg = rg.getRg();
         this.rg = rg;
     }
 
@@ -99,6 +103,14 @@ public class OwnerDataGroup implements Serializable {
 
     public void setCpfCnpj(String cpfCnpj) {
         this.cpfCnpj = cpfCnpj;
+    }
+
+    public String getTempRg() {
+        return tempRg;
+    }
+
+    public void setTempRg(String tempRg) {
+        this.tempRg = tempRg;
     }
 
     public Phones getPhone1() {
@@ -163,5 +175,13 @@ public class OwnerDataGroup implements Serializable {
 
     public void setUf(FederationUnity uf) {
         this.uf = uf;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
     }
 }
