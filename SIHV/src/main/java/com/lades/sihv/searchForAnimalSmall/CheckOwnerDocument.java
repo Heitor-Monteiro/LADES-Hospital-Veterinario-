@@ -10,7 +10,6 @@ import com.lades.sihv.controller.ModuleToCollectError;
 import com.lades.sihv.controller.address.AddressControl;
 import com.lades.sihv.controller.person.PessoaCheckCPF;
 import com.lades.sihv.model.Cpf;
-import com.lades.sihv.model.Rg;
 import java.util.List;
 
 /**
@@ -32,10 +31,14 @@ public class CheckOwnerDocument extends AbstractBean {
                         + "where \n"
                         + "c.cpf='" + ownerDataGroup.getCpfCnpj() + "'");
                 if (list != null && !list.isEmpty()) {
-                    getObjMessage().warn("O número CPF já está sendo utilizado "
-                            + "por outro registro!", ownerDataGroup.getCpf().getCpf());
-                    ownerDataGroup.setCpfCnpj(ownerDataGroup.getCpf().getCpf());
+                    if (!ownerDataGroup.getCpfCnpj().equals(ownerDataGroup.getCpf().getCpf())) {
+                        getObjMessage().warn("O número CPF já está sendo utilizado "
+                                + "por outro registro!", ownerDataGroup.getCpf().getCpf());
+                        ownerDataGroup.setCpfCnpj(ownerDataGroup.getCpf().getCpf());
+                    }
                     list.clear();
+                } else {
+                    getObjMessage().info("Novo CPF detectado", "");
                 }
             } else {
                 ownerDataGroup.setCpfCnpj(ownerDataGroup.getCpf().getCpf());

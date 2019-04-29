@@ -24,14 +24,14 @@ import org.primefaces.context.RequestContext;
  * @author thiberius
  */
 public class EditOwnerData extends AbstractBean {
-    
+
     private AnimalDataGroup item;
     private OwnerDataGroup ownerDataGroup;
     private PhonesControl phonesControl;
     private IntercalateCpfRg intercalateCpfRg;
     private AddressControl addressControl;
     private final CheckOwnerDocument checkOwnerDocument;
-    
+
     public EditOwnerData() {
         ownerDataGroup = new OwnerDataGroup();
         ownerDataGroup.setPerson(new People());
@@ -53,12 +53,12 @@ public class EditOwnerData extends AbstractBean {
         addressControl = new AddressControl();
         addressControl.loadLists();
         addressControl.getVar().setSelectUF(addressControl.getVar().getListUF().get(0));
-        addressControl.getVar().setSelectCity("x");
-        addressControl.getVar().setSelectNeighborhood("x");
-        addressControl.getVar().setSelectStreet("x");
-        addressControl.getVar().getHouse().setNumberHouse("x");
+        addressControl.getVar().setSelectCity(" ");
+        addressControl.getVar().setSelectNeighborhood(" ");
+        addressControl.getVar().setSelectStreet(" ");
+        addressControl.getVar().getHouse().setNumberHouse(" ");
     }
-    
+
     public void methodToSelectOwner(AnimalDataGroup selectAnimalDataGroup) {
         System.out.println("►►►►►►►►►►►►► "
                 + "EditOwnerData > public void methodToSelectOwner");
@@ -98,9 +98,13 @@ public class EditOwnerData extends AbstractBean {
             obj.methodEnableListCitys(addressControl.getVar());
             addressControl.getVar().setSelectNeighborhood(ownerDataGroup.getNeighborhood().getNeighborhood());
             addressControl.getVar().setObjNeighborhood(ownerDataGroup.getNeighborhood());
+            addressControl.getVar().getListObjNeighborhood().add(ownerDataGroup.getNeighborhood());
+            addressControl.getVar().getListNeighborhood().add(ownerDataGroup.getNeighborhood().getNeighborhood());
             obj.methodEnableListNeighborhood(addressControl.getVar());
             addressControl.getVar().setSelectStreet(ownerDataGroup.getStreet().getNameStreet());
             addressControl.getVar().setObjStreet(ownerDataGroup.getStreet());
+            addressControl.getVar().getListObjStreet().add(ownerDataGroup.getStreet());
+            addressControl.getVar().getListStreet().add(ownerDataGroup.getStreet().getNameStreet());
             obj.methodEnableListStreet(addressControl.getVar());
             addressControl.getVar().setHouse(ownerDataGroup.getHouse());
             addressControl.getVar().setObjAddress(ownerDataGroup.getAddress());
@@ -109,24 +113,25 @@ public class EditOwnerData extends AbstractBean {
             new ModuleToCollectError().erroPage500("EditOwnerData > methodToSelectOwner", e.toString());
         }
     }
-    
+
     public void checkDocumentPhysicalPersonCPF() {
         checkOwnerDocument.checkDocumentPhysicalPersonCPF(ownerDataGroup);
     }
-    
+
     public void checkDocumentPhysicalPersonRG() {
         checkOwnerDocument.checkDocumentPhysicalPersonRG(ownerDataGroup, addressControl);
     }
-    
+
     public void methodToUpdateOwnerData(List<AnimalDataGroup> listAnimal) {
         new UpdateOwnerData().methodToUpdateOwnerData(listAnimal, ownerDataGroup,
                 phonesControl, intercalateCpfRg, item, addressControl);
     }
-    
+
     public void closeDialogEditOwnerData() {
         if (ownerDataGroup.getPerson().getPkPerson() != null) {
             item = new AnimalDataGroup();
             ownerDataGroup = new OwnerDataGroup();
+            phonesControl.instantiateObjects();
             phonesControl = new PhonesControl();
             addressControl = new AddressControl();
             intercalateCpfRg = new IntercalateCpfRg();
@@ -138,19 +143,19 @@ public class EditOwnerData extends AbstractBean {
     public OwnerDataGroup getOwnerDataGroup() {
         return ownerDataGroup;
     }
-    
+
     public void setOwnerDataGroup(OwnerDataGroup ownerDataGroup) {
         this.ownerDataGroup = ownerDataGroup;
     }
-    
+
     public PhonesControl getPhonesControl() {
         return phonesControl;
     }
-    
+
     public IntercalateCpfRg getIntercalateCpfRg() {
         return intercalateCpfRg;
     }
-    
+
     public AddressControl getAddressControl() {
         return addressControl;
     }

@@ -267,6 +267,7 @@
                     rendered="true"
                     required="false" />
 
+
                 <p:outputLabel 
                     id="phone1-Label"
                     class="outputLabel-SIHV colorPri"
@@ -281,39 +282,73 @@
                 </p:inputMask>
 
 
-                <p:selectBooleanCheckbox 
-                    id="phone2-Opcao" 
-                    class="outputLabel-SIHV colorPri"
-                    style="font-size: 13px"
-                    itemLabel="2ª Celular"
-                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}">
-                    <p:ajax update="editOwnerData-panelGrid" />
-                </p:selectBooleanCheckbox>
-                <p:inputMask 
-                    id="phone2-Input"
-                    mask="(99) 99999-9999" 
-                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone2.numberPhone}"
-                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
-                    required="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
-                    requiredMessage="Informe o campo 2ª Celular!"/>
+                <p:panelGrid 
+                    id="phone2Opcao-panelGrid"
+                    columns="1"
+                    layout="grid"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-12"
+                    style="margin-left: -10px;">
+                    <p:selectBooleanCheckbox 
+                        id="phone2-Opcao" 
+                        class="outputLabel-SIHV colorPri"
+                        style="font-size: 13px"
+                        itemLabel="2ª Celular"
+                        value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}">
+                        <p:ajax update="phone2Input-panelGrid,phone3Opcao-panelGrid,phone3Input-panelGrid" />
+                    </p:selectBooleanCheckbox>
+                </p:panelGrid>
+                <p:panelGrid 
+                    id="phone2Input-panelGrid"
+                    columns="1"
+                    layout="grid"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-12"
+                    style="margin-left: -10px;
+                    margin-right: -10px;">
+                    <p:inputMask 
+                        id="phone2-Input"
+                        mask="(99) 99999-9999" 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone2.numberPhone}"
+                        rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
+                        required="true"
+                        requiredMessage="Informe o campo 2ª Celular!"/>
+                </p:panelGrid>
 
 
-                <p:selectBooleanCheckbox 
-                    id="phone3-Opcao"
-                    class="outputLabel-SIHV colorPri"
-                    style="font-size: 13px"
-                    itemLabel="3ª Celular"
-                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
-                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}">
-                    <p:ajax update="editOwnerData-panelGrid" />
-                </p:selectBooleanCheckbox>
-                <p:inputMask 
-                    id="phone3-Input"
-                    mask="(99) 99999-9999" 
-                    value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone3.numberPhone}"
-                    rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}"
-                    required="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}"
-                    requiredMessage="Informe o campo 3ª Celular!"/>
+                <p:panelGrid 
+                    id="phone3Opcao-panelGrid"
+                    columns="1"
+                    layout="grid"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-12"
+                    style="margin-left: -10px;">
+                    <p:selectBooleanCheckbox 
+                        id="phone3-Opcao"
+                        class="outputLabel-SIHV colorPri"
+                        style="font-size: 13px"
+                        itemLabel="3ª Celular"
+                        rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone2}"
+                        value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}">
+                        <p:ajax update="phone3Input-panelGrid" />
+                    </p:selectBooleanCheckbox>
+                </p:panelGrid>
+                <p:panelGrid 
+                    id="phone3Input-panelGrid"
+                    columns="1"
+                    layout="grid"
+                    styleClass="panelgrid-noborder"
+                    columnClasses="ui-grid-col-12"
+                    style="margin-left: -10px;
+                    margin-right: -10px;">
+                    <p:inputMask 
+                        id="phone3-Input"
+                        mask="(99) 99999-9999" 
+                        value="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.phone3.numberPhone}"
+                        rendered="#{MBsearchForAnimalSmall.editOwnerData.phonesControl.viewPhone3}"
+                        required="true"
+                        requiredMessage="Informe o campo 3ª Celular!"/>
+                </p:panelGrid>
             </p:panelGrid>
 
 
@@ -338,5 +373,4 @@
             </p:panelGrid>
         </div>
     </p:dialog>
-
 </ui:component>
