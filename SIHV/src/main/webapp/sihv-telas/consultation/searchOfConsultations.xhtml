@@ -1,0 +1,215 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <div class="ui-fluid">
+        <p:panelGrid 
+            columns="2"
+            layout="grid"
+            rendered="false"
+            styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-2,ui-grid-col-4"
+            style="margin-top: 20px;">
+
+            <p:outputLabel class="outputLabel-SIHV colorPri "
+                           value="Tipo de pesquisa: "/>
+
+            <p:selectOneMenu 
+                id="typeOfAction-Input"
+                required="true"
+                requiredMessage="Selecione o tipo de pesquisa!"
+                value="#{MBconsultation.typeOfAction.viewVariableBoolean}">
+                <f:selectItem itemLabel="Buscar consulta registrada" itemValue="false" />
+                <f:selectItem itemLabel="Realizar nova consulta/retorno" itemValue="true" />
+                <p:ajax update=":form" />
+            </p:selectOneMenu>
+        </p:panelGrid>
+
+
+        <p:panelGrid 
+            id="SearchforRegisteredConsultation-panelGrid"
+            columns="2"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-2,ui-grid-col-5"
+            rendered="#{!MBconsultation.typeOfAction.viewVariableBoolean}"
+            style="margin-top: 20px;">
+
+            <p:outputLabel 
+                class="outputLabel-SIHV colorPri "
+                value="Buscar por: "/>
+
+            <p:selectOneRadio
+                id="itemSearch-Input"
+                layout="responsive"
+                columns="2"
+                required="true"
+                requiredMessage="Selecione o tipo de pesquisa!"
+                value="#{MBconsultation.objVarSearch.itemSearch}">
+                <f:selectItem itemLabel="RGHV" itemValue="RGHV" />
+                <f:selectItem itemLabel="Nome do animal" itemValue="NameAnimal" />
+                <f:selectItem itemLabel="Nome do proprietário" itemValue="NameOwner" />
+                <f:selectItem itemLabel="Entre datas" itemValue="BetweenDates" />
+                <p:ajax 
+                    update="inputs-Calendar,input-Mask,textSearch-Input"
+                    listener="#{MBconsultation.selectionEngine.selectSearchType()}"/>
+            </p:selectOneRadio>
+        </p:panelGrid>
+
+
+        <p:panelGrid 
+            id="inputs-Calendar"
+            columns="3"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-2,ui-grid-col-2,ui-grid-col-2"
+            rendered="#{!MBconsultation.typeOfAction.viewVariableBoolean}">
+
+            <p:outputLabel 
+                value=""
+                rendered="#{MBconsultation.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"/>
+
+            <p:calendar 
+                id="textSearch-calendar"
+                value="#{MBconsultation.objVarSearch.dateInitial}"
+                placeholder="Data inicial"
+                maxlength="#{MBconsultation.objVarSearch.maxLength}"  
+                disabled="false" 
+                title=""
+                rendered="#{MBconsultation.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                required="true"  
+                requiredMessage="Informe a data inicial!" 
+                locale="pt" 
+                navigator="true"  
+                pattern="yyyy-mm-dd" />
+
+            <p:calendar 
+                id="textSearch2-calendar"
+                value="#{MBconsultation.objVarSearch.dateEnd}"
+                placeholder="Data final"
+                maxlength="#{MBconsultation.objVarSearch.maxLength}" 
+                disabled="false" 
+                title=""
+                rendered="#{MBconsultation.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                required="true"  
+                requiredMessage="Informe a data final!" 
+                locale="pt" 
+                navigator="true"  
+                pattern="yyyy-mm-dd" /> 
+        </p:panelGrid>
+
+
+        <p:panelGrid 
+            id="input-Mask"
+            columns="2"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-2,ui-grid-col-4"
+            rendered="#{!MBconsultation.typeOfAction.viewVariableBoolean}">
+            <p:outputLabel 
+                value=""
+                rendered="#{!MBconsultation.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"/>
+            <p:inputMask 
+                id="textSearch-Input"
+                mask="#{MBconsultation.objVarSearch.searchMask}"
+                value="#{MBconsultation.objVarSearch.textSearch}"
+                title="#{MBconsultation.objVarSearch.searchTip}" 
+                maxlength="#{MBconsultation.objVarSearch.maxLength}"
+                rendered="#{!MBconsultation.selectionEngine.viewRGHVandNameAnimal.viewVariableBoolean}"
+                required="true" 
+                requiredMessage="Informe o valor a ser pesquisado!" />
+            <p:outputLabel 
+                value="" />
+            <p:commandButton 
+                value="Pesquisar"
+                action="#{MBconsultation.methodSearchOfClients()}"
+                icon="fa fa-search"
+                update="growl,form,itemSearch-Input,inputs-Calendar,input-Mask"/>
+        </p:panelGrid>
+
+
+        <p:panelGrid 
+            id="tableAnimals"
+            columns="1"
+            layout="grid"
+            style="margin-top: 20px;"
+            columnClasses="ui-grid-col-12"
+            styleClass="panelgrid-noborder"
+            rendered="#{MBconsultation.searchOfClients.listClientInitialData.size() > 0}">
+            <p:dataTable 
+                id="selectClient"
+                var="itemClient"
+                value="#{MBconsultation.searchOfClients.listClientInitialData}"
+                selection="#{MBconsultation.searchOfClients.selectClientInitialData}"
+                rowKey="#{itemClient.RGHVsmallAnimal}"
+                filteredValue="#{MBconsultation.searchOfClients.filterClientInitialData}"
+                rendered="true"
+                reflow="true"
+                paginator="true"
+                rows="10">
+
+                <p:column 
+                    selectionMode="single" 
+                    style="width:50px;
+                    text-align:center"/>
+
+
+                <p:column 
+                    headerText="RGHV"
+                    class="LADES-default-Text"
+                    filterBy="#{itemClient.RGHVsmallAnimal}"
+                    filterMatchMode="contains"
+                    style="text-align: center;"
+                    width="90px;">
+                    <h:outputText value="#{itemClient.RGHVsmallAnimal}" />
+                </p:column>
+
+
+                <p:column 
+                    headerText="Animal"
+                    class="LADES-default-Text"
+                    filterBy="#{itemClient.animalName}"
+                    filterMatchMode="contains"
+                    style="text-align: center;">
+                    <h:outputText value="#{itemClient.animalName}"/>
+                </p:column>
+
+                <p:column 
+                    headerText="Raça"
+                    class="LADES-default-Text"
+                    filterBy="#{itemClient.nameRaces}"
+                    filterMatchMode="contains"
+                    style="text-align: center;"
+                    width="200px;">
+                    <h:outputText value="#{itemClient.nameRaces}"/>
+                </p:column>
+
+                <p:column 
+                    headerText="Espécie"
+                    class="LADES-default-Text"
+                    filterBy="#{itemClient.nameSpecies}"
+                    filterMatchMode="contains"
+                    style="text-align: center;"
+                    width="100px;">
+                    <h:outputText value="#{itemClient.nameSpecies}"/>
+                </p:column>
+
+                <p:column 
+                    headerText="Proprietário"
+                    class="LADES-default-Text"
+                    filterBy="#{itemClient.dataOwner}"
+                    filterMatchMode="contains"
+                    style="text-align: center;">
+                    <h:outputText value="#{itemClient.namePerson}, #{itemClient.cpfCnpj}, #{itemClient.rg}" />
+                </p:column>
+
+                <f:facet name="footer">
+                    Total de itens listados: #{MBconsultation.searchOfClients.listClientInitialData.size()}
+                </f:facet>
+            </p:dataTable>
+        </p:panelGrid>
+    </div>
+
+</ui:component>

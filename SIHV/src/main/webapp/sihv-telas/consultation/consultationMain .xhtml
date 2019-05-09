@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/WEB-INF/template/layout.xhtml">
+        <ui:define name="title"  >
+            <i class="fa fa-stethoscope"/>
+            <p:outputLabel value=" Buscar consultas"/>
+        </ui:define>
+
+        <ui:define name="content">
+            <h:form 
+                id="form">
+                <p:growl 
+                    id="growl"
+                    showDetail="false"
+                    sticky="false"
+                    life="5000" />
+
+
+                <p:wizard 
+                    nextLabel="próximo"
+                    backLabel="voltar"
+                    showNavBar="true"
+                    showStepStatus="true"
+                    widgetVar="wiz">
+                    <p:tab 
+                        id="etapa1" 
+                        title="Buscar cliente" 
+                        titletip="">
+                        <ui:include src="/sihv-telas/consultation/searchOfConsultations.xhtml" />
+                    </p:tab>
+
+                    <p:tab 
+                        id="etapa2" 
+                        title="Formulários" 
+                        titletip="">
+                        <ui:include src="/sihv-telas/consultation/panelWithOwnerData.xhtml" />
+                        <ui:include src="/sihv-telas/consultation/consultationListing.xhtml" />
+                        <ui:include src="/sihv-telas/consultation/consultationFormButtons.xhtml" />
+                        <p:fieldset 
+                            toggleable="false" 
+                            toggleSpeed="500"
+                            legend="Exames específicos" 
+                            style="margin-bottom:20px;
+                            margin-top: 20px;">
+                        </p:fieldset>
+                    </p:tab>
+                </p:wizard>
+
+
+                <p:sidebar 
+                    widgetVar="sidebar5" 
+                    fullScreen="true" >
+                    <h1 style="font-weight:normal">Anamnese</h1>
+                    <p:commandButton 
+                        value="Cancel" 
+                        oncomplete="PF('sidebar5').hide()"/>
+                </p:sidebar>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

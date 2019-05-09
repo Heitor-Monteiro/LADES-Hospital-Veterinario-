@@ -1,0 +1,140 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <style>
+        .ico {
+            color: #ffffff;
+            font-size: 80px;
+            margin-top: 5px;
+        }
+
+        .t1{
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .t2 {
+            font-size: 15px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .adj {
+            margin-top: -12px !important;
+            margin-bottom: -12px !important;
+        }
+    </style>
+
+    <div class="ui-fluid">
+        <p:panelGrid 
+            columns="2"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            columnClasses="ui-grid-col-6,ui-grid-col-6"
+            style="margin-right: 40px;">
+
+            <p:commandLink 
+                onclick="PF('sidebar5').show();">
+                <p:panel 
+                    style="background-image: 
+                    linear-gradient(90deg, #47AB6C 35%, 
+                    rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <p:outputLabel
+                                rendered="#{MBconsultation.searchOfClients.selectClientInitialData.nameSpecies == 'Felino'}">
+                                <i class="ico fa fa-cat"/>
+                            </p:outputLabel>
+                            <p:outputLabel
+                                rendered="#{MBconsultation.searchOfClients.selectClientInitialData.nameSpecies != 'Felino'}">
+                                <i class="ico fa fa-dog"/>
+                            </p:outputLabel>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c ui-g-12">
+                                <p:outputLabel 
+                                    class="t1"
+                                    value="Animal"/>
+                            </div>
+                            <div class="c ui-g-12">
+                                <p:outputLabel 
+                                    class="t2"
+                                    value="RGHV: " />
+                                <p:outputLabel
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.RGHVsmallAnimal}" />
+                            </div>
+                            <div class="adj c ui-g-12">
+                                <p:outputLabel 
+                                    class="t2"
+                                    value="Nome: "/>
+                                <p:outputLabel
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.animalName}"/>
+                            </div>
+                            <div class="c ui-g-12">
+                                <p:outputLabel 
+                                    class="t2"
+                                    value="Espécie: "/>
+                                <p:outputLabel 
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.nameSpecies}"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </p:commandLink>
+
+
+            <p:commandLink 
+                onclick="PF('sidebar5').show();">
+                <p:panel 
+                    style="background-image: 
+                    linear-gradient(90deg, #0894A1 35%, 
+                    rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="ico fa fa-user"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c ui-g-12">
+                                <p:outputLabel
+                                    class="t1"
+                                    value="Proprietário"/>
+                            </div>
+                            <div class="c ui-g-12">
+                                <p:outputLabel 
+                                    class="t2"
+                                    value="Nome: "/>
+                                <p:outputLabel 
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.namePerson}"/>
+                            </div>
+                            <div class="adj c ui-g-12">
+                                <p:outputLabel
+                                    class="t2"
+                                    value="Telefone: "/>
+                                <p:outputLabel 
+                                    value="(91) 99988-6677"/>
+                            </div>
+                            <div class="c ui-g-12">
+                                <p:outputLabel 
+                                    class="t2"
+                                    value="CPF: "/>
+                                <p:outputLabel 
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.cpfCnpj}"/>
+                                <p:outputLabel 
+                                    class="t2"
+                                    value=" RG: "/>
+                                <p:outputLabel 
+                                    value="#{MBconsultation.searchOfClients.selectClientInitialData.rg}"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </p:commandLink>
+
+        </p:panelGrid>
+    </div>
+
+</ui:component>

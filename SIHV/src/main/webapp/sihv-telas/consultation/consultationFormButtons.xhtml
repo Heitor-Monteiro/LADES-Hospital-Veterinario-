@@ -1,0 +1,97 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+              xmlns:p="http://primefaces.org/ui" 
+              xmlns:h="http://xmlns.jcp.org/jsf/html" 
+              xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+
+    <p:fieldset 
+        toggleable="false" 
+        toggleSpeed="500"
+        legend="Exames clínicos" 
+        style="margin-bottom:20px;
+        margin-top: 20px;">
+
+        <p:panelGrid 
+            columns="4"
+            layout="grid"
+            styleClass="panelgrid-noborder"
+            style="margin-right: 40px;">
+            <p:commandLink 
+                onclick="PF('sidebar5').show();">
+                <p:panel 
+                    style="background-image: 
+                    linear-gradient(90deg, #47AB6C 35%, 
+                    rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-file-signature"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Anamnese" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </p:commandLink>
+
+
+            <p:commandLink 
+                onclick="PF('sidebar5').show();">
+                <p:panel 
+                    style="background-image: 
+                    linear-gradient(90deg, #0894A1 35%, 
+                    rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-file-signature"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Exame físico" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </p:commandLink>
+
+
+            <p:commandLink 
+                onclick="PF('sidebar5').show();">
+                <p:panel 
+                    style="background-image: 
+                    linear-gradient(90deg, #F2B134 35%, 
+                    rgba(255,0,0,0) 35%);">
+                    <div class="ui-g">
+                        <div class="ui-g-5">
+                            <i class="fa fa-file-signature"
+                               style="font-size: 40px;
+                               color: #ffffff;"/>
+                        </div>
+                        <div class="ui-g-7 ui-g-nopad">
+                            <div class="c i ui-g-12">
+                                <p:outputLabel 
+                                    value="Diagnósticos diferenciais" 
+                                    style="font-size: 15px;
+                                    cursor: pointer;"/>
+                            </div>
+                        </div>
+                    </div>
+                </p:panel>
+            </p:commandLink>
+        </p:panelGrid>
+
+    </p:fieldset>
+
+</ui:component>

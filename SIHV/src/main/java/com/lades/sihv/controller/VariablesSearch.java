@@ -57,6 +57,9 @@ public class VariablesSearch extends AbstractBean {
     }
 
     public void setTextSearch(String textSearch) {
+        if (textSearch.equals("%")) {
+            textSearch = "$$$";
+        }
         this.textSearch = textSearch;
     }
 
