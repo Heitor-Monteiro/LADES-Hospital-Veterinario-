@@ -12,6 +12,7 @@ import com.lades.sihv.controller.VariablesSearch;
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.event.FlowEvent;
 
 /**
  *
@@ -26,6 +27,7 @@ public class MBconsultation extends AbstractBean {
     private VariablesSearch objVarSearch;
     private ConsultationSearchSelectionEngine selectionEngine;
     private SearchOfClients searchOfClients;
+    private SearchConsultationData searchConsultationData;
 
     @PostConstruct
     public void init() {
@@ -35,14 +37,28 @@ public class MBconsultation extends AbstractBean {
             objVarSearch = new VariablesSearch();
             selectionEngine = new ConsultationSearchSelectionEngine(objVarSearch);
             searchOfClients = new SearchOfClients();
+            searchConsultationData = new SearchConsultationData();
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void init(): " + e.toString());
             new ModuleToCollectError().erroPage500("MBconsultation > init", e.toString());
         }
     }
-    
-    public void methodSearchOfClients(){
+
+    public void methodSearchOfClients() {
         searchOfClients.methodSearchOfClients(objVarSearch);
+    }
+
+    public String onFlowProcess(FlowEvent event) {
+        String var;
+        if (searchOfClients.getSelectClientInitialData() == null) {
+            var = "etapa1";
+            getObjMessage().warn("Selecione um cliente na tabela!", "");
+        } else {
+            var = event.getNewStep();
+            searchConsultationData.methodSearchOfConsultation(searchOfClients.getSelectClientInitialData().getPkAnimal());
+            
+        }
+        return var;
     }
 
     //-GETs e SETs--------------------------------------------------------------
@@ -60,5 +76,9 @@ public class MBconsultation extends AbstractBean {
 
     public SearchOfClients getSearchOfClients() {
         return searchOfClients;
+    }
+
+    public SearchConsultationData getSearchConsultationData() {
+        return searchConsultationData;
     }
 }

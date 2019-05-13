@@ -4,26 +4,48 @@
               xmlns:h="http://xmlns.jcp.org/jsf/html" 
               xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    
+
 
 
     <p:dataTable 
         id="selectConsultation"
         var="itemConsultation"
-        value=""
-        filteredValue=""
+        value="#{MBconsultation.searchConsultationData.listInitialConsultationData}"
+        filteredValue="#{MBconsultation.searchConsultationData.filterInitialConsultationData}"
+        emptyMessage="O cliente não possui consultas registradas!"
         rendered="true"
         reflow="false"
         paginator="true"
         rows="10">
 
+
         <p:column 
-            headerText="Data - Tipo - Veterinário"
+            headerText="Data"
             class="LADES-default-Text"
-            filterBy=""
+            filterBy="#{itemConsultation.textSchedulingDate}"
             filterMatchMode="contains"
             style="text-align: center;">
-            <h:outputText value="2018-12-10 Nova consulta Beltrano" />
+            <h:outputText value="#{itemConsultation.textSchedulingDate}" />
+        </p:column>
+
+
+        <p:column 
+            headerText="Tipo"
+            class="LADES-default-Text"
+            filterBy="#{itemConsultation.typeService}"
+            filterMatchMode="contains"
+            style="text-align: center;">
+            <h:outputText value="#{itemConsultation.typeService}" />
+        </p:column>
+
+
+        <p:column 
+            headerText="Veterinário"
+            class="LADES-default-Text"
+            filterBy="#{itemConsultation.namePerson}"
+            filterMatchMode="contains"
+            style="text-align: center;">
+            <h:outputText value="#{itemConsultation.namePerson}" />
         </p:column>
     </p:dataTable>
 

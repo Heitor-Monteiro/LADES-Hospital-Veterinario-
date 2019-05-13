@@ -145,6 +145,7 @@
                 selection="#{MBconsultation.searchOfClients.selectClientInitialData}"
                 rowKey="#{itemClient.RGHVsmallAnimal}"
                 filteredValue="#{MBconsultation.searchOfClients.filterClientInitialData}"
+                emptyMessage="Ocorrência não encontrada!"
                 rendered="true"
                 reflow="true"
                 paginator="true"
@@ -161,6 +162,7 @@
                     class="LADES-default-Text"
                     filterBy="#{itemClient.RGHVsmallAnimal}"
                     filterMatchMode="contains"
+                    filterMaxLength="9"
                     style="text-align: center;"
                     width="90px;">
                     <h:outputText value="#{itemClient.RGHVsmallAnimal}" />
@@ -172,6 +174,7 @@
                     class="LADES-default-Text"
                     filterBy="#{itemClient.animalName}"
                     filterMatchMode="contains"
+                    filterMaxLength="70"
                     style="text-align: center;">
                     <h:outputText value="#{itemClient.animalName}"/>
                 </p:column>
@@ -181,6 +184,7 @@
                     class="LADES-default-Text"
                     filterBy="#{itemClient.nameRaces}"
                     filterMatchMode="contains"
+                    filterMaxLength="100"
                     style="text-align: center;"
                     width="200px;">
                     <h:outputText value="#{itemClient.nameRaces}"/>
@@ -191,6 +195,7 @@
                     class="LADES-default-Text"
                     filterBy="#{itemClient.nameSpecies}"
                     filterMatchMode="contains"
+                    filterMaxLength="100"
                     style="text-align: center;"
                     width="100px;">
                     <h:outputText value="#{itemClient.nameSpecies}"/>
@@ -201,6 +206,7 @@
                     class="LADES-default-Text"
                     filterBy="#{itemClient.dataOwner}"
                     filterMatchMode="contains"
+                    filterMaxLength="140"
                     style="text-align: center;">
                     <h:outputText value="#{itemClient.namePerson}, #{itemClient.cpfCnpj}, #{itemClient.rg}" />
                 </p:column>
