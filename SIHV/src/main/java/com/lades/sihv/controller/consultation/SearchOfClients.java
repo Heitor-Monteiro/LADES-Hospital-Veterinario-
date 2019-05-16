@@ -28,32 +28,19 @@ public class SearchOfClients extends AbstractBean {
 
     public void methodSearchOfClients(VariablesSearch objVarSearch) {
         try {
+            List<ClientInitialData> comparisonlist = new ArrayList();
             listClientInitialData.clear();
             hql = new GenerateJoin().methodGenerateJoin(objVarSearch);
             List<?> tempList = getDaoGenerico().list(hql);
             if (tempList.isEmpty()) {
                 new EmptyClientListMessage().methodEmptyClientListMessage(objVarSearch);
             } else {
-                getObjMessage().info(tempList.size() + " itens encontrados.", "");
-                for (Object[] obj : (List<Object[]>) tempList) {
-                    ClientInitialData temp = new ClientInitialData();
-                    temp.setRGHVsmallAnimal((Integer) obj[0]);
-                    temp.setPkAnimal((Integer) obj[1]);
-                    temp.setAnimalName((String) obj[2]);
-                    temp.setNameRaces((String) obj[3]);
-                    temp.setNameSpecies((String) obj[4]);
-                    temp.setPkPerson((Integer) obj[5]);
-                    temp.setNamePerson((String) obj[6]);
-                    temp.setCpfCnpj(returnPhysicalPersonDocuments(temp.getPkPerson(), true));
-                    temp.setRg(returnPhysicalPersonDocuments(temp.getPkPerson(), false));
-                    if (temp.getCpfCnpj().isEmpty() && temp.getRg().isEmpty()) {
-
-                    }
-                    listClientInitialData.add(temp);
-                }
+                CollectListData obj = new CollectListData();
+                obj.methodCollectListData1(tempList, comparisonlist);
+                obj.methodCollectListData2(comparisonlist, listClientInitialData);
+                getObjMessage().info(listClientInitialData.size() + " itens encontrados.", "");
                 cleanTableFilter(listClientInitialData, filterClientInitialData);
             }
-
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void methodSearchOfClients(): " + e.toString());
             new ModuleToCollectError().erroPage500("SearchOfClients > methodSearchOfClients", e.toString());
@@ -68,31 +55,9 @@ public class SearchOfClients extends AbstractBean {
                 filterClientInitialData.addAll(listClientInitialData);
             }
         } catch (Exception e) {
+            System.out.println("►►►►►►►►►►►►► ERRO private void cleanTableFilter(): " + e.toString());
+            new ModuleToCollectError().erroPage500("SearchOfClients > cleanTableFilter", e.toString());
         }
-    }
-
-    private String returnPhysicalPersonDocuments(Integer pkPerson, boolean documentType) {
-        String var = "";
-        try {
-            String entity = "Rg";
-            String column = "rg";
-            if (documentType) {
-                entity = "Cpf";
-                column = "cpf";
-            }
-            List<?> list = getDaoGenerico().list("select c." + column + " from \n"
-                    + "People p, PhysicalPerson ph, " + entity + " c \n"
-                    + "where \n"
-                    + "p.pkPerson=ph.people.pkPerson and \n"
-                    + "ph.id.pkPhysicalPerson=c.physicalPerson.id.pkPhysicalPerson and \n"
-                    + "p.pkPerson='" + pkPerson + "'");
-            if (!list.isEmpty()) {
-                var = "" + list.get(0);
-            }
-        } catch (Exception e) {
-
-        }
-        return var;
     }
 
     // GETs & SETs -------------------------------------------------------------

@@ -23,19 +23,19 @@ public class GenerateJoin implements Serializable {
             String join = "";
             switch (objVarSearch.getItemSearch()) {
                 case "RGHV":
-                    join = "and \n s.pkSmallAnimal='" + objVarSearch.getTextSearch() + "'";
+                    join = "and \ns.pkSmallAnimal='" + objVarSearch.getTextSearch() + "'";
                     break;
                 case "NameAnimal":
-                    join = "and \n a.animalName like '%" + objVarSearch.getTextSearch() + "%'";
+                    join = "and \na.animalName like '%" + objVarSearch.getTextSearch() + "%'";
                     break;
                 case "NameOwner":
-                    join = "and \n p.namePerson like '%" + objVarSearch.getTextSearch() + "%'";
+                    join = "and \np.namePerson like '%" + objVarSearch.getTextSearch() + "%'";
                     break;
                 case "BetweenDates":
                     DateFormat formatUS = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
                     String x = formatUS.format(objVarSearch.getDateInitial()).substring(0, 11) + "01:00:00";
                     String y = formatUS.format(objVarSearch.getDateEnd()).substring(0, 11) + "23:59:59";
-                    join = "and \n a.registrationDate>='" + x + "' and \n "
+                    join = "and \na.registrationDate>='" + x + "' and \n "
                             + "a.registrationDate<='" + y + "'";
                     break;
             }
@@ -44,14 +44,15 @@ public class GenerateJoin implements Serializable {
                     + "a.pkAnimal, a.animalName, \n"
                     + "r.nameRaces, sp.nameSpecies, \n"
                     + "p.pkPerson, p.namePerson \n"
-                    + "from People p, Owners o, OwnersHasAnimals oh, Animals a, SmallAnimal s, Races r, Species sp \n"
+                    + "from People p, Owners o, OwnersHasAnimals oh, VetConsultation vet, Animals a, SmallAnimal s, Races r, Species sp \n"
                     + "where \n"
                     + "p.pkPerson=o.people.pkPerson and \n"
                     + "o.pkOwner=oh.owners.pkOwner and \n"
                     + "oh.animals.pkAnimal=a.pkAnimal and \n"
+                    + "oh.pkOwnersHasAnimals=vet.ownersHasAnimals.pkOwnersHasAnimals and \n"
                     + "a.pkAnimal=s.animals.pkAnimal and \n"
                     + "r.id.pkRaces=s.races.id.pkRaces and \n"
-                    + "sp.id.pkSpecies=r.species.id.pkSpecies \n " + join;
+                    + "sp.id.pkSpecies=r.species.id.pkSpecies " + join;
         } catch (Exception e) {
             System.out.println("►►►►►►►►►►►►► ERRO public void methodGenerateJoin(): " + e.toString());
             new ModuleToCollectError().erroPage500("GenerateJoin > methodGenerateJoin", e.toString());
