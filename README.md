@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="./README/styles.css">
+<link rel="stylesheet" href="https://github.com/Heitor-Monteiro/LADES-Hospital-Veterinario-/blob/createREADME/README/styles.css">
 
 <img src="./SIHV/src/main/webapp/resources/imagens/sihv_logo_simple.svg" width="350"/>
 </br>
