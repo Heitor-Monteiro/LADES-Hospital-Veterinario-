@@ -1,6 +1,10 @@
 <link rel="stylesheet" href="https://github.com/Heitor-Monteiro/LADES-Hospital-Veterinario-/blob/createREADME/README/styles.css">
 
-<img src="./SIHV/src/main/webapp/resources/imagens/sihv_logo_simple.svg" width="350"/>
+<img src="./SIHV/src/main/webapp/resources/imagens/sihv_logo_simple.svg" 
+width="350" 
+style="display: block;
+  margin-left: auto;
+  margin-right: auto;"/>
 </br>
 
 O projeto compõe o desenvolvimento prático de meu trabalho de conclusão de curso realizado na Universidade Federal do Pará (UFPA). Consistindo numa proposta de software-web delineado para o gerenciamento e sistematização de atividades cotidianas do Hospital Veterinário (HV) da UFPA Castanhal.
